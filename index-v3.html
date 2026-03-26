@@ -366,6 +366,32 @@
       overflow: hidden;
     }
     .hero-collage-sub img { width: 100%; height: 100%; object-fit: cover; object-position: center center; display: block; }
+
+    /* Bloom chart hover overlay */
+    .bloom-overlay {
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: rgba(255, 253, 248, 0.88);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 5;
+    }
+    .hero-collage:hover .bloom-overlay {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    @media (max-width: 809px) {
+      .bloom-overlay { display: none !important; }
+    }
+
     .hero-ad-label {
       font-size: 10px;
       font-weight: 700;
@@ -1115,7 +1141,7 @@
         </div>
       </div>
       <div class="hero-right" data-anim="scale" data-hero data-delay="2">
-        <div class="hero-collage">
+        <div class="hero-collage" style="position:relative;">
           <!-- Left: tall portrait -->
           <div class="hero-collage-main">
             <img src="assets/lipstick-spill.jpg" alt="Noirvere lipstick campaign" />
@@ -1128,12 +1154,12 @@
           <div class="hero-collage-sub">
             <img src="assets/lipstick-taxi.jpg" alt="Noirvere UGC campaign" />
           </div>
+          <!-- Bloom chart hover overlay -->
+          <div class="bloom-overlay">
+            <img src="assets/performance-bloom-hero.svg" alt="ROAS growth" style="width:100%; height:100%; object-fit:contain;" />
+          </div>
         </div>
-        <!-- Performance bloom chart -->
-        <div style="margin-top:16px;">
-          <img src="assets/performance-bloom-hero.svg" alt="ROAS growth chart" style="width:100%; height:auto; max-height:260px; object-fit:contain;" />
-        </div>
-        <div style="margin-top:10px; text-align:center;">
+        <div style="margin-top:14px; text-align:center;">
           <span style="display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg, #5500dd15, #ee003315); border:1px solid #5500dd30; border-radius:100px; padding:8px 18px; font-size:13px; font-weight:700; color:var(--blue); letter-spacing:0.02em;">
             <span style="display:inline-block; animation: pulse-glow 2s ease-in-out infinite;">✦</span>
             AI-accelerated creative
