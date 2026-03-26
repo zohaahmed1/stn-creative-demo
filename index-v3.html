@@ -493,19 +493,21 @@
       align-items: center;
       text-align: center;
       gap: 10px;
-      padding-top: 64px;
+      padding-top: 0;
       transition: transform 0.3s ease;
     }
     .service-card:hover { transform: translateY(-6px); }
-    .service-card:nth-child(2) { padding-top: 32px; }
-    .service-card:nth-child(3) { padding-top: 0; }
-    .service-card:nth-child(4) { padding-top: 64px; }
-    .service-card:nth-child(5) { padding-top: 32px; }
-    .service-card:nth-child(6) { padding-top: 0; }
+    /* Staggered offsets scoped to services section only */
+    #services .service-card { padding-top: 64px; }
+    #services .service-card:nth-child(2) { padding-top: 32px; }
+    #services .service-card:nth-child(3) { padding-top: 0; }
+    #services .service-card:nth-child(4) { padding-top: 64px; }
+    #services .service-card:nth-child(5) { padding-top: 32px; }
+    #services .service-card:nth-child(6) { padding-top: 0; }
     .service-icon { width: 90px; height: 80px; object-fit: contain; }
 
     @media (max-width: 809px) {
-      .service-card, .service-card:nth-child(n) { padding-top: 0; }
+      .service-card, #services .service-card, #services .service-card:nth-child(n) { padding-top: 0; }
     }
 
     /* =============================================
@@ -1093,9 +1095,9 @@
           </a>
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:4px;" data-anim data-hero data-delay="5">
-          <span style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-100); border:1px solid var(--gray-200); border-radius:100px; padding:6px 12px; font-size:12px; font-weight:600; color:var(--gray-500);">🏆 Pinterest Global Award Winner</span>
-          <span style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-100); border:1px solid var(--gray-200); border-radius:100px; padding:6px 12px; font-size:12px; font-weight:600; color:var(--gray-500);">⭐ Top 3% on Upwork</span>
-          <span style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-100); border:1px solid var(--gray-200); border-radius:100px; padding:6px 12px; font-size:12px; font-weight:600; color:var(--gray-500);">🤝 Reddit Certified Partner</span>
+          <span style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-100); border:1px solid var(--gray-200); border-radius:100px; padding:6px 12px; font-size:12px; font-weight:600; color:var(--gray-400);">🏆 Pinterest Global Award Winner</span>
+          <span style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-100); border:1px solid var(--gray-200); border-radius:100px; padding:6px 12px; font-size:12px; font-weight:600; color:var(--gray-400);">⭐ Top 3% on Upwork</span>
+          <span style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-100); border:1px solid var(--gray-200); border-radius:100px; padding:6px 12px; font-size:12px; font-weight:600; color:var(--gray-400);">🤝 Reddit Certified Partner</span>
         </div>
       </div>
       <div class="hero-right" data-anim="scale" data-hero data-delay="2">
@@ -1392,14 +1394,14 @@
         <p class="h2 white">4X ROAS</p>
         <p style="color:var(--gray-300); font-size:14px;">Meta · TikTok · Pinterest</p>
       </a>
-      <a href="#" class="project-card project-wide" style="background:var(--dark); padding:32px; border:2px solid var(--blue);">
+      <a href="#" class="project-card" style="grid-column:span 3; background:var(--dark); padding:32px; border:2px solid var(--blue);">
         <div style="display:flex; justify-content:space-between; align-items:flex-start; height:100%; flex-wrap:wrap; gap:16px;">
           <div>
             <h3 class="h3 white">Tiny Protectors</h3>
             <p class="body" style="color:var(--gray-300); margin-top:8px;">Meta · TikTok · Pinterest</p>
             <p class="h3 white" style="margin-top:8px;">50% ad spend increase YoY</p>
           </div>
-          <p class="body" style="color:var(--gray-200); max-width:240px;">Expanded beyond Meta while maintaining 4X ROAS. Channel-by-channel creative strategy built around top-selling SKUs.</p>
+          <p class="body" style="color:var(--gray-200); max-width:300px;">Expanded beyond Meta while maintaining 4X ROAS. Channel-by-channel creative strategy built around top-selling SKUs.</p>
         </div>
       </a>
     </div>
