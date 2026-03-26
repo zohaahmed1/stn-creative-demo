@@ -721,6 +721,10 @@
       0%, 100% { transform: translateY(0px); }
       50%       { transform: translateY(-8px); }
     }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.5; transform: scale(1.3); }
+    }
 
     /* Result cards hover */
     .result-card, section a[href="#work"] > div {
@@ -1084,7 +1088,7 @@
             <span class="badge badge-yellow" data-anim="tilt" data-hero>Full Loop</span>
           </div>
           <div class="title-row h1">
-            <span data-anim data-hero data-delay="1">media buying</span>
+            <span data-anim data-hero data-delay="1">performance marketing</span>
           </div>
           <div class="h1" data-anim data-hero data-delay="2">meets creative.</div>
         </div>
@@ -1123,7 +1127,12 @@
             <img src="assets/lipstick-taxi.jpg" alt="Noirvere UGC campaign" />
           </div>
         </div>
-        <p style="margin-top:12px; font-size:13px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--gray-300); text-align:center;">⚡ AI-accelerated creative</p>
+        <div style="margin-top:14px; text-align:center;">
+          <span style="display:inline-flex; align-items:center; gap:6px; background:linear-gradient(135deg, #5500dd15, #ee003315); border:1px solid #5500dd30; border-radius:100px; padding:8px 18px; font-size:13px; font-weight:700; color:var(--blue); letter-spacing:0.02em;">
+            <span style="display:inline-block; animation: pulse-glow 2s ease-in-out infinite;">✦</span>
+            AI-accelerated creative
+          </span>
+        </div>
       </div>
     </div>
   </div>
