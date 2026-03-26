@@ -509,6 +509,12 @@
 
     @media (max-width: 809px) {
       .service-card, #services .service-card, #services .service-card:nth-child(n) { padding-top: 0; }
+      #services .container > div[style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+      }
+      #services .container > div[style*="grid-template-columns"] > div {
+        border-right: none !important;
+      }
     }
 
     /* =============================================
@@ -1407,44 +1413,52 @@
       <div class="container">
         <div class="section-header">
           <div class="title-row h2" style="justify-content:center;" data-anim>
-            <span>We offer a wide range of</span>
-            <span class="badge badge-blue" data-anim="tilt" data-delay="1">performance</span>
-            <span>services</span>
-          </div>
-          <p class="body" data-anim data-delay="2">From creative production to media buying. Everything your campaigns need. One team. No handoffs.</p>
-        </div>
-        <div class="grid-3 mb-48">
-          <div class="service-card" data-anim>
-            <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Clapper%20board/3D/clapper_board_3d.png" class="service-icon" alt="" />
-            <h3 class="h3">Performance Creative</h3>
-            <p class="body">Static, video, UGC, 3D. Every format your campaigns need. Directed by strategists who read your data.</p>
-          </div>
-          <div class="service-card" data-anim>
-            <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Bar%20chart/3D/bar_chart_3d.png" class="service-icon" alt="" />
-            <h3 class="h3">Media Buying</h3>
-            <p class="body">Meta, Google, Reddit, LinkedIn, TikTok, Pinterest. Cross channel campaigns managed by ex-GroupM buyers.</p>
-          </div>
-          <div class="service-card" data-anim>
-            <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Magnifying%20glass%20tilted%20right/3D/magnifying_glass_tilted_right_3d.png" class="service-icon" alt="" />
-            <h3 class="h3">Creative Strategy</h3>
-            <p class="body">We audit your ad library, find the gaps, build your test roadmap, and tell you exactly what to produce next.</p>
-          </div>
-          <div class="service-card" data-anim>
-            <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Mobile%20phone/3D/mobile_phone_3d.png" class="service-icon" alt="" />
-            <h3 class="h3">UGC Production</h3>
-            <p class="body">Creator briefs, filming direction, editing. Performance UGC that feels native to every platform.</p>
-          </div>
-          <div class="service-card" data-anim>
-            <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Sparkles/3D/sparkles_3d.png" class="service-icon" alt="" />
-            <h3 class="h3">3D &amp; Animation</h3>
-            <p class="body">Product renders, animated ads, motion graphics. AI tools handle volume. Humans direct quality.</p>
-          </div>
-          <div class="service-card" data-anim>
-            <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Alien/3D/alien_3d.png" class="service-icon" alt="" />
-            <h3 class="h3">Reddit Ads</h3>
-            <p class="body">Community-native campaigns from a Reddit Certified Partner. We know where your buyers talk and exactly how to reach them.</p>
+            <span>What we</span>
+            <span class="badge badge-blue" data-anim="tilt" data-delay="1">do</span>
           </div>
         </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:2px solid var(--dark); max-width:900px; margin:0 auto 48px;" data-anim data-delay="2">
+          <div style="padding:28px 24px; border-bottom:1px solid var(--gray-200); border-right:1px solid var(--gray-200);">
+            <h3 class="h3" style="margin-bottom:6px;">Performance Creative</h3>
+            <p class="body" style="font-size:15px; color:var(--gray-400);">Static, video, UGC, 3D. Every format. Directed by strategists who read your data.</p>
+          </div>
+          <div style="padding:28px 24px; border-bottom:1px solid var(--gray-200);">
+            <h3 class="h3" style="margin-bottom:6px;">Media Buying</h3>
+            <p class="body" style="font-size:15px; color:var(--gray-400);">Meta, Google, Reddit, LinkedIn, TikTok, Pinterest, Snapchat. Ex-GroupM buyers.</p>
+          </div>
+          <div style="padding:28px 24px; border-bottom:1px solid var(--gray-200); border-right:1px solid var(--gray-200);">
+            <h3 class="h3" style="margin-bottom:6px;">Creative Strategy</h3>
+            <p class="body" style="font-size:15px; color:var(--gray-400);">Ad library audits, gap analysis, test roadmaps. We tell you exactly what to produce next.</p>
+          </div>
+          <div style="padding:28px 24px; border-bottom:1px solid var(--gray-200);">
+            <h3 class="h3" style="margin-bottom:6px;">UGC Production</h3>
+            <p class="body" style="font-size:15px; color:var(--gray-400);">Creator briefs, filming direction, editing. Native to every platform.</p>
+          </div>
+          <div style="padding:28px 24px; border-bottom:2px solid var(--dark); border-right:1px solid var(--gray-200);">
+            <h3 class="h3" style="margin-bottom:6px;">3D &amp; Animation</h3>
+            <p class="body" style="font-size:15px; color:var(--gray-400);">Product renders, animated ads, motion graphics. AI handles volume. Humans direct quality.</p>
+          </div>
+          <div style="padding:28px 24px; border-bottom:2px solid var(--dark);">
+            <h3 class="h3" style="margin-bottom:6px;">Reddit Ads</h3>
+            <p class="body" style="font-size:15px; color:var(--gray-400);">Community-native campaigns from a Reddit Certified Partner.</p>
+          </div>
+        </div>
+
+        <!-- Tools we create with -->
+        <div style="text-align:center; margin-bottom:24px;">
+          <p style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gray-300); margin-bottom:16px;">Tools we create with</p>
+          <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
+            <span style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--gray-400);">Claude</span>
+            <span style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--gray-400);">Gemini</span>
+            <span style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--gray-400);">Nano Banana</span>
+            <span style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--gray-400);">Luma Labs</span>
+            <span style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--gray-400);">Midjourney</span>
+            <span style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--gray-400);">Creatify</span>
+            <span style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--gray-400);">Kling</span>
+            <span style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--gray-400);">Figma</span>
+          </div>
+        </div>
+
         <div style="text-align:center;">
           <a href="https://calendly.com/skipthenoisemedia/30min" target="_blank" class="btn btn-dark">
             <span class="btn-inner">Book your free audit</span>
