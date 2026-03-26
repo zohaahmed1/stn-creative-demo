@@ -1079,12 +1079,28 @@
 
       /* Logo strip */
       .logo-strip { padding: 16px 0 !important; }
+
+      /* AI badge — reposition above collage on mobile */
+      .hero-collage > div[style*="position:absolute; top:-12px"] {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        grid-column: span 2 !important;
+        text-align: center;
+        margin-bottom: -4px;
+      }
+
+      /* Testimonials — add padding so cards don't clip at edges */
+      .testimonials-scroll { padding: 0 8px !important; }
+
+      /* Footer cols — wrap into 2x2 grid on mobile */
+      .footer-cols-row { gap: 32px 40px !important; }
     }
 
     /* Tablet tweaks */
     @media (min-width: 810px) and (max-width: 1199px) {
-      .hero-grid { gap: 16px !important; }
-      .hero-img-wrap { width: 130% !important; }
+      .hero-grid { gap: 32px !important; }
+      .hero-collage { height: 360px !important; }
       .ext-grid { flex-direction: column !important; align-items: center !important; }
       .process-grid { gap: 16px !important; }
     }
@@ -1869,7 +1885,7 @@
         if (!e.isIntersecting) return;
         statsObs.unobserve(e.target);
         const stats = e.target.querySelectorAll('.stat-num');
-        if (stats[0]) countUp(stats[0], 20, '$', 'M+', 1800);
+        if (stats[0]) countUp(stats[0], 100, '$', 'M+', 1800);
         if (stats[1]) countUp(stats[1], 60, '', '+', 1400);
       });
     }, { threshold: 0.5 });
