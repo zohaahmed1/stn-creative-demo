@@ -371,7 +371,7 @@
     /* Bloom chart floating widget */
     .bloom-overlay {
       position: absolute;
-      bottom: -50px;
+      bottom: -70px;
       left: 50%;
       transform: translateX(-50%);
       width: 240px;
@@ -993,9 +993,10 @@
       .hero-left .btn-row { justify-content: center !important; }
       .hero-left > div[style*="flex-wrap"] { justify-content: center !important; }
       .hero-right { display: block !important; width: 100% !important; max-width: 400px; margin: 0 auto; }
-      .hero-collage { height: 260px !important; animation: none !important; grid-template-columns: 1fr !important; }
-      .hero-collage-main { grid-row: 1 !important; }
-      .hero-collage-sub { display: none !important; }
+      .hero-collage { height: auto !important; animation: none !important; grid-template-columns: 1fr 1fr !important; grid-template-rows: auto !important; gap: 8px !important; }
+      .hero-collage-main { grid-row: auto !important; grid-column: span 2 !important; max-height: 220px; }
+      .hero-collage-sub { display: block !important; max-height: 140px; }
+      .bloom-overlay { display: none !important; }
 
       /* General sections */
       .container { padding: 0 16px !important; }
