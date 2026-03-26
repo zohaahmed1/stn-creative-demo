@@ -977,8 +977,9 @@
       .hamburger { display: none !important; }
       .nav-right { display: flex !important; }
       .nav-inner { padding: 12px 0 !important; }
+      .nav-logo { font-size: 18px !important; white-space: nowrap; }
       .nav-logo img { height: 32px !important; }
-      .nav-right .btn .btn-inner { padding: 10px 14px !important; font-size: 13px !important; }
+      .nav-right .btn .btn-inner { padding: 10px 14px !important; font-size: 12px !important; white-space: nowrap; }
       .nav.scrolled { left: 12px; right: 12px; border-radius: 14px; top: 8px; }
 
       /* Hero */
@@ -1023,10 +1024,17 @@
       /* Projects grid */
       .projects-grid { grid-template-columns: 1fr !important; grid-template-rows: auto !important; gap: 16px !important; }
       .projects-grid > * { grid-column: span 1 !important; grid-row: span 1 !important; }
+      .projects-grid .project-card > div[style*="justify-content:space-between"] { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
+      .projects-grid .project-card > div[style*="justify-content:space-between"] > div[style*="flex-direction:column"][style*="text-align:right"] { text-align: left !important; }
+      .projects-grid .project-card > div[style*="justify-content:space-between"] > div[style*="gap:40px"] { gap: 24px !important; }
+      .projects-grid .project-card > div[style*="justify-content:space-between"] > p.body { max-width: 100% !important; }
 
       /* Process cards */
       .process-grid { flex-direction: column !important; gap: 24px !important; }
       .process-card { transform: none !important; }
+      /* Process timeline — stack on mobile */
+      #process div[style*="grid-template-columns:1fr 1fr 1fr"] { grid-template-columns: 1fr !important; gap: 32px !important; }
+      #process div[style*="position:absolute; top:28px"] { display: none !important; }
 
       /* Testimonials */
       .testimonial-card { width: 280px !important; padding: 24px !important; }
@@ -1066,7 +1074,7 @@
 
       /* Book / Calendly section */
       #book { padding: 40px 0 !important; }
-      .calendly-inline-widget { height: 650px !important; }
+      .calendly-inline-widget { height: 700px !important; min-height: 600px !important; }
 
       /* Logo strip */
       .logo-strip { padding: 16px 0 !important; }
