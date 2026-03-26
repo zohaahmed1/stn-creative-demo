@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Skip the Noise Media — We Make the Ads. We Run the Ads. We Prove They Work.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -42,6 +42,7 @@
       width: 0%;
       transition: none;
     }
+    html { overflow-x: hidden; }
     body {
       font-family: var(--font);
       font-variation-settings: "wdth" var(--wdth);
@@ -410,7 +411,7 @@
     }
     @keyframes scroll-logos {
       from { transform: translateX(0); }
-      to { transform: translateX(-25%); }
+      to { transform: translateX(-50%); }
     }
     .logo-set {
       display: flex;
@@ -418,7 +419,8 @@
       gap: 24px;
       padding-right: 24px;
     }
-    .logo-img { height: 37px; width: auto; opacity: 0.6; }
+    .logo-img { height: 28px; width: auto; opacity: 0.7; filter: brightness(0) invert(1); }
+    .logo-label { font-size: 14px; font-weight: 700; opacity: 0.55; white-space: nowrap; color: var(--white); letter-spacing: 0.02em; }
     .logo-dot { flex-shrink: 0; width: 28px; height: 28px; }
     @media (max-width: 809px) {
       .logo-strip { padding: 24px 0; }
@@ -944,11 +946,14 @@
       .hero-content { padding: 90px 0 32px !important; }
       .hero-grid { flex-direction: column !important; gap: 32px !important; }
       .hero-left { padding-top: 0 !important; align-items: center !important; text-align: center; }
-      .hero-left .h1 { font-size: 32px !important; }
-      .hero-left .badge { font-size: 32px !important; padding: 6px 16px !important; }
+      .hero-left .h1 { font-size: 30px !important; line-height: 1.2 !important; }
+      .hero-left .badge { font-size: 26px !important; padding: 5px 14px !important; }
       .hero-left .body { font-size: 15px !important; }
       .hero-left .btn-row { justify-content: center; }
-      .hero-right { display: none !important; }
+      .hero-right { display: block !important; width: 100% !important; max-width: 400px; margin: 0 auto; }
+      .hero-collage { height: 260px !important; animation: none !important; grid-template-columns: 1fr !important; }
+      .hero-collage-main { grid-row: 1 !important; }
+      .hero-collage-sub { display: none !important; }
 
       /* General sections */
       .container { padding: 0 16px !important; }
@@ -1002,6 +1007,7 @@
       .footer-col { max-width: 100% !important; }
       .footer-bottom-inner { flex-direction: column !important; gap: 16px !important; text-align: center; }
       .footer-newsletter { max-width: 100% !important; padding: 0 !important; }
+      .footer-cols-row { gap: 32px !important; }
 
       /* Badge sizing */
       .badge { padding: 6px 14px !important; border-radius: 10px !important; }
@@ -1012,10 +1018,14 @@
       .arrow-circle { width: 24px !important; height: 24px !important; }
 
       /* FAQ */
-      .faq-item { padding: 0 12px !important; }
-      .faq-item .accordion-inner { padding: 24px 28px 24px 32px !important; }
-      .faq-item details summary { padding: 20px 0 !important; }
-      .faq-number { width: 36px !important; height: 36px !important; font-size: 14px !important; }
+      .faq-item { padding: 0 16px !important; }
+      .faq-item details summary { padding: 18px 0 !important; gap: 12px !important; }
+      .faq-item details summary :first-child { flex: 1; min-width: 0; font-size: 16px !important; line-height: 1.4; }
+      .faq-toggle { width: 28px !important; height: 28px !important; flex-shrink: 0 !important; font-size: 16px !important; }
+
+      /* Book / Calendly section */
+      #book { padding: 40px 0 !important; }
+      .calendly-inline-widget { height: 650px !important; }
 
       /* Logo strip */
       .logo-strip { padding: 16px 0 !important; }
@@ -1105,50 +1115,53 @@
 
 <!-- TRUST STRIP -->
 <section class="logo-strip">
+  <p style="text-align:center; font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:20px;">Platforms & AI tools we work with</p>
   <div class="logo-track">
     <div class="logo-set">
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">Adidas</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">Coca-Cola</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">Dell</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">Mars</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">Rogers</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">Restream</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">Flare.io</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">SimpleBooth</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">TCF</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">Art of Living</span>
+      <img src="https://cdn.simpleicons.org/reddit/ffffff" class="logo-img" alt="Reddit" />
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <img src="https://cdn.simpleicons.org/meta/ffffff" class="logo-img" alt="Meta" />
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <img src="https://cdn.simpleicons.org/tiktok/ffffff" class="logo-img" alt="TikTok" />
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <img src="https://cdn.simpleicons.org/linkedin/ffffff" class="logo-img" alt="LinkedIn" />
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <img src="https://cdn.simpleicons.org/google/ffffff" class="logo-img" alt="Google" />
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <img src="https://cdn.simpleicons.org/pinterest/ffffff" class="logo-img" alt="Pinterest" />
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <img src="https://cdn.simpleicons.org/x/ffffff" class="logo-img" alt="X" />
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <img src="https://cdn.simpleicons.org/anthropic/ffffff" class="logo-img" alt="Claude" />
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <span class="logo-label">Luma Labs</span>
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <span class="logo-label">Creatify</span>
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <img src="https://cdn.simpleicons.org/midjourney/ffffff" class="logo-img" alt="Midjourney" />
     </div>
     <div class="logo-set">
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">Adidas</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">Coca-Cola</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">Dell</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">Mars</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">Rogers</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">Restream</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">Flare.io</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">SimpleBooth</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">TCF</span>
-      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#ececec"/></svg>
-      <span class="logo-img" style="font-size:15px; font-weight:700; opacity:0.5; white-space:nowrap;">Art of Living</span>
+      <img src="https://cdn.simpleicons.org/reddit/ffffff" class="logo-img" alt="Reddit" />
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <img src="https://cdn.simpleicons.org/meta/ffffff" class="logo-img" alt="Meta" />
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <img src="https://cdn.simpleicons.org/tiktok/ffffff" class="logo-img" alt="TikTok" />
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <img src="https://cdn.simpleicons.org/linkedin/ffffff" class="logo-img" alt="LinkedIn" />
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <img src="https://cdn.simpleicons.org/google/ffffff" class="logo-img" alt="Google" />
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <img src="https://cdn.simpleicons.org/pinterest/ffffff" class="logo-img" alt="Pinterest" />
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <img src="https://cdn.simpleicons.org/x/ffffff" class="logo-img" alt="X" />
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <img src="https://cdn.simpleicons.org/anthropic/ffffff" class="logo-img" alt="Claude" />
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <span class="logo-label">Luma Labs</span>
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <span class="logo-label">Creatify</span>
+      <svg class="logo-dot" viewBox="0 0 28 28"><path d="M 13.333 1.03 C 13.654 0.215 14.808 0.215 15.129 1.03 L 16.378 4.197 C 17.752 7.681 20.51 10.438 23.993 11.812 L 27.16 13.062 C 27.976 13.383 27.976 14.537 27.16 14.857 L 23.993 16.107 C 20.51 17.481 17.752 20.238 16.378 23.722 L 15.129 26.889 C 14.808 27.705 13.654 27.705 13.333 26.889 L 12.083 23.722 C 10.709 20.238 7.952 17.481 4.468 16.107 L 1.302 14.858 C 0.487 14.537 0.487 13.383 1.302 13.062 L 4.468 11.812 C 7.952 10.438 10.709 7.681 12.083 4.197 Z" fill="#444"/></svg>
+      <img src="https://cdn.simpleicons.org/midjourney/ffffff" class="logo-img" alt="Midjourney" />
     </div>
   </div>
 </section>
@@ -1767,7 +1780,7 @@
       <a href="#" style="font-size:28px; font-weight:800; font-variation-settings:'wdth' 125,'wght' 800; color:var(--white); text-decoration:none; display:block; margin-bottom:32px;">
         Skip the Noise
       </a>
-      <div style="display:flex; gap:80px; flex-wrap:wrap; justify-content:center; text-align:left;">
+      <div class="footer-cols-row" style="display:flex; gap:80px; flex-wrap:wrap; justify-content:center; text-align:left;">
         <div>
           <p style="color:var(--white); font-weight:700; margin-bottom:16px;">Services</p>
           <div style="display:flex; flex-direction:column; gap:8px;">
