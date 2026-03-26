@@ -552,7 +552,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       grid-template-rows: repeat(2, 251px);
-      grid-auto-rows: 251px;
+      grid-auto-rows: minmax(251px, auto);
       gap: 16px;
     }
     .project-card {
@@ -1186,6 +1186,11 @@
             <h3 class="h3">3D &amp; Animation</h3>
             <p class="body">Product renders, animated ads, motion graphics. AI tools handle volume. Humans direct quality.</p>
           </div>
+          <div class="service-card" data-anim>
+            <img src="https://raw.githubusercontent.com/microsoft/fluentui-emoji/main/assets/Alien/3D/alien_3d.png" class="service-icon" alt="" />
+            <h3 class="h3">Reddit Ads</h3>
+            <p class="body">Community-native campaigns from a Reddit Certified Partner. We know where your buyers talk and exactly how to reach them.</p>
+          </div>
         </div>
         <div style="text-align:center;">
           <a href="https://calendly.com/skipthenoisemedia/30min" target="_blank" class="btn btn-dark">
@@ -1323,7 +1328,7 @@
               </div>
               <div>
                 <div class="stat-num">60+<span style="color:var(--orange)"></span></div>
-                <div class="stat-label">Qualified leads generated</div>
+                <div class="stat-label">Qualified leads</div>
               </div>
             </div>
             <p class="body" data-anim data-delay="3">Your media buyer should be making your creative. We close the loop between what you spend and what you show. One team that owns strategy, production, and media.</p>
@@ -1361,7 +1366,7 @@
         </div>
         <div>
           <p class="body" style="color:var(--gray-300); margin-bottom:4px;">Reddit · 3 months</p>
-          <p class="h2 white" style="margin-bottom:8px;">60 qualified leads</p>
+          <p class="h2 white" style="margin-bottom:8px; font-size:clamp(22px,2.8vw,36px);">60 qualified leads</p>
           <p class="body" style="color:var(--gray-200);">$100 CPL. Reddit-only campaign targeting SIEM/SOAR buyers. Creative production and media buying under one roof.</p>
         </div>
       </a>
