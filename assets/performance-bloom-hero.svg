@@ -34,7 +34,7 @@
 <circle cx="60.0" cy="110.7" r="6.2" fill="#80DDD0"/>
 <circle cx="58.8" cy="109.1" r="1.8" fill="white" opacity="0.4"/>
 <rect x="40.0" y="57.866666666666674" width="40" height="20" rx="10" fill="white" stroke="#00B4A0" stroke-width="1" filter="url(#sh)"/>
-<text x="60" y="69.86666666666667" text-anchor="middle" dominant-baseline="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" font-weight="700" fill="#191923">3.2x</text>
+<text x="60" y="69.86666666666667" text-anchor="middle" dominant-baseline="middle" font-family="Helvetica,Arial,sans-serif" font-size="16" font-weight="800" fill="#191923">2x</text>
 <text x="60" y="157.46666666666667" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" font-weight="500" fill="#00B4A0" opacity="0.7">2025</text>
 <circle cx="240.0" cy="67.3" r="49" fill="#5500DD" opacity="0.06" filter="url(#sg)"/>
 <g opacity="0.55">
@@ -61,7 +61,7 @@
 <circle cx="240.0" cy="67.3" r="7.8" fill="#A080EE"/>
 <circle cx="238.4" cy="65.4" r="2.3" fill="white" opacity="0.4"/>
 <rect x="220.0" y="6.533333333333331" width="40" height="20" rx="10" fill="white" stroke="#5500DD" stroke-width="1" filter="url(#sh)"/>
-<text x="240" y="18.53333333333333" text-anchor="middle" dominant-baseline="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" font-weight="700" fill="#191923">5.2x</text>
+<text x="240" y="18.53333333333333" text-anchor="middle" dominant-baseline="middle" font-family="Helvetica,Arial,sans-serif" font-size="16" font-weight="800" fill="#191923">4x</text>
 <text x="240" y="122.13333333333333" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="11" font-weight="500" fill="#5500DD" opacity="0.7">2026</text>
-<text x="150" y="215" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="16" font-weight="800" fill="#5500DD" opacity="0.35" letter-spacing="0.12em">ROAS GROWTH</text>
+<text x="150" y="215" text-anchor="middle" font-family="Helvetica,Arial,sans-serif" font-size="16" font-weight="800" fill="#5500DD" opacity="0.7" letter-spacing="0.12em">ROAS GROWTH</text>
 </svg>
