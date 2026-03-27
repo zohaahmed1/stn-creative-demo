@@ -138,22 +138,23 @@
       position: relative;
       overflow: hidden;
       z-index: 1;
+      background: transparent;
     }
     .badge::before {
       content: '';
       position: absolute;
       inset: 0;
       z-index: -1;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+      transform-origin: left center;
+      transform: scaleX(0) rotate(2deg);
+      transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .badge.visible::before {
-      transform: scaleX(1);
+      transform: scaleX(1) rotate(0deg);
     }
-    .badge-blue { background: transparent; } .badge-blue::before { background: var(--blue); }
-    .badge-orange { background: transparent; } .badge-orange::before { background: var(--orange); }
-    .badge-yellow { background: transparent; } .badge-yellow::before { background: var(--yellow); }
+    .badge-blue::before { background: var(--blue); }
+    .badge-orange::before { background: var(--orange); }
+    .badge-yellow::before { background: var(--yellow); }
     @media (max-width: 809px) { .badge { border-radius: 10px; } }
 
     /* Title wrapper for badge + text rows */
@@ -747,7 +748,10 @@
       position: relative;
       left: 50%;
       transform: translateX(-50%);
+      cursor: grab;
     }
+    .testimonials-scroll:active { cursor: grabbing; }
+    .testimonials-scroll.is-dragging .testimonials-track { animation-play-state: paused; }
     .testimonials-track {
       display: flex;
       gap: 24px;
@@ -1697,30 +1701,14 @@
             <span class="badge badge-blue" data-anim="tilt" data-delay="1">do</span>
           </div>
         </div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:2px solid var(--dark); max-width:900px; margin:0 auto 48px;" data-anim data-delay="2" data-stagger>
-          <div style="padding:28px 24px; border-bottom:1px solid var(--gray-200); border-right:1px solid var(--gray-200);">
-            <h3 class="h3" style="margin-bottom:6px;">Performance Creative</h3>
-            <p class="body" style="font-size:15px; color:var(--gray-400);">Static, video, UGC, 3D. Every format. Directed by strategists who read your data.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:2px solid var(--dark); border-bottom:2px solid var(--dark); max-width:900px; margin:0 auto 48px;" data-anim data-delay="2" data-stagger>
+          <div style="padding:36px 32px; border-right:1px solid var(--gray-200);">
+            <h3 class="h3" style="margin-bottom:8px;">Human + AI Creative</h3>
+            <p class="body" style="font-size:15px; color:var(--gray-400);">Static, video, UGC, 3D, motion. AI handles volume. Humans direct strategy and quality. Every asset built to convert.</p>
           </div>
-          <div style="padding:28px 24px; border-bottom:1px solid var(--gray-200);">
-            <h3 class="h3" style="margin-bottom:6px;">Media Buying</h3>
-            <p class="body" style="font-size:15px; color:var(--gray-400);">Meta, Google, Reddit, LinkedIn, TikTok, Pinterest, Snapchat. Ex-GroupM buyers.</p>
-          </div>
-          <div style="padding:28px 24px; border-bottom:1px solid var(--gray-200); border-right:1px solid var(--gray-200);">
-            <h3 class="h3" style="margin-bottom:6px;">Creative Strategy</h3>
-            <p class="body" style="font-size:15px; color:var(--gray-400);">Ad library audits, gap analysis, test roadmaps. We tell you exactly what to produce next.</p>
-          </div>
-          <div style="padding:28px 24px; border-bottom:1px solid var(--gray-200);">
-            <h3 class="h3" style="margin-bottom:6px;">UGC Production</h3>
-            <p class="body" style="font-size:15px; color:var(--gray-400);">Creator briefs, filming direction, editing. Native to every platform.</p>
-          </div>
-          <div style="padding:28px 24px; border-bottom:2px solid var(--dark); border-right:1px solid var(--gray-200);">
-            <h3 class="h3" style="margin-bottom:6px;">3D &amp; Animation</h3>
-            <p class="body" style="font-size:15px; color:var(--gray-400);">Product renders, animated ads, motion graphics. AI handles volume. Humans direct quality.</p>
-          </div>
-          <div style="padding:28px 24px; border-bottom:2px solid var(--dark);">
-            <h3 class="h3" style="margin-bottom:6px;">Reddit Ads</h3>
-            <p class="body" style="font-size:15px; color:var(--gray-400);">Community-native campaigns from a Reddit Certified Partner.</p>
+          <div style="padding:36px 32px;">
+            <h3 class="h3" style="margin-bottom:8px;">Performance Media Buying</h3>
+            <p class="body" style="font-size:15px; color:var(--gray-400);">Meta, Google, Reddit, LinkedIn, TikTok, Pinterest, Snapchat, X. Ex-GroupM buyers running your budget like it's ours.</p>
           </div>
         </div>
 
@@ -2540,6 +2528,74 @@
     document.querySelectorAll('a[href="#book"]').forEach(btn => {
       btn.addEventListener('click', launchConfetti);
     });
+
+    // ── Testimonials drag-to-scroll ──────────────────────────────────
+    const tScroll = document.querySelector('.testimonials-scroll');
+    const tTrack = document.querySelector('.testimonials-track');
+    if (tScroll && tTrack) {
+      let isDragging = false, startX = 0, currentTranslate = 0, baseTranslate = 0;
+
+      function getTrackTranslate() {
+        const style = getComputedStyle(tTrack);
+        const matrix = new DOMMatrixReadOnly(style.transform);
+        return matrix.m41;
+      }
+
+      tScroll.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        startX = e.pageX;
+        baseTranslate = getTrackTranslate();
+        tScroll.classList.add('is-dragging');
+        tTrack.style.transform = `translateX(${baseTranslate}px)`;
+        tTrack.style.animation = 'none';
+        e.preventDefault();
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const diff = e.pageX - startX;
+        currentTranslate = baseTranslate + diff;
+        tTrack.style.transform = `translateX(${currentTranslate}px)`;
+      });
+
+      window.addEventListener('mouseup', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        tScroll.classList.remove('is-dragging');
+        // Resume auto-scroll from current position
+        const trackWidth = tTrack.scrollWidth / 2;
+        // Normalize position to prevent jumping
+        let pos = currentTranslate % trackWidth;
+        if (pos > 0) pos -= trackWidth;
+        tTrack.style.transform = '';
+        tTrack.style.animation = '';
+      });
+
+      // Touch support
+      tScroll.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        startX = e.touches[0].pageX;
+        baseTranslate = getTrackTranslate();
+        tScroll.classList.add('is-dragging');
+        tTrack.style.transform = `translateX(${baseTranslate}px)`;
+        tTrack.style.animation = 'none';
+      }, { passive: true });
+
+      tScroll.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const diff = e.touches[0].pageX - startX;
+        currentTranslate = baseTranslate + diff;
+        tTrack.style.transform = `translateX(${currentTranslate}px)`;
+      }, { passive: true });
+
+      tScroll.addEventListener('touchend', () => {
+        if (!isDragging) return;
+        isDragging = false;
+        tScroll.classList.remove('is-dragging');
+        tTrack.style.transform = '';
+        tTrack.style.animation = '';
+      });
+    }
   </script>
 </body>
 </html>
