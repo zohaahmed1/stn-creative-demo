@@ -1080,15 +1080,9 @@
       /* Process cards */
       .process-grid { flex-direction: column !important; gap: 24px !important; }
       .process-card { transform: none !important; }
-      /* Sticky process — stack on mobile */
-      .sticky-process-track { flex-direction: column !important; }
-      .sticky-process-track > div:first-child { position: relative !important; top: auto !important; height: auto !important; }
-      .sticky-card-container { position: relative !important; min-height: 280px; }
-      .sticky-card { position: absolute !important; }
-      .sticky-card.sticky-card-active { position: relative !important; }
-      .process-trigger { opacity: 1 !important; }
-      .process-progress-fill { display: none !important; }
-      div[style*="position:absolute; left:28px"] { display: none !important; }
+      /* Process timeline — stack on mobile */
+      #process div[style*="grid-template-columns:1fr 1fr 1fr"] { grid-template-columns: 1fr !important; gap: 32px !important; }
+      #process .process-line-bg, #process .process-line-fill { display: none !important; }
 
       /* Testimonials */
       .testimonial-card { width: 280px !important; padding: 24px !important; }
@@ -1687,102 +1681,60 @@
 <!-- PROCESS -->
 <div class="section-bg">
   <div class="section-rounded">
-    <section id="process" class="section-inner" style="padding:0;">
+    <section id="process" class="section-inner">
       <div class="container">
-        <div class="section-header" style="margin-bottom:0; padding:80px 0 40px; text-align:center;">
+        <div class="section-header" style="margin-bottom:56px;">
           <div class="title-row h2" style="justify-content:center;" data-anim>
             <span>How it</span>
             <span class="badge badge-orange" data-anim="tilt" data-delay="1">works</span>
           </div>
           <p class="body" data-anim data-delay="2">Three steps. No fluff.</p>
         </div>
-      </div>
 
-      <!-- Sticky scroll process -->
-      <div class="sticky-process" style="position:relative;">
-        <!-- Each step is a scroll trigger zone -->
-        <div class="sticky-process-track" style="display:flex; position:relative;">
-          <!-- Left: sticky card display -->
-          <div style="flex:1; position:sticky; top:100px; height:calc(100vh - 200px); display:flex; align-items:center; justify-content:center; padding:40px;">
-            <div class="sticky-card-container" style="position:relative; width:100%; max-width:480px;">
-              <!-- Card 1 -->
-              <div class="sticky-card sticky-card-active" data-step="1" style="position:absolute; inset:0; background:#fff; border:2px solid var(--blue); border-radius:24px; padding:48px 40px; box-shadow:0 12px 40px rgba(85,0,221,0.1); transition:all 0.5s cubic-bezier(0.22, 1, 0.36, 1); opacity:1; transform:translateY(0);">
-                <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
-                  <div style="width:56px; height:56px; border-radius:50%; background:var(--blue); color:white; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                  </div>
-                  <div>
-                    <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue);">Step 01</p>
-                    <h3 class="h3">Audit</h3>
-                  </div>
-                </div>
-                <p class="body" style="font-size:17px; line-height:1.6;">We review your ad library, find the gaps, and build your test roadmap. You get a full creative audit in 48 hours.</p>
+        <!-- Timeline with cards -->
+        <div style="position:relative; max-width:960px; margin:0 auto 48px;" data-anim data-delay="3">
+          <!-- Connecting line -->
+          <div class="process-line-bg" style="position:absolute; top:40px; left:calc(16.66% + 28px); right:calc(16.66% + 28px); height:3px; background:var(--gray-200); z-index:0;"></div>
+          <div class="process-line-fill" style="position:absolute; top:40px; left:calc(16.66% + 28px); right:calc(16.66% + 28px); height:3px; background:var(--blue); z-index:1; transform-origin:left; transform:scaleX(0); transition:transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);"></div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:32px; text-align:center;">
+            <!-- Step 1 -->
+            <div class="process-step" style="opacity:0; transform:translateY(20px); transition:all 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;">
+              <div style="width:64px; height:64px; border-radius:50%; background:var(--dark); color:white; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; position:relative; z-index:2; box-shadow:0 4px 16px rgba(0,0,0,0.15);">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
               </div>
-              <!-- Card 2 -->
-              <div class="sticky-card" data-step="2" style="position:absolute; inset:0; background:#fff; border:2px solid var(--orange); border-radius:24px; padding:48px 40px; box-shadow:0 12px 40px rgba(238,0,51,0.08); transition:all 0.5s cubic-bezier(0.22, 1, 0.36, 1); opacity:0; transform:translateY(30px);">
-                <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
-                  <div style="width:56px; height:56px; border-radius:50%; background:var(--orange); color:white; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5.5 8.5 12 3l6.5 5.5"/><path d="m3 16 4-1 4 3 4-3 4 1"/></svg>
-                  </div>
-                  <div>
-                    <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--orange);">Step 02</p>
-                    <h3 class="h3">Produce</h3>
-                  </div>
-                </div>
-                <p class="body" style="font-size:17px; line-height:1.6;">AI handles volume. Humans direct quality. Static, video, UGC, 3D. Every format your campaigns need, produced fast.</p>
-              </div>
-              <!-- Card 3 -->
-              <div class="sticky-card" data-step="3" style="position:absolute; inset:0; background:#fff; border:2px solid var(--red, #ee0033); border-radius:24px; padding:48px 40px; box-shadow:0 12px 40px rgba(238,0,51,0.08); transition:all 0.5s cubic-bezier(0.22, 1, 0.36, 1); opacity:0; transform:translateY(30px);">
-                <div style="display:flex; align-items:center; gap:16px; margin-bottom:24px;">
-                  <div style="width:56px; height:56px; border-radius:50%; background:#ee0033; color:white; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                  </div>
-                  <div>
-                    <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#ee0033;">Step 03</p>
-                    <h3 class="h3">Optimize</h3>
-                  </div>
-                </div>
-                <p class="body" style="font-size:17px; line-height:1.6;">We measure what converts, extract winning patterns, and feed them back into the next round. Your creative gets smarter every cycle.</p>
+              <div style="background:#fff; border:2px solid var(--gray-200); border-radius:20px; padding:28px 24px; transition:border-color 0.3s, box-shadow 0.3s;" onmouseenter="this.style.borderColor='var(--blue)';this.style.boxShadow='0 8px 24px rgba(85,0,221,0.1)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.boxShadow='none'">
+                <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue); margin-bottom:8px;">Step 01</p>
+                <h3 class="h3" style="margin-bottom:8px;">Audit</h3>
+                <p class="body" style="font-size:15px; color:var(--gray-400);">We review your ad library, find the gaps, and build your test roadmap. 48 hours.</p>
               </div>
             </div>
-          </div>
-
-          <!-- Right: scroll-driven step indicators -->
-          <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:40px;">
-            <div style="display:flex; flex-direction:column; gap:0; position:relative;">
-              <!-- Vertical progress line -->
-              <div style="position:absolute; left:28px; top:56px; bottom:56px; width:3px; background:var(--gray-200); border-radius:2px;">
-                <div class="process-progress-fill" style="width:100%; height:0%; background:linear-gradient(180deg, var(--blue), var(--orange), #ee0033); border-radius:2px; transition:height 0.4s ease;"></div>
+            <!-- Step 2 -->
+            <div class="process-step" style="opacity:0; transform:translateY(20px); transition:all 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;">
+              <div style="width:64px; height:64px; border-radius:50%; background:var(--dark); color:white; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; position:relative; z-index:2; box-shadow:0 4px 16px rgba(0,0,0,0.15);">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5.5 8.5 12 3l6.5 5.5"/><path d="m3 16 4-1 4 3 4-3 4 1"/></svg>
               </div>
-
-              <div class="process-trigger" data-target="1" style="display:flex; align-items:flex-start; gap:24px; padding:40px 0; cursor:pointer;">
-                <div class="process-dot" style="width:56px; height:56px; border-radius:50%; background:var(--blue); color:white; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; flex-shrink:0; position:relative; z-index:2; transition:all 0.3s;">01</div>
-                <div>
-                  <h3 class="h3" style="margin-bottom:4px; transition:color 0.3s;">Audit</h3>
-                  <p class="body" style="font-size:15px; color:var(--gray-300); transition:color 0.3s;">Review. Roadmap. 48 hours.</p>
-                </div>
+              <div style="background:#fff; border:2px solid var(--gray-200); border-radius:20px; padding:28px 24px; transition:border-color 0.3s, box-shadow 0.3s;" onmouseenter="this.style.borderColor='var(--orange)';this.style.boxShadow='0 8px 24px rgba(238,0,51,0.08)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.boxShadow='none'">
+                <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--orange); margin-bottom:8px;">Step 02</p>
+                <h3 class="h3" style="margin-bottom:8px;">Produce</h3>
+                <p class="body" style="font-size:15px; color:var(--gray-400);">AI handles volume. Humans direct quality. Every format your campaigns need.</p>
               </div>
-
-              <div class="process-trigger" data-target="2" style="display:flex; align-items:flex-start; gap:24px; padding:40px 0; cursor:pointer; opacity:0.4; transition:opacity 0.3s;">
-                <div class="process-dot" style="width:56px; height:56px; border-radius:50%; background:var(--gray-200); color:var(--gray-400); display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; flex-shrink:0; position:relative; z-index:2; transition:all 0.3s;">02</div>
-                <div>
-                  <h3 class="h3" style="margin-bottom:4px; transition:color 0.3s;">Produce</h3>
-                  <p class="body" style="font-size:15px; color:var(--gray-300); transition:color 0.3s;">AI speed. Human quality.</p>
-                </div>
+            </div>
+            <!-- Step 3 -->
+            <div class="process-step" style="opacity:0; transform:translateY(20px); transition:all 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.6s;">
+              <div style="width:64px; height:64px; border-radius:50%; background:var(--dark); color:white; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; position:relative; z-index:2; box-shadow:0 4px 16px rgba(0,0,0,0.15);">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
               </div>
-
-              <div class="process-trigger" data-target="3" style="display:flex; align-items:flex-start; gap:24px; padding:40px 0; cursor:pointer; opacity:0.4; transition:opacity 0.3s;">
-                <div class="process-dot" style="width:56px; height:56px; border-radius:50%; background:var(--gray-200); color:var(--gray-400); display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:800; flex-shrink:0; position:relative; z-index:2; transition:all 0.3s;">03</div>
-                <div>
-                  <h3 class="h3" style="margin-bottom:4px; transition:color 0.3s;">Optimize</h3>
-                  <p class="body" style="font-size:15px; color:var(--gray-300); transition:color 0.3s;">Measure. Learn. Repeat.</p>
-                </div>
+              <div style="background:#fff; border:2px solid var(--gray-200); border-radius:20px; padding:28px 24px; transition:border-color 0.3s, box-shadow 0.3s;" onmouseenter="this.style.borderColor='#ee0033';this.style.boxShadow='0 8px 24px rgba(238,0,51,0.08)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.boxShadow='none'">
+                <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#ee0033; margin-bottom:8px;">Step 03</p>
+                <h3 class="h3" style="margin-bottom:8px;">Optimize</h3>
+                <p class="body" style="font-size:15px; color:var(--gray-400);">We measure what converts, extract winning patterns, and make the next round smarter.</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div style="text-align:center; padding:0 0 60px;">
+        <div style="text-align:center;">
           <a href="https://calendly.com/skipthenoisemedia/30min" target="_blank" class="btn btn-dark">
             <span class="btn-inner">Book your free audit</span>
             <span class="btn-bg"></span>
@@ -1954,65 +1906,21 @@
       });
     }, 200);
 
-    // ── Sticky process scroll interaction ───────────────────────────
-    const stepColors = { 1: 'var(--blue)', 2: 'var(--orange)', 3: '#ee0033' };
-    const triggers = document.querySelectorAll('.process-trigger');
-    const stickyCards = document.querySelectorAll('.sticky-card');
-    const progressFill = document.querySelector('.process-progress-fill');
-    let activeStep = 1;
-
-    function setActiveStep(step) {
-      if (step === activeStep) return;
-      activeStep = step;
-      // Update cards
-      stickyCards.forEach(c => {
-        const s = parseInt(c.dataset.step);
-        if (s === step) {
-          c.style.opacity = '1';
-          c.style.transform = 'translateY(0)';
-          c.classList.add('sticky-card-active');
-        } else {
-          c.style.opacity = '0';
-          c.style.transform = s < step ? 'translateY(-30px)' : 'translateY(30px)';
-          c.classList.remove('sticky-card-active');
-        }
-      });
-      // Update triggers
-      triggers.forEach(t => {
-        const s = parseInt(t.dataset.target);
-        const dot = t.querySelector('.process-dot');
-        if (s <= step) {
-          t.style.opacity = '1';
-          dot.style.background = stepColors[s];
-          dot.style.color = 'white';
-        } else {
-          t.style.opacity = '0.4';
-          dot.style.background = 'var(--gray-200)';
-          dot.style.color = 'var(--gray-400)';
-        }
-      });
-      // Update progress line
-      if (progressFill) {
-        progressFill.style.height = ((step - 1) / 2 * 100) + '%';
-      }
-    }
-
-    // Click triggers
-    triggers.forEach(t => {
-      t.addEventListener('click', () => setActiveStep(parseInt(t.dataset.target)));
-    });
-
-    // Scroll-driven activation
-    if (window.innerWidth >= 810) {
-      const stickyObs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            setActiveStep(parseInt(e.target.dataset.target));
-          }
+    // ── Process timeline animation ─────────────────────────────────
+    const processObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        processObs.unobserve(e.target);
+        const line = e.target.querySelector('.process-line-fill');
+        if (line) line.style.transform = 'scaleX(1)';
+        e.target.querySelectorAll('.process-step').forEach(s => {
+          s.style.opacity = '1';
+          s.style.transform = 'translateY(0)';
         });
-      }, { rootMargin: '-40% 0px -40% 0px' });
-      triggers.forEach(t => stickyObs.observe(t));
-    }
+      });
+    }, { threshold: 0.3 });
+    const processSection = document.querySelector('#process [data-anim][data-delay="3"]');
+    if (processSection) processObs.observe(processSection);
 
     // Floating nav + scroll progress
     const nav = document.querySelector('.nav');
