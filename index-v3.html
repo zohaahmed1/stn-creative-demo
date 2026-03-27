@@ -1163,19 +1163,19 @@
       .nav.scrolled { left: 12px; right: 12px; border-radius: 14px; top: 8px; }
 
       /* Hero */
-      .hero-content { padding: 90px 0 32px !important; }
-      .hero-grid { flex-direction: column !important; gap: 32px !important; }
-      .hero-left { padding-top: 0 !important; align-items: center !important; text-align: center; }
-      .hero-left .h1 { font-size: 30px !important; line-height: 1.2 !important; }
+      .hero-content { padding: 80px 0 24px !important; }
+      .hero-grid { flex-direction: column !important; gap: 24px !important; }
+      .hero-left { padding-top: 0 !important; align-items: center !important; text-align: center; gap: 16px !important; }
+      .hero-left .h1 { font-size: 28px !important; line-height: 1.2 !important; }
       .hero-left .title-row { justify-content: center !important; }
-      .hero-left .badge { font-size: 26px !important; padding: 5px 14px !important; }
-      .hero-left .body { font-size: 15px !important; }
+      .hero-left .badge { font-size: 24px !important; padding: 5px 14px !important; }
+      .hero-left .body { font-size: 14px !important; }
       .hero-left .btn-row { justify-content: center !important; }
       .hero-left > div[style*="flex-wrap"] { justify-content: center !important; }
-      .hero-right { display: block !important; width: 100% !important; max-width: 400px; margin: 0 auto; }
+      .hero-right { display: block !important; width: 100% !important; max-width: 100%; margin: 0 auto; padding: 0 8px; }
       .hero-collage { height: auto !important; animation: none !important; grid-template-columns: 1fr 1fr !important; grid-template-rows: auto !important; gap: 8px !important; }
-      .hero-collage-main { grid-row: auto !important; grid-column: span 2 !important; max-height: 220px; }
-      .hero-collage-sub { display: block !important; max-height: 140px; }
+      .hero-collage-main { grid-row: auto !important; grid-column: span 2 !important; max-height: 180px; border-radius: 16px; overflow: hidden; }
+      .hero-collage-sub { display: block !important; max-height: 120px; border-radius: 12px; overflow: hidden; }
       .bloom-overlay { display: none !important; }
 
       /* General sections */
@@ -1183,7 +1183,7 @@
       .section-inner { padding: 40px 0 !important; }
       .section-inner:first-child { padding-top: 48px !important; }
       .section-inner:last-child { padding-bottom: 48px !important; }
-      .section-dark { padding: 48px 0 !important; }
+      .section-dark { padding: 36px 0 !important; }
       .section-rounded { border-radius: 32px !important; }
       /* Disable scale-in on mobile — prevents edge clipping at narrow widths */
       .section-rounded[data-scroll-scale] { transform: none !important; overflow: visible !important; }
@@ -1206,7 +1206,7 @@
       .ext-left { max-width: 100% !important; padding: 0 !important; align-items: center !important; text-align: center; }
       .ext-right { max-width: 100% !important; padding: 0 !important; }
       .ext-img-wrap { width: 100% !important; max-width: 400px; margin: 0 auto; }
-      .stats-row { justify-content: center !important; flex-wrap: wrap; }
+      .stats-row { justify-content: center !important; flex-wrap: wrap; gap: 32px !important; }
 
       /* Projects grid */
       .projects-grid { grid-template-columns: 1fr !important; grid-template-rows: auto !important; gap: 16px !important; }
@@ -1268,7 +1268,12 @@
       .calendly-inline-widget { height: 700px !important; min-height: 600px !important; }
 
       /* Logo strip */
-      .logo-strip { padding: 16px 0 !important; }
+      .logo-strip { padding: 14px 0 !important; }
+
+      /* Social proof pills — stack vertically and shrink on mobile */
+      section[style*="padding:0 0 32px"] { padding: 0 0 20px !important; }
+      section[style*="padding:0 0 32px"] .container { flex-direction: column !important; gap: 8px !important; align-items: center !important; }
+      section[style*="padding:0 0 32px"] span { font-size: 12px !important; padding: 8px 16px !important; }
 
       /* AI badge — reposition above collage on mobile */
       .hero-collage > div[style*="position:absolute; top:-12px"] {
