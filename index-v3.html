@@ -862,6 +862,56 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* --- COLOR ACCENTS --- */
+
+    /* 1. Service title colored dots */
+    #services .container > div[style*="grid-template-columns"] > div h3::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 8px;
+      vertical-align: middle;
+      background: var(--blue);
+    }
+    #services .container > div[style*="grid-template-columns"] > div:nth-child(3n+2) h3::before { background: var(--orange); }
+    #services .container > div[style*="grid-template-columns"] > div:nth-child(3n) h3::before { background: var(--yellow); }
+
+    /* 3. FAQ toggle colored purple */
+    .faq-toggle {
+      color: var(--blue) !important;
+      border-color: var(--blue) !important;
+    }
+    .faq-item details[open] .faq-toggle {
+      background: var(--blue) !important;
+      border-color: var(--blue) !important;
+      color: var(--white) !important;
+    }
+
+    /* 5. Team photo gradient overlay */
+    .team-photo-wrap {
+      position: relative;
+    }
+    .team-photo-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(transparent 0%, white 100%);
+      pointer-events: none;
+    }
+
+    /* 7. FAQ items colored left border */
+    .faq-item:nth-child(odd) {
+      border-left: 3px solid var(--blue) !important;
+    }
+    .faq-item:nth-child(even) {
+      border-left: 3px solid var(--orange) !important;
+    }
+
     /* =============================================
        CTA
        ============================================= */
@@ -1344,9 +1394,9 @@
 <!-- SOCIAL PROOF PILLS -->
 <section style="background:var(--dark); padding:0 0 32px; text-align:center;">
   <div class="container" style="display:flex; justify-content:center; flex-wrap:wrap; gap:12px;" data-anim>
-    <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:100px; padding:10px 20px; font-size:13px; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:0.01em;">🏆 Pinterest Global Award Winner</span>
-    <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:100px; padding:10px 20px; font-size:13px; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:0.01em;">⭐ Top 3% on Upwork</span>
-    <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:100px; padding:10px 20px; font-size:13px; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:0.01em;">🤝 Reddit Certified Partner</span>
+    <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,183,77,0.4); border-radius:100px; padding:10px 20px; font-size:13px; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:0.01em; box-shadow:0 0 12px rgba(255,183,77,0.15);">🏆 Pinterest Global Award Winner</span>
+    <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(108,200,83,0.4); border-radius:100px; padding:10px 20px; font-size:13px; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:0.01em; box-shadow:0 0 12px rgba(108,200,83,0.15);">⭐ Top 3% on Upwork</span>
+    <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,69,0,0.4); border-radius:100px; padding:10px 20px; font-size:13px; font-weight:700; color:rgba(255,255,255,0.85); letter-spacing:0.01em; box-shadow:0 0 12px rgba(255,69,0,0.15);">🤝 Reddit Certified Partner</span>
   </div>
 </section>
 
@@ -1632,14 +1682,14 @@
         <div style="text-align:center; margin-bottom:24px;">
           <p style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gray-300); margin-bottom:16px;">Tools we create with</p>
           <div class="tools-wrap" style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
-            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--gray-400); animation-delay:0.1s;">Claude</span>
-            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--gray-400); animation-delay:0.2s;">Gemini</span>
-            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--gray-400); animation-delay:0.3s;">Nano Banana</span>
-            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--gray-400); animation-delay:0.4s;">Luma Labs</span>
-            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--gray-400); animation-delay:0.5s;">Midjourney</span>
-            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--gray-400); animation-delay:0.6s;">Creatify</span>
-            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--gray-400); animation-delay:0.7s;">Kling</span>
-            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1px solid var(--gray-200); border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:var(--gray-400); animation-delay:0.8s;">Figma</span>
+            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1.5px solid #D97706; border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:#B45309; animation-delay:0.1s;">Claude</span>
+            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1.5px solid #4285F4; border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:#1a65d6; animation-delay:0.2s;">Gemini</span>
+            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1.5px solid #FBBF24; border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:#b38600; animation-delay:0.3s;">Nano Banana</span>
+            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1.5px solid #8B5CF6; border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:#6d3ad4; animation-delay:0.4s;">Luma Labs</span>
+            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1.5px solid #1a1a2e; border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:#1a1a2e; animation-delay:0.5s;">Midjourney</span>
+            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1.5px solid #EC4899; border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:#c7236e; animation-delay:0.6s;">Creatify</span>
+            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1.5px solid #10B981; border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:#0a8f64; animation-delay:0.7s;">Kling</span>
+            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1.5px solid #A259FF; border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:#8333e0; animation-delay:0.8s;">Figma</span>
           </div>
         </div>
 
@@ -1762,7 +1812,7 @@
               <div style="width:64px; height:64px; border-radius:50%; background:var(--dark); color:white; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; position:relative; z-index:2; box-shadow:0 4px 16px rgba(0,0,0,0.15);">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
               </div>
-              <div style="background:#fff; border:2px solid var(--gray-200); border-radius:20px; padding:28px 24px; transition:border-color 0.3s, box-shadow 0.3s;" onmouseenter="this.style.borderColor='var(--blue)';this.style.boxShadow='0 8px 24px rgba(85,0,221,0.1)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.boxShadow='none'">
+              <div style="background:#fff; border:1px solid var(--gray-200); border-top:3px solid var(--blue); border-radius:20px; padding:28px 24px; transition:border-color 0.3s, box-shadow 0.3s;" onmouseenter="this.style.borderColor='var(--blue)';this.style.borderTopWidth='3px';this.style.boxShadow='0 8px 24px rgba(85,0,221,0.1)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.borderTopColor='var(--blue)';this.style.borderTopWidth='3px';this.style.boxShadow='none'">
                 <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue); margin-bottom:8px;">Step 01</p>
                 <h3 class="h3" style="margin-bottom:8px;">Audit</h3>
                 <p class="body" style="font-size:15px; color:var(--gray-400);">We review your ad library, find the gaps, and build your test roadmap. 48 hours.</p>
@@ -1773,7 +1823,7 @@
               <div style="width:64px; height:64px; border-radius:50%; background:var(--dark); color:white; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; position:relative; z-index:2; box-shadow:0 4px 16px rgba(0,0,0,0.15);">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5.5 8.5 12 3l6.5 5.5"/><path d="m3 16 4-1 4 3 4-3 4 1"/></svg>
               </div>
-              <div style="background:#fff; border:2px solid var(--gray-200); border-radius:20px; padding:28px 24px; transition:border-color 0.3s, box-shadow 0.3s;" onmouseenter="this.style.borderColor='var(--orange)';this.style.boxShadow='0 8px 24px rgba(238,0,51,0.08)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.boxShadow='none'">
+              <div style="background:#fff; border:1px solid var(--gray-200); border-top:3px solid var(--orange); border-radius:20px; padding:28px 24px; transition:border-color 0.3s, box-shadow 0.3s;" onmouseenter="this.style.borderColor='var(--orange)';this.style.borderTopWidth='3px';this.style.boxShadow='0 8px 24px rgba(238,0,51,0.08)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.borderTopColor='var(--orange)';this.style.borderTopWidth='3px';this.style.boxShadow='none'">
                 <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--orange); margin-bottom:8px;">Step 02</p>
                 <h3 class="h3" style="margin-bottom:8px;">Produce</h3>
                 <p class="body" style="font-size:15px; color:var(--gray-400);">AI handles volume. Humans direct quality. Every format your campaigns need.</p>
@@ -1784,7 +1834,7 @@
               <div style="width:64px; height:64px; border-radius:50%; background:var(--dark); color:white; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; position:relative; z-index:2; box-shadow:0 4px 16px rgba(0,0,0,0.15);">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
               </div>
-              <div style="background:#fff; border:2px solid var(--gray-200); border-radius:20px; padding:28px 24px; transition:border-color 0.3s, box-shadow 0.3s;" onmouseenter="this.style.borderColor='#ee0033';this.style.boxShadow='0 8px 24px rgba(238,0,51,0.08)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.boxShadow='none'">
+              <div style="background:#fff; border:1px solid var(--gray-200); border-top:3px solid #ee0033; border-radius:20px; padding:28px 24px; transition:border-color 0.3s, box-shadow 0.3s;" onmouseenter="this.style.borderColor='#ee0033';this.style.borderTopWidth='3px';this.style.boxShadow='0 8px 24px rgba(238,0,51,0.08)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.borderTopColor='#ee0033';this.style.borderTopWidth='3px';this.style.boxShadow='none'">
                 <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#ee0033; margin-bottom:8px;">Step 03</p>
                 <h3 class="h3" style="margin-bottom:8px;">Optimize</h3>
                 <p class="body" style="font-size:15px; color:var(--gray-400);">We measure what converts, extract winning patterns, and make the next round smarter.</p>
@@ -1856,7 +1906,7 @@
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; max-width:800px; margin:0 auto;" data-anim data-delay="3">
       <!-- Zoha -->
       <div style="background:#fff; border:2px solid var(--gray-200); border-radius:24px; overflow:hidden; transition:border-color 0.3s, box-shadow 0.3s;" onmouseenter="this.style.borderColor='var(--blue)';this.style.boxShadow='0 8px 32px rgba(85,0,221,0.1)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.boxShadow='none'">
-        <div style="height:280px; overflow:hidden;">
+        <div class="team-photo-wrap" style="height:280px; overflow:hidden;">
           <img src="assets/zoha.jpg" alt="Zoha Ahmed" style="width:100%; height:100%; object-fit:cover; object-position:center top;" />
         </div>
         <div style="padding:28px 24px;">
@@ -1876,7 +1926,7 @@
 
       <!-- Sonia -->
       <div style="background:#fff; border:2px solid var(--gray-200); border-radius:24px; overflow:hidden; transition:border-color 0.3s, box-shadow 0.3s;" onmouseenter="this.style.borderColor='var(--orange)';this.style.boxShadow='0 8px 32px rgba(238,0,51,0.08)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.boxShadow='none'">
-        <div style="height:280px; overflow:hidden;">
+        <div class="team-photo-wrap" style="height:280px; overflow:hidden;">
           <img src="assets/sonia.jpg" alt="Sonia Mohapatra" style="width:100%; height:100%; object-fit:cover; object-position:center top;" />
         </div>
         <div style="padding:28px 24px;">
