@@ -1185,6 +1185,9 @@
       .section-inner:last-child { padding-bottom: 48px !important; }
       .section-dark { padding: 48px 0 !important; }
       .section-rounded { border-radius: 32px !important; }
+      /* Disable scale-in on mobile — prevents edge clipping at narrow widths */
+      .section-rounded[data-scroll-scale] { transform: none !important; overflow: visible !important; }
+      .section-rounded[data-scroll-scale].scale-visible { transform: none !important; }
 
       /* Section headers */
       .section-header { flex-direction: column !important; align-items: center !important; text-align: center; gap: 16px !important; }
@@ -1220,8 +1223,12 @@
       #process div[style*="grid-template-columns:1fr 1fr 1fr"] { grid-template-columns: 1fr !important; gap: 32px !important; }
       #process .process-line-bg, #process .process-line-fill { display: none !important; }
 
+      /* Services grid — force 1 column */
+      #services div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
+      #services div[style*="grid-template-columns:1fr 1fr"] > div[style*="border-right"] { border-right: none !important; }
+
       /* Testimonials */
-      .testimonial-card { width: 280px !important; padding: 24px !important; }
+      .testimonial-card { width: 260px !important; padding: 20px !important; }
 
       /* Pricing grid */
       .pricing-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
@@ -2195,62 +2202,69 @@
       if (aiBadge) aiBadge.style.transform = 'translateY(' + (scroll * 0.2) + 'px)';
     });
 
-    // ── Section scale-in reveal ─────────────────────────────────────
-    const scaleObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('scale-visible');
-        }
+    // ── Mobile check — disable heavy scroll effects on narrow screens ─
+    const isMobile = window.innerWidth < 810;
+
+    // ── Section scale-in reveal (desktop only) ─────────────────────
+    if (!isMobile) {
+      const scaleObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('scale-visible');
+          }
+        });
+      }, { threshold: 0.05, rootMargin: '0px 0px -60px 0px' });
+      document.querySelectorAll('[data-scroll-scale]').forEach(el => scaleObs.observe(el));
+    }
+
+    // ── Scroll-linked parallax on inner elements (desktop only) ──────
+    if (!isMobile) {
+      const parallaxEls = [];
+      document.querySelectorAll('.section-header .badge').forEach(el => {
+        parallaxEls.push({ el, speed: -0.03, axis: 'y' });
       });
-    }, { threshold: 0.05, rootMargin: '0px 0px -60px 0px' });
-    document.querySelectorAll('[data-scroll-scale]').forEach(el => scaleObs.observe(el));
-
-    // ── Scroll-linked parallax on inner elements ─────────────────────
-    const parallaxEls = [];
-    document.querySelectorAll('.section-header .badge').forEach(el => {
-      parallaxEls.push({ el, speed: -0.03, axis: 'y' });
-    });
-    document.querySelectorAll('.process-step').forEach((el, i) => {
-      parallaxEls.push({ el, speed: 0.02 + (i * 0.01), axis: 'y' });
-    });
-    document.querySelectorAll('.stat-num').forEach(el => {
-      parallaxEls.push({ el, speed: -0.04, axis: 'y' });
-    });
-
-    lenis.on('scroll', () => {
-      const winH = window.innerHeight;
-      parallaxEls.forEach(({ el, speed, axis }) => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < winH + 200 && rect.bottom > -200) {
-          const center = rect.top + rect.height / 2 - winH / 2;
-          const offset = center * speed;
-          el.style.transform = axis === 'y'
-            ? 'translateY(' + offset + 'px)'
-            : 'translateX(' + offset + 'px)';
-        }
+      document.querySelectorAll('.process-step').forEach((el, i) => {
+        parallaxEls.push({ el, speed: 0.02 + (i * 0.01), axis: 'y' });
       });
-    });
-
-    // ── Gallery items subtle horizontal drift on scroll ──────────────
-    const gallerySection = document.querySelector('#work-gallery');
-    if (gallerySection) {
-      const galleryItems = gallerySection.querySelectorAll('[style*="border-radius"]');
-      let galleryInView = false;
-      const galleryVis = new IntersectionObserver(entries => {
-        galleryInView = entries[0].isIntersecting;
-      }, { threshold: 0 });
-      galleryVis.observe(gallerySection);
+      document.querySelectorAll('.stat-num').forEach(el => {
+        parallaxEls.push({ el, speed: -0.04, axis: 'y' });
+      });
 
       lenis.on('scroll', () => {
-        if (!galleryInView) return;
-        const gRect = gallerySection.getBoundingClientRect();
-        const progress = -gRect.top / (gRect.height + window.innerHeight);
-        galleryItems.forEach((item, i) => {
-          const direction = i % 2 === 0 ? 1 : -1;
-          const shift = progress * direction * 8;
-          item.style.transform = 'translateX(' + shift + 'px)';
+        const winH = window.innerHeight;
+        parallaxEls.forEach(({ el, speed, axis }) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < winH + 200 && rect.bottom > -200) {
+            const center = rect.top + rect.height / 2 - winH / 2;
+            const offset = center * speed;
+            el.style.transform = axis === 'y'
+              ? 'translateY(' + offset + 'px)'
+              : 'translateX(' + offset + 'px)';
+          }
         });
       });
+
+      // ── Gallery items subtle horizontal drift on scroll ──────────────
+      const gallerySection = document.querySelector('#work-gallery');
+      if (gallerySection) {
+        const galleryItems = gallerySection.querySelectorAll('[style*="border-radius"]');
+        let galleryInView = false;
+        const galleryVis = new IntersectionObserver(entries => {
+          galleryInView = entries[0].isIntersecting;
+        }, { threshold: 0 });
+        galleryVis.observe(gallerySection);
+
+        lenis.on('scroll', () => {
+          if (!galleryInView) return;
+          const gRect = gallerySection.getBoundingClientRect();
+          const progress = -gRect.top / (gRect.height + window.innerHeight);
+          galleryItems.forEach((item, i) => {
+            const direction = i % 2 === 0 ? 1 : -1;
+            const shift = progress * direction * 8;
+            item.style.transform = 'translateX(' + shift + 'px)';
+          });
+        });
+      }
     }
 
     // ── Magnetic buttons ───────────────────────────────────────────
