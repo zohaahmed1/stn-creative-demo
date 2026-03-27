@@ -1440,8 +1440,8 @@
           <div class="stat-label" style="color:var(--gray-300);">Ad spend managed</div>
         </div>
         <div style="text-align:center;">
-          <div class="stat-num" style="color:white;">60+</div>
-          <div class="stat-label" style="color:var(--gray-300);">Qualified leads</div>
+          <div class="stat-num" style="color:white;">1,000+</div>
+          <div class="stat-label" style="color:var(--gray-300);">Creatives produced</div>
         </div>
       </div>
     </div>
@@ -2329,7 +2329,7 @@
         statsObs.unobserve(e.target);
         const stats = e.target.querySelectorAll('.stat-num');
         if (stats[0]) countUp(stats[0], 100, '$', 'M+', 1800);
-        if (stats[1]) countUp(stats[1], 60, '', '+', 1400);
+        if (stats[1]) countUp(stats[1], 1000, '', '+', 1800);
       });
     }, { threshold: 0.5 });
     const statsRow = document.querySelector('.stats-row');
