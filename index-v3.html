@@ -135,26 +135,10 @@
       color: var(--white);
       transform: rotate(-5deg);
       white-space: nowrap;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-      background: transparent;
     }
-    .badge::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      transform-origin: left center;
-      transform: scaleX(0);
-      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .badge.visible::before {
-      transform: scaleX(1);
-    }
-    .badge-blue::before { background: var(--blue); }
-    .badge-orange::before { background: var(--orange); }
-    .badge-yellow::before { background: var(--yellow); }
+    .badge-blue { background: var(--blue); }
+    .badge-orange { background: var(--orange); }
+    .badge-yellow { background: var(--yellow); }
     @media (max-width: 809px) { .badge { border-radius: 10px; } }
 
     /* Title wrapper for badge + text rows */
