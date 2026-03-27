@@ -479,9 +479,9 @@
     .section-white::after {
       content: '';
       position: absolute;
-      left: 0; right: 0;
+      left: 10%; right: 10%;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gray-200), transparent);
+      background: linear-gradient(90deg, transparent, var(--gray-300), transparent);
     }
     .section-white::before { top: 0; }
     .section-white::after { bottom: 0; }
@@ -1054,6 +1054,15 @@
       opacity: 1;
       transform: none;
     }
+    /* Re-hide gallery captions after stagger reveals the parent items */
+    #work-gallery [data-stagger].stagger-visible > * > div:last-child {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    #work-gallery [data-stagger].stagger-visible > *:hover > div:last-child {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     /* Parallax elements should not jitter */
     .hero-collage-main,
@@ -1259,12 +1268,7 @@
             <span class="btn-inner">Book your free audit</span>
             <span class="btn-bg"></span>
           </a>
-          <a href="#work" class="btn-text">
-            See our work ↓
-            <span class="arrow-circle">
-              <svg class="arrow-svg" viewBox="0 0 11 11"><path d="M 1.434 1.348 L 10.182 1.144 M 10.182 1.144 L 9.977 9.891 M 10.18 1.144 L 1.468 9.856" fill="transparent" stroke-width="1.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-          </a>
+          <!-- See our work CTA removed to reduce hero density -->
         </div>
         <!-- Credential pills moved to after logo strip -->
       </div>
@@ -1639,12 +1643,6 @@
           </div>
         </div>
 
-        <div style="text-align:center;">
-          <a href="https://calendly.com/skipthenoisemedia/30min" target="_blank" class="btn btn-dark">
-            <span class="btn-inner">Book your free audit</span>
-            <span class="btn-bg"></span>
-          </a>
-        </div>
       </div>
     </section>
 
@@ -1969,7 +1967,7 @@
             <a href="#work" style="color:var(--gray-300); font-size:15px;">Results</a>
             <a href="#work-gallery" style="color:var(--gray-300); font-size:15px;">Portfolio</a>
             <a href="#process" style="color:var(--gray-300); font-size:15px;">Process</a>
-            <a href="#contact" style="color:var(--gray-300); font-size:15px;">Contact</a>
+            <a href="#book" style="color:var(--gray-300); font-size:15px;">Contact</a>
           </div>
         </div>
         <div>
