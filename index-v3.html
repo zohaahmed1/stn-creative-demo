@@ -474,7 +474,7 @@
     }
     @keyframes scroll-logos {
       from { transform: translateX(0); }
-      to { transform: translateX(-33.333%); }
+      to { transform: translateX(var(--shift, -12.5%)); }
     }
     .logo-set {
       display: flex;
@@ -1419,7 +1419,8 @@
 <!-- TRUST STRIP -->
 <section class="logo-strip">
   <p style="text-align:center; font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:20px;">Platforms we advertise on</p>
-  <div class="logo-track">
+  <div class="logo-track" id="logoTrack"></div>
+  <template id="logoSetTpl">
     <div class="logo-set" style="gap:48px; padding-right:48px;">
       <img src="https://cdn.simpleicons.org/reddit/ffffff" class="logo-img" alt="Reddit" style="height:32px;" />
       <img src="https://cdn.simpleicons.org/meta/ffffff" class="logo-img" alt="Meta" style="height:32px;" />
@@ -1430,27 +1431,7 @@
       <img src="https://cdn.simpleicons.org/x/ffffff" class="logo-img" alt="X" style="height:32px;" />
       <img src="https://cdn.simpleicons.org/snapchat/ffffff" class="logo-img" alt="Snapchat" style="height:32px;" />
     </div>
-    <div class="logo-set" style="gap:48px; padding-right:48px;">
-      <img src="https://cdn.simpleicons.org/reddit/ffffff" class="logo-img" alt="Reddit" style="height:32px;" />
-      <img src="https://cdn.simpleicons.org/meta/ffffff" class="logo-img" alt="Meta" style="height:32px;" />
-      <img src="https://cdn.simpleicons.org/tiktok/ffffff" class="logo-img" alt="TikTok" style="height:32px;" />
-      <svg class="logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="LinkedIn" style="height:32px; width:auto;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-      <img src="https://cdn.simpleicons.org/google/ffffff" class="logo-img" alt="Google" style="height:32px;" />
-      <img src="https://cdn.simpleicons.org/pinterest/ffffff" class="logo-img" alt="Pinterest" style="height:32px;" />
-      <img src="https://cdn.simpleicons.org/x/ffffff" class="logo-img" alt="X" style="height:32px;" />
-      <img src="https://cdn.simpleicons.org/snapchat/ffffff" class="logo-img" alt="Snapchat" style="height:32px;" />
-    </div>
-    <div class="logo-set" style="gap:48px; padding-right:48px;">
-      <img src="https://cdn.simpleicons.org/reddit/ffffff" class="logo-img" alt="Reddit" style="height:32px;" />
-      <img src="https://cdn.simpleicons.org/meta/ffffff" class="logo-img" alt="Meta" style="height:32px;" />
-      <img src="https://cdn.simpleicons.org/tiktok/ffffff" class="logo-img" alt="TikTok" style="height:32px;" />
-      <svg class="logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="LinkedIn" style="height:32px; width:auto;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-      <img src="https://cdn.simpleicons.org/google/ffffff" class="logo-img" alt="Google" style="height:32px;" />
-      <img src="https://cdn.simpleicons.org/pinterest/ffffff" class="logo-img" alt="Pinterest" style="height:32px;" />
-      <img src="https://cdn.simpleicons.org/x/ffffff" class="logo-img" alt="X" style="height:32px;" />
-      <img src="https://cdn.simpleicons.org/snapchat/ffffff" class="logo-img" alt="Snapchat" style="height:32px;" />
-    </div>
-  </div>
+  </template>
 </section>
 
 
@@ -2145,6 +2126,19 @@
       });
     });
 
+    // ── Logo strip: clone sets to fill viewport ────────────────────
+    const logoTrack = document.getElementById('logoTrack');
+    const logoTpl = document.getElementById('logoSetTpl');
+    if (logoTrack && logoTpl) {
+      const copies = 8;
+      for (let i = 0; i < copies; i++) {
+        logoTrack.appendChild(logoTpl.content.cloneNode(true));
+      }
+      // Animation shifts by 1 set width = 1/copies of total
+      logoTrack.style.animation = `scroll-logos ${copies * 4}s linear infinite`;
+      document.querySelector('#logoTrack').style.setProperty('--shift', `-${100 / copies}%`);
+    }
+
     // ── Scroll-triggered reveal animations ──────────────────────────
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -2216,18 +2210,16 @@
       });
     }, 200);
 
-    // ── Bloom chart: reveal on scroll ─────────────────────────────
+    // ── Bloom chart: reveal only after user scrolls ────────────────
     const bloomEl = document.querySelector('.bloom-overlay');
     if (bloomEl) {
-      const bloomObs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            bloomEl.classList.add('visible');
-            bloomObs.unobserve(bloomEl);
-          }
-        });
-      }, { threshold: 0.3 });
-      bloomObs.observe(bloomEl);
+      let bloomRevealed = false;
+      window.addEventListener('scroll', function() {
+        if (!bloomRevealed && window.scrollY > 120) {
+          bloomEl.classList.add('visible');
+          bloomRevealed = true;
+        }
+      }, { passive: true });
     }
 
     // ── Active nav link scroll spy ──────────────────────────────────
