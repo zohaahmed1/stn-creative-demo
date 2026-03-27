@@ -135,10 +135,25 @@
       color: var(--white);
       transform: rotate(-5deg);
       white-space: nowrap;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
     }
-    .badge-blue { background: var(--blue); }
-    .badge-orange { background: var(--orange); }
-    .badge-yellow { background: var(--yellow); }
+    .badge::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .badge.visible::before {
+      transform: scaleX(1);
+    }
+    .badge-blue { background: transparent; } .badge-blue::before { background: var(--blue); }
+    .badge-orange { background: transparent; } .badge-orange::before { background: var(--orange); }
+    .badge-yellow { background: transparent; } .badge-yellow::before { background: var(--yellow); }
     @media (max-width: 809px) { .badge { border-radius: 10px; } }
 
     /* Title wrapper for badge + text rows */
@@ -1461,7 +1476,7 @@
       </div>
     </div>
     <div class="projects-grid mb-48" data-anim="scale" data-delay="3">
-      <a href="#book" class="project-card project-large" style="background:#060e27; padding:40px; flex-direction:column; justify-content:flex-end;">
+      <a href="#book" class="project-card project-large" style="background:linear-gradient(135deg, #1a3af5, #6366f1); padding:40px; flex-direction:column; justify-content:flex-end;">
         <h3 class="h3 white" style="margin-bottom:8px;">Flare</h3>
         <p class="body" style="color:var(--gray-300); margin-bottom:4px;">Reddit · 3 months</p>
         <p class="h2 white" style="margin-bottom:12px; font-size:clamp(32px,4vw,56px); line-height:1.05;">60 qualified leads</p>
@@ -1491,7 +1506,7 @@
         <p class="h2" style="color:var(--dark);">4X ROAS</p>
         <p style="color:var(--gray-400); font-size:14px;">Reddit · TikTok · Pinterest</p>
       </a>
-      <a href="#book" class="project-card" style="grid-column:span 4; background:var(--dark); padding:32px 40px; border:2px solid var(--blue);">
+      <a href="#book" class="project-card" style="grid-column:span 4; background:linear-gradient(135deg, #7c3aed, #a855f7); padding:32px 40px; border:none;">
         <div style="display:flex; justify-content:space-between; align-items:center; width:100%; gap:32px;">
           <div>
             <h3 class="h3 white">Tiny Protectors</h3>
