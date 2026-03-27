@@ -33,6 +33,8 @@
        RESET & BASE
        ============================================= */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto; }
     html { font-size: 18px; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; scroll-padding-top: 100px; scrollbar-width: none; }
     html::-webkit-scrollbar { display: none; }
 
@@ -958,36 +960,55 @@
        UTILITIES
        ============================================= */
     /* =============================================
-       SCROLL ANIMATIONS
+       SCROLL ANIMATIONS — Framer-style
        ============================================= */
     [data-anim] {
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), filter 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    [data-anim="up"] {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    [data-anim="down"] {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    [data-anim="left"] {
+      opacity: 0;
+      transform: translateX(-40px);
+    }
+    [data-anim="right"] {
+      opacity: 0;
+      transform: translateX(40px);
+    }
+    [data-anim="scale"] {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    [data-anim="blur"] {
+      opacity: 0;
+      filter: blur(8px);
+      transform: none;
     }
     [data-anim="tilt"] {
       opacity: 0;
       transform: rotate(-8deg) scale(0.95);
-      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    [data-anim="scale"] {
-      opacity: 0;
-      transform: scale(0.92);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     [data-anim="slide-left"] {
       opacity: 0;
       transform: translateX(-30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
     }
     [data-anim="slide-right"] {
       opacity: 0;
       transform: translateX(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
     }
     [data-anim].visible {
       opacity: 1;
       transform: none;
+      filter: none;
     }
     [data-anim="tilt"].visible {
       opacity: 1;
@@ -1005,6 +1026,41 @@
     [data-delay="4"] { transition-delay: 0.32s; }
     [data-delay="5"] { transition-delay: 0.40s; }
     [data-delay="6"] { transition-delay: 0.48s; }
+
+    /* Hero word reveal */
+    .hero-word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .hero-word.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Magnetic button base */
+    .btn {
+      will-change: transform;
+    }
+
+    /* Gallery stagger children */
+    [data-stagger] > * {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    [data-stagger].stagger-visible > * {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Parallax elements should not jitter */
+    .hero-collage-main,
+    .hero-collage-sub,
+    .hero-collage > div[style*="position:absolute"] {
+      will-change: transform;
+    }
 
     .white { color: var(--white) !important; }
     .text-center { text-align: center; }
@@ -1156,6 +1212,7 @@
       .process-grid { gap: 16px !important; }
     }
   </style>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 </head>
 <body>
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -1540,7 +1597,7 @@
             <span class="badge badge-blue" data-anim="tilt" data-delay="1">do</span>
           </div>
         </div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:2px solid var(--dark); max-width:900px; margin:0 auto 48px;" data-anim data-delay="2">
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:2px solid var(--dark); max-width:900px; margin:0 auto 48px;" data-anim data-delay="2" data-stagger>
           <div style="padding:28px 24px; border-bottom:1px solid var(--gray-200); border-right:1px solid var(--gray-200);">
             <h3 class="h3" style="margin-bottom:6px;">Performance Creative</h3>
             <p class="body" style="font-size:15px; color:var(--gray-400);">Static, video, UGC, 3D. Every format. Directed by strategists who read your data.</p>
@@ -1603,7 +1660,7 @@
         </div>
 
         <!-- Video row with captions -->
-        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-bottom:16px;" data-anim data-delay="1">
+        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-bottom:16px;" data-anim data-delay="1" data-stagger>
           <div style="position:relative; border-radius:16px; overflow:hidden; aspect-ratio:9/16; background:#111;">
             <video autoplay muted loop playsinline style="width:100%; height:100%; object-fit:cover;">
               <source src="./assets/lipstick-closeup-compressed.mp4" type="video/mp4">
@@ -1631,7 +1688,7 @@
         </div>
 
         <!-- Image bento grid with captions -->
-        <div style="display:grid; grid-template-columns:repeat(4, 1fr); grid-template-rows:200px 200px; gap:16px;" data-anim data-delay="2">
+        <div style="display:grid; grid-template-columns:repeat(4, 1fr); grid-template-rows:200px 200px; gap:16px;" data-anim data-delay="2" data-stagger>
           <div style="position:relative; grid-column:span 2; border-radius:16px; overflow:hidden;">
             <img src="./assets/lipstick-spill.jpg" alt="Lipstick campaign creative" style="width:100%; height:100%; object-fit:cover;">
             <div style="position:absolute; bottom:0; left:0; right:0; padding:10px 12px; background:linear-gradient(transparent, rgba(0,0,0,0.6)); color:white; font-size:11px; letter-spacing:0.05em; text-transform:uppercase;">Noirvere Lipstick · Product Photography</div>
@@ -1756,7 +1813,7 @@
             <span class="badge badge-yellow" data-anim="tilt" data-delay="1">questions</span>
           </div>
         </div>
-        <div style="display:flex; flex-direction:column; gap:12px; margin:0 auto;">
+        <div style="display:flex; flex-direction:column; gap:12px; margin:0 auto;" data-stagger>
           <div class="faq-item" style="border:2px solid var(--dark); border-radius:16px; padding:0 24px;" data-anim>
             <details>
               <summary><span class="h3" style="font-size:20px;">How is this different from a creative agency?</span><span class="faq-toggle">+</span></summary>
@@ -1945,7 +2002,30 @@
 </footer>
 
   <script>
-    // Scroll-triggered reveal animations
+    // ── Lenis smooth scroll ────────────────────────────────────────
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    });
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    // Wire anchor links to Lenis
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -100 }); }
+      });
+    });
+
+    // ── Scroll-triggered reveal animations ──────────────────────────
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1958,11 +2038,51 @@
     // Observe scroll-triggered elements (non-hero)
     document.querySelectorAll('[data-anim]:not([data-hero])').forEach(el => observer.observe(el));
 
+    // ── Stagger children ────────────────────────────────────────────
+    const staggerObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const parent = entry.target;
+          const children = Array.from(parent.children);
+          children.forEach((child, i) => {
+            child.style.transitionDelay = (i * 0.1) + 's';
+          });
+          parent.classList.add('stagger-visible');
+          staggerObs.unobserve(parent);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    document.querySelectorAll('[data-stagger]').forEach(el => staggerObs.observe(el));
+
+    // ── Hero text split reveal ──────────────────────────────────────
+    document.querySelectorAll('.hero-left .h1[data-hero], .hero-left .title-row.h1 > span[data-hero]').forEach(el => {
+      // Skip badges
+      if (el.classList.contains('badge')) return;
+      const text = el.textContent.trim();
+      if (!text) return;
+      const words = text.split(/\s+/);
+      el.textContent = '';
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+      words.forEach((word, i) => {
+        const span = document.createElement('span');
+        span.className = 'hero-word';
+        span.textContent = word;
+        span.style.transitionDelay = (i * 0.05) + 's';
+        el.appendChild(span);
+        if (i < words.length - 1) el.appendChild(document.createTextNode(' '));
+      });
+    });
+
     // Auto-trigger hero animations on page load with staggered timing
     setTimeout(() => {
       document.querySelectorAll('[data-hero]').forEach(el => {
         const delay = (parseInt(el.dataset.delay) || 0) * 150;
-        setTimeout(() => el.classList.add('visible'), delay);
+        setTimeout(() => {
+          el.classList.add('visible');
+          // Also reveal hero-words inside
+          el.querySelectorAll('.hero-word').forEach(w => w.classList.add('visible'));
+        }, delay);
       });
     }, 200);
 
@@ -1982,14 +2102,55 @@
     const processSection = document.querySelector('#process [data-anim][data-delay="3"]');
     if (processSection) processObs.observe(processSection);
 
-    // Floating nav + scroll progress
+    // ── Floating nav + scroll progress (integrated with Lenis) ─────
     const nav = document.querySelector('.nav');
     const progressBar = document.getElementById('scrollProgress');
-    window.addEventListener('scroll', () => {
-      nav.classList.toggle('scrolled', window.scrollY > 100);
-      const scrollPct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+    lenis.on('scroll', ({ scroll }) => {
+      nav.classList.toggle('scrolled', scroll > 100);
+      const scrollPct = (scroll / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
       progressBar.style.width = scrollPct + '%';
-    }, { passive: true });
+    });
+
+    // ── Hero parallax ──────────────────────────────────────────────
+    const heroSection = document.querySelector('.hero');
+    const heroMain = document.querySelector('.hero-collage-main');
+    const heroSubs = document.querySelectorAll('.hero-collage-sub');
+    const aiBadge = document.querySelector('.hero-collage > div[style*="position:absolute"]');
+    let heroInView = true;
+    const heroParallaxObs = new IntersectionObserver(entries => {
+      heroInView = entries[0].isIntersecting;
+    }, { threshold: 0 });
+    if (heroSection) heroParallaxObs.observe(heroSection);
+
+    lenis.on('scroll', ({ scroll }) => {
+      if (!heroInView) return;
+      if (heroMain) heroMain.style.transform = 'translateY(' + (scroll * 0.15) + 'px)';
+      heroSubs.forEach(s => { s.style.transform = 'translateY(' + (scroll * 0.08) + 'px)'; });
+      if (aiBadge) aiBadge.style.transform = 'translateY(' + (scroll * 0.2) + 'px)';
+    });
+
+    // ── Magnetic buttons ───────────────────────────────────────────
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const rect = btn.getBoundingClientRect();
+        const bx = rect.left + rect.width / 2;
+        const by = rect.top + rect.height / 2;
+        const dx = e.clientX - bx;
+        const dy = e.clientY - by;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 100) {
+          const strength = (1 - dist / 100) * 6;
+          const mx = (dx / dist) * strength;
+          const my = (dy / dist) * strength;
+          btn.style.transform = 'translate(' + mx + 'px, ' + my + 'px)';
+          btn.style.transition = 'transform 0.1s ease';
+        }
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+        btn.style.transition = 'transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)';
+      });
+    });
 
     // ── Animated gradient headline ──────────────────────────────────
     const gradStyle = document.createElement('style');
