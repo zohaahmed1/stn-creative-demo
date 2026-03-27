@@ -476,8 +476,8 @@
       gap: 24px;
       padding-right: 24px;
     }
-    .logo-img { height: 28px; width: auto; opacity: 0.7; filter: brightness(0) invert(1); }
-    .logo-svg { height: 28px; width: auto; opacity: 0.7; flex-shrink: 0; fill: white; }
+    .logo-img { height: 18px; width: auto; opacity: 0.5; filter: brightness(0) invert(1); }
+    .logo-svg { height: 18px; width: auto; opacity: 0.5; flex-shrink: 0; fill: white; }
     .logo-label { font-size: 14px; font-weight: 700; opacity: 0.55; white-space: nowrap; color: var(--white); letter-spacing: 0.02em; }
     .logo-dot { flex-shrink: 0; width: 28px; height: 28px; }
     @media (max-width: 809px) {
@@ -1364,7 +1364,11 @@
           <div class="h1" data-anim data-hero data-delay="2">meets creative.</div>
         </div>
         <p class="body" style="max-width:540px;" data-anim data-hero data-delay="3">A team led by performance leaders guiding creative that works. One team. One loop. From strategy to conversion.</p>
-        <div class="btn-row" data-anim data-hero data-delay="4">
+        <div style="margin-top:8px;" data-anim data-hero data-delay="4">
+          <span style="font-size:clamp(32px,4vw,48px); font-weight:800; color:var(--blue);">1,000+</span>
+          <span class="body" style="margin-left:8px; color:var(--gray-400);">creatives produced</span>
+        </div>
+        <div class="btn-row" data-anim data-hero data-delay="5">
           <a href="#book" class="btn btn-dark">
             <span class="btn-inner">Get 3 free creatives</span>
             <span class="btn-bg"></span>
@@ -1377,15 +1381,15 @@
         <div class="hero-collage">
           <!-- Left: tall portrait -->
           <div class="hero-collage-main">
-            <img src="assets/lipstick-spill.jpg" alt="Noirvere lipstick campaign" />
+            <img src="assets/tcf-trust.jpg" alt="TCF Zakat campaign creative" />
           </div>
           <!-- Right top -->
           <div class="hero-collage-sub">
-            <img src="assets/handbag-fashion.jpg" alt="Handbag lifestyle campaign" />
+            <img src="assets/tcf-trust2.jpg" alt="TCF trust campaign" />
           </div>
           <!-- Right bottom -->
           <div class="hero-collage-sub">
-            <img src="assets/lipstick-taxi.jpg" alt="Noirvere UGC campaign" />
+            <img src="assets/tcf-spiritual.jpg" alt="TCF spiritual campaign" />
           </div>
           <!-- AI badge -->
           <div style="position:absolute; top:-12px; left:-12px; z-index:6;">
@@ -1409,15 +1413,15 @@
   <p style="text-align:center; font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-bottom:20px;">Platforms we advertise on</p>
   <div class="logo-track" id="logoTrack"></div>
   <template id="logoSetTpl">
-    <div class="logo-set" style="gap:48px; padding-right:48px;">
-      <img src="https://cdn.simpleicons.org/reddit/ffffff" class="logo-img" alt="Reddit" style="height:32px;" />
-      <img src="https://cdn.simpleicons.org/meta/ffffff" class="logo-img" alt="Meta" style="height:32px;" />
-      <img src="https://cdn.simpleicons.org/tiktok/ffffff" class="logo-img" alt="TikTok" style="height:32px;" />
+    <div class="logo-set" style="gap:28px; padding-right:28px;">
+      <img src="https://cdn.simpleicons.org/reddit/ffffff" class="logo-img" alt="Reddit" style="height:19px;" />
+      <img src="https://cdn.simpleicons.org/meta/ffffff" class="logo-img" alt="Meta" style="height:19px;" />
+      <img src="https://cdn.simpleicons.org/tiktok/ffffff" class="logo-img" alt="TikTok" style="height:19px;" />
       <svg class="logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="LinkedIn" style="height:32px; width:auto;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-      <img src="https://cdn.simpleicons.org/google/ffffff" class="logo-img" alt="Google" style="height:32px;" />
-      <img src="https://cdn.simpleicons.org/pinterest/ffffff" class="logo-img" alt="Pinterest" style="height:32px;" />
-      <img src="https://cdn.simpleicons.org/x/ffffff" class="logo-img" alt="X" style="height:32px;" />
-      <img src="https://cdn.simpleicons.org/snapchat/ffffff" class="logo-img" alt="Snapchat" style="height:32px;" />
+      <img src="https://cdn.simpleicons.org/google/ffffff" class="logo-img" alt="Google" style="height:19px;" />
+      <img src="https://cdn.simpleicons.org/pinterest/ffffff" class="logo-img" alt="Pinterest" style="height:19px;" />
+      <img src="https://cdn.simpleicons.org/x/ffffff" class="logo-img" alt="X" style="height:19px;" />
+      <img src="https://cdn.simpleicons.org/snapchat/ffffff" class="logo-img" alt="Snapchat" style="height:19px;" />
     </div>
   </template>
 </section>
@@ -1454,33 +1458,33 @@
       </div>
     </div>
     <div class="projects-grid mb-48" data-anim="scale" data-delay="3">
-      <a href="#book" class="project-card project-large" style="background:linear-gradient(135deg, #1a3af5, #6366f1); padding:40px; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+      <a href="#book" class="project-card project-large" style="background:#1a1a2e; padding:40px; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
         <h3 class="h3 white" style="margin-bottom:8px;">Flare</h3>
         <p class="body" style="color:var(--gray-300); margin-bottom:4px;">Reddit · 3 months</p>
-        <p class="h2 white" style="margin-bottom:12px; font-size:clamp(32px,4vw,56px); line-height:1.05;">60 qualified leads</p>
+        <p class="h2" style="margin-bottom:12px; font-size:clamp(32px,4vw,56px); line-height:1.05; color:#7c3aed;">60 qualified leads</p>
         <p class="body" style="color:var(--gray-300); margin-bottom:12px; font-size:15px;">$100 CPL · SIEM/SOAR buyers</p>
         <p class="body" style="color:var(--gray-200); font-size:14px;">Creative production and media buying under one roof.</p>
       </a>
-      <a href="#book" class="project-card project-wide" style="background:var(--orange); padding:32px; flex-direction:column; align-items:center; text-align:center;">
+      <a href="#book" class="project-card project-wide" style="background:#1a1a2e; padding:32px; flex-direction:column; align-items:center; text-align:center;">
         <h3 class="h3 white">Restream</h3>
         <p class="body" style="color:rgba(255,255,255,0.8); margin-top:4px; font-size:13px;">Meta · LinkedIn · Reddit · X · TikTok</p>
-        <p class="h2 white" style="margin-top:12px;">50% CPL reduction</p>
+        <p class="h2" style="margin-top:12px; color:#7c3aed;">50% CPL reduction</p>
         <div style="display:flex; gap:24px; margin-top:8px;">
-          <p style="color:rgba(255,255,255,0.95); font-size:15px; font-weight:600;">+30% branded search</p>
-          <p style="color:rgba(255,255,255,0.95); font-size:15px; font-weight:600;">+10% YoY subscribers</p>
+          <p style="color:rgba(255,255,255,0.6); font-size:15px; font-weight:600;">+30% branded search</p>
+          <p style="color:rgba(255,255,255,0.6); font-size:15px; font-weight:600;">+10% YoY subscribers</p>
         </div>
       </a>
-      <a href="#book" class="project-card project-small" style="background:var(--blue); padding:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+      <a href="#book" class="project-card project-small" style="background:#1a1a2e; padding:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
         <p class="h3 white">Noirvere</p>
-        <p class="h2 white" style="margin:4px 0;">5X ROAS</p>
-        <p style="color:rgba(255,255,255,0.7); font-size:14px;">TikTok · Snapchat</p>
+        <p class="h2" style="margin:4px 0; color:#7c3aed;">5X ROAS</p>
+        <p style="color:rgba(255,255,255,0.5); font-size:14px;">TikTok · Snapchat</p>
       </a>
-      <a href="#book" class="project-card project-small" style="background:var(--yellow); padding:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
-        <p class="h3" style="color:var(--dark);">Storykeeper</p>
-        <p class="h2" style="color:var(--dark);">4X ROAS</p>
-        <p style="color:var(--gray-400); font-size:14px;">Reddit · TikTok · Pinterest</p>
+      <a href="#book" class="project-card project-small" style="background:#1a1a2e; padding:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+        <p class="h3 white">Storykeeper</p>
+        <p class="h2" style="color:#7c3aed;">4X ROAS</p>
+        <p style="color:rgba(255,255,255,0.5); font-size:14px;">Reddit · TikTok · Pinterest</p>
       </a>
-      <a href="#book" class="project-card" style="grid-column:span 4; background:linear-gradient(135deg, #7c3aed, #a855f7); padding:32px 40px; border:none; flex-direction:column; align-items:center; text-align:center;">
+      <a href="#book" class="project-card" style="grid-column:span 4; background:#1a1a2e; padding:32px 40px; border:none; flex-direction:column; align-items:center; text-align:center;">
         <h3 class="h3 white">Tiny Protectors</h3>
         <p class="body" style="color:var(--gray-300); margin-top:4px; font-size:13px;">Meta · TikTok · Pinterest</p>
         <div style="display:flex; gap:40px; align-items:center; margin-top:16px;">
@@ -1718,25 +1722,25 @@
         <!-- Video row with captions -->
         <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-bottom:16px;" data-anim data-delay="1" data-stagger>
           <div style="position:relative; border-radius:16px; overflow:hidden; aspect-ratio:9/16; background:#111;">
-            <video autoplay muted loop playsinline preload="auto" style="width:100%; height:100%; object-fit:cover;">
+            <video autoplay muted loop playsinline preload="metadata" poster="./assets/lipstick-spill.jpg" style="width:100%; height:100%; object-fit:cover;">
               <source src="./assets/lipstick-closeup-compressed.mp4" type="video/mp4">
             </video>
             <div style="position:absolute; bottom:0; left:0; right:0; padding:12px; background:linear-gradient(transparent, rgba(0,0,0,0.7)); color:white; font-size:11px; letter-spacing:0.05em; text-transform:uppercase;">Noirvere · Luma Labs</div>
           </div>
           <div style="position:relative; border-radius:16px; overflow:hidden; aspect-ratio:9/16; background:#111;">
-            <video autoplay muted loop playsinline preload="auto" style="width:100%; height:100%; object-fit:cover;">
+            <video autoplay muted loop playsinline preload="metadata" poster="./assets/handbag-fashion.jpg" style="width:100%; height:100%; object-fit:cover;">
               <source src="./assets/handbag-fashion.mp4" type="video/mp4">
             </video>
             <div style="position:absolute; bottom:0; left:0; right:0; padding:12px; background:linear-gradient(transparent, rgba(0,0,0,0.7)); color:white; font-size:11px; letter-spacing:0.05em; text-transform:uppercase;">Handbag Campaign · Luma Labs</div>
           </div>
           <div style="position:relative; border-radius:16px; overflow:hidden; aspect-ratio:9/16; background:#111;">
-            <video autoplay muted loop playsinline preload="auto" style="width:100%; height:100%; object-fit:cover;">
+            <video autoplay muted loop playsinline preload="metadata" poster="./assets/lipstick-hands.jpg" style="width:100%; height:100%; object-fit:cover;">
               <source src="./assets/lipstick-hands-compressed.mp4" type="video/mp4">
             </video>
             <div style="position:absolute; bottom:0; left:0; right:0; padding:12px; background:linear-gradient(transparent, rgba(0,0,0,0.7)); color:white; font-size:11px; letter-spacing:0.05em; text-transform:uppercase;">Noirvere · Creatify</div>
           </div>
           <div style="position:relative; border-radius:16px; overflow:hidden; aspect-ratio:9/16; background:#111;">
-            <video autoplay muted loop playsinline preload="auto" style="width:100%; height:100%; object-fit:cover;">
+            <video autoplay muted loop playsinline preload="metadata" poster="./assets/handbag-walk.jpg" style="width:100%; height:100%; object-fit:cover;">
               <source src="./assets/handbag-walk.mp4" type="video/mp4">
             </video>
             <div style="position:absolute; bottom:0; left:0; right:0; padding:12px; background:linear-gradient(transparent, rgba(0,0,0,0.7)); color:white; font-size:11px; letter-spacing:0.05em; text-transform:uppercase;">Lifestyle Shoot · Luma Labs</div>
@@ -1860,101 +1864,8 @@
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="section-inner">
-      <div class="container">
-        <div class="section-header">
-          <div class="title-row h2" style="justify-content:center;" data-anim>
-            <span>Frequently asked</span>
-            <span class="badge badge-yellow" data-anim="tilt" data-delay="1">questions</span>
-          </div>
-        </div>
-        <div style="display:flex; flex-direction:column; gap:12px; margin:0 auto;" data-stagger>
-          <div class="faq-item" style="border:2px solid var(--dark); border-radius:16px; padding:0 24px;" data-anim>
-            <details>
-              <summary><span class="h3" style="font-size:20px;">How is this different from a creative agency?</span><span class="faq-toggle">+</span></summary>
-              <p class="body faq-body">We buy the media too. Your strategist reads your campaign data every day and uses it to direct what gets produced next. Traditional agencies guess. We measure.</p>
-            </details>
-          </div>
-          <div class="faq-item" style="border:2px solid var(--dark); border-radius:16px; padding:0 24px;" data-anim data-delay="1">
-            <details>
-              <summary><span class="h3" style="font-size:20px;">What platforms do you cover?</span><span class="faq-toggle">+</span></summary>
-              <p class="body faq-body">Meta, Google, Reddit, LinkedIn, TikTok, Pinterest, Snapchat, and X. We manage campaigns across all of them and produce creative optimized for each.</p>
-            </details>
-          </div>
-          <div class="faq-item" style="border:2px solid var(--dark); border-radius:16px; padding:0 24px;" data-anim data-delay="2">
-            <details>
-              <summary><span class="h3" style="font-size:20px;">How fast is delivery?</span><span class="faq-toggle">+</span></summary>
-              <p class="body faq-body">Most assets are delivered within 48 hours. We use AI tools for speed and human review for quality.</p>
-            </details>
-          </div>
-          <div class="faq-item" style="border:2px solid var(--dark); border-radius:16px; padding:0 24px;" data-anim data-delay="3">
-            <details>
-              <summary><span class="h3" style="font-size:20px;">Can I see examples of your work?</span><span class="faq-toggle">+</span></summary>
-              <p class="body faq-body">Yes. Book a free audit and we'll walk you through real campaigns, real creative, and real results — plus audit your current ad library for free.</p>
-            </details>
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 </div>
-
-<!-- TEAM -->
-<section class="section-inner" style="padding:80px 0 40px;">
-  <div class="container">
-    <div class="section-header" style="margin-bottom:48px;">
-      <div class="title-row h2" style="justify-content:center;" data-anim>
-        <span>Meet the</span>
-        <span class="badge badge-blue" data-anim="tilt" data-delay="1">team</span>
-      </div>
-      <p class="body" data-anim data-delay="2">Two people. No layers. You talk directly to the people doing the work.</p>
-    </div>
-
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; max-width:800px; margin:0 auto;" data-anim data-delay="3">
-      <!-- Zoha -->
-      <div style="background:#fff; border:2px solid var(--gray-200); border-radius:24px; overflow:hidden; transition:border-color 0.3s, box-shadow 0.3s;" onmouseenter="this.style.borderColor='var(--blue)';this.style.boxShadow='0 8px 32px rgba(85,0,221,0.1)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.boxShadow='none'">
-        <div class="team-photo-wrap" style="height:280px; overflow:hidden;">
-          <img src="assets/zoha.jpg" alt="Zoha Ahmed" style="width:100%; height:100%; object-fit:cover; object-position:center top;" />
-        </div>
-        <div style="padding:28px 24px;">
-          <h3 class="h3" style="margin-bottom:4px;">Zoha Ahmed</h3>
-          <p style="font-size:14px; font-weight:600; color:var(--blue); margin-bottom:16px;">Performance and Measurement Lead</p>
-          <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--dark)"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            <span style="font-size:13px; color:var(--gray-400);">Ex-WPP Director · Performance nerd</span>
-          </div>
-          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;">
-            <span style="font-size:12px; font-weight:600; color:var(--dark); border:1.5px solid var(--gray-200); border-radius:100px; padding:4px 12px;">Obsessed with ROAS</span>
-            <span style="font-size:12px; font-weight:600; color:var(--dark); border:1.5px solid var(--gray-200); border-radius:100px; padding:4px 12px;">Reddit</span>
-          </div>
-          <p style="font-size:13px; color:var(--gray-300);">♡ Loves cats and Apex Legends</p>
-        </div>
-      </div>
-
-      <!-- Sonia -->
-      <div style="background:#fff; border:2px solid var(--gray-200); border-radius:24px; overflow:hidden; transition:border-color 0.3s, box-shadow 0.3s;" onmouseenter="this.style.borderColor='var(--orange)';this.style.boxShadow='0 8px 32px rgba(238,0,51,0.08)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.boxShadow='none'">
-        <div class="team-photo-wrap" style="height:280px; overflow:hidden;">
-          <img src="assets/sonia.jpg" alt="Sonia Mohapatra" style="width:100%; height:100%; object-fit:cover; object-position:center top;" />
-        </div>
-        <div style="padding:28px 24px;">
-          <h3 class="h3" style="margin-bottom:4px;">Sonia Mohapatra</h3>
-          <p style="font-size:14px; font-weight:600; color:var(--orange); margin-bottom:16px;">Creative and Strategy Lead</p>
-          <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--dark)"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-            <span style="font-size:13px; color:var(--gray-400);">Ex-WPP · Rogers → Coca-Cola</span>
-          </div>
-          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;">
-            <span style="font-size:12px; font-weight:600; color:var(--dark); border:1.5px solid var(--gray-200); border-radius:100px; padding:4px 12px;">gemini</span>
-            <span style="font-size:12px; font-weight:600; color:var(--dark); border:1.5px solid var(--gray-200); border-radius:100px; padding:4px 12px;">natural talker</span>
-            <span style="font-size:12px; font-weight:600; color:var(--dark); border:1.5px solid var(--gray-200); border-radius:100px; padding:4px 12px;">always real</span>
-          </div>
-          <p style="font-size:13px; color:var(--gray-300);">♡ Brings good vibes and even better ideas</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- BOOK A CALL — Calendly embed -->
 <section id="book" class="section-inner" style="padding:80px 0;">
@@ -2005,9 +1916,19 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-top">
-      <a href="#" style="font-size:28px; font-weight:800; font-variation-settings:'wdth' 125,'wght' 800; text-decoration:none; display:block; margin-bottom:32px;">
+      <a href="#" style="font-size:28px; font-weight:800; font-variation-settings:'wdth' 125,'wght' 800; text-decoration:none; display:block; margin-bottom:16px;">
         <span style="color:#8888aa;">Skip</span> <span style="color:#cc4444;">the</span> <span style="color:#9966ff;">Noise</span>
       </a>
+      <div style="display:flex; gap:20px; justify-content:center; margin-bottom:32px;">
+        <div style="text-align:center;">
+          <img src="assets/zoha.jpg" style="width:44px; height:44px; border-radius:50%; object-fit:cover; border:2px solid rgba(255,255,255,0.1);" alt="Zoha" />
+          <p style="font-size:11px; color:var(--gray-400); margin-top:4px;">Zoha</p>
+        </div>
+        <div style="text-align:center;">
+          <img src="assets/sonia.jpg" style="width:44px; height:44px; border-radius:50%; object-fit:cover; border:2px solid rgba(255,255,255,0.1);" alt="Sonia" />
+          <p style="font-size:11px; color:var(--gray-400); margin-top:4px;">Sonia</p>
+        </div>
+      </div>
       <div class="footer-cols-row" style="display:flex; gap:80px; flex-wrap:wrap; justify-content:center; text-align:left;">
         <div>
           <p style="color:var(--white); font-weight:700; margin-bottom:16px;">Services</p>
@@ -2173,62 +2094,16 @@
       });
     }, 200);
 
-    // ── Bloom chart: scroll-lock reveal ─────────────────────────────
-    // Page freezes when you start scrolling. Chart animates in.
-    // Once fully visible, scrolling resumes normally.
+    // ── Bloom chart: fade in on scroll ──────────────────────────────
     const bloomEl = document.querySelector('.bloom-overlay');
-    const bloomVisible = bloomEl && getComputedStyle(bloomEl).display !== 'none';
-    if (bloomVisible) {
-      let bloomRevealed = false;
-      let bloomProgress = 0;
-      let bloomLocked = false;
-
-      function animateBloom(delta) {
-        bloomProgress = Math.min(1, Math.max(0, bloomProgress + delta * 0.004));
-        bloomEl.style.opacity = bloomProgress;
-        bloomEl.style.transform = `translateX(-50%) translateY(${40 * (1 - bloomProgress)}px)`;
-        if (bloomProgress >= 1) {
-          bloomRevealed = true;
-          bloomLocked = false;
-          lenis.start();
+    if (bloomEl && getComputedStyle(bloomEl).display !== 'none') {
+      bloomEl.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+      new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) {
+          bloomEl.style.opacity = '1';
+          bloomEl.style.transform = 'translateX(-50%) translateY(0)';
         }
-      }
-
-      // Intercept wheel events to lock scroll and drive the bloom animation
-      window.addEventListener('wheel', (e) => {
-        if (bloomRevealed) return;
-        // Only lock if we're near the top
-        if (window.scrollY < 50 && e.deltaY > 0) {
-          e.preventDefault();
-          if (!bloomLocked) {
-            bloomLocked = true;
-            lenis.stop();
-            window.scrollTo({ top: 0, behavior: 'instant' });
-          }
-          animateBloom(e.deltaY);
-        }
-      }, { passive: false });
-
-      // Touch support for mobile
-      let touchStartY = 0;
-      window.addEventListener('touchstart', (e) => {
-        if (bloomRevealed) return;
-        touchStartY = e.touches[0].clientY;
-      }, { passive: true });
-      window.addEventListener('touchmove', (e) => {
-        if (bloomRevealed) return;
-        const delta = touchStartY - e.touches[0].clientY;
-        if (window.scrollY < 50 && delta > 0) {
-          e.preventDefault();
-          if (!bloomLocked) {
-            bloomLocked = true;
-            lenis.stop();
-            window.scrollTo({ top: 0, behavior: 'instant' });
-          }
-          animateBloom(delta);
-          touchStartY = e.touches[0].clientY;
-        }
-      }, { passive: false });
+      }, { threshold: 0.2 }).observe(bloomEl);
     }
 
     // ── Active nav link scroll spy ──────────────────────────────────
@@ -2502,6 +2377,14 @@
     }
     document.querySelectorAll('a[href="#book"]').forEach(btn => {
       btn.addEventListener('click', launchConfetti);
+    });
+
+    // ── Portfolio videos: play only when visible ──────────────────────
+    document.querySelectorAll('#work-gallery video').forEach(v => {
+      new IntersectionObserver(([e]) => {
+        if (e.isIntersecting) v.play().catch(() => {});
+        else v.pause();
+      }, { threshold: 0.2 }).observe(v);
     });
 
     // ── Testimonials: smooth rAF auto-scroll + drag ─────────────────
