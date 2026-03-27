@@ -2204,17 +2204,61 @@
       });
     }, 200);
 
-    // ── Bloom chart: fade in on scroll ──────────────────────────────
+    // ── Bloom chart: scroll-lock reveal ─────────────────────────────
+    // Page freezes when you start scrolling. Chart animates in.
+    // Once fully visible, scrolling resumes normally.
     const bloomEl = document.querySelector('.bloom-overlay');
     if (bloomEl) {
-      function updateBloom() {
-        const scroll = window.scrollY;
-        const progress = Math.min(1, Math.max(0, (scroll - 100) / 200));
-        bloomEl.style.opacity = progress;
-        bloomEl.style.transform = `translateX(-50%) translateY(${40 * (1 - progress)}px)`;
+      let bloomRevealed = false;
+      let bloomProgress = 0;
+      let bloomLocked = false;
+
+      function animateBloom(delta) {
+        bloomProgress = Math.min(1, Math.max(0, bloomProgress + delta * 0.004));
+        bloomEl.style.opacity = bloomProgress;
+        bloomEl.style.transform = `translateX(-50%) translateY(${40 * (1 - bloomProgress)}px)`;
+        if (bloomProgress >= 1) {
+          bloomRevealed = true;
+          bloomLocked = false;
+          lenis.start();
+        }
       }
-      lenis.on('scroll', updateBloom);
-      window.addEventListener('scroll', updateBloom, { passive: true });
+
+      // Intercept wheel events to lock scroll and drive the bloom animation
+      window.addEventListener('wheel', (e) => {
+        if (bloomRevealed) return;
+        // Only lock if we're near the top
+        if (window.scrollY < 50 && e.deltaY > 0) {
+          e.preventDefault();
+          if (!bloomLocked) {
+            bloomLocked = true;
+            lenis.stop();
+            window.scrollTo({ top: 0, behavior: 'instant' });
+          }
+          animateBloom(e.deltaY);
+        }
+      }, { passive: false });
+
+      // Touch support for mobile
+      let touchStartY = 0;
+      window.addEventListener('touchstart', (e) => {
+        if (bloomRevealed) return;
+        touchStartY = e.touches[0].clientY;
+      }, { passive: true });
+      window.addEventListener('touchmove', (e) => {
+        if (bloomRevealed) return;
+        const delta = touchStartY - e.touches[0].clientY;
+        if (window.scrollY < 50 && delta > 0) {
+          e.preventDefault();
+          if (!bloomLocked) {
+            bloomLocked = true;
+            lenis.stop();
+            window.scrollTo({ top: 0, behavior: 'instant' });
+          }
+          animateBloom(delta);
+          touchStartY = e.touches[0].clientY;
+        }
+      }, { passive: false });
     }
 
     // ── Active nav link scroll spy ──────────────────────────────────
