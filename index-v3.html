@@ -234,11 +234,12 @@
       top: 12px;
       left: 24px;
       right: 24px;
-      background: rgba(8, 8, 8, 0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 20px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      background: rgba(8, 8, 8, 0.65);
+      backdrop-filter: blur(24px) saturate(1.4);
+      -webkit-backdrop-filter: blur(24px) saturate(1.4);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      border: 1px solid rgba(255,255,255,0.06);
     }
     .nav.scrolled .nav-logo img {
       filter: brightness(0) invert(1);
@@ -265,7 +266,7 @@
       transition: padding 0.4s ease;
     }
     .nav.scrolled .nav-inner {
-      padding-top: 14px; padding-bottom: 14px;
+      padding-top: 10px; padding-bottom: 10px;
     }
     .nav-logo img { height: 41px; width: auto; }
     .nav-links {
@@ -377,11 +378,7 @@
       width: 340px;
       height: 250px;
       border-radius: 18px;
-      background: rgba(255, 253, 248, 0.95);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
-      border: 1px solid rgba(0,0,0,0.05);
+      background: transparent;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1164,7 +1161,7 @@
     <div class="nav-links">
       <a href="#work" class="nav-link">Results</a>
       <a href="#services" class="nav-link">Services</a>
-      <a href="#work-gallery" class="nav-link">Work</a>
+      <a href="#work-gallery" class="nav-link">Portfolio</a>
       <a href="#process" class="nav-link">Process</a>
     </div>
     <div class="nav-right">
@@ -1307,14 +1304,14 @@
       </div>
     </div>
     <div class="projects-grid mb-48" data-anim="scale" data-delay="3">
-      <a href="#" class="project-card project-large" style="background:#060e27; padding:40px; flex-direction:column; justify-content:flex-end;">
+      <a href="#book" class="project-card project-large" style="background:#060e27; padding:40px; flex-direction:column; justify-content:flex-end;">
         <h3 class="h3 white" style="margin-bottom:8px;">Flare</h3>
         <p class="body" style="color:var(--gray-300); margin-bottom:4px;">Reddit · 3 months</p>
         <p class="h2 white" style="margin-bottom:12px; font-size:clamp(32px,4vw,56px); line-height:1.05;">60 qualified leads</p>
         <p class="body" style="color:var(--gray-300); margin-bottom:12px; font-size:15px;">$100 CPL · SIEM/SOAR buyers</p>
         <p class="body" style="color:var(--gray-200); font-size:14px;">Creative production and media buying under one roof.</p>
       </a>
-      <a href="#" class="project-card project-wide" style="background:var(--orange); padding:32px;">
+      <a href="#book" class="project-card project-wide" style="background:var(--orange); padding:32px;">
         <div style="display:flex; justify-content:space-between; align-items:center; width:100%; gap:24px;">
           <div>
             <h3 class="h3 white">Restream</h3>
@@ -1327,17 +1324,17 @@
           </div>
         </div>
       </a>
-      <a href="#" class="project-card project-small" style="background:var(--blue); padding:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+      <a href="#book" class="project-card project-small" style="background:var(--blue); padding:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
         <p class="h3 white">Noirvere</p>
         <p class="h2 white" style="margin:4px 0;">5X ROAS</p>
         <p style="color:rgba(255,255,255,0.7); font-size:14px;">TikTok · Snapchat</p>
       </a>
-      <a href="#" class="project-card project-small" style="background:var(--yellow); padding:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+      <a href="#book" class="project-card project-small" style="background:var(--yellow); padding:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
         <p class="h3" style="color:var(--dark);">Storykeeper</p>
         <p class="h2" style="color:var(--dark);">4X ROAS</p>
         <p style="color:var(--gray-400); font-size:14px;">Reddit · TikTok · Pinterest</p>
       </a>
-      <a href="#" class="project-card" style="grid-column:span 4; background:var(--dark); padding:32px 40px; border:2px solid var(--blue);">
+      <a href="#book" class="project-card" style="grid-column:span 4; background:var(--dark); padding:32px 40px; border:2px solid var(--blue);">
         <div style="display:flex; justify-content:space-between; align-items:center; width:100%; gap:32px;">
           <div>
             <h3 class="h3 white">Tiny Protectors</h3>
@@ -1798,8 +1795,8 @@
   </div>
 </section>
 
-<!-- CTA -->
-<section id="contact" class="section-dark cta" style="padding:100px 0 40px;">
+<!-- CTA (hidden for now) -->
+<section id="contact" class="section-dark cta" style="display:none; padding:100px 0 40px;">
   <div class="container flex-center" style="flex-direction:column;">
     <div class="cta-content" data-anim="scale">
       <img src="https://framerusercontent.com/images/z7apnxgzG8zOLiICxGaVW0e7YbE.svg" class="cta-sparkle cta-sparkle-lines" alt="" />
@@ -1850,7 +1847,7 @@
           <p style="color:var(--white); font-weight:700; margin-bottom:16px;">Company</p>
           <div style="display:flex; flex-direction:column; gap:8px;">
             <a href="#work" style="color:var(--gray-300); font-size:15px;">Results</a>
-            <a href="#work-gallery" style="color:var(--gray-300); font-size:15px;">Work</a>
+            <a href="#work-gallery" style="color:var(--gray-300); font-size:15px;">Portfolio</a>
             <a href="#process" style="color:var(--gray-300); font-size:15px;">Process</a>
             <a href="#contact" style="color:var(--gray-300); font-size:15px;">Contact</a>
           </div>
