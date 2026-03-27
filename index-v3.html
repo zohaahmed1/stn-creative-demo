@@ -756,11 +756,7 @@
       display: flex;
       gap: 24px;
       width: max-content;
-      animation: scroll-testimonials 40s linear infinite;
-    }
-    @keyframes scroll-testimonials {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
+      will-change: transform;
     }
     .testimonial-card {
       width: 602px; flex-shrink: 0;
@@ -1981,10 +1977,10 @@
   <div class="container" style="max-width:900px;">
     <div class="section-header" style="text-align:center; margin-bottom:48px;">
       <div class="title-row h2" style="justify-content:center;" data-anim>
-        <span>Book your</span>
-        <span class="badge badge-blue" data-anim="tilt" data-delay="1">free audit</span>
+        <span>Claim your</span>
+        <span class="badge badge-blue" data-anim="tilt" data-delay="1">3 free creatives</span>
       </div>
-      <p class="body" style="margin-top:16px;" data-anim data-delay="2">Pick a time. We'll audit your ad library and show you exactly where you're leaving money on the table.</p>
+      <p class="body" style="margin-top:16px; max-width:520px; margin-left:auto; margin-right:auto;" data-anim data-delay="2">Book a 30 min call. We'll build 3 ad creatives for your brand before we ever talk pricing.</p>
     </div>
     <div class="calendly-inline-widget" data-url="https://calendly.com/skipthenoisemedia/30min" style="min-width:320px;height:700px;border-radius:24px;overflow:hidden;"></div>
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
@@ -2197,7 +2193,8 @@
     // Page freezes when you start scrolling. Chart animates in.
     // Once fully visible, scrolling resumes normally.
     const bloomEl = document.querySelector('.bloom-overlay');
-    if (bloomEl) {
+    const bloomVisible = bloomEl && getComputedStyle(bloomEl).display !== 'none';
+    if (bloomVisible) {
       let bloomRevealed = false;
       let bloomProgress = 0;
       let bloomLocked = false;
@@ -2523,71 +2520,63 @@
       btn.addEventListener('click', launchConfetti);
     });
 
-    // ── Testimonials drag-to-scroll ──────────────────────────────────
+    // ── Testimonials: smooth rAF auto-scroll + drag ─────────────────
     const tScroll = document.querySelector('.testimonials-scroll');
     const tTrack = document.querySelector('.testimonials-track');
     if (tScroll && tTrack) {
-      let isDragging = false, startX = 0, currentTranslate = 0, baseTranslate = 0;
+      let pos = 0;
+      const speed = 0.5; // px per frame
+      const halfWidth = tTrack.scrollWidth / 2;
+      let isDragging = false, startX = 0, dragOffset = 0;
+      let isHovered = false;
 
-      function getTrackTranslate() {
-        const style = getComputedStyle(tTrack);
-        const matrix = new DOMMatrixReadOnly(style.transform);
-        return matrix.m41;
+      function tick() {
+        if (!isDragging && !isHovered) {
+          pos -= speed;
+          if (pos <= -halfWidth) pos += halfWidth;
+        }
+        tTrack.style.transform = `translate3d(${pos}px, 0, 0)`;
+        requestAnimationFrame(tick);
       }
+      requestAnimationFrame(tick);
+
+      tScroll.addEventListener('mouseenter', () => { isHovered = true; });
+      tScroll.addEventListener('mouseleave', () => { isHovered = false; });
 
       tScroll.addEventListener('mousedown', (e) => {
         isDragging = true;
         startX = e.pageX;
-        baseTranslate = getTrackTranslate();
+        dragOffset = pos;
         tScroll.classList.add('is-dragging');
-        tTrack.style.transform = `translateX(${baseTranslate}px)`;
-        tTrack.style.animation = 'none';
         e.preventDefault();
       });
-
       window.addEventListener('mousemove', (e) => {
         if (!isDragging) return;
-        const diff = e.pageX - startX;
-        currentTranslate = baseTranslate + diff;
-        tTrack.style.transform = `translateX(${currentTranslate}px)`;
+        pos = dragOffset + (e.pageX - startX);
       });
-
       window.addEventListener('mouseup', () => {
         if (!isDragging) return;
         isDragging = false;
         tScroll.classList.remove('is-dragging');
-        // Resume auto-scroll from current position
-        const trackWidth = tTrack.scrollWidth / 2;
-        // Normalize position to prevent jumping
-        let pos = currentTranslate % trackWidth;
-        if (pos > 0) pos -= trackWidth;
-        tTrack.style.transform = '';
-        tTrack.style.animation = '';
+        // Normalize position
+        if (pos <= -halfWidth) pos += halfWidth;
+        if (pos > 0) pos -= halfWidth;
       });
 
-      // Touch support
+      // Touch
       tScroll.addEventListener('touchstart', (e) => {
         isDragging = true;
         startX = e.touches[0].pageX;
-        baseTranslate = getTrackTranslate();
-        tScroll.classList.add('is-dragging');
-        tTrack.style.transform = `translateX(${baseTranslate}px)`;
-        tTrack.style.animation = 'none';
+        dragOffset = pos;
       }, { passive: true });
-
       tScroll.addEventListener('touchmove', (e) => {
         if (!isDragging) return;
-        const diff = e.touches[0].pageX - startX;
-        currentTranslate = baseTranslate + diff;
-        tTrack.style.transform = `translateX(${currentTranslate}px)`;
+        pos = dragOffset + (e.touches[0].pageX - startX);
       }, { passive: true });
-
       tScroll.addEventListener('touchend', () => {
-        if (!isDragging) return;
         isDragging = false;
-        tScroll.classList.remove('is-dragging');
-        tTrack.style.transform = '';
-        tTrack.style.animation = '';
+        if (pos <= -halfWidth) pos += halfWidth;
+        if (pos > 0) pos -= halfWidth;
       });
     }
   </script>
