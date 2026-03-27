@@ -2115,7 +2115,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.02, rootMargin: '0px 0px 40px 0px' });
 
     // Observe scroll-triggered elements (non-hero)
     document.querySelectorAll('[data-anim]:not([data-hero])').forEach(el => observer.observe(el));
@@ -2133,8 +2133,18 @@
           staggerObs.unobserve(parent);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    }, { threshold: 0.02, rootMargin: '0px 0px 40px 0px' });
     document.querySelectorAll('[data-stagger]').forEach(el => staggerObs.observe(el));
+
+    // ── Fallback: force-reveal any hidden elements after 4s ─────────
+    setTimeout(() => {
+      document.querySelectorAll('[data-anim]:not(.visible):not([data-hero])').forEach(el => {
+        el.classList.add('visible');
+      });
+      document.querySelectorAll('[data-stagger]:not(.stagger-visible)').forEach(el => {
+        el.classList.add('stagger-visible');
+      });
+    }, 4000);
 
     // ── Hero text split reveal ──────────────────────────────────────
     document.querySelectorAll('.hero-left .h1[data-hero], .hero-left .title-row.h1 > span[data-hero]').forEach(el => {
@@ -2180,9 +2190,18 @@
           s.style.transform = 'translateY(0)';
         });
       });
-    }, { threshold: 0.3 });
+    }, { threshold: 0.05, rootMargin: '0px 0px 40px 0px' });
     const processSection = document.querySelector('#process [data-anim][data-delay="3"]');
     if (processSection) processObs.observe(processSection);
+    // Fallback for process steps
+    setTimeout(() => {
+      document.querySelectorAll('.process-step').forEach(s => {
+        s.style.opacity = '1';
+        s.style.transform = 'translateY(0)';
+      });
+      const pLine = document.querySelector('.process-line-fill');
+      if (pLine) pLine.style.transform = 'scaleX(1)';
+    }, 5000);
 
     // ── Floating nav + scroll progress (integrated with Lenis) ─────
     const nav = document.querySelector('.nav');
