@@ -404,7 +404,7 @@
       position: absolute;
       bottom: -90px;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%) translateY(40px);
       width: 340px;
       height: 250px;
       border-radius: 18px;
@@ -418,6 +418,12 @@
       justify-content: center;
       padding: 10px;
       z-index: 5;
+      opacity: 0;
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.6s, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.6s;
+    }
+    .bloom-overlay.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
     }
     @media (max-width: 809px) {
       .bloom-overlay { display: none !important; }
@@ -2209,6 +2215,20 @@
         }, delay);
       });
     }, 200);
+
+    // ── Bloom chart: reveal on scroll ─────────────────────────────
+    const bloomEl = document.querySelector('.bloom-overlay');
+    if (bloomEl) {
+      const bloomObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            bloomEl.classList.add('visible');
+            bloomObs.unobserve(bloomEl);
+          }
+        });
+      }, { threshold: 0.3 });
+      bloomObs.observe(bloomEl);
+    }
 
     // ── Active nav link scroll spy ──────────────────────────────────
     const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
