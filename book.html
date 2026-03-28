@@ -230,13 +230,62 @@
     .foot a { color: rgba(255,255,255,0.4); text-decoration: none; }
     .foot a:hover { color: var(--white); }
 
+    /* ── Qualifier ───────────────────────────────────── */
+    .qualifier {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      margin-bottom: 32px;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── Quotes grid ────────────────────────────────── */
+    .quotes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .quotes .quote-block { margin-top: 0; }
+
+    /* ── Sticky mobile CTA ──────────────────────────── */
+    .sticky-cta {
+      display: none;
+    }
+
     /* ── Mobile ──────────────────────────────────────── */
     @media (max-width: 600px) {
       .hero { padding: 48px 0 40px; }
-      .page { padding: 0 16px; }
+      .page { padding: 0 16px; padding-bottom: 72px; }
       .quote-block { padding: 20px 24px; }
-      .cta { width: 100%; text-align: center; }
+      .hero .cta { width: 100%; text-align: center; }
       .calendly-inline-widget { height: 700px !important; }
+      .quotes { grid-template-columns: 1fr; }
+      .sticky-cta {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 12px 16px;
+        background: rgba(8, 8, 8, 0.92);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(255,255,255,0.1);
+        z-index: 100;
+        text-align: center;
+      }
+      .sticky-cta a {
+        display: block;
+        background: var(--white);
+        color: var(--dark);
+        font-size: 15px;
+        font-weight: 600;
+        padding: 14px 24px;
+        border-radius: 12px;
+        text-decoration: none;
+      }
     }
   </style>
 </head>
@@ -252,6 +301,7 @@
 
   <!-- Hero -->
   <section class="hero">
+    <p class="qualifier">For DTC and SaaS marketing teams spending $20K+/mo on paid media</p>
     <h1>Your competitors are outproducing you on Meta. <span>Here's the proof.</span></h1>
     <p>Book a 15-min call. We'll pull your Meta Ad Library, show you exactly where you're exposed, and send you a custom audit. Free.</p>
     <a href="#book" class="cta">Get your free audit</a>
@@ -262,9 +312,15 @@
       <span class="proof-pill">1,000+ creatives produced</span>
     </div>
 
-    <div class="quote-block">
-      <p>"The Reddit opportunity was real. They showed up with data on exactly what our competitors were doing in the community and made it easy to say yes."</p>
-      <span class="author">Tracy Strauss · VP Marketing, MariaDB</span>
+    <div class="quotes">
+      <div class="quote-block">
+        <p>"They showed up with data on exactly what our competitors were doing in the community and made it easy to say yes."</p>
+        <span class="author">Tracy Strauss · VP Marketing, MariaDB</span>
+      </div>
+      <div class="quote-block">
+        <p>"Great collaboration. Very satisfied with the Reddit Ads work. They generated 60+ leads in just 3 months."</p>
+        <span class="author">Head of Marketing · Flare (Cybersecurity)</span>
+      </div>
     </div>
   </section>
 
@@ -309,6 +365,11 @@
     © 2026 Skip the Noise Media · <a href="https://zohaahmed1.github.io/stn-creative-demo/index-v3.html">View our work</a>
   </div>
 
+</div>
+
+<!-- Sticky mobile CTA -->
+<div class="sticky-cta">
+  <a href="#book">Get your free audit</a>
 </div>
 
 </body>
