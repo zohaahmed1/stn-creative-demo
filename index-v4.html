@@ -1331,15 +1331,17 @@
       width: 8px; height: 8px;
       background: var(--blue);
       border-radius: 50%;
-      position: fixed; top: 0; left: 0;
+      position: fixed; top: -20px; left: -20px;
       pointer-events: none; z-index: 9999;
       transform: translate(-50%, -50%);
-      transition: width 0.2s, height 0.2s, background 0.2s;
-      mix-blend-mode: difference;
+      transition: width 0.2s, height 0.2s, background 0.2s, opacity 0.3s;
+      opacity: 0;
     }
+    .cursor-dot.active { opacity: 1; }
     .cursor-dot.hovering {
       width: 40px; height: 40px;
-      background: rgba(124, 58, 237, 0.3);
+      background: rgba(124, 58, 237, 0.15);
+      border: 2px solid rgba(124, 58, 237, 0.3);
     }
     @media (max-width: 809px) { .cursor-dot { display: none; } }
     @media (hover: none) { .cursor-dot { display: none; } }
@@ -1388,10 +1390,8 @@
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       pointer-events: none;
-      opacity: 0.035;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 256px 256px;
+      opacity: 0.06;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g'%3E%3CfeTurbulence baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
       z-index: 1;
     }
     .grain { position: relative; }
@@ -3027,8 +3027,11 @@
     // ── Custom cursor ──────────────────────────────────────────────
     const dot = document.getElementById('cursorDot');
     if (dot && window.matchMedia('(hover: hover)').matches) {
-      let mx = 0, my = 0, dx = 0, dy = 0;
-      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+      let mx = -20, my = -20, dx = -20, dy = -20;
+      document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        if (!dot.classList.contains('active')) dot.classList.add('active');
+      });
       (function moveDot() {
         dx += (mx - dx) * 0.15;
         dy += (my - dy) * 0.15;
