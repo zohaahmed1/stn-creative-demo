@@ -1402,9 +1402,16 @@
       position: relative;
     }
     .st-viewport {
+      position: sticky;
+      top: 0;
       height: 100vh;
-      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
+    }
+    .st-spacer {
+      height: 100vh;
     }
     .st-line {
       position: absolute;
@@ -1527,35 +1534,7 @@
       transform: translateY(0) rotate(0deg);
     }
 
-    /* ── Floating particles ──────────────────── */
-    .st-particles {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: opacity 0.5s;
-    }
-    .st-particles.active { opacity: 1; }
-    .st-particle {
-      position: absolute;
-      width: 4px; height: 4px;
-      border-radius: 50%;
-      background: #ef4444;
-      opacity: 0.15;
-      animation: float-particle 8s ease-in-out infinite;
-    }
-    .st-particles.purple .st-particle {
-      background: var(--blue);
-      opacity: 0.2;
-    }
-    @keyframes float-particle {
-      0%, 100% { transform: translate(0, 0); }
-      25% { transform: translate(15px, -20px); }
-      50% { transform: translate(-10px, 15px); }
-      75% { transform: translate(20px, 10px); }
-    }
+    /* ── Particles removed for performance ───── */
 
     /* ── Blur-to-sharp on solution lines ──────── */
     .st-text.solution {
@@ -1621,24 +1600,10 @@
       .st-progress { display: none; }
     }
 
-    /* ── 3D tilt on hero collage ─────────────── */
-    .hero-collage {
-      transform-style: preserve-3d;
-      perspective: 800px;
-    }
-
-    /* (Scroll snap removed — GSAP pin handles this) */
-
-    /* ── Stacking cards for results ──────────── */
-    .project-card {
-      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-                  box-shadow 0.4s;
-    }
+    /* ── (3D tilt, scroll snap, GSAP stacking removed) ── */
 
   </style>
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -1760,8 +1725,8 @@
 <div class="scrollytell" id="scrollytell">
   <div class="st-bg"></div>
   <div class="st-progress" id="stProgress"><div class="st-progress-fill" id="stProgressFill"></div></div>
-  <div class="st-particles" id="stParticles"></div>
 
+  <!-- Sticky viewport stays pinned while spacers scroll behind -->
   <div class="st-viewport" id="stViewport">
     <div class="st-line" data-st="0"><p class="st-text problem">You brief a creative agency.</p></div>
     <div class="st-line" data-st="1"><p class="st-text problem">They deliver assets <em>a week late.</em></p></div>
@@ -1773,6 +1738,16 @@
     <div class="st-line" data-st="7"><p class="st-text solution">Every creative tied to <strong>performance data.</strong> You see what works.</p></div>
     <div class="st-line" data-st="8"><p class="st-text punch">Every round gets smarter.</p></div>
   </div>
+  <!-- Spacers create scroll distance — one per line -->
+  <div class="st-spacer" data-sp="0"></div>
+  <div class="st-spacer" data-sp="1"></div>
+  <div class="st-spacer" data-sp="2"></div>
+  <div class="st-spacer" data-sp="3"></div>
+  <div class="st-spacer" data-sp="4"></div>
+  <div class="st-spacer" data-sp="5"></div>
+  <div class="st-spacer" data-sp="6"></div>
+  <div class="st-spacer" data-sp="7"></div>
+  <div class="st-spacer" data-sp="8"></div>
 </div>
 
 <!-- RESULTS (dark section) -->
@@ -2397,15 +2372,8 @@
       lerp: 0.08,
     });
 
-    // Connect Lenis to GSAP ScrollTrigger
-    if (typeof ScrollTrigger !== 'undefined') {
-      lenis.on('scroll', ScrollTrigger.update);
-      gsap.ticker.add((time) => { lenis.raf(time * 1000); });
-      gsap.ticker.lagSmoothing(0);
-    } else {
-      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-      requestAnimationFrame(raf);
-    }
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
     // Wire anchor links to Lenis
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
@@ -2906,30 +2874,19 @@
         if (pos > 0) pos -= halfWidth;
       });
     }
-    // ── Scrollytelling: GSAP pinned scroll-lock ────────────────────
+    // ── Scrollytelling: CSS sticky + vanilla scroll ─────────────────
     const stSection = document.getElementById('scrollytell');
     const stViewport = document.getElementById('stViewport');
-    if (stSection && stViewport && typeof gsap !== 'undefined') {
+    if (stSection && stViewport) {
       const stLines = stViewport.querySelectorAll('.st-line');
-      const stProgress = document.getElementById('stProgress');
       const stProgressFill = document.getElementById('stProgressFill');
+      const stProgress = document.getElementById('stProgress');
       const stParticles = document.getElementById('stParticles');
       const totalLines = stLines.length;
+      let currentLine = -1;
       let counterFired = false;
 
-      // 1. Generate particles
-      for (let i = 0; i < 30; i++) {
-        const p = document.createElement('div');
-        p.className = 'st-particle';
-        p.style.left = Math.random() * 100 + '%';
-        p.style.top = Math.random() * 100 + '%';
-        p.style.animationDelay = (Math.random() * 8) + 's';
-        p.style.animationDuration = (6 + Math.random() * 6) + 's';
-        p.style.width = p.style.height = (2 + Math.random() * 4) + 'px';
-        stParticles.appendChild(p);
-      }
-
-      // 2. Split punch line into characters
+      // Split punch line chars
       const punchText = stSection.querySelector('.st-text.punch');
       if (punchText) {
         const original = punchText.textContent;
@@ -2943,162 +2900,83 @@
         }
       }
 
-      // 3. Counter animation
+      // Counter
       function animateCounter(el) {
         const target = parseInt(el.dataset.target);
         const start = performance.now();
-        const duration = 1200;
         function tick(now) {
-          const p = Math.min((now - start) / duration, 1);
+          const p = Math.min((now - start) / 1200, 1);
           el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
           if (p < 1) requestAnimationFrame(tick);
         }
         requestAnimationFrame(tick);
       }
 
-      // 4. GSAP ScrollTrigger — pin viewport, scrub through lines
-      let currentLine = -1;
+      // Scroll handler — compute which line is active based on scroll position
+      function updateScrollytell() {
+        const rect = stSection.getBoundingClientRect();
+        const vh = window.innerHeight;
+        const sectionH = stSection.offsetHeight;
 
-      ScrollTrigger.create({
-        trigger: stSection,
-        start: 'top top',
-        end: () => '+=' + (totalLines * window.innerHeight),
-        pin: stViewport,
-        scrub: true,
-        onUpdate: (self) => {
-          const progress = self.progress; // 0 to 1
-          const lineIndex = Math.min(Math.floor(progress * totalLines), totalLines - 1);
+        // Is section in view?
+        const inView = rect.top < vh && rect.bottom > 0;
+        stSection.classList.toggle('in-view', inView);
+        stProgress.classList.toggle('active', inView);
+        stParticles.classList.toggle('active', inView);
 
-          // Update progress bar
-          stProgressFill.style.height = (progress * 100) + '%';
-
-          // Show/hide particles + progress
-          stProgress.classList.add('active');
-          stParticles.classList.add('active');
-          stSection.classList.add('in-view');
-
-          // Switch active line
-          if (lineIndex !== currentLine) {
-            // Hide previous
-            if (currentLine >= 0) {
-              const prevText = stLines[currentLine].querySelector('.st-text');
-              prevText.classList.remove('visible');
-              prevText.classList.add('fading');
-            }
-
-            // Show current
-            const curText = stLines[lineIndex].querySelector('.st-text');
-            curText.classList.remove('fading');
-            curText.classList.add('visible');
-
-            // Dark mode at transition line (index 4+)
-            if (lineIndex >= 4) {
-              stSection.classList.add('dark-mode');
-              stParticles.classList.add('purple');
-            } else {
-              stSection.classList.remove('dark-mode');
-              stParticles.classList.remove('purple');
-            }
-
-            // Counter on line 6
-            if (lineIndex === 6 && !counterFired) {
-              counterFired = true;
-              const c = curText.querySelector('.st-counter');
-              if (c) animateCounter(c);
-            }
-
-            currentLine = lineIndex;
+        if (!inView) {
+          if (rect.bottom <= 0) {
+            // Past section — clear everything
+            stSection.classList.remove('dark-mode');
+            stParticles.classList.remove('purple');
           }
-        },
-        onLeave: () => {
-          stProgress.classList.remove('active');
-          stParticles.classList.remove('active');
-          stSection.classList.remove('in-view', 'dark-mode');
-          stParticles.classList.remove('purple');
-        },
-        onLeaveBack: () => {
-          stProgress.classList.remove('active');
-          stParticles.classList.remove('active');
-          stSection.classList.remove('in-view', 'dark-mode');
-          stParticles.classList.remove('purple');
-          // Reset all lines
-          stLines.forEach(l => {
-            const t = l.querySelector('.st-text');
-            t.classList.remove('visible', 'fading');
-          });
-          currentLine = -1;
-        },
-        onEnterBack: () => {
-          stProgress.classList.add('active');
-          stParticles.classList.add('active');
-          stSection.classList.add('in-view');
+          return;
         }
-      });
-    }
 
-    // ── GSAP ScrollTrigger setup ──────────────────────────────────
-    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-      gsap.registerPlugin(ScrollTrigger);
+        // Progress: 0 when top of section hits top of viewport,
+        // 1 when bottom of section hits bottom of viewport
+        const progress = Math.max(0, Math.min(1, -rect.top / (sectionH - vh)));
+        stProgressFill.style.height = (progress * 100) + '%';
 
-      // GSAP ScrollTrigger registered but only used for future
-      // scroll-linked animations. Hero parallax removed (was
-      // pushing images offscreen on long pages).
-      // 3D tilt and spring buttons handled below in vanilla JS.
-    }
+        const lineIndex = Math.min(Math.floor(progress * totalLines), totalLines - 1);
 
-    // ── 3D tilt on hero collage (cursor-driven) ─────────────────
-    const collage = document.querySelector('.hero-collage');
-    if (collage && window.matchMedia('(hover: hover)').matches) {
-      const hero = document.querySelector('.hero');
-      hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        const cx = (e.clientX - rect.left) / rect.width - 0.5;  // -0.5 to 0.5
-        const cy = (e.clientY - rect.top) / rect.height - 0.5;
-        const rotateY = cx * 8;   // max 4 degrees
-        const rotateX = -cy * 6;  // max 3 degrees
-        collage.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
-      });
-      hero.addEventListener('mouseleave', () => {
-        collage.style.transform = 'rotateY(0deg) rotateX(0deg)';
-        collage.style.transition = 'transform 0.5s ease';
-        setTimeout(() => { collage.style.transition = ''; }, 500);
-      });
-    }
+        if (lineIndex !== currentLine) {
+          // Hide previous
+          if (currentLine >= 0) {
+            const prevText = stLines[currentLine].querySelector('.st-text');
+            prevText.classList.remove('visible');
+            prevText.classList.add('fading');
+          }
+          // Show current
+          const curText = stLines[lineIndex].querySelector('.st-text');
+          curText.classList.remove('fading');
+          curText.classList.add('visible');
 
-    // ── Spring physics on magnetic buttons ───────────────────────
-    // Replace the linear magnetic with spring damping
-    document.querySelectorAll('.btn').forEach(btn => {
-      let springX = 0, springY = 0, targetX = 0, targetY = 0;
-      const stiffness = 0.15, damping = 0.7;
-      let velX = 0, velY = 0;
-      let rafId = null;
+          // Dark mode
+          if (lineIndex >= 4) {
+            stSection.classList.add('dark-mode');
+            stParticles.classList.add('purple');
+          } else {
+            stSection.classList.remove('dark-mode');
+            stParticles.classList.remove('purple');
+          }
 
-      function springTick() {
-        const forceX = (targetX - springX) * stiffness;
-        const forceY = (targetY - springY) * stiffness;
-        velX = (velX + forceX) * damping;
-        velY = (velY + forceY) * damping;
-        springX += velX;
-        springY += velY;
-        btn.style.transform = `translate(${springX}px, ${springY}px)`;
-        if (Math.abs(velX) > 0.01 || Math.abs(velY) > 0.01 ||
-            Math.abs(targetX - springX) > 0.1 || Math.abs(targetY - springY) > 0.1) {
-          rafId = requestAnimationFrame(springTick);
+          // Counter
+          if (lineIndex === 6 && !counterFired) {
+            counterFired = true;
+            const c = curText.querySelector('.st-counter');
+            if (c) animateCounter(c);
+          }
+
+          currentLine = lineIndex;
         }
       }
 
-      btn.addEventListener('mousemove', e => {
-        const r = btn.getBoundingClientRect();
-        targetX = (e.clientX - r.left - r.width / 2) * 0.2;
-        targetY = (e.clientY - r.top - r.height / 2) * 0.2;
-        if (!rafId) rafId = requestAnimationFrame(springTick);
-      });
-      btn.addEventListener('mouseleave', () => {
-        targetX = 0; targetY = 0;
-        if (!rafId) rafId = requestAnimationFrame(springTick);
-      });
-    });
+      window.addEventListener('scroll', updateScrollytell, { passive: true });
+      updateScrollytell();
+    }
 
+    // ── (GSAP, 3D tilt, spring physics removed for performance) ──
     // ── Custom cursor ──────────────────────────────────────────────
     const dot = document.getElementById('cursorDot');
     if (dot && window.matchMedia('(hover: hover)').matches) {
