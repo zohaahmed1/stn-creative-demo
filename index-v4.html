@@ -1610,8 +1610,36 @@
       .hscroll-item img, .hscroll-item video { height: 200px; }
       .st-progress { display: none; }
     }
+
+    /* ── 3D tilt on hero collage ─────────────── */
+    .hero-collage {
+      transform-style: preserve-3d;
+      perspective: 800px;
+    }
+
+    /* ── Scroll snap on scrollytelling ────────── */
+    .scrollytell {
+      scroll-snap-type: y proximity;
+    }
+    .st-line {
+      scroll-snap-align: center;
+    }
+
+    /* ── Stacking cards for results ──────────── */
+    .project-card {
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.4s;
+    }
+
+    /* ── Velocity-based section reveals ───────── */
+    .gsap-reveal {
+      opacity: 0;
+      transform: translateY(60px);
+    }
   </style>
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 </head>
 <body>
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -3018,6 +3046,163 @@
       updateStProgress();
     }
 
+    // ── GSAP ScrollTrigger setup ──────────────────────────────────
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // 1. Hero collage parallax — images move at different speeds
+      gsap.to('.hero-collage-main', {
+        y: -40,
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
+      });
+      gsap.to('.hero-collage-sub:first-child', {
+        y: -20,
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
+      });
+      gsap.to('.hero-collage-sub:last-child', {
+        y: -60,
+        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.8 }
+      });
+
+      // 2. Results cards — stacking/stagger reveal with scale
+      gsap.utils.toArray('.project-card').forEach((card, i) => {
+        gsap.from(card, {
+          y: 80,
+          opacity: 0,
+          scale: 0.92,
+          rotation: i % 2 === 0 ? -2 : 2,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            end: 'top 50%',
+            scrub: 1,
+          }
+        });
+      });
+
+      // 3. Section headers — smooth reveal with scrub
+      gsap.utils.toArray('.section-header').forEach(header => {
+        gsap.from(header, {
+          y: 40,
+          opacity: 0,
+          scrollTrigger: {
+            trigger: header,
+            start: 'top 80%',
+            end: 'top 60%',
+            scrub: 1,
+          }
+        });
+      });
+
+      // 4. Gallery items — scrubbed reveal
+      gsap.utils.toArray('#work-gallery [style*="position:relative"]').forEach((item, i) => {
+        gsap.from(item, {
+          y: 50,
+          opacity: 0,
+          scale: 0.95,
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 90%',
+            end: 'top 65%',
+            scrub: 1,
+          }
+        });
+      });
+
+      // 5. Team cards — slide in from sides
+      const teamCards = gsap.utils.toArray('[style*="grid-template-columns:1fr 1fr"] > div');
+      if (teamCards.length >= 2) {
+        gsap.from(teamCards[0], {
+          x: -60, opacity: 0,
+          scrollTrigger: { trigger: teamCards[0], start: 'top 80%', end: 'top 55%', scrub: 1 }
+        });
+        gsap.from(teamCards[1], {
+          x: 60, opacity: 0,
+          scrollTrigger: { trigger: teamCards[1], start: 'top 80%', end: 'top 55%', scrub: 1 }
+        });
+      }
+
+      // 6. Process cards — scale up with stagger
+      gsap.utils.toArray('.process-step').forEach((step, i) => {
+        gsap.from(step, {
+          y: 40, opacity: 0, scale: 0.9,
+          scrollTrigger: {
+            trigger: step,
+            start: 'top 85%',
+            end: 'top 60%',
+            scrub: 1,
+          }
+        });
+      });
+
+      // 7. CTA section — zoom in
+      const bookSection = document.querySelector('#book .section-header');
+      if (bookSection) {
+        gsap.from(bookSection, {
+          scale: 0.9, opacity: 0,
+          scrollTrigger: {
+            trigger: bookSection,
+            start: 'top 80%',
+            end: 'top 55%',
+            scrub: 1,
+          }
+        });
+      }
+    }
+
+    // ── 3D tilt on hero collage (cursor-driven) ─────────────────
+    const collage = document.querySelector('.hero-collage');
+    if (collage && window.matchMedia('(hover: hover)').matches) {
+      const hero = document.querySelector('.hero');
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        const cx = (e.clientX - rect.left) / rect.width - 0.5;  // -0.5 to 0.5
+        const cy = (e.clientY - rect.top) / rect.height - 0.5;
+        const rotateY = cx * 8;   // max 4 degrees
+        const rotateX = -cy * 6;  // max 3 degrees
+        collage.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
+      });
+      hero.addEventListener('mouseleave', () => {
+        collage.style.transform = 'rotateY(0deg) rotateX(0deg)';
+        collage.style.transition = 'transform 0.5s ease';
+        setTimeout(() => { collage.style.transition = ''; }, 500);
+      });
+    }
+
+    // ── Spring physics on magnetic buttons ───────────────────────
+    // Replace the linear magnetic with spring damping
+    document.querySelectorAll('.btn').forEach(btn => {
+      let springX = 0, springY = 0, targetX = 0, targetY = 0;
+      const stiffness = 0.15, damping = 0.7;
+      let velX = 0, velY = 0;
+      let rafId = null;
+
+      function springTick() {
+        const forceX = (targetX - springX) * stiffness;
+        const forceY = (targetY - springY) * stiffness;
+        velX = (velX + forceX) * damping;
+        velY = (velY + forceY) * damping;
+        springX += velX;
+        springY += velY;
+        btn.style.transform = `translate(${springX}px, ${springY}px)`;
+        if (Math.abs(velX) > 0.01 || Math.abs(velY) > 0.01 ||
+            Math.abs(targetX - springX) > 0.1 || Math.abs(targetY - springY) > 0.1) {
+          rafId = requestAnimationFrame(springTick);
+        }
+      }
+
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        targetX = (e.clientX - r.left - r.width / 2) * 0.2;
+        targetY = (e.clientY - r.top - r.height / 2) * 0.2;
+        if (!rafId) rafId = requestAnimationFrame(springTick);
+      });
+      btn.addEventListener('mouseleave', () => {
+        targetX = 0; targetY = 0;
+        if (!rafId) rafId = requestAnimationFrame(springTick);
+      });
+    });
+
     // ── Custom cursor ──────────────────────────────────────────────
     const dot = document.getElementById('cursorDot');
     if (dot && window.matchMedia('(hover: hover)').matches) {
@@ -3040,21 +3225,7 @@
       });
     }
 
-    // ── Magnetic buttons ─────────────────────────────────────────
-    document.querySelectorAll('.btn').forEach(btn => {
-      btn.classList.add('btn-magnetic');
-      btn.addEventListener('mousemove', e => {
-        const r = btn.getBoundingClientRect();
-        const cx = r.left + r.width / 2;
-        const cy = r.top + r.height / 2;
-        const dx = (e.clientX - cx) * 0.15;
-        const dy = (e.clientY - cy) * 0.15;
-        btn.style.transform = `translate(${dx}px, ${dy}px)`;
-      });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = '';
-      });
-    });
+    // ── Magnetic buttons (spring physics version is above) ─────────
 
     // ── Gallery hover-to-play ────────────────────────────────────
     document.querySelectorAll('#work-gallery [style*="aspect-ratio"]').forEach(item => {
