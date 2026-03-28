@@ -1462,6 +1462,46 @@
     .wf-arrow-loop {
       background: var(--blue);
     }
+
+    /* Chain highlight on hover */
+    .wf-flow.interactive .wf-step,
+    .wf-flow.interactive .wf-arrow-line {
+      transition: opacity 0.25s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .wf-flow.interactive.has-hover .wf-step { opacity: 0.3; }
+    .wf-flow.interactive.has-hover .wf-arrow-line { opacity: 0.15; }
+    .wf-flow.interactive.has-hover .wf-step.chain-active { opacity: 1; }
+    .wf-flow.interactive.has-hover .wf-arrow-line.chain-active { opacity: 1; }
+
+    /* Expand card on click */
+    .wf-expand {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s, margin 0.3s;
+      margin-top: 0;
+    }
+    .wf-expand.open {
+      max-height: 120px;
+      opacity: 1;
+      margin-top: 10px;
+    }
+    .wf-expand-inner {
+      background: rgba(85, 0, 221, 0.06);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 12px;
+      color: var(--gray-400);
+      line-height: 1.5;
+      border: 1px solid rgba(85, 0, 221, 0.1);
+    }
+
+    /* Active step indicator */
+    .wf-step.active .wf-dot-num {
+      transform: scale(1.15);
+      box-shadow: 0 6px 28px rgba(85, 0, 221, 0.4);
+    }
+    .wf-step { cursor: pointer; }
     @media (max-width: 700px) {
       .wf-flow {
         flex-direction: column;
@@ -1614,34 +1654,39 @@
 
     <!-- Horizontal flow: the STN loop -->
     <div class="wf-flow" data-anim data-delay="2">
-      <div class="wf-step">
+      <div class="wf-step" data-step="0">
         <div class="wf-dot-num">1</div>
         <h4 class="wf-step-title">You brief us</h4>
         <p class="wf-step-desc">One team. One channel. No vendor juggling.</p>
+        <div class="wf-expand"><div class="wf-expand-inner">One Slack channel. One brief. We ask the right questions upfront so nothing gets lost between teams.</div></div>
       </div>
       <div class="wf-arrow-line"></div>
-      <div class="wf-step">
+      <div class="wf-step" data-step="1">
         <div class="wf-dot-num">2</div>
-        <h4 class="wf-step-title">We build 20+ creatives</h4>
+        <h4 class="wf-step-title">We build <span class="wf-counter" data-target="20">0</span>+ creatives</h4>
         <p class="wf-step-desc">AI handles volume. Humans direct strategy.</p>
+        <div class="wf-expand"><div class="wf-expand-inner">Midjourney, Luma, Kling, Creatify for volume. Our strategists direct every asset for performance, not aesthetics.</div></div>
       </div>
       <div class="wf-arrow-line"></div>
-      <div class="wf-step">
+      <div class="wf-step" data-step="2">
         <div class="wf-dot-num">3</div>
         <h4 class="wf-step-title">We run the media</h4>
         <p class="wf-step-desc">Same team that made it. No handoff.</p>
+        <div class="wf-expand"><div class="wf-expand-inner">Meta, Google, Reddit, LinkedIn, TikTok, Pinterest, Snapchat, X. Ex-GroupM buyers who know which creative works because they made it.</div></div>
       </div>
       <div class="wf-arrow-line"></div>
-      <div class="wf-step">
+      <div class="wf-step" data-step="3">
         <div class="wf-dot-num">4</div>
         <h4 class="wf-step-title">We measure what converts</h4>
         <p class="wf-step-desc">Creative tied to performance data.</p>
+        <div class="wf-expand"><div class="wf-expand-inner">Every creative gets tagged. You see which format, hook, and angle drives pipeline. No guessing.</div></div>
       </div>
       <div class="wf-arrow-line wf-arrow-loop"></div>
-      <div class="wf-step">
+      <div class="wf-step" data-step="4">
         <div class="wf-dot-num">↺</div>
         <h4 class="wf-step-title">Next round gets smarter</h4>
         <p class="wf-step-desc">Winning patterns feed the next batch.</p>
+        <div class="wf-expand"><div class="wf-expand-inner">Winning hooks, formats, and angles get doubled down. Losers get cut. Each month compounds on the last.</div></div>
       </div>
     </div>
 
@@ -2831,18 +2876,19 @@
         if (pos > 0) pos -= halfWidth;
       });
     }
-    // ── Workflow flow: staggered scroll reveal ─────────────────────
+    // ── Workflow flow: staggered reveal + interactions ──────────────
     const wfFlow = document.querySelector('.wf-flow');
     if (wfFlow) {
       const steps = wfFlow.querySelectorAll('.wf-step');
       const lines = wfFlow.querySelectorAll('.wf-arrow-line');
+      const allChildren = Array.from(wfFlow.children); // steps + lines interleaved
       let wfRevealed = false;
 
+      // 1. Staggered scroll reveal
       const wfObs = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting && !wfRevealed) {
             wfRevealed = true;
-            // Stagger: step, then line, then step, then line...
             let delay = 0;
             steps.forEach((step, i) => {
               setTimeout(() => step.classList.add('revealed'), delay);
@@ -2852,10 +2898,72 @@
                 delay += 200;
               }
             });
+            // Enable interactions after reveal completes
+            setTimeout(() => {
+              wfFlow.classList.add('interactive');
+              // Trigger counter animation
+              const counter = wfFlow.querySelector('.wf-counter');
+              if (counter) animateCounter(counter);
+            }, delay + 200);
           }
         });
       }, { threshold: 0.3 });
       wfObs.observe(wfFlow);
+
+      // 2. Hover: highlight chain up to hovered step
+      steps.forEach((step, idx) => {
+        step.addEventListener('mouseenter', () => {
+          wfFlow.classList.add('has-hover');
+          // Activate this step and all steps/lines before it
+          allChildren.forEach((child, ci) => {
+            const stepIdx = child.dataset.step !== undefined ? parseInt(child.dataset.step) : -1;
+            // For lines: they sit between steps, so line[i] connects step[i] to step[i+1]
+            if (child.classList.contains('wf-step')) {
+              child.classList.toggle('chain-active', stepIdx <= idx);
+            } else if (child.classList.contains('wf-arrow-line')) {
+              // Line index: count lines before this child
+              const lineIdx = Array.from(lines).indexOf(child);
+              child.classList.toggle('chain-active', lineIdx < idx);
+            }
+          });
+        });
+        step.addEventListener('mouseleave', () => {
+          wfFlow.classList.remove('has-hover');
+          allChildren.forEach(c => c.classList.remove('chain-active'));
+        });
+      });
+
+      // 3. Click: toggle expand card
+      steps.forEach(step => {
+        step.addEventListener('click', () => {
+          const expand = step.querySelector('.wf-expand');
+          const wasOpen = expand.classList.contains('open');
+          // Close all others
+          wfFlow.querySelectorAll('.wf-expand.open').forEach(e => e.classList.remove('open'));
+          wfFlow.querySelectorAll('.wf-step.active').forEach(s => s.classList.remove('active'));
+          // Toggle this one
+          if (!wasOpen) {
+            expand.classList.add('open');
+            step.classList.add('active');
+          }
+        });
+      });
+
+      // 4. Counter animation (0 → 20)
+      function animateCounter(el) {
+        const target = parseInt(el.dataset.target);
+        const duration = 1200;
+        const start = performance.now();
+        function tick(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease out
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(target * eased);
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
     }
 
     // ── Custom cursor ──────────────────────────────────────────────
