@@ -1475,6 +1475,139 @@
     .scrollytell.dark-mode .st-text.punch {
       color: #7c3aed;
     }
+
+    /* ── Scroll progress bar (side) ──────────── */
+    .st-progress {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3px;
+      height: 120px;
+      background: rgba(0,0,0,0.08);
+      border-radius: 3px;
+      z-index: 50;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .st-progress.active { opacity: 1; }
+    .st-progress-fill {
+      width: 100%;
+      background: var(--blue);
+      border-radius: 3px;
+      height: 0%;
+      transition: height 0.1s linear;
+    }
+    .scrollytell.dark-mode .st-progress {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* ── Character split punch line ──────────── */
+    .st-text.punch .char {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(40px) rotate(8deg);
+      transition: opacity 0.4s, transform 0.4s;
+      transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .st-text.punch.visible .char {
+      opacity: 1;
+      transform: translateY(0) rotate(0deg);
+    }
+
+    /* ── Floating particles ──────────────────── */
+    .st-particles {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .st-particles.active { opacity: 1; }
+    .st-particle {
+      position: absolute;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: #ef4444;
+      opacity: 0.15;
+      animation: float-particle 8s ease-in-out infinite;
+    }
+    .st-particles.purple .st-particle {
+      background: var(--blue);
+      opacity: 0.2;
+    }
+    @keyframes float-particle {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(15px, -20px); }
+      50% { transform: translate(-10px, 15px); }
+      75% { transform: translate(20px, 10px); }
+    }
+
+    /* ── Blur-to-sharp on solution lines ──────── */
+    .st-text.solution {
+      filter: blur(4px);
+      transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                  filter 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .st-text.solution.visible {
+      filter: blur(0px);
+    }
+
+    /* ── Horizontal scroll gallery ───────────── */
+    .hscroll-section {
+      position: relative;
+    }
+    .hscroll-track {
+      display: flex;
+      gap: 20px;
+      padding: 0 24px;
+      will-change: transform;
+    }
+    .hscroll-item {
+      flex-shrink: 0;
+      width: 340px;
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .hscroll-item:hover { transform: scale(1.02); }
+    .hscroll-item img, .hscroll-item video {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      display: block;
+    }
+    .hscroll-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 12px 16px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+    .hscroll-caption .hc-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      opacity: 0.7;
+    }
+    .hscroll-caption .hc-stat {
+      font-size: 14px;
+      font-weight: 700;
+      color: #facc15;
+    }
+    @media (max-width: 700px) {
+      .hscroll-item { width: 280px; }
+      .hscroll-item img, .hscroll-item video { height: 200px; }
+      .st-progress { display: none; }
+    }
   </style>
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 </head>
@@ -1597,6 +1730,8 @@
 <!-- SCROLLYTELLING — problem → solution -->
 <div class="scrollytell" id="scrollytell">
   <div class="st-bg"></div>
+  <div class="st-progress" id="stProgress"><div class="st-progress-fill" id="stProgressFill"></div></div>
+  <div class="st-particles" id="stParticles"></div>
 
   <!-- Line 1: problem -->
   <div class="st-line" data-st="0">
@@ -1630,7 +1765,7 @@
 
   <!-- Line 7: solution -->
   <div class="st-line" data-st="6">
-    <p class="st-text solution"><strong>20+ creatives a month.</strong> AI handles volume. Humans direct strategy.</p>
+    <p class="st-text solution"><strong><span class="st-counter" data-target="20">0</span>+ creatives a month.</strong> AI handles volume. Humans direct strategy.</p>
   </div>
 
   <!-- Line 8: solution -->
@@ -2770,48 +2905,108 @@
         if (pos > 0) pos -= halfWidth;
       });
     }
-    // ── Scrollytelling: IntersectionObserver per line ───────────────
+    // ── Scrollytelling: enhanced ────────────────────────────────────
     const stSection = document.getElementById('scrollytell');
     if (stSection) {
       const stLines = stSection.querySelectorAll('.st-line');
+      const stProgress = document.getElementById('stProgress');
+      const stProgressFill = document.getElementById('stProgressFill');
+      const stParticles = document.getElementById('stParticles');
+      let counterFired = false;
 
-      // Each line triggers when it enters the center 40% of viewport
+      // 1. Generate particles
+      for (let i = 0; i < 30; i++) {
+        const p = document.createElement('div');
+        p.className = 'st-particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.animationDelay = (Math.random() * 8) + 's';
+        p.style.animationDuration = (6 + Math.random() * 6) + 's';
+        p.style.width = p.style.height = (2 + Math.random() * 4) + 'px';
+        stParticles.appendChild(p);
+      }
+
+      // 2. Split punch line into characters
+      const punchText = stSection.querySelector('.st-text.punch');
+      if (punchText) {
+        const original = punchText.textContent;
+        punchText.innerHTML = '';
+        for (let i = 0; i < original.length; i++) {
+          const span = document.createElement('span');
+          span.className = 'char';
+          span.textContent = original[i] === ' ' ? '\u00A0' : original[i];
+          span.style.transitionDelay = (i * 0.03) + 's';
+          punchText.appendChild(span);
+        }
+      }
+
+      // 3. Counter animation
+      function animateCounter(el) {
+        const target = parseInt(el.dataset.target);
+        const start = performance.now();
+        const duration = 1200;
+        function tick(now) {
+          const p = Math.min((now - start) / duration, 1);
+          el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      // 4. IntersectionObserver per line
       const stObs = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           const text = entry.target.querySelector('.st-text');
+          const idx = parseInt(entry.target.dataset.st);
+
           if (entry.isIntersecting) {
             text.classList.add('visible');
             text.classList.remove('fading');
 
-            // Dark mode after the transition line
-            const idx = parseInt(entry.target.dataset.st);
-            if (idx >= 4) {
-              stSection.classList.add('dark-mode');
+            // Dark mode at transition
+            if (idx >= 4) stSection.classList.add('dark-mode');
+
+            // Particles shift to purple at transition
+            if (idx >= 4) stParticles.classList.add('purple');
+
+            // Counter on the 20+ line
+            if (idx === 6 && !counterFired) {
+              counterFired = true;
+              const c = text.querySelector('.st-counter');
+              if (c) animateCounter(c);
             }
           } else {
             const rect = entry.target.getBoundingClientRect();
             if (rect.top < 0) {
-              // Scrolled past — fade up
               text.classList.remove('visible');
               text.classList.add('fading');
             } else {
-              // Not reached yet — hidden
               text.classList.remove('visible', 'fading');
             }
-
-            // Remove dark mode if we scrolled back above transition
-            const idx = parseInt(entry.target.dataset.st);
             if (idx === 4 && rect.top > 0) {
               stSection.classList.remove('dark-mode');
+              stParticles.classList.remove('purple');
             }
           }
         });
-      }, {
-        rootMargin: '-30% 0px -30% 0px',
-        threshold: 0.1
-      });
-
+      }, { rootMargin: '-30% 0px -30% 0px', threshold: 0.1 });
       stLines.forEach(line => stObs.observe(line));
+
+      // 5. Progress bar + particle visibility
+      function updateStProgress() {
+        const rect = stSection.getBoundingClientRect();
+        const h = stSection.offsetHeight;
+        const vh = window.innerHeight;
+        const scrolled = Math.max(0, Math.min(1, -rect.top / (h - vh)));
+
+        // Show/hide progress bar and particles
+        const inView = rect.top < vh && rect.bottom > 0;
+        stProgress.classList.toggle('active', inView);
+        stParticles.classList.toggle('active', inView);
+        stProgressFill.style.height = (scrolled * 100) + '%';
+      }
+      window.addEventListener('scroll', updateStProgress, { passive: true });
+      updateStProgress();
     }
 
     // ── Custom cursor ──────────────────────────────────────────────
