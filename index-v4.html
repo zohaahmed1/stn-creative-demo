@@ -2922,13 +2922,13 @@
         const inView = rect.top < vh && rect.bottom > 0;
         stSection.classList.toggle('in-view', inView);
         stProgress.classList.toggle('active', inView);
-        stParticles.classList.toggle('active', inView);
+        if (stParticles) stParticles.classList.toggle('active', inView);
 
         if (!inView) {
           if (rect.bottom <= 0) {
             // Past section — clear everything
             stSection.classList.remove('dark-mode');
-            stParticles.classList.remove('purple');
+            if (stParticles) stParticles.classList.remove('purple');
           }
           return;
         }
@@ -2955,10 +2955,10 @@
           // Dark mode
           if (lineIndex >= 4) {
             stSection.classList.add('dark-mode');
-            stParticles.classList.add('purple');
+            if (stParticles) stParticles.classList.add('purple');
           } else {
             stSection.classList.remove('dark-mode');
-            stParticles.classList.remove('purple');
+            if (stParticles) stParticles.classList.remove('purple');
           }
 
           // Counter
