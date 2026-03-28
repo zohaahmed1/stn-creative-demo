@@ -1457,7 +1457,7 @@
       color: var(--blue);
     }
 
-    /* Background shift */
+    /* Background shift — only visible when section is in view */
     .scrollytell .st-bg {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -1465,7 +1465,9 @@
       transition: background 0.6s;
       z-index: -1;
       pointer-events: none;
+      opacity: 0;
     }
+    .scrollytell.in-view .st-bg { opacity: 1; }
     .scrollytell.dark-mode .st-bg {
       background: var(--dark);
     }
@@ -1520,7 +1522,7 @@
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
       pointer-events: none;
-      z-index: -1;
+      z-index: 0;
       overflow: hidden;
       opacity: 0;
       transition: opacity 0.5s;
@@ -2992,18 +2994,25 @@
       }, { rootMargin: '-30% 0px -30% 0px', threshold: 0.1 });
       stLines.forEach(line => stObs.observe(line));
 
-      // 5. Progress bar + particle visibility
+      // 5. Progress bar + particle visibility + bg scope
       function updateStProgress() {
         const rect = stSection.getBoundingClientRect();
         const h = stSection.offsetHeight;
         const vh = window.innerHeight;
         const scrolled = Math.max(0, Math.min(1, -rect.top / (h - vh)));
 
-        // Show/hide progress bar and particles
+        // Show/hide progress bar, particles, and fixed bg
         const inView = rect.top < vh && rect.bottom > 0;
         stProgress.classList.toggle('active', inView);
         stParticles.classList.toggle('active', inView);
+        stSection.classList.toggle('in-view', inView);
         stProgressFill.style.height = (scrolled * 100) + '%';
+
+        // Clear dark mode when scrolled past the section entirely
+        if (rect.bottom <= 0 || rect.top >= vh) {
+          stSection.classList.remove('dark-mode');
+          stParticles.classList.remove('purple');
+        }
       }
       window.addEventListener('scroll', updateStProgress, { passive: true });
       updateStProgress();
