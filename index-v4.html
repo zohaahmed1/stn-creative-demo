@@ -1439,42 +1439,76 @@
   </div>
 </section>
 
-<!-- PROBLEM AGITATION -->
+<!-- PROBLEM AGITATION — before/after split -->
 <section style="background:var(--bg); padding:80px 0;">
-  <div class="container" style="max-width:720px; text-align:center;">
-    <div class="section-header" style="margin-bottom:40px;">
+  <div class="container" style="max-width:900px; text-align:center;">
+    <div class="section-header" style="margin-bottom:48px;">
       <div class="title-row h2" style="justify-content:center;" data-anim>
         <span>Sound</span>
         <span class="badge badge-orange" data-anim="tilt" data-delay="1">familiar?</span>
       </div>
     </div>
-    <div style="text-align:left; max-width:600px; margin:0 auto;" data-anim data-delay="2">
-      <div style="display:flex; flex-direction:column; gap:16px;">
-        <div style="display:flex; gap:12px; align-items:flex-start; font-size:16px; color:var(--gray-400); line-height:1.5;">
-          <span style="color:#ef4444; font-weight:700; flex-shrink:0; margin-top:2px;">✕</span>
-          You brief the creative agency. They deliver assets a week late. Your media buyer launches them without context. Performance drops. Nobody knows why.
-        </div>
-        <div style="display:flex; gap:12px; align-items:flex-start; font-size:16px; color:var(--gray-400); line-height:1.5;">
-          <span style="color:#ef4444; font-weight:700; flex-shrink:0; margin-top:2px;">✕</span>
-          Your best-performing ad is 3 months old. You need fresh creative but the pipeline from brief to launch takes weeks.
-        </div>
-        <div style="display:flex; gap:12px; align-items:flex-start; font-size:16px; color:var(--gray-400); line-height:1.5;">
-          <span style="color:#ef4444; font-weight:700; flex-shrink:0; margin-top:2px;">✕</span>
-          You're spending $50K+/mo but can't answer which creative is driving pipeline and which is burning budget.
-        </div>
-        <div style="display:flex; gap:12px; align-items:flex-start; font-size:16px; color:var(--gray-400); line-height:1.5;">
-          <span style="color:#ef4444; font-weight:700; flex-shrink:0; margin-top:2px;">✕</span>
-          Your competitors are already on Reddit, TikTok, and Pinterest. You're still trying to make Meta work alone.
-        </div>
-        <div style="display:flex; gap:12px; align-items:flex-start; font-size:16px; color:var(--gray-400); line-height:1.5;">
-          <span style="color:#ef4444; font-weight:700; flex-shrink:0; margin-top:2px;">✕</span>
-          You're managing 2-3 vendors on Slack threads and nobody owns the outcome.
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:800px; margin:0 auto;" data-anim data-delay="2">
+      <!-- WITHOUT US -->
+      <div style="background:#fef2f2; border:2px solid #fecaca; border-radius:20px; padding:32px 28px; text-align:left;">
+        <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#ef4444; margin-bottom:20px;">Without a closed loop</p>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; gap:10px; align-items:flex-start; font-size:15px; color:#991b1b; line-height:1.45;">
+            <span style="color:#ef4444; font-weight:700; flex-shrink:0;">✕</span>
+            Creative agency delivers assets a week late. Media buyer launches blind.
+          </div>
+          <div style="display:flex; gap:10px; align-items:flex-start; font-size:15px; color:#991b1b; line-height:1.45;">
+            <span style="color:#ef4444; font-weight:700; flex-shrink:0;">✕</span>
+            Same 4 ads running for months. No bandwidth for fresh creative.
+          </div>
+          <div style="display:flex; gap:10px; align-items:flex-start; font-size:15px; color:#991b1b; line-height:1.45;">
+            <span style="color:#ef4444; font-weight:700; flex-shrink:0;">✕</span>
+            Spending $50K+/mo but can't tie creative to pipeline or revenue.
+          </div>
+          <div style="display:flex; gap:10px; align-items:flex-start; font-size:15px; color:#991b1b; line-height:1.45;">
+            <span style="color:#ef4444; font-weight:700; flex-shrink:0;">✕</span>
+            2-3 vendors on Slack threads. Nobody owns the outcome.
+          </div>
         </div>
       </div>
-      <p class="body" style="margin-top:32px; text-align:center; font-size:17px; font-weight:600; color:var(--dark);" data-anim data-delay="3">The problem isn't your creative. It isn't your media buyer. It's the gap between them.</p>
+
+      <!-- WITH US -->
+      <div style="background:#f0f0ff; border:2px solid #c4b5fd; border-radius:20px; padding:32px 28px; text-align:left;">
+        <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue); margin-bottom:20px;">With Skip the Noise</p>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+          <div style="display:flex; gap:10px; align-items:flex-start; font-size:15px; color:#312e81; line-height:1.45;">
+            <span style="color:var(--blue); font-weight:700; flex-shrink:0;">✓</span>
+            One team makes the creative and runs the media. No handoff.
+          </div>
+          <div style="display:flex; gap:10px; align-items:flex-start; font-size:15px; color:#312e81; line-height:1.45;">
+            <span style="color:var(--blue); font-weight:700; flex-shrink:0;">✓</span>
+            20+ fresh creatives/month. AI handles volume, humans direct strategy.
+          </div>
+          <div style="display:flex; gap:10px; align-items:flex-start; font-size:15px; color:#312e81; line-height:1.45;">
+            <span style="color:var(--blue); font-weight:700; flex-shrink:0;">✓</span>
+            Every creative decision tied to performance data. You see what works.
+          </div>
+          <div style="display:flex; gap:10px; align-items:flex-start; font-size:15px; color:#312e81; line-height:1.45;">
+            <span style="color:var(--blue); font-weight:700; flex-shrink:0;">✓</span>
+            Two people. One Slack channel. Full accountability.
+          </div>
+        </div>
+      </div>
     </div>
+
+    <p class="body" style="margin-top:40px; font-size:17px; font-weight:600; color:var(--dark);" data-anim data-delay="3">The problem isn't your creative. It isn't your media buyer. It's the gap between them.</p>
   </div>
 </section>
+
+<!-- Mobile responsive for before/after split -->
+<style>
+  @media (max-width: 700px) {
+    section:has(.badge-orange) [style*="grid-template-columns:1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
 
 <!-- RESULTS (dark section) -->
 <section id="work" class="section-dark">
