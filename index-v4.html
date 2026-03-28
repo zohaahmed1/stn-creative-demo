@@ -1631,11 +1631,6 @@
                   box-shadow 0.4s;
     }
 
-    /* ── Velocity-based section reveals ───────── */
-    .gsap-reveal {
-      opacity: 0;
-      transform: translateY(60px);
-    }
   </style>
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -3064,89 +3059,9 @@
         scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.8 }
       });
 
-      // 2. Results cards — stagger reveal
-      gsap.utils.toArray('.project-card').forEach((card, i) => {
-        gsap.from(card, {
-          y: 60, opacity: 0, scale: 0.95,
-          duration: 0.8,
-          delay: i * 0.1,
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 88%',
-            toggleActions: 'play none none reverse',
-          }
-        });
-      });
-
-      // 3. Section headers — smooth reveal (skip hero)
-      gsap.utils.toArray('.section-header').forEach(header => {
-        if (header.closest('.hero')) return;
-        gsap.from(header, {
-          y: 30, opacity: 0,
-          duration: 0.7,
-          scrollTrigger: {
-            trigger: header,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse',
-          }
-        });
-      });
-
-      // 4. Gallery items — reveal
-      gsap.utils.toArray('#work-gallery [style*="position:relative"]').forEach((item, i) => {
-        gsap.from(item, {
-          y: 40, opacity: 0, scale: 0.97,
-          duration: 0.6,
-          delay: i * 0.05,
-          scrollTrigger: {
-            trigger: item,
-            start: 'top 92%',
-            toggleActions: 'play none none reverse',
-          }
-        });
-      });
-
-      // 5. Team cards — slide in from sides
-      const zohaCard = document.querySelector('img[alt="Zoha Ahmed"]');
-      const soniaCard = document.querySelector('img[alt="Sonia Mohapatra"]');
-      const teamCards = [zohaCard, soniaCard].map(img => img ? img.closest('[style*="border-radius"]') : null).filter(Boolean);
-      if (teamCards.length >= 2) {
-        gsap.from(teamCards[0], {
-          x: -50, opacity: 0, duration: 0.7,
-          scrollTrigger: { trigger: teamCards[0], start: 'top 85%', toggleActions: 'play none none reverse' }
-        });
-        gsap.from(teamCards[1], {
-          x: 50, opacity: 0, duration: 0.7,
-          scrollTrigger: { trigger: teamCards[1], start: 'top 85%', toggleActions: 'play none none reverse' }
-        });
-      }
-
-      // 6. Process cards — scale up
-      gsap.utils.toArray('.process-step').forEach((step, i) => {
-        gsap.from(step, {
-          y: 30, opacity: 0, scale: 0.95,
-          duration: 0.6,
-          delay: i * 0.1,
-          scrollTrigger: {
-            trigger: step,
-            start: 'top 88%',
-            toggleActions: 'play none none reverse',
-          }
-        });
-      });
-
-      // 7. CTA section — zoom in
-      const bookSection = document.querySelector('#book .section-header');
-      if (bookSection) {
-        gsap.from(bookSection, {
-          scale: 0.95, opacity: 0, duration: 0.8,
-          scrollTrigger: {
-            trigger: bookSection,
-            start: 'top 85%',
-            toggleActions: 'play none none reverse',
-          }
-        });
-      }
+      // NOTE: Cards, headers, gallery, team, process, CTA all use
+      // the existing CSS data-anim system. GSAP only handles hero
+      // parallax (above), 3D tilt, and spring buttons (below).
     }
 
     // ── 3D tilt on hero collage (cursor-driven) ─────────────────
