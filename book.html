@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Ad Library Audit — Skip the Noise Media</title>
+  <meta name="description" content="See how your Meta ad library stacks up against competitors. Book a 15-min call and get a custom audit — free." />
+  <meta property="og:title" content="Free Ad Library Audit — Skip the Noise Media" />
+  <meta property="og:description" content="Your competitors are outproducing you on Meta. We'll show you the proof." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wdth,wght@0,75..125,200..900;1,75..125,200..900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --dark: #080808;
+      --blue: #5500dd;
+      --white: #fff;
+      --gray-300: #a8a8a8;
+      --gray-400: #444;
+      --bg: #faf9f7;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Mona Sans", system-ui, -apple-system, sans-serif;
+      font-variation-settings: "wdth" 125;
+      background: var(--dark);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ─────────────────────────────────────── */
+    .page {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Nav (minimal) ──────────────────────────────── */
+    .topbar {
+      padding: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .logo em {
+      font-style: italic;
+      color: #7c3aed;
+      font-weight: 500;
+    }
+    .topbar-link {
+      font-size: 13px;
+      color: var(--gray-300);
+      text-decoration: none;
+    }
+    .topbar-link:hover { color: var(--white); }
+
+    /* ── Hero ───────────────────────────────────────── */
+    .hero {
+      padding: 80px 0 56px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    .hero h1 span {
+      color: #7c3aed;
+    }
+    .hero p {
+      font-size: clamp(15px, 2vw, 17px);
+      line-height: 1.6;
+      color: rgba(255,255,255,0.65);
+      max-width: 520px;
+      margin: 0 auto 32px;
+      font-weight: 450;
+    }
+
+    /* ── CTA Button ─────────────────────────────────── */
+    .cta {
+      display: inline-block;
+      background: var(--white);
+      color: var(--dark);
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 14px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.25);
+    }
+    .cta:active { transform: translateY(0); }
+
+    /* ── Proof strip ────────────────────────────────── */
+    .proof {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 40px;
+    }
+    .proof-pill {
+      font-size: 12px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      padding: 8px 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    /* ── Testimonial ────────────────────────────────── */
+    .quote-block {
+      margin-top: 48px;
+      padding: 28px 32px;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      text-align: left;
+    }
+    .quote-block p {
+      font-size: 15px;
+      font-style: italic;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 12px;
+    }
+    .quote-block .author {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ── What you get ───────────────────────────────── */
+    .benefits {
+      padding: 48px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .benefits h2 {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .benefit-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .benefit-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .benefit-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(124, 58, 237, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+    .benefit-text h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .benefit-text p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+
+    /* ── Calendly section ───────────────────────────── */
+    .booking {
+      padding: 48px 0 32px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .booking h2 {
+      font-size: clamp(22px, 3.5vw, 28px);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+    }
+    .booking .sub {
+      font-size: 14px;
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .calendly-inline-widget {
+      border-radius: 16px;
+      overflow: hidden;
+      min-width: 280px;
+      height: 660px !important;
+      min-height: 580px !important;
+    }
+
+    /* ── Footer ──────────────────────────────────────── */
+    .foot {
+      padding: 40px 0;
+      text-align: center;
+      font-size: 13px;
+      color: rgba(255,255,255,0.25);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .foot a { color: rgba(255,255,255,0.4); text-decoration: none; }
+    .foot a:hover { color: var(--white); }
+
+    /* ── Mobile ──────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .hero { padding: 48px 0 40px; }
+      .page { padding: 0 16px; }
+      .quote-block { padding: 20px 24px; }
+      .cta { width: 100%; text-align: center; }
+      .calendly-inline-widget { height: 700px !important; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <a href="https://zohaahmed1.github.io/stn-creative-demo/index-v3.html" class="logo">Skip <em>the</em> Noise</a>
+    <a href="https://zohaahmed1.github.io/stn-creative-demo/index-v3.html" class="topbar-link">About us</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>Your competitors are outproducing you on Meta. <span>Here's the proof.</span></h1>
+    <p>Book a 15-min call. We'll pull your Meta Ad Library, show you exactly where you're exposed, and send you a custom audit. Free.</p>
+    <a href="#book" class="cta">Get your free audit</a>
+
+    <div class="proof">
+      <span class="proof-pill">Reddit Certified Partner</span>
+      <span class="proof-pill">Pinterest Award Winner</span>
+      <span class="proof-pill">1,000+ creatives produced</span>
+    </div>
+
+    <div class="quote-block">
+      <p>"The Reddit opportunity was real. They showed up with data on exactly what our competitors were doing in the community and made it easy to say yes."</p>
+      <span class="author">Tracy Strauss · VP Marketing, MariaDB</span>
+    </div>
+  </section>
+
+  <!-- What you get -->
+  <section class="benefits">
+    <h2>What you get</h2>
+    <ul class="benefit-list">
+      <li class="benefit-item">
+        <div class="benefit-icon">📊</div>
+        <div class="benefit-text">
+          <h3>Your ad count vs. top 3 competitors</h3>
+          <p>We pull live data from the Meta Ad Library and show you who's outproducing you and by how much.</p>
+        </div>
+      </li>
+      <li class="benefit-item">
+        <div class="benefit-icon">🔍</div>
+        <div class="benefit-text">
+          <h3>Format gaps you're missing</h3>
+          <p>Static, video, UGC, 3D, carousel. We show which formats your competitors run that you don't.</p>
+        </div>
+      </li>
+      <li class="benefit-item">
+        <div class="benefit-icon">📋</div>
+        <div class="benefit-text">
+          <h3>Actionable recommendations</h3>
+          <p>Concrete next steps you can take immediately. Whether you hire us or not.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Calendly -->
+  <section class="booking" id="book">
+    <h2>Pick a time</h2>
+    <p class="sub">15 minutes. No pitch. Just data.</p>
+    <div class="calendly-inline-widget" data-url="https://calendly.com/skipthenoisemedia/30min"></div>
+    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  </section>
+
+  <!-- Footer -->
+  <div class="foot">
+    © 2026 Skip the Noise Media · <a href="https://zohaahmed1.github.io/stn-creative-demo/index-v3.html">View our work</a>
+  </div>
+
+</div>
+
+</body>
+</html>
