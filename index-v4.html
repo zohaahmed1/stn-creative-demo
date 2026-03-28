@@ -3045,23 +3045,10 @@
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
       gsap.registerPlugin(ScrollTrigger);
 
-      // 1. Hero collage parallax — images move at different speeds
-      gsap.to('.hero-collage-main', {
-        y: -40,
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1 }
-      });
-      gsap.to('.hero-collage-sub:first-child', {
-        y: -20,
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 1.5 }
-      });
-      gsap.to('.hero-collage-sub:last-child', {
-        y: -60,
-        scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: 0.8 }
-      });
-
-      // NOTE: Cards, headers, gallery, team, process, CTA all use
-      // the existing CSS data-anim system. GSAP only handles hero
-      // parallax (above), 3D tilt, and spring buttons (below).
+      // GSAP ScrollTrigger registered but only used for future
+      // scroll-linked animations. Hero parallax removed (was
+      // pushing images offscreen on long pages).
+      // 3D tilt and spring buttons handled below in vanilla JS.
     }
 
     // ── 3D tilt on hero collage (cursor-driven) ─────────────────
