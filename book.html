@@ -4,287 +4,182 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Free Ad Library Audit — Skip the Noise Media</title>
-  <meta name="description" content="See how your Meta ad library stacks up against competitors. Book a 15-min call and get a custom audit — free." />
+  <meta name="description" content="We'll audit your Meta Ad Library, show you where competitors are beating you, and give you 3 free creatives. No strings." />
   <meta property="og:title" content="Free Ad Library Audit — Skip the Noise Media" />
-  <meta property="og:description" content="Your competitors are outproducing you on Meta. We'll show you the proof." />
+  <meta property="og:description" content="Your competitors are outproducing you on Meta. We'll show you the proof and fix it." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wdth,wght@0,75..125,200..900;1,75..125,200..900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --dark: #080808;
-      --blue: #5500dd;
-      --white: #fff;
-      --gray-300: #a8a8a8;
-      --gray-400: #444;
-      --bg: #faf9f7;
-    }
     html { scroll-behavior: smooth; }
     body {
       font-family: "Mona Sans", system-ui, -apple-system, sans-serif;
       font-variation-settings: "wdth" 125;
-      background: var(--dark);
-      color: var(--white);
+      background: #000;
+      color: #fff;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* ── Layout ─────────────────────────────────────── */
-    .page {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+    .page { max-width: 640px; margin: 0 auto; padding: 0 24px; }
 
-    /* ── Nav (minimal) ──────────────────────────────── */
-    .topbar {
-      padding: 24px 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .logo {
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--white);
-      text-decoration: none;
-      letter-spacing: -0.02em;
-    }
-    .logo em {
-      font-style: italic;
-      color: #7c3aed;
-      font-weight: 500;
-    }
-    .topbar-link {
-      font-size: 13px;
-      color: var(--gray-300);
-      text-decoration: none;
-    }
-    .topbar-link:hover { color: var(--white); }
+    /* ── Topbar ─────────────────────────────────────── */
+    .topbar { padding: 20px 0; text-align: center; }
+    .logo { font-size: 16px; font-weight: 700; color: #fff; text-decoration: none; letter-spacing: -0.02em; }
+    .logo em { font-style: italic; color: #7c3aed; font-weight: 500; }
 
     /* ── Hero ───────────────────────────────────────── */
-    .hero {
-      padding: 80px 0 56px;
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: clamp(28px, 5vw, 44px);
-      font-weight: 700;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      margin-bottom: 20px;
-    }
-    .hero h1 span {
-      color: #7c3aed;
-    }
-    .hero p {
-      font-size: clamp(15px, 2vw, 17px);
-      line-height: 1.6;
-      color: rgba(255,255,255,0.65);
-      max-width: 520px;
-      margin: 0 auto 32px;
-      font-weight: 450;
-    }
-
-    /* ── CTA Button ─────────────────────────────────── */
-    .cta {
+    .hero { padding: 48px 0 0; text-align: center; }
+    .eyebrow {
       display: inline-block;
-      background: var(--white);
-      color: var(--dark);
-      font-size: 16px;
-      font-weight: 600;
-      padding: 16px 32px;
-      border-radius: 14px;
-      text-decoration: none;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: #7c3aed; margin-bottom: 24px;
     }
-    .cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(124, 58, 237, 0.25);
+    h1 {
+      font-size: clamp(30px, 6vw, 52px);
+      font-weight: 800; line-height: 1.1; letter-spacing: -0.03em;
+      margin-bottom: 24px;
     }
+    h1 .yellow { color: #facc15; }
+    .sub {
+      font-size: clamp(16px, 2.5vw, 19px); line-height: 1.5;
+      color: rgba(255,255,255,0.6); max-width: 520px; margin: 0 auto 36px;
+    }
+
+    /* ── CTA ────────────────────────────────────────── */
+    .cta {
+      display: inline-block; background: #facc15; color: #000;
+      font-size: 18px; font-weight: 700; padding: 18px 40px;
+      border-radius: 12px; text-decoration: none; border: none; cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+    .cta:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(250, 204, 21, 0.3); }
     .cta:active { transform: translateY(0); }
-
-    /* ── Proof strip ────────────────────────────────── */
-    .proof {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      margin-top: 40px;
-    }
-    .proof-pill {
-      font-size: 12px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.5);
-      padding: 8px 16px;
-      border: 1px solid rgba(255,255,255,0.12);
-      border-radius: 100px;
-      white-space: nowrap;
+    .cta-note {
+      display: block; font-size: 13px; color: rgba(255,255,255,0.4);
+      margin-top: 12px;
     }
 
-    /* ── Testimonial ────────────────────────────────── */
-    .quote-block {
-      margin-top: 48px;
-      padding: 28px 32px;
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 16px;
-      text-align: left;
-    }
-    .quote-block p {
-      font-size: 15px;
-      font-style: italic;
-      line-height: 1.6;
-      color: rgba(255,255,255,0.7);
-      margin-bottom: 12px;
-    }
-    .quote-block .author {
-      font-size: 13px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.5);
+    /* ── Divider ────────────────────────────────────── */
+    .divider {
+      width: 80px; height: 2px; background: rgba(255,255,255,0.1);
+      margin: 48px auto;
     }
 
-    /* ── What you get ───────────────────────────────── */
-    .benefits {
-      padding: 48px 0;
-      border-top: 1px solid rgba(255,255,255,0.08);
+    /* ── Value Stack ────────────────────────────────── */
+    .stack { padding: 0 0 16px; }
+    .stack h2 {
+      font-size: clamp(22px, 4vw, 32px); font-weight: 800;
+      text-align: center; margin-bottom: 32px; letter-spacing: -0.02em;
     }
-    .benefits h2 {
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      text-align: center;
+    .stack-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .stack-item:last-child { border-bottom: none; }
+    .check {
+      flex-shrink: 0; width: 28px; height: 28px;
+      background: #facc15; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; color: #000; font-weight: 700;
+    }
+    .stack-text h3 { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+    .stack-text p { font-size: 14px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+    .stack-text .val {
+      font-size: 13px; color: #facc15; font-weight: 600; margin-top: 4px;
+    }
+    .stack-text .val s { color: rgba(255,255,255,0.3); font-weight: 400; }
+
+    /* ── Total value ────────────────────────────────── */
+    .total {
+      text-align: center; padding: 32px 0;
+      border-top: 2px solid rgba(255,255,255,0.08);
+    }
+    .total .old {
+      font-size: 20px; color: rgba(255,255,255,0.35);
+      text-decoration: line-through; margin-bottom: 4px;
+    }
+    .total .price {
+      font-size: clamp(28px, 5vw, 40px); font-weight: 800; color: #facc15;
+    }
+
+    /* ── Guarantee ──────────────────────────────────── */
+    .guarantee {
+      text-align: center; padding: 32px 24px;
+      border: 2px solid rgba(250, 204, 21, 0.3);
+      border-radius: 16px; margin: 32px 0;
+    }
+    .guarantee h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+    .guarantee p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+    /* ── Social proof ───────────────────────────────── */
+    .proof { text-align: center; padding: 32px 0; }
+    .proof-stats {
+      display: flex; justify-content: center; gap: 40px; margin-bottom: 32px;
+    }
+    .proof-stat .num { font-size: 28px; font-weight: 800; }
+    .proof-stat .label { font-size: 12px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.05em; }
+    .proof-badges {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
       margin-bottom: 32px;
     }
-    .benefit-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+    .proof-badge {
+      font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.5);
+      padding: 8px 16px; border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 100px; white-space: nowrap;
     }
-    .benefit-item {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
+    .quote {
+      padding: 24px; border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px; text-align: left; margin-bottom: 12px;
     }
-    .benefit-icon {
-      flex-shrink: 0;
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      background: rgba(124, 58, 237, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-    }
-    .benefit-text h3 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .benefit-text p {
-      font-size: 14px;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.5;
-    }
+    .quote p { font-size: 15px; font-style: italic; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 8px; }
+    .quote .author { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.4); }
 
-    /* ── Calendly section ───────────────────────────── */
-    .booking {
-      padding: 48px 0 32px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-    }
+    /* ── Calendly ───────────────────────────────────── */
+    .booking { padding: 48px 0 32px; text-align: center; }
     .booking h2 {
-      font-size: clamp(22px, 3.5vw, 28px);
-      font-weight: 700;
-      text-align: center;
-      margin-bottom: 8px;
-      letter-spacing: -0.02em;
+      font-size: clamp(22px, 4vw, 30px); font-weight: 800;
+      margin-bottom: 8px; letter-spacing: -0.02em;
     }
-    .booking .sub {
-      font-size: 14px;
-      color: rgba(255,255,255,0.45);
-      text-align: center;
-      margin-bottom: 32px;
-    }
+    .booking .sub2 { font-size: 14px; color: rgba(255,255,255,0.4); margin-bottom: 32px; }
     .calendly-inline-widget {
-      border-radius: 16px;
-      overflow: hidden;
-      min-width: 280px;
-      height: 660px !important;
-      min-height: 580px !important;
+      border-radius: 16px; overflow: hidden;
+      min-width: 280px; height: 660px !important; min-height: 580px !important;
     }
 
     /* ── Footer ──────────────────────────────────────── */
     .foot {
-      padding: 40px 0;
-      text-align: center;
-      font-size: 13px;
-      color: rgba(255,255,255,0.25);
-      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 40px 0; text-align: center;
+      font-size: 13px; color: rgba(255,255,255,0.2);
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
-    .foot a { color: rgba(255,255,255,0.4); text-decoration: none; }
-    .foot a:hover { color: var(--white); }
-
-    /* ── Qualifier ───────────────────────────────────── */
-    .qualifier {
-      font-size: 13px;
-      font-weight: 500;
-      color: rgba(255,255,255,0.35);
-      text-align: center;
-      margin-bottom: 32px;
-      letter-spacing: 0.02em;
-    }
-
-    /* ── Quotes grid ────────────────────────────────── */
-    .quotes {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-top: 48px;
-    }
-    .quotes .quote-block { margin-top: 0; }
+    .foot a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    .foot a:hover { color: #fff; }
 
     /* ── Sticky mobile CTA ──────────────────────────── */
-    .sticky-cta {
-      display: none;
-    }
+    .sticky-cta { display: none; }
 
-    /* ── Mobile ──────────────────────────────────────── */
     @media (max-width: 600px) {
-      .hero { padding: 48px 0 40px; }
       .page { padding: 0 16px; padding-bottom: 72px; }
-      .quote-block { padding: 20px 24px; }
-      .hero .cta { width: 100%; text-align: center; }
+      .hero { padding: 32px 0 0; }
+      .proof-stats { gap: 24px; }
+      .proof-stat .num { font-size: 22px; }
+      .cta { width: 100%; text-align: center; font-size: 16px; padding: 16px 24px; }
       .calendly-inline-widget { height: 700px !important; }
-      .quotes { grid-template-columns: 1fr; }
       .sticky-cta {
-        display: block;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
+        display: block; position: fixed; bottom: 0; left: 0; right: 0;
         padding: 12px 16px;
-        background: rgba(8, 8, 8, 0.92);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border-top: 1px solid rgba(255,255,255,0.1);
-        z-index: 100;
+        background: rgba(0,0,0,0.92);
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        border-top: 1px solid rgba(255,255,255,0.1); z-index: 100;
         text-align: center;
       }
       .sticky-cta a {
-        display: block;
-        background: var(--white);
-        color: var(--dark);
-        font-size: 15px;
-        font-weight: 600;
-        padding: 14px 24px;
-        border-radius: 12px;
-        text-decoration: none;
+        display: block; background: #facc15; color: #000;
+        font-size: 15px; font-weight: 700; padding: 14px 24px;
+        border-radius: 10px; text-decoration: none;
       }
     }
   </style>
@@ -293,83 +188,129 @@
 
 <div class="page">
 
-  <!-- Topbar -->
   <div class="topbar">
     <a href="https://zohaahmed1.github.io/stn-creative-demo/index-v3.html" class="logo">Skip <em>the</em> Noise</a>
-    <a href="https://zohaahmed1.github.io/stn-creative-demo/index-v3.html" class="topbar-link">About us</a>
   </div>
 
-  <!-- Hero -->
+  <!-- ═══════════════ HERO ═══════════════ -->
   <section class="hero">
-    <p class="qualifier">For DTC and SaaS marketing teams spending $20K+/mo on paid media</p>
-    <h1>Your competitors are outproducing you on Meta. <span>Here's the proof.</span></h1>
-    <p>Book a 15-min call. We'll pull your Meta Ad Library, show you exactly where you're exposed, and send you a custom audit. Free.</p>
+    <span class="eyebrow">For marketing teams spending $20K+/mo on paid</span>
+    <h1>We'll audit your ad library, show you where you're losing, and build you <span class="yellow">3 creatives for free.</span></h1>
+    <p class="sub">No retainer. No commitment. If the audit doesn't show you something you didn't know, we wasted our time, not yours.</p>
     <a href="#book" class="cta">Get your free audit</a>
+    <span class="cta-note">15 min call. No pitch. Just data.</span>
+  </section>
 
-    <div class="proof">
-      <span class="proof-pill">Reddit Certified Partner</span>
-      <span class="proof-pill">Pinterest Award Winner</span>
-      <span class="proof-pill">1,000+ creatives produced</span>
+  <div class="divider"></div>
+
+  <!-- ═══════════════ VALUE STACK ═══════════════ -->
+  <section class="stack">
+    <h2>Here's what you get.</h2>
+
+    <div class="stack-item">
+      <div class="check">✓</div>
+      <div class="stack-text">
+        <h3>Full Meta Ad Library audit</h3>
+        <p>Your active ad count, format breakdown, and refresh rate vs. your top 3 competitors. Live data, not guesses.</p>
+        <p class="val"><s>$500 if we charged for it</s> — FREE</p>
+      </div>
     </div>
 
-    <div class="quotes">
-      <div class="quote-block">
-        <p>"They showed up with data on exactly what our competitors were doing in the community and made it easy to say yes."</p>
-        <span class="author">Tracy Strauss · VP Marketing, MariaDB</span>
+    <div class="stack-item">
+      <div class="check">✓</div>
+      <div class="stack-text">
+        <h3>Creative gap analysis</h3>
+        <p>We map every format you're running (static, video, UGC, 3D, carousel) against what's working for competitors. You'll see exactly what's missing.</p>
+        <p class="val"><s>$750 if we charged for it</s> — FREE</p>
       </div>
-      <div class="quote-block">
-        <p>"Great collaboration. Very satisfied with the Reddit Ads work. They generated 60+ leads in just 3 months."</p>
-        <span class="author">Head of Marketing · Flare (Cybersecurity)</span>
+    </div>
+
+    <div class="stack-item">
+      <div class="check">✓</div>
+      <div class="stack-text">
+        <h3>3 custom ad creatives</h3>
+        <p>Not templates. Not mockups. 3 production-ready creatives built for your brand, your audience, your platforms. You keep them no matter what.</p>
+        <p class="val"><s>$1,500 if we charged for it</s> — FREE</p>
+      </div>
+    </div>
+
+    <div class="stack-item">
+      <div class="check">✓</div>
+      <div class="stack-text">
+        <h3>Channel expansion roadmap</h3>
+        <p>Reddit, TikTok, Pinterest, LinkedIn. We'll tell you which channels your competitors haven't touched yet and where your ICP is already active.</p>
+        <p class="val"><s>$500 if we charged for it</s> — FREE</p>
       </div>
     </div>
   </section>
 
-  <!-- What you get -->
-  <section class="benefits">
-    <h2>What you get</h2>
-    <ul class="benefit-list">
-      <li class="benefit-item">
-        <div class="benefit-icon">📊</div>
-        <div class="benefit-text">
-          <h3>Your ad count vs. top 3 competitors</h3>
-          <p>We pull live data from the Meta Ad Library and show you who's outproducing you and by how much.</p>
-        </div>
-      </li>
-      <li class="benefit-item">
-        <div class="benefit-icon">🔍</div>
-        <div class="benefit-text">
-          <h3>Format gaps you're missing</h3>
-          <p>Static, video, UGC, 3D, carousel. We show which formats your competitors run that you don't.</p>
-        </div>
-      </li>
-      <li class="benefit-item">
-        <div class="benefit-icon">📋</div>
-        <div class="benefit-text">
-          <h3>Actionable recommendations</h3>
-          <p>Concrete next steps you can take immediately. Whether you hire us or not.</p>
-        </div>
-      </li>
-    </ul>
+  <!-- ═══════════════ TOTAL ═══════════════ -->
+  <div class="total">
+    <p class="old">Total value: $3,250</p>
+    <p class="price">Your cost: $0</p>
+  </div>
+
+  <!-- ═══════════════ GUARANTEE ═══════════════ -->
+  <div class="guarantee">
+    <h3>The "no BS" guarantee</h3>
+    <p>If we don't show you at least one thing your competitors are doing that you're not, we'll Venmo you $50 for wasting your time. Seriously.</p>
+  </div>
+
+  <!-- ═══════════════ PROOF ═══════════════ -->
+  <section class="proof">
+    <div class="proof-stats">
+      <div class="proof-stat">
+        <div class="num">$100M+</div>
+        <div class="label">Ad spend managed</div>
+      </div>
+      <div class="proof-stat">
+        <div class="num">1,000+</div>
+        <div class="label">Creatives produced</div>
+      </div>
+      <div class="proof-stat">
+        <div class="num">4-5X</div>
+        <div class="label">Avg. client ROAS</div>
+      </div>
+    </div>
+
+    <div class="proof-badges">
+      <span class="proof-badge">Reddit Certified Partner</span>
+      <span class="proof-badge">Pinterest Global Award Winner</span>
+      <span class="proof-badge">Top 3% on Upwork</span>
+    </div>
+
+    <div class="quote">
+      <p>"They showed up with data on exactly what our competitors were doing and made it easy to say yes."</p>
+      <span class="author">Tracy Strauss · VP Marketing, MariaDB</span>
+    </div>
+    <div class="quote">
+      <p>"They generated 60+ qualified leads in just 3 months. Great collaboration."</p>
+      <span class="author">Head of Marketing · Flare (Cybersecurity SaaS)</span>
+    </div>
   </section>
 
-  <!-- Calendly -->
+  <!-- ═══════════════ FINAL CTA ═══════════════ -->
+  <div style="text-align:center; padding: 24px 0;">
+    <a href="#book" class="cta">Get your free audit</a>
+    <span class="cta-note">Spots are limited. We only take 5 audits per week.</span>
+  </div>
+
+  <!-- ═══════════════ CALENDLY ═══════════════ -->
   <section class="booking" id="book">
-    <h2>Pick a time</h2>
-    <p class="sub">15 minutes. No pitch. Just data.</p>
+    <h2>Pick a time. We'll do the rest.</h2>
+    <p class="sub2">15 minutes. You talk, we listen. Then we build.</p>
     <div class="calendly-inline-widget" data-url="https://calendly.com/skipthenoisemedia/30min"></div>
     <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
   </section>
 
-  <!-- Footer -->
   <div class="foot">
-    © 2026 Skip the Noise Media · <a href="https://zohaahmed1.github.io/stn-creative-demo/index-v3.html">View our work</a>
+    © 2026 Skip the Noise Media · <a href="https://zohaahmed1.github.io/stn-creative-demo/index-v3.html">See our work</a>
   </div>
 
 </div>
 
-<!-- Sticky mobile CTA -->
 <div class="sticky-cta">
-  <a href="#book">Get your free audit</a>
+  <a href="#book">Get your free audit — $0</a>
 </div>
 
 </body>
