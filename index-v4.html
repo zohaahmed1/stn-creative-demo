@@ -1401,8 +1401,14 @@
     .scrollytell {
       position: relative;
     }
-    .st-line {
+    .st-viewport {
       height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+    .st-line {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -1617,13 +1623,7 @@
       perspective: 800px;
     }
 
-    /* ── Scroll snap on scrollytelling ────────── */
-    .scrollytell {
-      scroll-snap-type: y proximity;
-    }
-    .st-line {
-      scroll-snap-align: center;
-    }
+    /* (Scroll snap removed — GSAP pin handles this) */
 
     /* ── Stacking cards for results ──────────── */
     .project-card {
@@ -1752,55 +1752,22 @@
   </div>
 </section>
 
-<!-- SCROLLYTELLING — problem → solution -->
+<!-- SCROLLYTELLING — pinned, scroll-locked -->
 <div class="scrollytell" id="scrollytell">
   <div class="st-bg"></div>
   <div class="st-progress" id="stProgress"><div class="st-progress-fill" id="stProgressFill"></div></div>
   <div class="st-particles" id="stParticles"></div>
 
-  <!-- Line 1: problem -->
-  <div class="st-line" data-st="0">
-    <p class="st-text problem">You brief a creative agency.</p>
-  </div>
-
-  <!-- Line 2: problem -->
-  <div class="st-line" data-st="1">
-    <p class="st-text problem">They deliver assets <em>a week late.</em></p>
-  </div>
-
-  <!-- Line 3: problem -->
-  <div class="st-line" data-st="2">
-    <p class="st-text problem">Your media buyer launches them <em>blind.</em></p>
-  </div>
-
-  <!-- Line 4: problem -->
-  <div class="st-line" data-st="3">
-    <p class="st-text problem">Performance drops. <em>Nobody knows why.</em></p>
-  </div>
-
-  <!-- Line 5: transition -->
-  <div class="st-line" data-st="4">
-    <p class="st-text shift">Now imagine something different.</p>
-  </div>
-
-  <!-- Line 6: solution -->
-  <div class="st-line" data-st="5">
-    <p class="st-text solution"><strong>One team</strong> makes the creative and runs the media.</p>
-  </div>
-
-  <!-- Line 7: solution -->
-  <div class="st-line" data-st="6">
-    <p class="st-text solution"><strong><span class="st-counter" data-target="20">0</span>+ creatives a month.</strong> AI handles volume. Humans direct strategy.</p>
-  </div>
-
-  <!-- Line 8: solution -->
-  <div class="st-line" data-st="7">
-    <p class="st-text solution">Every creative tied to <strong>performance data.</strong> You see what works.</p>
-  </div>
-
-  <!-- Line 9: punch -->
-  <div class="st-line" data-st="8">
-    <p class="st-text punch">Every round gets smarter.</p>
+  <div class="st-viewport" id="stViewport">
+    <div class="st-line" data-st="0"><p class="st-text problem">You brief a creative agency.</p></div>
+    <div class="st-line" data-st="1"><p class="st-text problem">They deliver assets <em>a week late.</em></p></div>
+    <div class="st-line" data-st="2"><p class="st-text problem">Your media buyer launches them <em>blind.</em></p></div>
+    <div class="st-line" data-st="3"><p class="st-text problem">Performance drops. <em>Nobody knows why.</em></p></div>
+    <div class="st-line" data-st="4"><p class="st-text shift">Now imagine something different.</p></div>
+    <div class="st-line" data-st="5"><p class="st-text solution"><strong>One team</strong> makes the creative and runs the media.</p></div>
+    <div class="st-line" data-st="6"><p class="st-text solution"><strong><span class="st-counter" data-target="20">0</span>+ creatives a month.</strong> AI handles volume. Humans direct strategy.</p></div>
+    <div class="st-line" data-st="7"><p class="st-text solution">Every creative tied to <strong>performance data.</strong> You see what works.</p></div>
+    <div class="st-line" data-st="8"><p class="st-text punch">Every round gets smarter.</p></div>
   </div>
 </div>
 
@@ -2930,13 +2897,15 @@
         if (pos > 0) pos -= halfWidth;
       });
     }
-    // ── Scrollytelling: enhanced ────────────────────────────────────
+    // ── Scrollytelling: GSAP pinned scroll-lock ────────────────────
     const stSection = document.getElementById('scrollytell');
-    if (stSection) {
-      const stLines = stSection.querySelectorAll('.st-line');
+    const stViewport = document.getElementById('stViewport');
+    if (stSection && stViewport && typeof gsap !== 'undefined') {
+      const stLines = stViewport.querySelectorAll('.st-line');
       const stProgress = document.getElementById('stProgress');
       const stProgressFill = document.getElementById('stProgressFill');
       const stParticles = document.getElementById('stParticles');
+      const totalLines = stLines.length;
       let counterFired = false;
 
       // 1. Generate particles
@@ -2978,67 +2947,84 @@
         requestAnimationFrame(tick);
       }
 
-      // 4. IntersectionObserver per line
-      const stObs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const text = entry.target.querySelector('.st-text');
-          const idx = parseInt(entry.target.dataset.st);
+      // 4. GSAP ScrollTrigger — pin viewport, scrub through lines
+      let currentLine = -1;
 
-          if (entry.isIntersecting) {
-            text.classList.add('visible');
-            text.classList.remove('fading');
+      ScrollTrigger.create({
+        trigger: stSection,
+        start: 'top top',
+        end: () => '+=' + (totalLines * window.innerHeight),
+        pin: stViewport,
+        scrub: true,
+        onUpdate: (self) => {
+          const progress = self.progress; // 0 to 1
+          const lineIndex = Math.min(Math.floor(progress * totalLines), totalLines - 1);
 
-            // Dark mode at transition
-            if (idx >= 4) stSection.classList.add('dark-mode');
+          // Update progress bar
+          stProgressFill.style.height = (progress * 100) + '%';
 
-            // Particles shift to purple at transition
-            if (idx >= 4) stParticles.classList.add('purple');
+          // Show/hide particles + progress
+          stProgress.classList.add('active');
+          stParticles.classList.add('active');
+          stSection.classList.add('in-view');
 
-            // Counter on the 20+ line
-            if (idx === 6 && !counterFired) {
-              counterFired = true;
-              const c = text.querySelector('.st-counter');
-              if (c) animateCounter(c);
+          // Switch active line
+          if (lineIndex !== currentLine) {
+            // Hide previous
+            if (currentLine >= 0) {
+              const prevText = stLines[currentLine].querySelector('.st-text');
+              prevText.classList.remove('visible');
+              prevText.classList.add('fading');
             }
-          } else {
-            const rect = entry.target.getBoundingClientRect();
-            if (rect.top < 0) {
-              text.classList.remove('visible');
-              text.classList.add('fading');
+
+            // Show current
+            const curText = stLines[lineIndex].querySelector('.st-text');
+            curText.classList.remove('fading');
+            curText.classList.add('visible');
+
+            // Dark mode at transition line (index 4+)
+            if (lineIndex >= 4) {
+              stSection.classList.add('dark-mode');
+              stParticles.classList.add('purple');
             } else {
-              text.classList.remove('visible', 'fading');
-            }
-            if (idx === 4 && rect.top > 0) {
               stSection.classList.remove('dark-mode');
               stParticles.classList.remove('purple');
             }
+
+            // Counter on line 6
+            if (lineIndex === 6 && !counterFired) {
+              counterFired = true;
+              const c = curText.querySelector('.st-counter');
+              if (c) animateCounter(c);
+            }
+
+            currentLine = lineIndex;
           }
-        });
-      }, { rootMargin: '-30% 0px -30% 0px', threshold: 0.1 });
-      stLines.forEach(line => stObs.observe(line));
-
-      // 5. Progress bar + particle visibility + bg scope
-      function updateStProgress() {
-        const rect = stSection.getBoundingClientRect();
-        const h = stSection.offsetHeight;
-        const vh = window.innerHeight;
-        const scrolled = Math.max(0, Math.min(1, -rect.top / (h - vh)));
-
-        // Show/hide progress bar, particles, and fixed bg
-        const inView = rect.top < vh && rect.bottom > 0;
-        stProgress.classList.toggle('active', inView);
-        stParticles.classList.toggle('active', inView);
-        stSection.classList.toggle('in-view', inView);
-        stProgressFill.style.height = (scrolled * 100) + '%';
-
-        // Clear dark mode when scrolled past the section entirely
-        if (rect.bottom <= 0 || rect.top >= vh) {
-          stSection.classList.remove('dark-mode');
+        },
+        onLeave: () => {
+          stProgress.classList.remove('active');
+          stParticles.classList.remove('active');
+          stSection.classList.remove('in-view', 'dark-mode');
           stParticles.classList.remove('purple');
+        },
+        onLeaveBack: () => {
+          stProgress.classList.remove('active');
+          stParticles.classList.remove('active');
+          stSection.classList.remove('in-view', 'dark-mode');
+          stParticles.classList.remove('purple');
+          // Reset all lines
+          stLines.forEach(l => {
+            const t = l.querySelector('.st-text');
+            t.classList.remove('visible', 'fading');
+          });
+          currentLine = -1;
+        },
+        onEnterBack: () => {
+          stProgress.classList.add('active');
+          stParticles.classList.add('active');
+          stSection.classList.add('in-view');
         }
-      }
-      window.addEventListener('scroll', updateStProgress, { passive: true });
-      updateStProgress();
+      });
     }
 
     // ── GSAP ScrollTrigger setup ──────────────────────────────────
