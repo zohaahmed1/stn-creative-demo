@@ -1397,111 +1397,216 @@
     .grain { position: relative; }
     .grain > * { position: relative; z-index: 2; }
 
-    /* ── Workflow video section ────────────────── */
-    .workflow-video {
-      max-width: 800px;
-      margin: 0 auto;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid var(--gray-200);
-    }
-    .workflow-video video {
-      width: 100%;
-      display: block;
-    }
-
-    /* ── Option A: CSS animated version ───────── */
-    .workflow-css {
+    /* ── Workflow SVG animation ─────────────────── */
+    .wf-scene {
       max-width: 800px;
       margin: 0 auto;
       position: relative;
-      height: 280px;
+      height: 320px;
+      overflow: visible;
     }
-    .wf-state {
+
+    /* ── Broken state ────────────────────────── */
+    .wf-broken-state {
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 24px;
-      transition: opacity 0.6s, transform 0.6s;
-      transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+      gap: 0;
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .wf-broken {
-      opacity: 1;
-      transform: scale(1);
-    }
-    .wf-loop {
+    .wf-scene.morphed .wf-broken-state {
       opacity: 0;
-      transform: scale(0.9);
+      transform: scale(0.8);
+      pointer-events: none;
     }
-    .workflow-css.show-loop .wf-broken {
-      opacity: 0;
-      transform: scale(0.9);
-    }
-    .workflow-css.show-loop .wf-loop {
-      opacity: 1;
-      transform: scale(1);
-    }
+
     .wf-box {
-      background: rgba(255,255,255,0.04);
-      border: 2px solid;
-      border-radius: 14px;
-      padding: 20px 24px;
+      background: rgba(255,255,255,0.03);
+      border: 2px solid var(--gray-200);
+      border-radius: 16px;
+      padding: 24px 28px;
       text-align: center;
-      min-width: 130px;
+      min-width: 150px;
+      transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+                  border-color 0.3s, box-shadow 0.3s;
     }
-    .wf-box.red { border-color: #fca5a5; }
-    .wf-box.purple { border-color: var(--blue); }
-    .wf-gap {
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: 0.1em;
-      animation: pulse-gap 1.5s ease-in-out infinite;
+    .wf-box.red {
+      border-color: #fca5a5;
+      background: rgba(239, 68, 68, 0.04);
     }
-    @keyframes pulse-gap {
-      0%, 100% { opacity: 0.5; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.15); }
+    .wf-box .wf-label {
+      font-size: 20px;
+      font-variation-settings: "wdth" var(--wdth), "wght" 700;
+      color: var(--navy);
     }
-    .wf-circle {
-      width: 200px; height: 200px;
-      border: 3px solid var(--blue);
-      border-radius: 50%;
+    .wf-box .wf-sublabel {
+      font-size: 13px;
+      color: var(--gray-300);
+      margin-top: 2px;
+    }
+
+    /* Shake animation for boxes on entry */
+    .wf-scene.entered .wf-box {
+      animation: box-shake 0.4s ease-out;
+    }
+    @keyframes box-shake {
+      0%, 100% { transform: translateX(0); }
+      20% { transform: translateX(-3px); }
+      40% { transform: translateX(3px); }
+      60% { transform: translateX(-2px); }
+      80% { transform: translateX(1px); }
+    }
+
+    /* GAP connector */
+    .wf-connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 0 8px;
+      min-width: 60px;
+    }
+    .wf-dash {
+      width: 40px;
+      height: 2px;
+      background: repeating-linear-gradient(90deg, #fca5a5 0, #fca5a5 6px, transparent 6px, transparent 12px);
+    }
+    .wf-gap-text {
+      font-size: 11px;
+      font-variation-settings: "wdth" var(--wdth), "wght" 800;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #ef4444;
+      animation: gap-pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes gap-pulse {
+      0%, 100% { opacity: 0.4; text-shadow: 0 0 0 transparent; }
+      50% { opacity: 1; text-shadow: 0 0 12px rgba(239,68,68,0.5); }
+    }
+
+    /* ── Loop state ──────────────────────────── */
+    .wf-loop-state {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transform: scale(0.85);
+      transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s,
+                  transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+      pointer-events: none;
+    }
+    .wf-scene.morphed .wf-loop-state {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+
+    .wf-loop-wrap {
       position: relative;
-      animation: spin-slow 20s linear infinite;
+      width: 260px;
+      height: 260px;
     }
-    @keyframes spin-slow {
+
+    /* The circle SVG */
+    .wf-circle-svg {
+      width: 100%;
+      height: 100%;
+      animation: loop-spin 30s linear infinite;
+    }
+    @keyframes loop-spin {
       to { transform: rotate(360deg); }
     }
-    .wf-circle-label {
+    .wf-circle-svg circle {
+      fill: none;
+      stroke: var(--blue);
+      stroke-width: 2.5;
+      filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.3));
+    }
+    .wf-circle-svg .wf-dot {
+      fill: var(--blue);
+      stroke: white;
+      stroke-width: 2;
+    }
+    .wf-circle-svg .wf-arrow {
+      fill: var(--blue);
+      opacity: 0.6;
+    }
+
+    /* Labels orbit (counter-rotate to stay upright) */
+    .wf-orbit-labels {
       position: absolute;
-      font-size: 13px;
-      font-weight: 700;
-      color: white;
+      inset: -40px;
+      animation: loop-spin 30s linear infinite;
+    }
+    .wf-orbit-label {
+      position: absolute;
+      font-size: 14px;
+      font-variation-settings: "wdth" var(--wdth), "wght" 700;
+      color: var(--navy);
       white-space: nowrap;
+      animation: counter-orbit 30s linear infinite;
+      transform-origin: center center;
     }
-    .wf-circle-dot {
-      position: absolute;
-      width: 8px; height: 8px;
-      background: var(--blue);
-      border-radius: 50%;
+    @keyframes counter-orbit {
+      to { transform: rotate(-360deg); }
     }
-    .wf-center-text {
+    /* Position each label around the circle */
+    .wf-orbit-label:nth-child(1) { top: -8px; left: 50%; transform: translateX(-50%); }
+    .wf-orbit-label:nth-child(2) { top: 26%; right: -36px; }
+    .wf-orbit-label:nth-child(3) { bottom: 12%; right: -36px; }
+    .wf-orbit-label:nth-child(4) { bottom: -8px; left: 50%; transform: translateX(-50%); }
+    .wf-orbit-label:nth-child(5) { top: 26%; left: -46px; }
+
+    /* Center text stays still */
+    .wf-center {
       position: absolute;
-      top: 50%; left: 50%;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--blue);
       text-align: center;
-      animation: none; /* don't spin with parent */
     }
-    /* Counter-rotate center text so it stays upright */
-    .wf-circle .wf-center-text {
-      animation: counter-spin 20s linear infinite;
+    .wf-center-title {
+      font-size: 24px;
+      font-variation-settings: "wdth" var(--wdth), "wght" 800;
+      color: var(--blue);
     }
-    @keyframes counter-spin {
-      to { transform: translate(-50%, -50%) rotate(-360deg); }
+    .wf-center-sub {
+      font-size: 13px;
+      color: var(--gray-300);
+      margin-top: 4px;
+    }
+
+    /* State label above animation */
+    .wf-state-label {
+      text-align: center;
+      font-size: 12px;
+      font-variation-settings: "wdth" var(--wdth), "wght" 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      transition: color 0.6s, opacity 0.6s;
+    }
+    .wf-state-label.red { color: #ef4444; }
+    .wf-state-label.purple { color: var(--blue); }
+
+    /* Mobile */
+    @media (max-width: 700px) {
+      .wf-scene { height: 240px; }
+      .wf-box { padding: 16px 18px; min-width: 100px; }
+      .wf-box .wf-label { font-size: 15px; }
+      .wf-box .wf-sublabel { font-size: 11px; }
+      .wf-connector { min-width: 36px; padding: 0 4px; }
+      .wf-dash { width: 24px; }
+      .wf-gap-text { font-size: 9px; }
+      .wf-loop-wrap { width: 200px; height: 200px; }
+      .wf-orbit-labels { inset: -30px; }
+      .wf-orbit-label { font-size: 12px; }
+      .wf-center-title { font-size: 20px; }
     }
   </style>
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
@@ -1632,15 +1737,73 @@
       </div>
     </div>
 
-    <!-- Option B: Video (shows on desktop) -->
-    <div class="workflow-video" data-anim data-delay="2" style="margin-bottom:32px;">
-      <video autoplay muted loop playsinline preload="metadata" poster="assets/workflow-loop-static.png">
-        <source src="assets/workflow-loop.mp4" type="video/mp4">
-      </video>
+    <!-- SVG animated workflow diagram -->
+    <div class="wf-scene" id="wfScene">
+      <!-- State label -->
+      <p class="wf-state-label red" id="wfLabel">How most teams work</p>
+
+      <!-- BROKEN STATE: 3 boxes with gaps -->
+      <div class="wf-broken-state">
+        <div class="wf-box">
+          <div class="wf-label">You</div>
+          <div class="wf-sublabel">brief the work</div>
+        </div>
+        <div class="wf-connector">
+          <div class="wf-dash"></div>
+          <span class="wf-gap-text">Gap</span>
+        </div>
+        <div class="wf-box red">
+          <div class="wf-label">Creative</div>
+          <div class="wf-sublabel">Agency</div>
+        </div>
+        <div class="wf-connector">
+          <div class="wf-dash"></div>
+          <span class="wf-gap-text">Gap</span>
+        </div>
+        <div class="wf-box red">
+          <div class="wf-label">Media</div>
+          <div class="wf-sublabel">Buyer</div>
+        </div>
+      </div>
+
+      <!-- LOOP STATE: rotating circle with orbiting labels -->
+      <div class="wf-loop-state">
+        <div class="wf-loop-wrap">
+          <!-- SVG circle with dots + arrows -->
+          <svg class="wf-circle-svg" viewBox="0 0 260 260">
+            <circle cx="130" cy="130" r="110" />
+            <!-- 5 dots at label positions -->
+            <circle class="wf-dot" cx="130" cy="20" r="5" />
+            <circle class="wf-dot" cx="234" cy="96" r="5" />
+            <circle class="wf-dot" cx="195" cy="220" r="5" />
+            <circle class="wf-dot" cx="65" cy="220" r="5" />
+            <circle class="wf-dot" cx="26" cy="96" r="5" />
+            <!-- Small directional arrows between dots -->
+            <polygon class="wf-arrow" points="182,46 190,52 184,56" />
+            <polygon class="wf-arrow" points="226,158 228,168 220,164" />
+            <polygon class="wf-arrow" points="130,238 122,234 126,226" />
+            <polygon class="wf-arrow" points="36,158 40,150 46,156" />
+            <polygon class="wf-arrow" points="72,50 80,46 78,56" />
+          </svg>
+          <!-- Orbiting labels -->
+          <div class="wf-orbit-labels">
+            <span class="wf-orbit-label">Brief</span>
+            <span class="wf-orbit-label">Create</span>
+            <span class="wf-orbit-label">Launch</span>
+            <span class="wf-orbit-label">Learn</span>
+            <span class="wf-orbit-label">Repeat</span>
+          </div>
+          <!-- Center text (doesn't rotate) -->
+          <div class="wf-center">
+            <div class="wf-center-title">One Loop</div>
+            <div class="wf-center-sub">No gap. No handoff.</div>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <!-- Before/after cards below the video -->
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:800px; margin:0 auto;" data-anim data-delay="3">
+    <!-- Before/after cards -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:800px; margin:0 auto; margin-top:40px;" data-anim data-delay="3">
       <!-- WITHOUT US -->
       <div style="background:#fef2f2; border:2px solid #fecaca; border-radius:20px; padding:28px 24px; text-align:left;">
         <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#ef4444; margin-bottom:16px;">Without a closed loop</p>
@@ -2825,6 +2988,43 @@
         if (pos > 0) pos -= halfWidth;
       });
     }
+    // ── Workflow diagram: scroll-triggered morph ───────────────────
+    const wfScene = document.getElementById('wfScene');
+    const wfLabel = document.getElementById('wfLabel');
+    if (wfScene) {
+      let hasEntered = false;
+      const wfObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !hasEntered) {
+            hasEntered = true;
+            wfScene.classList.add('entered');
+            // After 2.5 seconds in view, morph to loop
+            setTimeout(() => {
+              wfScene.classList.add('morphed');
+              wfLabel.textContent = 'With Skip the Noise';
+              wfLabel.classList.remove('red');
+              wfLabel.classList.add('purple');
+            }, 2500);
+          }
+        });
+      }, { threshold: 0.5 });
+      wfObs.observe(wfScene);
+
+      // Also allow scroll-based toggle: if user scrolls past midpoint of scene
+      const scrollMorph = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          // When bottom half of scene is more visible, show loop
+          if (entry.intersectionRatio > 0.7 && hasEntered) {
+            wfScene.classList.add('morphed');
+            wfLabel.textContent = 'With Skip the Noise';
+            wfLabel.classList.remove('red');
+            wfLabel.classList.add('purple');
+          }
+        });
+      }, { threshold: 0.7 });
+      scrollMorph.observe(wfScene);
+    }
+
     // ── Custom cursor ──────────────────────────────────────────────
     const dot = document.getElementById('cursorDot');
     if (dot && window.matchMedia('(hover: hover)').matches) {
