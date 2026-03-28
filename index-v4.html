@@ -1512,12 +1512,11 @@
     }
     .wf-ll {
       position: absolute;
-      font-size: 14px;
+      font-size: 15px;
       font-variation-settings: "wdth" var(--wdth), "wght" 700;
-      color: var(--blue);
+      color: var(--navy);
       white-space: nowrap;
       opacity: 0;
-      transition: opacity 0.3s;
     }
 
     /* Center text */
@@ -2955,9 +2954,9 @@
         node2.style.left = lerp(POS_SPREAD.n2, POS_CENTER.n2, ep) + '%';
         node3.style.left = lerp(POS_SPREAD.n3, POS_CENTER.n3, ep) + '%';
 
-        // Fade + scale nodes as they converge
-        const nodeOpacity = Math.max(0, 1 - ep * 1.3);
-        const nodeScale = lerp(1, 0.6, ep);
+        // Fade + scale nodes — gone by 35% scroll
+        const nodeOpacity = Math.max(0, 1 - ep * 3);
+        const nodeScale = lerp(1, 0.4, Math.min(ep * 2, 1));
         [node1, node2, node3].forEach(n => {
           n.style.opacity = nodeOpacity;
           n.style.transform = `translate(-50%, -50%) scale(${nodeScale})`;
@@ -2972,28 +2971,28 @@
           node3.classList.remove('red-border');
         }
 
-        // Gaps fade out early
-        const gapOpacity = Math.max(0, 1 - ep * 2.5);
+        // Gaps fade out very early — gone by 20% scroll
+        const gapOpacity = Math.max(0, 1 - ep * 5);
         gap1.style.left = lerp(POS_SPREAD.g1, POS_CENTER.g1, ep) + '%';
         gap2.style.left = lerp(POS_SPREAD.g2, POS_CENTER.g2, ep) + '%';
         gap1.style.opacity = gapOpacity;
         gap2.style.opacity = gapOpacity;
 
-        // Circle draws itself (starts at 40% scroll, done at 80%)
-        const circleT = clamp((p - 0.4) / 0.4, 0, 1);
+        // Circle draws itself (starts at 30% scroll, done at 70%)
+        const circleT = clamp((p - 0.3) / 0.4, 0, 1);
         ring.style.strokeDashoffset = CIRCUMFERENCE * (1 - circleT);
 
-        // Labels + center text fade in (starts at 70%)
-        const labelT = clamp((p - 0.7) / 0.3, 0, 1);
+        // Labels + center text fade in (starts at 55%)
+        const labelT = clamp((p - 0.55) / 0.3, 0, 1);
         loopLabels.querySelectorAll('.wf-ll').forEach((ll, i) => {
           const stagger = clamp((labelT - i * 0.05) * 2, 0, 1);
           ll.style.opacity = stagger;
         });
         centerText.style.opacity = labelT;
 
-        // State label crossfade
-        labelBroken.style.opacity = Math.max(0, 1 - ep * 2);
-        labelFixed.style.opacity = clamp(ep * 2 - 0.5, 0, 1);
+        // State label crossfade — switch at 25%
+        labelBroken.style.opacity = Math.max(0, 1 - ep * 4);
+        labelFixed.style.opacity = clamp(ep * 3 - 0.6, 0, 1);
       }
 
       // Set initial state
