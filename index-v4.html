@@ -1402,8 +1402,6 @@
       position: relative;
     }
     .st-line {
-      position: sticky;
-      top: 0;
       height: 100vh;
       display: flex;
       align-items: center;
@@ -2772,54 +2770,48 @@
         if (pos > 0) pos -= halfWidth;
       });
     }
-    // ── Scrollytelling: line-by-line reveal ─────────────────────────
+    // ── Scrollytelling: IntersectionObserver per line ───────────────
     const stSection = document.getElementById('scrollytell');
     if (stSection) {
       const stLines = stSection.querySelectorAll('.st-line');
-      const totalLines = stLines.length;
 
-      function updateScrollytell() {
-        const rect = stSection.getBoundingClientRect();
-        const sectionH = stSection.offsetHeight;
-        const viewH = window.innerHeight;
-
-        // How far we've scrolled through the section (0 to 1)
-        const scrolled = -rect.top / (sectionH - viewH);
-
-        // Each line gets an equal slice of the scroll range
-        const sliceSize = 1 / totalLines;
-
-        stLines.forEach((line, i) => {
-          const lineStart = i * sliceSize;
-          const lineEnd = (i + 1) * sliceSize;
-          const lineMid = lineStart + sliceSize * 0.5;
-          const text = line.querySelector('.st-text');
-
-          if (scrolled >= lineStart && scrolled < lineEnd) {
-            // This line is active
+      // Each line triggers when it enters the center 40% of viewport
+      const stObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const text = entry.target.querySelector('.st-text');
+          if (entry.isIntersecting) {
             text.classList.add('visible');
             text.classList.remove('fading');
-          } else if (scrolled >= lineEnd) {
-            // This line has passed
-            text.classList.remove('visible');
-            text.classList.add('fading');
+
+            // Dark mode after the transition line
+            const idx = parseInt(entry.target.dataset.st);
+            if (idx >= 4) {
+              stSection.classList.add('dark-mode');
+            }
           } else {
-            // This line hasn't arrived yet
-            text.classList.remove('visible', 'fading');
+            const rect = entry.target.getBoundingClientRect();
+            if (rect.top < 0) {
+              // Scrolled past — fade up
+              text.classList.remove('visible');
+              text.classList.add('fading');
+            } else {
+              // Not reached yet — hidden
+              text.classList.remove('visible', 'fading');
+            }
+
+            // Remove dark mode if we scrolled back above transition
+            const idx = parseInt(entry.target.dataset.st);
+            if (idx === 4 && rect.top > 0) {
+              stSection.classList.remove('dark-mode');
+            }
           }
         });
+      }, {
+        rootMargin: '-30% 0px -30% 0px',
+        threshold: 0.1
+      });
 
-        // Dark mode transition at the "shift" line (line 4)
-        const shiftPoint = 4 * sliceSize;
-        if (scrolled >= shiftPoint) {
-          stSection.classList.add('dark-mode');
-        } else {
-          stSection.classList.remove('dark-mode');
-        }
-      }
-
-      window.addEventListener('scroll', updateScrollytell, { passive: true });
-      updateScrollytell();
+      stLines.forEach(line => stObs.observe(line));
     }
 
     // ── Custom cursor ──────────────────────────────────────────────
