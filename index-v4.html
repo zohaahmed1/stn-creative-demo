@@ -1397,131 +1397,85 @@
     .grain { position: relative; }
     .grain > * { position: relative; z-index: 2; }
 
-    /* ── Horizontal flow ───────────────────────── */
-    .wf-flow {
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      gap: 0;
-      max-width: 900px;
-      margin: 0 auto;
+    /* ── Scrollytelling section ────────────────── */
+    .scrollytell {
+      position: relative;
     }
-    .wf-step {
-      flex: 1;
-      text-align: center;
-      max-width: 160px;
-      opacity: 0;
-      transform: translateY(24px) scale(0.9);
-      transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-                  transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .wf-step.revealed {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-    .wf-dot-num {
-      width: 48px; height: 48px;
-      border-radius: 50%;
-      background: var(--blue);
-      color: white;
-      font-size: 16px;
-      font-weight: 700;
+    .st-line {
+      position: sticky;
+      top: 0;
+      height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 12px;
-      box-shadow: 0 4px 16px rgba(85, 0, 221, 0.25);
-      transition: transform 0.3s, box-shadow 0.3s;
+      padding: 0 24px;
     }
-    .wf-step:hover .wf-dot-num {
-      transform: scale(1.1);
-      box-shadow: 0 6px 24px rgba(85, 0, 221, 0.35);
-    }
-    .wf-step-title {
-      font-size: 15px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 700;
-      color: var(--navy);
-      margin-bottom: 6px;
-    }
-    .wf-step-desc {
-      font-size: 13px;
-      color: var(--gray-300);
-      line-height: 1.45;
-    }
-    .wf-arrow-line {
-      flex-shrink: 0;
-      width: 32px;
-      height: 2px;
-      margin-top: 23px;
-      background: var(--gray-200);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .wf-arrow-line.drawn { transform: scaleX(1); }
-    .wf-arrow-loop {
-      background: var(--blue);
-    }
-
-    /* Chain highlight on hover */
-    .wf-flow.interactive .wf-step,
-    .wf-flow.interactive .wf-arrow-line {
-      transition: opacity 0.25s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .wf-flow.interactive.has-hover .wf-step { opacity: 0.3; }
-    .wf-flow.interactive.has-hover .wf-arrow-line { opacity: 0.15; }
-    .wf-flow.interactive.has-hover .wf-step.chain-active { opacity: 1; }
-    .wf-flow.interactive.has-hover .wf-arrow-line.chain-active { opacity: 1; }
-
-    /* Expand card on click */
-    .wf-expand {
-      overflow: hidden;
-      max-height: 0;
+    .st-text {
+      font-size: clamp(28px, 5vw, 48px);
+      font-variation-settings: "wdth" var(--wdth), "wght" 600;
+      line-height: 1.2;
+      text-align: center;
+      max-width: 700px;
       opacity: 0;
-      transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s, margin 0.3s;
-      margin-top: 0;
+      transform: translateY(30px);
+      transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .wf-expand.open {
-      max-height: 120px;
-      opacity: 1;
-      margin-top: 10px;
-    }
-    .wf-expand-inner {
-      background: rgba(85, 0, 221, 0.06);
-      border-radius: 10px;
-      padding: 12px 14px;
-      font-size: 12px;
+    .st-text.visible { opacity: 1; transform: translateY(0); }
+    .st-text.fading { opacity: 0; transform: translateY(-20px); }
+
+    /* Problem lines: lighter, slightly jittery */
+    .st-text.problem {
       color: var(--gray-400);
-      line-height: 1.5;
-      border: 1px solid rgba(85, 0, 221, 0.1);
+      font-variation-settings: "wdth" var(--wdth), "wght" 400;
+    }
+    .st-text.problem em {
+      font-style: normal;
+      color: #ef4444;
+      font-variation-settings: "wdth" var(--wdth), "wght" 700;
     }
 
-    /* Active step indicator */
-    .wf-step.active .wf-dot-num {
-      transform: scale(1.15);
-      box-shadow: 0 6px 28px rgba(85, 0, 221, 0.4);
+    /* Transition line */
+    .st-text.shift {
+      font-size: clamp(16px, 2.5vw, 22px);
+      color: var(--gray-300);
+      font-variation-settings: "wdth" var(--wdth), "wght" 500;
+      letter-spacing: 0.05em;
     }
-    .wf-step { cursor: pointer; }
-    @media (max-width: 700px) {
-      .wf-flow {
-        flex-direction: column;
-        align-items: center;
-        gap: 0;
-      }
-      .wf-step {
-        max-width: 280px;
-        transform: translateX(-20px);
-      }
-      .wf-step.revealed { transform: translateX(0); }
-      .wf-arrow-line {
-        width: 2px;
-        height: 24px;
-        margin: 0 auto;
-        margin-top: 0;
-        transform: scaleY(0);
-        transform-origin: top;
-      }
-      .wf-arrow-line.drawn { transform: scaleY(1); }
+
+    /* Solution lines: bold, purple, clean */
+    .st-text.solution {
+      color: var(--navy);
+      font-variation-settings: "wdth" var(--wdth), "wght" 700;
+    }
+    .st-text.solution strong {
+      color: var(--blue);
+    }
+
+    /* Final punch line */
+    .st-text.punch {
+      font-size: clamp(32px, 6vw, 56px);
+      font-variation-settings: "wdth" var(--wdth), "wght" 800;
+      color: var(--blue);
+    }
+
+    /* Background shift */
+    .scrollytell .st-bg {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: var(--bg);
+      transition: background 0.6s;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .scrollytell.dark-mode .st-bg {
+      background: var(--dark);
+    }
+    .scrollytell.dark-mode .st-text.solution {
+      color: white;
+    }
+    .scrollytell.dark-mode .st-text.punch {
+      color: #7c3aed;
     }
   </style>
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
@@ -1642,113 +1596,55 @@
   </div>
 </section>
 
-<!-- PROBLEM AGITATION — visual flow -->
-<section style="background:var(--bg); padding:80px 0;">
-  <div class="container" style="max-width:900px; text-align:center;">
-    <div class="section-header" style="margin-bottom:48px;">
-      <div class="title-row h2 text-reveal" style="justify-content:center;" data-anim>
-        <span>Sound</span>
-        <span class="badge badge-orange" data-anim="tilt" data-delay="1">familiar?</span>
-      </div>
-    </div>
+<!-- SCROLLYTELLING — problem → solution -->
+<div class="scrollytell" id="scrollytell">
+  <div class="st-bg"></div>
 
-    <!-- Horizontal flow: the STN loop -->
-    <div class="wf-flow" data-anim data-delay="2">
-      <div class="wf-step" data-step="0">
-        <div class="wf-dot-num">1</div>
-        <h4 class="wf-step-title">You brief us</h4>
-        <p class="wf-step-desc">One team. One channel. No vendor juggling.</p>
-        <div class="wf-expand"><div class="wf-expand-inner">One Slack channel. One brief. We ask the right questions upfront so nothing gets lost between teams.</div></div>
-      </div>
-      <div class="wf-arrow-line"></div>
-      <div class="wf-step" data-step="1">
-        <div class="wf-dot-num">2</div>
-        <h4 class="wf-step-title">We build <span class="wf-counter" data-target="20">0</span>+ creatives</h4>
-        <p class="wf-step-desc">AI handles volume. Humans direct strategy.</p>
-        <div class="wf-expand"><div class="wf-expand-inner">Midjourney, Luma, Kling, Creatify for volume. Our strategists direct every asset for performance, not aesthetics.</div></div>
-      </div>
-      <div class="wf-arrow-line"></div>
-      <div class="wf-step" data-step="2">
-        <div class="wf-dot-num">3</div>
-        <h4 class="wf-step-title">We run the media</h4>
-        <p class="wf-step-desc">Same team that made it. No handoff.</p>
-        <div class="wf-expand"><div class="wf-expand-inner">Meta, Google, Reddit, LinkedIn, TikTok, Pinterest, Snapchat, X. Ex-GroupM buyers who know which creative works because they made it.</div></div>
-      </div>
-      <div class="wf-arrow-line"></div>
-      <div class="wf-step" data-step="3">
-        <div class="wf-dot-num">4</div>
-        <h4 class="wf-step-title">We measure what converts</h4>
-        <p class="wf-step-desc">Creative tied to performance data.</p>
-        <div class="wf-expand"><div class="wf-expand-inner">Every creative gets tagged. You see which format, hook, and angle drives pipeline. No guessing.</div></div>
-      </div>
-      <div class="wf-arrow-line wf-arrow-loop"></div>
-      <div class="wf-step" data-step="4">
-        <div class="wf-dot-num">↺</div>
-        <h4 class="wf-step-title">Next round gets smarter</h4>
-        <p class="wf-step-desc">Winning patterns feed the next batch.</p>
-        <div class="wf-expand"><div class="wf-expand-inner">Winning hooks, formats, and angles get doubled down. Losers get cut. Each month compounds on the last.</div></div>
-      </div>
-    </div>
-
-    <!-- Before/after cards -->
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:800px; margin:0 auto; margin-top:40px;" data-anim data-delay="3">
-      <!-- WITHOUT US -->
-      <div style="background:#fef2f2; border:2px solid #fecaca; border-radius:20px; padding:28px 24px; text-align:left;">
-        <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#ef4444; margin-bottom:16px;">Without a closed loop</p>
-        <div style="display:flex; flex-direction:column; gap:12px;">
-          <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#991b1b; line-height:1.45;">
-            <span style="color:#ef4444; font-weight:700; flex-shrink:0;">✕</span>
-            Assets arrive late. Media buyer launches blind.
-          </div>
-          <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#991b1b; line-height:1.45;">
-            <span style="color:#ef4444; font-weight:700; flex-shrink:0;">✕</span>
-            Same 4 ads for months. No fresh creative.
-          </div>
-          <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#991b1b; line-height:1.45;">
-            <span style="color:#ef4444; font-weight:700; flex-shrink:0;">✕</span>
-            Can't tie creative to pipeline or revenue.
-          </div>
-          <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#991b1b; line-height:1.45;">
-            <span style="color:#ef4444; font-weight:700; flex-shrink:0;">✕</span>
-            2-3 vendors. Nobody owns the outcome.
-          </div>
-        </div>
-      </div>
-      <!-- WITH US -->
-      <div style="background:#f0f0ff; border:2px solid #c4b5fd; border-radius:20px; padding:28px 24px; text-align:left;">
-        <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue); margin-bottom:16px;">With Skip the Noise</p>
-        <div style="display:flex; flex-direction:column; gap:12px;">
-          <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#312e81; line-height:1.45;">
-            <span style="color:var(--blue); font-weight:700; flex-shrink:0;">✓</span>
-            One team makes and runs the ads. No handoff.
-          </div>
-          <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#312e81; line-height:1.45;">
-            <span style="color:var(--blue); font-weight:700; flex-shrink:0;">✓</span>
-            20+ fresh creatives/month via AI.
-          </div>
-          <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#312e81; line-height:1.45;">
-            <span style="color:var(--blue); font-weight:700; flex-shrink:0;">✓</span>
-            Every creative tied to performance data.
-          </div>
-          <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#312e81; line-height:1.45;">
-            <span style="color:var(--blue); font-weight:700; flex-shrink:0;">✓</span>
-            Two people. One channel. Full accountability.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <p class="body" style="margin-top:36px; font-size:17px; font-weight:600; color:var(--dark);" data-anim data-delay="4">The problem isn't your creative. It isn't your media buyer. It's the gap between them.</p>
+  <!-- Line 1: problem -->
+  <div class="st-line" data-st="0">
+    <p class="st-text problem">You brief a creative agency.</p>
   </div>
-</section>
 
-<style>
-  @media (max-width: 700px) {
-    section:has(.badge-orange) [style*="grid-template-columns:1fr 1fr"] {
-      grid-template-columns: 1fr !important;
-    }
-  }
-</style>
+  <!-- Line 2: problem -->
+  <div class="st-line" data-st="1">
+    <p class="st-text problem">They deliver assets <em>a week late.</em></p>
+  </div>
+
+  <!-- Line 3: problem -->
+  <div class="st-line" data-st="2">
+    <p class="st-text problem">Your media buyer launches them <em>blind.</em></p>
+  </div>
+
+  <!-- Line 4: problem -->
+  <div class="st-line" data-st="3">
+    <p class="st-text problem">Performance drops. <em>Nobody knows why.</em></p>
+  </div>
+
+  <!-- Line 5: transition -->
+  <div class="st-line" data-st="4">
+    <p class="st-text shift">Now imagine something different.</p>
+  </div>
+
+  <!-- Line 6: solution -->
+  <div class="st-line" data-st="5">
+    <p class="st-text solution"><strong>One team</strong> makes the creative and runs the media.</p>
+  </div>
+
+  <!-- Line 7: solution -->
+  <div class="st-line" data-st="6">
+    <p class="st-text solution"><strong>20+ creatives a month.</strong> AI handles volume. Humans direct strategy.</p>
+  </div>
+
+  <!-- Line 8: solution -->
+  <div class="st-line" data-st="7">
+    <p class="st-text solution">Every creative tied to <strong>performance data.</strong> You see what works.</p>
+  </div>
+
+  <!-- Line 9: punch -->
+  <div class="st-line" data-st="8">
+    <p class="st-text punch">Every round gets smarter.</p>
+  </div>
+</div>
 
 <!-- RESULTS (dark section) -->
 <section id="work" class="section-dark grain">
@@ -2876,94 +2772,54 @@
         if (pos > 0) pos -= halfWidth;
       });
     }
-    // ── Workflow flow: staggered reveal + interactions ──────────────
-    const wfFlow = document.querySelector('.wf-flow');
-    if (wfFlow) {
-      const steps = wfFlow.querySelectorAll('.wf-step');
-      const lines = wfFlow.querySelectorAll('.wf-arrow-line');
-      const allChildren = Array.from(wfFlow.children); // steps + lines interleaved
-      let wfRevealed = false;
+    // ── Scrollytelling: line-by-line reveal ─────────────────────────
+    const stSection = document.getElementById('scrollytell');
+    if (stSection) {
+      const stLines = stSection.querySelectorAll('.st-line');
+      const totalLines = stLines.length;
 
-      // 1. Staggered scroll reveal
-      const wfObs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting && !wfRevealed) {
-            wfRevealed = true;
-            let delay = 0;
-            steps.forEach((step, i) => {
-              setTimeout(() => step.classList.add('revealed'), delay);
-              delay += 300;
-              if (lines[i]) {
-                setTimeout(() => lines[i].classList.add('drawn'), delay);
-                delay += 200;
-              }
-            });
-            // Enable interactions after reveal completes
-            setTimeout(() => {
-              wfFlow.classList.add('interactive');
-              // Trigger counter animation
-              const counter = wfFlow.querySelector('.wf-counter');
-              if (counter) animateCounter(counter);
-            }, delay + 200);
+      function updateScrollytell() {
+        const rect = stSection.getBoundingClientRect();
+        const sectionH = stSection.offsetHeight;
+        const viewH = window.innerHeight;
+
+        // How far we've scrolled through the section (0 to 1)
+        const scrolled = -rect.top / (sectionH - viewH);
+
+        // Each line gets an equal slice of the scroll range
+        const sliceSize = 1 / totalLines;
+
+        stLines.forEach((line, i) => {
+          const lineStart = i * sliceSize;
+          const lineEnd = (i + 1) * sliceSize;
+          const lineMid = lineStart + sliceSize * 0.5;
+          const text = line.querySelector('.st-text');
+
+          if (scrolled >= lineStart && scrolled < lineEnd) {
+            // This line is active
+            text.classList.add('visible');
+            text.classList.remove('fading');
+          } else if (scrolled >= lineEnd) {
+            // This line has passed
+            text.classList.remove('visible');
+            text.classList.add('fading');
+          } else {
+            // This line hasn't arrived yet
+            text.classList.remove('visible', 'fading');
           }
         });
-      }, { threshold: 0.3 });
-      wfObs.observe(wfFlow);
 
-      // 2. Hover: highlight chain up to hovered step
-      steps.forEach((step, idx) => {
-        step.addEventListener('mouseenter', () => {
-          wfFlow.classList.add('has-hover');
-          // Activate this step and all steps/lines before it
-          allChildren.forEach((child, ci) => {
-            const stepIdx = child.dataset.step !== undefined ? parseInt(child.dataset.step) : -1;
-            // For lines: they sit between steps, so line[i] connects step[i] to step[i+1]
-            if (child.classList.contains('wf-step')) {
-              child.classList.toggle('chain-active', stepIdx <= idx);
-            } else if (child.classList.contains('wf-arrow-line')) {
-              // Line index: count lines before this child
-              const lineIdx = Array.from(lines).indexOf(child);
-              child.classList.toggle('chain-active', lineIdx < idx);
-            }
-          });
-        });
-        step.addEventListener('mouseleave', () => {
-          wfFlow.classList.remove('has-hover');
-          allChildren.forEach(c => c.classList.remove('chain-active'));
-        });
-      });
-
-      // 3. Click: toggle expand card
-      steps.forEach(step => {
-        step.addEventListener('click', () => {
-          const expand = step.querySelector('.wf-expand');
-          const wasOpen = expand.classList.contains('open');
-          // Close all others
-          wfFlow.querySelectorAll('.wf-expand.open').forEach(e => e.classList.remove('open'));
-          wfFlow.querySelectorAll('.wf-step.active').forEach(s => s.classList.remove('active'));
-          // Toggle this one
-          if (!wasOpen) {
-            expand.classList.add('open');
-            step.classList.add('active');
-          }
-        });
-      });
-
-      // 4. Counter animation (0 → 20)
-      function animateCounter(el) {
-        const target = parseInt(el.dataset.target);
-        const duration = 1200;
-        const start = performance.now();
-        function tick(now) {
-          const elapsed = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          // Ease out
-          const eased = 1 - Math.pow(1 - progress, 3);
-          el.textContent = Math.round(target * eased);
-          if (progress < 1) requestAnimationFrame(tick);
+        // Dark mode transition at the "shift" line (line 4)
+        const shiftPoint = 4 * sliceSize;
+        if (scrolled >= shiftPoint) {
+          stSection.classList.add('dark-mode');
+        } else {
+          stSection.classList.remove('dark-mode');
         }
-        requestAnimationFrame(tick);
       }
+
+      window.addEventListener('scroll', updateScrollytell, { passive: true });
+      updateScrollytell();
     }
 
     // ── Custom cursor ──────────────────────────────────────────────
