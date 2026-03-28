@@ -1410,9 +1410,17 @@
       flex: 1;
       text-align: center;
       max-width: 160px;
+      opacity: 0;
+      transform: translateY(24px) scale(0.9);
+      transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .wf-step.revealed {
+      opacity: 1;
+      transform: translateY(0) scale(1);
     }
     .wf-dot-num {
-      width: 44px; height: 44px;
+      width: 48px; height: 48px;
       border-radius: 50%;
       background: var(--blue);
       color: white;
@@ -1422,6 +1430,12 @@
       align-items: center;
       justify-content: center;
       margin: 0 auto 12px;
+      box-shadow: 0 4px 16px rgba(85, 0, 221, 0.25);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .wf-step:hover .wf-dot-num {
+      transform: scale(1.1);
+      box-shadow: 0 6px 24px rgba(85, 0, 221, 0.35);
     }
     .wf-step-title {
       font-size: 15px;
@@ -1438,21 +1452,15 @@
       flex-shrink: 0;
       width: 32px;
       height: 2px;
+      margin-top: 23px;
       background: var(--gray-200);
-      margin-top: 21px; /* align with center of dot */
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     }
+    .wf-arrow-line.drawn { transform: scaleX(1); }
     .wf-arrow-loop {
       background: var(--blue);
-      position: relative;
-    }
-    .wf-arrow-loop::after {
-      content: "↺";
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 11px;
-      color: var(--blue);
     }
     @media (max-width: 700px) {
       .wf-flow {
@@ -1460,13 +1468,20 @@
         align-items: center;
         gap: 0;
       }
-      .wf-step { max-width: 280px; }
+      .wf-step {
+        max-width: 280px;
+        transform: translateX(-20px);
+      }
+      .wf-step.revealed { transform: translateX(0); }
       .wf-arrow-line {
         width: 2px;
         height: 24px;
         margin: 0 auto;
         margin-top: 0;
+        transform: scaleY(0);
+        transform-origin: top;
       }
+      .wf-arrow-line.drawn { transform: scaleY(1); }
     }
   </style>
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
@@ -2816,7 +2831,32 @@
         if (pos > 0) pos -= halfWidth;
       });
     }
-    // ── (Workflow diagram is now static — no scroll JS needed) ─────
+    // ── Workflow flow: staggered scroll reveal ─────────────────────
+    const wfFlow = document.querySelector('.wf-flow');
+    if (wfFlow) {
+      const steps = wfFlow.querySelectorAll('.wf-step');
+      const lines = wfFlow.querySelectorAll('.wf-arrow-line');
+      let wfRevealed = false;
+
+      const wfObs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !wfRevealed) {
+            wfRevealed = true;
+            // Stagger: step, then line, then step, then line...
+            let delay = 0;
+            steps.forEach((step, i) => {
+              setTimeout(() => step.classList.add('revealed'), delay);
+              delay += 300;
+              if (lines[i]) {
+                setTimeout(() => lines[i].classList.add('drawn'), delay);
+                delay += 200;
+              }
+            });
+          }
+        });
+      }, { threshold: 0.3 });
+      wfObs.observe(wfFlow);
+    }
 
     // ── Custom cursor ──────────────────────────────────────────────
     const dot = document.getElementById('cursorDot');
