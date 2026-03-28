@@ -1397,159 +1397,76 @@
     .grain { position: relative; }
     .grain > * { position: relative; z-index: 2; }
 
-    /* ── Scroll-controlled workflow ──────────────── */
-    .wf-scroll {
-      max-width: 800px;
-      margin: 0 auto;
-      position: relative;
-    }
-    .wf-state-label {
-      text-align: center;
-      font-size: 12px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      margin-bottom: 28px;
-      height: 18px;
-      position: relative;
-    }
-    .wf-label-broken, .wf-label-fixed {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      transition: opacity 0.4s;
-    }
-    .wf-label-broken { color: #ef4444; }
-    .wf-label-fixed { color: var(--blue); opacity: 0; }
-
-    .wf-stage {
-      position: relative;
-      height: 320px;
-    }
-
-    /* Nodes (boxes) — positioned absolutely, moved via JS */
-    .wf-node {
-      position: absolute;
-      background: white;
-      border: 2px solid var(--gray-200);
-      border-radius: 16px;
-      padding: 20px 24px;
-      text-align: center;
-      min-width: 140px;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      transition: border-color 0.4s, background 0.4s, opacity 0.4s;
-      z-index: 3;
-    }
-    .wf-node.red-border { border-color: #fca5a5; background: #fff5f5; }
-    .wf-node .wf-label {
-      font-size: 18px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 700;
-      color: var(--navy);
-    }
-    .wf-node .wf-sublabel {
-      font-size: 12px;
-      color: var(--gray-300);
-      margin-top: 2px;
-    }
-
-    /* Gap indicators — positioned between boxes */
-    .wf-gap-1, .wf-gap-2 {
-      position: absolute;
-      top: 50%;
-      transform: translate(-50%, -50%);
+    /* ── Horizontal flow ───────────────────────── */
+    .wf-flow {
       display: flex;
-      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 0;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .wf-step {
+      flex: 1;
+      text-align: center;
+      max-width: 160px;
+    }
+    .wf-dot-num {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
       align-items: center;
-      gap: 4px;
-      z-index: 2;
+      justify-content: center;
+      margin: 0 auto 12px;
     }
-    .wf-gap-1 span, .wf-gap-2 span {
-      font-size: 11px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 800;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #ef4444;
-      animation: gap-pulse 1.5s ease-in-out infinite;
-    }
-    @keyframes gap-pulse {
-      0%, 100% { opacity: 0.4; text-shadow: 0 0 0 transparent; }
-      50% { opacity: 1; text-shadow: 0 0 12px rgba(239,68,68,0.5); }
-    }
-
-    /* SVG circle — draws itself via stroke-dashoffset */
-    .wf-ring-svg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 280px;
-      height: 280px;
-      transform: translate(-50%, -50%);
-      z-index: 1;
-      pointer-events: none;
-    }
-    .wf-ring-svg circle {
-      fill: none;
-      stroke: var(--blue);
-      stroke-width: 2.5;
-      stroke-dasharray: 754; /* 2 * PI * 120 */
-      stroke-dashoffset: 754; /* fully hidden initially */
-      stroke-linecap: round;
-      filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.3));
-      transition: none; /* controlled by JS */
-    }
-
-    /* Loop labels — fade in at end */
-    .wf-loop-labels {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 280px;
-      height: 280px;
-      transform: translate(-50%, -50%);
-      z-index: 4;
-      pointer-events: none;
-    }
-    .wf-ll {
-      position: absolute;
+    .wf-step-title {
       font-size: 15px;
       font-variation-settings: "wdth" var(--wdth), "wght" 700;
       color: var(--navy);
-      white-space: nowrap;
-      opacity: 0;
+      margin-bottom: 6px;
     }
-
-    /* Center text */
-    .wf-center-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      text-align: center;
-      z-index: 5;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .wf-ct-title {
-      font-size: 26px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 800;
-      color: var(--blue);
-    }
-    .wf-ct-sub {
+    .wf-step-desc {
       font-size: 13px;
       color: var(--gray-300);
-      margin-top: 4px;
+      line-height: 1.45;
     }
-
-    /* Mobile */
+    .wf-arrow-line {
+      flex-shrink: 0;
+      width: 32px;
+      height: 2px;
+      background: var(--gray-200);
+      margin-top: 21px; /* align with center of dot */
+    }
+    .wf-arrow-loop {
+      background: var(--blue);
+      position: relative;
+    }
+    .wf-arrow-loop::after {
+      content: "↺";
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      color: var(--blue);
+    }
     @media (max-width: 700px) {
-      .wf-stage { height: 260px; }
-      .wf-node { padding: 14px 16px; min-width: 100px; }
-      .wf-node .wf-label { font-size: 14px; }
-      .wf-ring-svg { width: 220px; height: 220px; }
-      .wf-loop-labels { width: 220px; height: 220px; }
-      .wf-ll { font-size: 12px; }
-      .wf-ct-title { font-size: 20px; }
+      .wf-flow {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+      }
+      .wf-step { max-width: 280px; }
+      .wf-arrow-line {
+        width: 2px;
+        height: 24px;
+        margin: 0 auto;
+        margin-top: 0;
+      }
     }
   </style>
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
@@ -1680,63 +1597,36 @@
       </div>
     </div>
 
-    <!-- Scroll-controlled workflow diagram -->
-    <div class="wf-scroll" id="wfScroll">
-      <!-- State label -->
-      <p class="wf-state-label" id="wfLabel"><span class="wf-label-broken">How most teams work</span><span class="wf-label-fixed">With Skip the Noise</span></p>
-
-      <!-- All elements in one scene, positioned absolutely -->
-      <div class="wf-stage">
-        <!-- Three boxes -->
-        <div class="wf-node wf-node-1" id="wfNode1">
-          <div class="wf-label">You</div>
-          <div class="wf-sublabel">brief the work</div>
-        </div>
-        <div class="wf-node wf-node-2" id="wfNode2">
-          <div class="wf-label">Creative</div>
-          <div class="wf-sublabel">Agency</div>
-        </div>
-        <div class="wf-node wf-node-3" id="wfNode3">
-          <div class="wf-label">Media</div>
-          <div class="wf-sublabel">Buyer</div>
-        </div>
-
-        <!-- Gap connectors (fade out on scroll) -->
-        <div class="wf-gap-1" id="wfGap1">
-          <svg width="60" height="2"><line x1="0" y1="1" x2="60" y2="1" stroke="#fca5a5" stroke-width="2" stroke-dasharray="6 4"/></svg>
-          <span>GAP</span>
-        </div>
-        <div class="wf-gap-2" id="wfGap2">
-          <svg width="60" height="2"><line x1="0" y1="1" x2="60" y2="1" stroke="#fca5a5" stroke-width="2" stroke-dasharray="6 4"/></svg>
-          <span>GAP</span>
-        </div>
-
-        <!-- Circle (draws itself via stroke-dashoffset) -->
-        <svg class="wf-ring-svg" id="wfRing" viewBox="0 0 300 300">
-          <circle cx="150" cy="150" r="120" />
-          <!-- Dots at 72° intervals matching labels -->
-          <circle cx="150" cy="30" r="5" fill="var(--blue)" stroke="white" stroke-width="2"/>
-          <circle cx="264" cy="113" r="5" fill="var(--blue)" stroke="white" stroke-width="2"/>
-          <circle cx="221" cy="247" r="5" fill="var(--blue)" stroke="white" stroke-width="2"/>
-          <circle cx="79" cy="247" r="5" fill="var(--blue)" stroke="white" stroke-width="2"/>
-          <circle cx="36" cy="113" r="5" fill="var(--blue)" stroke="white" stroke-width="2"/>
-        </svg>
-
-        <!-- Loop labels (fade in at end of scroll) -->
-        <div class="wf-loop-labels" id="wfLoopLabels">
-          <!-- 5 labels at exact pentagon positions (72° intervals) -->
-          <span class="wf-ll" style="left:50%; top:-10.7%; transform:translate(-50%,-50%);">Brief</span>
-          <span class="wf-ll" style="left:107.7%; top:31.2%; transform:translate(-50%,-50%);">Create</span>
-          <span class="wf-ll" style="left:85.7%; top:99.1%; transform:translate(-50%,-50%);">Launch</span>
-          <span class="wf-ll" style="left:14.3%; top:99.1%; transform:translate(-50%,-50%);">Learn</span>
-          <span class="wf-ll" style="left:-7.7%; top:31.2%; transform:translate(-50%,-50%);">Repeat</span>
-        </div>
-
-        <!-- Center text -->
-        <div class="wf-center-text" id="wfCenter">
-          <div class="wf-ct-title">One Loop</div>
-          <div class="wf-ct-sub">No gap. No handoff.</div>
-        </div>
+    <!-- Horizontal flow: the STN loop -->
+    <div class="wf-flow" data-anim data-delay="2">
+      <div class="wf-step">
+        <div class="wf-dot-num">1</div>
+        <h4 class="wf-step-title">You brief us</h4>
+        <p class="wf-step-desc">One team. One channel. No vendor juggling.</p>
+      </div>
+      <div class="wf-arrow-line"></div>
+      <div class="wf-step">
+        <div class="wf-dot-num">2</div>
+        <h4 class="wf-step-title">We build 20+ creatives</h4>
+        <p class="wf-step-desc">AI handles volume. Humans direct strategy.</p>
+      </div>
+      <div class="wf-arrow-line"></div>
+      <div class="wf-step">
+        <div class="wf-dot-num">3</div>
+        <h4 class="wf-step-title">We run the media</h4>
+        <p class="wf-step-desc">Same team that made it. No handoff.</p>
+      </div>
+      <div class="wf-arrow-line"></div>
+      <div class="wf-step">
+        <div class="wf-dot-num">4</div>
+        <h4 class="wf-step-title">We measure what converts</h4>
+        <p class="wf-step-desc">Creative tied to performance data.</p>
+      </div>
+      <div class="wf-arrow-line wf-arrow-loop"></div>
+      <div class="wf-step">
+        <div class="wf-dot-num">↺</div>
+        <h4 class="wf-step-title">Next round gets smarter</h4>
+        <p class="wf-step-desc">Winning patterns feed the next batch.</p>
       </div>
     </div>
 
@@ -2926,101 +2816,7 @@
         if (pos > 0) pos -= halfWidth;
       });
     }
-    // ── Workflow diagram: scroll-controlled morph ──────────────────
-    const wfScroll = document.getElementById('wfScroll');
-    if (wfScroll) {
-      const node1 = document.getElementById('wfNode1');
-      const node2 = document.getElementById('wfNode2');
-      const node3 = document.getElementById('wfNode3');
-      const gap1 = document.getElementById('wfGap1');
-      const gap2 = document.getElementById('wfGap2');
-      const ring = document.getElementById('wfRing').querySelector('circle');
-      const loopLabels = document.getElementById('wfLoopLabels');
-      const centerText = document.getElementById('wfCenter');
-      const labelBroken = wfScroll.querySelector('.wf-label-broken');
-      const labelFixed = wfScroll.querySelector('.wf-label-fixed');
-      const CIRCUMFERENCE = 754; // 2 * PI * 120
-
-      // Initial positions (percentage from left)
-      const POS_SPREAD = { n1: 18, n2: 50, n3: 82, g1: 34, g2: 66 };
-      const POS_CENTER = { n1: 50, n2: 50, n3: 50, g1: 50, g2: 50 };
-
-      function lerp(a, b, t) { return a + (b - a) * t; }
-      function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
-
-      // Set initial positions
-      function setPositions(t) {
-        // t=0: spread out. t=1: merged at center
-        const p = clamp(t, 0, 1);
-
-        // Ease the transition
-        const ep = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
-
-        // Move nodes
-        node1.style.left = lerp(POS_SPREAD.n1, POS_CENTER.n1, ep) + '%';
-        node2.style.left = lerp(POS_SPREAD.n2, POS_CENTER.n2, ep) + '%';
-        node3.style.left = lerp(POS_SPREAD.n3, POS_CENTER.n3, ep) + '%';
-
-        // Fade + scale nodes — gone by 35% scroll
-        const nodeOpacity = Math.max(0, 1 - ep * 3);
-        const nodeScale = lerp(1, 0.4, Math.min(ep * 2, 1));
-        [node1, node2, node3].forEach(n => {
-          n.style.opacity = nodeOpacity;
-          n.style.transform = `translate(-50%, -50%) scale(${nodeScale})`;
-        });
-
-        // Red border on creative/media boxes
-        if (ep < 0.5) {
-          node2.classList.add('red-border');
-          node3.classList.add('red-border');
-        } else {
-          node2.classList.remove('red-border');
-          node3.classList.remove('red-border');
-        }
-
-        // Gaps fade out very early — gone by 20% scroll
-        const gapOpacity = Math.max(0, 1 - ep * 5);
-        gap1.style.left = lerp(POS_SPREAD.g1, POS_CENTER.g1, ep) + '%';
-        gap2.style.left = lerp(POS_SPREAD.g2, POS_CENTER.g2, ep) + '%';
-        gap1.style.opacity = gapOpacity;
-        gap2.style.opacity = gapOpacity;
-
-        // Circle draws itself (starts at 30% scroll, done at 70%)
-        const circleT = clamp((p - 0.3) / 0.4, 0, 1);
-        ring.style.strokeDashoffset = CIRCUMFERENCE * (1 - circleT);
-
-        // Labels + center text fade in (starts at 55%)
-        const labelT = clamp((p - 0.55) / 0.3, 0, 1);
-        loopLabels.querySelectorAll('.wf-ll').forEach((ll, i) => {
-          const stagger = clamp((labelT - i * 0.05) * 2, 0, 1);
-          ll.style.opacity = stagger;
-        });
-        centerText.style.opacity = labelT;
-
-        // State label crossfade — switch at 25%
-        labelBroken.style.opacity = Math.max(0, 1 - ep * 4);
-        labelFixed.style.opacity = clamp(ep * 3 - 0.6, 0, 1);
-      }
-
-      // Set initial state
-      setPositions(0);
-
-      // Scroll handler
-      function onScroll() {
-        const rect = wfScroll.getBoundingClientRect();
-        const viewH = window.innerHeight;
-        // Start morphing when section enters bottom 70% of viewport
-        // Complete when section is at top 30%
-        const start = viewH * 0.7;
-        const end = viewH * 0.15;
-        const range = start - end;
-        const progress = (start - rect.top) / range;
-        setPositions(clamp(progress, 0, 1));
-      }
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll(); // initial
-    }
+    // ── (Workflow diagram is now static — no scroll JS needed) ─────
 
     // ── Custom cursor ──────────────────────────────────────────────
     const dot = document.getElementById('cursorDot');
