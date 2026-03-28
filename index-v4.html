@@ -1321,11 +1321,194 @@
       .ext-grid { flex-direction: column !important; align-items: center !important; }
       .process-grid { gap: 16px !important; }
     }
+
+    /* ═══════════════════════════════════════════
+       INTERACTIVE UPGRADES
+       ═══════════════════════════════════════════ */
+
+    /* ── Custom cursor ────────────────────────── */
+    .cursor-dot {
+      width: 8px; height: 8px;
+      background: var(--blue);
+      border-radius: 50%;
+      position: fixed; top: 0; left: 0;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.2s, height 0.2s, background 0.2s;
+      mix-blend-mode: difference;
+    }
+    .cursor-dot.hovering {
+      width: 40px; height: 40px;
+      background: rgba(124, 58, 237, 0.3);
+    }
+    @media (max-width: 809px) { .cursor-dot { display: none; } }
+    @media (hover: none) { .cursor-dot { display: none; } }
+
+    /* ── Magnetic button ──────────────────────── */
+    .btn-magnetic {
+      transition: transform 0.15s ease;
+    }
+
+    /* ── Gallery hover effects ────────────────── */
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .gallery-item video { transition: opacity 0.3s; }
+    .gallery-item .gallery-stat {
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s;
+    }
+    .gallery-item:hover .gallery-stat {
+      transform: translateY(0) !important;
+      opacity: 1 !important;
+    }
+    .gallery-item:hover img,
+    .gallery-item:hover video {
+      transform: scale(1.03);
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* ── Text reveal animation ────────────────── */
+    .text-reveal .word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.4s, transform 0.4s;
+      transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .text-reveal.visible .word {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Film grain overlay ───────────────────── */
+    .grain::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+      z-index: 1;
+    }
+    .grain { position: relative; }
+    .grain > * { position: relative; z-index: 2; }
+
+    /* ── Workflow video section ────────────────── */
+    .workflow-video {
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--gray-200);
+    }
+    .workflow-video video {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── Option A: CSS animated version ───────── */
+    .workflow-css {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      height: 280px;
+    }
+    .wf-state {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      transition: opacity 0.6s, transform 0.6s;
+      transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .wf-broken {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .wf-loop {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    .workflow-css.show-loop .wf-broken {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    .workflow-css.show-loop .wf-loop {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .wf-box {
+      background: rgba(255,255,255,0.04);
+      border: 2px solid;
+      border-radius: 14px;
+      padding: 20px 24px;
+      text-align: center;
+      min-width: 130px;
+    }
+    .wf-box.red { border-color: #fca5a5; }
+    .wf-box.purple { border-color: var(--blue); }
+    .wf-gap {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      animation: pulse-gap 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse-gap {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.15); }
+    }
+    .wf-circle {
+      width: 200px; height: 200px;
+      border: 3px solid var(--blue);
+      border-radius: 50%;
+      position: relative;
+      animation: spin-slow 20s linear infinite;
+    }
+    @keyframes spin-slow {
+      to { transform: rotate(360deg); }
+    }
+    .wf-circle-label {
+      position: absolute;
+      font-size: 13px;
+      font-weight: 700;
+      color: white;
+      white-space: nowrap;
+    }
+    .wf-circle-dot {
+      position: absolute;
+      width: 8px; height: 8px;
+      background: var(--blue);
+      border-radius: 50%;
+    }
+    .wf-center-text {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--blue);
+      text-align: center;
+      animation: none; /* don't spin with parent */
+    }
+    /* Counter-rotate center text so it stays upright */
+    .wf-circle .wf-center-text {
+      animation: counter-spin 20s linear infinite;
+    }
+    @keyframes counter-spin {
+      to { transform: translate(-50%, -50%) rotate(-360deg); }
+    }
   </style>
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 </head>
 <body>
 <div class="scroll-progress" id="scrollProgress"></div>
+<div class="cursor-dot" id="cursorDot"></div>
 <!-- NAV -->
 <nav class="nav">
   <div class="container nav-inner">
@@ -1439,69 +1622,75 @@
   </div>
 </section>
 
-<!-- PROBLEM AGITATION — before/after split -->
+<!-- PROBLEM AGITATION — visual flow -->
 <section style="background:var(--bg); padding:80px 0;">
   <div class="container" style="max-width:900px; text-align:center;">
     <div class="section-header" style="margin-bottom:48px;">
-      <div class="title-row h2" style="justify-content:center;" data-anim>
+      <div class="title-row h2 text-reveal" style="justify-content:center;" data-anim>
         <span>Sound</span>
         <span class="badge badge-orange" data-anim="tilt" data-delay="1">familiar?</span>
       </div>
     </div>
 
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:800px; margin:0 auto;" data-anim data-delay="2">
+    <!-- Option B: Video (shows on desktop) -->
+    <div class="workflow-video" data-anim data-delay="2" style="margin-bottom:32px;">
+      <video autoplay muted loop playsinline preload="metadata" poster="assets/workflow-loop-static.png">
+        <source src="assets/workflow-loop.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- Before/after cards below the video -->
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:800px; margin:0 auto;" data-anim data-delay="3">
       <!-- WITHOUT US -->
-      <div style="background:#fef2f2; border:2px solid #fecaca; border-radius:20px; padding:32px 28px; text-align:left;">
-        <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#ef4444; margin-bottom:20px;">Without a closed loop</p>
-        <div style="display:flex; flex-direction:column; gap:14px;">
-          <div style="display:flex; gap:10px; align-items:flex-start; font-size:15px; color:#991b1b; line-height:1.45;">
+      <div style="background:#fef2f2; border:2px solid #fecaca; border-radius:20px; padding:28px 24px; text-align:left;">
+        <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#ef4444; margin-bottom:16px;">Without a closed loop</p>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#991b1b; line-height:1.45;">
             <span style="color:#ef4444; font-weight:700; flex-shrink:0;">✕</span>
-            Creative agency delivers assets a week late. Media buyer launches blind.
+            Assets arrive late. Media buyer launches blind.
           </div>
-          <div style="display:flex; gap:10px; align-items:flex-start; font-size:15px; color:#991b1b; line-height:1.45;">
+          <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#991b1b; line-height:1.45;">
             <span style="color:#ef4444; font-weight:700; flex-shrink:0;">✕</span>
-            Same 4 ads running for months. No bandwidth for fresh creative.
+            Same 4 ads for months. No fresh creative.
           </div>
-          <div style="display:flex; gap:10px; align-items:flex-start; font-size:15px; color:#991b1b; line-height:1.45;">
+          <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#991b1b; line-height:1.45;">
             <span style="color:#ef4444; font-weight:700; flex-shrink:0;">✕</span>
-            Spending $50K+/mo but can't tie creative to pipeline or revenue.
+            Can't tie creative to pipeline or revenue.
           </div>
-          <div style="display:flex; gap:10px; align-items:flex-start; font-size:15px; color:#991b1b; line-height:1.45;">
+          <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#991b1b; line-height:1.45;">
             <span style="color:#ef4444; font-weight:700; flex-shrink:0;">✕</span>
-            2-3 vendors on Slack threads. Nobody owns the outcome.
+            2-3 vendors. Nobody owns the outcome.
           </div>
         </div>
       </div>
-
       <!-- WITH US -->
-      <div style="background:#f0f0ff; border:2px solid #c4b5fd; border-radius:20px; padding:32px 28px; text-align:left;">
-        <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue); margin-bottom:20px;">With Skip the Noise</p>
-        <div style="display:flex; flex-direction:column; gap:14px;">
-          <div style="display:flex; gap:10px; align-items:flex-start; font-size:15px; color:#312e81; line-height:1.45;">
+      <div style="background:#f0f0ff; border:2px solid #c4b5fd; border-radius:20px; padding:28px 24px; text-align:left;">
+        <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue); margin-bottom:16px;">With Skip the Noise</p>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#312e81; line-height:1.45;">
             <span style="color:var(--blue); font-weight:700; flex-shrink:0;">✓</span>
-            One team makes the creative and runs the media. No handoff.
+            One team makes and runs the ads. No handoff.
           </div>
-          <div style="display:flex; gap:10px; align-items:flex-start; font-size:15px; color:#312e81; line-height:1.45;">
+          <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#312e81; line-height:1.45;">
             <span style="color:var(--blue); font-weight:700; flex-shrink:0;">✓</span>
-            20+ fresh creatives/month. AI handles volume, humans direct strategy.
+            20+ fresh creatives/month via AI.
           </div>
-          <div style="display:flex; gap:10px; align-items:flex-start; font-size:15px; color:#312e81; line-height:1.45;">
+          <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#312e81; line-height:1.45;">
             <span style="color:var(--blue); font-weight:700; flex-shrink:0;">✓</span>
-            Every creative decision tied to performance data. You see what works.
+            Every creative tied to performance data.
           </div>
-          <div style="display:flex; gap:10px; align-items:flex-start; font-size:15px; color:#312e81; line-height:1.45;">
+          <div style="display:flex; gap:10px; align-items:flex-start; font-size:14px; color:#312e81; line-height:1.45;">
             <span style="color:var(--blue); font-weight:700; flex-shrink:0;">✓</span>
-            Two people. One Slack channel. Full accountability.
+            Two people. One channel. Full accountability.
           </div>
         </div>
       </div>
     </div>
 
-    <p class="body" style="margin-top:40px; font-size:17px; font-weight:600; color:var(--dark);" data-anim data-delay="3">The problem isn't your creative. It isn't your media buyer. It's the gap between them.</p>
+    <p class="body" style="margin-top:36px; font-size:17px; font-weight:600; color:var(--dark);" data-anim data-delay="4">The problem isn't your creative. It isn't your media buyer. It's the gap between them.</p>
   </div>
 </section>
 
-<!-- Mobile responsive for before/after split -->
 <style>
   @media (max-width: 700px) {
     section:has(.badge-orange) [style*="grid-template-columns:1fr 1fr"] {
@@ -1511,7 +1700,7 @@
 </style>
 
 <!-- RESULTS (dark section) -->
-<section id="work" class="section-dark">
+<section id="work" class="section-dark grain">
   <div class="container">
     <div class="section-header">
       <div class="title-row h2" style="justify-content:center;" data-anim>
@@ -2636,6 +2825,81 @@
         if (pos > 0) pos -= halfWidth;
       });
     }
+    // ── Custom cursor ──────────────────────────────────────────────
+    const dot = document.getElementById('cursorDot');
+    if (dot && window.matchMedia('(hover: hover)').matches) {
+      let mx = 0, my = 0, dx = 0, dy = 0;
+      document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+      (function moveDot() {
+        dx += (mx - dx) * 0.15;
+        dy += (my - dy) * 0.15;
+        dot.style.left = dx + 'px';
+        dot.style.top = dy + 'px';
+        requestAnimationFrame(moveDot);
+      })();
+      const hovers = 'a, button, .btn, .project-card, .testimonial-card, .gallery-item, video';
+      document.querySelectorAll(hovers).forEach(el => {
+        el.addEventListener('mouseenter', () => dot.classList.add('hovering'));
+        el.addEventListener('mouseleave', () => dot.classList.remove('hovering'));
+      });
+    }
+
+    // ── Magnetic buttons ─────────────────────────────────────────
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.classList.add('btn-magnetic');
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        const cx = r.left + r.width / 2;
+        const cy = r.top + r.height / 2;
+        const dx = (e.clientX - cx) * 0.15;
+        const dy = (e.clientY - cy) * 0.15;
+        btn.style.transform = `translate(${dx}px, ${dy}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = '';
+      });
+    });
+
+    // ── Gallery hover-to-play ────────────────────────────────────
+    document.querySelectorAll('#work-gallery [style*="aspect-ratio"]').forEach(item => {
+      item.classList.add('gallery-item');
+      const vid = item.querySelector('video');
+      if (vid) {
+        vid.pause();
+        item.addEventListener('mouseenter', () => vid.play());
+        item.addEventListener('mouseleave', () => { vid.pause(); vid.currentTime = 0; });
+      }
+    });
+    // Bento grid items
+    document.querySelectorAll('#work-gallery [style*="grid-column"], #work-gallery [style*="border-radius:16px"]').forEach(item => {
+      if (item.querySelector('img')) item.classList.add('gallery-item');
+    });
+
+    // ── Text reveal (word-by-word) ───────────────────────────────
+    document.querySelectorAll('.h1 [data-anim], .h2, .title-row').forEach(el => {
+      // Only apply to section headers, not badges
+      if (el.classList.contains('badge') || el.querySelector('.badge')) return;
+      const text = el.textContent.trim();
+      if (!text || text.length < 4) return;
+      // Don't re-wrap if already has children elements
+      if (el.children.length > 0) return;
+      const words = text.split(/\s+/);
+      el.textContent = '';
+      el.classList.add('text-reveal');
+      words.forEach((w, i) => {
+        const span = document.createElement('span');
+        span.className = 'word';
+        span.textContent = w + ' ';
+        span.style.transitionDelay = (i * 0.06) + 's';
+        el.appendChild(span);
+      });
+    });
+    // Trigger text reveal on scroll
+    const textRevealObs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.text-reveal').forEach(el => textRevealObs.observe(el));
+
   </script>
 </body>
 </html>
