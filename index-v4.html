@@ -1714,15 +1714,27 @@
         <!-- Circle (draws itself via stroke-dashoffset) -->
         <svg class="wf-ring-svg" id="wfRing" viewBox="0 0 300 300">
           <circle cx="150" cy="150" r="120" />
+          <!-- Dots at 72° intervals matching labels -->
+          <circle cx="150" cy="30" r="5" fill="var(--blue)" stroke="white" stroke-width="2"/>
+          <circle cx="264" cy="113" r="5" fill="var(--blue)" stroke="white" stroke-width="2"/>
+          <circle cx="221" cy="247" r="5" fill="var(--blue)" stroke="white" stroke-width="2"/>
+          <circle cx="79" cy="247" r="5" fill="var(--blue)" stroke="white" stroke-width="2"/>
+          <circle cx="36" cy="113" r="5" fill="var(--blue)" stroke="white" stroke-width="2"/>
         </svg>
 
         <!-- Loop labels (fade in at end of scroll) -->
         <div class="wf-loop-labels" id="wfLoopLabels">
-          <span class="wf-ll" style="top:-20px; left:50%; transform:translateX(-50%);">Brief</span>
-          <span class="wf-ll" style="top:20%; right:-48px;">Create</span>
-          <span class="wf-ll" style="bottom:8%; right:-52px;">Launch</span>
-          <span class="wf-ll" style="bottom:-20px; left:50%; transform:translateX(-50%);">Learn</span>
-          <span class="wf-ll" style="top:20%; left:-52px;">Repeat</span>
+          <!-- 5 labels evenly spaced at 72° intervals, positioned from center -->
+          <!-- Brief: -90° (top) -->
+          <span class="wf-ll" style="top:-28px; left:50%; transform:translateX(-50%);">Brief</span>
+          <!-- Create: -18° (upper right) -->
+          <span class="wf-ll" style="top:16%; right:-56px;">Create</span>
+          <!-- Launch: 54° (lower right) -->
+          <span class="wf-ll" style="bottom:6%; right:-56px;">Launch</span>
+          <!-- Learn: 126° (lower left) -->
+          <span class="wf-ll" style="bottom:6%; left:-44px;">Learn</span>
+          <!-- Repeat: 198° (upper left) -->
+          <span class="wf-ll" style="top:16%; left:-56px;">Repeat</span>
         </div>
 
         <!-- Center text -->
