@@ -2392,11 +2392,16 @@
       touchMultiplier: 1.5,
       lerp: 0.08,
     });
-    function raf(time) {
-      lenis.raf(time);
+
+    // Connect Lenis to GSAP ScrollTrigger
+    if (typeof ScrollTrigger !== 'undefined') {
+      lenis.on('scroll', ScrollTrigger.update);
+      gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+      gsap.ticker.lagSmoothing(0);
+    } else {
+      function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
       requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
     // Wire anchor links to Lenis
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
