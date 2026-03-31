@@ -1693,7 +1693,7 @@
 
     <!-- eComm label -->
     <div style="padding:8px 40px 12px; width:100%; text-align:center;">
-      <span style="font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; background:linear-gradient(90deg,#f97316,#ef4444); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">eComm &amp; DTC</span>
+      <span style="font-size:22px; font-weight:900; letter-spacing:-0.02em; font-family:'Satoshi',system-ui,sans-serif; background:linear-gradient(90deg,#f97316,#ef4444); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">eComm &amp; DTC</span>
       <p style="font-size:13px; color:rgba(0,0,0,0.45); margin:6px 0 0;">Platform-native ads that stop the scroll and consistently drive 3–4x ROAS</p>
     </div>
 
@@ -1725,7 +1725,7 @@
 
     <!-- SaaS label -->
     <div style="padding:20px 40px 12px; width:100%; text-align:center;">
-      <span style="font-size:11px; font-weight:800; letter-spacing:0.1em; text-transform:uppercase; background:linear-gradient(90deg,#5500DD,#a855f7); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">SaaS</span>
+      <span style="font-size:22px; font-weight:900; letter-spacing:-0.02em; font-family:'Satoshi',system-ui,sans-serif; background:linear-gradient(90deg,#5500DD,#a855f7); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">SaaS</span>
       <p style="font-size:13px; color:rgba(0,0,0,0.45); margin:6px 0 0;">Full-funnel creatives built on ICP insights that drive 30% more qualified traffic and 20% more sales-qualified leads</p>
     </div>
 
@@ -1806,102 +1806,166 @@
     <h2 class="wf-text" style="font-family:'Satoshi', system-ui, sans-serif; font-size:clamp(28px,3.6vw,46px); font-weight:900; letter-spacing:-0.03em; color:#0d0d0d; line-height:1.1; margin:0 0 16px; animation-delay:0.1s;">Your team stays lean.<br>We cover the gaps.</h2>
     <p class="wf-text" style="font-size:17px; color:rgba(0,0,0,0.5); max-width:520px; margin:0 auto 40px; line-height:1.6; animation-delay:0.2s;">We plug into your existing team and take on the roles that are hard to hire for.</p>
 
-    <!-- Bandwidth animation -->
+    <!-- Bandwidth animation v2 -->
     <style>
-      @keyframes bw-calm-float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-3px); }
+      @keyframes bw-shake {
+        0%,100% { transform:translateX(0) rotate(0deg); }
+        20% { transform:translateX(-2px) rotate(-0.6deg); }
+        40% { transform:translateX(2px) rotate(0.6deg); }
+        60% { transform:translateX(-1px) rotate(-0.3deg); }
+        80% { transform:translateX(1px) rotate(0.3deg); }
       }
-      .bw-calm {
-        font-size: 10px; font-weight: 700;
-        font-family: 'Satoshi', system-ui, sans-serif;
-        background: rgba(22,163,74,0.1); color: #15803d;
-        border: 1px solid rgba(22,163,74,0.28);
-        border-radius: 100px; padding: 4px 11px;
-        white-space: nowrap;
-        animation: bw-calm-float 2.8s ease-in-out infinite;
+      @keyframes bw-pile-in {
+        from { opacity:0; transform:translateY(-8px) scale(0.8); }
+        to   { opacity:1; transform:translateY(0) scale(1); }
       }
+      @keyframes bw-right-in {
+        from { opacity:0; transform:translateX(-10px); }
+        to   { opacity:1; transform:translateX(0); }
+      }
+      @keyframes bw-pulse-red {
+        0%,100% { box-shadow:0 0 0 0 rgba(220,38,38,0); }
+        50%      { box-shadow:0 0 0 6px rgba(220,38,38,0.12); }
+      }
+      .bw-shaking { animation: bw-shake 0.45s ease-in-out; }
     </style>
-    <div style="display:flex; align-items:center; justify-content:center; gap:36px; margin-bottom:48px; flex-wrap:wrap;">
 
-      <!-- LEFT: Before (chaos) -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap:14px;">
-        <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(0,0,0,0.35);">Before</span>
-        <div id="bw-chaos" style="position:relative; width:180px; height:180px; overflow:visible;">
-          <svg width="180" height="180" style="position:absolute; inset:0; pointer-events:none; overflow:visible;">
-            <circle cx="90" cy="90" r="82" fill="rgba(220,38,38,0.05)" stroke="rgba(220,38,38,0.45)" stroke-width="1.5" stroke-dasharray="6 4"/>
-          </svg>
-          <!-- "Team" label in center -->
-          <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; pointer-events:none;">
-            <span style="font-size:11px; font-weight:700; color:rgba(220,38,38,0.35); letter-spacing:0.08em; text-transform:uppercase;">Team</span>
+    <div style="display:flex; align-items:flex-start; justify-content:center; gap:40px; margin-bottom:52px; flex-wrap:wrap;">
+
+      <!-- LEFT: Before (overwhelmed) -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap:10px;">
+        <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(0,0,0,0.35);">Without us</span>
+
+        <!-- Circle wrapper — overflow visible so tasks can spill out -->
+        <div style="position:relative; width:200px;">
+          <div id="bw-left-circle" style="position:relative; width:200px; height:200px; overflow:visible; border-radius:50%;">
+            <svg width="200" height="200" style="position:absolute; inset:0; pointer-events:none; overflow:visible;">
+              <circle cx="100" cy="100" r="93" fill="rgba(220,38,38,0.05)" stroke="rgba(220,38,38,0.5)" stroke-width="1.5" stroke-dasharray="7 4"/>
+            </svg>
+            <!-- Inside: capacity meter -->
+            <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; padding:0 28px;">
+              <span style="font-size:9px; font-weight:700; color:rgba(220,38,38,0.45); letter-spacing:0.1em; text-transform:uppercase;">Capacity</span>
+              <div style="width:100%; height:7px; background:rgba(220,38,38,0.1); border-radius:100px; overflow:hidden;">
+                <div style="width:100%; height:100%; background:linear-gradient(90deg,#f87171,#dc2626); border-radius:100px;"></div>
+              </div>
+              <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:26px; font-weight:900; color:#dc2626; letter-spacing:-0.03em; line-height:1;">100%</span>
+              <span style="font-size:9px; font-weight:700; color:rgba(220,38,38,0.5); letter-spacing:0.08em; text-transform:uppercase;">Maxed out</span>
+            </div>
+            <!-- Flying tasks container -->
+            <div id="bw-fly" style="position:absolute; inset:0; overflow:visible; pointer-events:none;"></div>
           </div>
+
+          <!-- Overflow pile below circle -->
+          <div id="bw-pile" style="display:flex; flex-wrap:wrap; gap:5px; padding:10px 4px 0; justify-content:center; min-height:36px;"></div>
         </div>
-        <p style="font-size:12px; font-weight:500; color:rgba(0,0,0,0.4); margin:0; text-align:center; line-height:1.5;">Team bandwidth<br>maxed out</p>
+
+        <p style="font-size:12px; font-weight:500; color:rgba(0,0,0,0.4); margin:0; text-align:center; line-height:1.5;">Tasks pile up.<br>Team can't keep up.</p>
       </div>
 
       <!-- Arrow -->
-      <div style="font-size:24px; color:rgba(0,0,0,0.15); flex-shrink:0; margin-top:14px;">→</div>
+      <div style="font-size:22px; color:rgba(0,0,0,0.15); flex-shrink:0; margin-top:100px;">→</div>
 
-      <!-- RIGHT: With STN (calm) -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap:14px;">
+      <!-- RIGHT: With STN (in control) -->
+      <div style="display:flex; flex-direction:column; align-items:center; gap:10px;">
         <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#16a34a;">With STN</span>
-        <div style="position:relative; width:180px; height:180px;">
-          <svg width="180" height="180" style="position:absolute; inset:0; pointer-events:none;">
-            <circle cx="90" cy="90" r="82" fill="rgba(22,163,74,0.05)" stroke="rgba(22,163,74,0.45)" stroke-width="1.5"/>
+
+        <div style="position:relative; width:200px; height:200px;">
+          <svg width="200" height="200" style="position:absolute; inset:0; pointer-events:none;">
+            <circle cx="100" cy="100" r="93" fill="rgba(22,163,74,0.05)" stroke="rgba(22,163,74,0.45)" stroke-width="1.5"/>
           </svg>
-          <!-- Organized tasks inside -->
-          <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center;">
-            <div style="display:flex; flex-direction:column; gap:8px; align-items:center; padding:0 20px;">
-              <div style="display:flex; gap:6px;">
-                <span class="bw-calm" style="animation-delay:0s;">Creative</span>
-                <span class="bw-calm" style="animation-delay:0.5s;">Strategy</span>
-              </div>
-              <div style="display:flex; gap:6px;">
-                <span class="bw-calm" style="animation-delay:1.0s;">Analytics</span>
-                <span class="bw-calm" style="animation-delay:1.5s;">Testing</span>
-              </div>
-              <div style="display:flex; gap:6px;">
-                <span class="bw-calm" style="animation-delay:2.0s;">Reporting</span>
-                <span class="bw-calm" style="animation-delay:2.5s;">Media</span>
-              </div>
+          <!-- Inside: capacity meter + handled tasks -->
+          <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; padding:0 22px;">
+            <span style="font-size:9px; font-weight:700; color:rgba(22,163,74,0.5); letter-spacing:0.1em; text-transform:uppercase;">Capacity</span>
+            <div style="width:100%; height:7px; background:rgba(22,163,74,0.1); border-radius:100px; overflow:hidden;">
+              <div style="width:68%; height:100%; background:linear-gradient(90deg,#4ade80,#16a34a); border-radius:100px;"></div>
             </div>
+            <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:26px; font-weight:900; color:#16a34a; letter-spacing:-0.03em; line-height:1;">68%</span>
+            <span style="font-size:9px; font-weight:700; color:rgba(22,163,74,0.5); letter-spacing:0.08em; text-transform:uppercase;">Room to scale</span>
+            <!-- Handled tasks list -->
+            <div id="bw-handled" style="display:flex; flex-direction:column; gap:5px; width:100%; margin-top:6px;"></div>
           </div>
         </div>
-        <p style="font-size:12px; font-weight:500; color:rgba(0,0,0,0.4); margin:0; text-align:center; line-height:1.5;">Everything handled,<br>room to scale</p>
+
+        <p style="font-size:12px; font-weight:500; color:rgba(0,0,0,0.4); margin:0; text-align:center; line-height:1.5;">Every task handled.<br>Room to grow.</p>
       </div>
 
     </div>
     <script>
     (function() {
-      function initChaos() {
-        var container = document.getElementById('bw-chaos');
-        if (!container) return;
-        var labels = ['Creative', 'Strategy', 'Analytics', 'Testing', 'Reporting', 'Media', 'Content', 'Budgets', 'Copy', 'Design'];
-        var i = 0;
-        function spawn() {
-          var el = document.createElement('span');
-          el.textContent = labels[i % labels.length]; i++;
-          el.style.cssText = 'position:absolute;font-size:10px;font-weight:700;font-family:\'Satoshi\',system-ui,sans-serif;background:#fee2e2;color:#dc2626;border:1px solid rgba(220,38,38,0.35);border-radius:100px;padding:4px 11px;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;white-space:nowrap;z-index:2;';
-          container.appendChild(el);
-          var angle = Math.random() * Math.PI * 2;
-          var dist = 98 + Math.random() * 32;
-          var tx = Math.cos(angle) * dist;
-          var ty = Math.sin(angle) * dist;
-          var rot = (Math.random() - 0.5) * 55;
-          var dur = 1500 + Math.random() * 600;
-          var anim = el.animate([
-            { transform: 'translate(-50%,-50%) scale(0.6)', opacity: 0 },
-            { transform: 'translate(-50%,-50%) scale(1)', opacity: 1, offset: 0.18 },
-            { transform: 'translate(calc(-50% + ' + tx + 'px), calc(-50% + ' + ty + 'px)) rotate(' + rot + 'deg) scale(0.6)', opacity: 0 }
-          ], { duration: dur, easing: 'ease-in', fill: 'forwards' });
-          anim.onfinish = function() { try { el.remove(); } catch(e) {} };
-        }
-        spawn();
-        setInterval(spawn, 290);
+      var LABELS = ['Creative','Strategy','Analytics','Testing','Reporting','Media','Content','Design','Copy','Budgets'];
+      var fly = document.getElementById('bw-fly');
+      var pile = document.getElementById('bw-pile');
+      var circle = document.getElementById('bw-left-circle');
+      var handled = document.getElementById('bw-handled');
+      var flyIdx=0, pileIdx=0, rightIdx=0;
+      var MAX_PILE=9, MAX_RIGHT=4;
+
+      function spawnFly() {
+        if (!fly) return;
+        var el = document.createElement('span');
+        el.textContent = LABELS[flyIdx % LABELS.length]; flyIdx++;
+        el.style.cssText = 'position:absolute;font-size:10px;font-weight:700;font-family:\'Satoshi\',system-ui,sans-serif;background:#fee2e2;color:#dc2626;border:1px solid rgba(220,38,38,0.3);border-radius:100px;padding:4px 10px;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;white-space:nowrap;z-index:3;';
+        fly.appendChild(el);
+        var angle = Math.random() * Math.PI * 2;
+        var dist = 105 + Math.random() * 30;
+        var tx = Math.cos(angle)*dist, ty = Math.sin(angle)*dist;
+        var rot = (Math.random()-0.5)*55;
+        var anim = el.animate([
+          {transform:'translate(-50%,-50%) scale(0.5)',opacity:0},
+          {transform:'translate(-50%,-50%) scale(1)',opacity:1,offset:0.15},
+          {transform:'translate(calc(-50% + '+tx+'px),calc(-50% + '+ty+'px)) rotate('+rot+'deg) scale(0.55)',opacity:0}
+        ],{duration:1600+Math.random()*400,easing:'ease-in',fill:'forwards'});
+        anim.onfinish = function(){ try{el.remove();}catch(e){} };
       }
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() { setTimeout(initChaos, 400); });
-      } else { setTimeout(initChaos, 400); }
+
+      function addToPile() {
+        if (!pile || pile.children.length >= MAX_PILE) return;
+        var el = document.createElement('span');
+        el.textContent = LABELS[pileIdx % LABELS.length]; pileIdx++;
+        el.style.cssText = 'font-size:9px;font-weight:700;font-family:\'Satoshi\',system-ui,sans-serif;background:#fee2e2;color:#dc2626;border:1px solid rgba(220,38,38,0.3);border-radius:100px;padding:3px 9px;white-space:nowrap;opacity:0;';
+        pile.appendChild(el);
+        el.animate([{opacity:0,transform:'translateY(-8px)'},{opacity:1,transform:'translateY(0)'}],{duration:320,fill:'forwards'});
+        el.style.cssText += 'animation:bw-pile-in 0.32s ease both;';
+      }
+
+      function shakeCircle() {
+        if (!circle) return;
+        circle.classList.add('bw-shaking');
+        setTimeout(function(){ circle.classList.remove('bw-shaking'); }, 450);
+      }
+
+      function addHandled() {
+        if (!handled || handled.children.length >= MAX_RIGHT) return;
+        var el = document.createElement('div');
+        var label = LABELS[rightIdx % LABELS.length]; rightIdx++;
+        el.style.cssText = 'display:flex;align-items:center;gap:6px;font-size:10px;font-weight:700;font-family:\'Satoshi\',system-ui,sans-serif;color:#15803d;opacity:0;';
+        var check = document.createElement('span');
+        check.style.cssText = 'width:14px;height:14px;background:#16a34a;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:9px;color:#fff;flex-shrink:0;line-height:1;';
+        check.textContent = '✓';
+        var txt = document.createElement('span');
+        txt.style.cssText = 'background:rgba(22,163,74,0.1);border:1px solid rgba(22,163,74,0.28);border-radius:100px;padding:3px 10px;';
+        txt.textContent = label;
+        el.appendChild(check); el.appendChild(txt);
+        handled.appendChild(el);
+        el.animate([{opacity:0,transform:'translateX(-8px)'},{opacity:1,transform:'translateX(0)'}],{duration:380,fill:'forwards'});
+      }
+
+      function init() {
+        setInterval(spawnFly, 300);
+        var pileT = setInterval(function(){
+          addToPile();
+          if (pile && pile.children.length >= MAX_PILE) clearInterval(pileT);
+        }, 550);
+        setInterval(shakeCircle, 2400);
+        var rightT = setInterval(function(){
+          addHandled();
+          if (handled && handled.children.length >= MAX_RIGHT) clearInterval(rightT);
+        }, 750);
+      }
+
+      if (document.readyState==='loading') {
+        document.addEventListener('DOMContentLoaded', function(){ setTimeout(init,500); });
+      } else { setTimeout(init,500); }
     })();
     </script>
 
