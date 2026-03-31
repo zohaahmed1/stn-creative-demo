@@ -341,6 +341,15 @@
       border-bottom-right-radius: 64px;
       overflow: hidden;
     }
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      top: 10%; left: 50%;
+      transform: translateX(-50%);
+      width: 700px; height: 400px;
+      background: radial-gradient(ellipse at center, rgba(85,0,221,0.10) 0%, rgba(238,0,51,0.06) 50%, transparent 75%);
+      pointer-events: none;
+    }
     .hero-content {
       position: relative; z-index: 1;
       padding: 100px 0 0;
@@ -1617,8 +1626,15 @@
 <!-- NAV -->
 <nav class="nav">
   <div class="container nav-inner">
-    <a href="#" class="nav-logo" style="font-size:22px; font-weight:800; font-variation-settings:'wdth' 125,'wght' 800; text-decoration:none;">
-      <span style="color:#191923;">Skip the </span><span style="display:inline-block;background:linear-gradient(90deg,#5500dd,#cc0000);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Noise</span>
+    <a href="#" class="nav-logo" style="font-size:22px; font-weight:800; font-variation-settings:'wdth' 125,'wght' 800; text-decoration:none; display:flex; align-items:center; gap:8px;">
+      <span style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#5500dd,#cc0000);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="14" height="12" viewBox="0 0 14 12" fill="none">
+          <rect x="0.5" y="4" width="3" height="8" rx="1.5" fill="white"/>
+          <rect x="5.5" y="2" width="3" height="10" rx="1.5" fill="white"/>
+          <rect x="10.5" y="0" width="3" height="12" rx="1.5" fill="white"/>
+        </svg>
+      </span>
+      <span><span style="color:#191923;">Skip the </span><span style="display:inline-block;background:linear-gradient(90deg,#5500dd,#cc0000);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Noise</span></span>
     </a>
     <div class="nav-links">
       <a href="#work" class="nav-link">Results</a>
@@ -1642,22 +1658,27 @@
     <div class="container hero-center">
 
       <!-- Social proof row -->
-      <div data-anim="up" data-hero data-delay="1" style="display:flex; align-items:center; gap:14px; justify-content:center; flex-wrap:wrap;">
+      <div data-anim="up" data-hero data-delay="1" style="display:flex; align-items:center; gap:12px; justify-content:center; flex-wrap:wrap;">
         <div style="display:flex; align-items:center;">
-          <div style="width:36px;height:36px;border-radius:50%;border:2px solid white;background:white;box-shadow:0 1px 4px rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;overflow:hidden;">
-            <img src="https://cdn.simpleicons.org/adidas/000000" style="width:20px;height:20px;object-fit:contain;" alt="Adidas">
+          <div style="width:44px;height:44px;border-radius:50%;border:2.5px solid white;background:white;box-shadow:0 2px 8px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+            <img src="https://cdn.simpleicons.org/adidas/000000" style="width:24px;height:24px;object-fit:contain;" alt="Adidas">
           </div>
-          <div style="width:36px;height:36px;border-radius:50%;border:2px solid white;background:white;box-shadow:0 1px 4px rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-left:-10px;">
-            <img src="https://cdn.simpleicons.org/cocacola/F40009" style="width:22px;height:22px;object-fit:contain;" alt="Coca-Cola">
+          <div style="width:44px;height:44px;border-radius:50%;border:2.5px solid white;background:white;box-shadow:0 2px 8px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-left:-12px;">
+            <img src="https://cdn.simpleicons.org/cocacola/F40009" style="width:26px;height:26px;object-fit:contain;" alt="Coca-Cola">
           </div>
-          <div style="width:36px;height:36px;border-radius:50%;border:2px solid white;background:white;box-shadow:0 1px 4px rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-left:-10px;">
-            <img src="https://cdn.simpleicons.org/dell/007DB8" style="width:22px;height:22px;object-fit:contain;" alt="Dell">
+          <div style="width:44px;height:44px;border-radius:50%;border:2.5px solid white;background:white;box-shadow:0 2px 8px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-left:-12px;">
+            <img src="https://cdn.simpleicons.org/dell/007DB8" style="width:26px;height:26px;object-fit:contain;" alt="Dell">
           </div>
         </div>
-        <div style="width:1px; height:16px; background:rgba(0,0,0,0.1);"></div>
-        <span style="font-size:12px; font-variation-settings:'wdth' 125,'wght' 700; color:#191923;">eComm 3–4x ROAS</span>
-        <div style="width:3px; height:3px; border-radius:50%; background:rgba(0,0,0,0.2);"></div>
-        <span style="font-size:12px; font-variation-settings:'wdth' 125,'wght' 700; color:#191923;">SaaS 2x pipeline</span>
+        <div style="width:1px; height:20px; background:rgba(0,0,0,0.1);"></div>
+        <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(85,0,221,0.07);border:1px solid rgba(85,0,221,0.18);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:700;color:#5500DD;">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#5500DD"/></svg>
+          eComm 3–4x ROAS
+        </span>
+        <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(238,0,51,0.06);border:1px solid rgba(238,0,51,0.18);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:700;color:#cc0033;">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#cc0033"/></svg>
+          SaaS 2x pipeline
+        </span>
       </div>
 
       <!-- Headline -->
@@ -1671,7 +1692,7 @@
 
       <!-- CTA row -->
       <div data-anim="up" data-hero data-delay="6" style="display:flex; align-items:center; gap:10px;">
-        <a href="#book" style="display:inline-block; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:12px 28px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Get your free audit</a>
+        <a href="#book" style="display:inline-block; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:12px 28px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Get 3 free creatives</a>
         <a href="#work" style="display:inline-block; background:white; color:#191923; font-size:14px; font-variation-settings:'wdth' 125,'wght' 600; padding:12px 24px; border-radius:100px; border:1.5px solid rgba(0,0,0,0.14); text-decoration:none; white-space:nowrap; box-shadow:0 1px 4px rgba(0,0,0,0.06); transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 2px 10px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='0 1px 4px rgba(0,0,0,0.06)'">See our work</a>
       </div>
 
@@ -1687,25 +1708,25 @@
     <div class="hero-marquee-wrap">
       <div class="hero-marquee-track">
         <!-- Set 1 -->
-        <div class="hero-marquee-card"><img src="assets/Cpg_l5evv8k1.png"><span class="fb-badge">f</span></div>
-        <div class="hero-marquee-card"><img src="assets/handbag-fashion.jpg" style="object-position:top;"><span class="fb-badge">f</span></div>
-        <div class="hero-marquee-card"><img src="assets/Cpg_nO2xZZjv.png"><span class="fb-badge">f</span></div>
-        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_CDLIA58W.png"><span class="fb-badge">f</span></div>
-        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.png"><span class="fb-badge">f</span></div>
-        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_cTVg3CZh.png"><span class="fb-badge">f</span></div>
-        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_y5ER32ip2.png"><span class="fb-badge">f</span></div>
-        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_dSJmLIvg.png"><span class="fb-badge">f</span></div>
-        <div class="hero-marquee-card"><img src="assets/handbag-walk.jpg" style="object-position:top;"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/Cpg_l5evv8k1.png"></div>
+        <div class="hero-marquee-card"><img src="assets/handbag-fashion.jpg" style="object-position:top;"></div>
+        <div class="hero-marquee-card"><img src="assets/Cpg_nO2xZZjv.png"></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_CDLIA58W.png"></div>
+        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.png"></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_cTVg3CZh.png"></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_y5ER32ip2.png"></div>
+        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_dSJmLIvg.png"></div>
+        <div class="hero-marquee-card"><img src="assets/handbag-walk.jpg" style="object-position:top;"></div>
         <!-- Set 2 (duplicate for seamless loop) -->
-        <div class="hero-marquee-card"><img src="assets/Cpg_l5evv8k1.png"><span class="fb-badge">f</span></div>
-        <div class="hero-marquee-card"><img src="assets/handbag-fashion.jpg" style="object-position:top;"><span class="fb-badge">f</span></div>
-        <div class="hero-marquee-card"><img src="assets/Cpg_nO2xZZjv.png"><span class="fb-badge">f</span></div>
-        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_CDLIA58W.png"><span class="fb-badge">f</span></div>
-        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.png"><span class="fb-badge">f</span></div>
-        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_cTVg3CZh.png"><span class="fb-badge">f</span></div>
-        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_y5ER32ip2.png"><span class="fb-badge">f</span></div>
-        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_dSJmLIvg.png"><span class="fb-badge">f</span></div>
-        <div class="hero-marquee-card"><img src="assets/handbag-walk.jpg" style="object-position:top;"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/Cpg_l5evv8k1.png"></div>
+        <div class="hero-marquee-card"><img src="assets/handbag-fashion.jpg" style="object-position:top;"></div>
+        <div class="hero-marquee-card"><img src="assets/Cpg_nO2xZZjv.png"></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_CDLIA58W.png"></div>
+        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.png"></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_cTVg3CZh.png"></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_y5ER32ip2.png"></div>
+        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_dSJmLIvg.png"></div>
+        <div class="hero-marquee-card"><img src="assets/handbag-walk.jpg" style="object-position:top;"></div>
       </div>
     </div>
 
@@ -1719,35 +1740,35 @@
     <div class="hero-marquee-wrap" style="padding-bottom:0; padding-top:10px;">
       <div class="hero-marquee-track hero-marquee-track--reverse">
         <!-- Set 1 -->
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_A_FREE_LIVE_WEBINAR_announces_MASTER_MARKETING_nZd7GZFx.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_cGkIrXL (1).png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_HMTIB0O.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_flat_design_style_a_man_with_many_arms_duWjAS1.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_flat_design_style_this_graphic_showcases_0SxggUa-.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_advertising_style_the_central_XW-qffG.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_flat_design_style_the_text_lUuLzwdT.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_three_F2Ph3abS.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_modern_graphic_design_style_this_image_eS0eGv3q.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_iPbloyBD.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_l0ZOMv_a.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_A_FREE_LIVE_WEBINAR_announces_MASTER_MARKETING_nZd7GZFx.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_cGkIrXL (1).png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_HMTIB0O.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_flat_design_style_a_man_with_many_arms_duWjAS1.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_flat_design_style_this_graphic_showcases_0SxggUa-.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_advertising_style_the_central_XW-qffG.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_flat_design_style_the_text_lUuLzwdT.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_three_F2Ph3abS.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_modern_graphic_design_style_this_image_eS0eGv3q.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_iPbloyBD.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_l0ZOMv_a.png"></div>
         <!-- Set 2 (duplicate for seamless loop) -->
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_A_FREE_LIVE_WEBINAR_announces_MASTER_MARKETING_nZd7GZFx.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_cGkIrXL (1).png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_HMTIB0O.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_flat_design_style_a_man_with_many_arms_duWjAS1.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_flat_design_style_this_graphic_showcases_0SxggUa-.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_advertising_style_the_central_XW-qffG.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_flat_design_style_the_text_lUuLzwdT.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_three_F2Ph3abS.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_modern_graphic_design_style_this_image_eS0eGv3q.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_iPbloyBD.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
-        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_l0ZOMv_a.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_A_FREE_LIVE_WEBINAR_announces_MASTER_MARKETING_nZd7GZFx.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_cGkIrXL (1).png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_HMTIB0O.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_flat_design_style_a_man_with_many_arms_duWjAS1.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_flat_design_style_this_graphic_showcases_0SxggUa-.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_advertising_style_the_central_XW-qffG.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_flat_design_style_the_text_lUuLzwdT.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_three_F2Ph3abS.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_modern_graphic_design_style_this_image_eS0eGv3q.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_iPbloyBD.png"></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_l0ZOMv_a.png"></div>
       </div>
     </div>
 
