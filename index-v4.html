@@ -6,7 +6,8 @@
   <title>Skip the Noise Media — We Make the Ads. We Run the Ads. We Prove They Work.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wdth,wght@0,75..125,200..900;1,75..125,200..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
   <style>
     /* =============================================
        DESIGN TOKENS — extracted from Framer source
@@ -25,7 +26,7 @@
       --gray-300: #a8a8a8;
       --gray-400: #444;
       --navy: #19213d;
-      --font: "Mona Sans", system-ui, sans-serif;
+      --font: "Satoshi", system-ui, sans-serif;
       --wdth: 125;
     }
 
@@ -268,46 +269,35 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 20px; padding-bottom: 20px;
+      padding-top: 14px; padding-bottom: 14px;
       transition: padding 0.4s ease;
     }
     .nav.scrolled .nav-inner {
-      padding-top: 10px; padding-bottom: 10px;
+      padding-top: 8px; padding-bottom: 8px;
     }
     .nav-logo img { height: 41px; width: auto; }
     .nav-links {
-      display: flex; align-items: center; gap: 16px;
+      display: flex; align-items: center; gap: 2px;
     }
     .nav-link {
-      font-size: 16px;
+      font-size: 14px;
       font-variation-settings: "wdth" var(--wdth), "wght" 500;
-      padding: 4px 8px;
+      padding: 7px 14px;
+      border-radius: 100px;
       position: relative;
-      transition: color 0.3s ease;
+      transition: background 0.2s, color 0.2s;
+      color: #555;
     }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 8px;
-      right: 8px;
-      height: 2px;
-      background: var(--blue);
-      border-radius: 1px;
-      transform: scaleX(0);
-      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .nav-link:hover::after {
-      transform: scaleX(1);
+    .nav-link::after { display: none; }
+    .nav-link:hover {
+      background: rgba(0,0,0,0.05);
+      color: var(--navy);
     }
     .nav-link.active {
-      color: var(--blue);
+      color: var(--navy);
       font-variation-settings: "wdth" var(--wdth), "wght" 600;
     }
-    .nav-link.active::after {
-      transform: scaleX(1);
-    }
-    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-right { display: flex; align-items: center; gap: 8px; }
     .nav-email {
       display: flex; align-items: center; gap: 6px;
       font-size: 18px;
@@ -345,23 +335,108 @@
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background-image: url(https://framerusercontent.com/images/F1YvjJ6nNzuLmAB7LZfz8N0FUE.svg);
-      background-repeat: repeat;
-      background-size: 78px auto;
+      background-image: radial-gradient(circle, rgba(0,0,0,0.09) 1px, transparent 1px);
+      background-size: 20px 20px;
       border-bottom-left-radius: 64px;
       border-bottom-right-radius: 64px;
       overflow: hidden;
     }
     .hero-content {
       position: relative; z-index: 1;
-      padding: 140px 0 100px;
+      padding: 100px 0 0;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      align-items: center;
+    }
+    .hero-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      padding-bottom: 36px;
+    }
+    .hero-headline {
+      font-size: clamp(40px, 4.8vw, 72px);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+    }
+    .hero-headline-bold {
+      display: block;
+      font-family: "Satoshi", system-ui, sans-serif;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+    .hero-headline-italic {
+      display: block;
+      font-family: "Playfair Display", Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      font-size: 1em;
+      color: var(--navy);
+    }
+    /* Full-width creative marquee strip */
+    .hero-marquee-wrap {
+      width: 100%;
+      overflow: hidden;
+      padding-bottom: 60px;
+      position: relative;
+    }
+    /* No edge fades */
+    .hero-marquee-track {
+      display: flex;
+      width: max-content;
+      gap: 10px;
+      animation: hero-scroll 45s linear infinite;
+    }
+    @keyframes hero-scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+    .hero-marquee-track--reverse {
+      animation: hero-scroll 50s linear infinite;
+    }
+    .hero-marquee-card {
+      flex-shrink: 0;
+      width: 320px;
+      aspect-ratio: 4/5;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+      position: relative;
+    }
+    .hero-marquee-card img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .hero-marquee-card--contain {
+      background: #fff;
+    }
+    .hero-marquee-card--contain img {
+      object-fit: contain;
+    }
+    .hero-marquee-card .fb-badge {
+      position: absolute; top: 6px; left: 6px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 4px;
+      font-size: 9px; font-weight: 800;
+      padding: 2px 6px;
+      color: #1877F2;
+    }
+    /* ROAS bar between headline and marquee */
+    .hero-roas-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 20px;
+      background: white;
+      border-radius: 100px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      border: 1px solid rgba(0,0,0,0.06);
     }
     .hero-grid {
       display: flex;
-      align-items: flex-start;
+      align-items: stretch;
       gap: 24px;
     }
     .hero-left {
@@ -373,9 +448,11 @@
       justify-content: center;
     }
     .hero-right {
-      flex: 1 0 0;
+      flex: 1.43 0 0;
       position: relative;
       min-width: 0;
+      display: flex;
+      align-items: stretch;
     }
     .hero-collage {
       display: grid;
@@ -404,18 +481,18 @@
       bottom: -90px;
       left: 50%;
       transform: translateX(-50%) translateY(40px);
-      width: 340px;
-      height: 250px;
+      width: 420px;
+      height: 310px;
       border-radius: 18px;
-      background: rgba(255, 253, 248, 0.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      box-shadow: 0 6px 24px rgba(0,0,0,0.06);
-      border: 1px solid rgba(0,0,0,0.04);
+      background: rgba(255, 253, 248, 0.90);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.05);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 10px;
+      padding: 12px;
       z-index: 5;
       opacity: 0;
     }
@@ -1411,35 +1488,34 @@
       overflow: hidden;
     }
     .st-spacer {
-      height: 60vh;
+      height: 80vh;
     }
-    .st-line {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+    .st-stack {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
+      gap: 32px;
+      max-width: 800px;
       padding: 0 24px;
-      z-index: 1;
     }
-    .st-line:has(.st-text.visible) { z-index: 3; }
-    .st-line:has(.st-text.fading) { z-index: 2; }
+    @media (max-width: 809px) {
+      .st-stack { gap: 20px; }
+    }
     .st-text {
-      font-size: clamp(28px, 5vw, 48px);
-      font-variation-settings: "wdth" var(--wdth), "wght" 600;
-      line-height: 1.2;
+      font-size: clamp(22px, 4vw, 38px);
+      font-variation-settings: "wdth" var(--wdth), "wght" 500;
+      line-height: 1.3;
       text-align: center;
-      max-width: 700px;
       opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-                  transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      pointer-events: none;
+      transform: translateY(50px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                  transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .st-text.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    .st-text.fading { opacity: 0; transform: translateY(-40px); transition-duration: 0.2s; }
-
-    /* Problem lines: lighter, slightly jittery */
+    .st-text.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Line 1-2: problem (gray, red highlights) */
     .st-text.problem {
       color: var(--gray-400);
       font-variation-settings: "wdth" var(--wdth), "wght" 400;
@@ -1449,16 +1525,7 @@
       color: #ef4444;
       font-variation-settings: "wdth" var(--wdth), "wght" 700;
     }
-
-    /* Transition line */
-    .st-text.shift {
-      font-size: clamp(16px, 2.5vw, 22px);
-      color: var(--gray-300);
-      font-variation-settings: "wdth" var(--wdth), "wght" 500;
-      letter-spacing: 0.05em;
-    }
-
-    /* Solution lines: bold, purple, clean */
+    /* Line 3: solution (bold, purple accent) */
     .st-text.solution {
       color: var(--navy);
       font-variation-settings: "wdth" var(--wdth), "wght" 700;
@@ -1466,85 +1533,24 @@
     .st-text.solution strong {
       color: var(--blue);
     }
-
-    /* Final punch line */
+    /* Line 4: punch (large, purple) */
     .st-text.punch {
-      font-size: clamp(32px, 6vw, 56px);
+      font-size: clamp(28px, 5vw, 52px);
       font-variation-settings: "wdth" var(--wdth), "wght" 800;
       color: var(--blue);
     }
-
-    /* Background shift — only visible when section is in view */
-    .scrollytell .st-bg {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--bg);
-      transition: background 0.6s;
-      z-index: -1;
-      pointer-events: none;
+    /* Divider line between problem and solution */
+    .st-divider {
+      width: 60px;
+      height: 2px;
+      background: var(--gray-200);
       opacity: 0;
+      transform: scaleX(0);
+      transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
     }
-    .scrollytell.in-view .st-bg { opacity: 1; }
-    .scrollytell.dark-mode .st-bg {
-      background: var(--dark);
-    }
-    .scrollytell.dark-mode .st-text.solution {
-      color: white;
-    }
-    .scrollytell.dark-mode .st-text.punch {
-      color: #7c3aed;
-    }
-
-    /* ── Scroll progress bar (side) ──────────── */
-    .st-progress {
-      position: fixed;
-      right: 24px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 3px;
-      height: 120px;
-      background: rgba(0,0,0,0.08);
-      border-radius: 3px;
-      z-index: 50;
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .st-progress.active { opacity: 1; }
-    .st-progress-fill {
-      width: 100%;
-      background: var(--blue);
-      border-radius: 3px;
-      height: 0%;
-      transition: height 0.1s linear;
-    }
-    .scrollytell.dark-mode .st-progress {
-      background: rgba(255,255,255,0.1);
-    }
-
-    /* ── Character split punch line ──────────── */
-    .st-text.punch .char {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(40px) rotate(8deg);
-      transition: opacity 0.4s, transform 0.4s;
-      transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .st-text.punch.visible .char {
+    .st-divider.visible {
       opacity: 1;
-      transform: translateY(0) rotate(0deg);
-    }
-
-    /* ── Particles removed for performance ───── */
-
-    /* ── Blur-to-sharp on solution lines ──────── */
-    .st-text.solution {
-      filter: blur(4px);
-      transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-                  transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
-                  filter 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .st-text.solution.visible {
-      filter: blur(0px);
+      transform: scaleX(1);
     }
 
     /* ── Horizontal scroll gallery ───────────── */
@@ -1612,7 +1618,7 @@
 <nav class="nav">
   <div class="container nav-inner">
     <a href="#" class="nav-logo" style="font-size:22px; font-weight:800; font-variation-settings:'wdth' 125,'wght' 800; text-decoration:none;">
-      <span style="color:#1a1a3e;">Skip</span> <span style="color:#cc0000;">the</span> <span style="color:#5500dd;">Noise</span>
+      <span style="color:#191923;">Skip the </span><span style="display:inline-block;background:linear-gradient(90deg,#5500dd,#cc0000);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Noise</span>
     </a>
     <div class="nav-links">
       <a href="#work" class="nav-link">Results</a>
@@ -1620,12 +1626,8 @@
       <a href="#work-gallery" class="nav-link">Portfolio</a>
       <a href="#process" class="nav-link">Process</a>
     </div>
-    <div class="nav-right" style="display:flex; flex-direction:column; align-items:flex-end; gap:2px;">
-      <a href="#book" class="btn btn-dark">
-        <span class="btn-inner">Get your free audit</span>
-        <span class="btn-bg"></span>
-      </a>
-      <span style="font-size:11px; color:var(--gray-300); letter-spacing:0.02em;">No commitment · 30 min call</span>
+    <div class="nav-right">
+      <a href="#book" style="display:inline-block; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:10px 22px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Get your free audit</a>
     </div>
     <button class="hamburger" aria-label="Menu"><span></span><span></span></button>
   </div>
@@ -1635,61 +1637,120 @@
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <div class="container hero-grid">
-      <div class="hero-left">
-        <div>
-          <div class="title-row h1">
-            <span data-anim data-hero>One team for</span>
+
+    <!-- Centered text block -->
+    <div class="container hero-center">
+
+      <!-- Social proof row -->
+      <div data-anim="up" data-hero data-delay="1" style="display:flex; align-items:center; gap:14px; justify-content:center; flex-wrap:wrap;">
+        <div style="display:flex; align-items:center;">
+          <div style="width:36px;height:36px;border-radius:50%;border:2px solid white;background:white;box-shadow:0 1px 4px rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;overflow:hidden;">
+            <img src="https://cdn.simpleicons.org/adidas/000000" style="width:20px;height:20px;object-fit:contain;" alt="Adidas">
           </div>
-          <div class="title-row h1">
-            <span data-anim data-hero data-delay="1">creative + media.</span>
+          <div style="width:36px;height:36px;border-radius:50%;border:2px solid white;background:white;box-shadow:0 1px 4px rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-left:-10px;">
+            <img src="https://cdn.simpleicons.org/cocacola/F40009" style="width:22px;height:22px;object-fit:contain;" alt="Coca-Cola">
           </div>
-          <div class="title-row h1">
-            <span data-anim data-hero data-delay="2">No</span>
-            <span class="badge badge-yellow" data-anim="tilt" data-hero data-delay="2">gap.</span>
+          <div style="width:36px;height:36px;border-radius:50%;border:2px solid white;background:white;box-shadow:0 1px 4px rgba(0,0,0,0.1);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-left:-10px;">
+            <img src="https://cdn.simpleicons.org/dell/007DB8" style="width:22px;height:22px;object-fit:contain;" alt="Dell">
           </div>
         </div>
-        <p class="body" style="max-width:540px;" data-anim data-hero data-delay="3">The gap between your creative team and your media buyer is where budget dies. We closed it. One team makes the ads and runs them.</p>
-        <div style="margin-top:12px;" data-anim data-hero data-delay="4">
-          <span style="font-size:clamp(32px,4vw,48px); font-weight:800; color:var(--blue);">4-5X</span>
-          <span class="body" style="margin-left:8px; color:var(--gray-400);">average client ROAS</span>
-        </div>
-        <div class="btn-row" data-anim data-hero data-delay="5">
-          <a href="#book" class="btn btn-dark">
-            <span class="btn-inner">Get your free audit</span>
-            <span class="btn-bg"></span>
-          </a>
-        </div>
-        <!-- Credential pills moved to after logo strip -->
+        <div style="width:1px; height:16px; background:rgba(0,0,0,0.1);"></div>
+        <span style="font-size:12px; font-variation-settings:'wdth' 125,'wght' 700; color:#191923;">eComm 3–4x ROAS</span>
+        <div style="width:3px; height:3px; border-radius:50%; background:rgba(0,0,0,0.2);"></div>
+        <span style="font-size:12px; font-variation-settings:'wdth' 125,'wght' 700; color:#191923;">SaaS 2x pipeline</span>
       </div>
-      <div class="hero-right" data-anim="scale" data-hero data-delay="2">
-        <div class="hero-collage">
-          <!-- Left: tall portrait -->
-          <div class="hero-collage-main">
-            <img src="assets/lipstick-spill.jpg" alt="Noirvere lipstick campaign" />
-          </div>
-          <!-- Right top -->
-          <div class="hero-collage-sub">
-            <img src="assets/handbag-fashion.jpg" alt="Handbag lifestyle campaign" />
-          </div>
-          <!-- Right bottom -->
-          <div class="hero-collage-sub">
-            <img src="assets/lipstick-taxi.jpg" alt="Noirvere UGC campaign" />
-          </div>
-          <!-- AI badge -->
-          <div style="position:absolute; top:-12px; left:-12px; z-index:6;">
-            <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,253,248,0.93); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); border:1px solid #5500dd30; border-radius:100px; padding:8px 16px; font-size:12px; font-weight:700; color:var(--blue); letter-spacing:0.02em; box-shadow:0 4px 16px rgba(0,0,0,0.08);">
-              <span style="display:inline-block; animation: pulse-glow 2s ease-in-out infinite;">✦</span>
-              AI-accelerated creative
-            </span>
-          </div>
-          <!-- Bloom chart widget -->
-          <div class="bloom-overlay">
-            <img src="assets/performance-bloom-hero.svg" alt="ROAS growth" style="width:100%; height:100%; object-fit:contain;" />
-          </div>
-        </div>
+
+      <!-- Headline -->
+      <h1 class="hero-headline">
+        <span class="hero-headline-bold" data-hero data-delay="2">Performance marketing meets</span>
+        <span class="hero-headline-italic" data-hero data-delay="4">AI-accelerated creative.</span>
+      </h1>
+
+      <!-- Sub-headline -->
+      <p data-anim="up" data-hero data-delay="5" style="max-width:900px; font-size:18px; color:var(--gray-400); line-height:1.6; text-align:center;">A creative-first performance marketing system built on creative strategy, media buying and full-funnel execution.</p>
+
+      <!-- CTA row -->
+      <div data-anim="up" data-hero data-delay="6" style="display:flex; align-items:center; gap:10px;">
+        <a href="#book" style="display:inline-block; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:12px 28px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Get your free audit</a>
+        <a href="#work" style="display:inline-block; background:white; color:#191923; font-size:14px; font-variation-settings:'wdth' 125,'wght' 600; padding:12px 24px; border-radius:100px; border:1.5px solid rgba(0,0,0,0.14); text-decoration:none; white-space:nowrap; box-shadow:0 1px 4px rgba(0,0,0,0.06); transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 2px 10px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='0 1px 4px rgba(0,0,0,0.06)'">See our work</a>
+      </div>
+
+    </div>
+
+    <!-- eComm label -->
+    <div style="display:flex; align-items:center; gap:16px; padding:8px 40px 12px; width:100%;">
+      <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(0,0,0,0.35); white-space:nowrap;">eComm &amp; DTC</span>
+      <div style="flex:1; height:1px; background:rgba(0,0,0,0.08);"></div>
+    </div>
+
+    <!-- Full-width scrolling creative gallery -->
+    <div class="hero-marquee-wrap">
+      <div class="hero-marquee-track">
+        <!-- Set 1 -->
+        <div class="hero-marquee-card"><img src="assets/Cpg_l5evv8k1.png"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/handbag-fashion.jpg" style="object-position:top;"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/Cpg_nO2xZZjv.png"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_CDLIA58W.png"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.png"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_cTVg3CZh.png"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_y5ER32ip2.png"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_dSJmLIvg.png"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/handbag-walk.jpg" style="object-position:top;"><span class="fb-badge">f</span></div>
+        <!-- Set 2 (duplicate for seamless loop) -->
+        <div class="hero-marquee-card"><img src="assets/Cpg_l5evv8k1.png"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/handbag-fashion.jpg" style="object-position:top;"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/Cpg_nO2xZZjv.png"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_CDLIA58W.png"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.png"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_cTVg3CZh.png"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_y5ER32ip2.png"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_dSJmLIvg.png"><span class="fb-badge">f</span></div>
+        <div class="hero-marquee-card"><img src="assets/handbag-walk.jpg" style="object-position:top;"><span class="fb-badge">f</span></div>
       </div>
     </div>
+
+    <!-- SaaS label -->
+    <div style="display:flex; align-items:center; gap:16px; padding:20px 40px 12px; width:100%;">
+      <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(0,0,0,0.35); white-space:nowrap;">SaaS</span>
+      <div style="flex:1; height:1px; background:rgba(0,0,0,0.08);"></div>
+    </div>
+
+    <!-- SaaS gallery — reverse scroll -->
+    <div class="hero-marquee-wrap" style="padding-bottom:0; padding-top:10px;">
+      <div class="hero-marquee-track hero-marquee-track--reverse">
+        <!-- Set 1 -->
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_A_FREE_LIVE_WEBINAR_announces_MASTER_MARKETING_nZd7GZFx.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_cGkIrXL (1).png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_HMTIB0O.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_flat_design_style_a_man_with_many_arms_duWjAS1.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_flat_design_style_this_graphic_showcases_0SxggUa-.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_advertising_style_the_central_XW-qffG.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_flat_design_style_the_text_lUuLzwdT.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_three_F2Ph3abS.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_modern_graphic_design_style_this_image_eS0eGv3q.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_iPbloyBD.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_l0ZOMv_a.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <!-- Set 2 (duplicate for seamless loop) -->
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_A_FREE_LIVE_WEBINAR_announces_MASTER_MARKETING_nZd7GZFx.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_cGkIrXL (1).png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_HMTIB0O.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_flat_design_style_a_man_with_many_arms_duWjAS1.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_flat_design_style_this_graphic_showcases_0SxggUa-.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_advertising_style_the_central_XW-qffG.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_flat_design_style_the_text_lUuLzwdT.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_three_F2Ph3abS.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_In_a_modern_graphic_design_style_this_image_eS0eGv3q.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_iPbloyBD.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+        <div class="hero-marquee-card hero-marquee-card--contain"><img src="assets/B2B_SaaS_Ads_l0ZOMv_a.png"><span class="fb-badge" style="color:#0A66C2;">in</span></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1721,33 +1782,23 @@
   </div>
 </section>
 
-<!-- SCROLLYTELLING — pinned, scroll-locked -->
+<!-- SCROLLYTELLING — 4 lines stack up -->
 <div class="scrollytell" id="scrollytell">
-  <div class="st-bg"></div>
-  <div class="st-progress" id="stProgress"><div class="st-progress-fill" id="stProgressFill"></div></div>
-
-  <!-- Sticky viewport stays pinned while spacers scroll behind -->
   <div class="st-viewport" id="stViewport">
-    <div class="st-line" data-st="0"><p class="st-text problem">You brief a creative agency.</p></div>
-    <div class="st-line" data-st="1"><p class="st-text problem">They deliver assets <em>a week late.</em></p></div>
-    <div class="st-line" data-st="2"><p class="st-text problem">Your media buyer launches them <em>blind.</em></p></div>
-    <div class="st-line" data-st="3"><p class="st-text problem">Performance drops. <em>Nobody knows why.</em></p></div>
-    <div class="st-line" data-st="4"><p class="st-text shift">Now imagine something different.</p></div>
-    <div class="st-line" data-st="5"><p class="st-text solution"><strong>One team</strong> makes the creative and runs the media.</p></div>
-    <div class="st-line" data-st="6"><p class="st-text solution"><strong><span class="st-counter" data-target="20">0</span>+ creatives a month.</strong> AI handles volume. Humans direct strategy.</p></div>
-    <div class="st-line" data-st="7"><p class="st-text solution">Every creative tied to <strong>performance data.</strong> You see what works.</p></div>
-    <div class="st-line" data-st="8"><p class="st-text punch">Every round gets smarter.</p></div>
+    <div class="st-stack">
+      <p class="st-text problem" data-st="0">Your creative team and your media buyer <em>have never met.</em></p>
+      <p class="st-text problem" data-st="1">Performance drops. <em>Nobody knows why.</em></p>
+      <div class="st-divider" data-st="2"></div>
+      <p class="st-text solution" data-st="2"><strong>One team</strong> makes the creative and runs the media.</p>
+      <p class="st-text punch" data-st="3">Every round gets smarter.</p>
+    </div>
   </div>
-  <!-- Spacers create scroll distance — one per line -->
-  <div class="st-spacer" data-sp="0"></div>
-  <div class="st-spacer" data-sp="1"></div>
-  <div class="st-spacer" data-sp="2"></div>
-  <div class="st-spacer" data-sp="3"></div>
-  <div class="st-spacer" data-sp="4"></div>
-  <div class="st-spacer" data-sp="5"></div>
-  <div class="st-spacer" data-sp="6"></div>
-  <div class="st-spacer" data-sp="7"></div>
-  <div class="st-spacer" data-sp="8"></div>
+  <!-- 5 spacers: 1 initial + 4 for each line -->
+  <div class="st-spacer"></div>
+  <div class="st-spacer"></div>
+  <div class="st-spacer"></div>
+  <div class="st-spacer"></div>
+  <div class="st-spacer"></div>
 </div>
 
 <!-- RESULTS (dark section) -->
@@ -1761,46 +1812,46 @@
       <p class="body" style="color:var(--gray-200);" data-anim data-delay="2">Real campaigns. Real numbers. Every result tied to creative we made and media we bought.</p>
     </div>
     <div class="projects-grid mb-48" data-anim="scale" data-delay="3">
-      <a href="#book" class="project-card project-large" style="background:#1a1a2e; padding:40px; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+      <a href="#book" class="project-card project-large" style="background:var(--blue); padding:40px; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
         <h3 class="h3 white" style="margin-bottom:8px;">Flare</h3>
-        <p class="body" style="color:var(--gray-300); margin-bottom:4px;">Reddit · 3 months</p>
-        <p class="h2" style="margin-bottom:12px; font-size:clamp(32px,4vw,56px); line-height:1.05; color:#7c3aed;">60 qualified leads</p>
-        <p class="body" style="color:var(--gray-300); margin-bottom:12px; font-size:15px;">$100 CPL · SIEM/SOAR buyers</p>
-        <p class="body" style="color:var(--gray-200); font-size:14px;">Creative production and media buying under one roof.</p>
+        <p style="color:rgba(255,255,255,0.7); margin-bottom:4px; font-size:14px;">Reddit · 3 months</p>
+        <p class="h2 white" style="margin-bottom:12px; font-size:clamp(32px,4vw,56px); line-height:1.05;">60 qualified leads</p>
+        <p style="color:rgba(255,255,255,0.8); margin-bottom:12px; font-size:15px; font-weight:600;">$100 CPL · SIEM/SOAR buyers</p>
+        <p style="color:rgba(255,255,255,0.65); font-size:14px;">Creative production and media buying under one roof.</p>
       </a>
-      <a href="#book" class="project-card project-wide" style="background:#1a1a2e; padding:32px; flex-direction:column; align-items:center; text-align:center;">
+      <a href="#book" class="project-card project-wide" style="background:var(--orange); padding:32px; flex-direction:column; align-items:center; text-align:center;">
         <h3 class="h3 white">Restream</h3>
-        <p class="body" style="color:rgba(255,255,255,0.5); margin-top:4px; font-size:13px;">Meta · LinkedIn · Reddit · X · TikTok</p>
-        <p class="h2" style="margin-top:12px; color:#7c3aed;">50% CPL reduction</p>
+        <p style="color:rgba(255,255,255,0.7); margin-top:4px; font-size:13px;">Meta · LinkedIn · Reddit · X · TikTok</p>
+        <p class="h2 white" style="margin-top:12px;">50% CPL reduction</p>
         <div style="display:flex; gap:24px; margin-top:8px;">
-          <p style="color:rgba(255,255,255,0.6); font-size:15px; font-weight:600;">+30% branded search</p>
-          <p style="color:rgba(255,255,255,0.6); font-size:15px; font-weight:600;">+10% YoY subscribers</p>
+          <p style="color:rgba(255,255,255,0.85); font-size:15px; font-weight:600;">+30% branded search</p>
+          <p style="color:rgba(255,255,255,0.85); font-size:15px; font-weight:600;">+10% YoY subscribers</p>
         </div>
       </a>
-      <a href="#book" class="project-card project-small" style="background:#1a1a2e; padding:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+      <a href="#book" class="project-card project-small" style="background:var(--yellow); padding:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
         <p class="h3 white">Noirvere</p>
-        <p class="h2" style="margin:4px 0; color:#7c3aed;">5X ROAS</p>
-        <p style="color:rgba(255,255,255,0.5); font-size:14px;">TikTok · Snapchat</p>
+        <p class="h2 white" style="margin:4px 0;">5X ROAS</p>
+        <p style="color:rgba(255,255,255,0.75); font-size:14px;">TikTok · Snapchat</p>
       </a>
-      <a href="#book" class="project-card project-small" style="background:#1a1a2e; padding:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+      <a href="#book" class="project-card project-small" style="background:var(--navy); padding:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
         <p class="h3 white">Storykeeper</p>
-        <p class="h2" style="color:#7c3aed;">4X ROAS</p>
-        <p style="color:rgba(255,255,255,0.5); font-size:14px;">Reddit · TikTok · Pinterest</p>
+        <p class="h2 white" style="margin:4px 0;">4X ROAS</p>
+        <p style="color:rgba(255,255,255,0.7); font-size:14px;">Reddit · TikTok · Pinterest</p>
       </a>
-      <a href="#book" class="project-card" style="grid-column:span 2; background:#1a1a2e; padding:32px 40px; border:none; flex-direction:column; align-items:center; text-align:center;">
+      <a href="#book" class="project-card" style="grid-column:span 2; background:linear-gradient(135deg, var(--blue), var(--orange)); padding:32px 40px; border:none; flex-direction:column; align-items:center; text-align:center;">
         <h3 class="h3 white">Tiny Protectors</h3>
-        <p class="body" style="color:var(--gray-300); margin-top:4px; font-size:13px;">Meta · TikTok · Pinterest</p>
+        <p style="color:rgba(255,255,255,0.7); margin-top:4px; font-size:13px;">Meta · TikTok · Pinterest</p>
         <div style="display:flex; gap:40px; align-items:center; margin-top:16px;">
           <div style="text-align:center;">
             <p class="h2 white" style="margin:0;">4X</p>
-            <p style="color:var(--gray-300); font-size:13px;">ROAS</p>
+            <p style="color:rgba(255,255,255,0.75); font-size:13px;">ROAS</p>
           </div>
           <div style="text-align:center;">
             <p class="h2 white" style="margin:0;">50%</p>
-            <p style="color:var(--gray-300); font-size:13px;">Ad spend increase YoY</p>
+            <p style="color:rgba(255,255,255,0.75); font-size:13px;">Ad spend increase YoY</p>
           </div>
         </div>
-        <p class="body" style="color:var(--gray-200); max-width:400px; font-size:14px; margin-top:12px;">Expanded beyond Meta while maintaining 4X ROAS. Channel-by-channel creative strategy built around top-selling SKUs.</p>
+        <p style="color:rgba(255,255,255,0.7); max-width:400px; font-size:14px; margin-top:12px;">Expanded beyond Meta while maintaining 4X ROAS. Channel-by-channel creative strategy built around top-selling SKUs.</p>
       </a>
     </div>
     <div class="btn-row" style="justify-content:center;">
@@ -2449,7 +2500,7 @@
     }, 4000);
 
     // ── Hero text split reveal ──────────────────────────────────────
-    document.querySelectorAll('.hero-left .h1[data-hero], .hero-left .title-row.h1 > span[data-hero]').forEach(el => {
+    document.querySelectorAll('.hero-left .h1[data-hero], .hero-left .title-row.h1 > span[data-hero], .hero-headline-bold[data-hero], .hero-headline-italic[data-hero]').forEach(el => {
       // Skip badges
       if (el.classList.contains('badge')) return;
       const text = el.textContent.trim();
@@ -2874,101 +2925,32 @@
         if (pos > 0) pos -= halfWidth;
       });
     }
-    // ── Scrollytelling: CSS sticky + vanilla scroll ─────────────────
+    // ── Scrollytelling: 4 lines stack up and stay ─────────────────
     const stSection = document.getElementById('scrollytell');
-    const stViewport = document.getElementById('stViewport');
-    if (stSection && stViewport) {
-      const stLines = stViewport.querySelectorAll('.st-line');
-      const stProgressFill = document.getElementById('stProgressFill');
-      const stProgress = document.getElementById('stProgress');
-      const stParticles = document.getElementById('stParticles');
-      const totalLines = stLines.length;
-      let currentLine = -1;
-      let counterFired = false;
+    if (stSection) {
+      const stItems = stSection.querySelectorAll('[data-st]');
+      const totalSteps = 4; // 4 reveal steps
+      let revealed = -1;
 
-      // Split punch line chars
-      const punchText = stSection.querySelector('.st-text.punch');
-      if (punchText) {
-        const original = punchText.textContent;
-        punchText.innerHTML = '';
-        for (let i = 0; i < original.length; i++) {
-          const span = document.createElement('span');
-          span.className = 'char';
-          span.textContent = original[i] === ' ' ? '\u00A0' : original[i];
-          span.style.transitionDelay = (i * 0.03) + 's';
-          punchText.appendChild(span);
-        }
-      }
-
-      // Counter
-      function animateCounter(el) {
-        const target = parseInt(el.dataset.target);
-        const start = performance.now();
-        function tick(now) {
-          const p = Math.min((now - start) / 1200, 1);
-          el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
-          if (p < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-      }
-
-      // Scroll handler — compute which line is active based on scroll position
       function updateScrollytell() {
         const rect = stSection.getBoundingClientRect();
         const vh = window.innerHeight;
         const sectionH = stSection.offsetHeight;
+        if (rect.top >= vh || rect.bottom <= 0) return;
 
-        // Is section in view?
-        const inView = rect.top < vh && rect.bottom > 0;
-        stSection.classList.toggle('in-view', inView);
-        stProgress.classList.toggle('active', inView);
-        if (stParticles) stParticles.classList.toggle('active', inView);
-
-        if (!inView) {
-          if (rect.bottom <= 0) {
-            // Past section — clear everything
-            stSection.classList.remove('dark-mode');
-            if (stParticles) stParticles.classList.remove('purple');
-          }
-          return;
-        }
-
-        // Progress: 0 when top of section hits top of viewport,
-        // 1 when bottom of section hits bottom of viewport
         const progress = Math.max(0, Math.min(1, -rect.top / (sectionH - vh)));
-        stProgressFill.style.height = (progress * 100) + '%';
+        const step = Math.min(Math.floor(progress * (totalSteps + 1)), totalSteps);
 
-        const lineIndex = Math.min(Math.floor(progress * totalLines), totalLines - 1);
-
-        if (lineIndex !== currentLine) {
-          // Hide previous
-          if (currentLine >= 0) {
-            const prevText = stLines[currentLine].querySelector('.st-text');
-            prevText.classList.remove('visible');
-            prevText.classList.add('fading');
+        // Reveal items up to current step (they stay visible)
+        if (step > revealed) {
+          for (let s = revealed + 1; s <= step; s++) {
+            stItems.forEach(el => {
+              if (parseInt(el.dataset.st) === s) {
+                el.classList.add('visible');
+              }
+            });
           }
-          // Show current
-          const curText = stLines[lineIndex].querySelector('.st-text');
-          curText.classList.remove('fading');
-          curText.classList.add('visible');
-
-          // Dark mode
-          if (lineIndex >= 4) {
-            stSection.classList.add('dark-mode');
-            if (stParticles) stParticles.classList.add('purple');
-          } else {
-            stSection.classList.remove('dark-mode');
-            if (stParticles) stParticles.classList.remove('purple');
-          }
-
-          // Counter
-          if (lineIndex === 6 && !counterFired) {
-            counterFired = true;
-            const c = curText.querySelector('.st-counter');
-            if (c) animateCounter(c);
-          }
-
-          currentLine = lineIndex;
+          revealed = step;
         }
       }
 
