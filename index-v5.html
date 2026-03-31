@@ -1627,13 +1627,16 @@
 <nav class="nav">
   <div class="container nav-inner">
     <a href="#" class="nav-logo" style="font-size:22px; font-weight:800; font-variation-settings:'wdth' 125,'wght' 800; text-decoration:none; display:flex; align-items:center; gap:8px;">
-      <span style="width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#5500dd,#cc0000);display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <svg width="14" height="12" viewBox="0 0 14 12" fill="none">
-          <rect x="0.5" y="4" width="3" height="8" rx="1.5" fill="white"/>
-          <rect x="5.5" y="2" width="3" height="10" rx="1.5" fill="white"/>
-          <rect x="10.5" y="0" width="3" height="12" rx="1.5" fill="white"/>
-        </svg>
-      </span>
+      <svg width="28" height="28" viewBox="0 0 100 100" fill="none" style="flex-shrink:0;">
+        <!-- Top purple chevron -->
+        <polygon points="18,8 62,8 82,28 62,48 18,48 38,28" fill="#5500DD"/>
+        <polygon points="26,16 54,16 68,28 54,40 26,40 40,28" fill="white"/>
+        <polygon points="62,8 82,8 82,28 62,48 82,48 82,28" fill="#3800AA"/>
+        <!-- Bottom red chevron -->
+        <polygon points="18,52 62,52 82,72 62,92 18,92 38,72" fill="#EE0033"/>
+        <polygon points="26,60 54,60 68,72 54,84 26,84 40,72" fill="white"/>
+        <polygon points="62,52 82,52 82,72 62,92 82,92 82,72" fill="#BB0022"/>
+      </svg>
       <span><span style="color:#191923;">Skip the </span><span style="display:inline-block;background:linear-gradient(90deg,#5500dd,#cc0000);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Noise</span></span>
     </a>
     <div class="nav-links">
@@ -1699,9 +1702,12 @@
     </div>
 
     <!-- eComm label -->
-    <div style="display:flex; align-items:center; gap:16px; padding:8px 40px 12px; width:100%;">
-      <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(0,0,0,0.35); white-space:nowrap;">eComm &amp; DTC</span>
-      <div style="flex:1; height:1px; background:rgba(0,0,0,0.08);"></div>
+    <div style="padding:8px 40px 12px; width:100%;">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:4px;">
+        <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(0,0,0,0.35); white-space:nowrap;">eComm &amp; DTC</span>
+        <div style="flex:1; height:1px; background:rgba(0,0,0,0.08);"></div>
+      </div>
+      <p style="font-size:13px; color:rgba(0,0,0,0.45); margin:0; padding-left:2px;">Platform-native ads that stop the scroll and consistently drive 3–4x ROAS</p>
     </div>
 
     <!-- Full-width scrolling creative gallery -->
@@ -1731,9 +1737,12 @@
     </div>
 
     <!-- SaaS label -->
-    <div style="display:flex; align-items:center; gap:16px; padding:20px 40px 12px; width:100%;">
-      <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(0,0,0,0.35); white-space:nowrap;">SaaS</span>
-      <div style="flex:1; height:1px; background:rgba(0,0,0,0.08);"></div>
+    <div style="padding:20px 40px 12px; width:100%;">
+      <div style="display:flex; align-items:center; gap:16px; margin-bottom:4px;">
+        <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(0,0,0,0.35); white-space:nowrap;">SaaS</span>
+        <div style="flex:1; height:1px; background:rgba(0,0,0,0.08);"></div>
+      </div>
+      <p style="font-size:13px; color:rgba(0,0,0,0.45); margin:0; padding-left:2px;">Full-funnel creatives built on ICP insights that drive 30% more qualified traffic and 20% more sales-qualified leads</p>
     </div>
 
     <!-- SaaS gallery — reverse scroll -->
@@ -1803,84 +1812,183 @@
   </div>
 </section>
 
-<!-- SCROLLYTELLING — 4 lines stack up -->
-<div class="scrollytell" id="scrollytell">
-  <div class="st-viewport" id="stViewport">
-    <div class="st-stack">
-      <p class="st-text problem" data-st="0">Your creative team and your media buyer <em>have never met.</em></p>
-      <p class="st-text problem" data-st="1">Performance drops. <em>Nobody knows why.</em></p>
-      <div class="st-divider" data-st="2"></div>
-      <p class="st-text solution" data-st="2"><strong>One team</strong> makes the creative and runs the media.</p>
-      <p class="st-text punch" data-st="3">Every round gets smarter.</p>
-    </div>
-  </div>
-  <!-- 5 spacers: 1 initial + 4 for each line -->
-  <div class="st-spacer"></div>
-  <div class="st-spacer"></div>
-  <div class="st-spacer"></div>
-  <div class="st-spacer"></div>
-  <div class="st-spacer"></div>
-</div>
+<!-- WORKFLOW SECTION -->
+<section style="background:#f7f6f3; padding:80px 24px 88px;">
+  <div style="max-width:800px; margin:0 auto; text-align:center;">
 
-<!-- RESULTS (dark section) -->
-<section id="work" class="section-dark grain">
-  <div class="container">
-    <div class="section-header">
-      <div class="title-row h2" style="justify-content:center;" data-anim>
-        <span class="white">Results we've</span>
-        <span class="badge badge-blue" data-anim="tilt" data-delay="1">driven.</span>
+    <p style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(0,0,0,0.35); margin:0 0 18px;">how we work</p>
+    <h2 style="font-family:'Satoshi', system-ui, sans-serif; font-size:clamp(28px,3.6vw,46px); font-weight:900; letter-spacing:-0.03em; color:#0d0d0d; line-height:1.1; margin:0 0 16px;">Your 3 people. Our AI stack.<br>5× the output.</h2>
+    <p style="font-size:16px; color:rgba(0,0,0,0.5); max-width:520px; margin:0 auto 60px; line-height:1.6;">We plug into your existing team and cover the roles you can't hire for. Our AI agents do the work of a full creative department.</p>
+
+    <!-- Team row -->
+    <div style="background:#fff; border-radius:24px; padding:40px 36px 36px; border:1.5px solid rgba(0,0,0,0.07); box-shadow:0 2px 24px rgba(0,0,0,0.04);">
+
+      <!-- People -->
+      <div style="display:flex; justify-content:center; align-items:flex-start; gap:20px; margin-bottom:36px; flex-wrap:wrap;">
+
+        <!-- Your team (3 black) -->
+        <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+          <svg width="48" height="48" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="14" r="8" fill="#1a1a1a"/><path d="M4 40c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#1a1a1a"/></svg>
+          <span style="font-size:11px; font-weight:600; color:rgba(0,0,0,0.4);">Brand</span>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+          <svg width="48" height="48" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="14" r="8" fill="#1a1a1a"/><path d="M4 40c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#1a1a1a"/></svg>
+          <span style="font-size:11px; font-weight:600; color:rgba(0,0,0,0.4);">Growth</span>
+        </div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+          <svg width="48" height="48" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="14" r="8" fill="#1a1a1a"/><path d="M4 40c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#1a1a1a"/></svg>
+          <span style="font-size:11px; font-weight:600; color:rgba(0,0,0,0.4);">Strategy</span>
+        </div>
+
+        <!-- Divider -->
+        <div style="display:flex; align-items:center; padding:0 4px; align-self:center;">
+          <span style="font-size:22px; font-weight:300; color:rgba(0,0,0,0.15);">+</span>
+        </div>
+
+        <!-- STN AI agents (2 red) with role clouds -->
+        <div style="display:flex; flex-direction:column; align-items:center; gap:6px; position:relative;">
+          <!-- Role tags floating above -->
+          <div style="display:flex; flex-wrap:wrap; gap:5px; justify-content:center; margin-bottom:8px; max-width:200px;">
+            <span style="font-size:10px; font-weight:700; background:#EE0033; color:#fff; border-radius:100px; padding:3px 9px; white-space:nowrap;">Creative Strategist</span>
+            <span style="font-size:10px; font-weight:700; background:#EE0033; color:#fff; border-radius:100px; padding:3px 9px; white-space:nowrap;">Perf. Director</span>
+            <span style="font-size:10px; font-weight:700; background:#EE0033; color:#fff; border-radius:100px; padding:3px 9px; white-space:nowrap;">Creative Designer</span>
+            <span style="font-size:10px; font-weight:700; background:#EE0033; color:#fff; border-radius:100px; padding:3px 9px; white-space:nowrap;">Analytics</span>
+          </div>
+          <div style="display:flex; gap:16px;">
+            <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+              <div style="position:relative;">
+                <svg width="48" height="48" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="14" r="8" fill="#EE0033"/><path d="M4 40c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#EE0033"/></svg>
+                <span style="position:absolute; top:-5px; right:-6px; background:#0d0d0d; color:#fff; font-size:7px; font-weight:800; border-radius:100px; padding:2px 5px; letter-spacing:0.05em; white-space:nowrap;">AI</span>
+              </div>
+              <span style="font-size:11px; font-weight:700; color:#EE0033;">STN</span>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+              <div style="position:relative;">
+                <svg width="48" height="48" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="14" r="8" fill="#EE0033"/><path d="M4 40c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#EE0033"/></svg>
+                <span style="position:absolute; top:-5px; right:-6px; background:#0d0d0d; color:#fff; font-size:7px; font-weight:800; border-radius:100px; padding:2px 5px; letter-spacing:0.05em; white-space:nowrap;">AI</span>
+              </div>
+              <span style="font-size:11px; font-weight:700; color:#EE0033;">STN</span>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <p class="body" style="color:var(--gray-200);" data-anim data-delay="2">Real campaigns. Real numbers. Every result tied to creative we made and media we bought.</p>
+
+      <!-- Divider -->
+      <div style="height:1px; background:rgba(0,0,0,0.06); margin-bottom:28px;"></div>
+
+      <!-- Bottom callout -->
+      <p style="font-size:14px; color:rgba(0,0,0,0.5); margin:0; line-height:1.6; max-width:480px; margin:0 auto;">
+        Our stack of AI agents gives your team access to roles that would normally take 4 new hires. You learn faster. You scale without the headcount.
+      </p>
+
     </div>
-    <div class="projects-grid mb-48" data-anim="scale" data-delay="3">
-      <a href="#book" class="project-card project-large" style="background:var(--blue); padding:40px; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
-        <h3 class="h3 white" style="margin-bottom:8px;">Flare</h3>
-        <p style="color:rgba(255,255,255,0.7); margin-bottom:4px; font-size:14px;">Reddit · 3 months</p>
-        <p class="h2 white" style="margin-bottom:12px; font-size:clamp(32px,4vw,56px); line-height:1.05;">60 qualified leads</p>
-        <p style="color:rgba(255,255,255,0.8); margin-bottom:12px; font-size:15px; font-weight:600;">$100 CPL · SIEM/SOAR buyers</p>
-        <p style="color:rgba(255,255,255,0.65); font-size:14px;">Creative production and media buying under one roof.</p>
-      </a>
-      <a href="#book" class="project-card project-wide" style="background:var(--orange); padding:32px; flex-direction:column; align-items:center; text-align:center;">
-        <h3 class="h3 white">Restream</h3>
-        <p style="color:rgba(255,255,255,0.7); margin-top:4px; font-size:13px;">Meta · LinkedIn · Reddit · X · TikTok</p>
-        <p class="h2 white" style="margin-top:12px;">50% CPL reduction</p>
-        <div style="display:flex; gap:24px; margin-top:8px;">
-          <p style="color:rgba(255,255,255,0.85); font-size:15px; font-weight:600;">+30% branded search</p>
-          <p style="color:rgba(255,255,255,0.85); font-size:15px; font-weight:600;">+10% YoY subscribers</p>
-        </div>
-      </a>
-      <a href="#book" class="project-card project-small" style="background:var(--yellow); padding:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
-        <p class="h3 white">Noirvere</p>
-        <p class="h2 white" style="margin:4px 0;">5X ROAS</p>
-        <p style="color:rgba(255,255,255,0.75); font-size:14px;">TikTok · Snapchat</p>
-      </a>
-      <a href="#book" class="project-card project-small" style="background:var(--navy); padding:24px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
-        <p class="h3 white">Storykeeper</p>
-        <p class="h2 white" style="margin:4px 0;">4X ROAS</p>
-        <p style="color:rgba(255,255,255,0.7); font-size:14px;">Reddit · TikTok · Pinterest</p>
-      </a>
-      <a href="#book" class="project-card" style="grid-column:span 2; background:linear-gradient(135deg, var(--blue), var(--orange)); padding:32px 40px; border:none; flex-direction:column; align-items:center; text-align:center;">
-        <h3 class="h3 white">Tiny Protectors</h3>
-        <p style="color:rgba(255,255,255,0.7); margin-top:4px; font-size:13px;">Meta · TikTok · Pinterest</p>
-        <div style="display:flex; gap:40px; align-items:center; margin-top:16px;">
-          <div style="text-align:center;">
-            <p class="h2 white" style="margin:0;">4X</p>
-            <p style="color:rgba(255,255,255,0.75); font-size:13px;">ROAS</p>
+
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section id="work" style="background:#fff; padding:80px 24px 88px;">
+  <div style="max-width:860px; margin:0 auto;">
+
+    <div style="margin-bottom:52px;">
+      <p style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(0,0,0,0.35); margin:0 0 14px;">results</p>
+      <h2 style="font-family:'Satoshi', system-ui, sans-serif; font-size:clamp(28px,3.6vw,46px); font-weight:900; letter-spacing:-0.03em; color:#0d0d0d; line-height:1.1; margin:0 0 12px;">Numbers we've driven.</h2>
+      <p style="font-size:16px; color:rgba(0,0,0,0.45); margin:0; max-width:480px; line-height:1.6;">Real campaigns. Every result tied to creative we made and media we bought.</p>
+    </div>
+
+    <!-- Results rows -->
+    <div style="display:flex; flex-direction:column; gap:0;">
+
+      <!-- Row 1: Flare -->
+      <a href="#book" style="display:flex; align-items:center; gap:24px; padding:28px 0; border-top:1px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; transition:background 0.15s;" onmouseover="this.style.background='rgba(85,0,221,0.03)'" onmouseout="this.style.background='transparent'">
+        <div style="flex:1; min-width:0;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+            <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:20px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">Flare</span>
+            <span style="font-size:11px; font-weight:600; background:rgba(85,0,221,0.07); color:#5500DD; border-radius:100px; padding:3px 10px;">B2B SaaS</span>
           </div>
-          <div style="text-align:center;">
-            <p class="h2 white" style="margin:0;">50%</p>
-            <p style="color:rgba(255,255,255,0.75); font-size:13px;">Ad spend increase YoY</p>
-          </div>
+          <p style="font-size:13px; color:rgba(0,0,0,0.4); margin:0;">Reddit · 3 months</p>
         </div>
-        <p style="color:rgba(255,255,255,0.7); max-width:400px; font-size:14px; margin-top:12px;">Expanded beyond Meta while maintaining 4X ROAS. Channel-by-channel creative strategy built around top-selling SKUs.</p>
+        <div style="text-align:right; flex-shrink:0;">
+          <p style="font-family:'Satoshi',system-ui,sans-serif; font-size:28px; font-weight:900; color:#0d0d0d; letter-spacing:-0.03em; margin:0 0 2px;">60 leads</p>
+          <p style="font-size:13px; color:rgba(0,0,0,0.4); margin:0;">$100 CPL · SIEM/SOAR buyers</p>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="flex-shrink:0; opacity:0.25;"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0d0d0d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+
+      <!-- Row 2: Restream -->
+      <a href="#book" style="display:flex; align-items:center; gap:24px; padding:28px 0; border-top:1px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit;" onmouseover="this.style.background='rgba(85,0,221,0.03)'" onmouseout="this.style.background='transparent'">
+        <div style="flex:1; min-width:0;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+            <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:20px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">Restream</span>
+            <span style="font-size:11px; font-weight:600; background:rgba(238,0,51,0.07); color:#cc0028; border-radius:100px; padding:3px 10px;">SaaS</span>
+          </div>
+          <p style="font-size:13px; color:rgba(0,0,0,0.4); margin:0;">Meta · LinkedIn · Reddit · X · TikTok</p>
+        </div>
+        <div style="text-align:right; flex-shrink:0;">
+          <p style="font-family:'Satoshi',system-ui,sans-serif; font-size:28px; font-weight:900; color:#0d0d0d; letter-spacing:-0.03em; margin:0 0 2px;">50% lower CPL</p>
+          <p style="font-size:13px; color:rgba(0,0,0,0.4); margin:0;">+30% branded search · +10% YoY subscribers</p>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="flex-shrink:0; opacity:0.25;"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0d0d0d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+
+      <!-- Row 3: Noirvere -->
+      <a href="#book" style="display:flex; align-items:center; gap:24px; padding:28px 0; border-top:1px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit;" onmouseover="this.style.background='rgba(85,0,221,0.03)'" onmouseout="this.style.background='transparent'">
+        <div style="flex:1; min-width:0;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+            <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:20px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">Noirvere</span>
+            <span style="font-size:11px; font-weight:600; background:rgba(0,0,0,0.05); color:rgba(0,0,0,0.45); border-radius:100px; padding:3px 10px;">DTC</span>
+          </div>
+          <p style="font-size:13px; color:rgba(0,0,0,0.4); margin:0;">TikTok · Snapchat</p>
+        </div>
+        <div style="text-align:right; flex-shrink:0;">
+          <p style="font-family:'Satoshi',system-ui,sans-serif; font-size:28px; font-weight:900; color:#0d0d0d; letter-spacing:-0.03em; margin:0 0 2px;">5× ROAS</p>
+          <p style="font-size:13px; color:rgba(0,0,0,0.4); margin:0;">Creative production + paid social</p>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="flex-shrink:0; opacity:0.25;"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0d0d0d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+
+      <!-- Row 4: Storykeeper -->
+      <a href="#book" style="display:flex; align-items:center; gap:24px; padding:28px 0; border-top:1px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit;" onmouseover="this.style.background='rgba(85,0,221,0.03)'" onmouseout="this.style.background='transparent'">
+        <div style="flex:1; min-width:0;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+            <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:20px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">Storykeeper</span>
+            <span style="font-size:11px; font-weight:600; background:rgba(0,0,0,0.05); color:rgba(0,0,0,0.45); border-radius:100px; padding:3px 10px;">DTC</span>
+          </div>
+          <p style="font-size:13px; color:rgba(0,0,0,0.4); margin:0;">Reddit · TikTok · Pinterest</p>
+        </div>
+        <div style="text-align:right; flex-shrink:0;">
+          <p style="font-family:'Satoshi',system-ui,sans-serif; font-size:28px; font-weight:900; color:#0d0d0d; letter-spacing:-0.03em; margin:0 0 2px;">4× ROAS</p>
+          <p style="font-size:13px; color:rgba(0,0,0,0.4); margin:0;">Multi-channel creative strategy</p>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="flex-shrink:0; opacity:0.25;"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0d0d0d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+
+      <!-- Row 5: Tiny Protectors -->
+      <a href="#book" style="display:flex; align-items:center; gap:24px; padding:28px 0; border-top:1px solid rgba(0,0,0,0.07); border-bottom:1px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit;" onmouseover="this.style.background='rgba(85,0,221,0.03)'" onmouseout="this.style.background='transparent'">
+        <div style="flex:1; min-width:0;">
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:4px;">
+            <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:20px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">Tiny Protectors</span>
+            <span style="font-size:11px; font-weight:600; background:rgba(0,0,0,0.05); color:rgba(0,0,0,0.45); border-radius:100px; padding:3px 10px;">DTC</span>
+          </div>
+          <p style="font-size:13px; color:rgba(0,0,0,0.4); margin:0;">Meta · TikTok · Pinterest</p>
+        </div>
+        <div style="text-align:right; flex-shrink:0;">
+          <p style="font-family:'Satoshi',system-ui,sans-serif; font-size:28px; font-weight:900; color:#0d0d0d; letter-spacing:-0.03em; margin:0 0 2px;">4× ROAS</p>
+          <p style="font-size:13px; color:rgba(0,0,0,0.4); margin:0;">+50% ad spend YoY · maintained ROAS</p>
+        </div>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style="flex-shrink:0; opacity:0.25;"><path d="M4 9h10M10 5l4 4-4 4" stroke="#0d0d0d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+
+    </div>
+
+    <div style="margin-top:40px; text-align:center;">
+      <a href="#book" style="display:inline-flex; align-items:center; gap:8px; background:#0d0d0d; color:#fff; font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:700; padding:14px 28px; border-radius:100px; text-decoration:none; letter-spacing:-0.01em;">
+        Get 3 free creatives
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
-    <div class="btn-row" style="justify-content:center;">
-      <a href="#book" class="btn btn-light">
-        <span class="btn-inner">Get your free audit</span>
-        <span class="btn-bg" style="background:var(--blue);"></span>
-      </a>
-    </div>
+
   </div>
 </section>
 
