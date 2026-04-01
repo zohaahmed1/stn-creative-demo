@@ -1871,7 +1871,7 @@
 
     <p class="wf-text" style="font-size:13px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(0,0,0,0.35); margin:0 0 18px; animation-delay:0s;">how we work</p>
     <h2 class="wf-text" style="font-family:'Satoshi', system-ui, sans-serif; font-size:clamp(28px,3.6vw,46px); font-weight:900; letter-spacing:-0.03em; color:#0d0d0d; line-height:1.1; margin:0 0 16px; animation-delay:0.1s;">Your team stays lean.<br>We cover the gaps.</h2>
-    <p class="wf-text" style="font-size:17px; color:rgba(0,0,0,0.5); max-width:520px; margin:0 auto 40px; line-height:1.6; animation-delay:0.2s;">We plug into your existing team and take on the roles that are hard to hire for.</p>
+    <p class="wf-text" style="font-size:17px; color:rgba(0,0,0,0.5); max-width:780px; margin:0 auto 40px; line-height:1.6; animation-delay:0.2s;">We plug into your existing team and take on the roles that are hard to hire for.</p>
 
     <!-- Bandwidth animation v2 -->
     <style>
@@ -1973,7 +1973,7 @@
               <span style="font-size:10px; font-weight:700; color:rgba(22,163,74,0.5); letter-spacing:0.08em; text-transform:uppercase;">Room to scale</span>
             </div>
           </div>
-          <div id="bw-handled" style="display:flex; flex-direction:column; gap:6px; width:100%; max-width:180px; margin-top:10px;"></div>
+          <div id="bw-handled" style="display:flex; flex-direction:column; gap:6px; width:100%; max-width:180px; margin-top:10px; min-height:96px;"></div>
           <!-- Connector to org -->
           <div style="width:2px; height:24px; background:rgba(22,163,74,0.3); margin:16px 0 12px;"></div>
           <!-- Roles we add heading -->
@@ -2067,7 +2067,7 @@
           check.style.cssText = 'width:18px;height:18px;background:#16a34a;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#fff;flex-shrink:0;line-height:1;';
           check.textContent = '✓';
           var txt = document.createElement('span');
-          txt.style.cssText = 'background:rgba(22,163,74,0.1);border:1px solid rgba(22,163,74,0.28);border-radius:100px;padding:4px 12px;';
+          txt.style.cssText = 'background:rgba(22,163,74,0.1);border:1px solid rgba(22,163,74,0.28);border-radius:100px;padding:4px 12px;white-space:nowrap;';
           el.appendChild(check); el.appendChild(txt);
           handled.appendChild(el);
           slots.push({ el: el, txt: txt });
@@ -2095,7 +2095,7 @@
             s.el.animate([{opacity:0,transform:'translateX(-8px)'},{opacity:1,transform:'translateX(0)'}],{duration:380,fill:'forwards'});
           }, 400 + i * 600);
         });
-        setInterval(spawnFly, 300);
+        setInterval(spawnFly, 600);
         var pileT = setInterval(function(){
           addToPile();
           if (pile && pile.children.length >= MAX_PILE) clearInterval(pileT);
@@ -2184,7 +2184,7 @@
     <div style="display:flex; justify-content:center; gap:8px; margin-bottom:32px;" data-anim data-delay="2">
       <button onclick="filterGallery('all',this)" class="gf-btn gf-active" style="font-size:13px; font-weight:700; padding:8px 20px; border-radius:100px; border:1.5px solid #5500DD; background:#5500DD; color:#fff; cursor:pointer; transition:all 0.2s;">All</button>
       <button onclick="filterGallery('dtc',this)" class="gf-btn" style="font-size:13px; font-weight:700; padding:8px 20px; border-radius:100px; border:1.5px solid rgba(0,0,0,0.15); background:transparent; color:rgba(0,0,0,0.6); cursor:pointer; transition:all 0.2s;">eComm</button>
-      <button onclick="filterGallery('saas',this)" class="gf-btn" style="font-size:13px; font-weight:700; padding:8px 20px; border-radius:100px; border:1.5px solid rgba(0,0,0,0.15); background:transparent; color:rgba(0,0,0,0.6); cursor:pointer; transition:all 0.2s;">SaaS</button>
+      <button onclick="filterGallery('saas',this)" class="gf-btn" style="font-size:13px; font-weight:700; padding:8px 20px; border-radius:100px; border:1.5px solid rgba(0,0,0,0.15); background:transparent; color:rgba(0,0,0,0.6); cursor:pointer; transition:all 0.2s;">B2B SaaS</button>
       <button onclick="filterGallery('b2csaas',this)" class="gf-btn" style="font-size:13px; font-weight:700; padding:8px 20px; border-radius:100px; border:1.5px solid rgba(0,0,0,0.15); background:transparent; color:rgba(0,0,0,0.6); cursor:pointer; transition:all 0.2s;">B2C SaaS</button>
     </div>
     <script>
@@ -2414,6 +2414,56 @@
         <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:#111;">
           <img src="./assets/B2B_SaaS_Ads_l0ZOMv_a.png" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;"><span style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">B2B SaaS · Meta</span><span style="float:right;font-size:13px;font-weight:700;color:#facc15;">Campaign ad</span></div>
+        </div>
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:#111;">
+          <img src="./assets/B2B_SaaS_Ads_V5F-kd5P.png" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;"><span style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">B2B SaaS · Reddit</span><span style="float:right;font-size:13px;font-weight:700;color:#facc15;">Static ad</span></div>
+        </div>
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:#111;">
+          <img src="./assets/B2B_SaaS_Ads_Vs9AWg1c.png" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;"><span style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">B2B SaaS · Meta</span><span style="float:right;font-size:13px;font-weight:700;color:#facc15;">Static ad</span></div>
+        </div>
+      </div>
+      <div class="gal-grid gal-4">
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:#111;">
+          <img src="./assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.png" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;"><span style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">B2B SaaS · Reddit</span><span style="float:right;font-size:13px;font-weight:700;color:#facc15;">AI hiring</span></div>
+        </div>
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:#111;">
+          <img src="./assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.png" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;"><span style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">B2B SaaS · Meta</span><span style="float:right;font-size:13px;font-weight:700;color:#facc15;">3D abstract</span></div>
+        </div>
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:#111;">
+          <img src="./assets/B2B_SaaS_Ads_laAgn1rH.png" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;"><span style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">B2B SaaS · Reddit</span><span style="float:right;font-size:13px;font-weight:700;color:#facc15;">Static ad</span></div>
+        </div>
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:#111;">
+          <img src="./assets/B2B_SaaS_Ads_laAgn1rH 2.png" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;"><span style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">B2B SaaS · Meta</span><span style="float:right;font-size:13px;font-weight:700;color:#facc15;">Variant</span></div>
+        </div>
+      </div>
+      <div class="gal-grid gal-4">
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:#111;">
+          <img src="./assets/B2B_SaaS_Ads_lwoj9xr3.png" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;"><span style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">B2B SaaS · LinkedIn</span><span style="float:right;font-size:13px;font-weight:700;color:#facc15;">Static ad</span></div>
+        </div>
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:#111;">
+          <img src="./assets/B2B_SaaS_Ads_nnRo2A9l.png" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;"><span style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">B2B SaaS · Reddit</span><span style="float:right;font-size:13px;font-weight:700;color:#facc15;">Static ad</span></div>
+        </div>
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:#111;">
+          <img src="./assets/B2B_SaaS_Ads_pe0rE_Og.png" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;"><span style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">B2C SaaS · Meta</span><span style="float:right;font-size:13px;font-weight:700;color:#facc15;">Track spending</span></div>
+        </div>
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:#111;">
+          <img src="./assets/B2B_SaaS_Ads_pe0rE_Og 2.png" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;"><span style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">B2C SaaS · Meta</span><span style="float:right;font-size:13px;font-weight:700;color:#facc15;">Track spending</span></div>
+        </div>
+      </div>
+      <div class="gal-grid gal-4">
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:#111;">
+          <img src="./assets/B2B_SaaS_Ads_wRW96YqI.png" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;"><span style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">B2B SaaS · LinkedIn</span><span style="float:right;font-size:13px;font-weight:700;color:#facc15;">Static ad</span></div>
         </div>
       </div>
     </div>
