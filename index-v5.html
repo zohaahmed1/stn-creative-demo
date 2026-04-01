@@ -2142,7 +2142,7 @@
       <p class="body" style="max-width:780px; margin:16px auto 0;" data-anim data-delay="1">Every asset below was made by the same team that runs the campaigns — that's why they perform.</p>
     </div>
     <!-- Filter tabs -->
-    <div style="display:flex; justify-content:center; gap:8px; margin-bottom:32px;">
+    <div style="display:flex; justify-content:center; gap:8px; margin-bottom:32px;" data-anim data-delay="2">
       <button onclick="filterGallery('all',this)" class="gf-btn gf-active" style="font-size:13px; font-weight:700; padding:8px 20px; border-radius:100px; border:1.5px solid #5500DD; background:#5500DD; color:#fff; cursor:pointer; transition:all 0.2s;">All</button>
       <button onclick="filterGallery('dtc',this)" class="gf-btn" style="font-size:13px; font-weight:700; padding:8px 20px; border-radius:100px; border:1.5px solid rgba(0,0,0,0.15); background:transparent; color:rgba(0,0,0,0.6); cursor:pointer; transition:all 0.2s;">eComm</button>
       <button onclick="filterGallery('saas',this)" class="gf-btn" style="font-size:13px; font-weight:700; padding:8px 20px; border-radius:100px; border:1.5px solid rgba(0,0,0,0.15); background:transparent; color:rgba(0,0,0,0.6); cursor:pointer; transition:all 0.2s;">SaaS</button>
@@ -2158,7 +2158,16 @@
       btn.classList.add('gf-active');
       document.querySelectorAll('[data-cat]').forEach(function(el){
         var show = cat === 'all' ? el.dataset.cat === 'featured' : el.dataset.cat === cat;
-        el.style.display = show ? '' : 'none';
+        if (show) {
+          el.style.display = '';
+          el.style.opacity = '0';
+          el.style.transition = 'opacity 0.35s ease';
+          requestAnimationFrame(function(){ el.style.opacity = '1'; });
+        } else {
+          el.style.display = 'none';
+          el.style.opacity = '';
+          el.style.transition = '';
+        }
       });
     }
     </script>
@@ -2172,7 +2181,7 @@
     <!-- FEATURED — All view: 6 eComm + 6 SaaS -->
     <div data-cat="featured">
       <p style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(0,0,0,0.35);margin:0 0 12px;">eComm</p>
-      <div class="gal-grid gal-3" style="margin-bottom:28px;" data-anim data-delay="1">
+      <div class="gal-grid gal-3" style="margin-bottom:28px;" data-anim data-delay="1" data-stagger>
         <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:9/16;background:#111;">
           <video autoplay muted loop playsinline preload="none" poster="./assets/handbag-fashion.jpg" style="width:100%;height:100%;object-fit:cover;"><source src="./assets/handbag-fashion.mp4" type="video/mp4"></video>
           <div style="position:absolute;bottom:0;left:0;right:0;padding:12px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,0.8));color:white;"><p style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">Fashion · Luma AI</p><p style="font-size:16px;font-weight:800;color:#facc15;margin-top:2px;">3D lifestyle</p></div>
@@ -2199,7 +2208,7 @@
         </div>
       </div>
       <p style="font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(0,0,0,0.35);margin:0 0 12px;">SaaS</p>
-      <div class="gal-grid gal-3" data-anim data-delay="2">
+      <div class="gal-grid gal-3" data-anim data-delay="2" data-stagger>
         <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:#111;">
           <img src="./assets/B2B_SaaS_Ads_pe0rE_Og 2.png" style="width:100%;height:100%;object-fit:cover;">
           <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;"><span style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">B2C SaaS · Meta</span><span style="float:right;font-size:13px;font-weight:700;color:#facc15;">Track spending</span></div>
@@ -2421,14 +2430,14 @@
 <section id="work" style="background:#ffffff; padding:80px 24px 88px;">
   <div style="max-width:1100px; margin:0 auto;">
 
-    <div style="margin-bottom:52px; text-align:center;">
+    <div style="margin-bottom:52px; text-align:center;" data-anim>
       <p style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(0,0,0,0.35); margin:0 0 14px;">results</p>
       <h2 style="font-family:'Satoshi', system-ui, sans-serif; font-size:clamp(28px,3.6vw,46px); font-weight:900; letter-spacing:-0.03em; color:#0d0d0d; line-height:1.1; margin:0 0 12px;">Numbers we've driven.</h2>
       <p style="font-size:16px; color:rgba(0,0,0,0.45); margin:0 auto; max-width:680px; line-height:1.6;">Real campaigns, every result tied to creative we made and media we bought.</p>
     </div>
 
     <!-- Case study card grid — image-forward -->
-    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;">
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;" data-anim data-delay="2" data-stagger>
 
       <!-- Card: Flare -->
       <a href="#book" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
@@ -2522,7 +2531,7 @@
       <div class="title-row h2" style="justify-content:center;" data-anim>Don't take our word for it.</div>
       <p class="body" style="margin-top:16px; opacity:0.6;" data-anim data-delay="1">5-star reviews. Verified on Upwork and direct.</p>
     </div>
-      <div class="testimonials-scroll">
+      <div class="testimonials-scroll" data-anim="up" data-delay="2">
         <div class="testimonials-track">
 
           <!-- Card 1: Tracy Strauss, MariaDB -->
@@ -2924,7 +2933,7 @@
       </div>
       <p class="body" data-anim data-delay="2">Two people. One loop. Zoha runs performance and decides what creative the algorithm needs. Sonia builds it. That's why there's no gap.</p>
     </div>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; max-width:800px; margin:0 auto;" data-anim data-delay="3">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; max-width:800px; margin:0 auto;" data-anim data-delay="3" data-stagger>
       <a href="https://www.linkedin.com/in/zoha-ahmed-38a32266/" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; display:block;">
       <div style="background:#fff; border:2px solid var(--gray-200); border-radius:24px; overflow:hidden; transition:border-color 0.3s, box-shadow 0.3s; cursor:pointer;" onmouseenter="this.style.borderColor='var(--blue)';this.style.boxShadow='0 8px 32px rgba(85,0,221,0.1)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.boxShadow='none'">
         <div style="height:280px; overflow:hidden;">
@@ -2985,8 +2994,10 @@
       </div>
       <p class="body" style="margin-top:16px; max-width:520px; margin-left:auto; margin-right:auto;" data-anim data-delay="2">30 minutes. We'll audit your ad library, show you where competitors are outproducing you, and build you 3 creatives. Free. No strings.</p>
     </div>
-    <div class="calendly-inline-widget" data-url="https://calendly.com/skipthenoisemedia/30min" style="min-width:320px;height:700px;border-radius:24px;overflow:hidden;"></div>
-    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <div data-anim="up" data-delay="3">
+      <div class="calendly-inline-widget" data-url="https://calendly.com/skipthenoisemedia/30min" style="min-width:320px;height:700px;border-radius:24px;overflow:hidden;"></div>
+      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    </div>
   </div>
 </section>
 
