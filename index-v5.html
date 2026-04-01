@@ -1932,8 +1932,8 @@
             <span style="font-size:15px; font-weight:800; color:#0d0d0d;">Marketing Lead</span>
           </div>
           <div style="width:2px; height:18px; background:rgba(0,0,0,0.13); margin:2px 0;"></div>
-          <div style="width:220px; height:2px; background:rgba(0,0,0,0.13);"></div>
-          <div style="display:flex; width:220px; justify-content:space-between; align-items:flex-start;">
+          <div style="width:180px; height:2px; background:rgba(0,0,0,0.13);"></div>
+          <div style="display:flex; width:180px; justify-content:space-between; align-items:flex-start;">
             <!-- Performance Manager -->
             <div style="display:flex; flex-direction:column; align-items:center;">
               <div style="width:2px; height:12px; background:rgba(0,0,0,0.13);"></div>
@@ -2125,9 +2125,9 @@
       if (trigger) {
         var startObs = new IntersectionObserver(function(entries) {
           entries.forEach(function(e) {
-            if (e.isIntersecting && !started) { started = true; setTimeout(init, 300); startObs.unobserve(e.target); }
+            if (e.isIntersecting && !started) { started = true; setTimeout(init, 100); startObs.unobserve(e.target); }
           });
-        }, { threshold: 0.15 });
+        }, { threshold: 0.05 });
         startObs.observe(trigger);
       }
     })();
