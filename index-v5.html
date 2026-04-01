@@ -1871,7 +1871,7 @@
 
     <p class="wf-text" style="font-size:13px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(0,0,0,0.35); margin:0 0 18px; animation-delay:0s;">how we work</p>
     <h2 class="wf-text" style="font-family:'Satoshi', system-ui, sans-serif; font-size:clamp(28px,3.6vw,46px); font-weight:900; letter-spacing:-0.03em; color:#0d0d0d; line-height:1.1; margin:0 0 16px; animation-delay:0.1s;">Your team stays lean.<br>We cover the gaps.</h2>
-    <p class="wf-text" style="font-size:17px; color:rgba(0,0,0,0.5); max-width:780px; margin:0 auto 40px; line-height:1.6; animation-delay:0.2s;">We plug into your existing team and take on the roles that are hard to hire for.</p>
+    <p class="wf-text" style="font-size:17px; color:rgba(0,0,0,0.5); max-width:780px; margin:0 auto 24px; line-height:1.6; animation-delay:0.2s;">We plug into your existing team and take on the roles that are hard to hire for.</p>
 
     <!-- Bandwidth animation v2 -->
     <style>
@@ -1907,7 +1907,7 @@
           <span style="font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(0,0,0,0.35); margin-bottom:16px;">Without us</span>
           <div style="position:relative; width:220px;">
             <div id="bw-left-circle" style="position:relative; width:220px; height:220px; overflow:visible; border-radius:50%;">
-              <svg width="220" height="220" style="position:absolute; inset:0; pointer-events:none; overflow:visible;">
+              <svg width="220" height="220" style="position:absolute; inset:0; pointer-events:none;">
                 <circle cx="110" cy="110" r="103" fill="rgba(220,38,38,0.05)" stroke="rgba(220,38,38,0.5)" stroke-width="1.5" stroke-dasharray="7 4"/>
               </svg>
               <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; padding:0 28px; z-index:10;">
@@ -1925,35 +1925,52 @@
           <!-- Connector to org -->
           <div style="width:2px; height:24px; background:rgba(0,0,0,0.1); margin:16px 0 12px;"></div>
           <!-- Your current team heading -->
-          <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:19px; font-weight:900; letter-spacing:-0.02em; color:#0d0d0d; margin-bottom:24px;">Your current team</span>
+          <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:19px; font-weight:900; letter-spacing:-0.02em; color:#0d0d0d; margin-bottom:20px;">Your current team</span>
           <!-- Org hierarchy -->
           <div class="wf-person" style="display:flex; flex-direction:column; align-items:center; gap:8px; animation-delay:0.3s;">
             <svg width="52" height="52" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="14" r="8" fill="#0d0d0d"/><path d="M4 40c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#0d0d0d"/></svg>
             <span style="font-size:15px; font-weight:800; color:#0d0d0d;">Marketing Lead</span>
           </div>
           <div style="width:2px; height:18px; background:rgba(0,0,0,0.13); margin:2px 0;"></div>
-          <div style="width:140px; height:2px; background:rgba(0,0,0,0.13);"></div>
-          <div style="display:flex; width:140px; justify-content:space-between; align-items:flex-start;">
+          <div style="width:220px; height:2px; background:rgba(0,0,0,0.13);"></div>
+          <div style="display:flex; width:220px; justify-content:space-between; align-items:flex-start;">
+            <!-- Performance Manager -->
+            <div style="display:flex; flex-direction:column; align-items:center;">
+              <div style="width:2px; height:12px; background:rgba(0,0,0,0.13);"></div>
+              <div class="wf-person" style="display:flex; flex-direction:column; align-items:center; gap:7px; animation-delay:0.45s;">
+                <svg width="40" height="40" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="14" r="8" fill="#0d0d0d"/><path d="M4 40c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#0d0d0d"/></svg>
+                <span style="font-size:12px; font-weight:600; color:rgba(0,0,0,0.45); text-align:center;">Performance<br>Manager</span>
+              </div>
+              <div style="width:2px; height:10px; background:rgba(0,0,0,0.1); margin:8px 0 5px;"></div>
+              <div style="display:flex; flex-direction:column; gap:4px; align-items:center;">
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#fee2e2; color:#dc2626; border:1px solid rgba(220,38,38,0.2); border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:0.65s;">Reporting</span>
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#fee2e2; color:#dc2626; border:1px solid rgba(220,38,38,0.2); border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:0.75s;">Analytics</span>
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#fee2e2; color:#dc2626; border:1px solid rgba(220,38,38,0.2); border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:0.85s;">Budgets</span>
+              </div>
+            </div>
+            <!-- Designer -->
             <div style="display:flex; flex-direction:column; align-items:center;">
               <div style="width:2px; height:12px; background:rgba(0,0,0,0.13);"></div>
               <div class="wf-person" style="display:flex; flex-direction:column; align-items:center; gap:7px; animation-delay:0.55s;">
                 <svg width="40" height="40" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="14" r="8" fill="#0d0d0d"/><path d="M4 40c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#0d0d0d"/></svg>
-                <span style="font-size:12px; font-weight:600; color:rgba(0,0,0,0.45); text-align:center;">Performance<br>Manager</span>
-              </div>
-            </div>
-            <div style="display:flex; flex-direction:column; align-items:center;">
-              <div style="width:2px; height:12px; background:rgba(0,0,0,0.13);"></div>
-              <div class="wf-person" style="display:flex; flex-direction:column; align-items:center; gap:7px; animation-delay:0.65s;">
-                <svg width="40" height="40" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="14" r="8" fill="#0d0d0d"/><path d="M4 40c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#0d0d0d"/></svg>
                 <span style="font-size:12px; font-weight:600; color:rgba(0,0,0,0.45); text-align:center;">Designer</span>
+              </div>
+              <div style="width:2px; height:10px; background:rgba(0,0,0,0.1); margin:8px 0 5px;"></div>
+              <div style="display:flex; flex-direction:column; gap:4px; align-items:center;">
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#fee2e2; color:#dc2626; border:1px solid rgba(220,38,38,0.2); border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:0.95s;">Creatives</span>
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#fee2e2; color:#dc2626; border:1px solid rgba(220,38,38,0.2); border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:1.05s;">Ad Copy</span>
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#fee2e2; color:#dc2626; border:1px solid rgba(220,38,38,0.2); border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:1.15s;">Content</span>
               </div>
             </div>
           </div>
         </div>
 
         <!-- CENTER: Plus -->
-        <div style="display:flex; align-items:center; justify-content:center; padding:0 20px;">
-          <span style="font-size:32px; font-weight:300; color:rgba(0,0,0,0.25);">+</span>
+        <div style="display:flex; align-items:center; justify-content:center; padding:0 16px;">
+          <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+            <div style="width:44px; height:44px; background:#0d0d0d; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:26px; font-weight:300; line-height:1;">+</div>
+            <span style="font-size:10px; font-weight:700; color:rgba(0,0,0,0.4); letter-spacing:0.1em; text-transform:uppercase;">us</span>
+          </div>
         </div>
 
         <!-- RIGHT: With us + Roles we add -->
@@ -2088,12 +2105,10 @@
 
       function init() {
         initSlots();
-        // Stagger initial reveal
-        slots.forEach(function(s, i) {
-          setTimeout(function() {
-            s.txt.textContent = LABELS[rightIdx % LABELS.length]; rightIdx++;
-            s.el.animate([{opacity:0,transform:'translateX(-8px)'},{opacity:1,transform:'translateX(0)'}],{duration:380,fill:'forwards'});
-          }, 400 + i * 600);
+        // Pre-populate immediately — visible from the start, no stagger delay
+        slots.forEach(function(s) {
+          s.txt.textContent = LABELS[rightIdx % LABELS.length]; rightIdx++;
+          s.el.style.opacity = '1';
         });
         setInterval(spawnFly, 600);
         var pileT = setInterval(function(){
@@ -2101,8 +2116,8 @@
           if (pile && pile.children.length >= MAX_PILE) clearInterval(pileT);
         }, 550);
         setInterval(shakeCircle, 2400);
-        // After initial fill, cycle one slot at a time — no layout shift
-        setTimeout(function(){ setInterval(cycleSlot, 2000); }, 400 + MAX_RIGHT * 600 + 1000);
+        // Cycle slots continuously
+        setTimeout(function(){ setInterval(cycleSlot, 2200); }, 2000);
       }
 
       var started = false;
