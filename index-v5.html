@@ -2035,7 +2035,13 @@
       }
 
       function addHandled() {
-        if (!handled || handled.children.length >= MAX_RIGHT) return;
+        if (!handled) return;
+        // If at capacity, fade out and remove the oldest
+        if (handled.children.length >= MAX_RIGHT) {
+          var oldest = handled.children[0];
+          var anim = oldest.animate([{opacity:1,transform:'translateX(0)'},{opacity:0,transform:'translateX(8px)'}],{duration:280,fill:'forwards'});
+          anim.onfinish = function(){ try{oldest.remove();}catch(e){} };
+        }
         var el = document.createElement('div');
         var label = LABELS[rightIdx % LABELS.length]; rightIdx++;
         el.style.cssText = 'display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;font-family:\'Satoshi\',system-ui,sans-serif;color:#15803d;opacity:0;';
@@ -2047,7 +2053,7 @@
         txt.textContent = label;
         el.appendChild(check); el.appendChild(txt);
         handled.appendChild(el);
-        el.animate([{opacity:0,transform:'translateX(-8px)'},{opacity:1,transform:'translateX(0)'}],{duration:380,fill:'forwards'});
+        setTimeout(function(){ el.animate([{opacity:0,transform:'translateX(-8px)'},{opacity:1,transform:'translateX(0)'}],{duration:380,fill:'forwards'}); }, 300);
       }
 
       function init() {
@@ -2057,10 +2063,7 @@
           if (pile && pile.children.length >= MAX_PILE) clearInterval(pileT);
         }, 550);
         setInterval(shakeCircle, 2400);
-        var rightT = setInterval(function(){
-          addHandled();
-          if (handled && handled.children.length >= MAX_RIGHT) clearInterval(rightT);
-        }, 750);
+        setInterval(addHandled, 1200);
       }
 
       if (document.readyState==='loading') {
@@ -3632,20 +3635,31 @@
           if (halfW) { while (pos <= -halfW) pos += halfW; while (pos > 0) pos -= halfW; }
         });
 
+        var startY = 0, touchDir = null;
+
         wrap.addEventListener('touchstart', function(e) {
           enableJsMode();
-          isDragging = true;
           startX = e.touches[0].pageX;
+          startY = e.touches[0].pageY;
           dragStart = pos;
+          touchDir = null;
+          isDragging = false;
         }, { passive: true });
 
         wrap.addEventListener('touchmove', function(e) {
-          if (!isDragging) return;
-          pos = dragStart + (e.touches[0].pageX - startX);
+          var dx = e.touches[0].pageX - startX;
+          var dy = e.touches[0].pageY - startY;
+          if (!touchDir) {
+            touchDir = Math.abs(dx) > Math.abs(dy) ? 'h' : 'v';
+            if (touchDir === 'h') isDragging = true;
+          }
+          if (touchDir !== 'h') return;
+          pos = dragStart + dx;
         }, { passive: true });
 
         wrap.addEventListener('touchend', function() {
           isDragging = false;
+          touchDir = null;
           if (halfW) { while (pos <= -halfW) pos += halfW; while (pos > 0) pos -= halfW; }
         });
       }
