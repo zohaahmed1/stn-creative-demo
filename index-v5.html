@@ -1850,7 +1850,7 @@
 
     <style>
       @keyframes wf-fade-up { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-      @keyframes wf-pop { 0% { opacity:0; transform:scale(0.82) translateY(6px); } 100% { opacity:1; transform:scale(1) translateY(0); } }
+      @keyframes wf-pop { 0% { opacity:0; transform:translateY(8px); } 100% { opacity:1; transform:translateY(0); } }
       /* Start hidden — animate only when section scrolls into view */
       .wf-text, .wf-person, .wf-pill, .wf-box { opacity:0; }
       .wf-ready .wf-text   { animation: wf-fade-up 0.8s ease both; }
@@ -2081,7 +2081,7 @@
         el.textContent = LABELS[pileIdx % LABELS.length]; pileIdx++;
         el.style.cssText = 'font-size:9px;font-weight:700;font-family:\'Satoshi\',system-ui,sans-serif;background:#fee2e2;color:#dc2626;border:1px solid rgba(220,38,38,0.3);border-radius:100px;padding:3px 9px;white-space:nowrap;opacity:0;';
         pile.appendChild(el);
-        el.animate([{opacity:0,transform:'translateY(-8px) scale(0.82)'},{opacity:1,transform:'translateY(0) scale(1)'}],{duration:280,easing:'ease-out',fill:'forwards'});
+        el.animate([{opacity:0,transform:'translateY(-8px)'},{opacity:1,transform:'translateY(0)'}],{duration:280,easing:'ease-out',fill:'forwards'});
       }
 
       function shakeCircle() {
