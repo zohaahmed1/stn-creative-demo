@@ -1945,7 +1945,7 @@
             <div style="display:flex; flex-direction:column; align-items:center;">
               <div class="wf-person" style="display:flex; flex-direction:column; align-items:center; gap:8px; animation-delay:0.55s;">
                 <svg width="52" height="52" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="14" r="8" fill="#0d0d0d"/><path d="M4 40c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#0d0d0d"/></svg>
-                <span style="font-size:15px; font-weight:800; color:#0d0d0d; text-align:center;">Designer</span>
+                <span style="font-size:15px; font-weight:800; color:#0d0d0d; text-align:center;">Creative<br>Designer</span>
               </div>
               <div style="width:2px; height:14px; background:rgba(0,0,0,0.13); margin:6px 0 5px;"></div>
               <div style="display:flex; flex-direction:column; gap:4px; align-items:center;">
@@ -2081,8 +2081,7 @@
         el.textContent = LABELS[pileIdx % LABELS.length]; pileIdx++;
         el.style.cssText = 'font-size:9px;font-weight:700;font-family:\'Satoshi\',system-ui,sans-serif;background:#fee2e2;color:#dc2626;border:1px solid rgba(220,38,38,0.3);border-radius:100px;padding:3px 9px;white-space:nowrap;opacity:0;';
         pile.appendChild(el);
-        el.animate([{opacity:0,transform:'translateY(-8px)'},{opacity:1,transform:'translateY(0)'}],{duration:320,fill:'forwards'});
-        el.style.cssText += 'animation:bw-pile-in 0.32s ease both;';
+        el.animate([{opacity:0,transform:'translateY(-8px) scale(0.82)'},{opacity:1,transform:'translateY(0) scale(1)'}],{duration:280,easing:'ease-out',fill:'forwards'});
       }
 
       function shakeCircle() {
@@ -3222,7 +3221,7 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -80px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
 
     // Observe scroll-triggered elements (non-hero)
     document.querySelectorAll('[data-anim]:not([data-hero])').forEach(el => observer.observe(el));
@@ -3240,7 +3239,7 @@
           staggerObs.unobserve(parent);
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -80px 0px' });
+    }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
     document.querySelectorAll('[data-stagger]').forEach(el => staggerObs.observe(el));
 
     // ── Hero text split reveal ──────────────────────────────────────
