@@ -1398,6 +1398,13 @@
 
       /* Footer cols — wrap into 2x2 grid on mobile */
       .footer-cols-row { gap: 32px 40px !important; }
+
+      /* Results section — stack to 1 col on mobile */
+      #work div[style*="grid-template-columns:repeat(3"] { grid-template-columns: 1fr !important; }
+
+      /* Section 2 (wf-section) — stack columns vertically on mobile */
+      .wf-section div[style*="grid-template-columns:1fr auto 1fr"] { display: flex !important; flex-direction: column !important; }
+      .wf-section div[style*="grid-template-columns:1fr auto 1fr"] > div:nth-child(2) { display: none !important; }
     }
 
     /* Tablet tweaks */
