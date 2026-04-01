@@ -2034,36 +2034,53 @@
         setTimeout(function(){ circle.classList.remove('bw-shaking'); }, 450);
       }
 
-      function addHandled() {
+      // Pre-create fixed slots — no layout shift, just cycle text in-place
+      var slots = [];
+      function initSlots() {
         if (!handled) return;
-        // If at capacity, fade out and remove the oldest
-        if (handled.children.length >= MAX_RIGHT) {
-          var oldest = handled.children[0];
-          var anim = oldest.animate([{opacity:1,transform:'translateX(0)'},{opacity:0,transform:'translateX(8px)'}],{duration:280,fill:'forwards'});
-          anim.onfinish = function(){ try{oldest.remove();}catch(e){} };
+        for (var i = 0; i < MAX_RIGHT; i++) {
+          var el = document.createElement('div');
+          el.style.cssText = 'display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;font-family:\'Satoshi\',system-ui,sans-serif;color:#15803d;opacity:0;';
+          var check = document.createElement('span');
+          check.style.cssText = 'width:18px;height:18px;background:#16a34a;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#fff;flex-shrink:0;line-height:1;';
+          check.textContent = '✓';
+          var txt = document.createElement('span');
+          txt.style.cssText = 'background:rgba(22,163,74,0.1);border:1px solid rgba(22,163,74,0.28);border-radius:100px;padding:4px 12px;';
+          el.appendChild(check); el.appendChild(txt);
+          handled.appendChild(el);
+          slots.push({ el: el, txt: txt });
         }
-        var el = document.createElement('div');
-        var label = LABELS[rightIdx % LABELS.length]; rightIdx++;
-        el.style.cssText = 'display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;font-family:\'Satoshi\',system-ui,sans-serif;color:#15803d;opacity:0;';
-        var check = document.createElement('span');
-        check.style.cssText = 'width:18px;height:18px;background:#16a34a;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:#fff;flex-shrink:0;line-height:1;';
-        check.textContent = '✓';
-        var txt = document.createElement('span');
-        txt.style.cssText = 'background:rgba(22,163,74,0.1);border:1px solid rgba(22,163,74,0.28);border-radius:100px;padding:4px 12px;';
-        txt.textContent = label;
-        el.appendChild(check); el.appendChild(txt);
-        handled.appendChild(el);
-        setTimeout(function(){ el.animate([{opacity:0,transform:'translateX(-8px)'},{opacity:1,transform:'translateX(0)'}],{duration:380,fill:'forwards'}); }, 300);
+      }
+
+      var slotIdx = 0;
+      function cycleSlot() {
+        if (!slots.length) return;
+        var s = slots[slotIdx % slots.length];
+        slotIdx++;
+        // Fade out, swap text, fade back in
+        s.el.animate([{opacity:1},{opacity:0}],{duration:250,fill:'forwards'}).onfinish = function() {
+          s.txt.textContent = LABELS[rightIdx % LABELS.length]; rightIdx++;
+          s.el.animate([{opacity:0,transform:'translateX(-6px)'},{opacity:1,transform:'translateX(0)'}],{duration:350,fill:'forwards'});
+        };
       }
 
       function init() {
+        initSlots();
+        // Stagger initial reveal
+        slots.forEach(function(s, i) {
+          setTimeout(function() {
+            s.txt.textContent = LABELS[rightIdx % LABELS.length]; rightIdx++;
+            s.el.animate([{opacity:0,transform:'translateX(-8px)'},{opacity:1,transform:'translateX(0)'}],{duration:380,fill:'forwards'});
+          }, 400 + i * 600);
+        });
         setInterval(spawnFly, 300);
         var pileT = setInterval(function(){
           addToPile();
           if (pile && pile.children.length >= MAX_PILE) clearInterval(pileT);
         }, 550);
         setInterval(shakeCircle, 2400);
-        setInterval(addHandled, 1200);
+        // After initial fill, cycle one slot at a time — no layout shift
+        setTimeout(function(){ setInterval(cycleSlot, 2000); }, 400 + MAX_RIGHT * 600 + 1000);
       }
 
       var started = false;
