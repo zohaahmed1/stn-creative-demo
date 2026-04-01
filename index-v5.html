@@ -1708,7 +1708,7 @@
     <div style="display:flex; justify-content:center; align-items:center; gap:12px; margin:16px 0 8px;">
       <span style="font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(0,0,0,0.35);">Browse by:</span>
       <div style="display:flex; background:rgba(0,0,0,0.06); border-radius:100px; padding:4px; gap:0; border:1.5px solid rgba(0,0,0,0.08);">
-        <button id="htoggle-saas" onclick="switchHeroGallery('saas')" style="font-size:13px; font-weight:700; padding:8px 22px; border-radius:100px; border:none; background:#5500DD; color:#fff; cursor:pointer; transition:all 0.22s; box-shadow:0 2px 8px rgba(85,0,221,0.25);">SaaS</button>
+        <button id="htoggle-saas" onclick="switchHeroGallery('saas')" style="font-size:13px; font-weight:700; padding:8px 22px; border-radius:100px; border:none; background:#1D4ED8; color:#fff; cursor:pointer; transition:all 0.22s; box-shadow:0 2px 8px rgba(29,78,216,0.28);">SaaS</button>
         <button id="htoggle-ecomm" onclick="switchHeroGallery('ecomm')" style="font-size:13px; font-weight:700; padding:8px 22px; border-radius:100px; border:none; background:transparent; color:rgba(0,0,0,0.45); cursor:pointer; transition:all 0.22s; box-shadow:none;">eComm / DTC</button>
       </div>
     </div>
@@ -1804,7 +1804,7 @@
     var eb = document.getElementById('htoggle-ecomm');
     if (type === 'saas') {
       sg.style.display = ''; eg.style.display = 'none';
-      sb.style.background = '#5500DD'; sb.style.color = '#fff'; sb.style.boxShadow = '0 2px 8px rgba(85,0,221,0.25)';
+      sb.style.background = '#1D4ED8'; sb.style.color = '#fff'; sb.style.boxShadow = '0 2px 8px rgba(29,78,216,0.28)';
       eb.style.background = 'transparent'; eb.style.color = 'rgba(0,0,0,0.45)'; eb.style.boxShadow = 'none';
     } else {
       sg.style.display = 'none'; eg.style.display = '';
@@ -1920,7 +1920,7 @@
               </div>
               <div id="bw-fly" style="position:absolute; inset:0; overflow:visible; pointer-events:none; z-index:5;"></div>
             </div>
-            <div id="bw-pile" style="display:flex; flex-wrap:wrap; gap:4px; padding:8px 4px 0; justify-content:center; min-height:30px;"></div>
+            <div id="bw-pile" style="display:flex; flex-wrap:wrap; gap:4px; padding:8px 4px 0; justify-content:center; min-height:85px;"></div>
           </div>
           <!-- Connector to org -->
           <div style="width:2px; height:24px; background:rgba(0,0,0,0.1); margin:16px 0 12px;"></div>
@@ -1977,7 +1977,7 @@
         <div style="padding:32px 28px 40px; border-left:1px solid rgba(0,0,0,0.06); display:flex; flex-direction:column; align-items:center;">
           <!-- Animation: With us -->
           <span style="font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#16a34a; margin-bottom:16px;">With us</span>
-          <div style="position:relative; width:220px; height:220px;">
+          <div id="bw-right-circle" style="position:relative; width:220px; height:220px; overflow:visible;">
             <svg width="220" height="220" style="position:absolute; inset:0; pointer-events:none;">
               <circle cx="110" cy="110" r="103" fill="rgba(22,163,74,0.05)" stroke="rgba(22,163,74,0.45)" stroke-width="1.5"/>
             </svg>
@@ -1989,6 +1989,7 @@
               <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:30px; font-weight:900; color:#16a34a; letter-spacing:-0.03em; line-height:1;">68%</span>
               <span style="font-size:10px; font-weight:700; color:rgba(22,163,74,0.5); letter-spacing:0.08em; text-transform:uppercase;">Room to scale</span>
             </div>
+            <div id="bw-right-fly" style="position:absolute; inset:0; overflow:visible; pointer-events:none; z-index:5;"></div>
           </div>
           <div id="bw-handled" style="display:flex; flex-direction:column; gap:6px; width:100%; max-width:180px; margin-top:10px; min-height:96px;"></div>
           <!-- Connector to org -->
@@ -2036,8 +2037,28 @@
       var pile = document.getElementById('bw-pile');
       var circle = document.getElementById('bw-left-circle');
       var handled = document.getElementById('bw-handled');
-      var flyIdx=0, pileIdx=0, rightIdx=0;
+      var flyIdx=0, pileIdx=0, rightIdx=0, emojiIdx=0;
       var MAX_PILE=9, MAX_RIGHT=3;
+      var EMOJIS = ['🎉','✨','🚀','💚','📈','🙌','💪','🔥','⚡','🎯'];
+      var rightFly = document.getElementById('bw-right-fly');
+
+      function spawnRightFly() {
+        if (!rightFly) return;
+        var el = document.createElement('span');
+        el.textContent = EMOJIS[emojiIdx % EMOJIS.length]; emojiIdx++;
+        el.style.cssText = 'position:absolute;font-size:20px;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:3;line-height:1;';
+        rightFly.appendChild(el);
+        var angle = Math.random() * Math.PI * 2;
+        var dist = 115 + Math.random() * 28;
+        var tx = Math.cos(angle)*dist, ty = Math.sin(angle)*dist;
+        var rot = (Math.random()-0.5)*25;
+        var anim = el.animate([
+          {transform:'translate(-50%,-50%) scale(0.2)',opacity:0},
+          {transform:'translate(-50%,-50%) scale(1.15)',opacity:1,offset:0.18},
+          {transform:'translate(calc(-50% + '+tx+'px),calc(-50% + '+ty+'px)) rotate('+rot+'deg) scale(0.75)',opacity:0}
+        ],{duration:1900+Math.random()*400,easing:'ease-out',fill:'forwards'});
+        anim.onfinish = function(){ try{el.remove();}catch(e){} };
+      }
 
       function spawnFly() {
         if (!fly) return;
@@ -2111,6 +2132,7 @@
           s.el.style.opacity = '1';
         });
         setInterval(spawnFly, 600);
+        setInterval(spawnRightFly, 900);
         var pileT = setInterval(function(){
           addToPile();
           if (pile && pile.children.length >= MAX_PILE) clearInterval(pileT);
