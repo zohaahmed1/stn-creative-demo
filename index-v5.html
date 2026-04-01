@@ -2066,9 +2066,16 @@
         setInterval(addHandled, 1200);
       }
 
-      if (document.readyState==='loading') {
-        document.addEventListener('DOMContentLoaded', function(){ setTimeout(init,500); });
-      } else { setTimeout(init,500); }
+      var started = false;
+      var trigger = document.querySelector('.wf-section') || circle;
+      if (trigger) {
+        var startObs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting && !started) { started = true; setTimeout(init, 300); startObs.unobserve(e.target); }
+          });
+        }, { threshold: 0.15 });
+        startObs.observe(trigger);
+      }
     })();
     </script>
 
