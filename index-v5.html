@@ -2457,6 +2457,24 @@
       }
 
       window.addEventListener('wheel', onWheel, { passive: false });
+
+      // Fix: if page is refreshed while already scrolled into this section,
+      // show all cards immediately (no wheel event will fire to trigger them)
+      setTimeout(function() {
+        if (state === 0) {
+          var rect = section.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.75) {
+            state = 3;
+            cards.forEach(function(card) {
+              var pills = card.querySelectorAll('.linea-pill');
+              pills.forEach(function(p, i) { p.style.transitionDelay = (0.35 + i * 0.06) + 's'; });
+              card.classList.add('linea-card-visible');
+            });
+            startCounter();
+            window.removeEventListener('wheel', onWheel);
+          }
+        }
+      }, 300);
     })();
     </script>
   </div>
@@ -3602,6 +3620,30 @@
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -20px 0px' });
     document.querySelectorAll('[data-stagger]').forEach(el => staggerObs.observe(el));
+
+    // ── Fallback: fire reveals for elements already in viewport on refresh ──
+    setTimeout(() => {
+      document.querySelectorAll('[data-anim]:not(.visible):not([data-hero])').forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible');
+      });
+      document.querySelectorAll('[data-stagger]:not(.stagger-visible)').forEach(el => {
+        const r = el.getBoundingClientRect();
+        if (r.top < window.innerHeight && r.bottom > 0) {
+          Array.from(el.children).forEach((c, i) => { c.style.transitionDelay = (i * 0.1) + 's'; });
+          el.classList.add('stagger-visible');
+        }
+      });
+      // svc-line / svc-card headline
+      const svc = document.querySelector('#services');
+      if (svc) {
+        const r = svc.getBoundingClientRect();
+        if (r.top < window.innerHeight) {
+          svc.querySelectorAll('.svc-line').forEach(l => { l.style.transform = 'translateY(0)'; });
+          svc.querySelectorAll('.svc-card').forEach(e => { e.style.opacity = '1'; e.style.transform = 'translateY(0)'; });
+        }
+      }
+    }, 350);
 
     // ── Hero text split reveal ──────────────────────────────────────
     document.querySelectorAll('.hero-left .h1[data-hero], .hero-left .title-row.h1 > span[data-hero], .hero-headline-bold[data-hero]').forEach(el => {
