@@ -2157,258 +2157,20 @@
 </div><!-- end section 2 hidden wrapper -->
 
 <!-- PAIN SECTION -->
-<section id="pain" style="background:#ffffff;">
+<section id="pain" style="background:#f5f5f5; padding:100px 24px 112px;">
+  <div style="max-width:740px; margin:0 auto; text-align:center;">
 
-  <!-- Header (non-sticky) -->
-  <div style="padding:80px 24px 48px; text-align:center;">
-    <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--blue); margin-bottom:14px;">Sound familiar?</span>
-    <h2 style="font-size:clamp(30px,3.8vw,52px); font-weight:900; letter-spacing:-0.03em; color:var(--dark); line-height:1.1; margin:0 0 14px; font-family:var(--font);">We've heard this before.</h2>
-    <p style="font-size:16px; color:var(--gray-400); max-width:420px; margin:0 auto 32px; line-height:1.6;">The same walls come up on almost every first call. Pick your world.</p>
-    <!-- Toggle -->
-    <div style="display:flex; justify-content:center; gap:8px;">
-      <button onclick="setPainGroup('ecomm')" id="pain-tab-ecomm" class="pain-tab" style="padding:9px 26px; border-radius:100px; border:1.5px solid #ee0033; background:#ee0033; color:#fff; font-size:14px; font-family:var(--font); font-variation-settings:'wdth' 125,'wght' 700; cursor:pointer; transition:all 0.2s;">eComm / DTC</button>
-      <button onclick="setPainGroup('saas')" id="pain-tab-saas" class="pain-tab" style="padding:9px 26px; border-radius:100px; border:1.5px solid var(--gray-200); background:#fff; color:var(--gray-400); font-size:14px; font-family:var(--font); font-variation-settings:'wdth' 125,'wght' 700; cursor:pointer; transition:all 0.2s;">B2B SaaS</button>
-    </div>
-  </div>
+    <span style="display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--blue); margin-bottom:48px;">Sound familiar?</span>
 
-  <!-- DESKTOP: Scroll-pinned card reveal -->
-  <div id="pain-sticky-wrap" class="pain-desktop" style="height:380vh; position:relative;">
-    <div id="pain-sticky-inner" style="position:sticky; top:0; height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0 24px; overflow:hidden;">
-
-      <!-- Progress dots -->
-      <div id="pain-dots" style="display:flex; gap:10px; margin-bottom:40px;">
-        <span class="pain-dot pain-dot-0" style="width:8px; height:8px; border-radius:50%; background:#ee0033; transition:transform 0.3s, opacity 0.3s;"></span>
-        <span class="pain-dot pain-dot-1" style="width:8px; height:8px; border-radius:50%; background:#ee0033; opacity:0.25; transition:transform 0.3s, opacity 0.3s;"></span>
-        <span class="pain-dot pain-dot-2" style="width:8px; height:8px; border-radius:50%; background:#ee0033; opacity:0.25; transition:transform 0.3s, opacity 0.3s;"></span>
-      </div>
-
-      <!-- Card slot -->
-      <div style="position:relative; width:100%; max-width:660px; min-height:300px;">
-
-        <!-- eComm cards -->
-        <div class="pain-slide" data-group="ecomm" data-idx="0" style="position:absolute; inset:0; display:flex; flex-direction:column; gap:20px; background:var(--bg); border-radius:28px; padding:48px 44px;">
-          <span style="font-size:64px; font-weight:900; color:#ee0033; line-height:0.8; font-family:'Playfair Display',serif; font-style:italic;">"</span>
-          <p style="margin:0; font-family:var(--font); font-size:clamp(22px,2.4vw,32px); font-variation-settings:'wdth' 125,'wght' 900; color:var(--dark); line-height:1.3;">We're running the same 5 creatives from 3 months ago. <em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">ROAS is sliding</em> and no one has time to fix it.</p>
-          <span style="font-size:11px; font-weight:700; color:var(--gray-300); text-transform:uppercase; letter-spacing:0.1em; margin-top:auto;">VP Marketing, DTC Brand</span>
-        </div>
-
-        <div class="pain-slide" data-group="ecomm" data-idx="1" style="position:absolute; inset:0; display:flex; flex-direction:column; gap:20px; background:var(--bg); border-radius:28px; padding:48px 44px;">
-          <span style="font-size:64px; font-weight:900; color:#ee0033; line-height:0.8; font-family:'Playfair Display',serif; font-style:italic;">"</span>
-          <p style="margin:0; font-family:var(--font); font-size:clamp(22px,2.4vw,32px); font-variation-settings:'wdth' 125,'wght' 900; color:var(--dark); line-height:1.3;">I have a media buyer. <em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">I don't have a creative strategist.</em> Those are two completely different jobs.</p>
-          <span style="font-size:11px; font-weight:700; color:var(--gray-300); text-transform:uppercase; letter-spacing:0.1em; margin-top:auto;">Head of Growth, Fashion Brand</span>
-        </div>
-
-        <div class="pain-slide" data-group="ecomm" data-idx="2" style="position:absolute; inset:0; display:flex; flex-direction:column; gap:20px; background:var(--bg); border-radius:28px; padding:48px 44px;">
-          <span style="font-size:64px; font-weight:900; color:#ee0033; line-height:0.8; font-family:'Playfair Display',serif; font-style:italic;">"</span>
-          <p style="margin:0; font-family:var(--font); font-size:clamp(22px,2.4vw,32px); font-variation-settings:'wdth' 125,'wght' 900; color:var(--dark); line-height:1.3;">We briefed an agency in January. First ad live in March. <em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">The campaign window was already gone.</em></p>
-          <span style="font-size:11px; font-weight:700; color:var(--gray-300); text-transform:uppercase; letter-spacing:0.1em; margin-top:auto;">Marketing Manager, CPG Brand</span>
-        </div>
-
-        <!-- SaaS cards -->
-        <div class="pain-slide" data-group="saas" data-idx="0" style="position:absolute; inset:0; display:flex; flex-direction:column; gap:20px; background:var(--bg); border-radius:28px; padding:48px 44px;">
-          <span style="font-size:64px; font-weight:900; color:#5500dd; line-height:0.8; font-family:'Playfair Display',serif; font-style:italic;">"</span>
-          <p style="margin:0; font-family:var(--font); font-size:clamp(22px,2.4vw,32px); font-variation-settings:'wdth' 125,'wght' 900; color:var(--dark); line-height:1.3;">We're paying $200 per lead on LinkedIn. <em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">I can't take that number to the board</em> again.</p>
-          <span style="font-size:11px; font-weight:700; color:var(--gray-300); text-transform:uppercase; letter-spacing:0.1em; margin-top:auto;">CMO, B2B SaaS</span>
-        </div>
-
-        <div class="pain-slide" data-group="saas" data-idx="1" style="position:absolute; inset:0; display:flex; flex-direction:column; gap:20px; background:var(--bg); border-radius:28px; padding:48px 44px;">
-          <span style="font-size:64px; font-weight:900; color:#5500dd; line-height:0.8; font-family:'Playfair Display',serif; font-style:italic;">"</span>
-          <p style="margin:0; font-family:var(--font); font-size:clamp(22px,2.4vw,32px); font-variation-settings:'wdth' 125,'wght' 900; color:var(--dark); line-height:1.3;">Our content team is great. <em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">Our paid ads look like everyone else's.</em> Something is broken.</p>
-          <span style="font-size:11px; font-weight:700; color:var(--gray-300); text-transform:uppercase; letter-spacing:0.1em; margin-top:auto;">Head of Marketing, SaaS Startup</span>
-        </div>
-
-        <div class="pain-slide" data-group="saas" data-idx="2" style="position:absolute; inset:0; display:flex; flex-direction:column; gap:20px; background:var(--bg); border-radius:28px; padding:48px 44px;">
-          <span style="font-size:64px; font-weight:900; color:#5500dd; line-height:0.8; font-family:'Playfair Display',serif; font-style:italic;">"</span>
-          <p style="margin:0; font-family:var(--font); font-size:clamp(22px,2.4vw,32px); font-variation-settings:'wdth' 125,'wght' 900; color:var(--dark); line-height:1.3;">We doubled our ad budget last quarter. <em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">Pipeline barely moved.</em></p>
-          <span style="font-size:11px; font-weight:700; color:var(--gray-300); text-transform:uppercase; letter-spacing:0.1em; margin-top:auto;">VP Demand Gen, B2B SaaS</span>
-        </div>
-
-      </div>
-
-      <!-- Scroll hint -->
-      <div id="pain-hint" style="margin-top:36px; display:flex; align-items:center; gap:8px; opacity:0; transition:opacity 0.4s;">
-        <span style="font-size:13px; color:var(--gray-300); font-weight:600;">Scroll to continue</span>
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M3 8l4 4 4-4" stroke="#a8a8a8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- MOBILE: stacked cards -->
-  <div class="pain-mobile" style="padding:0 20px 72px; display:none;">
-
-    <div style="margin-bottom:24px;">
-      <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px;">
-        <span style="width:8px; height:8px; border-radius:50%; background:#ee0033; display:inline-block;"></span>
-        <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#ee0033;">eComm / DTC</span>
-      </div>
-      <div class="pain-mob-card" style="background:var(--bg); border-radius:20px; padding:28px 24px; margin-bottom:12px;">
-        <p style="margin:0 0 12px; font-family:var(--font); font-size:20px; font-variation-settings:'wdth' 125,'wght' 900; color:var(--dark); line-height:1.35;">We're running the same 5 creatives from 3 months ago. <em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">ROAS is sliding</em> and no one has time to fix it.</p>
-        <span style="font-size:10px; font-weight:700; color:var(--gray-300); text-transform:uppercase; letter-spacing:0.1em;">VP Marketing, DTC Brand</span>
-      </div>
-      <div class="pain-mob-card" style="background:var(--bg); border-radius:20px; padding:28px 24px; margin-bottom:12px;">
-        <p style="margin:0 0 12px; font-family:var(--font); font-size:20px; font-variation-settings:'wdth' 125,'wght' 900; color:var(--dark); line-height:1.35;">I have a media buyer. <em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">I don't have a creative strategist.</em> Those are two completely different jobs.</p>
-        <span style="font-size:10px; font-weight:700; color:var(--gray-300); text-transform:uppercase; letter-spacing:0.1em;">Head of Growth, Fashion Brand</span>
-      </div>
-      <div class="pain-mob-card" style="background:var(--bg); border-radius:20px; padding:28px 24px;">
-        <p style="margin:0 0 12px; font-family:var(--font); font-size:20px; font-variation-settings:'wdth' 125,'wght' 900; color:var(--dark); line-height:1.35;">We briefed an agency in January. First ad live in March. <em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">The campaign window was already gone.</em></p>
-        <span style="font-size:10px; font-weight:700; color:var(--gray-300); text-transform:uppercase; letter-spacing:0.1em;">Marketing Manager, CPG Brand</span>
-      </div>
+    <div style="position:relative; margin-bottom:40px;">
+      <span style="display:block; font-size:clamp(72px,10vw,120px); font-weight:900; color:var(--dark); line-height:0.75; font-family:'Playfair Display',serif; font-style:italic; opacity:0.08; user-select:none; margin-bottom:-16px;">"</span>
+      <p style="margin:0; font-family:var(--font); font-size:clamp(26px,3.2vw,44px); font-variation-settings:'wdth' 125,'wght' 900; color:var(--dark); line-height:1.25; letter-spacing:-0.02em;">I have a media buyer. <em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">I don't have a creative strategist.</em> Those are two completely different jobs.</p>
     </div>
 
-    <div>
-      <div style="display:flex; align-items:center; gap:8px; margin-bottom:16px;">
-        <span style="width:8px; height:8px; border-radius:50%; background:#5500dd; display:inline-block;"></span>
-        <span style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#5500dd;">B2B SaaS</span>
-      </div>
-      <div class="pain-mob-card" style="background:var(--bg); border-radius:20px; padding:28px 24px; margin-bottom:12px;">
-        <p style="margin:0 0 12px; font-family:var(--font); font-size:20px; font-variation-settings:'wdth' 125,'wght' 900; color:var(--dark); line-height:1.35;">We're paying $200 per lead on LinkedIn. <em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">I can't take that number to the board</em> again.</p>
-        <span style="font-size:10px; font-weight:700; color:var(--gray-300); text-transform:uppercase; letter-spacing:0.1em;">CMO, B2B SaaS</span>
-      </div>
-      <div class="pain-mob-card" style="background:var(--bg); border-radius:20px; padding:28px 24px; margin-bottom:12px;">
-        <p style="margin:0 0 12px; font-family:var(--font); font-size:20px; font-variation-settings:'wdth' 125,'wght' 900; color:var(--dark); line-height:1.35;">Our content team is great. <em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">Our paid ads look like everyone else's.</em> Something is broken.</p>
-        <span style="font-size:10px; font-weight:700; color:var(--gray-300); text-transform:uppercase; letter-spacing:0.1em;">Head of Marketing, SaaS Startup</span>
-      </div>
-      <div class="pain-mob-card" style="background:var(--bg); border-radius:20px; padding:28px 24px;">
-        <p style="margin:0 0 12px; font-family:var(--font); font-size:20px; font-variation-settings:'wdth' 125,'wght' 900; color:var(--dark); line-height:1.35;">We doubled our ad budget last quarter. <em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">Pipeline barely moved.</em></p>
-        <span style="font-size:10px; font-weight:700; color:var(--gray-300); text-transform:uppercase; letter-spacing:0.1em;">VP Demand Gen, B2B SaaS</span>
-      </div>
-    </div>
+    <span style="font-size:11px; font-weight:700; color:var(--gray-300); text-transform:uppercase; letter-spacing:0.12em;">Head of Growth — heard on almost every first call</span>
 
   </div>
-
 </section>
-
-<style>
-/* Show/hide desktop vs mobile pain layouts */
-@media (max-width: 809px) {
-  .pain-desktop { display: none !important; }
-  .pain-mobile  { display: block !important; }
-}
-
-/* Slide states */
-.pain-slide {
-  opacity: 0;
-  transform: translateY(56px) scale(0.96);
-  transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
-  pointer-events: none;
-}
-.pain-slide.pain-active {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-  pointer-events: auto;
-}
-.pain-slide.pain-past {
-  opacity: 0;
-  transform: translateY(-48px) scale(0.96);
-}
-
-/* Mobile card stagger */
-.pain-mob-card {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
-}
-.pain-mob-card.pain-visible { opacity:1; transform:translateY(0); }
-</style>
-
-<script>
-(function() {
-  var activeGroup = 'ecomm';
-  var activeIdx   = 0;
-  var groupColors = { ecomm: '#ee0033', saas: '#5500dd' };
-
-  function getSlides(group) {
-    return document.querySelectorAll('.pain-slide[data-group="' + group + '"]');
-  }
-
-  function showSlide(group, idx, skipAnim) {
-    // Reset all slides for this group
-    var slides = getSlides(group);
-    slides.forEach(function(s, i) {
-      s.classList.remove('pain-active', 'pain-past');
-      if (i < idx) s.classList.add('pain-past');
-    });
-    if (!skipAnim) {
-      setTimeout(function() { slides[idx] && slides[idx].classList.add('pain-active'); }, 20);
-    } else {
-      slides[idx] && slides[idx].classList.add('pain-active');
-    }
-
-    // Update dots
-    var color = groupColors[group];
-    document.querySelectorAll('.pain-dot').forEach(function(d, i) {
-      d.style.background = color;
-      d.style.opacity    = i === idx ? '1' : '0.25';
-      d.style.transform  = i === idx ? 'scale(1.3)' : 'scale(1)';
-    });
-
-    // Scroll hint on last card
-    document.getElementById('pain-hint').style.opacity = idx === 2 ? '1' : '0';
-  }
-
-  // Init: show first ecomm card
-  showSlide('ecomm', 0, true);
-
-  // Tab switcher
-  window.setPainGroup = function(group) {
-    activeGroup = group;
-    activeIdx   = 0;
-
-    // Hide all slides from other group
-    document.querySelectorAll('.pain-slide').forEach(function(s) {
-      s.classList.remove('pain-active', 'pain-past');
-    });
-
-    showSlide(group, 0, false);
-
-    // Update tab buttons
-    var color = groupColors[group];
-    ['ecomm','saas'].forEach(function(k) {
-      var btn = document.getElementById('pain-tab-' + k);
-      var on  = k === group;
-      btn.style.background  = on ? color : '#fff';
-      btn.style.color       = on ? '#fff' : 'var(--gray-400)';
-      btn.style.borderColor = on ? color  : 'var(--gray-200)';
-    });
-
-    // Scroll to top of sticky wrap
-    var wrap = document.getElementById('pain-sticky-wrap');
-    if (wrap) window.scrollTo({ top: wrap.offsetTop - 10, behavior: 'smooth' });
-  };
-
-  // Scroll-driven card advance (desktop only)
-  window.addEventListener('scroll', function() {
-    if (window.innerWidth <= 809) return;
-    var wrap = document.getElementById('pain-sticky-wrap');
-    if (!wrap) return;
-    var wrapTop = wrap.offsetTop;
-    var wrapH   = wrap.offsetHeight;
-    var viewH   = window.innerHeight;
-    var scrolled = Math.max(0, Math.min(wrapH - viewH, window.scrollY - wrapTop));
-    var progress = scrolled / (wrapH - viewH);
-    var idx = Math.min(2, Math.floor(progress * 3));
-    if (idx !== activeIdx) {
-      activeIdx = idx;
-      showSlide(activeGroup, idx, false);
-    }
-  }, { passive: true });
-
-  // Mobile: stagger cards on scroll into view
-  if (window.innerWidth <= 809) {
-    var mobObs = new IntersectionObserver(function(entries) {
-      if (entries[0].isIntersecting) {
-        document.querySelectorAll('.pain-mob-card').forEach(function(c, i) {
-          setTimeout(function() { c.classList.add('pain-visible'); }, i * 100);
-        });
-        mobObs.disconnect();
-      }
-    }, { threshold: 0.1 });
-    var mobSection = document.querySelector('.pain-mobile');
-    if (mobSection) mobObs.observe(mobSection);
-  }
-})();
-</script>
 
 <!-- SERVICES (Section 3) — white -->
 <section id="services" style="background:#ffffff; padding:60px 24px 68px;">
@@ -3493,6 +3255,184 @@
     </div>
   </div>
 </section>
+
+<!-- CATEGORY GALLERY — Axiomax hover fan style -->
+<section id="cat-gallery" style="background:#0a0a0a; padding:88px 0 96px;">
+  <div style="max-width:1400px; margin:0 auto; padding:0 48px;">
+
+    <!-- Header -->
+    <div style="margin-bottom:64px;">
+      <span style="display:block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:16px;">Selected Work</span>
+      <h2 style="font-family:var(--font); font-size:clamp(32px,4vw,60px); font-variation-settings:'wdth' 125,'wght' 900; letter-spacing:-0.03em; color:#fff; line-height:1.1; margin:0;">Ads built to perform.<br><em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">Across every format.</em></h2>
+    </div>
+
+    <!-- 2×2 grid -->
+    <div class="cg-grid">
+
+      <!-- 1. Handbag -->
+      <div class="cg-item">
+        <div class="cg-card">
+          <img class="cg-hero" src="./assets/handbag-street.png" alt="Handbag campaign" loading="lazy">
+          <div class="cg-pop cg-pop-1"><img src="./assets/handbag-fashion.jpg" alt="" loading="lazy"></div>
+          <div class="cg-pop cg-pop-2"><img src="./assets/handbag-walk.jpg" alt="" loading="lazy"></div>
+          <div class="cg-pop cg-pop-3"><img src="./assets/Handbag_A_stack_of_argyle-patterned_tote_bags_in_pastel_c-CAX2V5.mp4" alt="" loading="lazy" style="display:none;"><img src="./assets/handbag-fashion.jpg" alt="" loading="lazy"></div>
+        </div>
+        <div class="cg-label">
+          <span class="cg-name">Handbag Campaign</span>
+          <span class="cg-tags"><em>Fashion, Meta, TikTok</em></span>
+        </div>
+      </div>
+
+      <!-- 2. Lipstick -->
+      <div class="cg-item">
+        <div class="cg-card">
+          <img class="cg-hero" src="./assets/Lipstick_Campaign_dSJmLIvg.png" alt="Lipstick campaign" loading="lazy">
+          <div class="cg-pop cg-pop-1"><img src="./assets/lipstick-studio.jpg" alt="" loading="lazy"></div>
+          <div class="cg-pop cg-pop-2"><img src="./assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.png" alt="" loading="lazy"></div>
+          <div class="cg-pop cg-pop-3"><img src="./assets/lipstick-spill.jpg" alt="" loading="lazy"></div>
+        </div>
+        <div class="cg-label">
+          <span class="cg-name">Lipstick Campaign</span>
+          <span class="cg-tags"><em>Beauty, Meta, Reels</em></span>
+        </div>
+      </div>
+
+      <!-- 3. B2B SaaS -->
+      <div class="cg-item">
+        <div class="cg-card">
+          <img class="cg-hero" src="./assets/B2B_SaaS_Ads_HMTIB0O.png" alt="B2B SaaS ads" loading="lazy">
+          <div class="cg-pop cg-pop-1"><img src="./assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.png" alt="" loading="lazy"></div>
+          <div class="cg-pop cg-pop-2"><img src="./assets/B2B_SaaS_Ads_In_a_flat_design_style_a_man_with_many_arms_duWjAS1.png" alt="" loading="lazy"></div>
+          <div class="cg-pop cg-pop-3"><img src="./assets/B2B_SaaS_Ads_V5F-kd5P.png" alt="" loading="lazy"></div>
+        </div>
+        <div class="cg-label">
+          <span class="cg-name">B2B SaaS Ads</span>
+          <span class="cg-tags"><em>SaaS, Reddit, LinkedIn</em></span>
+        </div>
+      </div>
+
+      <!-- 4. CPG -->
+      <div class="cg-item">
+        <div class="cg-card">
+          <img class="cg-hero" src="./assets/Cpg_l5evv8k1.png" alt="CPG campaign" loading="lazy">
+          <div class="cg-pop cg-pop-1"><img src="./assets/Protein_Bar_Advertisement_CDLIA58W.png" alt="" loading="lazy"></div>
+          <div class="cg-pop cg-pop-2"><img src="./assets/Cpg_nO2xZZjv.png" alt="" loading="lazy"></div>
+          <div class="cg-pop cg-pop-3"><img src="./assets/Protein_Bar_Advertisement_cTVg3CZh.png" alt="" loading="lazy"></div>
+        </div>
+        <div class="cg-label">
+          <span class="cg-name">CPG Campaign</span>
+          <span class="cg-tags"><em>Consumer, Meta, TikTok</em></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+.cg-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+}
+@media (max-width: 809px) {
+  .cg-grid { grid-template-columns: 1fr; }
+  #cat-gallery { padding: 60px 0 72px; }
+  #cat-gallery > div { padding: 0 20px; }
+}
+
+.cg-item {
+  position: relative;
+}
+
+.cg-card {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: visible;
+  cursor: pointer;
+}
+
+.cg-hero {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+  transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), filter 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+.cg-item:hover .cg-hero {
+  transform: scale(1.02);
+  filter: brightness(0.88);
+}
+
+/* Pop images */
+.cg-pop {
+  position: absolute;
+  width: 44%;
+  border-radius: 6px;
+  overflow: hidden;
+  opacity: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* start behind center of card */
+  top: 20%; left: 28%;
+  transform: scale(0.75) rotate(0deg);
+  transition: opacity 0.45s cubic-bezier(0.16,1,0.3,1),
+              transform 0.45s cubic-bezier(0.16,1,0.3,1);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+.cg-pop img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Stagger delays */
+.cg-pop-1 { transition-delay: 0ms; }
+.cg-pop-2 { transition-delay: 55ms; }
+.cg-pop-3 { transition-delay: 110ms; }
+
+/* Hover: fan out to 3 positions */
+.cg-item:hover .cg-pop-1 {
+  opacity: 1;
+  transform: translate(-62%, -8%) rotate(-9deg) scale(1);
+  z-index: 2;
+}
+.cg-item:hover .cg-pop-2 {
+  opacity: 1;
+  transform: translate(52%, -14%) rotate(7deg) scale(0.92);
+  z-index: 2;
+}
+.cg-item:hover .cg-pop-3 {
+  opacity: 1;
+  transform: translate(46%, 18%) rotate(-5deg) scale(0.88);
+  z-index: 2;
+}
+
+/* Label row */
+.cg-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 18px 4px 0;
+}
+.cg-name {
+  font-family: var(--font);
+  font-size: 16px;
+  font-variation-settings: 'wdth' 125, 'wght' 700;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.cg-tags {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(255,255,255,0.5);
+}
+@media (max-width: 809px) {
+  .cg-label { padding: 14px 0 0; }
+  .cg-name { font-size: 15px; }
+  .cg-pop { display: none; } /* disable hover effect on mobile */
+}
+</style>
 
 <!-- BOOK A CALL — Calendly embed -->
 <section id="book" class="section-inner" style="padding:80px 0; background:#FFEDED;">
