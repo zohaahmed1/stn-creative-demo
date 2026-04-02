@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio — Skip the Noise Media</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dark: #080808;
+      --dark-alt: #0c0c0c;
+      --blue: #5500dd;
+      --orange: #ee0033;
+      --yellow: #ff6b35;
+      --white: #fff;
+      --bg: #faf9f7;
+      --gray-50: #f7f7f7;
+      --gray-100: #ececec;
+      --gray-200: #dcdcdc;
+      --gray-300: #a8a8a8;
+      --gray-400: #444;
+      --navy: #19213d;
+      --font: "Satoshi", system-ui, sans-serif;
+      --wdth: 125;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 18px; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; scrollbar-width: none; }
+    html::-webkit-scrollbar { display: none; }
+    body {
+      font-family: var(--font);
+      font-variation-settings: "wdth" var(--wdth);
+      color: var(--navy);
+      background: var(--bg);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+
+    /* Scroll progress bar */
+    .scroll-progress {
+      position: fixed; top: 0; left: 0; height: 3px; z-index: 200;
+      background: linear-gradient(90deg, var(--blue), var(--orange));
+      width: 0%;
+      transition: none;
+    }
+
+    /* Container */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .container-wide { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+    @media (max-width: 809px) { .container, .container-wide { padding: 0 16px; } }
+
+    /* ============================
+       NAV
+       ============================ */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250, 249, 247, 0.85);
+      backdrop-filter: blur(20px) saturate(1.3);
+      -webkit-backdrop-filter: blur(20px) saturate(1.3);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav.scrolled {
+      top: 12px; left: 24px; right: 24px;
+      background: rgba(255,255,255,0.82);
+      backdrop-filter: blur(24px) saturate(1.5);
+      -webkit-backdrop-filter: blur(24px) saturate(1.5);
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .nav-inner {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 24px;
+      transition: padding 0.4s ease;
+    }
+    .nav.scrolled .nav-inner { padding: 8px 24px; }
+    .nav-links { display: flex; align-items: center; gap: 2px; }
+    .nav-link {
+      font-size: 14px;
+      font-variation-settings: "wdth" var(--wdth), "wght" 500;
+      padding: 7px 14px;
+      border-radius: 100px;
+      transition: background 0.2s, color 0.2s;
+      color: #555;
+    }
+    .nav-link:hover { background: rgba(0,0,0,0.05); color: var(--navy); }
+    .nav-link.active { color: var(--navy); font-variation-settings: "wdth" var(--wdth), "wght" 600; }
+    .nav-right { display: flex; align-items: center; gap: 8px; }
+    .hamburger {
+      display: none; width: 40px; height: 40px;
+      background: var(--dark); border: none; border-radius: 8px;
+      flex-direction: column; justify-content: center; align-items: center; gap: 6px;
+      cursor: pointer;
+    }
+    .hamburger span { display: block; width: 18px; height: 2px; background: var(--white); border-radius: 2px; }
+    @media (max-width: 1199px) { .nav-links, .nav-right { display: none; } .hamburger { display: flex; } }
+
+    /* ============================
+       HERO
+       ============================ */
+    .page-hero {
+      background: #080808;
+      padding: 140px 24px 80px;
+      text-align: center;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-variation-settings: "wdth" var(--wdth), "wght" 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-300);
+      margin-bottom: 20px;
+    }
+    .hero-stats {
+      display: flex; align-items: center; justify-content: center; gap: 32px;
+      margin-top: 40px; flex-wrap: wrap;
+    }
+    .hero-stat {
+      font-size: 14px;
+      font-variation-settings: "wdth" var(--wdth), "wght" 500;
+      color: rgba(255,255,255,0.5);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .hero-stat span { color: rgba(255,255,255,0.9); font-variation-settings: "wdth" var(--wdth), "wght" 700; }
+    .hero-stat-dot { width: 4px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 50%; }
+
+    /* ============================
+       FILTER BAR
+       ============================ */
+    .filter-bar {
+      position: sticky; top: 70px; z-index: 50;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--gray-100);
+      padding: 12px 24px;
+      display: flex; justify-content: center;
+    }
+    .filter-tabs {
+      display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+    }
+    .filter-tab {
+      font-family: var(--font);
+      font-size: 13px;
+      font-variation-settings: "wdth" var(--wdth), "wght" 600;
+      padding: 8px 18px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      background: transparent;
+      color: var(--gray-400);
+      transition: background 0.2s, color 0.2s;
+    }
+    .filter-tab:hover { background: var(--gray-100); color: var(--navy); }
+    .filter-tab.active { background: var(--blue); color: #fff; }
+
+    /* ============================
+       GALLERY GRID
+       ============================ */
+    .gallery-section {
+      padding: 40px 0 80px;
+      background: var(--bg);
+    }
+    .masonry {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 160px;
+      gap: 12px;
+    }
+    .card-portrait { grid-row: span 3; }
+    .card-square   { grid-row: span 2; }
+    .card-wide     { grid-column: span 2; grid-row: span 3; }
+
+    /* Gallery card base */
+    .gal-card {
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: zoom-in;
+      position: relative;
+      background: #111;
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s cubic-bezier(0.22,1,0.36,1);
+    }
+    .gal-card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .gal-card img,
+    .gal-card video {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s cubic-bezier(0.22,1,0.36,1);
+    }
+    .gal-card:hover img,
+    .gal-card:hover video { transform: scale(1.04); }
+
+    /* Card overlay */
+    .card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .gal-card:hover .card-overlay { opacity: 1; }
+    .card-label {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 20px 16px 16px;
+      display: flex; flex-direction: column; gap: 5px;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .gal-card:hover .card-label { opacity: 1; transform: translateY(0); }
+    .card-cat-pill {
+      display: inline-block; align-self: flex-start;
+      font-size: 10px;
+      font-variation-settings: "wdth" var(--wdth), "wght" 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #fff;
+      background: rgba(255,255,255,0.18);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 100px;
+      padding: 3px 10px;
+      backdrop-filter: blur(4px);
+    }
+    .card-name {
+      font-size: 13px;
+      font-variation-settings: "wdth" var(--wdth), "wght" 600;
+      color: rgba(255,255,255,0.95);
+      line-height: 1.3;
+    }
+
+    /* Video play indicator */
+    .play-badge {
+      position: absolute; top: 12px; right: 12px;
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+    .play-badge svg { width: 12px; height: 12px; fill: #fff; margin-left: 2px; }
+
+    /* ============================
+       LIGHTBOX
+       ============================ */
+    #lb-overlay {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,0.92);
+      align-items: center; justify-content: center; padding: 24px;
+    }
+    #lb-overlay.active { display: flex; }
+    #lb-inner {
+      position: relative; max-width: min(90vw, 860px); max-height: 90vh;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #lb-inner img, #lb-inner video {
+      max-width: 100%; max-height: 90vh;
+      border-radius: 16px; object-fit: contain;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+    #lb-close {
+      position: fixed; top: 20px; right: 24px;
+      width: 44px; height: 44px;
+      background: rgba(255,255,255,0.15); border: none; border-radius: 50%;
+      color: #fff; font-size: 22px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s; z-index: 10000;
+    }
+    #lb-close:hover { background: rgba(255,255,255,0.25); }
+
+    /* ============================
+       FOOTER
+       ============================ */
+    .footer {
+      background: var(--dark);
+      padding: 80px 0 48px;
+    }
+    .footer-top {
+      display: flex; flex-direction: column; align-items: center; gap: 16px;
+      padding-bottom: 64px; text-align: center;
+    }
+    .footer a { text-decoration: none; }
+
+    /* ============================
+       SCROLL ANIMATIONS
+       ============================ */
+    [data-anim] {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    [data-anim].visible { opacity: 1; transform: none; }
+    [data-delay="1"] { transition-delay: 0.08s; }
+    [data-delay="2"] { transition-delay: 0.16s; }
+    [data-delay="3"] { transition-delay: 0.24s; }
+    [data-delay="4"] { transition-delay: 0.32s; }
+
+    /* ============================
+       RESPONSIVE
+       ============================ */
+    @media (max-width: 1024px) {
+      .masonry { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .masonry {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 140px;
+        gap: 8px;
+      }
+      .card-wide { grid-column: span 2; grid-row: span 2; }
+      .card-portrait { grid-row: span 3; }
+      .card-square { grid-row: span 2; }
+      .page-hero { padding: 120px 16px 60px; }
+      .card-label { padding: 12px 10px 10px; opacity: 1; transform: none; }
+      .card-overlay { opacity: 1; }
+    }
+    @media (max-width: 480px) {
+      .masonry {
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-rows: 120px;
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Scroll progress bar -->
+<div class="scroll-progress" id="scroll-progress"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="index-v5.html" class="nav-logo" style="font-size:22px; font-weight:800; font-variation-settings:'wdth' 125,'wght' 800; text-decoration:none; display:flex; align-items:center; gap:8px;">
+      <span><span style="color:#191923;">Skip the </span><span style="display:inline-block;background:linear-gradient(90deg,#5500dd,#cc0000);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Noise</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index-v5.html#work" class="nav-link">Results</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="gallery.html" class="nav-link active">Portfolio</a>
+      <a href="index-v5.html#process" class="nav-link">Process</a>
+    </div>
+    <div class="nav-right">
+      <a href="index-v5.html#book" style="display:inline-block; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:10px 22px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Get 3 free creatives</a>
+    </div>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="container">
+    <p class="eyebrow" data-anim>Full Portfolio</p>
+    <div data-anim data-delay="1" style="margin-bottom:16px;">
+      <span style="display:block; font-family:'Satoshi', system-ui, sans-serif; font-weight:900; letter-spacing:-0.03em; font-size:clamp(36px,4.5vw,62px); line-height:1.05; color:#ffffff;">Every format.</span>
+      <span style="display:block; font-family:'Playfair Display', Georgia, serif; font-style:italic; font-weight:700; letter-spacing:-0.02em; font-size:clamp(34px,4.2vw,58px); line-height:1.1; color:#ffffff;">Every vertical.</span>
+    </div>
+    <p data-anim data-delay="2" style="font-size:clamp(16px,1.2vw,19px); color:rgba(255,255,255,0.6); max-width:520px; margin:0 auto;">Hand-crafted performance ads across Meta, Reddit, TikTok, and LinkedIn.</p>
+    <div class="hero-stats" data-anim data-delay="3">
+      <div class="hero-stat"><span>70+</span> assets</div>
+      <div class="hero-stat-dot"></div>
+      <div class="hero-stat"><span>4</span> verticals</div>
+      <div class="hero-stat-dot"></div>
+      <div class="hero-stat"><span>6</span> platforms</div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER BAR -->
+<div class="filter-bar">
+  <div class="filter-tabs">
+    <button class="filter-tab active" data-cat="all" onclick="filterGallery('all')">All</button>
+    <button class="filter-tab" data-cat="dtc" onclick="filterGallery('dtc')">eComm / DTC</button>
+    <button class="filter-tab" data-cat="saas" onclick="filterGallery('saas')">B2B SaaS</button>
+    <button class="filter-tab" data-cat="b2csaas" onclick="filterGallery('b2csaas')">B2C SaaS</button>
+  </div>
+</div>
+
+<!-- GALLERY GRID -->
+<section class="gallery-section">
+  <div class="container-wide">
+    <div class="masonry" id="gallery-grid">
+
+      <!-- ====== eComm / DTC ====== -->
+
+      <!-- 1. Shifting Lights — featured card-wide -->
+      <div class="gal-card card-wide" data-cat="dtc" onclick="lbOpen('./assets/Misc Videos/Copy of Shifting Lights.mp4','video')">
+        <video src="./assets/Misc Videos/Copy of Shifting Lights.mp4" muted loop playsinline preload="none" autoplay style="width:100%;height:100%;object-fit:cover;"></video>
+        <div class="card-overlay"></div>
+        <div class="play-badge"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="card-label">
+          <span class="card-cat-pill">Brand · Meta</span>
+          <span class="card-name">Shifting Lights</span>
+        </div>
+      </div>
+
+      <!-- 2. Flat lay unbox — portrait -->
+      <div class="gal-card card-portrait" data-cat="dtc" onclick="lbOpen('./assets/Lipstick Campaign/Lipstick_Campaign_In_a_flat_lay_style_a_persons_hands_open_a_pink_d25UF6nB (1).mp4','video')">
+        <video src="./assets/Lipstick Campaign/Lipstick_Campaign_In_a_flat_lay_style_a_persons_hands_open_a_pink_d25UF6nB (1).mp4" muted loop playsinline preload="none" autoplay style="width:100%;height:100%;object-fit:cover;"></video>
+        <div class="card-overlay"></div>
+        <div class="play-badge"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="card-label">
+          <span class="card-cat-pill">Beauty · Reels</span>
+          <span class="card-name">Flat lay unbox</span>
+        </div>
+      </div>
+
+      <!-- 3. Tote stack — portrait -->
+      <div class="gal-card card-portrait" data-cat="dtc" onclick="lbOpen('./assets/Handbag_A_stack_of_argyle-patterned_tote_bags_in_pastel_c-CAX2V5.mp4','video')">
+        <video src="./assets/Handbag_A_stack_of_argyle-patterned_tote_bags_in_pastel_c-CAX2V5.mp4" muted loop playsinline preload="none" autoplay style="width:100%;height:100%;object-fit:cover;"></video>
+        <div class="card-overlay"></div>
+        <div class="play-badge"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="card-label">
+          <span class="card-cat-pill">Fashion · Meta</span>
+          <span class="card-name">Tote stack</span>
+        </div>
+      </div>
+
+      <!-- 4. Lifestyle moment — portrait -->
+      <div class="gal-card card-portrait" data-cat="dtc" onclick="lbOpen('./assets/Handbag_A_woman_sits_on_a_park_bench_reading_a_book_with_rQJpaGSN.mp4','video')">
+        <video src="./assets/Handbag_A_woman_sits_on_a_park_bench_reading_a_book_with_rQJpaGSN.mp4" muted loop playsinline preload="none" autoplay style="width:100%;height:100%;object-fit:cover;"></video>
+        <div class="card-overlay"></div>
+        <div class="play-badge"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="card-label">
+          <span class="card-cat-pill">Fashion · Meta</span>
+          <span class="card-name">Lifestyle moment</span>
+        </div>
+      </div>
+
+      <!-- 5. Cinematic still — portrait -->
+      <div class="gal-card card-portrait" data-cat="dtc" onclick="lbOpen('./assets/Lipstick Campaign/Lipstick_Campaign_In_a_cinematic_style_a_parking_ticket_with_a_Xx-kI3KS.png','image')">
+        <img src="./assets/Lipstick Campaign/Lipstick_Campaign_In_a_cinematic_style_a_parking_ticket_with_a_Xx-kI3KS.png" alt="Cinematic still" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">Beauty · Meta</span>
+          <span class="card-name">Cinematic still</span>
+        </div>
+      </div>
+
+      <!-- 6. Street style — portrait -->
+      <div class="gal-card card-portrait" data-cat="dtc" onclick="lbOpen('./assets/Handbag/handbag-street.png','image')">
+        <img src="./assets/Handbag/handbag-street.png" alt="Street style" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">Fashion · Meta</span>
+          <span class="card-name">Street style</span>
+        </div>
+      </div>
+
+      <!-- 7. Bold CPG static — portrait -->
+      <div class="gal-card card-portrait" data-cat="dtc" onclick="lbOpen('./assets/CPG/Cpg_l5evv8k1.png','image')">
+        <img src="./assets/CPG/Cpg_l5evv8k1.png" alt="Bold CPG static" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">CPG · Meta</span>
+          <span class="card-name">Bold CPG static</span>
+        </div>
+      </div>
+
+      <!-- 8. Performance bar — portrait -->
+      <div class="gal-card card-portrait" data-cat="dtc" onclick="lbOpen('./assets/CPG/Protein_Bar_Advertisement_CDLIA58W.png','image')">
+        <img src="./assets/CPG/Protein_Bar_Advertisement_CDLIA58W.png" alt="Performance bar" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">Food · Meta</span>
+          <span class="card-name">Performance bar</span>
+        </div>
+      </div>
+
+      <!-- 9. ROAS winner — portrait -->
+      <div class="gal-card card-portrait" data-cat="dtc" onclick="lbOpen('./assets/CPG/Protein_Bar_Advertisement_cTVg3CZh.png','image')">
+        <img src="./assets/CPG/Protein_Bar_Advertisement_cTVg3CZh.png" alt="ROAS winner" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">Food · Reddit</span>
+          <span class="card-name">ROAS winner</span>
+        </div>
+      </div>
+
+      <!-- 10. Static creative — portrait -->
+      <div class="gal-card card-portrait" data-cat="dtc" onclick="lbOpen('./assets/CPG/Protein_Bar_Advertisement_y5ER32ip2.png','image')">
+        <img src="./assets/CPG/Protein_Bar_Advertisement_y5ER32ip2.png" alt="Static creative" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">Food · Meta</span>
+          <span class="card-name">Static creative</span>
+        </div>
+      </div>
+
+      <!-- 11. Shade lineup — portrait -->
+      <div class="gal-card card-portrait" data-cat="dtc" onclick="lbOpen('./assets/Lipstick Campaign/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.png','image')">
+        <img src="./assets/Lipstick Campaign/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.png" alt="Shade lineup" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">Beauty · Meta</span>
+          <span class="card-name">Shade lineup</span>
+        </div>
+      </div>
+
+      <!-- 12. Product hero — portrait -->
+      <div class="gal-card card-portrait" data-cat="dtc" onclick="lbOpen('./assets/Lipstick Campaign/Lipstick_Campaign_dSJmLIvg.png','image')">
+        <img src="./assets/Lipstick Campaign/Lipstick_Campaign_dSJmLIvg.png" alt="Product hero" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">Beauty · Meta</span>
+          <span class="card-name">Product hero</span>
+        </div>
+      </div>
+
+      <!-- ====== B2B SaaS ====== -->
+
+      <!-- B2B 1. Carousel — card-wide (featured) -->
+      <div class="gal-card card-wide" data-cat="saas" onclick="lbOpen('./assets/Misc/Caro 1 (3).png','image')">
+        <img src="./assets/Misc/Caro 1 (3).png" alt="Carousel" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2B SaaS · Meta</span>
+          <span class="card-name">Carousel ad</span>
+        </div>
+      </div>
+
+      <!-- B2B 2. AI hiring — square -->
+      <div class="gal-card card-square" data-cat="saas" onclick="lbOpen('./assets/B2B SaaS Ads/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.png','image')">
+        <img src="./assets/B2B SaaS Ads/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.png" alt="AI hiring" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2B SaaS · Reddit</span>
+          <span class="card-name">AI hiring</span>
+        </div>
+      </div>
+
+      <!-- B2B 3. Fynite brand — square -->
+      <div class="gal-card card-square" data-cat="saas" onclick="lbOpen('./assets/Black Friday/Fynite 1.png','image')">
+        <img src="./assets/Black Friday/Fynite 1.png" alt="Fynite brand" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2B SaaS · LinkedIn</span>
+          <span class="card-name">Fynite brand</span>
+        </div>
+      </div>
+
+      <!-- B2B 4. Campaign ad — square -->
+      <div class="gal-card card-square" data-cat="saas" onclick="lbOpen('./assets/B2B SaaS Ads/B2B_SaaS_Ads_l0ZOMv_a.png','image')">
+        <img src="./assets/B2B SaaS Ads/B2B_SaaS_Ads_l0ZOMv_a.png" alt="Campaign ad" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2B SaaS · Meta</span>
+          <span class="card-name">Campaign ad</span>
+        </div>
+      </div>
+
+      <!-- B2B 5. Flat design — square -->
+      <div class="gal-card card-square" data-cat="saas" onclick="lbOpen('./assets/B2B SaaS Ads/B2B_SaaS_Ads_In_a_flat_design_style_this_graphic_showcases_0SxggUa-.png','image')">
+        <img src="./assets/B2B SaaS Ads/B2B_SaaS_Ads_In_a_flat_design_style_this_graphic_showcases_0SxggUa-.png" alt="Flat design" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2B SaaS · Meta</span>
+          <span class="card-name">Flat design</span>
+        </div>
+      </div>
+
+      <!-- B2B 6. Frame ad — square -->
+      <div class="gal-card card-square" data-cat="saas" onclick="lbOpen('./assets/Misc/Frame 10362 (3).png','image')">
+        <img src="./assets/Misc/Frame 10362 (3).png" alt="Frame ad" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2B SaaS · Meta</span>
+          <span class="card-name">Frame ad</span>
+        </div>
+      </div>
+
+      <!-- B2B 7. Minimalist trio — square -->
+      <div class="gal-card card-square" data-cat="saas" onclick="lbOpen('./assets/B2B SaaS Ads/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_three_F2Ph3abS.png','image')">
+        <img src="./assets/B2B SaaS Ads/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_three_F2Ph3abS.png" alt="Minimalist trio" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2B SaaS · Meta</span>
+          <span class="card-name">Minimalist trio</span>
+        </div>
+      </div>
+
+      <!-- B2B 8. Booth design — square -->
+      <div class="gal-card card-square" data-cat="saas" onclick="lbOpen('./assets/One_Booth_v4.png','image')">
+        <img src="./assets/One_Booth_v4.png" alt="Booth design" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2B SaaS · Event</span>
+          <span class="card-name">Booth design</span>
+        </div>
+      </div>
+
+      <!-- B2B 9. Expo creative — square -->
+      <div class="gal-card card-square" data-cat="saas" onclick="lbOpen('./assets/expo_final_3.png','image')">
+        <img src="./assets/expo_final_3.png" alt="Expo creative" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2B SaaS · Event</span>
+          <span class="card-name">Expo creative</span>
+        </div>
+      </div>
+
+      <!-- B2B 10. Webinar ad — square -->
+      <div class="gal-card card-square" data-cat="saas" onclick="lbOpen('./assets/B2B SaaS Ads/B2B_SaaS_Ads_A_FREE_LIVE_WEBINAR_announces_MASTER_MARKETING_nZd7GZFx.png','image')">
+        <img src="./assets/B2B SaaS Ads/B2B_SaaS_Ads_A_FREE_LIVE_WEBINAR_announces_MASTER_MARKETING_nZd7GZFx.png" alt="Webinar ad" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2B SaaS · Meta</span>
+          <span class="card-name">Webinar ad</span>
+        </div>
+      </div>
+
+      <!-- B2B 11. Testimonial card — square -->
+      <div class="gal-card card-square" data-cat="saas" onclick="lbOpen('./assets/B2B SaaS Ads/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.png','image')">
+        <img src="./assets/B2B SaaS Ads/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.png" alt="Testimonial card" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2B SaaS · Meta</span>
+          <span class="card-name">Testimonial card</span>
+        </div>
+      </div>
+
+      <!-- B2B 12. Corporate ad — square -->
+      <div class="gal-card card-square" data-cat="saas" onclick="lbOpen('./assets/B2B SaaS Ads/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.png','image')">
+        <img src="./assets/B2B SaaS Ads/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.png" alt="Corporate ad" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2B SaaS · LinkedIn</span>
+          <span class="card-name">Corporate ad</span>
+        </div>
+      </div>
+
+      <!-- ====== B2C SaaS ====== -->
+
+      <!-- B2C 1. Rentumo — featured card-wide -->
+      <div class="gal-card card-wide" data-cat="b2csaas" onclick="lbOpen('./assets/B2C SaaS/Rentumo 1.png','image')">
+        <img src="./assets/B2C SaaS/Rentumo 1.png" alt="Rentumo 1" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2C SaaS · Meta</span>
+          <span class="card-name">Rentumo hero</span>
+        </div>
+      </div>
+
+      <!-- B2C 2. AI 3D warrior — square -->
+      <div class="gal-card card-square" data-cat="b2csaas" onclick="lbOpen('./assets/Ad Animations/ad-angel.mp4','video')">
+        <video src="./assets/Ad Animations/ad-angel.mp4" muted loop playsinline preload="none" autoplay style="width:100%;height:100%;object-fit:cover;"></video>
+        <div class="card-overlay"></div>
+        <div class="play-badge"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2C SaaS · Meta</span>
+          <span class="card-name">AI 3D warrior</span>
+        </div>
+      </div>
+
+      <!-- B2C 3. Social proof FIBA — square -->
+      <div class="gal-card card-square" data-cat="b2csaas" onclick="lbOpen('./assets/Testimonials/Testimonial - Square - FIBA.png','image')">
+        <img src="./assets/Testimonials/Testimonial - Square - FIBA.png" alt="Social proof FIBA" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2C SaaS · Meta</span>
+          <span class="card-name">Social proof · FIBA</span>
+        </div>
+      </div>
+
+      <!-- B2C 4. BFCM offer — square -->
+      <div class="gal-card card-square" data-cat="b2csaas" onclick="lbOpen('./assets/Black Friday/Black Friday 1_1 — 05.png','image')">
+        <img src="./assets/Black Friday/Black Friday 1_1 — 05.png" alt="BFCM offer" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2C SaaS · Meta</span>
+          <span class="card-name">BFCM offer</span>
+        </div>
+      </div>
+
+      <!-- B2C 5. Motion creative — square -->
+      <div class="gal-card card-square" data-cat="b2csaas" onclick="lbOpen('./assets/B2C SaaS/Video 1 - Feb.mp4','video')">
+        <video src="./assets/B2C SaaS/Video 1 - Feb.mp4" muted loop playsinline preload="none" autoplay style="width:100%;height:100%;object-fit:cover;"></video>
+        <div class="card-overlay"></div>
+        <div class="play-badge"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2C SaaS · Meta</span>
+          <span class="card-name">Motion creative</span>
+        </div>
+      </div>
+
+      <!-- B2C 6. AI 3D product — square -->
+      <div class="gal-card card-square" data-cat="b2csaas" onclick="lbOpen('./assets/Ad Animations/ad-chair.mp4','video')">
+        <video src="./assets/Ad Animations/ad-chair.mp4" muted loop playsinline preload="none" autoplay style="width:100%;height:100%;object-fit:cover;"></video>
+        <div class="card-overlay"></div>
+        <div class="play-badge"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2C SaaS · Meta</span>
+          <span class="card-name">AI 3D product</span>
+        </div>
+      </div>
+
+      <!-- B2C 7. Rentumo 2 — square -->
+      <div class="gal-card card-square" data-cat="b2csaas" onclick="lbOpen('./assets/B2C SaaS/Rentumo 2.png','image')">
+        <img src="./assets/B2C SaaS/Rentumo 2.png" alt="Rentumo 2" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2C SaaS · Meta</span>
+          <span class="card-name">Rentumo 2</span>
+        </div>
+      </div>
+
+      <!-- B2C 8. Social proof Maxon — square -->
+      <div class="gal-card card-square" data-cat="b2csaas" onclick="lbOpen('./assets/Testimonials/Testimonial - Square - Maxon.png','image')">
+        <img src="./assets/Testimonials/Testimonial - Square - Maxon.png" alt="Social proof Maxon" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2C SaaS · Meta</span>
+          <span class="card-name">Social proof · Maxon</span>
+        </div>
+      </div>
+
+      <!-- B2C 9. AI 3D pet — square -->
+      <div class="gal-card card-square" data-cat="b2csaas" onclick="lbOpen('./assets/Ad Animations/ad-dog.mp4','video')">
+        <video src="./assets/Ad Animations/ad-dog.mp4" muted loop playsinline preload="none" autoplay style="width:100%;height:100%;object-fit:cover;"></video>
+        <div class="card-overlay"></div>
+        <div class="play-badge"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2C SaaS · Meta</span>
+          <span class="card-name">AI 3D pet</span>
+        </div>
+      </div>
+
+      <!-- B2C 10. BFCM variant — square -->
+      <div class="gal-card card-square" data-cat="b2csaas" onclick="lbOpen('./assets/Black Friday/Black Friday 1_1 — 06.png','image')">
+        <img src="./assets/Black Friday/Black Friday 1_1 — 06.png" alt="BFCM variant" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2C SaaS · Meta</span>
+          <span class="card-name">BFCM variant</span>
+        </div>
+      </div>
+
+      <!-- B2C 11. Motion variant — square -->
+      <div class="gal-card card-square" data-cat="b2csaas" onclick="lbOpen('./assets/B2C SaaS/Video 2 - Feb.mp4','video')">
+        <video src="./assets/B2C SaaS/Video 2 - Feb.mp4" muted loop playsinline preload="none" autoplay style="width:100%;height:100%;object-fit:cover;"></video>
+        <div class="card-overlay"></div>
+        <div class="play-badge"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2C SaaS · Meta</span>
+          <span class="card-name">Motion variant</span>
+        </div>
+      </div>
+
+      <!-- B2C 12. Social proof Future Play — square -->
+      <div class="gal-card card-square" data-cat="b2csaas" onclick="lbOpen('./assets/Testimonials/Testimonial - Square - Future Play.png','image')">
+        <img src="./assets/Testimonials/Testimonial - Square - Future Play.png" alt="Social proof Future Play" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2C SaaS · Meta</span>
+          <span class="card-name">Social proof · Future Play</span>
+        </div>
+      </div>
+
+      <!-- B2C 13. AI 3D mech — square -->
+      <div class="gal-card card-square" data-cat="b2csaas" onclick="lbOpen('./assets/Ad Animations/ad-mech.mp4','video')">
+        <video src="./assets/Ad Animations/ad-mech.mp4" muted loop playsinline preload="none" autoplay style="width:100%;height:100%;object-fit:cover;"></video>
+        <div class="card-overlay"></div>
+        <div class="play-badge"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2C SaaS · Meta</span>
+          <span class="card-name">AI 3D mech</span>
+        </div>
+      </div>
+
+      <!-- B2C 14. Street UGC — square -->
+      <div class="gal-card card-square" data-cat="b2csaas" onclick="lbOpen('./assets/Misc Videos/Man holding sign on the street.mp4','video')">
+        <video src="./assets/Misc Videos/Man holding sign on the street.mp4" muted loop playsinline preload="none" autoplay style="width:100%;height:100%;object-fit:cover;"></video>
+        <div class="card-overlay"></div>
+        <div class="play-badge"><svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2C SaaS · UGC</span>
+          <span class="card-name">Street UGC</span>
+        </div>
+      </div>
+
+      <!-- B2C 15. Rentumo 3 — square -->
+      <div class="gal-card card-square" data-cat="b2csaas" onclick="lbOpen('./assets/B2C SaaS/Rentumo 3.png','image')">
+        <img src="./assets/B2C SaaS/Rentumo 3.png" alt="Rentumo 3" loading="lazy" style="width:100%;height:100%;object-fit:cover;">
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-cat-pill">B2C SaaS · Meta</span>
+          <span class="card-name">Rentumo 3</span>
+        </div>
+      </div>
+
+    </div><!-- end .masonry -->
+  </div><!-- end .container-wide -->
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <a href="index-v5.html" style="font-size:28px; font-weight:800; font-variation-settings:'wdth' 125,'wght' 800; text-decoration:none; display:block; margin-bottom:16px;">
+        <span style="color:#8888aa;">Skip</span> <span style="color:#cc4444;">the</span> <span style="color:#9966ff;">Noise</span>
+      </a>
+      <div class="footer-cols-row" style="display:flex; gap:80px; flex-wrap:wrap; justify-content:center; text-align:left;">
+        <div>
+          <p style="color:var(--white); font-weight:700; margin-bottom:16px;">Services</p>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="services.html" style="color:var(--gray-300); font-size:15px;">Performance Creative</a>
+            <a href="services.html" style="color:var(--gray-300); font-size:15px;">Media Buying</a>
+            <a href="services.html" style="color:var(--gray-300); font-size:15px;">Creative Strategy</a>
+            <a href="services.html" style="color:var(--gray-300); font-size:15px;">UGC Production</a>
+          </div>
+        </div>
+        <div>
+          <p style="color:var(--white); font-weight:700; margin-bottom:16px;">Company</p>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="index-v5.html#work" style="color:var(--gray-300); font-size:15px;">Results</a>
+            <a href="gallery.html" style="color:var(--gray-300); font-size:15px;">Portfolio</a>
+            <a href="index-v5.html#process" style="color:var(--gray-300); font-size:15px;">Process</a>
+            <a href="index-v5.html#book" style="color:var(--gray-300); font-size:15px;">Contact</a>
+          </div>
+        </div>
+        <div>
+          <p style="color:var(--white); font-weight:700; margin-bottom:16px;">Platforms</p>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <span style="color:var(--gray-300); font-size:15px;">Meta</span>
+            <span style="color:var(--gray-300); font-size:15px;">Reddit</span>
+            <span style="color:var(--gray-300); font-size:15px;">LinkedIn</span>
+            <span style="color:var(--gray-300); font-size:15px;">TikTok</span>
+          </div>
+        </div>
+        <div>
+          <p style="color:var(--white); font-weight:700; margin-bottom:16px;">Get 3 free creatives</p>
+          <a href="index-v5.html#book" style="display:inline-block; background:#5500DD; color:white; font-size:14px; padding:12px 20px; border-radius:100px; text-decoration:none; white-space:nowrap;">Get started</a>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; flex-direction:column; align-items:center; gap:20px; padding-top:48px; border-top:1px solid rgba(255,255,255,0.08);">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <a href="https://www.linkedin.com/company/skip-the-noise-media" target="_blank" style="color:var(--gray-300); transition:color 0.2s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://x.com/skipthenoisemed" target="_blank" style="color:var(--gray-300); transition:color 0.2s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+      </div>
+      <p style="font-size:15px; color:var(--gray-300);">&copy; 2026 Skip the Noise Media &middot; Reddit Certified Partner</p>
+    </div>
+  </div>
+</footer>
+
+<!-- LIGHTBOX -->
+<div id="lb-overlay">
+  <button id="lb-close" onclick="lbClose()">&#215;</button>
+  <div id="lb-inner"></div>
+</div>
+
+<script>
+  // Scroll progress bar
+  (function(){
+    var bar = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', function(){
+      var h = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (h > 0 ? (window.scrollY / h * 100) : 0) + '%';
+    }, {passive:true});
+  })();
+
+  // Nav scroll
+  (function(){
+    var nav = document.querySelector('.nav');
+    window.addEventListener('scroll', function(){
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, {passive:true});
+  })();
+
+  // Filter gallery
+  function filterGallery(cat) {
+    document.querySelectorAll('.filter-tab').forEach(function(t){
+      t.classList.toggle('active', t.dataset.cat === cat);
+    });
+    document.querySelectorAll('.gal-card').forEach(function(c){
+      c.style.display = (cat === 'all' || c.dataset.cat === cat) ? '' : 'none';
+    });
+  }
+
+  // Lightbox
+  function lbOpen(src, type) {
+    var inner = document.getElementById('lb-inner');
+    inner.innerHTML = '';
+    if (type === 'video') {
+      var v = document.createElement('video');
+      v.src = src; v.autoplay = true; v.loop = true; v.muted = true; v.controls = true;
+      v.style.maxWidth = '100%'; v.style.maxHeight = '90vh'; v.style.borderRadius = '16px';
+      inner.appendChild(v);
+    } else {
+      var img = document.createElement('img');
+      img.src = src;
+      img.style.maxWidth = '100%'; img.style.maxHeight = '90vh'; img.style.borderRadius = '16px';
+      inner.appendChild(img);
+    }
+    document.getElementById('lb-overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function lbClose() {
+    document.getElementById('lb-overlay').classList.remove('active');
+    document.getElementById('lb-inner').innerHTML = '';
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') lbClose(); });
+  document.getElementById('lb-overlay').addEventListener('click', function(e){
+    if (e.target === this) lbClose();
+  });
+
+  // Scroll animations
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visible'); }
+    });
+  }, {threshold: 0.1});
+  document.querySelectorAll('[data-anim]').forEach(function(el){ obs.observe(el); });
+</script>
+</body>
+</html>
