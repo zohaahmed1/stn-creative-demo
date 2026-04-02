@@ -2277,6 +2277,10 @@
       <!-- Card 2: Media Buying -->
       <div class="linea-card" style="display:grid; grid-template-columns:5fr 7fr; border:1.5px solid #e8e8e8; border-radius:20px; overflow:hidden;">
         <div class="linea-panel-left" style="background:#f0ecff; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:40px; min-height:340px;">
+          <div style="text-align:center; margin-bottom:4px;">
+            <div style="font-family:var(--font); font-size:clamp(36px,4vw,54px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1; letter-spacing:-0.03em;">$100M+</div>
+            <div style="font-family:var(--font); font-size:12px; font-variation-settings:'wdth' 110,'wght' 700; color:rgba(0,0,0,0.4); letter-spacing:0.12em; text-transform:uppercase; margin-top:4px;">in ad spend managed</div>
+          </div>
           <div style="display:flex; gap:16px;">
             <div style="width:92px;height:92px;border-radius:20px;background:white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.08);"><img src="https://cdn.simpleicons.org/meta/0081FB" style="width:48px;height:48px;"></div>
             <div style="width:92px;height:92px;border-radius:20px;background:white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.08);"><img src="https://cdn.simpleicons.org/reddit/FF4500" style="width:48px;height:48px;"></div>
@@ -2290,7 +2294,7 @@
         </div>
         <div class="linea-panel-right" style="padding:52px 56px; display:flex; flex-direction:column; justify-content:center;">
           <h3 style="font-family:var(--font); font-size:clamp(26px,2.6vw,38px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1.1; margin:0 0 16px; letter-spacing:-0.02em;">Performance media buying</h3>
-          <p style="font-family:var(--font); font-size:17px; line-height:1.8; color:#666; margin:0 0 32px;">Meta, Google, Reddit, LinkedIn, TikTok, Pinterest, Snapchat. Ex-GroupM leaders who know which creative works because they made it.</p>
+          <p style="font-family:var(--font); font-size:17px; line-height:1.8; color:#666; margin:0 0 32px;">Performance media managed by ex-GroupM leaders who know which creative works to increase revenue.</p>
           <div style="display:flex; flex-wrap:wrap; gap:8px;">
             <span class="linea-pill" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #e0e0e0;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Meta Ads</span>
             <span class="linea-pill" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #e0e0e0;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Reddit Ads</span>
@@ -2316,13 +2320,13 @@
         if (!el) return;
         var start = null;
         var duration = 1400;
-        var target = 1200;
+        var target = 500;
         function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
         function step(ts) {
           if (!start) start = ts;
           var progress = Math.min((ts - start) / duration, 1);
           var val = Math.round(easeOut(progress) * target);
-          el.textContent = progress >= 1 ? '1,200+' : val.toLocaleString();
+          el.textContent = progress >= 1 ? '500+' : val.toLocaleString();
           if (progress < 1) requestAnimationFrame(step);
         }
         requestAnimationFrame(step);
