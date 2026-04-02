@@ -2158,20 +2158,59 @@
 </div><!-- end section 2 hidden wrapper -->
 
 <!-- PAIN SECTION -->
-<section id="pain" style="background:#f5f5f5; padding:100px 24px 112px;">
+<section id="pain" style="background:#0a0a0a; padding:110px 24px 120px;">
   <div style="max-width:820px; margin:0 auto; text-align:center;">
 
-    <h2 style="font-family:var(--font); font-size:clamp(32px,4.2vw,62px); font-variation-settings:'wdth' 125,'wght' 900; color:var(--dark); line-height:1.1; letter-spacing:-0.03em; margin:0 0 48px;">Same problem.<br>Different teams.<br><em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">Different industries.</em></h2>
+    <!-- Accent line -->
+    <div class="pain-accent-line" style="width:40px; height:2px; background:#ee0033; margin:0 auto 36px; transform:scaleX(0); transform-origin:left; transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);"></div>
 
-    <div style="position:relative; margin-bottom:40px;">
-      <span style="display:block; font-size:clamp(72px,10vw,120px); font-weight:900; color:var(--dark); line-height:0.75; font-family:'Playfair Display',serif; font-style:italic; opacity:0.08; user-select:none; margin-bottom:-16px;">"</span>
-      <p style="margin:0; font-family:var(--font); font-size:clamp(20px,2.4vw,32px); font-variation-settings:'wdth' 125,'wght' 900; color:var(--dark); line-height:1.35; letter-spacing:-0.02em;">We have a team. Nobody owns creative strategy, a test and learn roadmap, or senior platform experience. We know it needs to happen. <em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">Hiring isn't on the table. And a full agency retainer feels like too big a leap.</em></p>
-    </div>
+    <!-- Headline — each line masked for wipe-up reveal -->
+    <h2 style="font-family:var(--font); font-size:clamp(32px,4.2vw,62px); font-variation-settings:'wdth' 125,'wght' 900; color:#fff; line-height:1.15; letter-spacing:-0.03em; margin:0 0 52px;">
+      <span class="pain-line-wrap" style="display:block; overflow:hidden;">
+        <span class="pain-line" style="display:block; transform:translateY(110%); transition:transform 0.7s cubic-bezier(0.16,1,0.3,1);">Same problem.</span>
+      </span>
+      <span class="pain-line-wrap" style="display:block; overflow:hidden;">
+        <span class="pain-line" style="display:block; transform:translateY(110%); transition:transform 0.7s cubic-bezier(0.16,1,0.3,1) 0.1s;">Different teams.</span>
+      </span>
+      <span class="pain-line-wrap" style="display:block; overflow:hidden;">
+        <span class="pain-line" style="display:block; transform:translateY(110%); transition:transform 0.7s cubic-bezier(0.16,1,0.3,1) 0.2s;"><em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">Different industries.</em></span>
+      </span>
+    </h2>
 
-    <span style="font-size:11px; font-weight:700; color:var(--gray-300); text-transform:uppercase; letter-spacing:0.12em;">Heard on almost every first call</span>
+    <!-- Body -->
+    <p class="pain-body" style="margin:0 0 36px; font-family:var(--font); font-size:clamp(17px,1.8vw,24px); font-variation-settings:'wdth' 125,'wght' 500; color:rgba(255,255,255,0.6); line-height:1.6; letter-spacing:-0.01em; opacity:0; transform:translateY(24px); transition:opacity 0.7s cubic-bezier(0.16,1,0.3,1) 0.45s, transform 0.7s cubic-bezier(0.16,1,0.3,1) 0.45s;">We have a team. Nobody owns creative strategy, a test and learn roadmap, or senior platform experience. We know it needs to happen. <strong style="color:#fff; font-variation-settings:'wdth' 125,'wght' 900;">Hiring isn't on the table. And a full agency retainer feels like too big a leap.</strong></p>
+
+    <span class="pain-body" style="font-size:11px; font-weight:700; color:rgba(255,255,255,0.25); text-transform:uppercase; letter-spacing:0.12em; opacity:0; transition:opacity 0.7s 0.6s;">Heard on almost every first call</span>
 
   </div>
 </section>
+
+<script>
+(function() {
+  var painSection = document.getElementById('pain');
+  if (!painSection) return;
+  var triggered = false;
+  var obs = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !triggered) {
+      triggered = true;
+      // Accent line
+      var line = painSection.querySelector('.pain-accent-line');
+      if (line) line.style.transform = 'scaleX(1)';
+      // Headline lines
+      painSection.querySelectorAll('.pain-line').forEach(function(el) {
+        el.style.transform = 'translateY(0)';
+      });
+      // Body + attribution
+      painSection.querySelectorAll('.pain-body').forEach(function(el) {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      });
+      obs.disconnect();
+    }
+  }, { threshold: 0.25 });
+  obs.observe(painSection);
+})();
+</script>
 
 <!-- SERVICES (Section 3) — white -->
 <section id="services" style="background:#ffffff; padding:60px 24px 68px;">
