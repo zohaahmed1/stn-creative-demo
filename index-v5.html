@@ -1409,8 +1409,28 @@
       #work div[style*="grid-template-columns:repeat(3"] { grid-template-columns: 1fr !important; }
 
       /* Section 2 (wf-section) — stack columns vertically on mobile */
-      .wf-section div[style*="grid-template-columns:1fr auto 1fr"] { display: flex !important; flex-direction: column !important; }
-      .wf-section div[style*="grid-template-columns:1fr auto 1fr"] > div:nth-child(2) { display: none !important; }
+      .wf-section div[style*="grid-template-columns:1fr 1fr"] { display: flex !important; flex-direction: column !important; }
+      /* Remove left border on right column when stacked */
+      .wf-section div[style*="grid-template-columns:1fr 1fr"] > div:last-child { border-left: none !important; border-top: 1px solid rgba(0,0,0,0.07) !important; }
+      /* Shrink circles to fit mobile */
+      #bw-left-circle, #bw-right-circle { width: 160px !important; height: 160px !important; }
+      #bw-left-circle svg, #bw-right-circle svg { width: 160px !important; height: 160px !important; }
+      #bw-left-circle svg circle { cx: 80; cy: 80; r: 75; }
+      #bw-right-circle svg circle { cx: 80; cy: 80; r: 75; }
+      /* Contain circles in their wrapper */
+      .wf-section div[style*="width:220px"] { width: 160px !important; }
+      /* Reduce section padding on mobile */
+      .wf-section { padding-left: 16px !important; padding-right: 16px !important; }
+      /* Tighten card padding on mobile */
+      .wf-section div[style*="padding:32px 28px 40px"] { padding: 24px 16px 28px !important; }
+      /* Reduce gap between role cards on mobile */
+      .wf-section div[style*="display:flex; gap:24px; justify-content:center"] { gap: 12px !important; }
+      /* Org chart role name font size */
+      .wf-section div[style*="gap:24px"] span[style*="font-size:15px"] { font-size: 13px !important; }
+      /* Role pill font size */
+      .wf-section span.wf-pill[style*="font-size:11px"] { font-size: 10px !important; padding: 3px 8px !important; }
+      /* Heading sizes */
+      .wf-section span[style*="font-size:19px"] { font-size: 16px !important; }
     }
 
     /* Tablet tweaks */
@@ -1851,6 +1871,12 @@
     <style>
       @keyframes wf-fade-up { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
       @keyframes wf-pop { 0% { opacity:0; transform:translateY(8px); } 100% { opacity:1; transform:translateY(0); } }
+      @media (max-width: 809px) {
+        #bw-left-circle, #bw-right-circle { width:160px !important; height:160px !important; }
+        #bw-left-circle svg, #bw-right-circle svg { width:160px !important; height:160px !important; }
+        .wf-circle-wrap { width:160px !important; }
+        #bw-left-circle span[style*="font-size:30px"], #bw-right-circle span[style*="font-size:30px"] { font-size:22px !important; }
+      }
       /* Start hidden — animate only when section scrolls into view */
       .wf-text, .wf-person, .wf-pill, .wf-box { opacity:0; }
       .wf-ready .wf-text   { animation: wf-fade-up 0.8s ease both; }
@@ -1902,7 +1928,7 @@
         <div style="padding:32px 28px 40px; display:flex; flex-direction:column; align-items:center;">
           <!-- Animation: Without us -->
           <span style="font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(0,0,0,0.35); margin-bottom:16px;">Without us</span>
-          <div style="position:relative; width:220px;">
+          <div class="wf-circle-wrap" style="position:relative; width:220px;">
             <div id="bw-left-circle" style="position:relative; width:220px; height:220px; overflow:visible; border-radius:50%;">
               <svg width="220" height="220" style="position:absolute; inset:0; pointer-events:none;">
                 <circle cx="110" cy="110" r="103" fill="rgba(220,38,38,0.05)" stroke="rgba(220,38,38,0.5)" stroke-width="1.5" stroke-dasharray="7 4"/>
@@ -1959,7 +1985,7 @@
         <div style="padding:32px 28px 40px; border-left:1px solid rgba(0,0,0,0.06); display:flex; flex-direction:column; align-items:center;">
           <!-- Animation: With us -->
           <span style="font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#16a34a; margin-bottom:16px;">With us</span>
-          <div style="position:relative; width:220px;">
+          <div class="wf-circle-wrap" style="position:relative; width:220px;">
             <div id="bw-right-circle" style="position:relative; width:220px; height:220px; overflow:visible; border-radius:50%;">
               <svg width="220" height="220" style="position:absolute; inset:0; pointer-events:none;">
                 <circle cx="110" cy="110" r="103" fill="rgba(22,163,74,0.05)" stroke="rgba(22,163,74,0.45)" stroke-width="1.5"/>
