@@ -1711,7 +1711,7 @@
       <a href="#work" class="nav-link">Results</a>
       <a href="services.html" class="nav-link">Services</a>
       <a href="gallery.html" class="nav-link">Portfolio</a>
-      <a href="#process" class="nav-link">Process</a>
+      <a href="process.html" class="nav-link">Process</a>
       <a href="#team" class="nav-link">Team</a>
     </div>
     <div class="nav-right">
@@ -2694,11 +2694,17 @@
     </div>
 
     <style>
-      .team-card { display:grid; border:1.5px solid #e8e8e8; border-radius:20px; overflow:hidden; }
+      .team-card { display:grid; border:1.5px solid #e8e8e8; border-radius:20px; overflow:hidden; position:relative; }
       .team-card-img { position:relative; min-height:460px; overflow:hidden; }
       .team-card-img img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; }
       .team-card-body { padding:52px 52px; display:flex; flex-direction:column; justify-content:center; background:#fff; }
       .team-pill { display:inline-flex; align-items:center; gap:8px; border:1.5px solid #e8e8e8; border-radius:12px; padding:9px 14px; font-size:13px; font-weight:600; color:#333; }
+      .team-li-hint { position:absolute; top:16px; right:16px; display:inline-flex; align-items:center; gap:6px; background:#fff; border:1.5px solid #e8e8e8; border-radius:10px; padding:7px 12px; font-size:12px; font-weight:700; color:#555; opacity:0; transform:translateY(-4px); transition:opacity 0.25s, transform 0.25s; pointer-events:none; z-index:2; }
+      .team-card:hover .team-li-hint { opacity:1; transform:translateY(0); }
+      .reddit-pill { transition:background 0.2s, border-color 0.2s, color 0.2s !important; }
+      .reddit-pill:hover { background:#FF4500 !important; border-color:#FF4500 !important; color:#fff !important; }
+      .reddit-pill:hover .rp-check { display:none; }
+      .reddit-pill:hover .rp-reddit { display:inline-block !important; }
       @media (max-width:860px) {
         .team-card { grid-template-columns:1fr !important; }
         .team-card-img { min-height:320px; }
@@ -2711,6 +2717,7 @@
       <!-- Zoha: image left, description right -->
       <a href="https://www.linkedin.com/in/zoha-ahmed-38a32266/" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; display:block;">
       <div class="team-card" style="grid-template-columns:5fr 7fr; cursor:pointer; transition:box-shadow 0.3s, border-color 0.3s;" data-anim onmouseenter="this.style.boxShadow='0 12px 40px rgba(85,0,221,0.1)';this.style.borderColor='rgba(85,0,221,0.3)'" onmouseleave="this.style.boxShadow='none';this.style.borderColor='#e8e8e8'">
+        <span class="team-li-hint"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect width="14" height="14" rx="3" fill="#0A66C2"/><rect x="3" y="5.5" width="2" height="5.5" fill="white"/><circle cx="4" cy="3.5" r="1.2" fill="white"/><rect x="6.5" y="5.5" width="2" height="5.5" fill="white"/><path d="M8.5 7.5c0-1 .5-1.5 1.2-1.5s1.3.5 1.3 1.5v3.5h2V7.2c0-2-1.1-2.7-2.5-2.7a2.1 2.1 0 0 0-2 1.1V5.5h-2V11h2Z" fill="white"/></svg>View LinkedIn →</span>
         <div class="team-card-img">
           <img loading="lazy" src="assets/zoha.jpg" alt="Zoha Ahmed">
         </div>
@@ -2722,8 +2729,8 @@
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
             <span class="team-pill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>$50M+ managed</span>
             <span class="team-pill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Pinterest Global Award</span>
-            <span class="team-pill" title="View Reddit AMA" style="cursor:pointer; transition:background 0.2s, border-color 0.2s;" onmouseenter="this.style.background='rgba(255,69,0,0.06)';this.style.borderColor='rgba(255,69,0,0.4)'" onmouseleave="this.style.background='';this.style.borderColor=''" onclick="event.stopPropagation();window.open('https://www.reddit.com/r/RedditforBusiness/comments/1nuns12/performance_marketing_success_on_reddit_ama_with/','_blank')"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Reddit Certified Partner <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="opacity:0.45;margin-left:2px;"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="#333" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <span class="team-pill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Adidas · Dell · Coca-Cola</span>
+            <span class="team-pill reddit-pill" title="View Reddit AMA" style="cursor:pointer;" onclick="event.stopPropagation();window.open('https://www.reddit.com/r/RedditforBusiness/comments/1nuns12/performance_marketing_success_on_reddit_ama_with/','_blank')"><svg class="rp-check" width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="rp-reddit" width="16" height="16" viewBox="0 0 20 20" fill="none" style="flex-shrink:0;display:none;"><circle cx="10" cy="10" r="10" fill="white"/><circle cx="6.5" cy="11" r="1.3" fill="#FF4500"/><circle cx="13.5" cy="11" r="1.3" fill="#FF4500"/><path d="M7 13.5c.8.7 5.2.7 6 0" stroke="#FF4500" stroke-width="1.2" stroke-linecap="round"/><circle cx="10" cy="10" r="10" fill="none"/><path d="M13.5 7.5a2.5 2.5 0 0 1 2.5 2.5" stroke="#FF4500" stroke-width="1.2" stroke-linecap="round"/><path d="M6.5 7.5a2.5 2.5 0 0 0-2.5 2.5" stroke="#FF4500" stroke-width="1.2" stroke-linecap="round"/><circle cx="15" cy="6.5" r="1" fill="#FF4500"/><path d="M10 4.5c1.4 0 2.5.6 3 1.5" stroke="#FF4500" stroke-width="1.2" stroke-linecap="round"/><path d="M7 6c.5-.9 1.6-1.5 3-1.5" stroke="#FF4500" stroke-width="1.2" stroke-linecap="round"/></svg>Reddit Certified Partner <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="margin-left:2px;flex-shrink:0;opacity:0.45;"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="team-pill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Adidas · Dell · Mars</span>
           </div>
         </div>
       </div>
@@ -2732,6 +2739,7 @@
       <!-- Sonia: description left, image right -->
       <a href="https://www.linkedin.com/in/soniamohapatra/" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; display:block;">
       <div class="team-card" style="grid-template-columns:7fr 5fr; cursor:pointer; transition:box-shadow 0.3s, border-color 0.3s;" data-anim data-delay="1" onmouseenter="this.style.boxShadow='0 12px 40px rgba(238,0,51,0.08)';this.style.borderColor='rgba(238,0,51,0.3)'" onmouseleave="this.style.boxShadow='none';this.style.borderColor='#e8e8e8'">
+        <span class="team-li-hint"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect width="14" height="14" rx="3" fill="#0A66C2"/><rect x="3" y="5.5" width="2" height="5.5" fill="white"/><circle cx="4" cy="3.5" r="1.2" fill="white"/><rect x="6.5" y="5.5" width="2" height="5.5" fill="white"/><path d="M8.5 7.5c0-1 .5-1.5 1.2-1.5s1.3.5 1.3 1.5v3.5h2V7.2c0-2-1.1-2.7-2.5-2.7a2.1 2.1 0 0 0-2 1.1V5.5h-2V11h2Z" fill="white"/></svg>View LinkedIn →</span>
         <div class="team-card-body">
           <p style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--orange); margin:0 0 10px;">Creative and Strategy Lead</p>
           <h3 style="font-family:var(--font); font-size:clamp(28px,2.8vw,40px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1.05; margin:0 0 8px; letter-spacing:-0.02em;">Sonia Mohapatra</h3>
@@ -3514,7 +3522,7 @@
           <div style="display:flex; flex-direction:column; gap:8px;">
             <a href="#work" style="color:var(--gray-300); font-size:15px;">Results</a>
             <a href="gallery.html" style="color:var(--gray-300); font-size:15px;">Portfolio</a>
-            <a href="#process" style="color:var(--gray-300); font-size:15px;">Process</a>
+            <a href="process.html" style="color:var(--gray-300); font-size:15px;">Process</a>
             <a href="#book" style="color:var(--gray-300); font-size:15px;">Contact</a>
           </div>
         </div>
