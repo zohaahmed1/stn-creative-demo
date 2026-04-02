@@ -389,15 +389,16 @@
       color: var(--navy);
     }
     .hero-headline-bold {
-      display: block;
+      display: inline;
       font-family: "Satoshi", system-ui, sans-serif;
       font-weight: 900;
       letter-spacing: -0.04em;
     }
     .hero-headline-italic {
-      display: block;
-      font-family: "Playfair Display", Georgia, serif;
-      font-style: italic;
+      display: inline;
+      font-family: "Satoshi", system-ui, sans-serif;
+      font-style: normal;
+      font-weight: 900;
       font-weight: 700;
       font-size: 1em;
       color: var(--navy);
@@ -1745,7 +1746,7 @@
     <div style="display:flex; justify-content:center; align-items:center; gap:12px; margin:16px 0 8px;">
       <span style="font-size:12px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; color:rgba(0,0,0,0.35);">Browse by:</span>
       <div style="display:flex; background:rgba(0,0,0,0.06); border-radius:100px; padding:4px; gap:0; border:1.5px solid rgba(0,0,0,0.08);">
-        <button id="htoggle-saas" onclick="switchHeroGallery('saas')" style="font-size:13px; font-weight:700; padding:8px 22px; border-radius:100px; border:none; background:#0891B2; color:#fff; cursor:pointer; transition:all 0.22s; box-shadow:0 2px 8px rgba(8,145,178,0.28);">SaaS</button>
+        <button id="htoggle-saas" onclick="switchHeroGallery('saas')" style="font-size:13px; font-weight:700; padding:8px 22px; border-radius:100px; border:none; background:#5500dd; color:#fff; cursor:pointer; transition:all 0.22s; box-shadow:0 2px 8px rgba(85,0,221,0.28);">SaaS</button>
         <button id="htoggle-ecomm" onclick="switchHeroGallery('ecomm')" style="font-size:13px; font-weight:700; padding:8px 22px; border-radius:100px; border:none; background:transparent; color:rgba(0,0,0,0.45); cursor:pointer; transition:all 0.22s; box-shadow:none;">eComm / DTC</button>
       </div>
     </div>
@@ -1841,11 +1842,11 @@
     var eb = document.getElementById('htoggle-ecomm');
     if (type === 'saas') {
       sg.style.display = ''; eg.style.display = 'none';
-      sb.style.background = '#0891B2'; sb.style.color = '#fff'; sb.style.boxShadow = '0 2px 8px rgba(8,145,178,0.28)';
+      sb.style.background = '#5500dd'; sb.style.color = '#fff'; sb.style.boxShadow = '0 2px 8px rgba(85,0,221,0.28)';
       eb.style.background = 'transparent'; eb.style.color = 'rgba(0,0,0,0.45)'; eb.style.boxShadow = 'none';
     } else {
       sg.style.display = 'none'; eg.style.display = '';
-      eb.style.background = '#f97316'; eb.style.color = '#fff'; eb.style.boxShadow = '0 2px 8px rgba(249,115,22,0.25)';
+      eb.style.background = '#ee0033'; eb.style.color = '#fff'; eb.style.boxShadow = '0 2px 8px rgba(238,0,51,0.28)';
       sb.style.background = 'transparent'; sb.style.color = 'rgba(0,0,0,0.45)'; sb.style.boxShadow = 'none';
     }
   }
