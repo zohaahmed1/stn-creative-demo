@@ -2193,7 +2193,8 @@
     </h2>
 
     <!-- Body -->
-    <p class="pain-body" style="margin:0 0 36px; font-family:var(--font); font-size:clamp(17px,1.8vw,24px); font-variation-settings:'wdth' 125,'wght' 500; color:rgba(255,255,255,0.6); line-height:1.6; letter-spacing:-0.01em; opacity:0; transform:translateY(24px); transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1) 2s, transform 0.9s cubic-bezier(0.16,1,0.3,1) 2s;">We know we have been testing more creatives. But our internal team is at full capacity. No one leads creative strategy or a test and learn roadmap, or have senior platform experience.<br><br><strong style="color:#fff; font-variation-settings:'wdth' 125,'wght' 900;">Hiring isn't on the table. And signing with an agency feels like too big a commitment.</strong></p>
+    <p class="pain-body" style="margin:0 0 28px; font-family:var(--font); font-size:clamp(17px,1.8vw,24px); font-variation-settings:'wdth' 125,'wght' 500; color:rgba(255,255,255,0.6); line-height:1.6; letter-spacing:-0.01em; opacity:0; transform:translateY(24px); transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1) 2s, transform 0.9s cubic-bezier(0.16,1,0.3,1) 2s;">We know we have been testing more creatives. But our internal team is at full capacity. No one leads creative strategy or a test and learn roadmap, or have senior platform experience.<br><br><strong style="color:#fff; font-variation-settings:'wdth' 125,'wght' 900;">Hiring isn't on the table. And signing with an agency feels like too big a commitment.</strong></p>
+    <span class="pain-body" style="font-size:11px; font-weight:700; color:rgba(255,255,255,0.22); text-transform:uppercase; letter-spacing:0.14em; opacity:0; transition:opacity 0.8s 2.8s;">Heard on every client call</span>
 
 
   </div>
@@ -2226,13 +2227,65 @@
 })();
 </script>
 
+<!-- QUOTE MARQUEE -->
+<div style="background:#0a0a0a; padding:48px 0; overflow:hidden; border-top:1px solid rgba(255,255,255,0.06);">
+  <style>
+    .qm-track { display:flex; gap:48px; width:max-content; }
+    .qm-row1 { animation: qm-left 28s linear infinite; }
+    .qm-row2 { animation: qm-right 34s linear infinite; margin-top:20px; }
+    @keyframes qm-left  { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+    @keyframes qm-right { from { transform:translateX(-50%); } to { transform:translateX(0); } }
+    .qm-item { display:inline-flex; align-items:center; gap:20px; white-space:nowrap; font-family:var(--font); font-variation-settings:'wdth' 125,'wght' 900; font-size:clamp(18px,2vw,26px); color:rgba(255,255,255,0.9); letter-spacing:-0.02em; }
+    .qm-dot { width:6px; height:6px; border-radius:50%; background:#ee0033; flex-shrink:0; }
+    .qm-dot-purple { background:#5500dd; }
+  </style>
+
+  <!-- Row 1 — scrolls left -->
+  <div style="overflow:hidden;">
+    <div class="qm-track qm-row1">
+      <div class="qm-item"><span class="qm-dot"></span>First ads live in under 2 weeks</div>
+      <div class="qm-item"><span class="qm-dot qm-dot-purple"></span>We finally had a real creative strategy</div>
+      <div class="qm-item"><span class="qm-dot"></span>20 creatives a month. We used to get 4.</div>
+      <div class="qm-item"><span class="qm-dot qm-dot-purple"></span>Pipeline doubled without touching the budget</div>
+      <div class="qm-item"><span class="qm-dot"></span>Felt like having a full in-house team</div>
+      <div class="qm-item"><span class="qm-dot qm-dot-purple"></span>The ROAS lift was immediate</div>
+      <!-- duplicate for seamless loop -->
+      <div class="qm-item"><span class="qm-dot"></span>First ads live in under 2 weeks</div>
+      <div class="qm-item"><span class="qm-dot qm-dot-purple"></span>We finally had a real creative strategy</div>
+      <div class="qm-item"><span class="qm-dot"></span>20 creatives a month. We used to get 4.</div>
+      <div class="qm-item"><span class="qm-dot qm-dot-purple"></span>Pipeline doubled without touching the budget</div>
+      <div class="qm-item"><span class="qm-dot"></span>Felt like having a full in-house team</div>
+      <div class="qm-item"><span class="qm-dot qm-dot-purple"></span>The ROAS lift was immediate</div>
+    </div>
+  </div>
+
+  <!-- Row 2 — scrolls right -->
+  <div style="overflow:hidden;">
+    <div class="qm-track qm-row2">
+      <div class="qm-item"><span class="qm-dot qm-dot-purple"></span>Reddit was a channel we'd been sleeping on</div>
+      <div class="qm-item"><span class="qm-dot"></span>Best creative partner we've worked with</div>
+      <div class="qm-item"><span class="qm-dot qm-dot-purple"></span>They understood our ICP better than we did</div>
+      <div class="qm-item"><span class="qm-dot"></span>No handoff. No guessing. Just results.</div>
+      <div class="qm-item"><span class="qm-dot qm-dot-purple"></span>More pipeline for the same budget</div>
+      <div class="qm-item"><span class="qm-dot"></span>The creative actually looked like us</div>
+      <!-- duplicate for seamless loop -->
+      <div class="qm-item"><span class="qm-dot qm-dot-purple"></span>Reddit was a channel we'd been sleeping on</div>
+      <div class="qm-item"><span class="qm-dot"></span>Best creative partner we've worked with</div>
+      <div class="qm-item"><span class="qm-dot qm-dot-purple"></span>They understood our ICP better than we did</div>
+      <div class="qm-item"><span class="qm-dot"></span>No handoff. No guessing. Just results.</div>
+      <div class="qm-item"><span class="qm-dot qm-dot-purple"></span>More pipeline for the same budget</div>
+      <div class="qm-item"><span class="qm-dot"></span>The creative actually looked like us</div>
+    </div>
+  </div>
+</div>
+
 <!-- SERVICES (Section 3) — white -->
 <section id="services" style="background:#ffffff; padding:60px 24px 68px;">
   <div style="max-width:1200px; margin:0 auto;">
     <div class="section-header" style="margin-bottom:40px;">
       <div class="h2" style="text-align:center; line-height:1.1;">
         <span style="display:block; overflow:hidden;">
-          <span class="svc-line" style="display:block; transform:translateY(110%); transition:transform 1s cubic-bezier(0.16,1,0.3,1) 0s;">Here's what you <span class="badge badge-blue" style="vertical-align:middle;">get.</span></span>
+          <span class="svc-line" style="display:block; transform:translateY(110%); transition:transform 1s cubic-bezier(0.16,1,0.3,1) 0s;">Here's our <em style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700;">solution.</em></span>
         </span>
       </div>
     </div>
