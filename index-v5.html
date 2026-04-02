@@ -2193,9 +2193,8 @@
     </h2>
 
     <!-- Body -->
-    <p class="pain-body" style="margin:0 0 36px; font-family:var(--font); font-size:clamp(17px,1.8vw,24px); font-variation-settings:'wdth' 125,'wght' 500; color:rgba(255,255,255,0.6); line-height:1.6; letter-spacing:-0.01em; opacity:0; transform:translateY(24px); transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1) 2s, transform 0.9s cubic-bezier(0.16,1,0.3,1) 2s;">Testing more creatives matters. We have a team — nobody owns creative strategy, a test and learn roadmap, or senior platform experience. We know it needs to happen. <strong style="color:#fff; font-variation-settings:'wdth' 125,'wght' 900;">Hiring isn't on the table. And a full agency retainer feels like too big a leap.</strong></p>
+    <p class="pain-body" style="margin:0 0 36px; font-family:var(--font); font-size:clamp(17px,1.8vw,24px); font-variation-settings:'wdth' 125,'wght' 500; color:rgba(255,255,255,0.6); line-height:1.6; letter-spacing:-0.01em; opacity:0; transform:translateY(24px); transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1) 2s, transform 0.9s cubic-bezier(0.16,1,0.3,1) 2s;">Testing more creatives matters. We have a team — nobody owns creative strategy, a test and learn roadmap, or senior platform experience. We know it needs to happen.<br><br><strong style="color:#fff; font-variation-settings:'wdth' 125,'wght' 900;">Hiring isn't on the table. And a full agency retainer feels like too big a leap.</strong></p>
 
-    <span class="pain-body" style="font-size:11px; font-weight:700; color:rgba(255,255,255,0.25); text-transform:uppercase; letter-spacing:0.12em; opacity:0; transition:opacity 0.9s 2.5s;">Heard on almost every first call</span>
 
   </div>
 </section>
@@ -3695,8 +3694,7 @@
     document.querySelectorAll('[data-stagger]').forEach(el => staggerObs.observe(el));
 
     // ── Hero text split reveal ──────────────────────────────────────
-    document.querySelectorAll('.hero-left .h1[data-hero], .hero-left .title-row.h1 > span[data-hero], .hero-headline-bold[data-hero], .hero-headline-italic[data-hero]').forEach(el => {
-      // Skip badges
+    document.querySelectorAll('.hero-left .h1[data-hero], .hero-left .title-row.h1 > span[data-hero], .hero-headline-bold[data-hero]').forEach(el => {
       if (el.classList.contains('badge')) return;
       const text = el.textContent.trim();
       if (!text) return;
@@ -3713,6 +3711,40 @@
         if (i < words.length - 1) el.appendChild(document.createTextNode(' '));
       });
     });
+
+    // hero-headline-italic: word split that preserves the inner <em> italic
+    const italicEl = document.querySelector('.hero-headline-italic[data-hero]');
+    if (italicEl) {
+      const nodes = Array.from(italicEl.childNodes);
+      italicEl.innerHTML = '';
+      italicEl.style.opacity = '1';
+      italicEl.style.transform = 'none';
+      let wIdx = 0;
+      nodes.forEach(node => {
+        if (node.nodeType === 3) {
+          node.textContent.trim().split(/\s+/).filter(Boolean).forEach(word => {
+            const s = document.createElement('span');
+            s.className = 'hero-word';
+            s.textContent = word;
+            s.style.transitionDelay = (wIdx++ * 0.05) + 's';
+            italicEl.appendChild(s);
+            italicEl.appendChild(document.createTextNode(' '));
+          });
+        } else if (node.nodeType === 1 && node.tagName === 'EM') {
+          node.textContent.trim().split(/\s+/).filter(Boolean).forEach((word, i, arr) => {
+            const em = document.createElement('em');
+            em.style.cssText = "font-family:'Playfair Display',serif; font-style:italic; font-weight:700;";
+            const s = document.createElement('span');
+            s.className = 'hero-word';
+            s.textContent = word;
+            s.style.transitionDelay = (wIdx++ * 0.05) + 's';
+            em.appendChild(s);
+            italicEl.appendChild(em);
+            if (i < arr.length - 1) italicEl.appendChild(document.createTextNode(' '));
+          });
+        }
+      });
+    }
 
     // Auto-trigger hero animations on page load with staggered timing
     setTimeout(() => {
