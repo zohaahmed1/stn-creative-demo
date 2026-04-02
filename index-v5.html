@@ -1872,10 +1872,11 @@
       @keyframes wf-fade-up { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
       @keyframes wf-pop { 0% { opacity:0; transform:translateY(8px); } 100% { opacity:1; transform:translateY(0); } }
       @media (max-width: 809px) {
-        #bw-left-circle, #bw-right-circle { width:160px !important; height:160px !important; }
-        #bw-left-circle svg, #bw-right-circle svg { width:160px !important; height:160px !important; }
-        .wf-circle-wrap { width:160px !important; }
+        #bw-left-circle, #bw-right-circle { width:170px !important; height:170px !important; }
+        #bw-left-circle svg, #bw-right-circle svg { width:170px !important; height:170px !important; }
+        .wf-circle-wrap { width:170px !important; }
         #bw-left-circle span[style*="font-size:30px"], #bw-right-circle span[style*="font-size:30px"] { font-size:22px !important; }
+        #bw-pile { min-height:60px !important; }
       }
       /* Start hidden — animate only when section scrolls into view */
       .wf-text, .wf-person, .wf-pill, .wf-box { opacity:0; }
@@ -1930,7 +1931,7 @@
           <span style="font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(0,0,0,0.35); margin-bottom:16px;">Without us</span>
           <div class="wf-circle-wrap" style="position:relative; width:220px;">
             <div id="bw-left-circle" style="position:relative; width:220px; height:220px; overflow:visible; border-radius:50%;">
-              <svg width="220" height="220" style="position:absolute; inset:0; pointer-events:none;">
+              <svg width="220" height="220" viewBox="0 0 220 220" style="position:absolute; inset:0; pointer-events:none; width:100%; height:100%;">
                 <circle cx="110" cy="110" r="103" fill="rgba(220,38,38,0.05)" stroke="rgba(220,38,38,0.5)" stroke-width="1.5" stroke-dasharray="7 4"/>
               </svg>
               <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; padding:0 28px; z-index:10;">
@@ -1987,7 +1988,7 @@
           <span style="font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#16a34a; margin-bottom:16px;">With us</span>
           <div class="wf-circle-wrap" style="position:relative; width:220px;">
             <div id="bw-right-circle" style="position:relative; width:220px; height:220px; overflow:visible; border-radius:50%;">
-              <svg width="220" height="220" style="position:absolute; inset:0; pointer-events:none;">
+              <svg width="220" height="220" viewBox="0 0 220 220" style="position:absolute; inset:0; pointer-events:none; width:100%; height:100%;">
                 <circle cx="110" cy="110" r="103" fill="rgba(22,163,74,0.05)" stroke="rgba(22,163,74,0.45)" stroke-width="1.5"/>
               </svg>
               <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; padding:0 24px;">
