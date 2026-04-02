@@ -2307,19 +2307,30 @@
     (function(){
       var cards = document.querySelectorAll('.linea-card');
       if (!cards.length) return;
+      function revealCard(card, baseDelay) {
+        var pills = card.querySelectorAll('.linea-pill');
+        pills.forEach(function(pill, i){
+          pill.style.transitionDelay = (baseDelay + 0.55 + i * 0.07) + 's';
+        });
+        var panelRight = card.querySelector('.linea-panel-right');
+        if (panelRight) {
+          panelRight.style.transitionDelay = baseDelay + 0.3 + 's';
+          panelRight.style.transition = 'opacity 0.75s cubic-bezier(0.16,1,0.3,1) ' + (baseDelay + 0.3) + 's, transform 0.75s cubic-bezier(0.16,1,0.3,1) ' + (baseDelay + 0.3) + 's';
+        }
+        var panelLeft = card.querySelector('.linea-panel-left');
+        if (panelLeft) panelLeft.style.transitionDelay = baseDelay + 's';
+        card.classList.add('linea-card-visible');
+      }
       var obs = new IntersectionObserver(function(entries){
         entries.forEach(function(entry){
           if (entry.isIntersecting) {
-            var pills = entry.target.querySelectorAll('.linea-pill');
-            pills.forEach(function(pill, i){
-              pill.style.transitionDelay = (0.55 + i * 0.07) + 's';
-            });
-            entry.target.classList.add('linea-card-visible');
             obs.unobserve(entry.target);
+            revealCard(cards[0], 0);
+            if (cards[1]) setTimeout(function(){ revealCard(cards[1], 0); }, 750);
           }
         });
       }, { threshold: 0.15 });
-      cards.forEach(function(c){ obs.observe(c); });
+      obs.observe(cards[0]);
     })();
     </script>
     <div style="text-align:center; margin-bottom:24px; padding-top:12px;">
