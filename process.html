@@ -15,13 +15,18 @@
       --orange: #ee0033;
       --white: #fff;
       --bg: #faf9f7;
-      --gray-100: #ececec;
-      --gray-200: #dcdcdc;
       --gray-300: #a8a8a8;
       --gray-400: #444;
       --navy: #19213d;
       --font: "Satoshi", system-ui, sans-serif;
       --wdth: 125;
+
+      /* Phase colors */
+      --c1: #5500dd; --c1-bg: #eee8ff; --c1-mid: #a78bfa;
+      --c2: #ee0033; --c2-bg: #fff0f3; --c2-mid: #fb7185;
+      --c3: #16a34a; --c3-bg: #f0fdf4; --c3-mid: #4ade80;
+      --c4: #ea580c; --c4-bg: #fff7ed; --c4-mid: #fb923c;
+      --c5: #0891b2; --c5-bg: #ecfeff; --c5-mid: #22d3ee;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,164 +36,284 @@
     img { display: block; max-width: 100%; }
     a { text-decoration: none; color: inherit; }
 
-    .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; z-index: 200; background: linear-gradient(90deg, var(--blue), var(--orange)); width: 0%; }
+    .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; z-index: 200; background: linear-gradient(90deg, var(--blue), #a855f7, var(--orange)); width: 0%; }
 
     .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
     @media (max-width: 809px) { .container { padding: 0 16px; } }
 
     /* ── NAV ── */
-    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,249,247,0.85); backdrop-filter: blur(20px) saturate(1.3); -webkit-backdrop-filter: blur(20px) saturate(1.3); border-bottom: 1px solid rgba(0,0,0,0.06); transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
-    .nav.scrolled { top: 12px; left: 24px; right: 24px; background: rgba(255,255,255,0.82); backdrop-filter: blur(24px) saturate(1.5); border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.06); }
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(8,8,8,0.7); backdrop-filter: blur(20px) saturate(1.3); -webkit-backdrop-filter: blur(20px) saturate(1.3); border-bottom: 1px solid rgba(255,255,255,0.06); transition: all 0.4s cubic-bezier(0.4,0,0.2,1); }
+    .nav.scrolled { top: 12px; left: 24px; right: 24px; background: rgba(255,255,255,0.88); backdrop-filter: blur(24px) saturate(1.5); border-radius: 16px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); border: 1px solid rgba(0,0,0,0.06); }
+    .nav.scrolled .nav-link { color: #555; }
+    .nav.scrolled .nav-link:hover { background: rgba(0,0,0,0.05); color: var(--navy); }
+    .nav.scrolled .nav-link.active { color: var(--navy); }
+    .nav.scrolled .btn-nav { background: var(--dark); }
     .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; }
     .nav.scrolled .nav-inner { padding: 8px 24px; }
     .nav-logo { display: flex; align-items: center; gap: 10px; }
     .nav-logo img { height: 32px; width: auto; }
     .nav-links { display: flex; align-items: center; gap: 2px; }
-    .nav-link { font-size: 14px; font-variation-settings: "wdth" var(--wdth), "wght" 500; padding: 7px 14px; border-radius: 100px; transition: background 0.2s, color 0.2s; color: #555; }
-    .nav-link:hover { background: rgba(0,0,0,0.05); color: var(--navy); }
-    .nav-link.active { color: var(--navy); font-variation-settings: "wdth" var(--wdth), "wght" 700; }
+    .nav-link { font-size: 14px; font-variation-settings: "wdth" var(--wdth), "wght" 500; padding: 7px 14px; border-radius: 100px; transition: background 0.2s, color 0.2s; color: rgba(255,255,255,0.6); }
+    .nav-link:hover { background: rgba(255,255,255,0.1); color: #fff; }
+    .nav-link.active { color: #fff; font-variation-settings: "wdth" var(--wdth), "wght" 700; }
     .nav-right { display: flex; align-items: center; gap: 8px; }
-    .btn-nav { display: inline-flex; align-items: center; gap: 8px; background: var(--dark); color: #fff; font-family: var(--font); font-size: 13px; font-variation-settings: "wdth" var(--wdth), "wght" 700; padding: 9px 18px; border-radius: 100px; transition: opacity 0.2s; }
+    .btn-nav { display: inline-flex; align-items: center; gap: 8px; background: #fff; color: #0a0a0a; font-family: var(--font); font-size: 13px; font-variation-settings: "wdth" var(--wdth), "wght" 700; padding: 9px 18px; border-radius: 100px; transition: opacity 0.2s; }
     .btn-nav:hover { opacity: 0.85; }
     @media (max-width: 1199px) { .nav-links, .nav-right { display: none; } }
 
     /* ── HERO ── */
     .hero {
-      background: #080808;
+      position: relative;
+      background: #05020f;
       padding: 140px 24px 100px;
       text-align: center;
+      overflow: hidden;
     }
+    /* Colorful glow orbs */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -120px; left: 50%;
+      transform: translateX(-50%);
+      width: 900px; height: 600px;
+      background:
+        radial-gradient(ellipse 400px 300px at 30% 40%, rgba(85,0,221,0.35) 0%, transparent 70%),
+        radial-gradient(ellipse 350px 280px at 70% 50%, rgba(238,0,51,0.2) 0%, transparent 70%),
+        radial-gradient(ellipse 300px 250px at 50% 80%, rgba(168,85,247,0.2) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero > * { position: relative; z-index: 1; }
     .hero-eyebrow {
-      display: inline-block;
-      font-size: 11px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-      margin-bottom: 24px;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-variation-settings: "wdth" var(--wdth), "wght" 600;
+      color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 6px 14px; border-radius: 100px;
+      margin-bottom: 28px;
     }
+    .hero-eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: #a78bfa; display: inline-block; }
     .hero-h1 {
       font-family: var(--font);
-      font-size: clamp(42px, 6vw, 82px);
+      font-size: clamp(48px, 7vw, 92px);
       font-variation-settings: "wdth" 125, "wght" 900;
       color: #fff;
       line-height: 1.0;
       letter-spacing: -0.03em;
       margin-bottom: 24px;
     }
-    .hero-h1 em { font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 700; }
+    .hero-h1 em { font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 700; background: linear-gradient(135deg, #a78bfa, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .hero-sub {
-      font-size: clamp(16px, 1.8vw, 20px);
+      font-size: clamp(16px, 1.8vw, 19px);
       font-variation-settings: "wdth" var(--wdth), "wght" 400;
-      color: rgba(255,255,255,0.5);
-      max-width: 580px;
-      margin: 0 auto 48px;
-      line-height: 1.7;
+      color: rgba(255,255,255,0.45);
+      max-width: 560px;
+      margin: 0 auto 52px;
+      line-height: 1.75;
     }
+
+    /* Stats row — 4 colored chips */
     .hero-stats {
-      display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap;
-      border: 1px solid rgba(255,255,255,0.1); border-radius: 16px;
-      max-width: 680px; margin: 0 auto;
-      overflow: hidden;
+      display: flex; align-items: stretch; justify-content: center; gap: 12px; flex-wrap: wrap;
+      max-width: 780px; margin: 0 auto;
     }
     .hero-stat {
-      flex: 1; min-width: 160px;
-      padding: 24px 20px;
+      flex: 1; min-width: 150px; max-width: 200px;
+      padding: 22px 20px;
+      border-radius: 16px;
       text-align: center;
-      border-right: 1px solid rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
     }
-    .hero-stat:last-child { border-right: none; }
-    .hero-stat-num { font-size: 28px; font-variation-settings: "wdth" 125, "wght" 900; color: #fff; letter-spacing: -0.02em; margin-bottom: 4px; }
-    .hero-stat-label { font-size: 12px; font-variation-settings: "wdth" var(--wdth), "wght" 500; color: rgba(255,255,255,0.4); letter-spacing: 0.04em; }
+    .hero-stat:nth-child(1) { background: rgba(85,0,221,0.18); border-color: rgba(85,0,221,0.3); }
+    .hero-stat:nth-child(2) { background: rgba(238,0,51,0.15); border-color: rgba(238,0,51,0.25); }
+    .hero-stat:nth-child(3) { background: rgba(22,163,74,0.15); border-color: rgba(22,163,74,0.25); }
+    .hero-stat:nth-child(4) { background: rgba(234,88,12,0.15); border-color: rgba(234,88,12,0.25); }
+    .hero-stat-num {
+      font-size: 32px; font-variation-settings: "wdth" 125, "wght" 900; color: #fff;
+      letter-spacing: -0.03em; margin-bottom: 4px; line-height: 1;
+    }
+    .hero-stat:nth-child(1) .hero-stat-num { color: #a78bfa; }
+    .hero-stat:nth-child(2) .hero-stat-num { color: #fb7185; }
+    .hero-stat:nth-child(3) .hero-stat-num { color: #4ade80; }
+    .hero-stat:nth-child(4) .hero-stat-num { color: #fb923c; }
+    .hero-stat-label { font-size: 12px; font-variation-settings: "wdth" var(--wdth), "wght" 500; color: rgba(255,255,255,0.45); line-height: 1.4; }
 
     /* ── VS SECTION ── */
-    .vs-section { background: #fff; padding: 80px 24px; }
-    .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; max-width: 900px; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 1.5px solid #e8e8e8; }
+    .vs-section { background: #fff; padding: 88px 24px; }
+    .vs-heading { text-align: center; margin-bottom: 48px; }
+    .vs-heading .eyebrow { font-size: 13px; font-variation-settings: "wdth" var(--wdth), "wght" 700; color: var(--blue); margin-bottom: 12px; }
+    .vs-heading h2 { font-family: var(--font); font-size: clamp(32px, 4vw, 52px); font-variation-settings: "wdth" 125, "wght" 900; color: #0a0a0a; line-height: 1.05; letter-spacing: -0.02em; }
+    .vs-heading h2 em { font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 700; }
+
+    .vs-wrapper { max-width: 900px; margin: 0 auto; position: relative; }
+    .vs-badge {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 52px; height: 52px; border-radius: 50%; background: #0a0a0a;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-variation-settings: "wdth" var(--wdth), "wght" 900; color: #fff;
+      z-index: 10; box-shadow: 0 0 0 4px #fff;
+    }
+    @media (max-width: 680px) { .vs-badge { display: none; } }
+
+    .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 24px; overflow: hidden; border: 1.5px solid #e8e8e8; }
     .vs-col { padding: 40px 36px; }
     .vs-col-old { background: #fafafa; }
     .vs-col-new { background: #0a0a0a; }
-    .vs-label { font-size: 11px; font-variation-settings: "wdth" var(--wdth), "wght" 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 28px; }
-    .vs-label-old { color: #aaa; }
-    .vs-label-new { color: rgba(255,255,255,0.4); }
-    .vs-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
+    .vs-label { font-size: 13px; font-variation-settings: "wdth" var(--wdth), "wght" 700; margin-bottom: 28px; }
+    .vs-label-old { color: #bbb; }
+    .vs-label-new { color: rgba(255,255,255,0.35); }
+    .vs-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 18px; }
     .vs-row:last-child { margin-bottom: 0; }
-    .vs-icon { width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px; }
-    .vs-text { font-size: 15px; font-variation-settings: "wdth" var(--wdth), "wght" 500; line-height: 1.5; }
-    .vs-text-old { color: #777; }
-    .vs-text-new { color: rgba(255,255,255,0.85); }
+    .vs-icon { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; }
+    .vs-text { font-size: 15px; font-variation-settings: "wdth" var(--wdth), "wght" 500; line-height: 1.55; }
+    .vs-text-old { color: #999; text-decoration: line-through; text-decoration-color: #ddd; }
+    .vs-text-new { color: rgba(255,255,255,0.88); }
     @media (max-width: 680px) { .vs-grid { grid-template-columns: 1fr; } .vs-col { padding: 28px 24px; } }
+
+    /* ── DAY STRIP ── */
+    .day-strip {
+      background: #0a0a0a;
+      padding: 28px 24px;
+      overflow: hidden;
+    }
+    .day-strip-inner { max-width: 900px; margin: 0 auto; display: flex; gap: 0; border-radius: 14px; overflow: hidden; }
+    .day-segment {
+      flex: 1; padding: 14px 12px; text-align: center; position: relative;
+    }
+    .day-segment:nth-child(1) { background: rgba(85,0,221,0.8); }
+    .day-segment:nth-child(2) { background: rgba(238,0,51,0.75); }
+    .day-segment:nth-child(3) { background: rgba(22,163,74,0.75); }
+    .day-segment:nth-child(4) { background: rgba(234,88,12,0.75); }
+    .day-segment:nth-child(5) { background: rgba(8,145,178,0.75); }
+    .day-seg-num { font-size: 11px; font-variation-settings: "wdth" var(--wdth), "wght" 600; color: rgba(255,255,255,0.55); margin-bottom: 3px; }
+    .day-seg-label { font-size: 13px; font-variation-settings: "wdth" var(--wdth), "wght" 800; color: #fff; white-space: nowrap; }
+    @media (max-width: 600px) { .day-seg-label { font-size: 10px; } .day-segment { padding: 10px 6px; } }
 
     /* ── PHASES ── */
     .phases-section { background: var(--bg); padding: 80px 24px 100px; }
-    .section-label { font-size: 11px; font-variation-settings: "wdth" var(--wdth), "wght" 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; text-align: center; }
+    .section-label { font-size: 13px; font-variation-settings: "wdth" var(--wdth), "wght" 700; color: var(--blue); margin-bottom: 12px; text-align: center; }
     .section-h2 { font-family: var(--font); font-size: clamp(32px, 4vw, 52px); font-variation-settings: "wdth" 125, "wght" 900; color: #0a0a0a; line-height: 1.05; letter-spacing: -0.02em; text-align: center; margin-bottom: 12px; }
     .section-h2 em { font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 700; }
     .section-sub { font-size: 17px; color: #666; text-align: center; max-width: 560px; margin: 0 auto 64px; line-height: 1.7; }
 
-    .phases { display: flex; flex-direction: column; gap: 0; max-width: 960px; margin: 0 auto; position: relative; }
+    .phases { display: flex; flex-direction: column; gap: 16px; max-width: 900px; margin: 0 auto; }
 
-    /* vertical connecting line */
-    .phases::before {
-      content: '';
-      position: absolute;
-      left: 39px;
-      top: 48px;
-      bottom: 48px;
-      width: 2px;
-      background: linear-gradient(to bottom, var(--blue), var(--orange));
-      opacity: 0.15;
-      z-index: 0;
+    /* Phase card */
+    .phase {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1.5px solid #ebebeb;
+      background: #fff;
+      transition: box-shadow 0.3s, transform 0.3s;
+      position: relative;
     }
+    .phase:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.07); transform: translateY(-2px); }
 
-    .phase { display: grid; grid-template-columns: 80px 1fr; gap: 32px; padding: 32px 0; border-bottom: 1px solid #f0f0f0; position: relative; }
-    .phase:last-child { border-bottom: none; }
-
-    .phase-dot {
-      display: flex; flex-direction: column; align-items: center; gap: 8px; position: relative; z-index: 1;
-    }
-    .phase-dot-circle {
-      width: 40px; height: 40px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 13px; font-variation-settings: "wdth" var(--wdth), "wght" 800;
+    /* Colored left stripe */
+    .phase-stripe {
+      width: 6px;
       flex-shrink: 0;
     }
-    .phase-dot-day { font-size: 10px; font-variation-settings: "wdth" var(--wdth), "wght" 700; letter-spacing: 0.05em; text-transform: uppercase; color: #aaa; text-align: center; white-space: nowrap; }
+    .phase-1 .phase-stripe { background: var(--c1); }
+    .phase-2 .phase-stripe { background: var(--c2); }
+    .phase-3 .phase-stripe { background: var(--c3); }
+    .phase-4 .phase-stripe { background: var(--c4); }
+    .phase-5 .phase-stripe { background: var(--c5); }
 
-    .phase-body { padding-top: 4px; }
-    .phase-eyebrow { font-size: 11px; font-variation-settings: "wdth" var(--wdth), "wght" 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
-    .phase-title { font-family: var(--font); font-size: clamp(22px, 2.2vw, 30px); font-variation-settings: "wdth" 125, "wght" 900; color: #0a0a0a; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 12px; }
-    .phase-desc { font-size: 16px; line-height: 1.8; color: #555; margin-bottom: 20px; }
-    .phase-footer { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
-    .phase-deliverable { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-variation-settings: "wdth" var(--wdth), "wght" 700; color: #0a0a0a; background: #f4f4f4; border-radius: 100px; padding: 6px 14px; }
-    .phase-tools { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-    .phase-tool { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-variation-settings: "wdth" var(--wdth), "wght" 600; color: #666; border: 1.5px solid #e8e8e8; border-radius: 8px; padding: 4px 10px; background: #fff; }
+    .phase-inner { display: grid; grid-template-columns: 100px 1fr; gap: 0; }
+
+    /* Big number panel */
+    .phase-num-panel {
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+      padding: 32px 0 32px 24px;
+      position: relative;
+    }
+    .phase-num {
+      font-family: var(--font);
+      font-size: 72px;
+      font-variation-settings: "wdth" 125, "wght" 900;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      opacity: 0.12;
+    }
+    .phase-1 .phase-num { color: var(--c1); }
+    .phase-2 .phase-num { color: var(--c2); }
+    .phase-3 .phase-num { color: var(--c3); }
+    .phase-4 .phase-num { color: var(--c4); }
+    .phase-5 .phase-num { color: var(--c5); }
+
+    .phase-day-pill {
+      font-size: 10px; font-variation-settings: "wdth" var(--wdth), "wght" 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 4px 8px; border-radius: 6px;
+      white-space: nowrap; margin-top: 6px;
+    }
+    .phase-1 .phase-day-pill { background: var(--c1-bg); color: var(--c1); }
+    .phase-2 .phase-day-pill { background: var(--c2-bg); color: var(--c2); }
+    .phase-3 .phase-day-pill { background: var(--c3-bg); color: var(--c3); }
+    .phase-4 .phase-day-pill { background: var(--c4-bg); color: var(--c4); }
+    .phase-5 .phase-day-pill { background: var(--c5-bg); color: var(--c5); }
+
+    .phase-body { padding: 32px 32px 32px 12px; }
+    .phase-eyebrow { font-size: 13px; font-variation-settings: "wdth" var(--wdth), "wght" 700; margin-bottom: 8px; }
+    .phase-1 .phase-eyebrow { color: var(--c1); }
+    .phase-2 .phase-eyebrow { color: var(--c2); }
+    .phase-3 .phase-eyebrow { color: var(--c3); }
+    .phase-4 .phase-eyebrow { color: var(--c4); }
+    .phase-5 .phase-eyebrow { color: var(--c5); }
+
+    .phase-title { font-family: var(--font); font-size: clamp(20px, 2.2vw, 27px); font-variation-settings: "wdth" 125, "wght" 900; color: #0a0a0a; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .phase-desc { font-size: 15px; line-height: 1.8; color: #666; margin-bottom: 20px; }
+    .phase-footer { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+    .phase-deliverable {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 12px; font-variation-settings: "wdth" var(--wdth), "wght" 700;
+      border-radius: 100px; padding: 5px 12px;
+    }
+    .phase-1 .phase-deliverable { background: var(--c1-bg); color: var(--c1); }
+    .phase-2 .phase-deliverable { background: var(--c2-bg); color: var(--c2); }
+    .phase-3 .phase-deliverable { background: var(--c3-bg); color: var(--c3); }
+    .phase-4 .phase-deliverable { background: var(--c4-bg); color: var(--c4); }
+    .phase-5 .phase-deliverable { background: var(--c5-bg); color: var(--c5); }
+
+    .phase-tools { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .phase-tool { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-variation-settings: "wdth" var(--wdth), "wght" 600; color: #777; border: 1.5px solid #ececec; border-radius: 8px; padding: 4px 10px; background: #fafafa; }
     .phase-tool img { width: 14px; height: 14px; border-radius: 3px; }
 
-    /* Phase colour themes */
-    .phase-1 .phase-dot-circle { background: #eee8ff; color: var(--blue); }
-    .phase-1 .phase-eyebrow { color: var(--blue); }
-    .phase-2 .phase-dot-circle { background: #fff0f0; color: var(--orange); }
-    .phase-2 .phase-eyebrow { color: var(--orange); }
-    .phase-3 .phase-dot-circle { background: #f0fdf4; color: #16a34a; }
-    .phase-3 .phase-eyebrow { color: #16a34a; }
-    .phase-4 .phase-dot-circle { background: #fff7ed; color: #ea580c; }
-    .phase-4 .phase-eyebrow { color: #ea580c; }
-    .phase-5 .phase-dot-circle { background: #eee8ff; color: var(--blue); }
-    .phase-5 .phase-eyebrow { color: var(--blue); }
-
     @media (max-width: 680px) {
-      .phase { grid-template-columns: 52px 1fr; gap: 16px; }
-      .phases::before { left: 25px; }
-      .phase-dot-circle { width: 32px; height: 32px; font-size: 11px; }
+      .phase-inner { grid-template-columns: 72px 1fr; }
+      .phase-num { font-size: 48px; }
+      .phase-num-panel { padding: 24px 0 24px 16px; }
+      .phase-body { padding: 24px 20px 24px 8px; }
     }
 
     /* ── CTA ── */
-    .cta-section { background: #080808; padding: 100px 24px; text-align: center; }
+    .cta-section {
+      position: relative;
+      background: #05020f;
+      padding: 100px 24px;
+      text-align: center;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 600px 400px at 20% 50%, rgba(85,0,221,0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 350px at 80% 50%, rgba(238,0,51,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-section > * { position: relative; z-index: 1; }
     .cta-h2 { font-family: var(--font); font-size: clamp(36px, 5vw, 64px); font-variation-settings: "wdth" 125, "wght" 900; color: #fff; line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 20px; }
-    .cta-h2 em { font-family: "Playfair Display", Georgia, serif; font-style: italic; }
-    .cta-sub { font-size: 17px; color: rgba(255,255,255,0.5); margin-bottom: 40px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.7; }
-    .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: #fff; color: #0a0a0a; font-family: var(--font); font-size: 15px; font-variation-settings: "wdth" var(--wdth), "wght" 700; padding: 16px 32px; border-radius: 100px; transition: opacity 0.2s; }
-    .cta-btn:hover { opacity: 0.9; }
+    .cta-h2 em { font-family: "Playfair Display", Georgia, serif; font-style: italic; background: linear-gradient(135deg, #a78bfa, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .cta-sub { font-size: 17px; color: rgba(255,255,255,0.45); margin-bottom: 40px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .cta-btn { display: inline-flex; align-items: center; gap: 10px; background: #fff; color: #0a0a0a; font-family: var(--font); font-size: 15px; font-variation-settings: "wdth" var(--wdth), "wght" 700; padding: 16px 32px; border-radius: 100px; transition: opacity 0.2s, transform 0.2s; }
+    .cta-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 
     /* ── FOOTER ── */
     .footer { background: #0a0a0a; padding: 32px 24px; border-top: 1px solid rgba(255,255,255,0.06); }
@@ -230,7 +355,7 @@
 
 <!-- HERO -->
 <section class="hero">
-  <p class="hero-eyebrow">How we work</p>
+  <p class="hero-eyebrow"><span></span> How we work</p>
   <h1 class="hero-h1">Brief to live in<br><em>7 days.</em></h1>
   <p class="hero-sub">Most agencies take 4 to 6 weeks to produce ads and launch. We don't. Here's exactly what happens from the moment you reach out.</p>
   <div class="hero-stats">
@@ -256,60 +381,89 @@
 <!-- VS SECTION -->
 <section class="vs-section">
   <div class="container">
-    <div style="text-align:center; margin-bottom:40px;" data-anim>
-      <p class="section-label" style="text-align:center;">Why it matters</p>
-      <h2 class="section-h2" style="margin-bottom:0;">The old way vs <em>ours.</em></h2>
+    <div class="vs-heading" data-anim>
+      <p class="eyebrow">Why it matters</p>
+      <h2>The old way vs <em>ours.</em></h2>
     </div>
-    <div class="vs-grid" data-anim data-delay="1">
-      <div class="vs-col vs-col-old">
-        <p class="vs-label vs-label-old">Traditional agency</p>
-        <div class="vs-row">
-          <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#ddd" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#ccc" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <p class="vs-text vs-text-old">4 to 6 week production cycle before anything goes live</p>
+    <div class="vs-wrapper" data-anim data-delay="1">
+      <div class="vs-badge">VS</div>
+      <div class="vs-grid">
+        <div class="vs-col vs-col-old">
+          <p class="vs-label vs-label-old">Traditional agency</p>
+          <div class="vs-row">
+            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#fee2e2"/><path d="M7 7l6 6M13 7l-6 6" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <p class="vs-text vs-text-old">4 to 6 week production cycle before anything goes live</p>
+          </div>
+          <div class="vs-row">
+            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#fee2e2"/><path d="M7 7l6 6M13 7l-6 6" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <p class="vs-text vs-text-old">3 to 5 ads per month after lengthy briefing rounds</p>
+          </div>
+          <div class="vs-row">
+            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#fee2e2"/><path d="M7 7l6 6M13 7l-6 6" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <p class="vs-text vs-text-old">Account managers between you and the people doing the work</p>
+          </div>
+          <div class="vs-row">
+            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#fee2e2"/><path d="M7 7l6 6M13 7l-6 6" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <p class="vs-text vs-text-old">Last-click attribution only. No real view of what's driving results.</p>
+          </div>
+          <div class="vs-row">
+            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#fee2e2"/><path d="M7 7l6 6M13 7l-6 6" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <p class="vs-text vs-text-old">Meta and Google only. No Reddit, no LinkedIn, no diversification.</p>
+          </div>
         </div>
-        <div class="vs-row">
-          <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#ddd" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#ccc" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <p class="vs-text vs-text-old">3 to 5 ads per month after lengthy briefing rounds</p>
-        </div>
-        <div class="vs-row">
-          <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#ddd" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#ccc" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <p class="vs-text vs-text-old">Account managers in between you and the people doing the work</p>
-        </div>
-        <div class="vs-row">
-          <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#ddd" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#ccc" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <p class="vs-text vs-text-old">Last-click attribution only. No real view of what's driving results.</p>
-        </div>
-        <div class="vs-row">
-          <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#ddd" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#ccc" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <p class="vs-text vs-text-old">Meta and Google only. No Reddit, no LinkedIn, no diversification.</p>
-        </div>
-      </div>
-      <div class="vs-col vs-col-new">
-        <p class="vs-label vs-label-new">Skip the Noise</p>
-        <div class="vs-row">
-          <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#5500dd" opacity="0.2"/><circle cx="10" cy="10" r="9" stroke="#5500dd" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <p class="vs-text vs-text-new">Live in 7 days. No compromise on quality.</p>
-        </div>
-        <div class="vs-row">
-          <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#5500dd" opacity="0.2"/><circle cx="10" cy="10" r="9" stroke="#5500dd" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <p class="vs-text vs-text-new">20+ creatives per month. AI production, human creative direction.</p>
-        </div>
-        <div class="vs-row">
-          <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#5500dd" opacity="0.2"/><circle cx="10" cy="10" r="9" stroke="#5500dd" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <p class="vs-text vs-text-new">Two people. Zoha runs performance. Sonia runs creative. You talk to both.</p>
-        </div>
-        <div class="vs-row">
-          <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#5500dd" opacity="0.2"/><circle cx="10" cy="10" r="9" stroke="#5500dd" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <p class="vs-text vs-text-new">Multi-touch attribution and MMM via Funnel.io. Full picture, always.</p>
-        </div>
-        <div class="vs-row">
-          <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#5500dd" opacity="0.2"/><circle cx="10" cy="10" r="9" stroke="#5500dd" stroke-width="1.5"/><path d="M7 10l2 2 4-4" stroke="#a78bfa" stroke-width="1.5" stroke-linecap="round"/></svg>
-          <p class="vs-text vs-text-new">Reddit Certified Partner. LinkedIn ABM. Platforms your competitors aren't on yet.</p>
+        <div class="vs-col vs-col-new">
+          <p class="vs-label vs-label-new">Skip the Noise</p>
+          <div class="vs-row">
+            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(85,0,221,0.25)"/><path d="M6 10l3 3 5-5" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <p class="vs-text vs-text-new">Live in 7 days. No compromise on quality.</p>
+          </div>
+          <div class="vs-row">
+            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(85,0,221,0.25)"/><path d="M6 10l3 3 5-5" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <p class="vs-text vs-text-new">20+ creatives per month. AI production, human creative direction.</p>
+          </div>
+          <div class="vs-row">
+            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(85,0,221,0.25)"/><path d="M6 10l3 3 5-5" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <p class="vs-text vs-text-new">Two people. Zoha runs performance. Sonia runs creative. You talk to both.</p>
+          </div>
+          <div class="vs-row">
+            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(85,0,221,0.25)"/><path d="M6 10l3 3 5-5" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <p class="vs-text vs-text-new">Multi-touch attribution and MMM via Funnel.io. Full picture, always.</p>
+          </div>
+          <div class="vs-row">
+            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(85,0,221,0.25)"/><path d="M6 10l3 3 5-5" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <p class="vs-text vs-text-new">Reddit Certified Partner. LinkedIn ABM. Platforms your competitors aren't on yet.</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- DAY STRIP -->
+<div class="day-strip">
+  <div class="day-strip-inner">
+    <div class="day-segment">
+      <div class="day-seg-num">Day 1–2</div>
+      <div class="day-seg-label">Audit</div>
+    </div>
+    <div class="day-segment">
+      <div class="day-seg-num">Day 2–3</div>
+      <div class="day-seg-label">Strategy</div>
+    </div>
+    <div class="day-segment">
+      <div class="day-seg-num">Day 3–5</div>
+      <div class="day-seg-label">Production</div>
+    </div>
+    <div class="day-segment">
+      <div class="day-seg-num">Day 5–7</div>
+      <div class="day-seg-label">Launch</div>
+    </div>
+    <div class="day-segment">
+      <div class="day-seg-num">Ongoing</div>
+      <div class="day-seg-label">Optimise</div>
+    </div>
+  </div>
+</div>
 
 <!-- PHASES -->
 <section class="phases-section">
@@ -324,26 +478,27 @@
 
       <!-- Phase 1: Audit -->
       <div class="phase phase-1" data-anim>
-        <div class="phase-dot">
-          <div class="phase-dot-circle">01</div>
-          <p class="phase-dot-day">Day 1–2</p>
-        </div>
-        <div class="phase-body">
-          <p class="phase-eyebrow">Audit</p>
-          <h3 class="phase-title">We pull apart your ad library before we touch anything.</h3>
-          <p class="phase-desc">We audit your Meta, Reddit, LinkedIn, and TikTok ad libraries. Benchmark active ad counts against competitors. Identify format gaps, stale creative, and platforms you're not using. You get a full picture of where you're leaving money before we write a single brief.</p>
-          <div class="phase-footer">
-            <span class="phase-deliverable">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="#0a0a0a"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>
-              Ad library audit deck
-            </span>
-            <span class="phase-deliverable" style="background:#eee8ff; color:var(--blue);">
-              Free. 48 hours.
-            </span>
-            <div class="phase-tools">
-              <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=meta.com&sz=28" alt="">Meta Ad Library</span>
-              <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=28" alt="">Reddit Ads</span>
-              <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=28" alt="">LinkedIn</span>
+        <div class="phase-stripe"></div>
+        <div class="phase-inner">
+          <div class="phase-num-panel">
+            <div class="phase-num">01</div>
+            <div class="phase-day-pill">Day 1–2</div>
+          </div>
+          <div class="phase-body">
+            <p class="phase-eyebrow">Audit</p>
+            <h3 class="phase-title">We pull apart your ad library before we touch anything.</h3>
+            <p class="phase-desc">We audit your Meta, Reddit, LinkedIn, and TikTok ad libraries. Benchmark active ad counts against competitors. Identify format gaps, stale creative, and platforms you're not using. You get a full picture of where you're leaving money before we write a single brief.</p>
+            <div class="phase-footer">
+              <span class="phase-deliverable">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="currentColor" opacity="0.2"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                Ad library audit deck
+              </span>
+              <span class="phase-deliverable" style="background:rgba(85,0,221,0.07);">Free. 48 hours.</span>
+              <div class="phase-tools">
+                <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=meta.com&sz=28" alt="">Meta Ad Library</span>
+                <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=28" alt="">Reddit Ads</span>
+                <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=28" alt="">LinkedIn</span>
+              </div>
             </div>
           </div>
         </div>
@@ -351,22 +506,25 @@
 
       <!-- Phase 2: Strategy & Brief -->
       <div class="phase phase-2" data-anim data-delay="1">
-        <div class="phase-dot">
-          <div class="phase-dot-circle">02</div>
-          <p class="phase-dot-day">Day 2–3</p>
-        </div>
-        <div class="phase-body">
-          <p class="phase-eyebrow">Creative Strategy</p>
-          <h3 class="phase-title">Sonia builds the brief. Zoha maps the targeting.</h3>
-          <p class="phase-desc">Sonia translates the audit findings into a creative brief — angles, formats, hooks, platform-specific direction. Zoha builds the media plan: which platforms, which audiences, what budgets, and how performance will be measured. Both happen in parallel. No waiting for one to finish before the other starts.</p>
-          <div class="phase-footer">
-            <span class="phase-deliverable">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="12" fill="#0a0a0a"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>
-              Creative brief + media plan
-            </span>
-            <div class="phase-tools">
-              <span class="phase-tool"><img src="https://cdn.simpleicons.org/anthropic/000000" alt="" style="border-radius:3px;">Claude</span>
-              <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=figma.com&sz=28" alt="">Figma</span>
+        <div class="phase-stripe"></div>
+        <div class="phase-inner">
+          <div class="phase-num-panel">
+            <div class="phase-num">02</div>
+            <div class="phase-day-pill">Day 2–3</div>
+          </div>
+          <div class="phase-body">
+            <p class="phase-eyebrow">Creative Strategy</p>
+            <h3 class="phase-title">Sonia builds the brief. Zoha maps the targeting.</h3>
+            <p class="phase-desc">Sonia translates the audit findings into a creative brief — angles, formats, hooks, platform-specific direction. Zoha builds the media plan: which platforms, which audiences, what budgets, and how performance will be measured. Both happen in parallel. No waiting for one to finish before the other starts.</p>
+            <div class="phase-footer">
+              <span class="phase-deliverable">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="currentColor" opacity="0.2"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                Creative brief + media plan
+              </span>
+              <div class="phase-tools">
+                <span class="phase-tool"><img src="https://cdn.simpleicons.org/anthropic/000000" alt="" style="border-radius:3px;">Claude</span>
+                <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=figma.com&sz=28" alt="">Figma</span>
+              </div>
             </div>
           </div>
         </div>
@@ -374,25 +532,28 @@
 
       <!-- Phase 3: Production -->
       <div class="phase phase-3" data-anim data-delay="2">
-        <div class="phase-dot">
-          <div class="phase-dot-circle">03</div>
-          <p class="phase-dot-day">Day 3–5</p>
-        </div>
-        <div class="phase-body">
-          <p class="phase-eyebrow">AI Production</p>
-          <h3 class="phase-title">20+ ads. Every format. Human-directed, AI-built.</h3>
-          <p class="phase-desc">We don't use AI as a prompt generator. Sonia directs every asset — concept, visual language, copy angle, format. AI handles the production volume. What used to take a design team two weeks takes two days. Statics, video, UGC-style, 3D, motion — all in your brand, all platform-optimised, all ready to test.</p>
-          <div class="phase-footer">
-            <span class="phase-deliverable">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="#0a0a0a"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>
-              20+ production-ready creatives
-            </span>
-            <div class="phase-tools">
-              <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=midjourney.com&sz=28" alt="">Midjourney</span>
-              <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=lumalabs.ai&sz=28" alt="">Luma</span>
-              <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=kling.ai&sz=28" alt="">Kling</span>
-              <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=creatify.ai&sz=28" alt="">Creatify</span>
-              <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=heygen.com&sz=28" alt="">HeyGen</span>
+        <div class="phase-stripe"></div>
+        <div class="phase-inner">
+          <div class="phase-num-panel">
+            <div class="phase-num">03</div>
+            <div class="phase-day-pill">Day 3–5</div>
+          </div>
+          <div class="phase-body">
+            <p class="phase-eyebrow">AI Production</p>
+            <h3 class="phase-title">20+ ads. Every format. Human-directed, AI-built.</h3>
+            <p class="phase-desc">We don't use AI as a prompt generator. Sonia directs every asset — concept, visual language, copy angle, format. AI handles the production volume. What used to take a design team two weeks takes two days. Statics, video, UGC-style, 3D, motion — all in your brand, all platform-optimised, all ready to test.</p>
+            <div class="phase-footer">
+              <span class="phase-deliverable">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="currentColor" opacity="0.2"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                20+ production-ready creatives
+              </span>
+              <div class="phase-tools">
+                <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=midjourney.com&sz=28" alt="">Midjourney</span>
+                <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=lumalabs.ai&sz=28" alt="">Luma</span>
+                <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=kling.ai&sz=28" alt="">Kling</span>
+                <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=creatify.ai&sz=28" alt="">Creatify</span>
+                <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=heygen.com&sz=28" alt="">HeyGen</span>
+              </div>
             </div>
           </div>
         </div>
@@ -400,23 +561,26 @@
 
       <!-- Phase 4: Launch & Buying -->
       <div class="phase phase-4" data-anim data-delay="3">
-        <div class="phase-dot">
-          <div class="phase-dot-circle">04</div>
-          <p class="phase-dot-day">Day 5–7</p>
-        </div>
-        <div class="phase-body">
-          <p class="phase-eyebrow">Performance Buying</p>
-          <h3 class="phase-title">Live in 7 days. Zoha manages every dollar.</h3>
-          <p class="phase-desc">Zoha handles all media buying. Reddit campaigns are set up with Smartly.io for dynamic creative optimisation — ad variations are automated against audience signals, cutting manual work and getting to winning combinations faster. LinkedIn ABM uses targeted company lists and 6sense audience data. Every campaign is structured for testing from day one, not retrofitted later.</p>
-          <div class="phase-footer">
-            <span class="phase-deliverable">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="#0a0a0a"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>
-              Campaigns live across all platforms
-            </span>
-            <div class="phase-tools">
-              <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=smartly.io&sz=28" alt="">Smartly.io</span>
-              <span class="phase-tool"><img src="https://cdn.simpleicons.org/reddit/ff6b35" alt="" style="border-radius:3px;">Reddit Ads</span>
-              <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=6sense.com&sz=28" alt="">6sense</span>
+        <div class="phase-stripe"></div>
+        <div class="phase-inner">
+          <div class="phase-num-panel">
+            <div class="phase-num">04</div>
+            <div class="phase-day-pill">Day 5–7</div>
+          </div>
+          <div class="phase-body">
+            <p class="phase-eyebrow">Performance Buying</p>
+            <h3 class="phase-title">Live in 7 days. Zoha manages every dollar.</h3>
+            <p class="phase-desc">Zoha handles all media buying. Reddit campaigns are set up with Smartly.io for dynamic creative optimisation — ad variations are automated against audience signals, cutting manual work and getting to winning combinations faster. LinkedIn ABM uses targeted company lists and 6sense audience data. Every campaign is structured for testing from day one, not retrofitted later.</p>
+            <div class="phase-footer">
+              <span class="phase-deliverable">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="currentColor" opacity="0.2"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                Campaigns live across all platforms
+              </span>
+              <div class="phase-tools">
+                <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=smartly.io&sz=28" alt="">Smartly.io</span>
+                <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=reddit.com&sz=28" alt="">Reddit Ads</span>
+                <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=6sense.com&sz=28" alt="">6sense</span>
+              </div>
             </div>
           </div>
         </div>
@@ -424,25 +588,28 @@
 
       <!-- Phase 5: Measure & Optimise -->
       <div class="phase phase-5" data-anim data-delay="4">
-        <div class="phase-dot">
-          <div class="phase-dot-circle">05</div>
-          <p class="phase-dot-day">Ongoing</p>
-        </div>
-        <div class="phase-body">
-          <p class="phase-eyebrow">Measure + Optimise</p>
-          <h3 class="phase-title">You always know exactly what's working and why.</h3>
-          <p class="phase-desc">We use Funnel.io for full funnel measurement — multi-touch attribution and Marketing Mix Modelling (MMM) so you're not flying on last-click data. Weekly reports show which creatives are winning, which audiences are converting, and what we're doing next. Every round of creatives is smarter than the last because it's built on data from the one before.</p>
-          <div class="phase-footer">
-            <span class="phase-deliverable">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="#0a0a0a"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>
-              Weekly performance report
-            </span>
-            <span class="phase-deliverable">
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="#0a0a0a"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg>
-              Next creative batch brief
-            </span>
-            <div class="phase-tools">
-              <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=funnel.io&sz=28" alt="">Funnel.io</span>
+        <div class="phase-stripe"></div>
+        <div class="phase-inner">
+          <div class="phase-num-panel">
+            <div class="phase-num">05</div>
+            <div class="phase-day-pill">Ongoing</div>
+          </div>
+          <div class="phase-body">
+            <p class="phase-eyebrow">Measure + Optimise</p>
+            <h3 class="phase-title">You always know exactly what's working and why.</h3>
+            <p class="phase-desc">We use Funnel.io for full funnel measurement — multi-touch attribution and Marketing Mix Modelling (MMM) so you're not flying on last-click data. Weekly reports show which creatives are winning, which audiences are converting, and what we're doing next. Every round of creatives is smarter than the last because it's built on data from the one before.</p>
+            <div class="phase-footer">
+              <span class="phase-deliverable">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="currentColor" opacity="0.2"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                Weekly performance report
+              </span>
+              <span class="phase-deliverable">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="currentColor" opacity="0.2"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                Next creative batch brief
+              </span>
+              <div class="phase-tools">
+                <span class="phase-tool"><img src="https://www.google.com/s2/favicons?domain=funnel.io&sz=28" alt="">Funnel.io</span>
+              </div>
             </div>
           </div>
         </div>
