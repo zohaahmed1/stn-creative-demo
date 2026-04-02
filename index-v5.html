@@ -2270,7 +2270,7 @@
         </div>
         <div class="linea-panel-right" style="padding:52px 56px; display:flex; flex-direction:column; justify-content:center;">
           <h3 style="font-family:var(--font); font-size:clamp(26px,2.6vw,38px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1.1; margin:0 0 16px; letter-spacing:-0.02em;">AI-powered creative at scale</h3>
-          <p style="font-family:var(--font); font-size:17px; line-height:1.8; color:#666; margin:0 0 32px; max-width:400px;">Performance strategists direct the AI. You get 40+ creatives/month instead of 4. Every asset built to convert.</p>
+          <p style="font-family:var(--font); font-size:17px; line-height:1.8; color:#666; margin:0 0 32px;">Performance strategists direct the AI. You get 40+ creatives/month instead of 4. Every asset built to convert.</p>
           <div style="display:flex; flex-wrap:wrap; gap:8px;">
             <span class="linea-pill" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #e0e0e0;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>40+ creatives/month</span>
             <span class="linea-pill" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #e0e0e0;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Static ads</span>
@@ -2298,7 +2298,7 @@
         </div>
         <div class="linea-panel-right" style="padding:52px 56px; display:flex; flex-direction:column; justify-content:center;">
           <h3 style="font-family:var(--font); font-size:clamp(26px,2.6vw,38px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1.1; margin:0 0 16px; letter-spacing:-0.02em;">Performance media buying</h3>
-          <p style="font-family:var(--font); font-size:17px; line-height:1.8; color:#666; margin:0 0 32px; max-width:400px;">Meta, Google, Reddit, LinkedIn, TikTok, Pinterest, Snapchat. Ex-GroupM leaders who know which creative works because they made it.</p>
+          <p style="font-family:var(--font); font-size:17px; line-height:1.8; color:#666; margin:0 0 32px;">Meta, Google, Reddit, LinkedIn, TikTok, Pinterest, Snapchat. Ex-GroupM leaders who know which creative works because they made it.</p>
           <div style="display:flex; flex-wrap:wrap; gap:8px;">
             <span class="linea-pill" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #e0e0e0;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Meta Ads</span>
             <span class="linea-pill" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #e0e0e0;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Reddit Ads</span>
@@ -2322,18 +2322,21 @@
       function showCard(idx, cb) {
         locked = true;
         var card = cards[idx];
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
         var pills = card.querySelectorAll('.linea-pill');
         pills.forEach(function(p, i){ p.style.transitionDelay = (0.55 + i * 0.07) + 's'; });
         card.classList.add('linea-card-visible');
         var panel = card.querySelector('.linea-panel-left');
+        var done = false;
         function onEnd(e) {
-          if (e.propertyName !== 'clip-path') return;
+          if (e.propertyName !== 'clip-path' && e.propertyName !== '-webkit-clip-path') return;
+          if (done) return; done = true;
           panel.removeEventListener('transitionend', onEnd);
           locked = false;
           if (cb) cb();
         }
         panel.addEventListener('transitionend', onEnd);
+        // Fallback in case transitionend doesn't fire
+        setTimeout(function(){ if (!done) { done = true; locked = false; if (cb) cb(); } }, 1200);
       }
 
       function onWheel(e) {
@@ -2346,6 +2349,7 @@
         e.preventDefault();
         if (state === 0) {
           state = 1;
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
           showCard(0);
         } else if (state === 1) {
           state = 2;
