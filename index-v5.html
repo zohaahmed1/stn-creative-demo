@@ -2192,10 +2192,10 @@
     </div>
     <!-- Filter tabs -->
     <div style="display:flex; justify-content:center; gap:8px; margin-bottom:32px;" data-anim data-delay="2">
-      <button onclick="filterGallery('all',this)" class="gf-btn gf-active" style="font-size:13px; font-weight:700; padding:8px 20px; border-radius:100px; border:1.5px solid #5500DD; background:#5500DD; color:#fff; cursor:pointer; transition:all 0.2s;">All</button>
-      <button onclick="filterGallery('dtc',this)" class="gf-btn" style="font-size:13px; font-weight:700; padding:8px 20px; border-radius:100px; border:1.5px solid rgba(0,0,0,0.15); background:transparent; color:rgba(0,0,0,0.6); cursor:pointer; transition:all 0.2s;">eComm</button>
-      <button onclick="filterGallery('saas',this)" class="gf-btn" style="font-size:13px; font-weight:700; padding:8px 20px; border-radius:100px; border:1.5px solid rgba(0,0,0,0.15); background:transparent; color:rgba(0,0,0,0.6); cursor:pointer; transition:all 0.2s;">B2B SaaS</button>
-      <button onclick="filterGallery('b2csaas',this)" class="gf-btn" style="font-size:13px; font-weight:700; padding:8px 20px; border-radius:100px; border:1.5px solid rgba(0,0,0,0.15); background:transparent; color:rgba(0,0,0,0.6); cursor:pointer; transition:all 0.2s;">B2C SaaS</button>
+      <button onclick="filterGallery('all',this)" class="gf-btn gf-active" data-color="#5500DD" style="font-size:13px; font-weight:700; padding:8px 20px; border-radius:100px; border:1.5px solid #5500DD; background:#5500DD; color:#fff; cursor:pointer; transition:all 0.2s;">All</button>
+      <button onclick="filterGallery('dtc',this)" class="gf-btn" data-color="#ee0033" style="font-size:13px; font-weight:700; padding:8px 20px; border-radius:100px; border:1.5px solid rgba(0,0,0,0.15); background:transparent; color:rgba(0,0,0,0.6); cursor:pointer; transition:all 0.2s;">eComm</button>
+      <button onclick="filterGallery('saas',this)" class="gf-btn" data-color="#0099ff" style="font-size:13px; font-weight:700; padding:8px 20px; border-radius:100px; border:1.5px solid rgba(0,0,0,0.15); background:transparent; color:rgba(0,0,0,0.6); cursor:pointer; transition:all 0.2s;">B2B SaaS</button>
+      <button onclick="filterGallery('b2csaas',this)" class="gf-btn" data-color="#5500DD" style="font-size:13px; font-weight:700; padding:8px 20px; border-radius:100px; border:1.5px solid rgba(0,0,0,0.15); background:transparent; color:rgba(0,0,0,0.6); cursor:pointer; transition:all 0.2s;">B2C SaaS</button>
     </div>
     <script>
     function filterGallery(cat, btn) {
@@ -2203,7 +2203,8 @@
         b.style.background = 'transparent'; b.style.color = 'rgba(0,0,0,0.6)'; b.style.borderColor = 'rgba(0,0,0,0.15)';
         b.classList.remove('gf-active');
       });
-      btn.style.background = '#5500DD'; btn.style.color = '#fff'; btn.style.borderColor = '#5500DD';
+      var c = btn.dataset.color || '#5500DD';
+      btn.style.background = c; btn.style.color = '#fff'; btn.style.borderColor = c;
       btn.classList.add('gf-active');
       document.querySelectorAll('[data-cat]').forEach(function(el){
         var show = cat === 'all' ? el.dataset.cat === 'featured' : el.dataset.cat === cat;
