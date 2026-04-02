@@ -2284,7 +2284,7 @@
 
       <!-- Card 2: Media Buying -->
       <div class="linea-card" style="display:grid; grid-template-columns:5fr 7fr; border:1.5px solid #e8e8e8; border-radius:20px; overflow:hidden;">
-        <div style="background:#f0ecff; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:40px; min-height:340px;">
+        <div class="linea-panel-left" style="background:#f0ecff; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:40px; min-height:340px;">
           <div style="display:flex; gap:16px;">
             <div style="width:76px;height:76px;border-radius:18px;background:white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.08);"><img src="https://cdn.simpleicons.org/meta/0081FB" style="width:38px;height:38px;"></div>
             <div style="width:76px;height:76px;border-radius:18px;background:white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.08);"><img src="https://cdn.simpleicons.org/reddit/FF4500" style="width:38px;height:38px;"></div>
@@ -2319,11 +2319,9 @@
       var state = 0; // 0=none, 1=card1 shown, 2=done
       var locked = false;
 
-      var wrapper = cards[0].parentElement;
-
-      function showCard1(cb) {
+      function showCard(idx, cb) {
         locked = true;
-        var card = cards[0];
+        var card = cards[idx];
         var pills = card.querySelectorAll('.linea-pill');
         pills.forEach(function(p, i){ p.style.transitionDelay = (0.55 + i * 0.07) + 's'; });
         card.classList.add('linea-card-visible');
@@ -2340,48 +2338,6 @@
         setTimeout(function(){ if (!done) { done = true; locked = false; if (cb) cb(); } }, 1200);
       }
 
-      function showCard2(cb) {
-        locked = true;
-        var card1 = cards[0];
-        var card2 = cards[1];
-        // Fix wrapper height so card2 can overlay card1
-        wrapper.style.position = 'relative';
-        wrapper.style.overflow = 'hidden';
-        wrapper.style.height = card1.offsetHeight + 'px';
-        // Position card2 absolutely, starting below
-        card2.style.position = 'absolute';
-        card2.style.top = '0';
-        card2.style.left = '0';
-        card2.style.right = '0';
-        card2.style.zIndex = '2';
-        card2.style.transform = 'translateY(100%)';
-        card2.style.transition = 'transform 0.85s cubic-bezier(0.16,1,0.3,1)';
-        // Scale card1 back
-        card1.style.transition = 'transform 0.85s cubic-bezier(0.16,1,0.3,1), opacity 0.85s ease';
-        card1.style.transformOrigin = 'top center';
-        // Slide card2 up and fade pills
-        requestAnimationFrame(function(){ requestAnimationFrame(function(){
-          card2.style.transform = 'translateY(0)';
-          card1.style.transform = 'scale(0.96) translateY(-10px)';
-          card1.style.opacity = '0.45';
-          // Fade in right panel and pills of card2
-          var right = card2.querySelector('.linea-panel-right');
-          if (right) { right.style.opacity = '1'; right.style.transform = 'translateX(0)'; right.style.transitionDelay = '0.35s'; }
-          var pills = card2.querySelectorAll('.linea-pill');
-          pills.forEach(function(p, i){ p.style.transitionDelay = (0.6 + i * 0.07) + 's'; p.style.opacity = '1'; p.style.transform = 'translateY(0)'; });
-        }); });
-        var done = false;
-        function onEnd(e) {
-          if (e.propertyName !== 'transform') return;
-          if (done) return; done = true;
-          card2.removeEventListener('transitionend', onEnd);
-          locked = false;
-          if (cb) cb();
-        }
-        card2.addEventListener('transitionend', onEnd);
-        setTimeout(function(){ if (!done) { done = true; locked = false; if (cb) cb(); } }, 1100);
-      }
-
       function onWheel(e) {
         if (state >= 2) return;
         var rect = section.getBoundingClientRect();
@@ -2393,12 +2349,10 @@
         if (state === 0) {
           state = 1;
           section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          showCard1();
+          showCard(0);
         } else if (state === 1) {
           state = 2;
-          showCard2(function(){
-            window.removeEventListener('wheel', onWheel);
-          });
+          showCard(1, function(){ window.removeEventListener('wheel', onWheel); });
         }
       }
 
