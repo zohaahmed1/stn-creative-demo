@@ -2242,10 +2242,15 @@
       <p class="svc-card" style="text-align:center; font-size:clamp(17px,1.6vw,22px); color:var(--gray-400); max-width:960px; margin:24px auto 0; line-height:1.75; opacity:0; transform:translateY(20px); transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1) 0.5s, transform 0.8s cubic-bezier(0.16,1,0.3,1) 0.5s;">A lean team running the best AI production tools available. We plug into your existing team, move faster than any in-house hire could, and build custom creative systems around your brand.</p>
     </div>
     <style>
-      .linea-panel-left { clip-path: inset(0 100% 0 0); transition: clip-path 0.48s cubic-bezier(0.65,0,0.35,1); }
+      .linea-panel-left {
+        -webkit-clip-path: inset(0 100% 0 0);
+        clip-path: inset(0 100% 0 0);
+        -webkit-transition: -webkit-clip-path 0.48s cubic-bezier(0.65,0,0.35,1), clip-path 0.48s cubic-bezier(0.65,0,0.35,1);
+        transition: -webkit-clip-path 0.48s cubic-bezier(0.65,0,0.35,1), clip-path 0.48s cubic-bezier(0.65,0,0.35,1);
+      }
       .linea-panel-right { opacity: 0; transform: translateX(22px); transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1) 0.18s, transform 0.5s cubic-bezier(0.16,1,0.3,1) 0.18s; }
       .linea-pill { opacity: 0; transform: translateY(5px); transition: opacity 0.3s ease, transform 0.3s ease; }
-      .linea-card-visible .linea-panel-left { clip-path: inset(0 0% 0 0); }
+      .linea-card-visible .linea-panel-left { -webkit-clip-path: inset(0 0% 0 0); clip-path: inset(0 0% 0 0); }
       .linea-card-visible .linea-panel-right { opacity: 1; transform: translateX(0); }
       .linea-card-visible .linea-pill { opacity: 1; transform: translateY(0); }
     </style>
@@ -2258,31 +2263,35 @@
           <!-- Primary stat -->
           <div style="text-align:center; margin-bottom:20px;">
             <div id="creative-counter" style="font-family:var(--font); font-size:clamp(56px,6vw,88px); font-variation-settings:'wdth' 125,'wght' 900; color:#ffffff; line-height:1; letter-spacing:-0.04em;">0</div>
-            <div style="font-family:var(--font); font-size:12px; font-variation-settings:'wdth' 110,'wght' 700; color:rgba(255,255,255,0.4); letter-spacing:0.12em; text-transform:uppercase; margin-top:6px;">creatives produced</div>
+            <div style="font-family:var(--font); font-size:13px; font-variation-settings:'wdth' 110,'wght' 600; color:rgba(255,255,255,0.4); margin-top:6px;">creatives produced</div>
           </div>
           <!-- Divider -->
           <div style="width:100%; height:1px; background:rgba(255,255,255,0.08); margin-bottom:20px;"></div>
           <!-- Secondary stats -->
           <div style="display:flex; width:100%; gap:0;">
-            <div style="flex:1; text-align:center; padding:0 12px; border-right:1px solid rgba(255,255,255,0.08);">
-              <div id="roas-counter" style="font-family:var(--font); font-size:clamp(28px,3vw,42px); font-variation-settings:'wdth' 125,'wght' 900; color:#ee0033; line-height:1; letter-spacing:-0.03em;">0%</div>
-              <div style="font-family:var(--font); font-size:11px; font-variation-settings:'wdth' 110,'wght' 700; color:rgba(255,255,255,0.35); letter-spacing:0.1em; text-transform:uppercase; margin-top:6px;">ROAS lift</div>
+            <div style="flex:1; text-align:center; padding:0 10px; border-right:1px solid rgba(255,255,255,0.08);">
+              <div id="roas-counter" style="font-family:var(--font); font-size:clamp(22px,2.4vw,34px); font-variation-settings:'wdth' 125,'wght' 900; color:#ee0033; line-height:1; letter-spacing:-0.03em;">0%</div>
+              <div style="font-family:var(--font); font-size:11px; font-variation-settings:'wdth' 110,'wght' 600; color:rgba(255,255,255,0.35); margin-top:5px;">ROAS lift</div>
             </div>
-            <div style="flex:1; text-align:center; padding:0 12px;">
-              <div id="pipeline-counter" style="font-family:var(--font); font-size:clamp(28px,3vw,42px); font-variation-settings:'wdth' 125,'wght' 900; color:#ee0033; line-height:1; letter-spacing:-0.03em;">0%</div>
-              <div style="font-family:var(--font); font-size:11px; font-variation-settings:'wdth' 110,'wght' 700; color:rgba(255,255,255,0.35); letter-spacing:0.1em; text-transform:uppercase; margin-top:6px;">pipeline lift</div>
+            <div style="flex:1; text-align:center; padding:0 10px; border-right:1px solid rgba(255,255,255,0.08);">
+              <div id="pipeline-counter" style="font-family:var(--font); font-size:clamp(22px,2.4vw,34px); font-variation-settings:'wdth' 125,'wght' 900; color:#ee0033; line-height:1; letter-spacing:-0.03em;">0%</div>
+              <div style="font-family:var(--font); font-size:11px; font-variation-settings:'wdth' 110,'wght' 600; color:rgba(255,255,255,0.35); margin-top:5px;">pipeline lift</div>
+            </div>
+            <div style="flex:1; text-align:center; padding:0 10px;">
+              <div id="faster-counter" style="font-family:var(--font); font-size:clamp(22px,2.4vw,34px); font-variation-settings:'wdth' 125,'wght' 900; color:#ee0033; line-height:1; letter-spacing:-0.03em;">0%</div>
+              <div style="font-family:var(--font); font-size:11px; font-variation-settings:'wdth' 110,'wght' 600; color:rgba(255,255,255,0.35); margin-top:5px;">faster to market</div>
             </div>
           </div>
         </div>
         <div class="linea-panel-right" style="padding:52px 56px; display:flex; flex-direction:column; justify-content:center;">
           <h3 style="font-family:var(--font); font-size:clamp(26px,2.6vw,38px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1.1; margin:0 0 16px; letter-spacing:-0.02em;">AI-powered creative at scale</h3>
-          <p style="font-family:var(--font); font-size:17px; line-height:1.8; color:#666; margin:0 0 32px;">Performance strategists direct the AI. You get 40+ creatives/month instead of 4. Every asset built to convert.</p>
-          <div style="display:flex; flex-wrap:wrap; gap:8px;">
-            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #e0e0e0;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>40+ creatives/month</span>
-            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #e0e0e0;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>No hiring needed</span>
-            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #e0e0e0;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Live in 2 weeks</span>
-            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #ffd0d0;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600;color:#cc0022;background:rgba(238,0,51,0.04);"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>ROAS lift in 30 days</span>
-            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #ffd0d0;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600;color:#cc0022;background:rgba(238,0,51,0.04);"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Pipeline lift in 30 days</span>
+          <p style="font-family:var(--font); font-size:17px; line-height:1.8; color:#666; margin:0 0 32px;">Our strategists run the brief and the creative direction. The AI handles production. You go from 4 creatives a month to 40+ — live in a week, with results in 30 days.</p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>40+ creatives/month</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>No hiring needed</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Live in 1 week</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #ffd0d0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#cc0022;background:rgba(238,0,51,0.04);"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>ROAS lift in 30 days</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #ffd0d0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#cc0022;background:rgba(238,0,51,0.04);"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Pipeline lift in 30 days</span>
           </div>
         </div>
       </div>
@@ -2292,7 +2301,7 @@
         <div class="linea-panel-left" style="background:#f0ecff; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:40px; min-height:340px;">
           <div style="text-align:center; margin-bottom:4px;">
             <div style="font-family:var(--font); font-size:clamp(36px,4vw,54px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1; letter-spacing:-0.03em;">$100M+</div>
-            <div style="font-family:var(--font); font-size:12px; font-variation-settings:'wdth' 110,'wght' 700; color:rgba(0,0,0,0.4); letter-spacing:0.12em; text-transform:uppercase; margin-top:4px;">in ad spend managed</div>
+            <div style="font-family:var(--font); font-size:13px; font-variation-settings:'wdth' 110,'wght' 600; color:rgba(0,0,0,0.45); margin-top:6px; line-height:1.4;">managed for Fortune 500<br>and 25M+ revenue brands</div>
           </div>
           <div style="display:flex; gap:16px;">
             <div style="width:92px;height:92px;border-radius:20px;background:white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.08);"><img src="https://cdn.simpleicons.org/meta/0081FB" style="width:48px;height:48px;"></div>
@@ -2308,12 +2317,12 @@
         <div class="linea-panel-right" style="padding:52px 56px; display:flex; flex-direction:column; justify-content:center;">
           <h3 style="font-family:var(--font); font-size:clamp(26px,2.6vw,38px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1.1; margin:0 0 16px; letter-spacing:-0.02em;">Performance media buying</h3>
           <p style="font-family:var(--font); font-size:17px; line-height:1.8; color:#666; margin:0 0 32px;">Performance media managed by ex-GroupM leaders who know which creative works to increase revenue.</p>
-          <div style="display:flex; flex-wrap:wrap; gap:8px;">
-            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #e0e0e0;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Lower CPL</span>
-            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #e0e0e0;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Higher ROAS</span>
-            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #e0e0e0;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>More demos booked</span>
-            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #e0e0e0;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>No wasted spend</span>
-            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:6px;border:1.5px solid #e0e0e0;border-radius:100px;padding:7px 14px;font-size:13px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Full-funnel coverage</span>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Lower CPL</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Higher ROAS</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>More demos booked</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>No wasted spend</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;grid-column:1/-1;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Full-funnel coverage</span>
           </div>
         </div>
       </div>
@@ -2348,6 +2357,7 @@
         animateCount('creative-counter', 500, '+', 1400, 0);
         animateCount('roas-counter', 30, '%', 900, 400);
         animateCount('pipeline-counter', 20, '%', 900, 600);
+        animateCount('faster-counter', 50, '%', 900, 800);
       }
 
       function showCard(idx, cb) {
