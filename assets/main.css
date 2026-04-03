@@ -1009,8 +1009,8 @@
     @media (max-width: 809px) { .hero-float-badges { display: none; } }
 
     /* ── Case study stat overlay on hover ─────────────────────────── */
-    .case-img-wrap { position: relative; height: 300px; overflow: hidden; }
-    .case-img-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: transform 0.4s ease; }
+    .case-img-wrap { position: relative; height: 300px; overflow: hidden; background: #f5f5f5; }
+    .case-img-wrap img { width: 100%; height: 100%; object-fit: contain; object-position: center; transition: transform 0.4s ease; }
     .case-card-link:hover .case-img-wrap img { transform: scale(1.03); }
     .case-stat-overlay {
       position: absolute;
