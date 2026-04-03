@@ -50,8 +50,11 @@
     .nav.scrolled .btn-nav { background: var(--dark); }
     .nav-inner { display: flex; justify-content: space-between; align-items: center; padding: 14px 24px; }
     .nav.scrolled .nav-inner { padding: 8px 24px; }
-    .nav-logo { display: flex; align-items: center; gap: 10px; }
-    .nav-logo img { height: 32px; width: auto; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 20px; font-variation-settings: "wdth" 125, "wght" 800; text-decoration: none; color: #fff; }
+    .nav-logo .logo-skip { color: rgba(255,255,255,0.9); }
+    .nav-logo .logo-noise { background: linear-gradient(90deg, #a78bfa, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .nav.scrolled .nav-logo .logo-skip { color: #191923; }
+    .nav.scrolled .nav-logo .logo-noise { background: linear-gradient(90deg, #5500dd, #cc0000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .nav-links { display: flex; align-items: center; gap: 2px; }
     .nav-link { font-size: 14px; font-variation-settings: "wdth" var(--wdth), "wght" 500; padding: 7px 14px; border-radius: 100px; transition: background 0.2s, color 0.2s; color: rgba(255,255,255,0.6); }
     .nav-link:hover { background: rgba(255,255,255,0.1); color: #fff; }
@@ -379,7 +382,7 @@
 <nav class="nav" id="nav">
   <div class="nav-inner">
     <a href="index-v5.html" class="nav-logo">
-      <img src="assets/STN%20Logo%20Light.png" alt="Skip the Noise Media">
+      <span class="logo-skip">Skip the </span><span class="logo-noise">Noise</span>
     </a>
     <div class="nav-links">
       <a href="index-v5.html#work" class="nav-link">Results</a>
@@ -397,8 +400,8 @@
 <!-- HERO -->
 <section class="hero">
   <p class="hero-eyebrow"><span></span> How we work</p>
-  <h1 class="hero-h1">Brief to live in<br><em>7 days.</em></h1>
-  <p class="hero-sub">Typically takes a brand 2 to 3 weeks to launch new ads. Not with us. Here's exactly what happens from the moment you reach out.</p>
+  <h1 class="hero-h1">Your competitor is<br>testing ads <em>right now.</em></h1>
+  <p class="hero-sub">Every week without new creative is a week they're pulling ahead. Most brands take 2 to 3 weeks to launch anything. We're live in 7 days.</p>
   <div class="hero-stats">
     <div class="hero-stat">
       <div class="hero-stat-num">7</div>
@@ -406,15 +409,15 @@
     </div>
     <div class="hero-stat">
       <div class="hero-stat-num">20+</div>
-      <div class="hero-stat-label">Creatives per month</div>
+      <div class="hero-stat-label">Creatives built to test every month</div>
     </div>
     <div class="hero-stat">
-      <div class="hero-stat-num">50%</div>
-      <div class="hero-stat-label">Faster time to market</div>
+      <div class="hero-stat-num">8×</div>
+      <div class="hero-stat-label">More test cycles than the usual process</div>
     </div>
     <div class="hero-stat">
       <div class="hero-stat-num">2</div>
-      <div class="hero-stat-label">People. No account managers.</div>
+      <div class="hero-stat-label">People. The ones making the ads run the campaigns.</div>
     </div>
   </div>
 </section>
@@ -424,7 +427,7 @@
   <div class="container">
     <div class="vs-heading" data-anim>
       <p class="eyebrow">Why it matters</p>
-      <h2>The usual process vs <em>ours.</em></h2>
+      <h2>What slow actually <em>costs you.</em></h2>
     </div>
     <div class="vs-wrapper" data-anim data-delay="1">
       <div class="vs-badge">VS</div>
@@ -433,46 +436,46 @@
           <p class="vs-label vs-label-old">The usual process</p>
           <div class="vs-row">
             <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#fee2e2"/><path d="M7 7l6 6M13 7l-6 6" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg>
-            <p class="vs-text vs-text-old">Brief goes in. 2 weeks of back and forth. Ads go live — maybe.</p>
+            <p class="vs-text vs-text-old">2 weeks of back and forth before a single ad goes live. Every round of revisions costs you a test cycle.</p>
           </div>
           <div class="vs-row">
             <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#fee2e2"/><path d="M7 7l6 6M13 7l-6 6" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg>
-            <p class="vs-text vs-text-old">3 to 5 creatives a month. Never enough to actually test anything.</p>
+            <p class="vs-text vs-text-old">3 to 5 creatives a month means 3 to 5 data points. You can't find a winner on that.</p>
           </div>
           <div class="vs-row">
             <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#fee2e2"/><path d="M7 7l6 6M13 7l-6 6" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg>
-            <p class="vs-text vs-text-old">Creative and media buying handled separately — no one owns the full picture.</p>
+            <p class="vs-text vs-text-old">Creative team and media buyer work separately. The brief gets lost between them. Nobody owns the outcome.</p>
           </div>
           <div class="vs-row">
             <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#fee2e2"/><path d="M7 7l6 6M13 7l-6 6" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg>
-            <p class="vs-text vs-text-old">Last-click attribution only. You can't tell what's actually working.</p>
+            <p class="vs-text vs-text-old">Last-click attribution tells you what converted last. Not what actually drove the decision.</p>
           </div>
           <div class="vs-row">
             <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#fee2e2"/><path d="M7 7l6 6M13 7l-6 6" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg>
-            <p class="vs-text vs-text-old">Same Meta and Google setup as everyone else. No edge, no advantage.</p>
+            <p class="vs-text vs-text-old">Meta and Google only — the same two platforms your competitors are saturating. Same audience, same placements, same results.</p>
           </div>
         </div>
         <div class="vs-col vs-col-new">
           <p class="vs-label vs-label-new">Skip the Noise</p>
           <div class="vs-row">
             <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(85,0,221,0.25)"/><path d="M6 10l3 3 5-5" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <p class="vs-text vs-text-new">Live in 7 days. No compromise on quality.</p>
+            <p class="vs-text vs-text-new">Brief Monday. Live Friday. You don't lose a week waiting — you gain a week of data.</p>
           </div>
           <div class="vs-row">
             <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(85,0,221,0.25)"/><path d="M6 10l3 3 5-5" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <p class="vs-text vs-text-new">20+ creatives per month. AI production, human creative direction.</p>
+            <p class="vs-text vs-text-new">20+ creatives a month. Enough volume to actually find what works — then scale it.</p>
           </div>
           <div class="vs-row">
             <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(85,0,221,0.25)"/><path d="M6 10l3 3 5-5" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <p class="vs-text vs-text-new">Two people. Zoha runs performance. Sonia runs creative. You talk to both.</p>
+            <p class="vs-text vs-text-new">The people making the ads run the campaigns. No brief gets lost. One team owns the outcome.</p>
           </div>
           <div class="vs-row">
             <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(85,0,221,0.25)"/><path d="M6 10l3 3 5-5" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <p class="vs-text vs-text-new">Multi-touch attribution and MMM via Funnel.io. Full picture, always.</p>
+            <p class="vs-text vs-text-new">Multi-touch attribution + MMM. You see what actually moved the needle, not just what converted last.</p>
           </div>
           <div class="vs-row">
             <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(85,0,221,0.25)"/><path d="M6 10l3 3 5-5" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <p class="vs-text vs-text-new">Reddit Certified Partner. LinkedIn ABM. Platforms your competitors aren't on yet.</p>
+            <p class="vs-text vs-text-new">Reddit Certified Partner. LinkedIn ABM. Your competitors aren't there yet — that's the point.</p>
           </div>
         </div>
       </div>
@@ -527,8 +530,8 @@
           </div>
           <div class="phase-body">
             <p class="phase-eyebrow">Audit</p>
-            <h3 class="phase-title">We pull apart your ad library before we touch anything.</h3>
-            <p class="phase-desc">We audit your Meta, Reddit, LinkedIn, and TikTok ad libraries. Benchmark active ad counts against competitors. Identify format gaps, stale creative, and platforms you're not using. You get a full picture of where you're leaving money before we write a single brief.</p>
+            <h3 class="phase-title">You get a full picture of where you're leaving money.</h3>
+            <p class="phase-desc">We audit your Meta, Reddit, LinkedIn, and TikTok ad libraries and benchmark them against your competitors. Format gaps, dead platforms, stale creative — all mapped out before we write a single line of brief.</p>
             <div class="phase-footer">
               <span class="phase-deliverable">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="currentColor" opacity="0.2"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
@@ -555,8 +558,8 @@
           </div>
           <div class="phase-body">
             <p class="phase-eyebrow">Creative Strategy</p>
-            <h3 class="phase-title">Sonia builds the brief. Zoha maps the targeting.</h3>
-            <p class="phase-desc">Sonia translates the audit findings into a creative brief — angles, formats, hooks, platform-specific direction. Zoha builds the media plan: which platforms, which audiences, what budgets, and how performance will be measured. Both happen in parallel. No waiting for one to finish before the other starts.</p>
+            <h3 class="phase-title">Creative direction and media strategy built at the same time.</h3>
+            <p class="phase-desc">Sonia turns the audit into a brief — hooks, formats, angles, platform direction. Zoha builds the media plan in parallel. No waiting for one to finish before the other starts. You get both on day three.</p>
             <div class="phase-footer">
               <span class="phase-deliverable">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="currentColor" opacity="0.2"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
@@ -581,8 +584,8 @@
           </div>
           <div class="phase-body">
             <p class="phase-eyebrow">AI Production</p>
-            <h3 class="phase-title">20+ ads. Every format. Human-directed, AI-built.</h3>
-            <p class="phase-desc">We don't use AI as a prompt generator. Sonia directs every asset — concept, visual language, copy angle, format. AI handles the production volume. What used to take a design team two weeks takes two days. Statics, video, UGC-style, 3D, motion — all in your brand, all platform-optimised, all ready to test.</p>
+            <h3 class="phase-title">20+ ads in two days. Enough to actually find a winner.</h3>
+            <p class="phase-desc">Sonia directs every asset — concept, visual language, copy angle, format. AI handles the volume. Statics, video, UGC-style, motion — all in your brand, all built for the platform, all ready to test on day five.</p>
             <div class="phase-footer">
               <span class="phase-deliverable">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="currentColor" opacity="0.2"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
@@ -610,8 +613,8 @@
           </div>
           <div class="phase-body">
             <p class="phase-eyebrow">Performance Buying</p>
-            <h3 class="phase-title">Live in 7 days. Zoha manages every dollar.</h3>
-            <p class="phase-desc">Zoha handles all media buying. Reddit campaigns are set up with Smartly.io for dynamic creative optimisation — ad variations are automated against audience signals, cutting manual work and getting to winning combinations faster. LinkedIn ABM uses targeted company lists and 6sense audience data. Every campaign is structured for testing from day one, not retrofitted later.</p>
+            <h3 class="phase-title">Campaigns live by day seven. Structured for testing from the start.</h3>
+            <p class="phase-desc">Zoha handles all media buying. Smartly.io automates ad variation testing against audience signals so you get to a winning combination faster. LinkedIn ABM runs on targeted company lists and 6sense data. Every campaign is built to learn — not retrofitted for it later.</p>
             <div class="phase-footer">
               <span class="phase-deliverable">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="currentColor" opacity="0.2"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
@@ -637,8 +640,8 @@
           </div>
           <div class="phase-body">
             <p class="phase-eyebrow">Measure + Optimise</p>
-            <h3 class="phase-title">You always know exactly what's working and why.</h3>
-            <p class="phase-desc">We use Funnel.io for full funnel measurement — multi-touch attribution and Marketing Mix Modelling (MMM) so you're not flying on last-click data. Weekly reports show which creatives are winning, which audiences are converting, and what we're doing next. Every round of creatives is smarter than the last because it's built on data from the one before.</p>
+            <h3 class="phase-title">Every round of ads is smarter than the last.</h3>
+            <p class="phase-desc">Funnel.io gives us multi-touch attribution and MMM — so we know what actually drove results, not just what converted last. Weekly reports tell you which creatives are winning, which audiences are converting, and what we're doing next. Each batch is built on data from the one before it.</p>
             <div class="phase-footer">
               <span class="phase-deliverable">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="currentColor" opacity="0.2"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
@@ -663,10 +666,10 @@
 <!-- CTA -->
 <section class="cta-section">
   <div class="container">
-    <h2 class="cta-h2" data-anim>Start with the free <em>audit.</em></h2>
-    <p class="cta-sub" data-anim data-delay="1">30 minutes. We review your ad library, show you what competitors are doing that you're not, and build 3 free creatives. No strings.</p>
+    <h2 class="cta-h2" data-anim>Book the Ad Library <em>Teardown.</em></h2>
+    <p class="cta-sub" data-anim data-delay="1">30 minutes. You'll leave knowing exactly which formats your competitors are running that you're not, which platforms you're invisible on, and what to fix first. Plus 3 creatives built for you. Free. No pitch, no strings.</p>
     <a href="index-v5.html#book" class="cta-btn" data-anim data-delay="2">
-      Book yours now
+      Book the teardown
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
   </div>
