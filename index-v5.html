@@ -23,15 +23,8 @@
   <link rel="canonical" href="https://zohaahmed1.github.io/stn-creative-demo/index-v5.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.simpleicons.org" crossorigin>
-  <link rel="preconnect" href="https://www.google.com" crossorigin>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
-  </noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
   <style>
     /* =============================================
        DESIGN TOKENS — extracted from Framer source
@@ -58,6 +51,8 @@
        RESET & BASE
        ============================================= */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto; }
     html { font-size: 18px; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; scroll-padding-top: 100px; scrollbar-width: none; }
     html::-webkit-scrollbar { display: none; }
 
@@ -1728,6 +1723,7 @@
     /* ── (3D tilt, scroll snap, GSAP stacking removed) ── */
 
   </style>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
 </head>
 <body>
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -1826,19 +1822,21 @@
         <div class="hero-marquee-card"><img src="assets/handbag-fashion.jpg" style="object-position:top;"></div>
         <div class="hero-marquee-card"><img src="assets/Cpg_nO2xZZjv.png"></div>
         <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_CDLIA58W.png"></div>
+        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.png"></div>
         <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_cTVg3CZh.png"></div>
         <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_y5ER32ip2.png"></div>
         <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_dSJmLIvg.png"></div>
         <div class="hero-marquee-card"><img src="assets/handbag-walk.jpg" style="object-position:top;"></div>
         <!-- Set 2 (duplicate for seamless loop) -->
-        <div class="hero-marquee-card"><img src="assets/Cpg_l5evv8k1.png" loading="lazy"></div>
-        <div class="hero-marquee-card"><img src="assets/handbag-fashion.jpg" style="object-position:top;" loading="lazy"></div>
-        <div class="hero-marquee-card"><img src="assets/Cpg_nO2xZZjv.png" loading="lazy"></div>
-        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_CDLIA58W.png" loading="lazy"></div>
-        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_cTVg3CZh.png" loading="lazy"></div>
-        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_y5ER32ip2.png" loading="lazy"></div>
-        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_dSJmLIvg.png" loading="lazy"></div>
-        <div class="hero-marquee-card"><img src="assets/handbag-walk.jpg" style="object-position:top;" loading="lazy"></div>
+        <div class="hero-marquee-card"><img src="assets/Cpg_l5evv8k1.png"></div>
+        <div class="hero-marquee-card"><img src="assets/handbag-fashion.jpg" style="object-position:top;"></div>
+        <div class="hero-marquee-card"><img src="assets/Cpg_nO2xZZjv.png"></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_CDLIA58W.png"></div>
+        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.png"></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_cTVg3CZh.png"></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_y5ER32ip2.png"></div>
+        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_dSJmLIvg.png"></div>
+        <div class="hero-marquee-card"><img src="assets/handbag-walk.jpg" style="object-position:top;"></div>
       </div>
     </div>
 
@@ -1900,14 +1898,6 @@
 
   </div>
   <script>
-  // Lazy-load all below-fold images
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('img:not([loading])').forEach(function(img) {
-      img.setAttribute('loading', 'lazy');
-      img.setAttribute('decoding', 'async');
-    });
-  });
-
   function switchHeroGallery(type) {
     var sg = document.getElementById('hero-saas-gallery');
     var eg = document.getElementById('hero-ecomm-gallery');
@@ -3067,7 +3057,7 @@
         <!-- Video row with captions -->
         <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-bottom:16px;" data-anim data-delay="1" data-stagger>
           <div style="position:relative; border-radius:16px; overflow:hidden; aspect-ratio:9/16; background:#111;">
-            <video muted loop playsinline preload="none" poster="./assets/lipstick-spill.jpg" style="width:100%; height:100%; object-fit:cover;">
+            <video autoplay muted loop playsinline preload="metadata" poster="./assets/lipstick-spill.jpg" style="width:100%; height:100%; object-fit:cover;">
               <source src="./assets/lipstick-closeup-compressed.mp4" type="video/mp4">
             </video>
             <div style="position:absolute; bottom:0; left:0; right:0; padding:12px 12px 10px; background:linear-gradient(transparent, rgba(0,0,0,0.8)); color:white;">
@@ -3076,7 +3066,7 @@
             </div>
           </div>
           <div style="position:relative; border-radius:16px; overflow:hidden; aspect-ratio:9/16; background:#111;">
-            <video muted loop playsinline preload="none" poster="./assets/handbag-fashion.jpg" style="width:100%; height:100%; object-fit:cover;">
+            <video autoplay muted loop playsinline preload="metadata" poster="./assets/handbag-fashion.jpg" style="width:100%; height:100%; object-fit:cover;">
               <source src="./assets/handbag-fashion.mp4" type="video/mp4">
             </video>
             <div style="position:absolute; bottom:0; left:0; right:0; padding:12px 12px 10px; background:linear-gradient(transparent, rgba(0,0,0,0.8)); color:white;">
@@ -3085,7 +3075,7 @@
             </div>
           </div>
           <div style="position:relative; border-radius:16px; overflow:hidden; aspect-ratio:9/16; background:#111;">
-            <video muted loop playsinline preload="none" poster="./assets/lipstick-hands.jpg" style="width:100%; height:100%; object-fit:cover;">
+            <video autoplay muted loop playsinline preload="metadata" poster="./assets/lipstick-hands.jpg" style="width:100%; height:100%; object-fit:cover;">
               <source src="./assets/lipstick-hands-compressed.mp4" type="video/mp4">
             </video>
             <div style="position:absolute; bottom:0; left:0; right:0; padding:12px 12px 10px; background:linear-gradient(transparent, rgba(0,0,0,0.8)); color:white;">
@@ -3094,7 +3084,7 @@
             </div>
           </div>
           <div style="position:relative; border-radius:16px; overflow:hidden; aspect-ratio:9/16; background:#111;">
-            <video muted loop playsinline preload="none" poster="./assets/handbag-walk.jpg" style="width:100%; height:100%; object-fit:cover;">
+            <video autoplay muted loop playsinline preload="metadata" poster="./assets/handbag-walk.jpg" style="width:100%; height:100%; object-fit:cover;">
               <source src="./assets/handbag-walk.mp4" type="video/mp4">
             </video>
             <div style="position:absolute; bottom:0; left:0; right:0; padding:12px 12px 10px; background:linear-gradient(transparent, rgba(0,0,0,0.8)); color:white;">
@@ -3609,14 +3599,25 @@
 </footer>
 
   <script>
-    // ── Anchor link smooth scroll ────────────────────────────────
+    // ── Lenis smooth scroll ────────────────────────────────────────
+    const lenis = new Lenis({
+      duration: 1.0,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.5,
+      lerp: 0.12,
+    });
+
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    // Wire anchor links to Lenis
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const target = document.querySelector(a.getAttribute('href'));
-        if (target) {
-          e.preventDefault();
-          window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
-        }
+        if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -100 }); }
       });
     });
 
@@ -3779,7 +3780,7 @@
         if (bloomProgress >= 1) {
           bloomRevealed = true;
           bloomLocked = false;
-          /* scroll re-enabled natively */
+          lenis.start();
         }
       }
 
@@ -3789,7 +3790,7 @@
           e.preventDefault();
           if (!bloomLocked) {
             bloomLocked = true;
-            /* lenis.stop() — native scroll blocked by e.preventDefault() above */
+            lenis.stop();
             window.scrollTo({ top: 0, behavior: 'instant' });
           }
           animateBloom(e.deltaY);
@@ -3808,7 +3809,7 @@
           e.preventDefault();
           if (!bloomLocked) {
             bloomLocked = true;
-            /* lenis.stop() — native scroll blocked by e.preventDefault() above */
+            lenis.stop();
             window.scrollTo({ top: 0, behavior: 'instant' });
           }
           animateBloom(delta);
@@ -3860,11 +3861,16 @@
       if (pLine) pLine.style.transform = 'scaleX(1)';
     }, 5000);
 
-    // ── Nav + scroll progress ──────────────────────────────────────
+    // ── Floating nav + scroll progress (integrated with Lenis) ─────
     const nav = document.querySelector('.nav');
     const progressBar = document.getElementById('scrollProgress');
+    lenis.on('scroll', ({ scroll }) => {
+      nav.classList.toggle('scrolled', scroll > 100);
+      const scrollPct = (scroll / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      progressBar.style.width = scrollPct + '%';
+    });
 
-    // ── Hero parallax setup ────────────────────────────────────────
+    // ── Hero parallax ──────────────────────────────────────────────
     const heroSection = document.querySelector('.hero');
     const heroMain = document.querySelector('.hero-collage-main');
     const heroSubs = document.querySelectorAll('.hero-collage-sub');
@@ -3875,38 +3881,77 @@
     }, { threshold: 0 });
     if (heroSection) heroParallaxObs.observe(heroSection);
 
-    // ── Mobile check ──────────────────────────────────────────────
+    lenis.on('scroll', ({ scroll }) => {
+      if (!heroInView) return;
+      if (heroMain) heroMain.style.transform = 'translateY(' + (scroll * 0.15) + 'px)';
+      heroSubs.forEach(s => { s.style.transform = 'translateY(' + (scroll * 0.08) + 'px)'; });
+      if (aiBadge) aiBadge.style.transform = 'translateY(' + (scroll * 0.2) + 'px)';
+    });
+
+    // ── Mobile check — disable heavy scroll effects on narrow screens ─
     const isMobile = window.innerWidth < 810;
 
-    // ── Section scale-in reveal ───────────────────────────────────
+    // ── Section scale-in reveal ─────────────────────────────────────
     const scaleObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('scale-visible');
+        if (e.isIntersecting) {
+          e.target.classList.add('scale-visible');
+        }
       });
     }, { threshold: 0.05, rootMargin: '0px 0px -60px 0px' });
     document.querySelectorAll('[data-scroll-scale]').forEach(el => scaleObs.observe(el));
 
-    // ── Single rAF-gated scroll handler (replaces all lenis.on calls) ─
-    let _sTick = false;
-    window.addEventListener('scroll', function() {
-      if (_sTick) return;
-      _sTick = true;
-      requestAnimationFrame(function() {
-        var scroll = window.scrollY;
-        // Nav scrolled state + progress bar
-        nav.classList.toggle('scrolled', scroll > 100);
-        progressBar.style.width = (scroll / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
-        // Hero parallax — desktop only, only while hero visible
-        if (!isMobile && heroInView) {
-          if (heroMain) heroMain.style.transform = 'translateY(' + (scroll * 0.15) + 'px)';
-          heroSubs.forEach(function(s) { s.style.transform = 'translateY(' + (scroll * 0.08) + 'px)'; });
-          if (aiBadge) aiBadge.style.transform = 'translateY(' + (scroll * 0.2) + 'px)';
-        }
-        _sTick = false;
+    // ── Scroll-linked parallax on inner elements (desktop only) ──────
+    if (!isMobile) {
+      const parallaxEls = [];
+      document.querySelectorAll('.section-header .badge').forEach(el => {
+        const isTilt = el.dataset.anim === 'tilt';
+        parallaxEls.push({ el, speed: -0.03, axis: 'y', tilt: isTilt });
       });
-    }, { passive: true });
-    // Run once on load to set initial state
-    nav.classList.toggle('scrolled', window.scrollY > 100);
+      document.querySelectorAll('.process-step').forEach((el, i) => {
+        parallaxEls.push({ el, speed: 0.02 + (i * 0.01), axis: 'y' });
+      });
+      document.querySelectorAll('.stat-num').forEach(el => {
+        parallaxEls.push({ el, speed: -0.04, axis: 'y' });
+      });
+
+      lenis.on('scroll', () => {
+        const winH = window.innerHeight;
+        parallaxEls.forEach(({ el, speed, axis, tilt }) => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < winH + 200 && rect.bottom > -200) {
+            const center = rect.top + rect.height / 2 - winH / 2;
+            const offset = center * speed;
+            const translate = axis === 'y'
+              ? 'translateY(' + offset + 'px)'
+              : 'translateX(' + offset + 'px)';
+            el.style.transform = tilt ? translate + ' rotate(-5deg)' : translate;
+          }
+        });
+      });
+
+      // ── Gallery items subtle horizontal drift on scroll ──────────────
+      const gallerySection = document.querySelector('#work-gallery');
+      if (gallerySection) {
+        const galleryItems = gallerySection.querySelectorAll('[style*="border-radius"]');
+        let galleryInView = false;
+        const galleryVis = new IntersectionObserver(entries => {
+          galleryInView = entries[0].isIntersecting;
+        }, { threshold: 0 });
+        galleryVis.observe(gallerySection);
+
+        lenis.on('scroll', () => {
+          if (!galleryInView) return;
+          const gRect = gallerySection.getBoundingClientRect();
+          const progress = -gRect.top / (gRect.height + window.innerHeight);
+          galleryItems.forEach((item, i) => {
+            const direction = i % 2 === 0 ? 1 : -1;
+            const shift = progress * direction * 8;
+            item.style.transform = 'translateX(' + shift + 'px)';
+          });
+        });
+      }
+    }
 
     // ── Magnetic buttons ───────────────────────────────────────────
     document.querySelectorAll('.btn').forEach(btn => {
@@ -4425,27 +4470,6 @@
     sec.classList.add('sec-reveal');
     obs.observe(sec);
   });
-})();
-
-// ── Lazy video playback — only play when in viewport ──
-(function() {
-  var vids = document.querySelectorAll('video');
-  vids.forEach(function(v) {
-    v.removeAttribute('autoplay');
-    v.setAttribute('preload', 'none');
-    v.pause();
-  });
-  var vObs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        e.target.setAttribute('preload', 'metadata');
-        e.target.play().catch(function(){});
-      } else {
-        e.target.pause();
-      }
-    });
-  }, { threshold: 0.15 });
-  vids.forEach(function(v) { vObs.observe(v); });
 })();
 
 // Mobile menu
