@@ -76,18 +76,6 @@
 
       <!-- Social proof row -->
       <div data-anim="up" data-hero data-delay="1" style="display:flex; align-items:center; gap:12px; justify-content:center; flex-wrap:wrap;">
-        <div style="display:flex; align-items:center;">
-          <div style="width:44px;height:44px;border-radius:50%;border:2.5px solid white;background:white;box-shadow:0 2px 8px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;overflow:hidden;">
-            <img loading="lazy" src="https://cdn.simpleicons.org/adidas/000000" style="width:24px;height:24px;object-fit:contain;" alt="Adidas">
-          </div>
-          <div style="width:44px;height:44px;border-radius:50%;border:2.5px solid white;background:white;box-shadow:0 2px 8px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-left:-12px;">
-            <img loading="lazy" src="https://cdn.simpleicons.org/cocacola/F40009" style="width:26px;height:26px;object-fit:contain;" alt="Coca-Cola">
-          </div>
-          <div style="width:44px;height:44px;border-radius:50%;border:2.5px solid white;background:white;box-shadow:0 2px 8px rgba(0,0,0,0.12);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-left:-12px;">
-            <img loading="lazy" src="https://cdn.simpleicons.org/dell/007DB8" style="width:26px;height:26px;object-fit:contain;" alt="Dell">
-          </div>
-        </div>
-        <div style="width:1px; height:20px; background:rgba(0,0,0,0.1);"></div>
         <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(85,0,221,0.07);border:1px solid rgba(85,0,221,0.18);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:700;color:#5500DD;">
           <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#5500DD"/></svg>
           eComm 3–4x ROAS
@@ -124,22 +112,38 @@
       </div>
     </div>
 
-    <!-- Static ad preview grid (eComm — hidden by default) -->
-    <div id="hero-ecomm-gallery" style="display:none; gap:12px; padding:10px 24px; justify-content:center;" class="hero-static-grid">
-      <img loading="lazy" src="assets/Cpg_l5evv8k1.jpg" style="width:160px;height:200px;object-fit:cover;border-radius:12px;flex-shrink:0;">
-      <img loading="lazy" src="assets/Lipstick_Campaign_dSJmLIvg.jpg" style="width:160px;height:200px;object-fit:cover;border-radius:12px;flex-shrink:0;">
-      <img loading="lazy" src="assets/Protein_Bar_Advertisement_CDLIA58W.jpg" style="width:160px;height:200px;object-fit:cover;border-radius:12px;flex-shrink:0;">
-      <img loading="lazy" src="assets/handbag-walk.jpg" style="width:160px;height:200px;object-fit:cover;border-radius:12px;flex-shrink:0;object-position:top;">
-      <img loading="lazy" src="assets/Cpg_nO2xZZjv.jpg" style="width:160px;height:200px;object-fit:cover;border-radius:12px;flex-shrink:0;">
+    <!-- Marquee slider (eComm — hidden by default) -->
+    <div id="hero-ecomm-gallery" class="hero-marquee-wrap" style="display:none;">
+      <div class="hero-marquee-track">
+        <img loading="lazy" src="assets/Cpg_l5evv8k1.jpg" class="hero-marquee-img">
+        <img loading="lazy" src="assets/Lipstick_Campaign_dSJmLIvg.jpg" class="hero-marquee-img">
+        <img loading="lazy" src="assets/Protein_Bar_Advertisement_CDLIA58W.jpg" class="hero-marquee-img">
+        <img loading="lazy" src="assets/handbag-walk.jpg" class="hero-marquee-img" style="object-position:top;">
+        <img loading="lazy" src="assets/Cpg_nO2xZZjv.jpg" class="hero-marquee-img">
+        <!-- duplicate for seamless loop -->
+        <img loading="lazy" src="assets/Cpg_l5evv8k1.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/Lipstick_Campaign_dSJmLIvg.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/Protein_Bar_Advertisement_CDLIA58W.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/handbag-walk.jpg" class="hero-marquee-img" aria-hidden="true" style="object-position:top;">
+        <img loading="lazy" src="assets/Cpg_nO2xZZjv.jpg" class="hero-marquee-img" aria-hidden="true">
+      </div>
     </div>
 
-    <!-- Static ad preview grid (SaaS — shown by default) -->
-    <div id="hero-saas-gallery" style="display:flex; gap:12px; padding:10px 24px; justify-content:center; flex-wrap:wrap;" class="hero-static-grid">
-      <img loading="lazy" src="assets/B2B_SaaS_Ads_V5F-kd5P.jpg" style="width:160px;height:160px;object-fit:cover;border-radius:12px;flex-shrink:0;">
-      <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.jpg" style="width:160px;height:160px;object-fit:cover;border-radius:12px;flex-shrink:0;">
-      <img loading="lazy" src="assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.jpg" style="width:160px;height:160px;object-fit:cover;border-radius:12px;flex-shrink:0;">
-      <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.jpg" style="width:160px;height:160px;object-fit:cover;border-radius:12px;flex-shrink:0;">
-      <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.jpg" style="width:160px;height:160px;object-fit:cover;border-radius:12px;flex-shrink:0;">
+    <!-- Marquee slider (SaaS — shown by default) -->
+    <div id="hero-saas-gallery" class="hero-marquee-wrap" style="display:block;">
+      <div class="hero-marquee-track">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_V5F-kd5P.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <!-- duplicate for seamless loop -->
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_V5F-kd5P.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+      </div>
     </div>
 
   </div>
@@ -150,11 +154,11 @@
     var sb = document.getElementById('htoggle-saas');
     var eb = document.getElementById('htoggle-ecomm');
     if (type === 'saas') {
-      sg.style.display = 'flex'; eg.style.display = 'none';
+      sg.style.display = 'block'; eg.style.display = 'none';
       sb.style.background = '#5500dd'; sb.style.color = '#fff'; sb.style.boxShadow = '0 2px 8px rgba(85,0,221,0.28)';
       eb.style.background = 'transparent'; eb.style.color = 'rgba(0,0,0,0.45)'; eb.style.boxShadow = 'none';
     } else {
-      sg.style.display = 'none'; eg.style.display = 'flex';
+      sg.style.display = 'none'; eg.style.display = 'block';
       eb.style.background = '#ee0033'; eb.style.color = '#fff'; eb.style.boxShadow = '0 2px 8px rgba(238,0,51,0.28)';
       sb.style.background = 'transparent'; sb.style.color = 'rgba(0,0,0,0.45)'; sb.style.boxShadow = 'none';
     }

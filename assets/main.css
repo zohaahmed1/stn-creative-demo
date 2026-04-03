@@ -1920,3 +1920,34 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ── Hero marquee slider ─────────────────────────────────────── */
+.hero-marquee-wrap {
+  overflow: hidden;
+  padding: 10px 0;
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+.hero-marquee-track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: hero-slide 18s linear infinite;
+}
+.hero-marquee-wrap:hover .hero-marquee-track {
+  animation-play-state: paused;
+}
+@keyframes hero-slide {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.hero-marquee-img {
+  width: 160px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+.hero-marquee-img--sq {
+  height: 160px;
+}
