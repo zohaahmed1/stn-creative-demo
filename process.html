@@ -113,31 +113,50 @@
       line-height: 1.75;
     }
 
-    /* Stats row — 4 colored chips */
+    /* Stats — editorial tilted numbers, no boxes */
     .hero-stats {
-      display: flex; align-items: stretch; justify-content: center; gap: 12px; flex-wrap: wrap;
-      max-width: 780px; margin: 0 auto;
+      display: flex; align-items: flex-end; justify-content: center; gap: 0;
+      max-width: 860px; margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 40px;
     }
     .hero-stat {
-      flex: 1; min-width: 150px; max-width: 200px;
-      padding: 22px 20px;
-      border-radius: 16px;
-      text-align: center;
-      border: 1px solid rgba(255,255,255,0.08);
+      flex: 1; text-align: center; padding: 0 12px;
+      position: relative;
     }
-    .hero-stat:nth-child(1) { background: rgba(85,0,221,0.18); border-color: rgba(85,0,221,0.3); }
-    .hero-stat:nth-child(2) { background: rgba(238,0,51,0.15); border-color: rgba(238,0,51,0.25); }
-    .hero-stat:nth-child(3) { background: rgba(22,163,74,0.15); border-color: rgba(22,163,74,0.25); }
-    .hero-stat:nth-child(4) { background: rgba(234,88,12,0.15); border-color: rgba(234,88,12,0.25); }
+    .hero-stat + .hero-stat::before {
+      content: '';
+      position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+      width: 1px; height: 40px;
+      background: rgba(255,255,255,0.1);
+    }
     .hero-stat-num {
-      font-size: 32px; font-variation-settings: "wdth" 125, "wght" 900; color: #fff;
-      letter-spacing: -0.03em; margin-bottom: 4px; line-height: 1;
+      font-family: var(--font);
+      font-size: clamp(52px, 7vw, 80px);
+      font-variation-settings: "wdth" 125, "wght" 900;
+      letter-spacing: -0.04em;
+      line-height: 0.95;
+      margin-bottom: 10px;
+      display: inline-block;
     }
-    .hero-stat:nth-child(1) .hero-stat-num { color: #a78bfa; }
-    .hero-stat:nth-child(2) .hero-stat-num { color: #fb7185; }
-    .hero-stat:nth-child(3) .hero-stat-num { color: #4ade80; }
-    .hero-stat:nth-child(4) .hero-stat-num { color: #fb923c; }
-    .hero-stat-label { font-size: 12px; font-variation-settings: "wdth" var(--wdth), "wght" 500; color: rgba(255,255,255,0.45); line-height: 1.4; }
+    .hero-stat:nth-child(1) .hero-stat-num { color: #c4b5fd; transform: rotate(-3deg); }
+    .hero-stat:nth-child(2) .hero-stat-num { color: #fda4af; transform: rotate(2deg); }
+    .hero-stat:nth-child(3) .hero-stat-num { color: #86efac; transform: rotate(-1.5deg); }
+    .hero-stat:nth-child(4) .hero-stat-num { color: #fdba74; transform: rotate(2.5deg); }
+    .hero-stat-label {
+      font-size: 13px;
+      font-variation-settings: "wdth" var(--wdth), "wght" 500;
+      color: rgba(255,255,255,0.38);
+      line-height: 1.45;
+      max-width: 120px;
+      margin: 0 auto;
+    }
+    @media (max-width: 600px) {
+      .hero-stats { flex-wrap: wrap; gap: 28px; padding-top: 32px; }
+      .hero-stat { flex: 0 0 calc(50% - 14px); }
+      .hero-stat + .hero-stat::before { display: none; }
+      .hero-stat-num { font-size: 52px; }
+    }
 
     /* ── VS SECTION ── */
     .vs-section { background: #fff; padding: 88px 24px; }
@@ -247,9 +266,8 @@
     .phase-5 .phase-num { color: var(--c5); }
 
     .phase-day-pill {
-      font-size: 10px; font-variation-settings: "wdth" var(--wdth), "wght" 700;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 4px 8px; border-radius: 6px;
+      font-size: 11px; font-variation-settings: "wdth" var(--wdth), "wght" 700;
+      padding: 4px 10px; border-radius: 6px;
       white-space: nowrap; margin-top: 6px;
     }
     .phase-1 .phase-day-pill { background: var(--c1-bg); color: var(--c1); }
@@ -357,7 +375,7 @@
 <section class="hero">
   <p class="hero-eyebrow"><span></span> How we work</p>
   <h1 class="hero-h1">Brief to live in<br><em>7 days.</em></h1>
-  <p class="hero-sub">Most agencies take 4 to 6 weeks to produce ads and launch. We don't. Here's exactly what happens from the moment you reach out.</p>
+  <p class="hero-sub">Typically takes a brand 2 to 3 weeks to launch new ads. Not with us. Here's exactly what happens from the moment you reach out.</p>
   <div class="hero-stats">
     <div class="hero-stat">
       <div class="hero-stat-num">7</div>
