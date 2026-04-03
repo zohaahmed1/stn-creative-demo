@@ -58,8 +58,7 @@
        RESET & BASE
        ============================================= */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html.lenis, html.lenis body { height: auto; }
-    .lenis.lenis-smooth { scroll-behavior: auto; }
+    /* Lenis CSS rules removed */
     html { font-size: 18px; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; scroll-padding-top: 100px; scrollbar-width: none; }
     html::-webkit-scrollbar { display: none; }
 
@@ -1727,7 +1726,7 @@
     /* ── (3D tilt, scroll snap, GSAP stacking removed) ── */
 
   </style>
-  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <!-- Lenis removed — using native scroll for performance -->
 </head>
 <body>
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -3609,25 +3608,17 @@
 </footer>
 
   <script>
-    // ── Lenis smooth scroll ────────────────────────────────────────
-    const lenis = new Lenis({
-      duration: 1.0,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1.0,
-      touchMultiplier: 1.5,
-      lerp: 0.12,
-    });
-
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
-    // Wire anchor links to Lenis
+    // ── Native smooth scroll (replaced Lenis — no rAF loop overhead) ──
+    document.documentElement.style.scrollBehavior = 'smooth';
+    // Wire anchor links
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const target = document.querySelector(a.getAttribute('href'));
-        if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: -100 }); }
+        if (target) {
+          e.preventDefault();
+          const top = target.getBoundingClientRect().top + window.scrollY - 100;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
       });
     });
 
@@ -3790,7 +3781,7 @@
         if (bloomProgress >= 1) {
           bloomRevealed = true;
           bloomLocked = false;
-          lenis.start();
+          // lenis.start() removed — using native scroll
         }
       }
 
@@ -3800,7 +3791,7 @@
           e.preventDefault();
           if (!bloomLocked) {
             bloomLocked = true;
-            lenis.stop();
+            // lenis.stop() removed — using native scroll
             window.scrollTo({ top: 0, behavior: 'instant' });
           }
           animateBloom(e.deltaY);
@@ -3819,7 +3810,7 @@
           e.preventDefault();
           if (!bloomLocked) {
             bloomLocked = true;
-            lenis.stop();
+            // lenis.stop() removed — using native scroll
             window.scrollTo({ top: 0, behavior: 'instant' });
           }
           animateBloom(delta);
@@ -3874,11 +3865,6 @@
     // ── Floating nav + scroll progress (integrated with Lenis) ─────
     const nav = document.querySelector('.nav');
     const progressBar = document.getElementById('scrollProgress');
-    lenis.on('scroll', ({ scroll }) => {
-      nav.classList.toggle('scrolled', scroll > 100);
-      const scrollPct = (scroll / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-      progressBar.style.width = scrollPct + '%';
-    });
 
     // ── Hero parallax ──────────────────────────────────────────────
     const heroSection = document.querySelector('.hero');
@@ -3889,82 +3875,44 @@
     const heroCollageEl = document.querySelector('.hero-collage');
     const heroParallaxObs = new IntersectionObserver(entries => {
       heroInView = entries[0].isIntersecting;
-      // Pause float + pulse animations when hero is off-screen
       if (heroCollageEl) heroCollageEl.style.animationPlayState = heroInView ? 'running' : 'paused';
     }, { threshold: 0 });
     if (heroSection) heroParallaxObs.observe(heroSection);
 
-    lenis.on('scroll', ({ scroll }) => {
-      if (!heroInView) return;
-      if (heroMain) heroMain.style.transform = 'translateY(' + (scroll * 0.15) + 'px)';
-      heroSubs.forEach(s => { s.style.transform = 'translateY(' + (scroll * 0.08) + 'px)'; });
-      if (aiBadge) aiBadge.style.transform = 'translateY(' + (scroll * 0.2) + 'px)';
-    });
-
-    // ── Mobile check — disable heavy scroll effects on narrow screens ─
+    // ── Mobile check ─────────────────────────────────────────────
     const isMobile = window.innerWidth < 810;
 
     // ── Section scale-in reveal ─────────────────────────────────────
     const scaleObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('scale-visible');
-        }
+        if (e.isIntersecting) e.target.classList.add('scale-visible');
       });
     }, { threshold: 0.05, rootMargin: '0px 0px -60px 0px' });
     document.querySelectorAll('[data-scroll-scale]').forEach(el => scaleObs.observe(el));
 
-    // ── Scroll-linked parallax on inner elements (desktop only) ──────
-    if (!isMobile) {
-      const parallaxEls = [];
-      document.querySelectorAll('.section-header .badge').forEach(el => {
-        const isTilt = el.dataset.anim === 'tilt';
-        parallaxEls.push({ el, speed: -0.03, axis: 'y', tilt: isTilt });
+    // ── Single rAF-throttled native scroll handler ────────────────────
+    // Replaces all lenis.on('scroll') — one passive listener, one rAF tick max per frame
+    let _scrollTick = false;
+    function handleScroll() {
+      if (_scrollTick) return;
+      _scrollTick = true;
+      requestAnimationFrame(() => {
+        const scroll = window.scrollY;
+        // Nav + progress bar
+        nav.classList.toggle('scrolled', scroll > 100);
+        const scrollPct = (scroll / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        progressBar.style.width = scrollPct + '%';
+        // Hero parallax (only while hero is visible)
+        if (heroInView && !isMobile) {
+          if (heroMain) heroMain.style.transform = 'translateY(' + (scroll * 0.15) + 'px)';
+          heroSubs.forEach(s => { s.style.transform = 'translateY(' + (scroll * 0.08) + 'px)'; });
+          if (aiBadge) aiBadge.style.transform = 'translateY(' + (scroll * 0.2) + 'px)';
+        }
+        _scrollTick = false;
       });
-      document.querySelectorAll('.process-step').forEach((el, i) => {
-        parallaxEls.push({ el, speed: 0.02 + (i * 0.01), axis: 'y' });
-      });
-      document.querySelectorAll('.stat-num').forEach(el => {
-        parallaxEls.push({ el, speed: -0.04, axis: 'y' });
-      });
-
-      lenis.on('scroll', () => {
-        const winH = window.innerHeight;
-        parallaxEls.forEach(({ el, speed, axis, tilt }) => {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < winH + 200 && rect.bottom > -200) {
-            const center = rect.top + rect.height / 2 - winH / 2;
-            const offset = center * speed;
-            const translate = axis === 'y'
-              ? 'translateY(' + offset + 'px)'
-              : 'translateX(' + offset + 'px)';
-            el.style.transform = tilt ? translate + ' rotate(-5deg)' : translate;
-          }
-        });
-      });
-
-      // ── Gallery items subtle horizontal drift on scroll ──────────────
-      const gallerySection = document.querySelector('#work-gallery');
-      if (gallerySection) {
-        const galleryItems = gallerySection.querySelectorAll('[style*="border-radius"]');
-        let galleryInView = false;
-        const galleryVis = new IntersectionObserver(entries => {
-          galleryInView = entries[0].isIntersecting;
-        }, { threshold: 0 });
-        galleryVis.observe(gallerySection);
-
-        lenis.on('scroll', () => {
-          if (!galleryInView) return;
-          const gRect = gallerySection.getBoundingClientRect();
-          const progress = -gRect.top / (gRect.height + window.innerHeight);
-          galleryItems.forEach((item, i) => {
-            const direction = i % 2 === 0 ? 1 : -1;
-            const shift = progress * direction * 8;
-            item.style.transform = 'translateX(' + shift + 'px)';
-          });
-        });
-      }
     }
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // run once on load
 
     // ── Magnetic buttons ───────────────────────────────────────────
     document.querySelectorAll('.btn').forEach(btn => {
