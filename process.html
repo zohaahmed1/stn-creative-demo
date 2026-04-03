@@ -181,36 +181,48 @@
     }
 
     /* ── VS SECTION ── */
-    .vs-section { background: #fff; padding: 88px 24px; }
-    .vs-heading { text-align: center; margin-bottom: 48px; }
+    .vs-section { background: #faf9f7; padding: 88px 24px; }
+    .vs-heading { text-align: center; margin-bottom: 56px; }
     .vs-heading .eyebrow { font-size: 13px; font-variation-settings: "wdth" var(--wdth), "wght" 700; color: var(--blue); margin-bottom: 12px; }
     .vs-heading h2 { font-family: var(--font); font-size: clamp(32px, 4vw, 52px); font-variation-settings: "wdth" 125, "wght" 900; color: #0a0a0a; line-height: 1.05; letter-spacing: -0.02em; }
     .vs-heading h2 em { font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 700; }
 
-    .vs-wrapper { max-width: 900px; margin: 0 auto; position: relative; }
-    .vs-badge {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-      width: 52px; height: 52px; border-radius: 50%; background: #0a0a0a;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 13px; font-variation-settings: "wdth" var(--wdth), "wght" 900; color: #fff;
-      z-index: 10; box-shadow: 0 0 0 4px #fff;
+    .vs-table { max-width: 860px; margin: 0 auto; }
+    .vs-header-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      padding: 0 0 16px; margin-bottom: 4px;
+      border-bottom: 2px solid #0a0a0a;
     }
-    @media (max-width: 680px) { .vs-badge { display: none; } }
-
-    .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-radius: 24px; overflow: hidden; border: 1.5px solid #e8e8e8; }
-    .vs-col { padding: 40px 36px; }
-    .vs-col-old { background: #fafafa; }
-    .vs-col-new { background: #0a0a0a; }
-    .vs-label { font-size: 13px; font-variation-settings: "wdth" var(--wdth), "wght" 700; margin-bottom: 28px; }
-    .vs-label-old { color: #bbb; }
-    .vs-label-new { color: rgba(255,255,255,0.35); }
-    .vs-row { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 18px; }
-    .vs-row:last-child { margin-bottom: 0; }
-    .vs-icon { width: 20px; height: 20px; flex-shrink: 0; margin-top: 2px; }
-    .vs-text { font-size: 15px; font-variation-settings: "wdth" var(--wdth), "wght" 500; line-height: 1.55; }
-    .vs-text-old { color: #999; text-decoration: line-through; text-decoration-color: #ddd; }
-    .vs-text-new { color: rgba(255,255,255,0.88); }
-    @media (max-width: 680px) { .vs-grid { grid-template-columns: 1fr; } .vs-col { padding: 28px 24px; } }
+    .vs-col-head { font-size: 12px; font-variation-settings: "wdth" var(--wdth), "wght" 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .vs-col-head-old { color: #bbb; }
+    .vs-col-head-new { color: var(--blue); }
+    .vs-compare-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0 32px;
+      padding: 20px 0;
+      border-bottom: 1px solid #ebebeb;
+      align-items: center;
+    }
+    .vs-compare-row:last-child { border-bottom: none; }
+    .vs-old {
+      font-size: 15px; font-variation-settings: "wdth" var(--wdth), "wght" 500;
+      color: #bbb; text-decoration: line-through; text-decoration-color: #ddd;
+      line-height: 1.5;
+    }
+    .vs-new {
+      font-size: 15px; font-variation-settings: "wdth" var(--wdth), "wght" 700;
+      color: #0a0a0a; line-height: 1.5;
+    }
+    .vs-new::before {
+      content: '→ ';
+      color: var(--blue);
+      font-variation-settings: "wdth" var(--wdth), "wght" 900;
+    }
+    @media (max-width: 600px) {
+      .vs-compare-row { grid-template-columns: 1fr; gap: 6px; }
+      .vs-header-row { display: none; }
+      .vs-old { font-size: 13px; }
+    }
 
     /* ── DAY STRIP ── */
     .day-strip {
@@ -424,55 +436,30 @@
       <p class="eyebrow">Why it matters</p>
       <h2>What slow actually <em>costs you.</em></h2>
     </div>
-    <div class="vs-wrapper" data-anim data-delay="1">
-      <div class="vs-badge">VS</div>
-      <div class="vs-grid">
-        <div class="vs-col vs-col-old">
-          <p class="vs-label vs-label-old">The usual process</p>
-          <div class="vs-row">
-            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#fee2e2"/><path d="M7 7l6 6M13 7l-6 6" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg>
-            <p class="vs-text vs-text-old">2 weeks of back and forth before a single ad goes live. Every round of revisions costs you a test cycle.</p>
-          </div>
-          <div class="vs-row">
-            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#fee2e2"/><path d="M7 7l6 6M13 7l-6 6" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg>
-            <p class="vs-text vs-text-old">3 to 5 creatives a month means 3 to 5 data points. You can't find a winner on that.</p>
-          </div>
-          <div class="vs-row">
-            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#fee2e2"/><path d="M7 7l6 6M13 7l-6 6" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg>
-            <p class="vs-text vs-text-old">Creative team and media buyer work separately. The brief gets lost between them. Nobody owns the outcome.</p>
-          </div>
-          <div class="vs-row">
-            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#fee2e2"/><path d="M7 7l6 6M13 7l-6 6" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg>
-            <p class="vs-text vs-text-old">Last-click attribution tells you what converted last. Not what actually drove the decision.</p>
-          </div>
-          <div class="vs-row">
-            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#fee2e2"/><path d="M7 7l6 6M13 7l-6 6" stroke="#ef4444" stroke-width="1.8" stroke-linecap="round"/></svg>
-            <p class="vs-text vs-text-old">Meta and Google only — the same two platforms your competitors are saturating. Same audience, same placements, same results.</p>
-          </div>
-        </div>
-        <div class="vs-col vs-col-new">
-          <p class="vs-label vs-label-new">Skip the Noise</p>
-          <div class="vs-row">
-            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(85,0,221,0.25)"/><path d="M6 10l3 3 5-5" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <p class="vs-text vs-text-new">Brief Monday. Live Friday. You don't lose a week waiting — you gain a week of data.</p>
-          </div>
-          <div class="vs-row">
-            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(85,0,221,0.25)"/><path d="M6 10l3 3 5-5" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <p class="vs-text vs-text-new">20+ creatives a month. Enough volume to actually find what works — then scale it.</p>
-          </div>
-          <div class="vs-row">
-            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(85,0,221,0.25)"/><path d="M6 10l3 3 5-5" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <p class="vs-text vs-text-new">The people making the ads run the campaigns. No brief gets lost. One team owns the outcome.</p>
-          </div>
-          <div class="vs-row">
-            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(85,0,221,0.25)"/><path d="M6 10l3 3 5-5" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <p class="vs-text vs-text-new">Multi-touch attribution + MMM. You see what actually moved the needle, not just what converted last.</p>
-          </div>
-          <div class="vs-row">
-            <svg class="vs-icon" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="rgba(85,0,221,0.25)"/><path d="M6 10l3 3 5-5" stroke="#a78bfa" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <p class="vs-text vs-text-new">Reddit Certified Partner. LinkedIn ABM. Your competitors aren't there yet — that's the point.</p>
-          </div>
-        </div>
+    <div class="vs-table" data-anim data-delay="1">
+      <div class="vs-header-row">
+        <span class="vs-col-head vs-col-head-old">The usual process</span>
+        <span class="vs-col-head vs-col-head-new">Skip the Noise</span>
+      </div>
+      <div class="vs-compare-row">
+        <p class="vs-old">2 weeks of revisions before anything goes live</p>
+        <p class="vs-new">Brief Monday. Live Friday.</p>
+      </div>
+      <div class="vs-compare-row">
+        <p class="vs-old">3 to 5 creatives a month</p>
+        <p class="vs-new">20+ creatives — enough to find a winner and scale it</p>
+      </div>
+      <div class="vs-compare-row">
+        <p class="vs-old">Creative and media buying siloed, nobody owns the outcome</p>
+        <p class="vs-new">One team makes the ads and runs the campaigns</p>
+      </div>
+      <div class="vs-compare-row">
+        <p class="vs-old">Last-click only — you can't see what drove results</p>
+        <p class="vs-new">Multi-touch + MMM — see what actually moved the needle</p>
+      </div>
+      <div class="vs-compare-row">
+        <p class="vs-old">Meta and Google only, same platforms, same saturation</p>
+        <p class="vs-new">Reddit + LinkedIn ABM — where your competitors aren't yet</p>
       </div>
     </div>
   </div>
