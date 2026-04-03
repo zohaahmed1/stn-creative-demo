@@ -848,7 +848,11 @@
       gap: 24px;
       width: max-content;
       padding-left: max(24px, calc((100vw - 1200px) / 2));
-      /* will-change removed */
+      animation: testi-scroll 40s linear infinite;
+    }
+    @keyframes testi-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
     }
     .testimonial-card {
       width: 602px; flex-shrink: 0;
@@ -1928,7 +1932,7 @@
   display: flex;
   gap: 12px;
   width: max-content;
-  animation: hero-slide 18s linear infinite;
+  animation: hero-slide 40s linear infinite;
 }
 .hero-marquee-track--reverse {
   animation-direction: reverse;
@@ -1946,6 +1950,7 @@
   object-fit: cover;
   border-radius: 12px;
   flex-shrink: 0;
+  display: block;
 }
 .hero-marquee-img--sq {
   height: 180px;

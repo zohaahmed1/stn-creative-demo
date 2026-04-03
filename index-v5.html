@@ -751,16 +751,16 @@
 
       <div class="gal-grid gal-3" style="margin-bottom:28px;" data-anim data-delay="1" data-stagger>
         <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:9/16;background:#111;">
-          <img loading="lazy" src="./assets/Icecream 1.jpg" style="width:100%;height:100%;object-fit:cover;">
+          <video autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;"><source src="./assets/Icecream video 1.mp4" type="video/mp4"></video>
           <div style="position:absolute;bottom:0;left:0;right:0;padding:12px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,0.8));color:white;"><p style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">Food · Meta</p><p style="font-size:16px;font-weight:800;color:#facc15;margin-top:2px;">Ice cream</p></div>
         </div>
         <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:9/16;background:#111;">
-          <img loading="lazy" src="./assets/Lipstick_Campaign_dSJmLIvg.jpg" style="width:100%;height:100%;object-fit:cover;">
+          <video autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;"><source src="./assets/Lipstick_Campaign_A_close-up_shot_focuses_on_a_womans_face_as_she_8ypjLQ2.mp4" type="video/mp4"></video>
           <div style="position:absolute;bottom:0;left:0;right:0;padding:12px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,0.8));color:white;"><p style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">Beauty · Meta</p><p style="font-size:16px;font-weight:800;color:#facc15;margin-top:2px;">Lipstick close-up</p></div>
         </div>
         <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:9/16;background:#111;">
-          <img loading="lazy" src="./assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.jpg" style="width:100%;height:100%;object-fit:cover;">
-          <div style="position:absolute;bottom:0;left:0;right:0;padding:12px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,0.8));color:white;"><p style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">Brand · Meta</p><p style="font-size:16px;font-weight:800;color:#facc15;margin-top:2px;">Shifting Lights</p></div>
+          <video autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;"><source src="./assets/Fisheye 1.mp4" type="video/mp4"></video>
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:12px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,0.8));color:white;"><p style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">Fashion · Meta</p><p style="font-size:16px;font-weight:800;color:#facc15;margin-top:2px;">Fisheye</p></div>
         </div>
       </div>
       <div class="gal-grid gal-3" data-anim data-delay="2" data-stagger>
@@ -1513,22 +1513,20 @@
 
 
 <!-- BOOK A CALL — Calendly embed -->
-<section id="book" style="display:flex; min-height:600px;">
+<section id="book" class="section-inner" style="display:flex; min-height:600px; background:#FFEDED; border-radius:24px; overflow:hidden; margin:0 24px 40px;">
 
-  <!-- Left: dark navy panel -->
-  <div style="flex:1; background:#0d0d1a; padding:72px 56px; display:flex; flex-direction:column; justify-content:center; min-width:0;">
-    <div style="max-width:460px;">
-      <p style="color:#9b9bb4; font-size:13px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; margin:0 0 28px;">Free. No pitch. No strings.</p>
-      <div style="font-size:clamp(36px,4.5vw,58px); font-weight:800; line-height:1.08; color:#fff; margin-bottom:32px;">
-        Book the Ad Library<br>
-        <em style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700; background:linear-gradient(135deg,#ff6b9d,#c44dff); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Teardown.</em>
+  <!-- Left: content -->
+  <div style="flex:1; padding:72px 56px; display:flex; flex-direction:column; justify-content:center; min-width:0;">
+    <div style="max-width:420px;">
+      <div class="h2 book-headline" style="line-height:1.1; margin-bottom:20px;">
+        <span class="book-line">Get your free <span class="badge badge-blue"><em style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700;">audit.</em></span></span>
       </div>
-      <p style="color:#b0b0cc; font-size:16px; line-height:1.7; margin:0;">20 minutes. You'll leave knowing exactly which formats your competitors are running that you're not, which platforms you're invisible on, and what to fix first. Plus 3 creatives built for you. Free. No pitch, no strings.</p>
+      <p class="book-sub body" style="margin-top:0; font-size:17px; line-height:1.7; color:var(--gray-400);">30 minutes. We'll audit your ad library, show you where competitors are outproducing you, and build you 3 creatives. Free. No strings.</p>
     </div>
   </div>
 
-  <!-- Right: white Calendly panel -->
-  <div style="flex:1; background:#fff; padding:40px 40px; display:flex; align-items:center; justify-content:center; min-width:0;">
+  <!-- Right: Calendly -->
+  <div style="flex:1.2; background:#fff; display:flex; align-items:center; justify-content:center; padding:32px; min-width:0;">
     <div style="width:100%; max-width:520px;">
       <div class="calendly-inline-widget" data-url="https://calendly.com/skipthenoisemedia/30min" style="min-width:280px;height:620px;"></div>
       <script>
