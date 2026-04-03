@@ -305,12 +305,34 @@
     .pb-submit-btn:hover { background: #e03d00; transform: translateY(-1px); }
 
     @media (max-width: 809px) {
+      /* Nav */
+      .nav-cta { display: none !important; }
+
+      /* Hero */
+      .pb-hero-content { padding: 72px 20px 56px; }
+      .pb-hero-inner { max-width: 100%; }
+      .pb-hero h1 { font-size: 34px; }
+      .pb-hero-sub { font-size: 16px; margin-bottom: 28px; }
+      .pb-reddit-badge { font-size: 11px; padding: 5px 12px; }
+
+      /* Value prop */
+      .pb-value-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+      .pb-quote-card { max-width: 100%; }
+
+      /* What's inside */
       .pb-inside-grid { grid-template-columns: 1fr; gap: 40px; }
       .pb-inside-img { max-width: 280px; }
+      .pb-inside { padding: 56px 20px; }
+
+      /* Team */
       .pb-team-grid { grid-template-columns: 1fr; max-width: 340px; }
+
+      /* Form */
+      .pb-form-section { padding: 56px 20px; }
       .pb-form-grid { grid-template-columns: 1fr; }
       .pb-form-row { grid-template-columns: 1fr; }
       .pb-form-card { padding: 24px; }
+      .pb-submit-btn { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -394,7 +416,7 @@
 
 <!-- VALUE PROP -->
 <section style="padding:80px 24px; background:#fff;">
-  <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
+  <div class="pb-value-grid" style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
     <div>
       <p style="font-family:'Satoshi',system-ui,sans-serif; font-size:12px; font-weight:700; letter-spacing:0.1em; color:rgba(0,0,0,0.35); text-transform:uppercase; margin:0 0 16px;">Reddit for Business Said It Best</p>
       <h2 style="font-family:'Satoshi',system-ui,sans-serif; font-size:clamp(28px,3.5vw,42px); font-weight:900; color:#0d0d0d; letter-spacing:-0.03em; line-height:1.1; margin:0 0 28px;">
