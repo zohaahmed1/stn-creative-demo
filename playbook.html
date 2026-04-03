@@ -326,8 +326,19 @@
       <a href="services.html" class="nav-link">Services</a>
       <a href="gallery.html" class="nav-link">Portfolio</a>
       <a href="index-v5.html#work" class="nav-link">Results</a>
-      <a href="process.html" class="nav-link">Process</a>
-      <a href="index-v5.html#team" class="nav-link">Team</a>
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          Resources
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="margin-left:3px;transition:transform 0.2s;"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu" role="menu">
+          <div class="nav-dropdown-section">Reddit</div>
+          <a href="playbook.html" class="nav-dropdown-item" role="menuitem" style="color:#5500DD;font-weight:700;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Ads Playbook
+          </a>
+        </div>
+      </div>
     </div>
     <a href="index-v5.html#book" class="btn btn-primary nav-cta" style="display:inline-flex;align-items:center;gap:8px;background:#0d0d0d;color:#fff;font-family:'Satoshi',system-ui,sans-serif;font-size:14px;font-weight:700;padding:10px 22px;border-radius:100px;text-decoration:none;">3 free ads. Keep them.</a>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
@@ -339,8 +350,7 @@
   <a href="services.html" class="mobile-link" onclick="closeMobileMenu()">Services</a>
   <a href="gallery.html" class="mobile-link" onclick="closeMobileMenu()">Portfolio</a>
   <a href="index-v5.html#work" class="mobile-link" onclick="closeMobileMenu()">Results</a>
-  <a href="process.html" class="mobile-link" onclick="closeMobileMenu()">Process</a>
-  <a href="index-v5.html#team" class="mobile-link" onclick="closeMobileMenu()">Team</a>
+  <a href="playbook.html" class="mobile-link" onclick="closeMobileMenu()">Playbook</a>
   <a href="index-v5.html#book" class="mobile-cta" onclick="closeMobileMenu()">3 free ads. Keep them.</a>
 </div>
 
@@ -579,6 +589,21 @@
     if (mobileMenu) mobileMenu.classList.remove('open');
     if (hamburger) hamburger.classList.remove('open');
     document.body.style.overflow = '';
+  }
+  // Resources dropdown
+  var dropdownTrigger = document.querySelector('.nav-dropdown-trigger');
+  var navDropdown = document.querySelector('.nav-dropdown');
+  if (dropdownTrigger && navDropdown) {
+    dropdownTrigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = navDropdown.classList.toggle('open');
+      dropdownTrigger.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', function() {
+      navDropdown.classList.remove('open');
+      dropdownTrigger.setAttribute('aria-expanded', 'false');
+    });
+    navDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
   }
 </script>
 </body>
