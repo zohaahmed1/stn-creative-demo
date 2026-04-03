@@ -80,6 +80,9 @@
       transition: padding 0.4s ease;
     }
     .nav.scrolled .nav-inner { padding: 8px 24px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 20px; font-variation-settings: "wdth" 125, "wght" 800; text-decoration: none; }
+    .nav-logo .logo-skip { color: #191923; }
+    .nav-logo .logo-noise { background: linear-gradient(90deg, #5500dd, #cc0000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .nav-links { display: flex; align-items: center; gap: 2px; }
     .nav-link {
       font-size: 14px;
@@ -354,8 +357,8 @@
 <!-- NAV -->
 <nav class="nav">
   <div class="container nav-inner">
-    <a href="index-v5.html" class="nav-logo" style="font-size:22px; font-weight:800; font-variation-settings:'wdth' 125,'wght' 800; text-decoration:none; display:flex; align-items:center; gap:8px;">
-      <span><span style="color:#191923;">Skip the </span><span style="display:inline-block;background:linear-gradient(90deg,#5500dd,#cc0000);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Noise</span></span>
+    <a href="index-v5.html" class="nav-logo">
+      <span class="logo-skip">Skip the </span><span class="logo-noise">Noise</span>
     </a>
     <div class="nav-links">
       <a href="index-v5.html#work" class="nav-link">Results</a>
