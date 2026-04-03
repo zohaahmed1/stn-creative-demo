@@ -69,19 +69,42 @@
       text-align: center;
       overflow: hidden;
     }
-    /* Colorful glow orbs */
+    /* Animated glow orbs */
+    @keyframes orb-drift {
+      0%   { transform: translateX(-50%) translateX(-80px) translateY(0px); }
+      33%  { transform: translateX(-50%) translateX(60px)  translateY(-30px); }
+      66%  { transform: translateX(-50%) translateX(20px)  translateY(20px); }
+      100% { transform: translateX(-50%) translateX(-80px) translateY(0px); }
+    }
+    @keyframes orb-drift-2 {
+      0%   { transform: translateX(-50%) translateX(60px)  translateY(-10px); }
+      33%  { transform: translateX(-50%) translateX(-70px) translateY(30px); }
+      66%  { transform: translateX(-50%) translateX(-20px) translateY(-20px); }
+      100% { transform: translateX(-50%) translateX(60px)  translateY(-10px); }
+    }
     .hero::before {
       content: '';
       position: absolute;
       top: -120px; left: 50%;
-      transform: translateX(-50%);
-      width: 900px; height: 600px;
+      width: 1100px; height: 700px;
       background:
-        radial-gradient(ellipse 400px 300px at 30% 40%, rgba(85,0,221,0.35) 0%, transparent 70%),
-        radial-gradient(ellipse 350px 280px at 70% 50%, rgba(238,0,51,0.2) 0%, transparent 70%),
-        radial-gradient(ellipse 300px 250px at 50% 80%, rgba(168,85,247,0.2) 0%, transparent 70%);
+        radial-gradient(ellipse 420px 320px at 28% 40%, rgba(85,0,221,0.38) 0%, transparent 65%),
+        radial-gradient(ellipse 320px 280px at 55% 75%, rgba(168,85,247,0.25) 0%, transparent 65%);
       pointer-events: none;
       z-index: 0;
+      animation: orb-drift 11s ease-in-out infinite;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%;
+      width: 1100px; height: 700px;
+      background:
+        radial-gradient(ellipse 380px 300px at 72% 45%, rgba(238,0,51,0.22) 0%, transparent 65%),
+        radial-gradient(ellipse 260px 220px at 40% 65%, rgba(236,72,153,0.15) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+      animation: orb-drift-2 14s ease-in-out infinite;
     }
     .hero > * { position: relative; z-index: 1; }
     .hero-eyebrow {
