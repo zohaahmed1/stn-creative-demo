@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="assets/main.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Reddit Ads Playbook — Skip the Noise Media</title>
+  <meta name="description" content="The Reddit advertising strategies that generated 70+ qualified B2B leads. From Reddit's official AMA partners.">
+  <meta property="og:title" content="The Complete Reddit Advertising Playbook — Skip the Noise Media">
+  <meta property="og:description" content="We're sharing the Reddit advertising strategies that generated 70+ qualified B2B leads in this comprehensive playbook.">
+  <meta property="og:type" content="website">
+  <link rel="canonical" href="https://zohaahmed1.github.io/stn-creative-demo/playbook.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" as="style" onload="this.rel='stylesheet'">
+  <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700,900&display=swap" as="style" onload="this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700,900&display=swap" rel="stylesheet">
+  </noscript>
+  <style>
+    /* ── Playbook-specific styles ─────────────────────────────── */
+    .pb-hero {
+      background: #0a0520;
+      position: relative;
+      overflow: hidden;
+      min-height: 540px;
+      display: flex;
+      align-items: center;
+    }
+    .pb-hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://skipthenoisemedia.com/reddit-ama/hero-image-desktop-v2.webp');
+      background-size: cover;
+      background-position: center top;
+      opacity: 0.45;
+    }
+    .pb-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 100px 32px 80px;
+      text-align: center;
+    }
+    .pb-reddit-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,69,0,0.15);
+      border: 1px solid rgba(255,69,0,0.4);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #FF6B35;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .pb-hero h1 {
+      font-family: 'Satoshi', system-ui, sans-serif;
+      font-size: clamp(32px, 5vw, 60px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin: 0 0 16px;
+    }
+    .pb-hero h1 em {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+    }
+    .pb-hero-sub {
+      font-size: 18px;
+      color: rgba(255,255,255,0.65);
+      margin: 0 auto 36px;
+      max-width: 560px;
+      line-height: 1.5;
+    }
+    .pb-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #FF4500;
+      color: #fff;
+      font-family: 'Satoshi', system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 100px;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .pb-cta-btn:hover { background: #e03d00; transform: translateY(-1px); }
+
+    /* Marquee strip */
+    .pb-strip {
+      background: #FF4500;
+      color: #fff;
+      overflow: hidden;
+      padding: 14px 0;
+      border-top: 2px solid rgba(0,0,0,0.15);
+      border-bottom: 2px solid rgba(0,0,0,0.15);
+    }
+    .pb-strip-track {
+      display: flex;
+      gap: 48px;
+      animation: pb-scroll 22s linear infinite;
+      width: max-content;
+    }
+    .pb-strip-item {
+      font-family: 'Satoshi', system-ui, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .pb-strip-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.5); flex-shrink: 0; }
+    @keyframes pb-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* Value prop */
+    .pb-quote-card {
+      background: #fff;
+      border: 2px solid #0a0520;
+      border-radius: 20px;
+      padding: 28px 32px;
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      max-width: 480px;
+      box-shadow: 4px 4px 0 #0a0520;
+    }
+    .pb-quote-card p {
+      font-size: 18px;
+      font-weight: 600;
+      color: #0a0a0a;
+      line-height: 1.5;
+      margin: 0;
+      flex: 1;
+    }
+
+    /* What's inside */
+    .pb-inside {
+      background: #5500DD;
+      padding: 80px 24px;
+    }
+    .pb-inside-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .pb-inside h2 {
+      font-family: 'Satoshi', system-ui, sans-serif;
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.03em;
+      margin: 0 0 32px;
+    }
+    .pb-check-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px; }
+    .pb-check-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'Satoshi', system-ui, sans-serif;
+      font-size: 17px;
+      color: rgba(255,255,255,0.9);
+    }
+    .pb-check-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .pb-inside-img {
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(255,255,255,0.3);
+      aspect-ratio: 1;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+    .pb-inside-img img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* Team */
+    .pb-team-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      max-width: 800px;
+      margin: 48px auto 0;
+    }
+    .pb-team-card { display: flex; flex-direction: column; gap: 16px; }
+    .pb-team-img {
+      border-radius: 28px;
+      overflow: hidden;
+      border: 2px solid #e8e8e8;
+      aspect-ratio: 1;
+    }
+    .pb-team-img img { width: 100%; height: 100%; object-fit: cover; }
+    .pb-team-caption { display: flex; align-items: center; gap: 10px; }
+    .pb-team-name { font-family: 'Satoshi', system-ui, sans-serif; font-size: 18px; font-weight: 900; color: #0d0d0d; flex: 1; }
+    .pb-team-role { font-size: 14px; color: rgba(0,0,0,0.45); }
+
+    /* Form */
+    .pb-form-section {
+      background: #0a0520;
+      padding: 80px 24px;
+    }
+    .pb-form-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .pb-form-left h2 {
+      font-family: 'Satoshi', system-ui, sans-serif;
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.03em;
+      margin: 0 0 36px;
+    }
+    .pb-form-perks { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 18px; }
+    .pb-form-perk {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'Satoshi', system-ui, sans-serif;
+      font-size: 17px;
+      color: rgba(255,255,255,0.8);
+    }
+    .pb-form-perk svg { flex-shrink: 0; opacity: 0.7; }
+    .pb-form-card {
+      background: #f5f0ff;
+      border-radius: 24px;
+      padding: 40px;
+      border: 2px solid rgba(255,255,255,0.08);
+    }
+    .pb-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .pb-form-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .pb-form-field label {
+      font-family: 'Satoshi', system-ui, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #0a0a0a;
+      letter-spacing: 0.02em;
+    }
+    .pb-form-field input {
+      border: 1.5px solid #ddd;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-family: 'Satoshi', system-ui, sans-serif;
+      font-size: 15px;
+      color: #0a0a0a;
+      background: #fff;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .pb-form-field input:focus { border-color: #5500DD; }
+    .pb-form-submit {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 8px;
+    }
+    .pb-submit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: #FF4500;
+      color: #fff;
+      font-family: 'Satoshi', system-ui, sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .pb-submit-btn:hover { background: #e03d00; transform: translateY(-1px); }
+
+    @media (max-width: 809px) {
+      .pb-inside-grid { grid-template-columns: 1fr; gap: 40px; }
+      .pb-inside-img { max-width: 280px; }
+      .pb-team-grid { grid-template-columns: 1fr; max-width: 340px; }
+      .pb-form-grid { grid-template-columns: 1fr; }
+      .pb-form-row { grid-template-columns: 1fr; }
+      .pb-form-card { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="index-v5.html" class="nav-logo">
+      <span class="logo-skip">Skip the</span><span class="logo-noise">Noise</span>
+    </a>
+    <div class="nav-links">
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="gallery.html" class="nav-link">Portfolio</a>
+      <a href="index-v5.html#work" class="nav-link">Results</a>
+      <a href="process.html" class="nav-link">Process</a>
+      <a href="index-v5.html#team" class="nav-link">Team</a>
+    </div>
+    <a href="index-v5.html#book" class="btn btn-primary nav-cta" style="display:inline-flex;align-items:center;gap:8px;background:#0d0d0d;color:#fff;font-family:'Satoshi',system-ui,sans-serif;font-size:14px;font-weight:700;padding:10px 22px;border-radius:100px;text-decoration:none;">3 free ads. Keep them.</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html" class="mobile-link" onclick="closeMobileMenu()">Services</a>
+  <a href="gallery.html" class="mobile-link" onclick="closeMobileMenu()">Portfolio</a>
+  <a href="index-v5.html#work" class="mobile-link" onclick="closeMobileMenu()">Results</a>
+  <a href="process.html" class="mobile-link" onclick="closeMobileMenu()">Process</a>
+  <a href="index-v5.html#team" class="mobile-link" onclick="closeMobileMenu()">Team</a>
+  <a href="index-v5.html#book" class="mobile-cta" onclick="closeMobileMenu()">3 free ads. Keep them.</a>
+</div>
+
+<!-- HERO -->
+<section class="pb-hero">
+  <div class="pb-hero-bg"></div>
+  <div class="pb-hero-content">
+    <div class="pb-reddit-badge">
+      <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="10"/><path fill="#FF4500" d="M16.67 10a1.46 1.46 0 0 0-2.47-1 7.12 7.12 0 0 0-3.85-1.23l.65-3.08 2.13.45a1 1 0 1 0 1.07-.97 1 1 0 0 0-.96.68l-2.38-.5a.16.16 0 0 0-.19.12l-.73 3.44a7.14 7.14 0 0 0-3.89 1.23 1.46 1.46 0 1 0-1.61 2.39 2.87 2.87 0 0 0 0 .44c0 2.24 2.61 4.06 5.83 4.06s5.83-1.82 5.83-4.06a2.87 2.87 0 0 0 0-.44 1.46 1.46 0 0 0 .47-1.03zM7.27 11a1 1 0 1 1 1 1 1 1 0 0 1-1-1zm5.58 2.65a3.58 3.58 0 0 1-2.85.78 3.58 3.58 0 0 1-2.85-.78.19.19 0 0 1 .27-.27 3.21 3.21 0 0 0 2.58.62 3.21 3.21 0 0 0 2.58-.62.19.19 0 0 1 .27.27zm-.14-1.65a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"/></svg>
+      Official Reddit for Business Partners
+    </div>
+    <h1>The Playbook That Got<br><em>Reddit's Attention</em></h1>
+    <p class="pb-hero-sub">A complete Reddit ads playbook from their official AMA partners. 70+ qualified leads generated.</p>
+    <a href="#playbook" class="pb-cta-btn">
+      Get the Free Playbook
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v8M4 7l4 4 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- MARQUEE STRIP -->
+<div class="pb-strip">
+  <div class="pb-strip-track" id="pb-strip-track">
+    <span class="pb-strip-item">Official Reddit for Business Partners<span class="pb-strip-dot"></span></span>
+    <span class="pb-strip-item">$300K+ Managed<span class="pb-strip-dot"></span></span>
+    <span class="pb-strip-item">2–3 Month Profitability<span class="pb-strip-dot"></span></span>
+    <span class="pb-strip-item">Reddit Certified Partner<span class="pb-strip-dot"></span></span>
+    <span class="pb-strip-item">70+ Qualified Leads Generated<span class="pb-strip-dot"></span></span>
+    <span class="pb-strip-item">r/PaidSocialLearning Mods<span class="pb-strip-dot"></span></span>
+    <!-- duplicate for seamless loop -->
+    <span class="pb-strip-item">Official Reddit for Business Partners<span class="pb-strip-dot"></span></span>
+    <span class="pb-strip-item">$300K+ Managed<span class="pb-strip-dot"></span></span>
+    <span class="pb-strip-item">2–3 Month Profitability<span class="pb-strip-dot"></span></span>
+    <span class="pb-strip-item">Reddit Certified Partner<span class="pb-strip-dot"></span></span>
+    <span class="pb-strip-item">70+ Qualified Leads Generated<span class="pb-strip-dot"></span></span>
+    <span class="pb-strip-item">r/PaidSocialLearning Mods<span class="pb-strip-dot"></span></span>
+  </div>
+</div>
+
+<!-- VALUE PROP -->
+<section style="padding:80px 24px; background:#fff;">
+  <div style="max-width:1100px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;">
+    <div>
+      <p style="font-family:'Satoshi',system-ui,sans-serif; font-size:12px; font-weight:700; letter-spacing:0.1em; color:rgba(0,0,0,0.35); text-transform:uppercase; margin:0 0 16px;">Reddit for Business Said It Best</p>
+      <h2 style="font-family:'Satoshi',system-ui,sans-serif; font-size:clamp(28px,3.5vw,42px); font-weight:900; color:#0d0d0d; letter-spacing:-0.03em; line-height:1.1; margin:0 0 28px;">
+        Performance marketing thrives where<br><em style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700;">audiences are leaned-in.</em>
+      </h2>
+      <div class="pb-quote-card">
+        <p>Reddit for Business chose Skip the Noise Media as official AMA partners after our systematic approach delivered consistent results across eComm, SaaS, and B2B clients.</p>
+        <img src="https://skipthenoisemedia.com/reddit-ama/reddit-snoo-in-bubble.svg" alt="Reddit Snoo" width="56" height="56" style="flex-shrink:0;">
+      </div>
+      <div style="margin-top:32px;">
+        <a href="#playbook" class="pb-cta-btn">Get the Playbook</a>
+      </div>
+    </div>
+    <div style="border-radius:28px; overflow:hidden; background:#0a0520;">
+      <img src="https://skipthenoisemedia.com/reddit-ama/ZohaAhmedAMA.webp" alt="Zoha Ahmed — Skip the Noise Media Reddit AMA" loading="lazy" style="width:100%; height:100%; object-fit:cover; display:block;">
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section class="pb-inside">
+  <div class="pb-inside-grid">
+    <div class="pb-inside-img">
+      <img src="https://skipthenoisemedia.com/reddit-ama/whats-inside.webp" alt="What's inside the playbook" loading="lazy">
+    </div>
+    <div>
+      <h2>Inside this playbook</h2>
+      <ul class="pb-check-list">
+        <li class="pb-check-item">
+          <span class="pb-check-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3 3 6-6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          90-day profitability roadmap
+        </li>
+        <li class="pb-check-item">
+          <span class="pb-check-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3 3 6-6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Success benchmarks
+        </li>
+        <li class="pb-check-item">
+          <span class="pb-check-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3 3 6-6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Reddit persona research guide
+        </li>
+        <li class="pb-check-item">
+          <span class="pb-check-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3 3 6-6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          25+ high-intent subreddit database
+        </li>
+        <li class="pb-check-item">
+          <span class="pb-check-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3 3 6-6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Native creative examples that convert
+        </li>
+        <li class="pb-check-item">
+          <span class="pb-check-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3 3 6-6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Attribution setup guide
+        </li>
+        <li class="pb-check-item">
+          <span class="pb-check-icon"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7l3 3 6-6" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          Exclusive AMA insights
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section style="padding:80px 24px; background:#fafafa;">
+  <div style="max-width:900px; margin:0 auto; text-align:center;">
+    <h2 style="font-family:'Satoshi',system-ui,sans-serif; font-size:clamp(26px,3vw,40px); font-weight:900; color:#0d0d0d; letter-spacing:-0.03em; margin:0 0 12px;">Meet the Team Behind the AMA</h2>
+    <p style="font-size:15px; color:rgba(0,0,0,0.45); margin:0;">Official Reddit for Business AMA Partners &middot; r/PaidSocialLearning Mods</p>
+    <div class="pb-team-grid">
+      <div class="pb-team-card">
+        <div class="pb-team-img">
+          <img src="https://skipthenoisemedia.com/team/sonia.webp" alt="Sonia Mohapatra" loading="lazy">
+        </div>
+        <div class="pb-team-caption">
+          <div>
+            <div class="pb-team-name">Sonia</div>
+            <div class="pb-team-role">Creative &amp; Strategy</div>
+          </div>
+          <a href="https://linkedin.com/in/soniamohapatra/" target="_blank" rel="noopener noreferrer" aria-label="Sonia's LinkedIn" style="color:#0A66C2; transition:transform 0.2s;" onmouseover="this.style.transform='rotate(6deg) scale(1.1)'" onmouseout="this.style.transform='none'">
+            <svg width="28" height="28" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24ZM96,176a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0ZM88,96a12,12,0,1,1,12-12A12,12,0,0,1,88,96Zm96,80a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140Z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="pb-team-card">
+        <div class="pb-team-img">
+          <img src="https://skipthenoisemedia.com/team/zoha.webp" alt="Zoha Ahmed" loading="lazy">
+        </div>
+        <div class="pb-team-caption">
+          <div>
+            <div class="pb-team-name">Zoha</div>
+            <div class="pb-team-role">Performance &amp; Analytics</div>
+          </div>
+          <a href="https://linkedin.com/in/zoha-ahmed-38a32266/" target="_blank" rel="noopener noreferrer" aria-label="Zoha's LinkedIn" style="color:#0A66C2; transition:transform 0.2s;" onmouseover="this.style.transform='rotate(6deg) scale(1.1)'" onmouseout="this.style.transform='none'">
+            <svg width="28" height="28" fill="currentColor" viewBox="0 0 256 256" aria-hidden="true"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24ZM96,176a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0ZM88,96a12,12,0,1,1,12-12A12,12,0,0,1,88,96Zm96,80a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140Z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section id="playbook" class="pb-form-section">
+  <div class="pb-form-grid">
+    <div class="pb-form-left">
+      <h2>Get the playbook that impressed Reddit for Business</h2>
+      <ul class="pb-form-perks">
+        <li class="pb-form-perk">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg>
+          Instant download
+        </li>
+        <li class="pb-form-perk">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          No spam
+        </li>
+        <li class="pb-form-perk">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.333 2q2 0 3.067-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.528"/></svg>
+          Complete system
+        </li>
+      </ul>
+    </div>
+    <div class="pb-form-card">
+      <!-- Replace YOUR_FORM_ID below with your Formspree form ID -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <div class="pb-form-row">
+          <div class="pb-form-field">
+            <label for="pb-first">First Name</label>
+            <input type="text" id="pb-first" name="first-name" placeholder="e.g. Alex" required>
+          </div>
+          <div class="pb-form-field">
+            <label for="pb-last">Last Name</label>
+            <input type="text" id="pb-last" name="last-name" placeholder="e.g. Johnson" required>
+          </div>
+        </div>
+        <div class="pb-form-field">
+          <label for="pb-email">Business Email</label>
+          <input type="email" id="pb-email" name="business-email" placeholder="e.g. alex@company.com" required>
+        </div>
+        <div class="pb-form-field">
+          <label for="pb-company">Company</label>
+          <input type="text" id="pb-company" name="company" placeholder="e.g. Acme Inc." required>
+        </div>
+        <div class="pb-form-field">
+          <label for="pb-url">Website URL</label>
+          <input type="url" id="pb-url" name="website-url" placeholder="e.g. https://acme.com" required>
+        </div>
+        <div class="pb-form-submit">
+          <button type="submit" class="pb-submit-btn">
+            Get the Official AMA Playbook
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0d0d0d; padding:48px 24px 32px;">
+  <div style="max-width:1200px; margin:0 auto; text-align:center;">
+    <a href="index-v5.html" style="font-family:'Satoshi',system-ui,sans-serif; font-size:20px; font-weight:900; color:#fff; text-decoration:none; letter-spacing:-0.02em;">Skip the <span style="color:#FF4500;">Noise</span></a>
+    <p style="font-size:13px; color:rgba(255,255,255,0.3); margin:16px 0 0; font-family:'Satoshi',system-ui,sans-serif;">&copy; 2026 Skip the Noise Media &middot; Reddit Certified Partner</p>
+  </div>
+</footer>
+
+<script>
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+  // Nav scroll
+  var nav = document.querySelector('.nav');
+  if (nav) {
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+  }
+  // Mobile menu
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobile-menu');
+  if (hamburger) {
+    hamburger.addEventListener('click', function() {
+      var open = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  }
+  function closeMobileMenu() {
+    if (mobileMenu) mobileMenu.classList.remove('open');
+    if (hamburger) hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
+</body>
+</html>
