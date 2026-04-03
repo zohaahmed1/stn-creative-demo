@@ -1951,3 +1951,17 @@
 .hero-marquee-img--sq {
   height: 160px;
 }
+
+/* ── Mobile performance: defer off-screen rendering ─────────── */
+@media (max-width: 768px) {
+  .section-inner,
+  #work-gallery,
+  #services,
+  #results,
+  #testimonials,
+  #process,
+  #book {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+  }
+}
