@@ -1930,6 +1930,9 @@
   width: max-content;
   animation: hero-slide 18s linear infinite;
 }
+.hero-marquee-track--reverse {
+  animation-direction: reverse;
+}
 .hero-marquee-wrap:hover .hero-marquee-track {
   animation-play-state: paused;
 }
