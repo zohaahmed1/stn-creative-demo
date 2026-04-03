@@ -1411,7 +1411,13 @@
       .nav-logo { font-size: 18px !important; white-space: nowrap; }
       .nav-logo img { height: 32px !important; }
       .nav-right .btn .btn-inner { padding: 10px 14px !important; font-size: 12px !important; white-space: nowrap; }
+      .nav-right a { font-size: 12px !important; padding: 8px 14px !important; white-space: nowrap; }
       .nav.scrolled { left: 12px; right: 12px; border-radius: 14px; top: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+
+      /* Results section */
+      .case-grid { grid-template-columns: 1fr !important; }
+      .stats-row { flex-direction: column !important; max-width: 100% !important; border-radius: 14px !important; }
+      .stat-cell--bordered { border-right: none !important; border-bottom: 1.5px solid #e8e8e8 !important; }
 
       /* Hero */
       .hero-content { padding: 80px 0 24px !important; }
