@@ -23,8 +23,15 @@
   <link rel="canonical" href="https://zohaahmed1.github.io/stn-creative-demo/index-v5.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.simpleicons.org" crossorigin>
+  <link rel="preconnect" href="https://www.google.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
+  </noscript>
   <style>
     /* =============================================
        DESIGN TOKENS — extracted from Framer source
@@ -1822,21 +1829,19 @@
         <div class="hero-marquee-card"><img src="assets/handbag-fashion.jpg" style="object-position:top;"></div>
         <div class="hero-marquee-card"><img src="assets/Cpg_nO2xZZjv.png"></div>
         <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_CDLIA58W.png"></div>
-        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.png"></div>
         <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_cTVg3CZh.png"></div>
         <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_y5ER32ip2.png"></div>
         <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_dSJmLIvg.png"></div>
         <div class="hero-marquee-card"><img src="assets/handbag-walk.jpg" style="object-position:top;"></div>
         <!-- Set 2 (duplicate for seamless loop) -->
-        <div class="hero-marquee-card"><img src="assets/Cpg_l5evv8k1.png"></div>
-        <div class="hero-marquee-card"><img src="assets/handbag-fashion.jpg" style="object-position:top;"></div>
-        <div class="hero-marquee-card"><img src="assets/Cpg_nO2xZZjv.png"></div>
-        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_CDLIA58W.png"></div>
-        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.png"></div>
-        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_cTVg3CZh.png"></div>
-        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_y5ER32ip2.png"></div>
-        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_dSJmLIvg.png"></div>
-        <div class="hero-marquee-card"><img src="assets/handbag-walk.jpg" style="object-position:top;"></div>
+        <div class="hero-marquee-card"><img src="assets/Cpg_l5evv8k1.png" loading="lazy"></div>
+        <div class="hero-marquee-card"><img src="assets/handbag-fashion.jpg" style="object-position:top;" loading="lazy"></div>
+        <div class="hero-marquee-card"><img src="assets/Cpg_nO2xZZjv.png" loading="lazy"></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_CDLIA58W.png" loading="lazy"></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_cTVg3CZh.png" loading="lazy"></div>
+        <div class="hero-marquee-card"><img src="assets/Protein_Bar_Advertisement_y5ER32ip2.png" loading="lazy"></div>
+        <div class="hero-marquee-card"><img src="assets/Lipstick_Campaign_dSJmLIvg.png" loading="lazy"></div>
+        <div class="hero-marquee-card"><img src="assets/handbag-walk.jpg" style="object-position:top;" loading="lazy"></div>
       </div>
     </div>
 
@@ -1898,6 +1903,14 @@
 
   </div>
   <script>
+  // Lazy-load all below-fold images
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('img:not([loading])').forEach(function(img) {
+      img.setAttribute('loading', 'lazy');
+      img.setAttribute('decoding', 'async');
+    });
+  });
+
   function switchHeroGallery(type) {
     var sg = document.getElementById('hero-saas-gallery');
     var eg = document.getElementById('hero-ecomm-gallery');
