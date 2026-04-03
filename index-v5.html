@@ -69,6 +69,15 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg"></div>
+  <!-- Floating platform badges -->
+  <div class="hero-float-badges">
+    <span class="hero-float-badge" style="left:6%; top:28%; --dur:5.2s; --delay:0s;"><img src="https://cdn.simpleicons.org/reddit/FF4500" alt="">Reddit</span>
+    <span class="hero-float-badge" style="left:3%; top:60%; --dur:6.1s; --delay:0.8s;"><img src="https://cdn.simpleicons.org/meta/0866FF" alt="">Meta</span>
+    <span class="hero-float-badge" style="right:5%; top:22%; --dur:4.8s; --delay:0.3s;"><img src="https://cdn.simpleicons.org/tiktok/000000" alt="">TikTok</span>
+    <span class="hero-float-badge" style="right:7%; top:55%; --dur:5.6s; --delay:1.4s;"><img src="https://cdn.simpleicons.org/google/4285F4" alt="">Google</span>
+    <span class="hero-float-badge" style="right:3%; top:78%; --dur:6.4s; --delay:0.6s;"><img src="https://cdn.simpleicons.org/linkedin/0A66C2" alt="">LinkedIn</span>
+    <span class="hero-float-badge" style="left:5%; top:80%; --dur:5.9s; --delay:1.9s;"><img src="https://cdn.simpleicons.org/pinterest/E60023" alt="">Pinterest</span>
+  </div>
   <div class="hero-content">
 
     <!-- Centered text block -->
@@ -806,15 +815,15 @@
       <!-- Stat row -->
       <div style="display:flex; justify-content:center; margin:36px auto 0; border:1.5px solid #e8e8e8; border-radius:16px; overflow:hidden; max-width:660px;">
         <div style="flex:1; padding:22px 20px; text-align:center; border-right:1.5px solid #e8e8e8;">
-          <div style="font-family:var(--font); font-size:clamp(28px,3vw,38px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1; letter-spacing:-0.03em;">30%</div>
-          <div style="font-size:12px; font-weight:700; color:rgba(0,0,0,0.4); letter-spacing:0.04em; margin-top:7px;">ROAS increase</div>
+          <div id="stat-roas" style="font-family:var(--font); font-size:clamp(28px,3vw,38px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1; letter-spacing:-0.03em;">5X</div>
+          <div style="font-size:12px; font-weight:700; color:rgba(0,0,0,0.4); letter-spacing:0.04em; margin-top:7px;">peak ROAS achieved</div>
         </div>
         <div style="flex:1; padding:22px 20px; text-align:center; border-right:1.5px solid #e8e8e8;">
-          <div style="font-family:var(--font); font-size:clamp(28px,3vw,38px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1; letter-spacing:-0.03em;">20%</div>
-          <div style="font-size:12px; font-weight:700; color:rgba(0,0,0,0.4); letter-spacing:0.04em; margin-top:7px;">more pipeline</div>
+          <div id="stat-pipeline" style="font-family:var(--font); font-size:clamp(28px,3vw,38px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1; letter-spacing:-0.03em;">2X</div>
+          <div style="font-size:12px; font-weight:700; color:rgba(0,0,0,0.4); letter-spacing:0.04em; margin-top:7px;">pipeline growth</div>
         </div>
         <div style="flex:1; padding:22px 20px; text-align:center;">
-          <div style="font-family:var(--font); font-size:clamp(28px,3vw,38px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1; letter-spacing:-0.03em;">50%</div>
+          <div id="stat-faster" style="font-family:var(--font); font-size:clamp(28px,3vw,38px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1; letter-spacing:-0.03em;">50%</div>
           <div style="font-size:12px; font-weight:700; color:rgba(0,0,0,0.4); letter-spacing:0.04em; margin-top:7px;">faster to market</div>
         </div>
       </div>
@@ -824,8 +833,8 @@
     <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;" data-anim data-delay="2" data-stagger>
 
       <!-- Card: Flare -->
-      <a href="#book" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
-        <div style="height:300px; overflow:hidden;"><img loading="lazy" src="assets/Flare%20Case%20Study%20V2.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center center;"></div>
+      <a href="#book" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div class="case-img-wrap"><img loading="lazy" src="assets/Flare%20Case%20Study%20V2.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center center;"><div class="case-stat-overlay"><span class="case-stat-number">60</span><span class="case-stat-label">qualified leads</span></div></div>
         <div style="padding:14px 16px; display:flex; align-items:center; gap:8px; border-top:1px solid rgba(0,0,0,0.06);">
           <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">Flare</span>
           <span style="font-size:10px; font-weight:700; background:rgba(85,0,221,0.08); color:#5500DD; border-radius:100px; padding:2px 9px;">B2B SaaS</span>
@@ -834,8 +843,8 @@
       </a>
 
       <!-- Card: Restream -->
-      <a href="#book" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
-        <div style="height:300px; overflow:hidden;"><img loading="lazy" src="assets/Restream%20Case%20Study%20V2.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center center;"></div>
+      <a href="#book" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div class="case-img-wrap"><img loading="lazy" src="assets/Restream%20Case%20Study%20V2.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center center;"><div class="case-stat-overlay"><span class="case-stat-number">50%</span><span class="case-stat-label">lower CPL</span></div></div>
         <div style="padding:14px 16px; display:flex; align-items:center; gap:8px; border-top:1px solid rgba(0,0,0,0.06);">
           <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">Restream</span>
           <span style="font-size:10px; font-weight:700; background:rgba(85,0,221,0.08); color:#5500DD; border-radius:100px; padding:2px 9px;">B2C SaaS</span>
@@ -844,8 +853,8 @@
       </a>
 
       <!-- Card: Noirvere -->
-      <a href="#book" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
-        <div style="height:300px; overflow:hidden;"><img loading="lazy" src="assets/Noirver%20V2.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center center;"></div>
+      <a href="#book" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div class="case-img-wrap"><img loading="lazy" src="assets/Noirver%20V2.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center center;"><div class="case-stat-overlay"><span class="case-stat-number">5X</span><span class="case-stat-label">peak ROAS</span></div></div>
         <div style="padding:14px 16px; display:flex; align-items:center; gap:8px; border-top:1px solid rgba(0,0,0,0.06);">
           <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">Noirvere</span>
           <span style="font-size:10px; font-weight:700; background:rgba(234,88,12,0.1); color:#c2410c; border:1px solid rgba(234,88,12,0.25); border-radius:100px; padding:2px 9px;">DTC Fashion</span>
@@ -854,8 +863,8 @@
       </a>
 
       <!-- Card: CozyBeds -->
-      <a href="#book" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
-        <div style="height:300px; overflow:hidden;"><img loading="lazy" src="assets/CozyBeds%20Case%20Study%20V2.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center center;"></div>
+      <a href="#book" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div class="case-img-wrap"><img loading="lazy" src="assets/CozyBeds%20Case%20Study%20V2.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center center;"><div class="case-stat-overlay"><span class="case-stat-number">4X</span><span class="case-stat-label">ROAS on Meta</span></div></div>
         <div style="padding:14px 16px; display:flex; align-items:center; gap:8px; border-top:1px solid rgba(0,0,0,0.06);">
           <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">CozyBeds</span>
           <span style="font-size:10px; font-weight:700; background:rgba(234,88,12,0.1); color:#c2410c; border:1px solid rgba(234,88,12,0.25); border-radius:100px; padding:2px 9px;">DTC</span>
@@ -864,8 +873,8 @@
       </a>
 
       <!-- Card: Tiny Protectors -->
-      <a href="#book" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
-        <div style="height:300px; overflow:hidden;"><img loading="lazy" src="assets/TP%20Case%20Study%20v2.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center top;"></div>
+      <a href="#book" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div class="case-img-wrap"><img loading="lazy" src="assets/TP%20Case%20Study%20v2.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center top;"><div class="case-stat-overlay"><span class="case-stat-number">4X</span><span class="case-stat-label">ROAS on TikTok</span></div></div>
         <div style="padding:14px 16px; display:flex; align-items:center; gap:8px; border-top:1px solid rgba(0,0,0,0.06);">
           <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">Tiny Protectors</span>
           <span style="font-size:10px; font-weight:700; background:rgba(234,88,12,0.1); color:#c2410c; border:1px solid rgba(234,88,12,0.25); border-radius:100px; padding:2px 9px;">DTC Kids</span>
@@ -874,8 +883,8 @@
       </a>
 
       <!-- Card: One Great Lottery -->
-      <a href="#book" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
-        <div style="height:300px; overflow:hidden;"><img loading="lazy" src="assets/Lottery%20Case%20Study%20V2.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center center;"></div>
+      <a href="#book" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div class="case-img-wrap"><img loading="lazy" src="assets/Lottery%20Case%20Study%20V2.jpg" style="width:100%; height:100%; object-fit:cover; object-position:center center;"><div class="case-stat-overlay"><span class="case-stat-number">3X</span><span class="case-stat-label">ROAS on Google</span></div></div>
         <div style="padding:14px 16px; display:flex; align-items:center; gap:8px; border-top:1px solid rgba(0,0,0,0.06);">
           <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">One Great Lottery</span>
           <span style="font-size:10px; font-weight:700; background:rgba(234,88,12,0.1); color:#c2410c; border:1px solid rgba(234,88,12,0.25); border-radius:100px; padding:2px 9px;">B2C</span>
@@ -1927,6 +1936,41 @@ document.querySelectorAll('.hero-marquee-track').forEach(function(track) {
   }, { passive: true });
   scroll.addEventListener('touchend', endDrag, { passive: true });
   scroll.addEventListener('touchcancel', endDrag, { passive: true });
+})();
+
+// ── Count-up for results stat row ─────────────────────────────────────────────
+(function() {
+  var stats = [
+    { id: 'stat-roas',     target: 5,  suffix: 'X', duration: 1000 },
+    { id: 'stat-pipeline', target: 2,  suffix: 'X', duration: 900  },
+    { id: 'stat-faster',   target: 50, suffix: '%', duration: 1100 }
+  ];
+  var triggered = false;
+  var statRow = document.getElementById('stat-roas');
+  if (!statRow) return;
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+  function runCount(id, target, suffix, duration) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      el.textContent = (p >= 1 ? target : Math.round(easeOut(p) * target)) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var obs = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !triggered) {
+      triggered = true;
+      stats.forEach(function(s, i) {
+        setTimeout(function() { runCount(s.id, s.target, s.suffix, s.duration); }, i * 150);
+      });
+      obs.disconnect();
+    }
+  }, { threshold: 0.5 });
+  obs.observe(statRow);
 })();
 </script>
 
