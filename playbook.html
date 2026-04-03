@@ -516,8 +516,7 @@
     </div>
     <div class="pb-form-card">
       <!-- Formspree: replace YOUR_FORM_ID at formspree.io/forms/new -->
-      <form action="https://formspree.io/f/xwvwrbgj" method="POST">
-        <input type="hidden" name="_next" value="https://zohaahmed1.github.io/stn-creative-demo/playbook-thanks.html">
+      <form id="pb-form" action="https://formspree.io/f/xwvwrbgj" method="POST">
         <input type="hidden" name="_subject" value="New Reddit Playbook Download">
         <div class="pb-form-row">
           <div class="pb-form-field">
@@ -616,6 +615,34 @@
       dropdownTrigger.classList.add('active');
     }
   })();
+
+  // Playbook form — fetch submit + redirect to thank you page
+  var pbForm = document.getElementById('pb-form');
+  if (pbForm) {
+    pbForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var btn = pbForm.querySelector('.pb-submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+      fetch(pbForm.action, {
+        method: 'POST',
+        body: new FormData(pbForm),
+        headers: { 'Accept': 'application/json' }
+      })
+      .then(function(res) {
+        if (res.ok) {
+          window.location.href = 'playbook-thanks.html';
+        } else {
+          btn.disabled = false;
+          btn.textContent = 'Something went wrong — try again';
+        }
+      })
+      .catch(function() {
+        btn.disabled = false;
+        btn.textContent = 'Something went wrong — try again';
+      });
+    });
+  }
 </script>
 </body>
 </html>
