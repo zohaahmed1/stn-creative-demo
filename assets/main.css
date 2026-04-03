@@ -943,8 +943,12 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Testimonial cards pause on hover */
-    .testimonials-track:hover { animation-play-state: paused; }
+    /* Testimonial cards pause on hover or touch */
+    .testimonials-track:hover,
+    .testimonials-scroll.is-touching .testimonials-track { animation-play-state: paused; }
+    .testimonials-scroll { cursor: grab; }
+    .testimonials-scroll.is-dragging,
+    .testimonials-scroll.is-touching { cursor: grabbing; }
 
     /* Badge hover */
     .badge:hover {
@@ -1279,7 +1283,7 @@
     @media (max-width: 809px) {
       /* Nav */
       .nav-links, .nav-email { display: none !important; }
-      .hamburger { display: none !important; }
+      .hamburger { display: flex !important; }
       .nav-right { display: flex !important; }
       .nav-inner { padding: 12px 0 !important; }
       .nav-logo { font-size: 18px !important; white-space: nowrap; }
@@ -1389,7 +1393,9 @@
       .faq-toggle { width: 28px !important; height: 28px !important; flex-shrink: 0 !important; font-size: 16px !important; }
 
       /* Book / Calendly section */
-      #book { padding: 40px 0 !important; }
+      #book { padding: 40px 16px !important; flex-direction: column !important; border-radius: 16px !important; }
+      #book > div:first-child { padding: 36px 24px 24px !important; }
+      #book > div:last-child { padding: 16px !important; }
       .calendly-inline-widget { height: 700px !important; min-height: 600px !important; }
 
       /* Logo strip */

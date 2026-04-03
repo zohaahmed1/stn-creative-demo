@@ -45,9 +45,9 @@
       <span class="logo-skip">Skip the</span><span class="logo-noise">Noise</span>
     </a>
     <div class="nav-links">
-      <a href="#work" class="nav-link">Results</a>
       <a href="services.html" class="nav-link">Services</a>
       <a href="gallery.html" class="nav-link">Portfolio</a>
+      <a href="#work" class="nav-link">Results</a>
       <a href="process.html" class="nav-link">Process</a>
       <a href="#team" class="nav-link">Team</a>
     </div>
@@ -58,9 +58,9 @@
   </div>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#work" class="mobile-menu-link" onclick="closeMobileMenu()">Results</a>
   <a href="services.html" class="mobile-menu-link">Services</a>
   <a href="gallery.html" class="mobile-menu-link">Portfolio</a>
+  <a href="#work" class="mobile-menu-link" onclick="closeMobileMenu()">Results</a>
   <a href="process.html" class="mobile-menu-link">Process</a>
   <a href="#team" class="mobile-menu-link" onclick="closeMobileMenu()">Team</a>
   <a href="#book" class="mobile-menu-cta" onclick="closeMobileMenu()">3 free ads. Keep them.</a>
@@ -751,7 +751,7 @@
 
       <div class="gal-grid gal-3" style="margin-bottom:28px;" data-anim data-delay="1" data-stagger>
         <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:9/16;background:#111;">
-          <video autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;"><source src="./assets/Icecream video 1.mp4" type="video/mp4"></video>
+          <video autoplay loop muted playsinline poster="./assets/Icecream 1.jpg" style="width:100%;height:100%;object-fit:cover;"><source src="./assets/Icecream%20video%201.mp4" type="video/mp4"></video>
           <div style="position:absolute;bottom:0;left:0;right:0;padding:12px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,0.8));color:white;"><p style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">Food · Meta</p><p style="font-size:16px;font-weight:800;color:#facc15;margin-top:2px;">Ice cream</p></div>
         </div>
         <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:9/16;background:#111;">
@@ -759,7 +759,7 @@
           <div style="position:absolute;bottom:0;left:0;right:0;padding:12px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,0.8));color:white;"><p style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">Beauty · Meta</p><p style="font-size:16px;font-weight:800;color:#facc15;margin-top:2px;">Lipstick close-up</p></div>
         </div>
         <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:9/16;background:#111;">
-          <video autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;"><source src="./assets/Fisheye 1.mp4" type="video/mp4"></video>
+          <video autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;"><source src="./assets/Fisheye%201.mp4" type="video/mp4"></video>
           <div style="position:absolute;bottom:0;left:0;right:0;padding:12px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,0.8));color:white;"><p style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">Fashion · Meta</p><p style="font-size:16px;font-weight:800;color:#facc15;margin-top:2px;">Fisheye</p></div>
         </div>
       </div>
@@ -1513,22 +1513,18 @@
 
 
 <!-- BOOK A CALL — Calendly embed -->
-<section id="book" class="section-inner" style="display:flex; min-height:600px; background:#FFEDED; border-radius:24px; overflow:hidden; margin:0 24px 40px;">
-
-  <!-- Left: content -->
-  <div style="flex:1; padding:72px 56px; display:flex; flex-direction:column; justify-content:center; min-width:0;">
-    <div style="max-width:420px;">
-      <div class="h2 book-headline" style="line-height:1.1; margin-bottom:20px;">
-        <span class="book-line">Get your free <span class="badge badge-blue"><em style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700;">audit.</em></span></span>
+<section id="book" class="section-inner" style="padding:80px 0; background:#FFEDED;">
+  <div class="container" style="max-width:900px;">
+    <div style="text-align:center; margin-bottom:48px;">
+      <div class="h2 book-headline" style="line-height:1.1; margin-bottom:0;">
+        <span style="display:block; overflow:hidden; padding:6px 12px; margin:-6px -12px;">
+          <span class="book-line" style="display:block; transform:translateY(110%); transition:transform 1s cubic-bezier(0.16,1,0.3,1) 0s;">Get your free <span class="badge badge-blue" style="vertical-align:middle;"><em style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700;">audit.</em></span></span>
+        </span>
       </div>
-      <p class="book-sub body" style="margin-top:0; font-size:17px; line-height:1.7; color:var(--gray-400);">30 minutes. We'll audit your ad library, show you where competitors are outproducing you, and build you 3 creatives. Free. No strings.</p>
+      <p class="book-sub body" style="margin-top:20px; max-width:520px; margin-left:auto; margin-right:auto; opacity:0; transform:translateY(20px); transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1) 0.7s, transform 0.8s cubic-bezier(0.16,1,0.3,1) 0.7s;">30 minutes. We'll audit your ad library, show you where competitors are outproducing you, and build you 3 creatives. Free. No strings.</p>
     </div>
-  </div>
-
-  <!-- Right: Calendly -->
-  <div style="flex:1.2; background:#fff; display:flex; align-items:center; justify-content:center; padding:32px; min-width:0;">
-    <div style="width:100%; max-width:520px;">
-      <div class="calendly-inline-widget" data-url="https://calendly.com/skipthenoisemedia/30min" style="min-width:280px;height:620px;"></div>
+    <div class="book-widget" style="opacity:0; transform:scale(0.97); transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1) 1.1s, transform 0.9s cubic-bezier(0.16,1,0.3,1) 1.1s;">
+      <div class="calendly-inline-widget" data-url="https://calendly.com/skipthenoisemedia/30min" style="min-width:320px;height:700px;border-radius:24px;overflow:hidden;"></div>
       <script>
         (function(){
           var loaded = false;
@@ -1547,7 +1543,6 @@
       </script>
     </div>
   </div>
-
 </section>
 
 <!-- CTA (hidden for now) -->
@@ -1619,7 +1614,7 @@
           </div>
         </div>
         <div>
-          <p style="color:var(--white); font-weight:700; margin-bottom:16px;">3 free ads. Keep them.</p>
+          <p style="color:var(--white); font-weight:700; margin-bottom:16px;">Get started</p>
           <a href="#book" class="btn btn-light" style="margin-top:8px;">
             <span class="btn-inner">3 free ads. Keep them.</span>
             <span class="btn-bg" style="background:var(--blue);"></span>
@@ -1819,6 +1814,120 @@ function closeMobileMenu() {
   hamburger.classList.remove('open');
   document.body.style.overflow = '';
 }
+</script>
+
+<script>
+// ── Mobile: show services cards via IntersectionObserver (no wheel on touch) ──
+(function() {
+  if (!('ontouchstart' in window) && !window.matchMedia('(hover: none)').matches) return;
+  var section = document.getElementById('services');
+  if (!section) return;
+  var obs = new IntersectionObserver(function(entries) {
+    if (!entries[0].isIntersecting) return;
+    var cards = section.querySelectorAll('.linea-card');
+    cards.forEach(function(card) {
+      var pills = card.querySelectorAll('.linea-pill');
+      pills.forEach(function(p, i) { p.style.transitionDelay = (0.15 + i * 0.05) + 's'; });
+      card.classList.add('linea-card-visible');
+    });
+    // Trigger counters
+    function animateCount(elId, target, suffix, duration, delay) {
+      setTimeout(function() {
+        var el = document.getElementById(elId);
+        if (!el) return;
+        var start = null;
+        function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+        function step(ts) {
+          if (!start) start = ts;
+          var progress = Math.min((ts - start) / duration, 1);
+          el.textContent = (progress >= 1 ? target : Math.round(easeOut(progress) * target)) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }, delay);
+    }
+    animateCount('creative-counter', 500, '+', 1200, 0);
+    animateCount('roas-counter', 30, '%', 900, 300);
+    animateCount('pipeline-counter', 20, '%', 900, 500);
+    animateCount('faster-counter', 50, '%', 900, 700);
+    obs.disconnect();
+  }, { threshold: 0.12 });
+  obs.observe(section);
+})();
+
+// ── Touch pause for hero marquee ──────────────────────────────────────────────
+document.querySelectorAll('.hero-marquee-track').forEach(function(track) {
+  track.addEventListener('touchstart', function() {
+    track.style.animationPlayState = 'paused';
+  }, { passive: true });
+  track.addEventListener('touchend', function() {
+    track.style.animationPlayState = 'running';
+  }, { passive: true });
+  track.addEventListener('touchcancel', function() {
+    track.style.animationPlayState = 'running';
+  }, { passive: true });
+});
+
+// ── Drag + touch for testimonials ─────────────────────────────────────────────
+(function() {
+  var scroll = document.querySelector('.testimonials-scroll');
+  var track = document.querySelector('.testimonials-track');
+  if (!scroll || !track) return;
+
+  var isDown = false;
+  var startX = 0;
+  var baseOffset = 0;
+
+  function getTranslateX() {
+    var m = new DOMMatrix(window.getComputedStyle(track).transform);
+    return m.m41;
+  }
+  function startDrag(clientX) {
+    isDown = true;
+    baseOffset = getTranslateX();
+    startX = clientX;
+    track.style.animation = 'none';
+    track.style.transform = 'translateX(' + baseOffset + 'px)';
+  }
+  function moveDrag(clientX) {
+    if (!isDown) return;
+    var delta = clientX - startX;
+    track.style.transform = 'translateX(' + (baseOffset + delta) + 'px)';
+  }
+  function endDrag() {
+    if (!isDown) return;
+    isDown = false;
+    scroll.classList.remove('is-dragging', 'is-touching');
+    // Resume animation from current position (approximate)
+    var cur = getTranslateX();
+    var half = track.scrollWidth / 2;
+    var pct = Math.abs(cur % half) / half;
+    var delay = -(pct * 40); // 40s = animation duration
+    track.style.animation = 'none';
+    track.style.transform = '';
+    track.offsetHeight; // force reflow
+    track.style.animation = 'testi-scroll 40s ' + delay + 's linear infinite';
+  }
+
+  // Mouse
+  scroll.addEventListener('mousedown', function(e) {
+    startDrag(e.clientX);
+    scroll.classList.add('is-dragging');
+  });
+  document.addEventListener('mousemove', function(e) { moveDrag(e.clientX); });
+  document.addEventListener('mouseup', endDrag);
+
+  // Touch
+  scroll.addEventListener('touchstart', function(e) {
+    startDrag(e.touches[0].clientX);
+    scroll.classList.add('is-touching');
+  }, { passive: true });
+  scroll.addEventListener('touchmove', function(e) {
+    moveDrag(e.touches[0].clientX);
+  }, { passive: true });
+  scroll.addEventListener('touchend', endDrag, { passive: true });
+  scroll.addEventListener('touchcancel', endDrag, { passive: true });
+})();
 </script>
 
 </body>
