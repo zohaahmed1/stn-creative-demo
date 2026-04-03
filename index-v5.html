@@ -58,7 +58,6 @@
        RESET & BASE
        ============================================= */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    /* Lenis CSS rules removed */
     html { font-size: 18px; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; scroll-padding-top: 100px; scrollbar-width: none; }
     html::-webkit-scrollbar { display: none; }
 
@@ -1253,9 +1252,9 @@
       transform: none;
     }
 
-    /* Magnetic button base — will-change applied dynamically on hover only */
+    /* Magnetic button base */
     .btn {
-      transition: transform 0.2s ease;
+      will-change: transform;
     }
 
     /* Gallery stagger children */
@@ -1278,7 +1277,7 @@
       transform: translateY(0);
     }
 
-    /* Parallax elements — will-change applied only to hero images which get JS transform */
+    /* Parallax elements should not jitter */
     .hero-collage-main,
     .hero-collage-sub,
     .hero-collage > div[style*="position:absolute"] {
@@ -1288,7 +1287,9 @@
     /* =============================================
        SCROLL-LINKED PARALLAX — depth layers
        ============================================= */
-    /* [data-parallax] will-change removed — applied dynamically via JS when needed */
+    [data-parallax] {
+      will-change: transform;
+    }
 
     /* Section scale-in reveal */
     .section-rounded[data-scroll-scale] {
@@ -1679,6 +1680,7 @@
       display: flex;
       gap: 20px;
       padding: 0 24px;
+      will-change: transform;
     }
     .hscroll-item {
       flex-shrink: 0;
@@ -1726,7 +1728,6 @@
     /* ── (3D tilt, scroll snap, GSAP stacking removed) ── */
 
   </style>
-  <!-- Lenis removed — using native scroll for performance -->
 </head>
 <body>
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -3608,16 +3609,13 @@
 </footer>
 
   <script>
-    // ── Native smooth scroll (replaced Lenis — no rAF loop overhead) ──
-    document.documentElement.style.scrollBehavior = 'smooth';
-    // Wire anchor links
+    // ── Anchor link smooth scroll ────────────────────────────────
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         const target = document.querySelector(a.getAttribute('href'));
         if (target) {
           e.preventDefault();
-          const top = target.getBoundingClientRect().top + window.scrollY - 100;
-          window.scrollTo({ top, behavior: 'smooth' });
+          window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 100, behavior: 'smooth' });
         }
       });
     });
@@ -3781,7 +3779,7 @@
         if (bloomProgress >= 1) {
           bloomRevealed = true;
           bloomLocked = false;
-          // lenis.start() removed — using native scroll
+          /* scroll re-enabled natively */
         }
       }
 
@@ -3791,7 +3789,7 @@
           e.preventDefault();
           if (!bloomLocked) {
             bloomLocked = true;
-            // lenis.stop() removed — using native scroll
+            /* lenis.stop() — native scroll blocked by e.preventDefault() above */
             window.scrollTo({ top: 0, behavior: 'instant' });
           }
           animateBloom(e.deltaY);
@@ -3810,7 +3808,7 @@
           e.preventDefault();
           if (!bloomLocked) {
             bloomLocked = true;
-            // lenis.stop() removed — using native scroll
+            /* lenis.stop() — native scroll blocked by e.preventDefault() above */
             window.scrollTo({ top: 0, behavior: 'instant' });
           }
           animateBloom(delta);
@@ -3862,27 +3860,25 @@
       if (pLine) pLine.style.transform = 'scaleX(1)';
     }, 5000);
 
-    // ── Floating nav + scroll progress (integrated with Lenis) ─────
+    // ── Nav + scroll progress ──────────────────────────────────────
     const nav = document.querySelector('.nav');
     const progressBar = document.getElementById('scrollProgress');
 
-    // ── Hero parallax ──────────────────────────────────────────────
+    // ── Hero parallax setup ────────────────────────────────────────
     const heroSection = document.querySelector('.hero');
     const heroMain = document.querySelector('.hero-collage-main');
     const heroSubs = document.querySelectorAll('.hero-collage-sub');
     const aiBadge = document.querySelector('.hero-collage > div[style*="position:absolute"]');
     let heroInView = true;
-    const heroCollageEl = document.querySelector('.hero-collage');
     const heroParallaxObs = new IntersectionObserver(entries => {
       heroInView = entries[0].isIntersecting;
-      if (heroCollageEl) heroCollageEl.style.animationPlayState = heroInView ? 'running' : 'paused';
     }, { threshold: 0 });
     if (heroSection) heroParallaxObs.observe(heroSection);
 
-    // ── Mobile check ─────────────────────────────────────────────
+    // ── Mobile check ──────────────────────────────────────────────
     const isMobile = window.innerWidth < 810;
 
-    // ── Section scale-in reveal ─────────────────────────────────────
+    // ── Section scale-in reveal ───────────────────────────────────
     const scaleObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) e.target.classList.add('scale-visible');
@@ -3890,29 +3886,27 @@
     }, { threshold: 0.05, rootMargin: '0px 0px -60px 0px' });
     document.querySelectorAll('[data-scroll-scale]').forEach(el => scaleObs.observe(el));
 
-    // ── Single rAF-throttled native scroll handler ────────────────────
-    // Replaces all lenis.on('scroll') — one passive listener, one rAF tick max per frame
-    let _scrollTick = false;
-    function handleScroll() {
-      if (_scrollTick) return;
-      _scrollTick = true;
-      requestAnimationFrame(() => {
-        const scroll = window.scrollY;
-        // Nav + progress bar
+    // ── Single rAF-gated scroll handler (replaces all lenis.on calls) ─
+    let _sTick = false;
+    window.addEventListener('scroll', function() {
+      if (_sTick) return;
+      _sTick = true;
+      requestAnimationFrame(function() {
+        var scroll = window.scrollY;
+        // Nav scrolled state + progress bar
         nav.classList.toggle('scrolled', scroll > 100);
-        const scrollPct = (scroll / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-        progressBar.style.width = scrollPct + '%';
-        // Hero parallax (only while hero is visible)
-        if (heroInView && !isMobile) {
+        progressBar.style.width = (scroll / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+        // Hero parallax — desktop only, only while hero visible
+        if (!isMobile && heroInView) {
           if (heroMain) heroMain.style.transform = 'translateY(' + (scroll * 0.15) + 'px)';
-          heroSubs.forEach(s => { s.style.transform = 'translateY(' + (scroll * 0.08) + 'px)'; });
+          heroSubs.forEach(function(s) { s.style.transform = 'translateY(' + (scroll * 0.08) + 'px)'; });
           if (aiBadge) aiBadge.style.transform = 'translateY(' + (scroll * 0.2) + 'px)';
         }
-        _scrollTick = false;
+        _sTick = false;
       });
-    }
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // run once on load
+    }, { passive: true });
+    // Run once on load to set initial state
+    nav.classList.toggle('scrolled', window.scrollY > 100);
 
     // ── Magnetic buttons ───────────────────────────────────────────
     document.querySelectorAll('.btn').forEach(btn => {
@@ -3993,18 +3987,17 @@
       opacity: '0',
     });
     document.body.appendChild(trail);
-    let tx = 0, ty = 0, cx = 0, cy = 0, trailOnDark = false;
-    // Check dark-section on mousemove (not every rAF) — avoids elementFromPoint layout recalc at 60fps
-    document.addEventListener('mousemove', e => {
-      tx = e.clientX; ty = e.clientY;
-      trailOnDark = !!(e.target && (e.target.closest('.section-dark') || e.target.closest('.logo-strip') || e.target.closest('.cta')));
-    });
+    let tx = 0, ty = 0, cx = 0, cy = 0;
+    document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
     (function animTrail() {
       cx += (tx - cx) * 0.15;
       cy += (ty - cy) * 0.15;
       trail.style.left = cx + 'px';
       trail.style.top  = cy + 'px';
-      trail.style.opacity = trailOnDark ? '1' : '0';
+      // Only show on dark sections
+      const el = document.elementFromPoint(cx, cy);
+      const onDark = el && (el.closest('.section-dark') || el.closest('.logo-strip') || el.closest('.cta'));
+      trail.style.opacity = onDark ? '1' : '0';
       requestAnimationFrame(animTrail);
     })();
 
@@ -4073,17 +4066,12 @@
       let isDragging = false, startX = 0, dragOffset = 0;
       let isHovered = false;
 
-      let tScrollInView = false;
-      new IntersectionObserver(([e]) => { tScrollInView = e.isIntersecting; }, { threshold: 0.01 }).observe(tScroll);
-
       function tick() {
-        if (tScrollInView) {
-          if (!isDragging && !isHovered) {
-            pos -= speed;
-            if (pos <= -halfWidth) pos += halfWidth;
-          }
-          tTrack.style.transform = `translate3d(${pos}px, 0, 0)`;
+        if (!isDragging && !isHovered) {
+          pos -= speed;
+          if (pos <= -halfWidth) pos += halfWidth;
         }
+        tTrack.style.transform = `translate3d(${pos}px, 0, 0)`;
         requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
@@ -4458,21 +4446,6 @@
     });
   }, { threshold: 0.15 });
   vids.forEach(function(v) { vObs.observe(v); });
-})();
-
-// Pause infinite CSS animations when their sections are off-screen
-(function() {
-  var animObs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      var anims = e.target.querySelectorAll('.pain-grad-text, .grad-text');
-      anims.forEach(function(a) {
-        a.style.animationPlayState = e.isIntersecting ? 'running' : 'paused';
-      });
-    });
-  }, { threshold: 0.01 });
-  document.querySelectorAll('.pain-section, .section-dark, [class*="section"]').forEach(function(s) {
-    if (s.querySelector('.pain-grad-text, .grad-text')) animObs.observe(s);
-  });
 })();
 
 // Mobile menu
