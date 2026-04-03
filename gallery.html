@@ -1083,6 +1083,27 @@
   }, {threshold: 0.1});
   document.querySelectorAll('[data-anim]').forEach(function(el){ obs.observe(el); });
 
+  // ── Lazy video playback — only play when in viewport ──
+  (function() {
+    var vids = document.querySelectorAll('video');
+    vids.forEach(function(v) {
+      v.removeAttribute('autoplay');
+      v.setAttribute('preload', 'none');
+      v.pause();
+    });
+    var vObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        if (e.isIntersecting) {
+          e.target.setAttribute('preload', 'metadata');
+          e.target.play().catch(function(){});
+        } else {
+          e.target.pause();
+        }
+      });
+    }, { threshold: 0.15 });
+    vids.forEach(function(v) { vObs.observe(v); });
+  })();
+
   // Mobile menu
   var hamburger = document.getElementById('hamburger');
   var mobileMenu = document.getElementById('mobile-menu');
