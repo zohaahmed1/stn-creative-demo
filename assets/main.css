@@ -1941,14 +1941,14 @@
   to   { transform: translateX(-50%); }
 }
 .hero-marquee-img {
-  width: 160px;
-  height: 200px;
+  width: 180px;
+  height: 220px;
   object-fit: cover;
   border-radius: 12px;
   flex-shrink: 0;
 }
 .hero-marquee-img--sq {
-  height: 160px;
+  height: 180px;
 }
 
 /* ── Mobile performance: defer off-screen rendering ─────────── */
