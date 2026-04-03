@@ -1,1249 +1,2011 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skip the Noise Media | Performance Creative + Media Buying</title>
-<meta name="description" content="We make the ads. We run the ads. We prove they work. GroupM trained strategists. AI accelerated production. One team from creative to conversion.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M4JR5P3B');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="assets/main.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Skip the Noise Media — AI Ad Creative + Performance Media Buying for DTC &amp; SaaS</title>
+  <meta name="description" content="AI-powered creative production and performance media buying under one roof. 20+ creatives/month. 3–4x ROAS for eComm. 2x pipeline for SaaS. Ex-WPP team. First ads live in 2 weeks.">
 
-:root {
-  --bg-dark: #08081a;
-  --bg-dark-alt: #0e0e28;
-  --bg-light: #ffffff;
-  --bg-cream: #f5f2ee;
-  --bg-gray: #fafafa;
-  --text-light: #ffffff;
-  --text-muted: rgba(255,255,255,0.5);
-  --text-dark: #1a1a4e;
-  --text-dark-muted: #5a5a7a;
-  --red: #ee0033;
-  --red-glow: rgba(238,0,51,0.25);
-  --purple: #5500dd;
-  --purple-glow: rgba(85,0,221,0.25);
-  --navy: #1a1a4e;
-  --gradient: linear-gradient(135deg, #ee0033, #5500dd);
-  --card-bg: rgba(255,255,255,0.04);
-  --card-border: rgba(255,255,255,0.08);
-  --card-border-hover: rgba(238,0,51,0.3);
-  --radius-card: 16px;
-  --radius-btn: 10px;
-  --radius-img: 12px;
-}
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zohaahmed1.github.io/stn-creative-demo/index.html">
+  <meta property="og:title" content="Skip the Noise Media — AI Ad Creative + Performance Media Buying">
+  <meta property="og:description" content="AI-powered creative production and performance media buying under one roof. 20+ creatives/month. 3–4x ROAS for eComm. 2x pipeline for SaaS. First ads live in 2 weeks.">
+  <meta property="og:image" content="https://zohaahmed1.github.io/stn-creative-demo/assets/One_Booth_v4.jpg">
 
-html { scroll-behavior: smooth; }
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Skip the Noise Media — AI Ad Creative + Performance Media Buying">
+  <meta name="twitter:description" content="AI-powered creative production and performance media buying under one roof. 20+ creatives/month. 3–4x ROAS for eComm. 2x pipeline for SaaS.">
+  <meta name="twitter:image" content="https://zohaahmed1.github.io/stn-creative-demo/assets/One_Booth_v4.jpg">
 
-body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg-light);
-  color: var(--text-dark);
-  font-weight: 400;
-  line-height: 1.6;
-  font-size: 17px;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  <!-- Canonical -->
+  <link rel="canonical" href="https://zohaahmed1.github.io/stn-creative-demo/index.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <!-- Non-blocking font loading — page renders immediately with system font fallback -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" as="style" onload="this.rel='stylesheet'">
+  <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700,900&display=swap" as="style" onload="this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700,900&display=swap" rel="stylesheet">
+  </noscript>
+  
 
-/* ---- SCROLL PROGRESS ---- */
-.scroll-progress {
-  position: fixed; top:0; left:0;
-  height: 3px;
-  background: var(--gradient);
-  z-index: 10001;
-  width: 0%;
-  transition: width 0.08s linear;
-}
-
-/* ---- GRAIN ---- */
-.grain {
-  position: fixed; top:0; left:0;
-  width:100%; height:100%;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.025;
-}
-
-/* ---- UTILS ---- */
-.container { max-width:1200px; margin:0 auto; padding:0 24px; }
-.container-wide { max-width:1400px; margin:0 auto; padding:0 24px; }
-
-.gradient-text {
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.eyebrow {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-.eyebrow-gradient {
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.section-headline {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  line-height: 1.08;
-  margin-bottom: 24px;
-}
-
-.section-pad { padding: 120px 0; }
-
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--gradient);
-  color: #fff;
-  font-weight: 600;
-  font-size: 16px;
-  padding: 14px 32px;
-  border: none;
-  border-radius: var(--radius-btn);
-  cursor: pointer;
-  text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  white-space: nowrap;
-}
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 30px rgba(238,0,51,0.3), 0 4px 15px rgba(85,0,221,0.2);
-}
-
-.btn-secondary {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: none;
-  color: rgba(255,255,255,0.7);
-  font-weight: 500;
-  font-size: 15px;
-  padding: 12px 0;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-.btn-secondary:hover { color: #fff; }
-
-/* ---- REVEAL ---- */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
-}
-.reveal.visible { opacity:1; transform:translateY(0); }
-
-/* ======================================
-   1. NAV
-   ====================================== */
-.nav {
-  position: fixed; top:0; left:0; right:0;
-  z-index: 1000;
-  padding: 18px 0;
-  transition: background 0.4s, backdrop-filter 0.4s, padding 0.4s, box-shadow 0.4s;
-}
-.nav.scrolled {
-  background: rgba(8,8,26,0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  padding: 12px 0;
-  box-shadow: 0 1px 40px rgba(0,0,0,0.3);
-}
-.nav-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.nav-logo {
-  font-size: 18px;
-  font-weight: 800;
-  color: #fff;
-  text-decoration: none;
-  letter-spacing: -0.02em;
-}
-.nav-logo span { color: var(--red); }
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 36px;
-  list-style: none;
-}
-.nav-links a {
-  color: rgba(255,255,255,0.7);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-.nav-links a:hover { color: #fff; }
-.nav-cta {
-  background: var(--gradient);
-  color: #fff !important;
-  padding: 10px 24px;
-  border-radius: var(--radius-btn);
-  font-weight: 600 !important;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-.nav-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(238,0,51,0.3);
-  color: #fff !important;
-}
-
-@media (max-width: 809px) {
-  .nav-links { display: none; }
-  .nav-mobile-cta {
-    display: inline-flex;
-    background: var(--gradient);
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: var(--radius-btn);
-    font-weight: 600;
-    font-size: 14px;
-    text-decoration: none;
-  }
-}
-@media (min-width: 810px) {
-  .nav-mobile-cta { display: none; }
-}
-
-/* ======================================
-   2. HERO
-   ====================================== */
-.hero {
-  background: var(--bg-dark);
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  padding: 140px 0 100px;
-}
-.hero-glow-red {
-  position: absolute;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(238,0,51,0.15), transparent 70%);
-  top: -100px; left: -100px;
-  pointer-events: none;
-}
-.hero-glow-purple {
-  position: absolute;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(85,0,221,0.12), transparent 70%);
-  bottom: -100px; right: -100px;
-  pointer-events: none;
-}
-.hero-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  align-items: center;
-}
-.hero-content { position: relative; z-index: 2; }
-.hero-eyebrow {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
-  margin-bottom: 32px;
-}
-.hero-eyebrow span { color: var(--red); }
-.hero-headline {
-  font-size: clamp(2.4rem, 5vw, 3.8rem);
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: -0.04em;
-  line-height: 1.05;
-  margin-bottom: 28px;
-}
-.hero-headline .line { display: block; }
-.hero-sub {
-  font-size: 17px;
-  color: rgba(255,255,255,0.55);
-  line-height: 1.65;
-  margin-bottom: 40px;
-  max-width: 520px;
-}
-.hero-founders {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 40px;
-}
-.founder-avatar {
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 18px;
-  color: #fff;
-  flex-shrink: 0;
-}
-.founder-avatar-z { background: var(--gradient); }
-.founder-avatar-s { background: var(--purple); }
-.hero-founder-text {
-  font-size: 13px;
-  color: rgba(255,255,255,0.4);
-  line-height: 1.5;
-}
-.hero-founder-text strong { color: rgba(255,255,255,0.7); font-weight: 600; }
-
-.hero-ctas { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-
-.hero-collage {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-.hero-collage img {
-  width: 100%;
-  border-radius: var(--radius-img);
-  object-fit: cover;
-}
-.hero-collage .img-tall { grid-row: span 2; height: 100%; }
-.hero-collage .img-short { height: 180px; }
-
-@media (max-width: 809px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-  .hero-collage { display: none; }
-  .hero { min-height: auto; padding: 140px 0 80px; }
-}
-
-/* ======================================
-   3. CLIENT TRUST STRIP
-   ====================================== */
-.trust-strip {
-  background: #fff;
-  padding: 48px 0;
-  border-bottom: 1px solid rgba(26,26,78,0.06);
-}
-.trust-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 32px 48px;
-}
-.trust-label {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(26,26,78,0.25);
-  flex-shrink: 0;
-}
-.trust-name {
-  font-size: 15px;
-  font-weight: 600;
-  color: rgba(26,26,78,0.18);
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-}
-
-/* ======================================
-   4. SERVICES
-   ====================================== */
-.services {
-  background: var(--bg-gray);
-  padding: 120px 0;
-}
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  margin-top: 48px;
-}
-.service-card {
-  background: #fff;
-  border: 1px solid rgba(26,26,78,0.06);
-  border-radius: var(--radius-card);
-  padding: 36px 32px;
-  transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
-}
-.service-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(238,0,51,0.15);
-  box-shadow: 0 12px 40px rgba(26,26,78,0.06);
-}
-.service-icon {
-  font-size: 28px;
-  margin-bottom: 16px;
-  display: block;
-}
-.service-title {
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 10px;
-  color: var(--navy);
-}
-.service-desc {
-  font-size: 15px;
-  color: var(--text-dark-muted);
-  line-height: 1.65;
-}
-
-@media (max-width: 809px) {
-  .services-grid { grid-template-columns: 1fr; }
-}
-
-/* ======================================
-   5. CREATIVE GALLERY
-   ====================================== */
-.gallery {
-  background: var(--bg-cream);
-  padding: 120px 0;
-}
-.gallery-videos {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-top: 48px;
-  margin-bottom: 24px;
-}
-.gallery-videos video {
-  width: 100%;
-  aspect-ratio: 9/16;
-  object-fit: cover;
-  border-radius: var(--radius-img);
-  background: #e0ddd8;
-}
-.gallery-bento {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 200px;
-  gap: 16px;
-}
-.gallery-bento img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: var(--radius-img);
-  transition: transform 0.5s ease;
-}
-.gallery-bento img:hover { transform: scale(1.02); }
-.gallery-bento .span-2 { grid-column: span 2; }
-.gallery-bento .tall { grid-row: span 2; }
-
-.gallery-caption {
-  font-size: 14px;
-  color: var(--text-dark-muted);
-  margin-top: 24px;
-  text-align: center;
-  font-style: italic;
-}
-
-@media (max-width: 809px) {
-  .gallery-videos { grid-template-columns: repeat(2, 1fr); }
-  .gallery-bento {
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 160px;
-  }
-  .gallery-bento .span-2 { grid-column: span 1; }
-  .gallery-bento .tall { grid-row: span 1; }
-}
-
-/* ======================================
-   6. THE PROBLEM
-   ====================================== */
-.problem {
-  background: #fff;
-  padding: 120px 0;
-}
-.problem-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 48px;
-  margin-top: 56px;
-  margin-bottom: 56px;
-}
-.problem-item { position: relative; }
-.problem-number {
-  font-size: 120px;
-  font-weight: 900;
-  letter-spacing: -0.06em;
-  line-height: 1;
-  background: linear-gradient(180deg, rgba(26,26,78,0.06), rgba(26,26,78,0.02));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  position: absolute;
-  top: -20px;
-  left: -4px;
-  pointer-events: none;
-}
-.problem-text {
-  position: relative;
-  z-index: 1;
-  padding-top: 48px;
-}
-.problem-title {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  margin-bottom: 12px;
-  color: var(--navy);
-}
-.problem-desc {
-  font-size: 15px;
-  color: var(--text-dark-muted);
-  line-height: 1.7;
-}
-.problem-tagline {
-  text-align: center;
-  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: var(--navy);
-}
-.problem-tagline span {
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-@media (max-width: 809px) {
-  .problem-grid { grid-template-columns: 1fr; gap: 48px; }
-}
-
-/* ======================================
-   7. THE LOOP
-   ====================================== */
-.loop {
-  background: var(--bg-dark);
-  padding: 120px 0;
-  position: relative;
-  overflow: hidden;
-}
-.loop-glow-red {
-  position: absolute;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(238,0,51,0.1), transparent 70%);
-  top: -150px; right: 10%;
-  pointer-events: none;
-}
-.loop-glow-purple {
-  position: absolute;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(85,0,221,0.08), transparent 70%);
-  bottom: -150px; left: 10%;
-  pointer-events: none;
-}
-.loop .eyebrow { color: var(--text-muted); }
-.loop .section-headline { color: #fff; }
-.loop-steps {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-top: 56px;
-  position: relative;
-}
-.loop-step {
-  text-align: center;
-  position: relative;
-  z-index: 1;
-}
-.loop-step-num {
-  width: 72px; height: 72px;
-  border-radius: 50%;
-  background: var(--gradient);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
-  font-weight: 800;
-  color: #fff;
-  margin: 0 auto 24px;
-  position: relative;
-}
-.loop-step-title {
-  font-size: 22px;
-  font-weight: 700;
-  color: #fff;
-  margin-bottom: 12px;
-  letter-spacing: -0.02em;
-}
-.loop-step-desc {
-  font-size: 15px;
-  color: var(--text-muted);
-  line-height: 1.65;
-  max-width: 300px;
-  margin: 0 auto;
-}
-/* connector lines between steps */
-.loop-connector {
-  position: absolute;
-  top: 36px;
-  left: calc(33.33% + 36px);
-  width: calc(33.33% - 72px);
-  height: 2px;
-  background: linear-gradient(90deg, var(--red), var(--purple));
-  opacity: 0.3;
-  z-index: 0;
-}
-.loop-connector-2 {
-  left: calc(66.66% + 36px);
-  width: calc(33.33% - 72px);
-}
-
-@media (max-width: 809px) {
-  .loop-steps { grid-template-columns: 1fr; gap: 48px; }
-  .loop-connector, .loop-connector-2 { display: none; }
-}
-
-/* ======================================
-   8. RESULTS
-   ====================================== */
-.results {
-  background: var(--bg-dark-alt);
-  padding: 120px 0;
-  position: relative;
-}
-.results .eyebrow { color: var(--text-muted); }
-.results .section-headline { color: #fff; }
-.results-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-  margin-top: 48px;
-}
-.result-card {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: var(--radius-card);
-  padding: 40px 36px;
-  transition: transform 0.4s, border-color 0.4s;
-}
-.result-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(238,0,51,0.2);
-}
-.result-card.featured {
-  grid-column: span 2;
-}
-.result-metric {
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  font-weight: 900;
-  letter-spacing: -0.04em;
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 8px;
-}
-.result-label {
-  font-size: 14px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.7);
-  margin-bottom: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-.result-desc {
-  font-size: 15px;
-  color: var(--text-muted);
-  line-height: 1.65;
-}
-
-@media (max-width: 809px) {
-  .results-grid { grid-template-columns: 1fr; }
-  .result-card.featured { grid-column: span 1; }
-}
-
-/* ======================================
-   9. ABOUT / TEAM
-   ====================================== */
-.team {
-  background: #fff;
-  padding: 120px 0;
-}
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
-  margin-top: 48px;
-}
-.team-card {
-  background: var(--bg-gray);
-  border: 1px solid rgba(26,26,78,0.06);
-  border-radius: var(--radius-card);
-  padding: 48px 40px;
-  transition: transform 0.4s, border-color 0.4s;
-}
-.team-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(238,0,51,0.12);
-}
-.team-avatar {
-  width: 72px; height: 72px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
-  font-weight: 800;
-  color: #fff;
-  margin-bottom: 24px;
-}
-.team-avatar-z { background: var(--gradient); }
-.team-avatar-s { background: var(--purple); }
-.team-name {
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--navy);
-  margin-bottom: 4px;
-}
-.team-role {
-  font-size: 14px;
-  font-weight: 600;
-  background: var(--gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 16px;
-}
-.team-bio {
-  font-size: 15px;
-  color: var(--text-dark-muted);
-  line-height: 1.7;
-}
-
-@media (max-width: 809px) {
-  .team-grid { grid-template-columns: 1fr; }
-}
-
-/* ======================================
-   10. PLATFORM STRIP
-   ====================================== */
-.platforms {
-  background: #fff;
-  padding: 56px 0;
-  border-top: 1px solid rgba(26,26,78,0.06);
-}
-.platform-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-.platform-pill {
-  background: var(--bg-gray);
-  border: 1px solid rgba(26,26,78,0.06);
-  border-radius: 100px;
-  padding: 10px 24px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-dark-muted);
-  white-space: nowrap;
-}
-
-/* ======================================
-   11. CTA
-   ====================================== */
-.cta-section {
-  background: var(--bg-dark);
-  padding: 100px 0 60px;
-  position: relative;
-  overflow: hidden;
-}
-.cta-glow-red {
-  position: absolute;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(238,0,51,0.1), transparent 70%);
-  top: -200px; left: 20%;
-  pointer-events: none;
-}
-.cta-glow-purple {
-  position: absolute;
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(85,0,221,0.08), transparent 70%);
-  bottom: -200px; right: 20%;
-  pointer-events: none;
-}
-.cta-content {
-  text-align: center;
-  position: relative;
-  z-index: 2;
-  max-width: 640px;
-  margin: 0 auto;
-}
-.cta-headline {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: -0.04em;
-  line-height: 1.08;
-  margin-bottom: 20px;
-}
-.cta-sub {
-  font-size: 16px;
-  color: var(--text-muted);
-  line-height: 1.65;
-  margin-bottom: 48px;
-}
-.calendly-wrap {
-  max-width: 700px;
-  margin: 0 auto 32px;
-  border-radius: 16px;
-  overflow: hidden;
-  background: var(--bg-dark-alt);
-}
-.cta-footnote {
-  font-size: 14px;
-  color: rgba(255,255,255,0.3);
-  text-align: center;
-}
-
-/* ======================================
-   12. FOOTER
-   ====================================== */
-.footer-top {
-  background: var(--bg-dark);
-  padding: 64px 0 48px;
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-.footer-top-inner {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 32px;
-}
-.footer-brand {
-  font-size: 18px;
-  font-weight: 800;
-  color: #fff;
-  letter-spacing: -0.02em;
-  margin-bottom: 8px;
-}
-.footer-brand span { color: var(--red); }
-.footer-tagline {
-  font-size: 14px;
-  color: var(--text-muted);
-}
-.footer-links {
-  display: flex;
-  gap: 32px;
-  list-style: none;
-}
-.footer-links a {
-  color: rgba(255,255,255,0.5);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-.footer-links a:hover { color: #fff; }
-.footer-email a {
-  color: rgba(255,255,255,0.5);
-  text-decoration: none;
-  font-size: 14px;
-  transition: color 0.3s;
-}
-.footer-email a:hover { color: #fff; }
-
-.footer-bottom {
-  background: #050510;
-  padding: 20px 0;
-}
-.footer-bottom-inner {
-  text-align: center;
-  font-size: 13px;
-  color: rgba(255,255,255,0.25);
-}
-
-/* ---- MISC ---- */
-::selection {
-  background: rgba(238,0,51,0.2);
-  color: inherit;
-}
-</style>
 </head>
 <body>
-
-<!-- Scroll Progress -->
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4JR5P3B" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div class="scroll-progress" id="scrollProgress"></div>
-
-<!-- Grain Overlay -->
-<svg class="grain" xmlns="http://www.w3.org/2000/svg"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100%" height="100%" filter="url(#grain)"/></svg>
-
-<!-- ======== 1. NAV ======== -->
-<nav class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="#" class="nav-logo">Skip the <span>Noise</span></a>
-    <ul class="nav-links">
-      <li><a href="#services">Services</a></li>
-      <li><a href="#gallery">Work</a></li>
-      <li><a href="#results">Results</a></li>
-      <li><a href="#team">About</a></li>
-      <li><a href="#cta" class="nav-cta">Book your free audit</a></li>
-    </ul>
-    <a href="#cta" class="nav-mobile-cta">Book your free audit</a>
+<div class="cursor-dot" id="cursorDot"></div>
+<!-- NAV -->
+<nav class="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">
+      <span class="logo-skip">Skip the</span><span class="logo-noise">Noise</span>
+    </a>
+    <div class="nav-links">
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="gallery.html" class="nav-link">Portfolio</a>
+      <a href="#work" class="nav-link">Results</a>
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          Resources
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="margin-left:3px;transition:transform 0.2s;"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu" role="menu">
+          <div class="nav-dropdown-section">Reddit</div>
+          <a href="playbook.html" class="nav-dropdown-item" role="menuitem">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            Ads Playbook
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="#book" style="display:inline-block; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:10px 22px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">3 free ads. Keep them.</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
   </div>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="services.html" class="mobile-menu-link">Services</a>
+  <a href="gallery.html" class="mobile-menu-link">Portfolio</a>
+  <a href="#work" class="mobile-menu-link" onclick="closeMobileMenu()">Results</a>
+  <a href="playbook.html" class="mobile-menu-link">Playbook</a>
+  <a href="#book" class="mobile-menu-cta" onclick="closeMobileMenu()">3 free ads. Keep them.</a>
+</div>
 
-<!-- ======== 2. HERO ======== -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-glow-red"></div>
-  <div class="hero-glow-purple"></div>
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-content reveal">
-        <div class="hero-eyebrow"><span>REDDIT CERTIFIED PARTNER</span> &nbsp;&middot;&nbsp; $20M+ AD SPEND MANAGED</div>
-        <h1 class="hero-headline">
-          <span class="line">We make the ads.</span>
-          <span class="line">We run the ads.</span>
-          <span class="line">We prove they work.</span>
-        </h1>
-        <p class="hero-sub">GroupM trained strategists. AI accelerated production. One team that owns the full loop from creative to conversion.</p>
-        <div class="hero-founders">
-          <div class="founder-avatar founder-avatar-z">Z</div>
-          <div class="founder-avatar founder-avatar-s">S</div>
-          <div class="hero-founder-text">
-            <strong>Zoha Ahmed</strong> &amp; <strong>Sonia Mohapatra</strong><br>
-            Ex-GroupM &middot; Adidas, Coca-Cola, Dell, Mars, Rogers
+  <div class="hero-bg"></div>
+  <!-- Floating platform badges -->
+  <div class="hero-content">
+
+    <!-- Centered text block -->
+    <div class="container hero-center">
+
+      <!-- Social proof row -->
+      <div data-anim="up" data-hero data-delay="1" style="display:flex; align-items:center; gap:12px; justify-content:center; flex-wrap:wrap;">
+        <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(85,0,221,0.07);border:1px solid rgba(85,0,221,0.22);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:700;color:#5500dd;">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#5500dd"/></svg>
+          SaaS 2x pipeline
+        </span>
+        <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(238,0,51,0.07);border:1px solid rgba(238,0,51,0.22);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:700;color:#cc0033;">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#ee0033"/></svg>
+          eComm 3–4x ROAS
+        </span>
+      </div>
+
+      <!-- Headline -->
+      <h1 class="hero-headline">
+        <span class="hero-headline-bold" data-hero data-delay="2">Performance marketing meets</span>
+        <span class="hero-headline-italic" data-hero data-delay="4"><em style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700;">AI-accelerated creative.</em></span>
+      </h1>
+
+      <!-- Sub-headline -->
+      <p data-anim="up" data-hero data-delay="5" style="max-width:900px; font-size:18px; color:var(--gray-400); line-height:1.6; text-align:center;">Creative production, media buying, and full-funnel execution — under one roof.</p>
+
+      <!-- CTA row -->
+      <div data-anim="up" data-hero data-delay="6" style="display:flex; align-items:center; gap:10px;">
+        <a href="#book" style="display:inline-block; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:12px 28px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">3 free ads. Keep them.</a>
+        <a href="#work" style="display:inline-block; background:white; color:#191923; font-size:14px; font-variation-settings:'wdth' 125,'wght' 600; padding:12px 24px; border-radius:100px; border:1.5px solid rgba(0,0,0,0.14); text-decoration:none; white-space:nowrap; box-shadow:0 1px 4px rgba(0,0,0,0.06); transition:box-shadow 0.2s;" onmouseover="this.style.boxShadow='0 2px 10px rgba(0,0,0,0.1)'" onmouseout="this.style.boxShadow='0 1px 4px rgba(0,0,0,0.06)'">See our work</a>
+      </div>
+
+    </div>
+
+    <!-- Gallery toggle (no label) -->
+    <div style="display:flex; justify-content:center; align-items:center; gap:12px; margin:16px 0 8px;">
+      <div style="display:flex; background:rgba(0,0,0,0.06); border-radius:100px; padding:4px; gap:0; border:1.5px solid rgba(0,0,0,0.08);">
+        <button type="button" id="htoggle-saas" onclick="switchHeroGallery('saas')" style="font-size:13px; font-weight:700; padding:11px 22px; min-height:44px; border-radius:100px; border:none; background:#5500dd; color:#fff; cursor:pointer; transition:all 0.22s; box-shadow:0 2px 8px rgba(85,0,221,0.28);">SaaS</button>
+        <button type="button" id="htoggle-ecomm" onclick="switchHeroGallery('ecomm')" style="font-size:13px; font-weight:700; padding:11px 22px; min-height:44px; border-radius:100px; border:none; background:transparent; color:rgba(0,0,0,0.45); cursor:pointer; transition:all 0.22s; box-shadow:none;">eComm / DTC</button>
+      </div>
+    </div>
+
+    <!-- eComm marquee (hidden by default) -->
+    <div id="hero-ecomm-gallery" class="hero-marquee-wrap" style="display:none;">
+      <div class="hero-marquee-track">
+        <img loading="eager" src="assets/Cpg_l5evv8k1.jpg" class="hero-marquee-img">
+        <img loading="eager" src="assets/handbag-fashion.jpg" class="hero-marquee-img" style="object-position:top;">
+        <img loading="eager" src="assets/Cpg_nO2xZZjv.jpg" class="hero-marquee-img">
+        <img loading="eager" src="assets/Protein_Bar_Advertisement_CDLIA58W.jpg" class="hero-marquee-img">
+        <img loading="eager" src="assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.jpg" class="hero-marquee-img">
+        <img loading="eager" src="assets/Protein_Bar_Advertisement_cTVg3CZh.jpg" class="hero-marquee-img">
+        <img loading="eager" src="assets/Protein_Bar_Advertisement_y5ER32ip2.jpg" class="hero-marquee-img">
+        <img loading="eager" src="assets/Lipstick_Campaign_dSJmLIvg.jpg" class="hero-marquee-img">
+        <img loading="eager" src="assets/handbag-walk.jpg" class="hero-marquee-img" style="object-position:top;">
+        <!-- duplicate for seamless loop -->
+        <img loading="lazy" src="assets/Cpg_l5evv8k1.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/handbag-fashion.jpg" class="hero-marquee-img" aria-hidden="true" style="object-position:top;">
+        <img loading="lazy" src="assets/Cpg_nO2xZZjv.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/Protein_Bar_Advertisement_CDLIA58W.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/Protein_Bar_Advertisement_cTVg3CZh.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/Protein_Bar_Advertisement_y5ER32ip2.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/Lipstick_Campaign_dSJmLIvg.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/handbag-walk.jpg" class="hero-marquee-img" aria-hidden="true" style="object-position:top;">
+      </div>
+    </div>
+
+    <!-- SaaS marquee (shown by default) -->
+    <div id="hero-saas-gallery" class="hero-marquee-wrap" style="display:block;">
+      <div class="hero-marquee-track">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_V5F-kd5P.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_cGkIrXL (1).jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_wRW96YqI.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_laAgn1rH.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_nnRo2A9l.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_In_a_flat_design_style_a_man_with_many_arms_duWjAS1.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_Vs9AWg1c.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <!-- duplicate for seamless loop -->
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_V5F-kd5P.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_cGkIrXL (1).jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_wRW96YqI.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_laAgn1rH.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_nnRo2A9l.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_flat_design_style_a_man_with_many_arms_duWjAS1.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_Vs9AWg1c.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+      </div>
+    </div>
+
+  </div>
+  <script>
+  function switchHeroGallery(type) {
+    var sg = document.getElementById('hero-saas-gallery');
+    var eg = document.getElementById('hero-ecomm-gallery');
+    var sb = document.getElementById('htoggle-saas');
+    var eb = document.getElementById('htoggle-ecomm');
+    if (type === 'ecomm') {
+      eg.style.display = 'block'; sg.style.display = 'none';
+      eb.style.background = '#ee0033'; eb.style.color = '#fff'; eb.style.boxShadow = '0 2px 8px rgba(238,0,51,0.28)';
+      sb.style.background = 'transparent'; sb.style.color = 'rgba(0,0,0,0.45)'; sb.style.boxShadow = 'none';
+    } else {
+      sg.style.display = 'block'; eg.style.display = 'none';
+      sb.style.background = '#5500dd'; sb.style.color = '#fff'; sb.style.boxShadow = '0 2px 8px rgba(85,0,221,0.28)';
+      eb.style.background = 'transparent'; eb.style.color = 'rgba(0,0,0,0.45)'; eb.style.boxShadow = 'none';
+    }
+  }
+  </script>
+</section>
+
+<!-- TRUST STRIP -->
+<section class="logo-strip" style="display:none;">
+  <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:20px; flex-wrap:wrap;">
+    <p style="text-align:center; font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin:0;">Platforms we buy on</p>
+    <span style="display:inline-flex; align-items:center; gap:5px; background:rgba(255,69,0,0.15); border:1px solid rgba(255,69,0,0.4); border-radius:100px; padding:3px 10px; font-size:11px; font-weight:700; color:#ff6b35; letter-spacing:0.04em;">
+      <img loading="lazy" src="https://cdn.simpleicons.org/reddit/ff6b35" style="height:11px; width:auto;" alt=""> Reddit Certified Partner
+    </span>
+  </div>
+  <div class="logo-track" id="logoTrack"></div>
+  <template id="logoSetTpl">
+    <div class="logo-set" style="gap:28px; padding-right:28px;">
+      <img loading="lazy" src="https://cdn.simpleicons.org/reddit/ffffff" class="logo-img" alt="Reddit" style="height:19px;" />
+      <img loading="lazy" src="https://cdn.simpleicons.org/meta/ffffff" class="logo-img" alt="Meta" style="height:19px;" />
+      <img loading="lazy" src="https://cdn.simpleicons.org/tiktok/ffffff" class="logo-img" alt="TikTok" style="height:19px;" />
+      <svg class="logo-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="LinkedIn" style="height:19px; width:auto;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      <img loading="lazy" src="https://cdn.simpleicons.org/google/ffffff" class="logo-img" alt="Google" style="height:19px;" />
+      <img loading="lazy" src="https://cdn.simpleicons.org/pinterest/ffffff" class="logo-img" alt="Pinterest" style="height:19px;" />
+      <img loading="lazy" src="https://cdn.simpleicons.org/x/ffffff" class="logo-img" alt="X" style="height:19px;" />
+      <img loading="lazy" src="https://cdn.simpleicons.org/snapchat/ffffff" class="logo-img" alt="Snapchat" style="height:19px;" />
+    </div>
+  </template>
+</section>
+
+
+<!-- SOCIAL PROOF PILLS — moved below results -->
+
+<!-- Wave divider: dark hero → dark purple workflow (seamless) — HIDDEN -->
+<div style="display:none;">
+<div style="background:#080808; line-height:0; margin-bottom:-1px;">
+  <svg viewBox="0 0 1440 28" preserveAspectRatio="none" style="display:block; width:100%; height:28px;">
+    <path d="M0,0 C480,28 960,28 1440,0 L1440,28 L0,28 Z" fill="#0f0525"/>
+  </svg>
+</div>
+
+<!-- WORKFLOW SECTION -->
+<section style="background:#0f0525; padding:60px 24px 68px;">
+  <div class="wf-section" style="max-width:1280px; margin:0 auto; text-align:center;">
+
+    
+    <script>
+    (function(){
+      var el = document.querySelector('.wf-section');
+      if (!el) return;
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('wf-ready'); io.unobserve(e.target); } });
+      }, { threshold: 0.12 });
+      io.observe(el);
+    })();
+    </script>
+
+    <p class="wf-text" style="font-size:13px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin:0 0 18px; animation-delay:0s;">how we work</p>
+    <h2 class="wf-text" style="font-family:'Satoshi', system-ui, sans-serif; font-size:clamp(28px,3.6vw,46px); font-weight:900; letter-spacing:-0.03em; color:#ffffff; line-height:1.1; margin:0 0 16px; animation-delay:0.1s;">Your team stays lean.<br>We cover the gaps.</h2>
+    <p class="wf-text" style="font-size:17px; color:rgba(255,255,255,0.55); max-width:780px; margin:0 auto 12px; line-height:1.6; animation-delay:0.2s;">We plug into your existing team and take on the roles that are hard to hire for.</p>
+    <a href="services.html" class="wf-text" style="display:inline-block; font-size:14px; font-weight:700; color:rgba(255,255,255,0.5); text-decoration:none; border-bottom:1.5px solid rgba(255,255,255,0.2); padding-bottom:2px; margin-bottom:24px; transition:all 0.2s; animation-delay:0.25s;" onmouseover="this.style.color='#fff';this.style.borderColor='rgba(255,255,255,0.6)'" onmouseout="this.style.color='rgba(255,255,255,0.5)';this.style.borderColor='rgba(255,255,255,0.2)'">See full services breakdown →</a>
+
+    <!-- Bandwidth animation v2 -->
+    
+
+    <!-- Integrated card: animation circles paired with org chart columns -->
+    <div style="background:#f2ecff; border-radius:24px; border:1.5px solid rgba(85,0,221,0.14); box-shadow:0 8px 48px rgba(0,0,0,0.28); overflow:visible; margin-bottom:52px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr;">
+
+        <!-- LEFT: Without us + Your current team -->
+        <div style="padding:32px 28px 40px; display:flex; flex-direction:column; align-items:center;">
+          <!-- Animation: Without us -->
+          <span style="font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(0,0,0,0.35); margin-bottom:16px;">Without us</span>
+          <div class="wf-circle-wrap" style="position:relative; width:220px;">
+            <div id="bw-left-circle" style="position:relative; width:220px; height:220px; overflow:visible; border-radius:50%;">
+              <svg width="220" height="220" viewBox="0 0 220 220" style="position:absolute; inset:0; pointer-events:none; width:100%; height:100%;">
+                <circle cx="110" cy="110" r="103" fill="rgba(220,38,38,0.05)" stroke="rgba(220,38,38,0.5)" stroke-width="1.5" stroke-dasharray="7 4"/>
+              </svg>
+              <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; padding:0 28px; z-index:10;">
+                <span style="font-size:10px; font-weight:700; color:rgba(220,38,38,0.45); letter-spacing:0.1em; text-transform:uppercase;">Capacity</span>
+                <div style="width:100%; height:7px; background:rgba(220,38,38,0.1); border-radius:100px; overflow:hidden;">
+                  <div style="width:100%; height:100%; background:linear-gradient(90deg,#f87171,#dc2626); border-radius:100px;"></div>
+                </div>
+                <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:30px; font-weight:900; color:#dc2626; letter-spacing:-0.03em; line-height:1;">100%</span>
+                <span style="font-size:10px; font-weight:700; color:rgba(220,38,38,0.5); letter-spacing:0.08em; text-transform:uppercase;">Maxed out</span>
+              </div>
+              <div id="bw-fly" style="position:absolute; inset:0; overflow:visible; pointer-events:none; z-index:5;"></div>
+            </div>
+            <div id="bw-pile" style="display:flex; flex-wrap:wrap; gap:4px; padding:8px 4px 0; justify-content:center; align-items:flex-start; min-height:85px;"></div>
+          </div>
+          <!-- Connector to org -->
+          <div style="width:2px; height:24px; background:rgba(0,0,0,0.1); margin:16px 0 12px;"></div>
+          <!-- Your current team heading -->
+          <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:19px; font-weight:900; letter-spacing:-0.02em; color:#0d0d0d; margin-bottom:20px;">Your current team</span>
+          <!-- Two roles side by side — mirrors right side -->
+          <div style="display:flex; gap:24px; justify-content:center;">
+            <!-- Performance Manager -->
+            <div style="display:flex; flex-direction:column; align-items:center;">
+              <div class="wf-person" style="display:flex; flex-direction:column; align-items:center; gap:8px; animation-delay:0.45s;">
+                <svg width="52" height="52" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="14" r="8" fill="#0d0d0d"/><path d="M4 40c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#0d0d0d"/></svg>
+                <span style="font-size:15px; font-weight:800; color:#0d0d0d; text-align:center;">Paid Media<br>Manager</span>
+              </div>
+              <div style="width:2px; height:14px; background:rgba(0,0,0,0.13); margin:6px 0 5px;"></div>
+              <div style="display:flex; flex-direction:column; gap:4px; align-items:center;">
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#fecaca; color:#b91c1c; border:1px solid rgba(185,28,28,0.35); border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:0.65s;">Meta only</span>
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#fecaca; color:#b91c1c; border:1px solid rgba(185,28,28,0.35); border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:0.75s;">Manual reports</span>
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#fecaca; color:#b91c1c; border:1px solid rgba(185,28,28,0.35); border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:0.85s;">No bandwidth</span>
+              </div>
+            </div>
+            <!-- Designer -->
+            <div style="display:flex; flex-direction:column; align-items:center;">
+              <div class="wf-person" style="display:flex; flex-direction:column; align-items:center; gap:8px; animation-delay:0.55s;">
+                <svg width="52" height="52" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="14" r="8" fill="#0d0d0d"/><path d="M4 40c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#0d0d0d"/></svg>
+                <span style="font-size:15px; font-weight:800; color:#0d0d0d; text-align:center;">In-House<br>Designer</span>
+              </div>
+              <div style="width:2px; height:14px; background:rgba(0,0,0,0.13); margin:6px 0 5px;"></div>
+              <div style="display:flex; flex-direction:column; gap:4px; align-items:center;">
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#fecaca; color:#b91c1c; border:1px solid rgba(185,28,28,0.35); border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:0.95s;">4 ads / mo</span>
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#fecaca; color:#b91c1c; border:1px solid rgba(185,28,28,0.35); border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:1.05s;">One format</span>
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#fecaca; color:#b91c1c; border:1px solid rgba(185,28,28,0.35); border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:1.15s;">No testing</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="hero-ctas">
-          <a href="#cta" class="btn-primary">Book your free creative audit</a>
-          <a href="#gallery" class="btn-secondary">See our work &darr;</a>
+
+
+        <!-- RIGHT: With us + Roles we add -->
+        <div style="padding:32px 28px 40px; border-left:1px solid rgba(0,0,0,0.06); display:flex; flex-direction:column; align-items:center;">
+          <!-- Animation: With us -->
+          <span style="font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#5500dd; margin-bottom:16px;">With us</span>
+          <div class="wf-circle-wrap" style="position:relative; width:220px;">
+            <div id="bw-right-circle" style="position:relative; width:220px; height:220px; overflow:visible; border-radius:50%;">
+              <svg width="220" height="220" viewBox="0 0 220 220" style="position:absolute; inset:0; pointer-events:none; width:100%; height:100%;">
+                <circle cx="110" cy="110" r="103" fill="rgba(85,0,221,0.05)" stroke="rgba(85,0,221,0.45)" stroke-width="1.5"/>
+              </svg>
+              <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; padding:0 24px;">
+                <span style="font-size:10px; font-weight:700; color:rgba(85,0,221,0.5); letter-spacing:0.1em; text-transform:uppercase;">Monthly Output</span>
+                <div style="width:100%; height:7px; background:rgba(85,0,221,0.1); border-radius:100px; overflow:hidden;">
+                  <div style="width:100%; height:100%; background:linear-gradient(90deg,#9b6dff,#5500dd); border-radius:100px;"></div>
+                </div>
+                <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:30px; font-weight:900; color:#5500dd; letter-spacing:-0.03em; line-height:1;">20+</span>
+                <span style="font-size:10px; font-weight:700; color:rgba(85,0,221,0.5); letter-spacing:0.08em; text-transform:uppercase;">Creatives / mo</span>
+              </div>
+              <div id="bw-right-fly" style="position:absolute; inset:0; overflow:visible; pointer-events:none; z-index:5;"></div>
+            </div>
+            <!-- Static green pills — mirrors red pile on left -->
+            <div style="display:flex; flex-wrap:wrap; gap:4px; padding:8px 4px 0; justify-content:center; min-height:85px;">
+              <span class="wf-pill" style="font-size:9px; font-weight:700; font-family:'Satoshi',system-ui,sans-serif; background:#ede9ff; color:#4400bb; border:1px solid #c4b5fd; border-radius:100px; padding:3px 9px; white-space:nowrap; animation-delay:1.8s;">Reddit Ads</span>
+              <span class="wf-pill" style="font-size:9px; font-weight:700; font-family:'Satoshi',system-ui,sans-serif; background:#ede9ff; color:#4400bb; border:1px solid #c4b5fd; border-radius:100px; padding:3px 9px; white-space:nowrap; animation-delay:1.9s;">Meta Ads</span>
+              <span class="wf-pill" style="font-size:9px; font-weight:700; font-family:'Satoshi',system-ui,sans-serif; background:#ede9ff; color:#4400bb; border:1px solid #c4b5fd; border-radius:100px; padding:3px 9px; white-space:nowrap; animation-delay:2.0s;">UGC</span>
+              <span class="wf-pill" style="font-size:9px; font-weight:700; font-family:'Satoshi',system-ui,sans-serif; background:#ede9ff; color:#4400bb; border:1px solid #c4b5fd; border-radius:100px; padding:3px 9px; white-space:nowrap; animation-delay:2.1s;">Video Ads</span>
+              <span class="wf-pill" style="font-size:9px; font-weight:700; font-family:'Satoshi',system-ui,sans-serif; background:#ede9ff; color:#4400bb; border:1px solid #c4b5fd; border-radius:100px; padding:3px 9px; white-space:nowrap; animation-delay:2.2s;">A/B Testing</span>
+              <span class="wf-pill" style="font-size:9px; font-weight:700; font-family:'Satoshi',system-ui,sans-serif; background:#ede9ff; color:#4400bb; border:1px solid #c4b5fd; border-radius:100px; padding:3px 9px; white-space:nowrap; animation-delay:2.3s;">Statics</span>
+              <span class="wf-pill" style="font-size:9px; font-weight:700; font-family:'Satoshi',system-ui,sans-serif; background:#ede9ff; color:#4400bb; border:1px solid #c4b5fd; border-radius:100px; padding:3px 9px; white-space:nowrap; animation-delay:2.4s;">Copy</span>
+              <span class="wf-pill" style="font-size:9px; font-weight:700; font-family:'Satoshi',system-ui,sans-serif; background:#ede9ff; color:#4400bb; border:1px solid #c4b5fd; border-radius:100px; padding:3px 9px; white-space:nowrap; animation-delay:2.5s;">Strategy</span>
+              <span class="wf-pill" style="font-size:9px; font-weight:700; font-family:'Satoshi',system-ui,sans-serif; background:#ede9ff; color:#4400bb; border:1px solid #c4b5fd; border-radius:100px; padding:3px 9px; white-space:nowrap; animation-delay:2.6s;">Reporting</span>
+            </div>
+          </div>
+          <!-- Connector to org -->
+          <div style="width:2px; height:24px; background:rgba(85,0,221,0.3); margin:16px 0 12px;"></div>
+          <!-- Roles we add heading -->
+          <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:19px; font-weight:900; letter-spacing:-0.02em; color:#5500dd; margin-bottom:20px;">What we take over</span>
+          <!-- Green leads + pills -->
+          <div style="display:flex; gap:24px; justify-content:center;">
+            <!-- Performance Lead -->
+            <div style="display:flex; flex-direction:column; align-items:center;">
+              <div class="wf-person" style="display:flex; flex-direction:column; align-items:center; gap:8px; animation-delay:1.95s;">
+                <svg width="52" height="52" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="14" r="8" fill="#5500dd"/><path d="M4 40c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#5500dd"/></svg>
+                <span style="font-size:15px; font-weight:800; color:#5500dd; text-align:center;">Creative<br>Strategist</span>
+              </div>
+              <div style="width:2px; height:14px; background:rgba(85,0,221,0.4); margin:6px 0 5px;"></div>
+              <div style="display:flex; flex-direction:column; gap:4px; align-items:center;">
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#ede9ff; color:#4400bb; border:1px solid #c4b5fd; border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:2.15s;">20+ creatives</span>
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#ede9ff; color:#4400bb; border:1px solid #c4b5fd; border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:2.25s;">A/B testing</span>
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#ede9ff; color:#4400bb; border:1px solid #c4b5fd; border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:2.35s;">UGC briefs</span>
+              </div>
+            </div>
+            <!-- Creative Lead -->
+            <div style="display:flex; flex-direction:column; align-items:center;">
+              <div class="wf-person" style="display:flex; flex-direction:column; align-items:center; gap:8px; animation-delay:2.05s;">
+                <svg width="52" height="52" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="14" r="8" fill="#5500dd"/><path d="M4 40c0-9.941 8.059-18 18-18s18 8.059 18 18" fill="#5500dd"/></svg>
+                <span style="font-size:15px; font-weight:800; color:#5500dd; text-align:center;">Media<br>Buyer</span>
+              </div>
+              <div style="width:2px; height:14px; background:rgba(85,0,221,0.4); margin:6px 0 5px;"></div>
+              <div style="display:flex; flex-direction:column; gap:4px; align-items:center;">
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#ede9ff; color:#4400bb; border:1px solid #c4b5fd; border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:2.45s;">Reddit + Meta</span>
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#ede9ff; color:#4400bb; border:1px solid #c4b5fd; border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:2.55s;">Optimization</span>
+                <span class="wf-pill" style="font-size:11px; font-weight:700; background:#ede9ff; color:#4400bb; border:1px solid #c4b5fd; border-radius:100px; padding:4px 10px; white-space:nowrap; animation-delay:2.65s;">Weekly reports</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+    (function() {
+      var LABELS = ['Creative','Strategy','Analytics','Testing','Reporting','Media','Content','Design','Copy','Budgets'];
+      var fly = document.getElementById('bw-fly');
+      var pile = document.getElementById('bw-pile');
+      var circle = document.getElementById('bw-left-circle');
+      var flyIdx=0, pileIdx=0, emojiIdx=0;
+      var MAX_PILE=9;
+      var EMOJIS = ['🎉','✨','🚀','💚','📈','🙌','💪','🔥','⚡','🎯'];
+      var rightFly = document.getElementById('bw-right-fly');
+
+      function spawnRightFly() {
+        if (!rightFly) return;
+        var el = document.createElement('span');
+        el.textContent = EMOJIS[emojiIdx % EMOJIS.length]; emojiIdx++;
+        el.style.cssText = 'position:absolute;font-size:20px;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:3;line-height:1;';
+        rightFly.appendChild(el);
+        var angle = Math.random() * Math.PI * 2;
+        var dist = 115 + Math.random() * 28;
+        var tx = Math.cos(angle)*dist, ty = Math.sin(angle)*dist;
+        var rot = (Math.random()-0.5)*25;
+        var anim = el.animate([
+          {transform:'translate(-50%,-50%) scale(0.2)',opacity:0},
+          {transform:'translate(-50%,-50%) scale(1.15)',opacity:1,offset:0.18},
+          {transform:'translate(calc(-50% + '+tx+'px),calc(-50% + '+ty+'px)) rotate('+rot+'deg) scale(0.75)',opacity:0}
+        ],{duration:1900+Math.random()*400,easing:'ease-out',fill:'forwards'});
+        anim.onfinish = function(){ try{el.remove();}catch(e){} };
+      }
+
+      function addToPile() {
+        if (!pile || pile.children.length >= MAX_PILE) return;
+        var el = document.createElement('span');
+        el.textContent = LABELS[pileIdx % LABELS.length]; pileIdx++;
+        el.style.cssText = 'font-size:9px;font-weight:700;font-family:\'Satoshi\',system-ui,sans-serif;background:#fecaca;color:#b91c1c;border:1px solid rgba(185,28,28,0.45);border-radius:100px;padding:3px 9px;white-space:nowrap;opacity:0;transform:translateY(-8px);transition:opacity 260ms ease,transform 260ms ease;';
+        pile.appendChild(el);
+        requestAnimationFrame(function(){ requestAnimationFrame(function(){
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }); });
+      }
+
+      function shakeCircle() {
+        if (!circle) return;
+        circle.classList.add('bw-shaking');
+        setTimeout(function(){ circle.classList.remove('bw-shaking'); }, 450);
+      }
+
+      function init() {
+        var pileT = setInterval(function(){
+          addToPile();
+          if (pile && pile.children.length >= MAX_PILE) clearInterval(pileT);
+        }, 550);
+        var shakeT = setInterval(shakeCircle, 1600);
+        setTimeout(function(){ clearInterval(shakeT); }, 30000);
+        setTimeout(function(){
+          var flyT = setInterval(spawnRightFly, 900);
+          setTimeout(function(){ clearInterval(flyT); }, 28000);
+        }, 1500);
+      }
+
+      var started = false;
+      var trigger = document.querySelector('.wf-section') || circle;
+      if (trigger) {
+        var startObs = new IntersectionObserver(function(entries) {
+          entries.forEach(function(e) {
+            if (e.isIntersecting && !started) { started = true; setTimeout(init, 100); startObs.unobserve(e.target); }
+          });
+        }, { threshold: 0.05 });
+        startObs.observe(trigger);
+      }
+    })();
+    </script>
+
+  </div>
+</section>
+
+<!-- Wave: dark purple workflow → white -->
+<div style="background:#0f0525; line-height:0; overflow:hidden; margin-bottom:-1px;">
+  <svg viewBox="0 0 1440 28" preserveAspectRatio="none" style="display:block; width:100%; height:28px;">
+    <path d="M0,0 C480,28 960,28 1440,0 L1440,28 L0,28 Z" fill="#ffffff"/>
+  </svg>
+</div>
+</div><!-- end section 2 hidden wrapper -->
+
+<!-- PAIN SECTION -->
+<section id="pain" style="background:#0a0a0a; padding:110px 24px 120px; background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px); background-size:20px 20px;">
+  <div style="max-width:1040px; margin:0 auto; text-align:center;">
+
+    
+
+    <!-- Accent line -->
+    <div class="pain-accent-line" style="width:40px; height:2px; background:#ee0033; margin:0 auto 36px; transform:scaleX(0); transform-origin:left; transition:transform 0.6s cubic-bezier(0.16,1,0.3,1);"></div>
+
+    <!-- Headline — each line masked for wipe-up reveal -->
+    <h2 style="font-family:var(--font); font-size:clamp(32px,4.2vw,62px); font-variation-settings:'wdth' 125,'wght' 900; color:#fff; line-height:1.2; letter-spacing:-0.03em; margin:0 0 56px;">
+      <span class="pain-line-wrap" style="display:block; overflow:hidden;">
+        <span class="pain-line" style="display:block; transform:translateY(110%); transition:transform 1.2s cubic-bezier(0.16,1,0.3,1) 0s;">Different teams.</span>
+      </span>
+      <span class="pain-line-wrap" style="display:block; overflow:hidden;">
+        <span class="pain-line" style="display:block; transform:translateY(110%); transition:transform 1.2s cubic-bezier(0.16,1,0.3,1) 0.55s;">Different industries.</span>
+      </span>
+      <span class="pain-line-wrap" style="display:block; overflow:hidden;">
+        <span class="pain-line" style="display:block; transform:translateY(110%); transition:transform 1.2s cubic-bezier(0.16,1,0.3,1) 1.1s;"><em class="pain-grad-text" style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">Same problem.</em></span>
+      </span>
+    </h2>
+
+    <!-- Body — boxed quote -->
+    <div class="pain-body" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-left:4px solid #ee0033; border-radius:4px 20px 20px 4px; padding:48px 52px; text-align:left; margin-top:52px; opacity:0; transform:translateY(24px); transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1) 2s, transform 0.9s cubic-bezier(0.16,1,0.3,1) 2s;">
+      <span style="display:block; font-family:'Playfair Display',serif; font-style:italic; font-size:72px; color:rgba(255,255,255,0.25); line-height:1; margin-bottom:-8px;">"</span>
+      <p style="margin:0 0 24px; font-family:var(--font); font-size:clamp(19px,2vw,26px); font-variation-settings:'wdth' 125,'wght' 500; color:rgba(255,255,255,0.65); line-height:1.7; letter-spacing:-0.01em;"><strong style="color:#ffffff; font-variation-settings:'wdth' 125,'wght' 800;">We know</strong> we need to be testing more creatives. But our internal team is at <strong style="color:#ffffff; font-variation-settings:'wdth' 125,'wght' 800;">full capacity.</strong> <strong style="color:#ffffff; font-variation-settings:'wdth' 125,'wght' 800;">No one leads</strong> creative strategy or a test and learn roadmap, or has senior platform experience.</p>
+      <p style="margin:0; font-family:var(--font); font-size:clamp(19px,2vw,26px); font-variation-settings:'wdth' 125,'wght' 900; color:#ffffff; line-height:1.6; letter-spacing:-0.01em;">Hiring isn't on the table. And signing with an agency feels like too big a commitment."</p>
+      <span style="display:block; margin-top:28px; font-size:13px; font-weight:700; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:0.14em;">Heard on every client call</span>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function() {
+  var painSection = document.getElementById('pain');
+  if (!painSection) return;
+  var triggered = false;
+  var obs = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !triggered) {
+      triggered = true;
+      // Accent line
+      var line = painSection.querySelector('.pain-accent-line');
+      if (line) line.style.transform = 'scaleX(1)';
+      // Headline lines
+      painSection.querySelectorAll('.pain-line').forEach(function(el) {
+        el.style.transform = 'translateY(0)';
+      });
+      // Body + attribution
+      painSection.querySelectorAll('.pain-body').forEach(function(el) {
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      });
+      obs.disconnect();
+    }
+  }, { threshold: 0.25 });
+  obs.observe(painSection);
+})();
+</script>
+
+<!-- SERVICES (Section 3) — white -->
+<section id="services" style="background:#ffffff; padding:60px 24px 68px;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <div class="section-header" style="margin-bottom:20px;">
+      <div class="h2" style="text-align:center; line-height:1.1;">
+        <span style="display:block; overflow:hidden;">
+          <span class="svc-line" style="display:block; transform:translateY(110%); transition:transform 1s cubic-bezier(0.16,1,0.3,1) 0s;">Here's our <em style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700;">solution.</em></span>
+        </span>
+      </div>
+      <p class="svc-card" style="text-align:center; font-size:clamp(17px,1.6vw,22px); color:var(--gray-400); max-width:960px; margin:24px auto 0; line-height:1.75; opacity:0; transform:translateY(20px); transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1) 0.5s, transform 0.8s cubic-bezier(0.16,1,0.3,1) 0.5s;">A lean team running the best AI production tools available. We plug into your existing team, move faster than any in-house hire could, and build custom creative systems around your brand.</p>
+    </div>
+    
+
+    <div style="display:flex; flex-direction:column; gap:20px; margin-bottom:64px;">
+
+      <!-- Card 1: AI Creative -->
+      <div class="linea-card" style="display:grid; grid-template-columns:5fr 7fr; border:1.5px solid #e8e8e8; border-radius:20px; overflow:hidden;">
+        <div class="linea-panel-left" style="background:#0a0a0a; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:0; padding:36px; min-height:340px;">
+          <!-- Primary stat -->
+          <div style="text-align:center; margin-bottom:24px;">
+            <div id="creative-counter" style="font-family:var(--font); font-size:clamp(76px,9vw,120px); font-variation-settings:'wdth' 125,'wght' 900; color:#ffffff; line-height:1; letter-spacing:-0.04em;">0</div>
+            <div style="font-family:var(--font); font-size:16px; font-variation-settings:'wdth' 110,'wght' 600; color:rgba(0,0,0,0.5); margin-top:8px;">creatives produced</div>
+          </div>
+          <!-- Divider -->
+          <div style="width:100%; height:1px; background:rgba(255,255,255,0.08); margin-bottom:24px;"></div>
+          <!-- Secondary stats -->
+          <div style="display:flex; width:100%; gap:0;">
+            <div style="flex:1; text-align:center; padding:0 12px; border-right:1px solid rgba(255,255,255,0.08);">
+              <div id="roas-counter" style="font-family:var(--font); font-size:clamp(30px,3.5vw,46px); font-variation-settings:'wdth' 125,'wght' 900; color:#ee0033; line-height:1; letter-spacing:-0.03em;">0%</div>
+              <div style="font-family:var(--font); font-size:13px; font-variation-settings:'wdth' 110,'wght' 600; color:rgba(255,255,255,0.4); margin-top:6px;">ROAS lift</div>
+            </div>
+            <div style="flex:1; text-align:center; padding:0 12px; border-right:1px solid rgba(255,255,255,0.08);">
+              <div id="pipeline-counter" style="font-family:var(--font); font-size:clamp(30px,3.5vw,46px); font-variation-settings:'wdth' 125,'wght' 900; color:#ee0033; line-height:1; letter-spacing:-0.03em;">0%</div>
+              <div style="font-family:var(--font); font-size:13px; font-variation-settings:'wdth' 110,'wght' 600; color:rgba(255,255,255,0.4); margin-top:6px;">pipeline lift</div>
+            </div>
+            <div style="flex:1; text-align:center; padding:0 12px;">
+              <div id="faster-counter" style="font-family:var(--font); font-size:clamp(30px,3.5vw,46px); font-variation-settings:'wdth' 125,'wght' 900; color:#ee0033; line-height:1; letter-spacing:-0.03em;">0%</div>
+              <div style="font-family:var(--font); font-size:13px; font-variation-settings:'wdth' 110,'wght' 600; color:rgba(255,255,255,0.4); margin-top:6px;">faster to market</div>
+            </div>
+          </div>
+        </div>
+        <div class="linea-panel-right" style="padding:52px 56px; display:flex; flex-direction:column; justify-content:center;">
+          <h3 style="font-family:var(--font); font-size:clamp(26px,2.6vw,38px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1.1; margin:0 0 16px; letter-spacing:-0.02em;">AI-powered creative at scale</h3>
+          <p style="font-family:var(--font); font-size:17px; line-height:1.8; color:#666; margin:0 0 32px;">Our strategists run the brief and the creative direction. The AI handles production. 40+ creatives/month, custom designed for your audience and built to convert. Live in a week, with results in 30 days.</p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>40+ creatives/month</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>No hiring needed</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Live in 1 week</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #ffd0d0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#cc0022;background:rgba(238,0,51,0.04);"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>ROAS lift in 30 days</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #ffd0d0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#cc0022;background:rgba(238,0,51,0.04);"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Pipeline lift in 30 days</span>
+          </div>
         </div>
       </div>
-      <div class="hero-collage reveal">
-        <img src="./assets/lipstick-spill.jpg" alt="Lipstick creative" class="img-tall" style="object-fit:cover;">
-        <img src="./assets/handbag-street.png" alt="Handbag street shoot" class="img-short" style="object-fit:cover;">
-        <img src="./assets/lipstick-studio.jpg" alt="Studio creative" class="img-short" style="object-fit:cover;">
+
+      <!-- Card 2: Media Buying -->
+      <div class="linea-card" style="display:grid; grid-template-columns:5fr 7fr; border:1.5px solid #e8e8e8; border-radius:20px; overflow:hidden;">
+        <div class="linea-panel-left" style="background:#5500dd; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:40px; min-height:340px;">
+          <div style="text-align:center; margin-bottom:8px;">
+            <div style="font-family:var(--font); font-size:clamp(52px,6vw,78px); font-variation-settings:'wdth' 125,'wght' 900; color:#ffffff; line-height:1; letter-spacing:-0.03em;">$100M+</div>
+            <div style="font-family:var(--font); font-size:16px; font-variation-settings:'wdth' 110,'wght' 700; color:rgba(255,255,255,0.75); margin-top:10px; line-height:1.4;">managed for Fortune 500<br>and 25M+ revenue brands</div>
+          </div>
+          <div style="display:flex; gap:16px;">
+            <div style="width:92px;height:92px;border-radius:20px;background:white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.08);"><img loading="lazy" src="https://cdn.simpleicons.org/meta/0081FB" style="width:48px;height:48px;"></div>
+            <div style="width:92px;height:92px;border-radius:20px;background:white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.08);"><img loading="lazy" src="https://cdn.simpleicons.org/reddit/FF4500" style="width:48px;height:48px;"></div>
+            <div style="width:92px;height:92px;border-radius:20px;background:white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.08);"><img loading="lazy" src="https://cdn.simpleicons.org/google/4285F4" style="width:48px;height:48px;"></div>
+          </div>
+          <div style="display:flex; gap:16px;">
+            <div style="width:92px;height:92px;border-radius:20px;background:white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.08);"><img loading="lazy" src="https://cdn.simpleicons.org/tiktok/000000" style="width:48px;height:48px;"></div>
+            <div style="width:92px;height:92px;border-radius:20px;background:white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.08);"><img loading="lazy" src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=128" style="width:48px;height:48px;border-radius:6px;"></div>
+            <div style="width:92px;height:92px;border-radius:20px;background:white;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,0.08);"><img loading="lazy" src="https://cdn.simpleicons.org/pinterest/E60023" style="width:48px;height:48px;"></div>
+          </div>
+        </div>
+        <div class="linea-panel-right" style="padding:52px 56px; display:flex; flex-direction:column; justify-content:center;">
+          <h3 style="font-family:var(--font); font-size:clamp(26px,2.6vw,38px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1.1; margin:0 0 16px; letter-spacing:-0.02em;">Performance media buying</h3>
+          <p style="font-family:var(--font); font-size:17px; line-height:1.8; color:#666; margin:0 0 32px;">Performance media managed by ex-GroupM leaders who know which creative works to increase revenue.</p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Lower CPL</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Higher ROAS</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>More demos booked</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>No wasted spend</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;grid-column:1/-1;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Full-funnel coverage</span>
+          </div>
+        </div>
       </div>
+
+      <!-- Card 3: Tools -->
+      <div class="linea-card" style="display:grid; grid-template-columns:5fr 7fr; border:1.5px solid #e8e8e8; border-radius:20px; overflow:hidden;">
+        <div class="linea-panel-left" style="background:#0f0f0f; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; padding:36px; min-height:340px;">
+          <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px; width:100%;">
+            <div style="aspect-ratio:1;border-radius:16px;background:rgba(255,255,255,0.07);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px;"><img loading="lazy" src="https://cdn.simpleicons.org/anthropic/ffffff" style="width:36px;height:36px;"><span style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.45);">Claude</span></div>
+            <div style="aspect-ratio:1;border-radius:16px;background:rgba(255,255,255,0.07);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px;"><img loading="lazy" src="https://www.google.com/s2/favicons?domain=nanabanana.ai&sz=64" style="width:36px;height:36px;border-radius:6px;"><span style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.45);">Nano Banana</span></div>
+            <div style="aspect-ratio:1;border-radius:16px;background:rgba(255,255,255,0.07);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px;"><img loading="lazy" src="https://www.google.com/s2/favicons?domain=lumalabs.ai&sz=64" style="width:36px;height:36px;border-radius:6px;"><span style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.45);">Luma</span></div>
+            <div style="aspect-ratio:1;border-radius:16px;background:rgba(255,255,255,0.07);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px;"><img loading="lazy" src="https://www.google.com/s2/favicons?domain=midjourney.com&sz=64" style="width:36px;height:36px;border-radius:6px;"><span style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.45);">Midjourney</span></div>
+            <div style="aspect-ratio:1;border-radius:16px;background:rgba(255,255,255,0.07);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px;"><img loading="lazy" src="https://www.google.com/s2/favicons?domain=creatify.ai&sz=64" style="width:36px;height:36px;border-radius:6px;"><span style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.45);">Creatify</span></div>
+            <div style="aspect-ratio:1;border-radius:16px;background:rgba(255,255,255,0.07);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px;"><img loading="lazy" src="https://www.google.com/s2/favicons?domain=kling.ai&sz=64" style="width:36px;height:36px;border-radius:6px;"><span style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.45);">Kling</span></div>
+            <div style="aspect-ratio:1;border-radius:16px;background:rgba(255,255,255,0.07);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px;"><img loading="lazy" src="https://cdn.simpleicons.org/figma/ffffff" style="width:36px;height:36px;"><span style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.45);">Figma</span></div>
+            <div style="aspect-ratio:1;border-radius:16px;background:rgba(255,255,255,0.07);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px;"><img loading="lazy" src="https://www.google.com/s2/favicons?domain=heygen.com&sz=64" style="width:36px;height:36px;border-radius:6px;"><span style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.45);">HeyGen</span></div>
+          </div>
+        </div>
+        <div class="linea-panel-right" style="padding:52px 56px; display:flex; flex-direction:column; justify-content:center;">
+          <h3 style="font-family:var(--font); font-size:clamp(26px,2.6vw,38px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1.1; margin:0 0 16px; letter-spacing:-0.02em;">Tools we create with</h3>
+          <p style="font-family:var(--font); font-size:17px; line-height:1.8; color:#666; margin:0 0 32px;">We chose tools for individual expertise, not end-to-end automation. Each one does one thing better than anything else. AI handles the heavy lifting. Humans handle the direction.</p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#0a0a0a"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Best tool for each job</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#0a0a0a"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Human-directed output</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#0a0a0a"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>No prompt templates</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#0a0a0a"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Creative judgement</span>
+            <span class="linea-pill" style="display:inline-flex;align-items:center;gap:8px;border:1.5px solid #e0e0e0;border-radius:12px;padding:10px 16px;font-size:14px;font-weight:600;color:#333;grid-column:1/-1;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#0a0a0a"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Quality at scale</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <script>
+    (function(){
+      var section = document.getElementById('services');
+      var cards = document.querySelectorAll('.linea-card');
+      if (!section || !cards.length) return;
+      var state = 0; // 0=none, 1=card1 shown, 2=card2 shown, 3=done
+      var locked = false;
+
+      function animateCount(elId, target, suffix, duration, delay) {
+        setTimeout(function() {
+          var el = document.getElementById(elId);
+          if (!el) return;
+          var start = null;
+          function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+          function step(ts) {
+            if (!start) start = ts;
+            var progress = Math.min((ts - start) / duration, 1);
+            var val = Math.round(easeOut(progress) * target);
+            el.textContent = progress >= 1 ? target + suffix : val + suffix;
+            if (progress < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        }, delay);
+      }
+
+      function startCounter() {
+        animateCount('creative-counter', 500, '+', 1400, 0);
+        animateCount('roas-counter', 30, '%', 900, 400);
+        animateCount('pipeline-counter', 20, '%', 900, 600);
+        animateCount('faster-counter', 50, '%', 900, 800);
+      }
+
+      function showCard(idx, cb) {
+        locked = true;
+        var card = cards[idx];
+        var pills = card.querySelectorAll('.linea-pill');
+        pills.forEach(function(p, i){ p.style.transitionDelay = (0.35 + i * 0.06) + 's'; });
+        card.classList.add('linea-card-visible');
+        if (idx === 0) startCounter();
+        var panel = card.querySelector('.linea-panel-left');
+        var done = false;
+        function onEnd(e) {
+          if (e.propertyName !== 'clip-path' && e.propertyName !== '-webkit-clip-path') return;
+          if (done) return; done = true;
+          panel.removeEventListener('transitionend', onEnd);
+          locked = false;
+          if (cb) cb();
+        }
+        panel.addEventListener('transitionend', onEnd);
+        setTimeout(function(){ if (!done) { done = true; locked = false; if (cb) cb(); } }, 700);
+      }
+
+      function onWheel(e) {
+        if (state >= 3) return;
+        var rect = section.getBoundingClientRect();
+        var inView = rect.top <= 80 && rect.bottom >= window.innerHeight * 0.4;
+        if (!inView) return;
+        if (locked) { e.preventDefault(); return; }
+        if (e.deltaY < 5) return;
+        e.preventDefault();
+        if (state === 0) {
+          state = 1;
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          showCard(0);
+        } else if (state === 1) {
+          state = 2;
+          showCard(1);
+        } else if (state === 2) {
+          state = 3;
+          showCard(2, function(){ window.removeEventListener('wheel', onWheel); });
+        }
+      }
+
+      window.addEventListener('wheel', onWheel, { passive: false });
+
+      // Fix: if page is refreshed while already scrolled into this section,
+      // show all cards immediately (no wheel event will fire to trigger them)
+      setTimeout(function() {
+        if (state === 0) {
+          var rect = section.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.75) {
+            state = 3;
+            cards.forEach(function(card) {
+              var pills = card.querySelectorAll('.linea-pill');
+              pills.forEach(function(p, i) { p.style.transitionDelay = (0.35 + i * 0.06) + 's'; });
+              card.classList.add('linea-card-visible');
+            });
+            startCounter();
+            window.removeEventListener('wheel', onWheel);
+          }
+        }
+      }, 300);
+    })();
+    </script>
+  </div>
+</section>
+
+<!-- Wave: services → gallery -->
+<div style="background:#ffffff; line-height:0; overflow:hidden; margin-bottom:-1px;">
+  <svg viewBox="0 0 1440 28" preserveAspectRatio="none" style="display:block; width:100%; height:28px;">
+    <path d="M0,28 C360,0 1080,0 1440,28 L1440,28 L0,28 Z" fill="#EEE8FF"/>
+  </svg>
+</div>
+
+<!-- GALLERY (Section 4) — light purple -->
+<section id="work-gallery" style="background:#EEE8FF; padding:60px 24px 68px;">
+  <div style="max-width:1400px; margin:0 auto;">
+    <div style="text-align:center; margin-bottom:36px;">
+      <div class="title-row h2" style="justify-content:center;" data-anim>
+        <span>Ads that</span>
+        <em style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700; color:#5500DD;">convert.</em>
+      </div>
+      <p class="body" style="max-width:780px; margin:16px auto 0;" data-anim data-delay="1">Every asset below was made by the same team that runs the campaigns — that's why they perform.</p>
+    </div>
+    
+
+      <div class="gal-grid gal-3" style="margin-bottom:28px;" data-anim data-delay="1" data-stagger>
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:9/16;background:#111;">
+          <video autoplay loop muted playsinline poster="./assets/Icecream 1.jpg" style="width:100%;height:100%;object-fit:cover;"><source src="./assets/Icecream%20video%201.mp4" type="video/mp4"></video>
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:12px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,0.8));color:white;"><p style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">Food · Meta</p><p style="font-size:16px;font-weight:800;color:#facc15;margin-top:2px;">Ice cream</p></div>
+        </div>
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:9/16;background:#111;">
+          <video autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;"><source src="./assets/Lipstick_Campaign_A_close-up_shot_focuses_on_a_womans_face_as_she_8ypjLQ2.mp4" type="video/mp4"></video>
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:12px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,0.8));color:white;"><p style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">Beauty · Meta</p><p style="font-size:16px;font-weight:800;color:#facc15;margin-top:2px;">Lipstick close-up</p></div>
+        </div>
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:9/16;background:#111;">
+          <video autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;"><source src="./assets/Fisheye%201.mp4" type="video/mp4"></video>
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:12px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,0.8));color:white;"><p style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">Fashion · Meta</p><p style="font-size:16px;font-weight:800;color:#facc15;margin-top:2px;">Fisheye</p></div>
+        </div>
+      </div>
+      <div class="gal-grid gal-3" data-anim data-delay="2" data-stagger>
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:#111;">
+          <img loading="lazy" src="./assets/B2B_SaaS_Ads_In_a_flat_design_style_this_graphic_showcases_0SxggUa-.jpg" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;"><span style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">B2B SaaS · Meta</span><span style="float:right;font-size:13px;font-weight:700;color:#facc15;">Flat design</span></div>
+        </div>
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:#111;">
+          <img loading="lazy" src="./assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.jpg" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;"><span style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">B2B SaaS · Reddit</span><span style="float:right;font-size:13px;font-weight:700;color:#facc15;">AI hiring</span></div>
+        </div>
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1/1;background:#111;">
+          <img loading="lazy" src="./assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_three_F2Ph3abS.jpg" style="width:100%;height:100%;object-fit:cover;">
+          <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 12px;background:linear-gradient(transparent,rgba(0,0,0,0.7));color:white;"><span style="font-size:11px;letter-spacing:0.05em;text-transform:uppercase;opacity:0.7;">B2B SaaS · Meta</span><span style="float:right;font-size:13px;font-weight:700;color:#facc15;">Minimalist</span></div>
+        </div>
+      </div>
+
+    <div style="text-align:center; margin-top:32px;">
+      <a href="gallery.html" style="display:inline-block; font-size:14px; font-weight:700; color:#5500dd; text-decoration:none; border-bottom:1.5px solid rgba(85,0,221,0.3); padding-bottom:2px; transition:border-color 0.2s;" onmouseover="this.style.borderColor='#5500dd'" onmouseout="this.style.borderColor='rgba(85,0,221,0.3)'">View full portfolio →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Wave: gallery → results -->
+<div style="background:#EEE8FF; line-height:0; overflow:hidden; margin-bottom:-1px;">
+  <svg viewBox="0 0 1440 28" preserveAspectRatio="none" style="display:block; width:100%; height:28px;">
+    <path d="M0,0 C480,28 960,28 1440,0 L1440,28 L0,28 Z" fill="#ffffff"/>
+  </svg>
+</div>
+
+<!-- RESULTS (Section 5) — light red -->
+<section id="work" style="background:#ffffff; padding:60px 24px 68px;">
+  <div style="max-width:1400px; margin:0 auto;">
+
+    <div style="margin-bottom:52px; text-align:center;" data-anim>
+      <h2 style="font-size:clamp(28px,3.6vw,46px); letter-spacing:-0.03em; color:#0d0d0d; line-height:1.1; margin:0 0 12px;">
+        <span style="font-family:'Satoshi', system-ui, sans-serif; font-weight:900;">Numbers </span><span style="font-family:'Playfair Display', Georgia, serif; font-style:italic; font-weight:700;">we've driven.</span>
+      </h2>
+      <p style="font-size:16px; color:rgba(0,0,0,0.45); margin:0 auto; max-width:680px; line-height:1.6;">Real campaigns, every result tied to creative we made and media we bought.</p>
+
+      <!-- Stat row -->
+      <div class="stats-row" style="display:flex; justify-content:center; margin:36px auto 0; border:1.5px solid #e8e8e8; border-radius:16px; overflow:hidden; max-width:660px;">
+        <div class="stat-cell stat-cell--bordered" style="flex:1; padding:22px 20px; text-align:center; border-right:1.5px solid #e8e8e8;">
+          <div id="stat-roas" style="font-family:var(--font); font-size:clamp(28px,3vw,38px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1; letter-spacing:-0.03em;">5X</div>
+          <div style="font-size:12px; font-weight:700; color:rgba(0,0,0,0.4); letter-spacing:0.04em; margin-top:7px;">peak ROAS achieved</div>
+        </div>
+        <div class="stat-cell stat-cell--bordered" style="flex:1; padding:22px 20px; text-align:center; border-right:1.5px solid #e8e8e8;">
+          <div id="stat-pipeline" style="font-family:var(--font); font-size:clamp(28px,3vw,38px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1; letter-spacing:-0.03em;">2X</div>
+          <div style="font-size:12px; font-weight:700; color:rgba(0,0,0,0.4); letter-spacing:0.04em; margin-top:7px;">pipeline growth</div>
+        </div>
+        <div class="stat-cell" style="flex:1; padding:22px 20px; text-align:center;">
+          <div id="stat-faster" style="font-family:var(--font); font-size:clamp(28px,3vw,38px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1; letter-spacing:-0.03em;">50%</div>
+          <div style="font-size:12px; font-weight:700; color:rgba(0,0,0,0.4); letter-spacing:0.04em; margin-top:7px;">faster to market</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case study card grid — image-forward -->
+    <div class="case-grid" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px;" data-anim data-delay="2" data-stagger>
+
+      <!-- Card: Flare -->
+      <a href="#book" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div class="case-img-wrap"><img loading="lazy" src="assets/Flare%20Case%20Study%20V2.jpg" style="width:100%; height:100%;"><div class="case-stat-overlay"><span class="case-stat-number">60</span><span class="case-stat-label">qualified leads</span></div></div>
+        <div style="padding:14px 16px; display:flex; align-items:center; gap:8px; border-top:1px solid rgba(0,0,0,0.06);">
+          <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">Flare</span>
+          <span style="font-size:10px; font-weight:700; background:rgba(85,0,221,0.08); color:#5500DD; border-radius:100px; padding:2px 9px;">B2B SaaS</span>
+          <span style="font-size:10px; color:rgba(0,0,0,0.3); margin-left:auto; font-weight:600;">Reddit</span>
+        </div>
+      </a>
+
+      <!-- Card: Restream -->
+      <a href="#book" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div class="case-img-wrap"><img loading="lazy" src="assets/Restream%20Case%20Study%20V2.jpg" style="width:100%; height:100%;"><div class="case-stat-overlay"><span class="case-stat-number">50%</span><span class="case-stat-label">lower CPL</span></div></div>
+        <div style="padding:14px 16px; display:flex; align-items:center; gap:8px; border-top:1px solid rgba(0,0,0,0.06);">
+          <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">Restream</span>
+          <span style="font-size:10px; font-weight:700; background:rgba(85,0,221,0.08); color:#5500DD; border-radius:100px; padding:2px 9px;">B2C SaaS</span>
+          <span style="font-size:10px; color:rgba(0,0,0,0.3); margin-left:auto; font-weight:600;">Multi-platform</span>
+        </div>
+      </a>
+
+      <!-- Card: Noirvere -->
+      <a href="#book" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div class="case-img-wrap"><img loading="lazy" src="assets/Noirver%20V2.jpg" style="width:100%; height:100%;"><div class="case-stat-overlay"><span class="case-stat-number">5X</span><span class="case-stat-label">peak ROAS</span></div></div>
+        <div style="padding:14px 16px; display:flex; align-items:center; gap:8px; border-top:1px solid rgba(0,0,0,0.06);">
+          <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">Noirvere</span>
+          <span style="font-size:10px; font-weight:700; background:rgba(234,88,12,0.1); color:#c2410c; border:1px solid rgba(234,88,12,0.25); border-radius:100px; padding:2px 9px;">DTC Fashion</span>
+          <span style="font-size:10px; color:rgba(0,0,0,0.3); margin-left:auto; font-weight:600;">TikTok</span>
+        </div>
+      </a>
+
+      <!-- Card: CozyBeds -->
+      <a href="#book" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div class="case-img-wrap"><img loading="lazy" src="assets/CozyBeds%20Case%20Study%20V2.jpg" style="width:100%; height:100%;"><div class="case-stat-overlay"><span class="case-stat-number">4X</span><span class="case-stat-label">ROAS on Meta</span></div></div>
+        <div style="padding:14px 16px; display:flex; align-items:center; gap:8px; border-top:1px solid rgba(0,0,0,0.06);">
+          <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">CozyBeds</span>
+          <span style="font-size:10px; font-weight:700; background:rgba(234,88,12,0.1); color:#c2410c; border:1px solid rgba(234,88,12,0.25); border-radius:100px; padding:2px 9px;">DTC</span>
+          <span style="font-size:10px; color:rgba(0,0,0,0.3); margin-left:auto; font-weight:600;">Meta · Google</span>
+        </div>
+      </a>
+
+      <!-- Card: Tiny Protectors -->
+      <a href="#book" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div class="case-img-wrap"><img loading="lazy" src="assets/TP%20Case%20Study%20v2.jpg" style="width:100%; height:100%;"><div class="case-stat-overlay"><span class="case-stat-number">4X</span><span class="case-stat-label">ROAS on Meta, Pin & Google</span></div></div>
+        <div style="padding:14px 16px; display:flex; align-items:center; gap:8px; border-top:1px solid rgba(0,0,0,0.06);">
+          <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">Tiny Protectors</span>
+          <span style="font-size:10px; font-weight:700; background:rgba(234,88,12,0.1); color:#c2410c; border:1px solid rgba(234,88,12,0.25); border-radius:100px; padding:2px 9px;">DTC Lifestyle</span>
+          <span style="font-size:10px; color:rgba(0,0,0,0.3); margin-left:auto; font-weight:600;">Meta · TikTok</span>
+        </div>
+      </a>
+
+      <!-- Card: One Great Lottery -->
+      <a href="#book" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div class="case-img-wrap"><img loading="lazy" src="assets/Lottery%20Case%20Study%20V2.jpg" style="width:100%; height:100%;"><div class="case-stat-overlay"><span class="case-stat-number">3X</span><span class="case-stat-label">ROAS on Meta & Google</span></div></div>
+        <div style="padding:14px 16px; display:flex; align-items:center; gap:8px; border-top:1px solid rgba(0,0,0,0.06);">
+          <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">One Great Lottery</span>
+          <span style="font-size:10px; font-weight:700; background:rgba(234,88,12,0.1); color:#c2410c; border:1px solid rgba(234,88,12,0.25); border-radius:100px; padding:2px 9px;">B2C</span>
+          <span style="font-size:10px; color:rgba(0,0,0,0.3); margin-left:auto; font-weight:600;">Meta · Google</span>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Credentials -->
+    <div style="display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-top:36px; margin-bottom:8px;">
+      <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,183,77,0.08); border:1px solid rgba(255,183,77,0.3); border-radius:100px; padding:8px 16px; font-size:12px; font-weight:700; color:#b37800;">Pinterest Global Award Winner</span>
+      <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(255,69,0,0.07); border:1px solid rgba(255,69,0,0.25); border-radius:100px; padding:8px 16px; font-size:12px; font-weight:700; color:#cc3300;">Reddit Certified Partner</span>
+    </div>
+
+    <div style="margin-top:28px; text-align:center;">
+      <a href="#book" style="display:inline-flex; align-items:center; gap:8px; background:#0d0d0d; color:#fff; font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:700; padding:14px 28px; border-radius:100px; text-decoration:none; letter-spacing:-0.01em;">
+        3 free ads. Keep them.
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- TEAM — moved up from below testimonials -->
+<section id="team" class="section-inner" style="padding:60px 0 68px; background:#ffffff;">
+  <div class="container">
+    <div class="section-header" style="margin-bottom:48px;">
+      <div class="title-row h2" style="justify-content:center;" data-anim>
+        <span>Meet the</span>
+        <span class="badge badge-blue" style="transform:rotate(-5deg);"><em style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700;">Founders.</em></span>
+      </div>
+      <p class="body" data-anim data-delay="1">Two people. One loop. No account managers. No handoffs. No gap.</p>
+    </div>
+
+    
+
+    <div style="display:flex; flex-direction:column; gap:20px; max-width:1100px; margin:0 auto;">
+
+      <!-- Zoha: image left, description right -->
+      <a href="https://www.linkedin.com/in/zoha-ahmed-38a32266/" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit; display:block;">
+      <div class="team-card" style="grid-template-columns:5fr 7fr; cursor:pointer; transition:box-shadow 0.3s, border-color 0.3s;" data-anim onmouseenter="this.style.boxShadow='0 12px 40px rgba(85,0,221,0.1)';this.style.borderColor='rgba(85,0,221,0.3)'" onmouseleave="this.style.boxShadow='none';this.style.borderColor='#e8e8e8'">
+        <span class="team-li-hint"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect width="14" height="14" rx="3" fill="#0A66C2"/><rect x="3" y="5.5" width="2" height="5.5" fill="white"/><circle cx="4" cy="3.5" r="1.2" fill="white"/><rect x="6.5" y="5.5" width="2" height="5.5" fill="white"/><path d="M8.5 7.5c0-1 .5-1.5 1.2-1.5s1.3.5 1.3 1.5v3.5h2V7.2c0-2-1.1-2.7-2.5-2.7a2.1 2.1 0 0 0-2 1.1V5.5h-2V11h2Z" fill="white"/></svg>View LinkedIn →</span>
+        <div class="team-card-img">
+          <img loading="lazy" src="assets/zoha.jpg" alt="Zoha Ahmed">
+        </div>
+        <div class="team-card-body">
+          <p style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue); margin:0 0 10px;">Performance and Measurement Lead</p>
+          <h3 style="font-family:var(--font); font-size:clamp(28px,2.8vw,40px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1.05; margin:0 0 8px; letter-spacing:-0.02em;">Zoha Ahmed</h3>
+          <p style="font-size:15px; font-style:italic; font-family:'Playfair Display',Georgia,serif; color:rgba(0,0,0,0.38); margin:0 0 20px;">Allergic to wasted spend.</p>
+          <p style="font-size:16px; line-height:1.85; color:#555; margin:0 0 28px;">I don't run campaigns. I build systems. At GroupM I saw firsthand what slow, bloated agency work looks like at scale. Inconsistent results. No clear process. Too much dependence on Meta and Google while real opportunities sat untouched. So I built Skip the Noise to fix it. What that looks like in practice: the first ever Reddit AMA run alongside their official team. Dynamic creative automation in Smartly.io that cut time to market by 50%. Full funnel measurement using Funnel.io with multi-touch attribution and MMM. Account-based marketing on LinkedIn hitting 65% engagement rates with targeted company lists. 6sense for B2B lookalikes and Likely to Acquire audiences. And a Pinterest Global Award from 100+ submissions. That's performance, innovation, and process in the same room.</p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <span class="team-pill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>$50M+ managed</span>
+            <span class="team-pill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Pinterest Global Award</span>
+            <span class="team-pill reddit-pill" title="View Reddit AMA" style="cursor:pointer;" onclick="event.stopPropagation();window.open('https://www.reddit.com/r/RedditforBusiness/comments/1nuns12/performance_marketing_success_on_reddit_ama_with/','_blank')"><svg class="rp-check" width="14" height="14" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="rp-reddit" width="16" height="16" viewBox="0 0 20 20" fill="none" style="flex-shrink:0;display:none;"><circle cx="10" cy="10" r="10" fill="white"/><circle cx="6.5" cy="11" r="1.3" fill="#FF4500"/><circle cx="13.5" cy="11" r="1.3" fill="#FF4500"/><path d="M7 13.5c.8.7 5.2.7 6 0" stroke="#FF4500" stroke-width="1.2" stroke-linecap="round"/><circle cx="10" cy="10" r="10" fill="none"/><path d="M13.5 7.5a2.5 2.5 0 0 1 2.5 2.5" stroke="#FF4500" stroke-width="1.2" stroke-linecap="round"/><path d="M6.5 7.5a2.5 2.5 0 0 0-2.5 2.5" stroke="#FF4500" stroke-width="1.2" stroke-linecap="round"/><circle cx="15" cy="6.5" r="1" fill="#FF4500"/><path d="M10 4.5c1.4 0 2.5.6 3 1.5" stroke="#FF4500" stroke-width="1.2" stroke-linecap="round"/><path d="M7 6c.5-.9 1.6-1.5 3-1.5" stroke="#FF4500" stroke-width="1.2" stroke-linecap="round"/></svg>Reddit Certified Partner <svg width="10" height="10" viewBox="0 0 10 10" fill="none" style="margin-left:2px;flex-shrink:0;opacity:0.45;"><path d="M1.5 8.5L8.5 1.5M8.5 1.5H3.5M8.5 1.5V6.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="team-pill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#5500dd"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Adidas · Dell · Mars</span>
+          </div>
+        </div>
+      </div>
+      </a>
+
+      <!-- Sonia: description left, image right -->
+      <a href="https://www.linkedin.com/in/soniamohapatra/" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit; display:block;">
+      <div class="team-card" style="grid-template-columns:7fr 5fr; cursor:pointer; transition:box-shadow 0.3s, border-color 0.3s;" data-anim data-delay="1" onmouseenter="this.style.boxShadow='0 12px 40px rgba(238,0,51,0.08)';this.style.borderColor='rgba(238,0,51,0.3)'" onmouseleave="this.style.boxShadow='none';this.style.borderColor='#e8e8e8'">
+        <span class="team-li-hint"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect width="14" height="14" rx="3" fill="#0A66C2"/><rect x="3" y="5.5" width="2" height="5.5" fill="white"/><circle cx="4" cy="3.5" r="1.2" fill="white"/><rect x="6.5" y="5.5" width="2" height="5.5" fill="white"/><path d="M8.5 7.5c0-1 .5-1.5 1.2-1.5s1.3.5 1.3 1.5v3.5h2V7.2c0-2-1.1-2.7-2.5-2.7a2.1 2.1 0 0 0-2 1.1V5.5h-2V11h2Z" fill="white"/></svg>View LinkedIn →</span>
+        <div class="team-card-body">
+          <p style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--orange); margin:0 0 10px;">Creative and Strategy Lead</p>
+          <h3 style="font-family:var(--font); font-size:clamp(28px,2.8vw,40px); font-variation-settings:'wdth' 125,'wght' 900; color:#0a0a0a; line-height:1.05; margin:0 0 8px; letter-spacing:-0.02em;">Sonia Mohapatra</h3>
+          <p style="font-size:15px; font-style:italic; font-family:'Playfair Display',Georgia,serif; color:rgba(0,0,0,0.38); margin:0 0 20px;">Ad obsessed since age five. Still am.</p>
+          <p style="font-size:16px; line-height:1.85; color:#555; margin:0 0 28px;">I memorized jingles as a kid. Rewound commercials. Spent way too much time thinking about why some ads stopped you cold and others disappeared into noise. That obsession never left. It just got more technical. I found media buying because data won. The idea that you could study an algorithm, understand its logic, and make it work harder for less money — that was the puzzle I wanted to solve. The last 8 years covered everything from $25M businesses to Fortune 500s like Coca-Cola. The data side and the ad-obsessed side were always running in parallel. Skip the Noise is where they finally merged.</p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <span class="team-pill" style="grid-column:1/-1;"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>HarperCollins · Radisson · Rogers · Coca-Cola</span>
+            <span class="team-pill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Creative strategy</span>
+            <span class="team-pill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#ee0033"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>5-star on Design Rush</span>
+          </div>
+        </div>
+        <div class="team-card-img">
+          <img loading="lazy" src="assets/sonia.jpg" alt="Sonia Mohapatra">
+        </div>
+      </div>
+      </a>
+
     </div>
   </div>
 </section>
 
-<!-- ======== 3. CLIENT TRUST STRIP ======== -->
-<div class="trust-strip">
-  <div class="container-wide">
-    <div class="trust-inner reveal">
-      <span class="trust-label">Trusted by</span>
-      <span class="trust-name">Adidas</span>
-      <span class="trust-name">Coca-Cola</span>
-      <span class="trust-name">Dell</span>
-      <span class="trust-name">Mars</span>
-      <span class="trust-name">Rogers</span>
-      <span class="trust-name">Restream</span>
-      <span class="trust-name">Flare.io</span>
-      <span class="trust-name">SimpleBooth</span>
-      <span class="trust-name">Brokk.ai</span>
-      <span class="trust-name">Art of Living</span>
-      <span class="trust-name">TCF</span>
+<!-- Wave: team → testimonials -->
+<div style="background:#ffffff; line-height:0; overflow:hidden; margin-bottom:-1px;">
+  <svg viewBox="0 0 1440 28" preserveAspectRatio="none" style="display:block; width:100%; height:28px;">
+    <path d="M0,28 C360,0 1080,0 1440,28 L1440,28 L0,28 Z" fill="#EEE8FF"/>
+  </svg>
+</div>
+
+<!-- TESTIMONIALS (Section 6) — light purple -->
+<section style="background:#EEE8FF; padding:60px 24px 80px;">
+  <div style="max-width:1400px; margin:0 auto;">
+    <div style="margin-bottom:48px; text-align:center;">
+      <div class="h2 testi-headline" style="text-align:center; line-height:1.15;">
+        <span style="display:block; overflow:hidden;">
+          <span class="testi-line" style="display:block; transform:translateY(110%); transition:transform 1s cubic-bezier(0.16,1,0.3,1) 0s; font-family:'Satoshi', system-ui, sans-serif; font-weight:900; letter-spacing:-0.04em;">Don't take our word <em style="font-family:'Playfair Display', Georgia, serif; font-style:italic; font-weight:700;">for it.</em></span>
+        </span>
+      </div>
+      <p class="testi-sub body" style="margin-top:16px; opacity:0; transform:translateY(20px); transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1) 1s, transform 0.8s cubic-bezier(0.16,1,0.3,1) 1s; color:rgba(0,0,0,0.6);">5-star reviews. Verified on Design Rush.</p>
+    </div>
+      <div class="testimonials-scroll">
+        <div class="testimonials-track">
+
+          <!-- Card 1: Eric C, Cozybeds -->
+          <div class="testimonial-card">
+            <div>
+              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+              <p style="font-size:17px;line-height:1.6;font-style:italic;">"The Reddit opportunity was real. They showed up with data on exactly what our competitors were doing in the community and made it easy to say yes."</p>
+            </div>
+            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+              <div style="width:44px;height:44px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">EC</div>
+              <div>
+                <p class="author-name" style="font-size:15px;">Eric C.</p>
+                <p class="author-loc" style="font-size:13px;">Co-founder · Cozybeds</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Faustine Foliard, Flare -->
+          <div class="testimonial-card">
+            <div>
+              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+              <p style="font-size:17px;line-height:1.6;font-style:italic;">"Great collaboration. Very satisfied with the Reddit Ads work. They generated 60+ leads in just 3 months."</p>
+            </div>
+            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+              <img loading="lazy" src="assets/faustin.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+              <div>
+                <p class="author-name" style="font-size:15px;">Faustine Foliard</p>
+                <p class="author-loc" style="font-size:13px;">Head of Marketing · Flare</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Adam Acheson, Astronomic -->
+          <div class="testimonial-card">
+            <div>
+              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+              <p style="font-size:17px;line-height:1.6;font-style:italic;">"He grasped our objectives fast and made meaningful contributions from day one. Adds value way beyond his defined scope. We consider ourselves fortunate to have him on board."</p>
+            </div>
+            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+              <img loading="lazy" src="assets/adamacheson.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+              <div>
+                <p class="author-name" style="font-size:15px;">Adam Acheson</p>
+                <p class="author-loc" style="font-size:13px;">COO · Astronomic</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Jan H, 3D AI Studio -->
+          <div class="testimonial-card">
+            <div>
+              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+              <p style="font-size:17px;line-height:1.6;font-style:italic;">"Launched and scaled Reddit ads to $10k per month, driving 30% more subscriptions for our SaaS B2C brand. Delivered 20+ creatives every month."</p>
+            </div>
+            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+              <img loading="lazy" src="assets/janh.jpg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+              <div>
+                <p class="author-name" style="font-size:15px;">Jan H.</p>
+                <p class="author-loc" style="font-size:13px;">CEO · 3D AI Studio</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5: Lisa Shepard, Monkey Athletics -->
+          <div class="testimonial-card">
+            <div>
+              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+              <p style="font-size:17px;line-height:1.6;font-style:italic;">"The audit was incredibly detailed and comprehensive. Zoha went above and beyond and was very easy to work with. Highly recommend."</p>
+            </div>
+            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+              <div style="width:44px;height:44px;border-radius:50%;background:#5500dd;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">LS</div>
+              <div>
+                <p class="author-name" style="font-size:15px;">Lisa Shepard</p>
+                <p class="author-loc" style="font-size:13px;">CEO · Monkey Athletics</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6: Will Sentance, Codesmith -->
+          <div class="testimonial-card">
+            <div>
+              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+              <p style="font-size:17px;line-height:1.6;font-style:italic;">"It was a pleasure working with Skip the Noise team for cross-channel paid ads."</p>
+            </div>
+            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+              <img loading="lazy" src="assets/willsentance.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+              <div>
+                <p class="author-name" style="font-size:15px;">Will Sentance</p>
+                <p class="author-loc" style="font-size:13px;">CEO · Codesmith.io</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Duplicate set for seamless loop -->
+          <div class="testimonial-card">
+            <div>
+              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+              <p style="font-size:17px;line-height:1.6;font-style:italic;">"The Reddit opportunity was real. They showed up with data on exactly what our competitors were doing in the community and made it easy to say yes."</p>
+            </div>
+            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+              <div style="width:44px;height:44px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">EC</div>
+              <div>
+                <p class="author-name" style="font-size:15px;">Eric C.</p>
+                <p class="author-loc" style="font-size:13px;">Co-founder · Cozybeds</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div>
+              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+              <p style="font-size:17px;line-height:1.6;font-style:italic;">"Great collaboration. Very satisfied with the Reddit Ads work. They generated 60+ leads in just 3 months."</p>
+            </div>
+            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+              <img loading="lazy" src="assets/faustin.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+              <div>
+                <p class="author-name" style="font-size:15px;">Faustine Foliard</p>
+                <p class="author-loc" style="font-size:13px;">Head of Marketing · Flare</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div>
+              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+              <p style="font-size:17px;line-height:1.6;font-style:italic;">"He grasped our objectives fast and made meaningful contributions from day one. Adds value way beyond his defined scope. We consider ourselves fortunate to have him on board."</p>
+            </div>
+            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+              <img loading="lazy" src="assets/adamacheson.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+              <div>
+                <p class="author-name" style="font-size:15px;">Adam Acheson</p>
+                <p class="author-loc" style="font-size:13px;">COO · Astronomic</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div>
+              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+              <p style="font-size:17px;line-height:1.6;font-style:italic;">"Launched and scaled Reddit ads to $10k per month, driving 30% more subscriptions for our SaaS B2C brand. Delivered 20+ creatives every month."</p>
+            </div>
+            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+              <img loading="lazy" src="assets/janh.jpg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+              <div>
+                <p class="author-name" style="font-size:15px;">Jan H.</p>
+                <p class="author-loc" style="font-size:13px;">CEO · 3D AI Studio</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div>
+              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+              <p style="font-size:17px;line-height:1.6;font-style:italic;">"The audit was incredibly detailed and comprehensive. Zoha went above and beyond and was very easy to work with. Highly recommend."</p>
+            </div>
+            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+              <div style="width:44px;height:44px;border-radius:50%;background:#5500dd;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">LS</div>
+              <div>
+                <p class="author-name" style="font-size:15px;">Lisa Shepard</p>
+                <p class="author-loc" style="font-size:13px;">CEO · Monkey Athletics</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div>
+              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+              <p style="font-size:17px;line-height:1.6;font-style:italic;">"It was a pleasure working with Skip the Noise team for cross-channel paid ads."</p>
+            </div>
+            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+              <img loading="lazy" src="assets/willsentance.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+              <div>
+                <p class="author-name" style="font-size:15px;">Will Sentance</p>
+                <p class="author-loc" style="font-size:13px;">CEO · Codesmith.io</p>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.testimonials-track -->
+      </div><!-- /.testimonials-scroll -->
+  </div>
+</section>
+
+<!-- Diagonal transition: testimonials → book -->
+<div style="background:#EEE8FF; line-height:0; overflow:hidden; margin-bottom:-1px;">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" style="display:block; width:100%; height:60px;">
+    <polygon points="0,60 1440,0 1440,60" fill="#FFEDED"/>
+  </svg>
+</div>
+
+<!-- PROCESS — hidden, will move to another page -->
+<div style="display:none;">
+  <section id="services" class="section-inner section-white">
+      <div class="container">
+        <div class="section-header">
+          <div class="title-row h2" style="justify-content:center;" data-anim>
+            <span>Here's what you</span>
+            <span class="badge badge-blue" data-anim="tilt" data-delay="1">get.</span>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; border-top:2px solid var(--dark); border-bottom:2px solid var(--dark); max-width:900px; margin:0 auto 48px;" data-anim data-delay="2" data-stagger>
+          <div style="padding:36px 32px; border-right:1px solid var(--gray-200);">
+            <h3 class="h3" style="margin-bottom:8px;">AI-powered creative at scale</h3>
+            <p class="body" style="font-size:15px; color:var(--gray-400);">Static, video, UGC, 3D, motion. Midjourney, Luma, Kling, Creatify. Performance strategists direct the AI. You get 20+ creatives/month instead of 4. Every asset built to convert, not to win design awards.</p>
+          </div>
+          <div style="padding:36px 32px;">
+            <h3 class="h3" style="margin-bottom:8px;">Performance media buying</h3>
+            <p class="body" style="font-size:15px; color:var(--gray-400);">Meta, Google, Reddit, LinkedIn, TikTok, Pinterest, Snapchat, X. Ex-GroupM buyers who know which creative works because they made it. No handoff. No guessing.</p>
+          </div>
+        </div>
+
+        <!-- Tools we create with -->
+        <div style="text-align:center; margin-bottom:24px;">
+          <p style="font-size:12px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:var(--gray-300); margin-bottom:16px;">Tools we create with</p>
+          <div class="tools-wrap" style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px;">
+            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1.5px solid #D97706; border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:#B45309; animation-delay:0.1s;">Claude</span>
+            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1.5px solid #4285F4; border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:#1a65d6; animation-delay:0.2s;">Gemini</span>
+            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1.5px solid #FBBF24; border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:#b38600; animation-delay:0.3s;">Nano Banana</span>
+            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1.5px solid #8B5CF6; border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:#6d3ad4; animation-delay:0.4s;">Luma Labs</span>
+            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1.5px solid #1a1a2e; border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:#1a1a2e; animation-delay:0.5s;">Midjourney</span>
+            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1.5px solid #EC4899; border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:#c7236e; animation-delay:0.6s;">Creatify</span>
+            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1.5px solid #10B981; border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:#0a8f64; animation-delay:0.7s;">Kling</span>
+            <span class="tool-pill" style="display:inline-flex; align-items:center; gap:6px; background:var(--gray-50); border:1.5px solid #A259FF; border-radius:100px; padding:8px 16px; font-size:13px; font-weight:600; color:#8333e0; animation-delay:0.8s;">Figma</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CREATIVE GALLERY — Our Ads -->
+    <section id="work-gallery" class="section-inner" style="padding-bottom:40px;">
+      <div class="container">
+        <div style="text-align:center; margin-bottom:48px;">
+          <div class="title-row h2" style="justify-content:center;" data-anim>
+            <span>Ads that</span>
+            <em style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700; color:#5500DD;">convert.</em>
+          </div>
+          <p class="body" style="max-width:600px; margin:16px auto 0;" data-anim data-delay="1">Every asset below was made by the same team that runs the campaigns. That's why they perform.</p>
+        </div>
+
+        <!-- Video row with captions -->
+        <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:16px; margin-bottom:16px;" data-anim data-delay="1" data-stagger>
+          <div style="position:relative; border-radius:16px; overflow:hidden; aspect-ratio:9/16; background:#111;">
+            <img loading="lazy" src="./assets/lipstick-spill.jpg" style="width:100%; height:100%; object-fit:cover;">
+            <div style="position:absolute; bottom:0; left:0; right:0; padding:12px 12px 10px; background:linear-gradient(transparent, rgba(0,0,0,0.8)); color:white;">
+              <p style="font-size:11px; letter-spacing:0.05em; text-transform:uppercase; opacity:0.7;">Noirvere · Luma Labs</p>
+              <p style="font-size:16px; font-weight:800; color:#facc15; margin-top:2px;">5X ROAS</p>
+            </div>
+          </div>
+          <div style="position:relative; border-radius:16px; overflow:hidden; aspect-ratio:9/16; background:#111;">
+            <img loading="lazy" src="./assets/handbag-fashion.jpg" style="width:100%; height:100%; object-fit:cover;">
+            <div style="position:absolute; bottom:0; left:0; right:0; padding:12px 12px 10px; background:linear-gradient(transparent, rgba(0,0,0,0.8)); color:white;">
+              <p style="font-size:11px; letter-spacing:0.05em; text-transform:uppercase; opacity:0.7;">Handbag Campaign · Luma Labs</p>
+              <p style="font-size:16px; font-weight:800; color:#facc15; margin-top:2px;">AI + 3D render</p>
+            </div>
+          </div>
+          <div style="position:relative; border-radius:16px; overflow:hidden; aspect-ratio:9/16; background:#111;">
+            <img loading="lazy" src="./assets/lipstick-hands.jpg" style="width:100%; height:100%; object-fit:cover;">
+            <div style="position:absolute; bottom:0; left:0; right:0; padding:12px 12px 10px; background:linear-gradient(transparent, rgba(0,0,0,0.8)); color:white;">
+              <p style="font-size:11px; letter-spacing:0.05em; text-transform:uppercase; opacity:0.7;">Noirvere · Creatify</p>
+              <p style="font-size:16px; font-weight:800; color:#facc15; margin-top:2px;">AI UGC · 48hr turnaround</p>
+            </div>
+          </div>
+          <div style="position:relative; border-radius:16px; overflow:hidden; aspect-ratio:9/16; background:#111;">
+            <img loading="lazy" src="./assets/handbag-walk.jpg" style="width:100%; height:100%; object-fit:cover;">
+            <div style="position:absolute; bottom:0; left:0; right:0; padding:12px 12px 10px; background:linear-gradient(transparent, rgba(0,0,0,0.8)); color:white;">
+              <p style="font-size:11px; letter-spacing:0.05em; text-transform:uppercase; opacity:0.7;">Lifestyle Shoot · Luma Labs</p>
+              <p style="font-size:16px; font-weight:800; color:#facc15; margin-top:2px;">AI video · scalable</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image bento grid with captions -->
+        <div style="display:grid; grid-template-columns:repeat(4, 1fr); grid-template-rows:200px 200px; gap:16px;" data-anim data-delay="2" data-stagger>
+          <div style="position:relative; grid-column:span 2; border-radius:16px; overflow:hidden;">
+            <img loading="lazy" src="./assets/lipstick-spill.jpg" alt="Lipstick campaign creative" style="width:100%; height:100%; object-fit:cover;">
+            <div style="position:absolute; bottom:0; left:0; right:0; padding:10px 12px; background:linear-gradient(transparent, rgba(0,0,0,0.7)); color:white;">
+              <span style="font-size:11px; letter-spacing:0.05em; text-transform:uppercase; opacity:0.7;">Noirvere · Product</span>
+              <span style="float:right; font-size:13px; font-weight:700; color:#facc15;">5× ROAS</span>
+            </div>
+          </div>
+          <div style="position:relative; border-radius:16px; overflow:hidden;">
+            <img loading="lazy" src="./assets/Cpg_nO2xZZjv.jpg" alt="CPG campaign" style="width:100%; height:100%; object-fit:cover;">
+            <div style="position:absolute; bottom:0; left:0; right:0; padding:10px 12px; background:linear-gradient(transparent, rgba(0,0,0,0.7)); color:white;">
+              <span style="font-size:11px; letter-spacing:0.05em; text-transform:uppercase; opacity:0.7;">CPG · Meta</span>
+              <span style="float:right; font-size:13px; font-weight:700; color:#facc15;">4× ROAS</span>
+            </div>
+          </div>
+          <div style="position:relative; border-radius:16px; overflow:hidden;">
+            <img loading="lazy" src="./assets/Protein_Bar_Advertisement_cTVg3CZh.jpg" alt="Protein bar ad" style="width:100%; height:100%; object-fit:cover;">
+            <div style="position:absolute; bottom:0; left:0; right:0; padding:10px 12px; background:linear-gradient(transparent, rgba(0,0,0,0.7)); color:white;">
+              <span style="font-size:11px; letter-spacing:0.05em; text-transform:uppercase; opacity:0.7;">Go Bar · TikTok</span>
+              <span style="float:right; font-size:13px; font-weight:700; color:#facc15;">3× ROAS</span>
+            </div>
+          </div>
+          <div style="position:relative; border-radius:16px; overflow:hidden;">
+            <img loading="lazy" src="./assets/lipstick-taxi.jpg" alt="Noirvere UGC" style="width:100%; height:100%; object-fit:cover;">
+            <div style="position:absolute; bottom:0; left:0; right:0; padding:10px 12px; background:linear-gradient(transparent, rgba(0,0,0,0.7)); color:white;">
+              <span style="font-size:11px; letter-spacing:0.05em; text-transform:uppercase; opacity:0.7;">Noirvere · UGC</span>
+              <span style="float:right; font-size:13px; font-weight:700; color:#facc15;">5× ROAS</span>
+            </div>
+          </div>
+          <div style="position:relative; border-radius:16px; overflow:hidden;">
+            <img loading="lazy" src="./assets/Protein_Bar_Advertisement_CDLIA58W.jpg" alt="Protein bar creative" style="width:100%; height:100%; object-fit:cover;">
+            <div style="position:absolute; bottom:0; left:0; right:0; padding:10px 12px; background:linear-gradient(transparent, rgba(0,0,0,0.7)); color:white;">
+              <span style="font-size:11px; letter-spacing:0.05em; text-transform:uppercase; opacity:0.7;">Go Bar · Meta</span>
+              <span style="float:right; font-size:13px; font-weight:700; color:#facc15;">3× ROAS</span>
+            </div>
+          </div>
+          <div style="position:relative; grid-column:span 2; border-radius:16px; overflow:hidden;">
+            <img loading="lazy" src="./assets/Cpg_l5evv8k1.jpg" alt="CPG lifestyle" style="width:100%; height:100%; object-fit:cover;">
+            <div style="position:absolute; bottom:0; left:0; right:0; padding:10px 12px; background:linear-gradient(transparent, rgba(0,0,0,0.7)); color:white;">
+              <span style="font-size:11px; letter-spacing:0.05em; text-transform:uppercase; opacity:0.7;">CPG · Lifestyle</span>
+              <span style="float:right; font-size:13px; font-weight:700; color:#facc15;">4× ROAS</span>
+            </div>
+          </div>
+        </div>
+
+        </div>
+      </div>
+
+      <!-- Mobile responsive for gallery -->
+      
+    </section>
+  </div>
+</div>
+</div><!-- end hidden old content -->
+
+<!-- PROCESS — hidden, moving to separate page -->
+<div style="display:none;">
+<div class="section-bg">
+  <div class="section-rounded" data-scroll-scale>
+    <section id="process" class="section-inner">
+      <div class="container">
+        <div class="section-header" style="margin-bottom:56px;">
+          <div class="title-row h2" style="justify-content:center;" data-anim>
+            <span>How it</span>
+            <span class="badge badge-orange" data-anim="tilt" data-delay="1">works.</span>
+          </div>
+          <p class="body" data-anim data-delay="2">Three steps. No layers. No handoffs.</p>
+        </div>
+
+        <!-- Timeline with cards -->
+        <div style="position:relative; max-width:960px; margin:0 auto 48px;" data-anim data-delay="3">
+          <!-- Connecting line -->
+          <div class="process-line-bg" style="position:absolute; top:40px; left:calc(16.66% + 28px); right:calc(16.66% + 28px); height:3px; background:var(--gray-200); z-index:0;"></div>
+          <div class="process-line-fill" style="position:absolute; top:40px; left:calc(16.66% + 28px); right:calc(16.66% + 28px); height:3px; background:var(--blue); z-index:1; transform-origin:left; transform:scaleX(0); transition:transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);"></div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:32px; text-align:center;">
+            <!-- Step 1 -->
+            <div class="process-step" style="opacity:0; transform:translateY(20px); transition:all 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.2s;">
+              <div style="width:64px; height:64px; border-radius:50%; background:var(--dark); color:white; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; position:relative; z-index:2; box-shadow:0 4px 16px rgba(0,0,0,0.15);">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              </div>
+              <div style="background:#fff; border:1px solid var(--gray-200); border-top:3px solid var(--blue); border-radius:20px; padding:28px 24px; transition:border-color 0.3s, box-shadow 0.3s;" onmouseenter="this.style.borderColor='var(--blue)';this.style.borderTopWidth='3px';this.style.boxShadow='0 8px 24px rgba(85,0,221,0.1)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.borderTopColor='var(--blue)';this.style.borderTopWidth='3px';this.style.boxShadow='none'">
+                <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--blue); margin-bottom:8px;">Step 01</p>
+                <h3 class="h3" style="margin-bottom:8px;">Audit</h3>
+                <p class="body" style="font-size:15px; color:var(--gray-400);">We pull your ad library, benchmark against competitors, and find every gap. 48 hours. Free.</p>
+              </div>
+            </div>
+            <!-- Step 2 -->
+            <div class="process-step" style="opacity:0; transform:translateY(20px); transition:all 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.4s;">
+              <div style="width:64px; height:64px; border-radius:50%; background:var(--dark); color:white; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; position:relative; z-index:2; box-shadow:0 4px 16px rgba(0,0,0,0.15);">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5.5 8.5 12 3l6.5 5.5"/><path d="m3 16 4-1 4 3 4-3 4 1"/></svg>
+              </div>
+              <div style="background:#fff; border:1px solid var(--gray-200); border-top:3px solid var(--orange); border-radius:20px; padding:28px 24px; transition:border-color 0.3s, box-shadow 0.3s;" onmouseenter="this.style.borderColor='var(--orange)';this.style.borderTopWidth='3px';this.style.boxShadow='0 8px 24px rgba(238,0,51,0.08)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.borderTopColor='var(--orange)';this.style.borderTopWidth='3px';this.style.boxShadow='none'">
+                <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--orange); margin-bottom:8px;">Step 02</p>
+                <h3 class="h3" style="margin-bottom:8px;">Produce</h3>
+                <p class="body" style="font-size:15px; color:var(--gray-400);">AI handles volume. Humans direct quality. 20+ creatives/month across every format.</p>
+              </div>
+            </div>
+            <!-- Step 3 -->
+            <div class="process-step" style="opacity:0; transform:translateY(20px); transition:all 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.6s;">
+              <div style="width:64px; height:64px; border-radius:50%; background:var(--dark); color:white; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; position:relative; z-index:2; box-shadow:0 4px 16px rgba(0,0,0,0.15);">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div style="background:#fff; border:1px solid var(--gray-200); border-top:3px solid #ee0033; border-radius:20px; padding:28px 24px; transition:border-color 0.3s, box-shadow 0.3s;" onmouseenter="this.style.borderColor='#ee0033';this.style.borderTopWidth='3px';this.style.boxShadow='0 8px 24px rgba(238,0,51,0.08)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.borderTopColor='#ee0033';this.style.borderTopWidth='3px';this.style.boxShadow='none'">
+                <p style="font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#ee0033; margin-bottom:8px;">Step 03</p>
+                <h3 class="h3" style="margin-bottom:8px;">Run + Optimize</h3>
+                <p class="body" style="font-size:15px; color:var(--gray-400);">We buy the media, measure what converts, extract winning patterns, and make the next round smarter. Repeat.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align:center;">
+          <a href="#book" class="btn btn-dark">
+            <span class="btn-inner">3 free ads. Keep them.</span>
+            <span class="btn-bg"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+</div><!-- end hidden process -->
+
+<!-- TEAM — content moved earlier in the page, above testimonials -->
+<section class="section-inner" style="padding:0; background:#ffffff; display:none;">
+  <div class="container">
+    <div class="section-header" style="margin-bottom:48px;">
+      <div class="title-row h2" style="justify-content:center;" data-anim>
+        <span>Meet the</span>
+        <span class="badge badge-blue" style="transform:rotate(-5deg);"><em style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700;">Founders.</em></span>
+      </div>
+      <p class="body" data-anim data-delay="1">Two people. One loop. No account managers. No handoffs. No gap.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:32px; max-width:800px; margin:0 auto;" data-stagger>
+      <a href="https://www.linkedin.com/in/zoha-ahmed-38a32266/" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit; display:block;">
+      <div style="background:#fff; border:2px solid var(--gray-200); border-radius:24px; overflow:hidden; transition:border-color 0.3s, box-shadow 0.3s; cursor:pointer;" onmouseenter="this.style.borderColor='var(--blue)';this.style.boxShadow='0 8px 32px rgba(85,0,221,0.1)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.boxShadow='none'">
+        <div style="height:280px; overflow:hidden;">
+          <img loading="lazy" src="assets/zoha.jpg" alt="Zoha Ahmed" style="width:100%; height:100%; object-fit:cover; object-position:center center;" />
+        </div>
+        <div style="padding:28px 24px;">
+          <h3 class="h3" style="margin-bottom:4px;">Zoha Ahmed</h3>
+          <p style="font-size:14px; font-weight:600; color:var(--blue); margin-bottom:16px;">Performance and Measurement Lead</p>
+          <p style="font-size:14px; line-height:1.7; color:rgba(0,0,0,0.55); margin-bottom:16px;">Ex-WPP performance director. 7 years running paid media for major North American brands. I look at what the data needs and figure out exactly which creative will move it. Reddit is my platform.</p>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--dark)"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span style="font-size:13px; color:var(--gray-400);">Ex-WPP Director · Allergic to wasted spend</span>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;">
+            <span style="font-size:12px; font-weight:600; color:var(--dark); border:1.5px solid var(--gray-200); border-radius:100px; padding:4px 12px;">Obsessed with ROAS</span>
+            <span style="font-size:12px; font-weight:600; color:var(--dark); border:1.5px solid var(--gray-200); border-radius:100px; padding:4px 12px;">Reddit</span>
+          </div>
+        </div>
+      </div>
+      </a>
+      <a href="https://www.linkedin.com/in/soniamohapatra/" target="_blank" rel="noopener noreferrer" style="text-decoration:none; color:inherit; display:block;">
+      <div style="background:#fff; border:2px solid var(--gray-200); border-radius:24px; overflow:hidden; transition:border-color 0.3s, box-shadow 0.3s; cursor:pointer;" onmouseenter="this.style.borderColor='var(--orange)';this.style.boxShadow='0 8px 32px rgba(238,0,51,0.08)'" onmouseleave="this.style.borderColor='var(--gray-200)';this.style.boxShadow='none'">
+        <div style="height:280px; overflow:hidden;">
+          <img loading="lazy" src="assets/sonia.jpg" alt="Sonia Mohapatra" style="width:100%; height:100%; object-fit:cover; object-position:center center;" />
+        </div>
+        <div style="padding:28px 24px;">
+          <h3 class="h3" style="margin-bottom:4px;">Sonia Mohapatra</h3>
+          <p style="font-size:14px; font-weight:600; color:var(--orange); margin-bottom:16px;">Creative and Strategy Lead</p>
+          <p style="font-size:14px; line-height:1.7; color:rgba(0,0,0,0.55); margin-bottom:16px;">Spent a decade at WPP building campaigns for Rogers and Coca-Cola. I lead creative strategy and production. My job is making ads that feel real and perform like they mean it.</p>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:12px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--dark)"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            <span style="font-size:13px; color:var(--gray-400);">Ex-WPP · Rogers → Coca-Cola</span>
+          </div>
+          <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;">
+            <span style="font-size:12px; font-weight:600; color:var(--dark); border:1.5px solid var(--gray-200); border-radius:100px; padding:4px 12px;">Gemini</span>
+            <span style="font-size:12px; font-weight:600; color:var(--dark); border:1.5px solid var(--gray-200); border-radius:100px; padding:4px 12px;">natural talker</span>
+            <span style="font-size:12px; font-weight:600; color:var(--dark); border:1.5px solid var(--gray-200); border-radius:100px; padding:4px 12px;">always real</span>
+          </div>
+        </div>
+      </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- cat-gallery removed -->
+<div style="display:none;">
+  <div style="max-width:1400px; margin:0 auto; padding:0 48px;">
+
+    <!-- Header — hidden, restore by removing display:none wrapper -->
+    <div style="display:none;">
+      <div style="margin-bottom:64px;">
+        <span style="display:block; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:16px;">Selected Work</span>
+        <h2 style="font-family:var(--font); font-size:clamp(32px,4vw,60px); font-variation-settings:'wdth' 125,'wght' 900; letter-spacing:-0.03em; color:#fff; line-height:1.1; margin:0;">Ads built to perform.<br><em style="font-family:'Playfair Display',serif; font-weight:700; font-style:italic; font-variation-settings:normal;">Across every format.</em></h2>
+      </div>
+    </div>
+
+    <!-- 2×2 grid -->
+    <div class="cg-grid">
+
+      <!-- 1. Handbag -->
+      <div class="cg-item">
+        <div class="cg-card">
+          <img class="cg-hero" src="./assets/handbag-street.jpg" alt="Handbag campaign" loading="lazy">
+          <div class="cg-pop cg-pop-1"><img src="./assets/handbag-fashion.jpg" alt="" loading="lazy"></div>
+          <div class="cg-pop cg-pop-2"><img src="./assets/handbag-walk.jpg" alt="" loading="lazy"></div>
+          <div class="cg-pop cg-pop-3"><img src="./assets/Handbag_A_stack_of_argyle-patterned_tote_bags_in_pastel_c-CAX2V5.mp4" alt="" loading="lazy" style="display:none;"><img src="./assets/handbag-fashion.jpg" alt="" loading="lazy"></div>
+        </div>
+        <div class="cg-label">
+          <span class="cg-name">Handbag Campaign</span>
+          <span class="cg-tags"><em>Fashion, Meta, TikTok</em></span>
+        </div>
+      </div>
+
+      <!-- 2. Lipstick -->
+      <div class="cg-item">
+        <div class="cg-card">
+          <img class="cg-hero" src="./assets/Lipstick_Campaign_dSJmLIvg.jpg" alt="Lipstick campaign" loading="lazy">
+          <div class="cg-pop cg-pop-1"><img src="./assets/lipstick-studio.jpg" alt="" loading="lazy"></div>
+          <div class="cg-pop cg-pop-2"><img src="./assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.jpg" alt="" loading="lazy"></div>
+          <div class="cg-pop cg-pop-3"><img src="./assets/lipstick-spill.jpg" alt="" loading="lazy"></div>
+        </div>
+        <div class="cg-label">
+          <span class="cg-name">Lipstick Campaign</span>
+          <span class="cg-tags"><em>Beauty, Meta, Reels</em></span>
+        </div>
+      </div>
+
+      <!-- 3. B2B SaaS -->
+      <div class="cg-item">
+        <div class="cg-card">
+          <img class="cg-hero" src="./assets/B2B_SaaS_Ads_HMTIB0O.jpg" alt="B2B SaaS ads" loading="lazy">
+          <div class="cg-pop cg-pop-1"><img src="./assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.jpg" alt="" loading="lazy"></div>
+          <div class="cg-pop cg-pop-2"><img src="./assets/B2B_SaaS_Ads_In_a_flat_design_style_a_man_with_many_arms_duWjAS1.jpg" alt="" loading="lazy"></div>
+          <div class="cg-pop cg-pop-3"><img src="./assets/B2B_SaaS_Ads_V5F-kd5P.jpg" alt="" loading="lazy"></div>
+        </div>
+        <div class="cg-label">
+          <span class="cg-name">B2B SaaS Ads</span>
+          <span class="cg-tags"><em>SaaS, Reddit, LinkedIn</em></span>
+        </div>
+      </div>
+
+      <!-- 4. CPG -->
+      <div class="cg-item">
+        <div class="cg-card">
+          <img class="cg-hero" src="./assets/Cpg_l5evv8k1.jpg" alt="CPG campaign" loading="lazy">
+          <div class="cg-pop cg-pop-1"><img src="./assets/Protein_Bar_Advertisement_CDLIA58W.jpg" alt="" loading="lazy"></div>
+          <div class="cg-pop cg-pop-2"><img src="./assets/Cpg_nO2xZZjv.jpg" alt="" loading="lazy"></div>
+          <div class="cg-pop cg-pop-3"><img src="./assets/Protein_Bar_Advertisement_cTVg3CZh.jpg" alt="" loading="lazy"></div>
+        </div>
+        <div class="cg-label">
+          <span class="cg-name">CPG Campaign</span>
+          <span class="cg-tags"><em>Consumer, Meta, TikTok</em></span>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
 
-<!-- ======== 4. SERVICES ======== -->
-<section class="services" id="services">
+
+
+<!-- BOOK A CALL — Calendly embed -->
+<section id="book" class="section-inner" style="padding:80px 0; background:#FFEDED;">
+  <div class="container" style="max-width:900px;">
+    <div style="text-align:center; margin-bottom:48px;">
+      <div class="h2 book-headline" style="line-height:1.1; margin-bottom:0;">
+        <span style="display:block; overflow:hidden; padding:6px 12px; margin:-6px -12px;">
+          <span class="book-line" style="display:block; transform:translateY(110%); transition:transform 1s cubic-bezier(0.16,1,0.3,1) 0s;">Get your free <span class="badge badge-blue" style="vertical-align:middle;"><em style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700;">audit.</em></span></span>
+        </span>
+      </div>
+      <p class="book-sub body" style="margin-top:20px; max-width:520px; margin-left:auto; margin-right:auto; opacity:0; transform:translateY(20px); transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1) 0.7s, transform 0.8s cubic-bezier(0.16,1,0.3,1) 0.7s;">30 minutes. We'll audit your ad library, show you where competitors are outproducing you, and build you 3 creatives. Free. No strings.</p>
+    </div>
+    <div class="book-widget" style="opacity:0; transform:scale(0.97); transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1) 1.1s, transform 0.9s cubic-bezier(0.16,1,0.3,1) 1.1s;">
+      <div class="calendly-inline-widget" data-url="https://calendly.com/skipthenoisemedia/30min" style="min-width:320px;height:700px;border-radius:24px;overflow:hidden;"></div>
+      <script>
+        (function(){
+          var loaded = false;
+          var obs = new IntersectionObserver(function(entries){
+            if(entries[0].isIntersecting && !loaded){
+              loaded = true;
+              var s = document.createElement("script");
+              s.src = "https://assets.calendly.com/assets/external/widget.js";
+              s.async = true;
+              document.head.appendChild(s);
+              obs.disconnect();
+            }
+          }, {rootMargin:"200px"});
+          obs.observe(document.getElementById("book"));
+        })();
+      </script>
+    </div>
+  </div>
+</section>
+
+<!-- CTA (hidden for now) -->
+<section id="contact" class="section-dark cta" style="display:none; padding:100px 0 40px;">
+  <div class="container flex-center" style="flex-direction:column;">
+    <div class="cta-content" data-anim="scale">
+      <img loading="lazy" src="https://framerusercontent.com/images/z7apnxgzG8zOLiICxGaVW0e7YbE.svg" class="cta-sparkle cta-sparkle-lines" alt="" />
+      <img loading="lazy" src="https://framerusercontent.com/images/K3V4upeshMTTObUUeEBoHUaoY.svg" class="cta-sparkle cta-cursor" alt="" />
+
+      <div class="title-row h2" style="justify-content:center;">
+        <span class="white">Have an</span>
+        <span class="badge badge-orange" data-anim="tilt" data-delay="1">idea?</span>
+      </div>
+      <div class="h2 white" data-anim data-delay="2">Let's work together!</div>
+      <p class="body" style="color:var(--gray-200);" data-anim data-delay="3">Book a free creative audit. We'll review your ad library across every platform and show you exactly where you're leaving money on the table.</p>
+      <div class="btn-row mt-24" style="justify-content:center; align-items:center;">
+        <a href="#book" class="btn btn-light">
+          <span class="btn-inner">3 free ads. Keep them.</span>
+          <span class="btn-bg" style="background:var(--blue);"></span>
+        </a>
+      </div>
+      <div class="cta-frame">
+        <span class="cta-dot" style="top:-14px;left:-14px;"></span>
+        <span class="cta-dot" style="top:-14px;right:-14px;"></span>
+        <span class="cta-dot" style="bottom:-14px;left:-14px;"></span>
+        <span class="cta-dot" style="bottom:-14px;right:-14px;"></span>
+      </div>
+    </div>
+    <img loading="lazy" src="https://framerusercontent.com/images/0NDnWHoOZZUsiOndUVuknlwfIg.svg" class="cta-hand" alt="" />
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
   <div class="container">
-    <div class="reveal">
-      <p class="eyebrow eyebrow-gradient">WHAT WE DO</p>
-      <h2 class="section-headline">Full stack creative and media.</h2>
-    </div>
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <span class="service-icon">&#127912;</span>
-        <h3 class="service-title">Performance Creative</h3>
-        <p class="service-desc">Static, video, UGC, 3D. Every format your campaigns need. Directed by strategists who read your data.</p>
-      </div>
-      <div class="service-card reveal">
-        <span class="service-icon">&#128200;</span>
-        <h3 class="service-title">Media Buying</h3>
-        <p class="service-desc">Meta, Google, Reddit, LinkedIn, TikTok, Pinterest. Cross-channel campaigns managed by ex-GroupM buyers.</p>
-      </div>
-      <div class="service-card reveal">
-        <span class="service-icon">&#128161;</span>
-        <h3 class="service-title">Creative Strategy</h3>
-        <p class="service-desc">We audit your ad library, find the gaps, build your test roadmap, and tell you exactly what to produce next.</p>
-      </div>
-      <div class="service-card reveal">
-        <span class="service-icon">&#127909;</span>
-        <h3 class="service-title">UGC Production</h3>
-        <p class="service-desc">Creator briefs, filming direction, editing. Performance UGC that feels native to every platform.</p>
-      </div>
-      <div class="service-card reveal">
-        <span class="service-icon">&#9889;</span>
-        <h3 class="service-title">3D &amp; Animation</h3>
-        <p class="service-desc">Product renders, animated ads, motion graphics. AI tools handle volume. Humans direct quality.</p>
-      </div>
-      <div class="service-card reveal">
-        <span class="service-icon">&#128187;</span>
-        <h3 class="service-title">Landing Pages</h3>
-        <p class="service-desc">Conversion optimized pages that match your ad creative. Built fast. Tested faster.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======== 5. CREATIVE GALLERY ======== -->
-<section class="gallery" id="gallery">
-  <div class="container-wide">
-    <div class="reveal">
-      <p class="eyebrow eyebrow-gradient">THE WORK</p>
-      <h2 class="section-headline">Creative that converts. Across every format.</h2>
-    </div>
-    <div class="gallery-videos reveal">
-      <video autoplay muted loop playsinline><source src="./assets/ad-chair.mp4" type="video/mp4"></video>
-      <video autoplay muted loop playsinline><source src="./assets/ad-angel.mp4" type="video/mp4"></video>
-      <video autoplay muted loop playsinline><source src="./assets/ad-dog.mp4" type="video/mp4"></video>
-      <video autoplay muted loop playsinline><source src="./assets/ad-mech.mp4" type="video/mp4"></video>
-    </div>
-    <div class="gallery-bento reveal">
-      <img src="./assets/lipstick-spill.jpg" alt="Lipstick creative" class="span-2">
-      <img src="./assets/handbag-fashion.jpg" alt="Handbag fashion shoot">
-      <img src="./assets/tcf-spiritual.jpg" alt="TCF spiritual campaign">
-      <img src="./assets/lipstick-closeup.png" alt="Lipstick closeup" class="tall">
-      <img src="./assets/handbag-walk.jpg" alt="Handbag walk shoot">
-      <img src="./assets/tcf-trust.jpg" alt="TCF trust campaign">
-      <img src="./assets/lipstick-hands.jpg" alt="Lipstick hands creative" class="span-2">
-      <img src="./assets/tcf-trust2.jpg" alt="TCF campaign">
-    </div>
-    <p class="gallery-caption reveal">Product shoots. UGC. 3D animation. Performance static. All directed by strategists who run the campaigns.</p>
-  </div>
-</section>
-
-<!-- ======== 6. THE PROBLEM ======== -->
-<section class="problem">
-  <div class="container">
-    <div class="reveal">
-      <h2 class="section-headline" style="text-align:center;">Most agencies are half the picture.</h2>
-    </div>
-    <div class="problem-grid">
-      <div class="problem-item reveal">
-        <span class="problem-number">1</span>
-        <div class="problem-text">
-          <h3 class="problem-title">Creative agencies don't buy media.</h3>
-          <p class="problem-desc">They make beautiful ads with no idea what performs. No feedback loop. No data. Just vibes and a mood board.</p>
-        </div>
-      </div>
-      <div class="problem-item reveal">
-        <span class="problem-number">2</span>
-        <div class="problem-text">
-          <h3 class="problem-title">Media agencies don't make creative.</h3>
-          <p class="problem-desc">They buy traffic and send you a spreadsheet. When performance drops, they blame the creative. Which they didn't make.</p>
-        </div>
-      </div>
-      <div class="problem-item reveal">
-        <span class="problem-number">3</span>
-        <div class="problem-text">
-          <h3 class="problem-title">The loop is broken.</h3>
-          <p class="problem-desc">Two teams. Two timelines. Zero alignment. You're paying for coordination overhead instead of performance.</p>
-        </div>
-      </div>
-    </div>
-    <p class="problem-tagline reveal">We do both. <span>One team. One loop.</span></p>
-  </div>
-</section>
-
-<!-- ======== 7. THE LOOP ======== -->
-<section class="loop">
-  <div class="loop-glow-red"></div>
-  <div class="loop-glow-purple"></div>
-  <div class="container">
-    <div class="reveal">
-      <p class="eyebrow" style="color:var(--text-muted);">HOW IT WORKS</p>
-      <h2 class="section-headline" style="color:#fff;">One team. One loop.</h2>
-    </div>
-    <div class="loop-steps">
-      <div class="loop-connector"></div>
-      <div class="loop-connector loop-connector-2"></div>
-      <div class="loop-step reveal">
-        <div class="loop-step-num">1</div>
-        <h3 class="loop-step-title">Audit</h3>
-        <p class="loop-step-desc">We review your ad library across every platform. We find what's working, what's missing, and where the biggest creative gaps are hiding revenue.</p>
-      </div>
-      <div class="loop-step reveal">
-        <div class="loop-step-num">2</div>
-        <h3 class="loop-step-title">Produce</h3>
-        <p class="loop-step-desc">We build the creative your campaigns actually need. Static, video, UGC, 3D. Every format directed by the same team running your media.</p>
-      </div>
-      <div class="loop-step reveal">
-        <div class="loop-step-num">3</div>
-        <h3 class="loop-step-title">Measure</h3>
-        <p class="loop-step-desc">We run the ads, read the data, and feed performance insights back into the next round of creative. The loop closes. Results compound.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======== 8. RESULTS ======== -->
-<section class="results" id="results">
-  <div class="container">
-    <div class="reveal">
-      <p class="eyebrow" style="color:var(--text-muted);">REAL RESULTS</p>
-      <h2 class="section-headline" style="color:#fff;">Numbers that matter.</h2>
-    </div>
-    <div class="results-grid">
-      <div class="result-card featured reveal">
-        <div class="result-metric">75 Qualified Leads</div>
-        <div class="result-label">Cybersecurity SaaS</div>
-        <p class="result-desc">Generated 75 qualified leads in 3 months through Reddit and LinkedIn. Turned a brand new channel into a top 3 pipeline source.</p>
-      </div>
-      <div class="result-card reveal">
-        <div class="result-metric">10% CAC Reduction</div>
-        <div class="result-label">Restream</div>
-        <p class="result-desc">$30-50k per month in spend. 10% year over year CAC reduction while scaling from US into EU, Canada, and Australia.</p>
-      </div>
-      <div class="result-card reveal">
-        <div class="result-metric">50% Lower CPL</div>
-        <div class="result-label">Flare.io</div>
-        <p class="result-desc">Cut cost per lead in half. Drove a 30% increase in branded searches. Turned Reddit into their highest intent acquisition channel.</p>
-      </div>
-      <div class="result-card reveal">
-        <div class="result-metric">$100 CPL at Scale</div>
-        <div class="result-label">B2B SaaS</div>
-        <p class="result-desc">60 qualified leads in 3 months at $100 CPL. Full funnel from top of funnel awareness to bottom of funnel demo bookings.</p>
-      </div>
-      <div class="result-card reveal">
-        <div class="result-metric">3-5x ROAS</div>
-        <div class="result-label">DTC Brands</div>
-        <p class="result-desc">Consistent 3 to 5x return on ad spend across Meta and Google for direct to consumer brands. Creative and media, same team.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======== 9. TEAM ======== -->
-<section class="team" id="team">
-  <div class="container">
-    <div class="reveal">
-      <p class="eyebrow eyebrow-gradient">THE TEAM</p>
-      <h2 class="section-headline">Ex-GroupM. Reddit Certified.<br>Built for performance.</h2>
-    </div>
-    <div class="team-grid">
-      <div class="team-card reveal">
-        <div class="team-avatar team-avatar-z">Z</div>
-        <h3 class="team-name">Zoha Ahmed</h3>
-        <p class="team-role">Co-Founder &amp; Head of Strategy</p>
-        <p class="team-bio">Ex-GroupM. Managed campaigns for Adidas, Dell, Mars, and Aldo. Reddit Certified Partner. Built Skip the Noise to close the gap between creative and media.</p>
-      </div>
-      <div class="team-card reveal">
-        <div class="team-avatar team-avatar-s">S</div>
-        <h3 class="team-name">Sonia Mohapatra</h3>
-        <p class="team-role">Co-Founder &amp; Head of Media</p>
-        <p class="team-bio">Ex-GroupM. Led media strategy for Coca-Cola and Rogers. Brings enterprise media buying discipline to growth stage brands.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======== 10. PLATFORM STRIP ======== -->
-<div class="platforms">
-  <div class="container-wide">
-    <div class="platform-inner reveal">
-      <span class="platform-pill">Meta</span>
-      <span class="platform-pill">Google</span>
-      <span class="platform-pill">Reddit</span>
-      <span class="platform-pill">LinkedIn</span>
-      <span class="platform-pill">TikTok</span>
-      <span class="platform-pill">Pinterest</span>
-      <span class="platform-pill">Snapchat</span>
-      <span class="platform-pill">X</span>
-    </div>
-  </div>
-</div>
-
-<!-- ======== 11. CTA ======== -->
-<section class="cta-section" id="cta">
-  <div class="cta-glow-red"></div>
-  <div class="cta-glow-purple"></div>
-  <div class="container">
-    <div class="cta-content reveal">
-      <h2 class="cta-headline">Stop guessing.<br>Start testing.</h2>
-      <p class="cta-sub">Book a free creative audit. We'll review your ad library across every platform and show you exactly where you're leaving pipeline on the table.</p>
-    </div>
-    <div class="calendly-wrap reveal">
-      <div class="calendly-inline-widget" data-url="https://calendly.com/skipthenoisemedia/creative-audit?hide_gdpr_banner=1&background_color=0e0e28&text_color=ffffff&primary_color=ee0033" style="min-width:320px;height:700px;"></div>
-    </div>
-    <p class="cta-footnote reveal">No retainer. No commitment. 30 minutes.</p>
-  </div>
-</section>
-
-<!-- ======== 12. FOOTER ======== -->
-<footer>
-  <div class="footer-top">
-    <div class="container">
-      <div class="footer-top-inner">
+    <div class="footer-top">
+      <a href="#" style="font-size:28px; font-weight:800; font-variation-settings:'wdth' 125,'wght' 800; text-decoration:none; display:block; margin-bottom:16px;">
+        <span style="color:#8888aa;">Skip</span> <span style="color:#cc4444;">the</span> <span style="color:#9966ff;">Noise</span>
+      </a>
+      <div class="footer-cols-row" style="display:flex; gap:80px; flex-wrap:wrap; justify-content:center; text-align:left;">
         <div>
-          <div class="footer-brand">Skip the <span>Noise</span> Media</div>
-          <p class="footer-tagline">Performance creative + media buying. One team.</p>
+          <p style="color:var(--white); font-weight:700; margin-bottom:16px;">Services</p>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="services.html" style="color:var(--gray-300); font-size:15px;">Performance Creative</a>
+            <a href="services.html" style="color:var(--gray-300); font-size:15px;">Media Buying</a>
+            <a href="services.html" style="color:var(--gray-300); font-size:15px;">Creative Strategy</a>
+            <a href="services.html" style="color:var(--gray-300); font-size:15px;">UGC Production</a>
+            <a href="services.html" style="color:var(--gray-300); font-size:15px;">3D &amp; Animation</a>
+          </div>
         </div>
-        <ul class="footer-links">
-          <li><a href="#services">Services</a></li>
-          <li><a href="#gallery">Work</a></li>
-          <li><a href="#results">Results</a></li>
-          <li><a href="#team">About</a></li>
-        </ul>
-        <div class="footer-email">
-          <a href="mailto:zoha@skipthenoisemedia.com">zoha@skipthenoisemedia.com</a>
+        <div>
+          <p style="color:var(--white); font-weight:700; margin-bottom:16px;">Company</p>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <a href="#work" style="color:var(--gray-300); font-size:15px;">Results</a>
+            <a href="gallery.html" style="color:var(--gray-300); font-size:15px;">Portfolio</a>
+            <a href="process.html" style="color:var(--gray-300); font-size:15px;">Process</a>
+            <a href="#book" style="color:var(--gray-300); font-size:15px;">Contact</a>
+          </div>
+        </div>
+        <div>
+          <p style="color:var(--white); font-weight:700; margin-bottom:16px;">Platforms</p>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <span style="color:var(--gray-300); font-size:15px;">Meta</span>
+            <span style="color:var(--gray-300); font-size:15px;">Google</span>
+            <span style="color:var(--gray-300); font-size:15px;">Reddit</span>
+            <span style="color:var(--gray-300); font-size:15px;">LinkedIn</span>
+            <span style="color:var(--gray-300); font-size:15px;">TikTok</span>
+            <span style="color:var(--gray-300); font-size:15px;">Pinterest</span>
+          </div>
+        </div>
+        <div>
+          <p style="color:var(--white); font-weight:700; margin-bottom:16px;">Get started</p>
+          <a href="#book" class="btn btn-light" style="margin-top:8px;">
+            <span class="btn-inner">3 free ads. Keep them.</span>
+            <span class="btn-bg" style="background:var(--blue);"></span>
+          </a>
         </div>
       </div>
     </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="container">
-      <div class="footer-bottom-inner">&copy; 2026 Skip the Noise Media &middot; Reddit Certified Partner</div>
+    <div class="footer-bottom" style="display:flex; flex-direction:column; align-items:center; gap:20px;">
+      <div style="display:flex; align-items:center; gap:16px;">
+        <a href="https://www.linkedin.com/company/skip-the-noise-media" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="color:var(--gray-300); transition:color 0.2s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="https://x.com/skipthenoisemed" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)" style="color:var(--gray-300); transition:color 0.2s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://www.upwork.com/agencies/skipthenoisemedia" target="_blank" rel="noopener noreferrer" aria-label="Upwork" style="color:var(--gray-300); transition:color 0.2s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.561 13.158c-1.102 0-2.135-.467-3.074-1.227l.228-1.076.008-.042c.207-1.143.849-3.06 2.839-3.06 1.492 0 2.703 1.212 2.703 2.703 0 1.491-1.212 2.702-2.704 2.702zm0-8.14c-2.539 0-4.51 1.649-5.31 4.366-1.22-1.834-2.148-4.036-2.687-5.892H7.828v7.112c-.002 1.406-1.141 2.546-2.547 2.548-1.405-.002-2.543-1.143-2.545-2.548V3.492H0v7.112c0 2.914 2.37 5.303 5.281 5.303 2.913 0 5.283-2.389 5.283-5.303v-1.19c.529 1.107 1.182 2.229 1.974 3.221l-1.673 7.873h2.797l1.213-5.71c1.063.679 2.285 1.109 3.686 1.109 3 0 5.439-2.452 5.439-5.45 0-3-2.439-5.439-5.439-5.439z"/></svg>
+        </a>
+      </div>
+      <p class="footer-copy">&copy; 2026 Skip the Noise Media &middot; Reddit Certified Partner</p>
     </div>
   </div>
 </footer>
 
-<!-- Calendly Widget JS -->
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <script>
+    // ── Anchor smooth scroll ─────────────────────────────────────
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+
+    // ── Nav scroll class ─────────────────────────────────────────
+    const nav = document.querySelector('.nav');
+    const progressBar = document.getElementById('scrollProgress');
+    if (nav) {
+      window.addEventListener('scroll', function() {
+        nav.classList.toggle('scrolled', window.scrollY > 100);
+        if (progressBar) progressBar.style.width = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100) + '%';
+      }, { passive: true });
+    }
+
+    // ── Make all animated elements visible immediately ────────────
+    document.querySelectorAll('[data-anim],[data-stagger],[data-scroll-scale],[data-parallax]').forEach(el => {
+      el.classList.add('visible', 'stagger-visible', 'scale-visible');
+      el.style.opacity = '1';
+      el.style.transform = 'none';
+    });
+    document.querySelectorAll('.process-step').forEach(s => { s.style.opacity='1'; s.style.transform='none'; });
+    const pLine = document.querySelector('.process-line-fill');
+    if (pLine) pLine.style.transform = 'scaleX(1)';
+    document.querySelectorAll('.svc-line').forEach(l => { l.style.transform='translateY(0)'; });
+    document.querySelectorAll('.svc-card').forEach(e => { e.style.opacity='1'; e.style.transform='translateY(0)'; });
+    document.querySelectorAll('.hero-word,.word').forEach(s => s.classList.add('visible'));
+
+    // ── Logo strip (CSS handles animation) ───────────────────────
+    const logoTrack = document.getElementById('logoTrack');
+    const logoTpl = document.getElementById('logoSetTpl');
+    if (logoTrack && logoTpl) {
+      for (let i = 0; i < 4; i++) logoTrack.appendChild(logoTpl.content.cloneNode(true));
+      logoTrack.style.animation = 'scroll-logos 25s linear infinite';
+    }
+
+    // ── Testimonials: simple CSS overflow scroll ──────────────────
+    // (rAF removed — users can drag/scroll manually)
+
+  </script>
+
+  <!-- Lightbox overlay -->
+  <div id="lb-overlay" onclick="lbClose()">
+    <div id="lb-inner" onclick="event.stopPropagation()"></div>
+    <button type="button" id="lb-close" aria-label="Close" onclick="lbClose()">✕</button>
+  </div>
+  <script>
+    function lbOpen(el) {
+      var inner = document.getElementById('lb-inner');
+      inner.innerHTML = '';
+      var src = el.dataset.lbSrc, type = el.dataset.lbType;
+      if (type === 'video') {
+        var v = document.createElement('video');
+        v.src = src; v.autoplay = true; v.loop = true; v.muted = true; v.controls = true;
+        v.playsInline = true; inner.appendChild(v);
+      } else {
+        var img = document.createElement('img'); img.src = src; inner.appendChild(img);
+      }
+      document.getElementById('lb-overlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function lbClose() {
+      document.getElementById('lb-overlay').classList.remove('active');
+      document.getElementById('lb-inner').innerHTML = '';
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') lbClose(); });
+
+    // Wire up all gallery items
+    document.querySelectorAll('[data-cat] > .gal-grid > div, [data-cat] .gal-grid > div').forEach(function(card) {
+      var vid = card.querySelector('video source');
+      var img = card.querySelector('img');
+      var src, type;
+      if (vid) { src = vid.getAttribute('src'); type = 'video'; }
+      else if (img) { src = img.getAttribute('src'); type = 'image'; }
+      if (!src) return;
+      card.style.cursor = 'zoom-in';
+      card.addEventListener('click', function(){ lbOpen({dataset:{lbSrc:src,lbType:type}}); });
+    });
+  </script>
 
 <script>
-// ---- Scroll Progress Bar ----
-const progressBar = document.getElementById('scrollProgress');
-window.addEventListener('scroll', () => {
-  const scrollTop = document.documentElement.scrollTop;
-  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  progressBar.style.width = (scrollTop / scrollHeight * 100) + '%';
-});
+(function() {
+  function revealSection(selector, lineClass, extraClass, threshold) {
+    var el = document.querySelector(selector);
+    if (!el) return;
+    var triggered = false;
+    var obs = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting && !triggered) {
+        triggered = true;
+        el.querySelectorAll('.' + lineClass).forEach(function(l) { l.style.transform = 'translateY(0)'; });
+        if (extraClass) {
+          el.querySelectorAll('.' + extraClass).forEach(function(e) { e.style.opacity = '1'; e.style.transform = 'translateY(0) scale(1)'; });
+        }
+        obs.disconnect();
+      }
+    }, { threshold: threshold || 0.2 });
+    obs.observe(el);
+  }
 
-// ---- Nav glass blur on scroll ----
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-});
+  // Services
+  revealSection('#services', 'svc-line', 'svc-card', 0.15);
 
-// ---- IntersectionObserver reveal ----
-const reveals = document.querySelectorAll('.reveal');
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
-    }
+  // Testimonials
+  var testiEl = document.querySelector('.testi-headline');
+  if (testiEl) {
+    var testiObs = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        testiEl.querySelectorAll('.testi-line').forEach(function(l) { l.style.transform = 'translateY(0)'; });
+        var sub = document.querySelector('.testi-sub');
+        if (sub) { sub.style.opacity = '1'; sub.style.transform = 'translateY(0)'; }
+        testiObs.disconnect();
+      }
+    }, { threshold: 0.2 });
+    testiObs.observe(testiEl);
+  }
+
+  // Book a Call
+  var bookEl = document.querySelector('.book-headline');
+  if (bookEl) {
+    var bookObs = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        bookEl.querySelectorAll('.book-line').forEach(function(l) { l.style.transform = 'translateY(0)'; });
+        var sub = document.querySelector('.book-sub');
+        if (sub) { sub.style.opacity = '1'; sub.style.transform = 'translateY(0)'; }
+        var widget = document.querySelector('.book-widget');
+        if (widget) { widget.style.opacity = '1'; widget.style.transform = 'scale(1)'; }
+        bookObs.disconnect();
+      }
+    }, { threshold: 0.15 });
+    bookObs.observe(bookEl);
+  }
+})();
+</script>
+
+
+<script>
+(function() {
+  /* Sections that already have their own entrance animations — skip them */
+  var skipIds = ['pain', 'hero', 'work-gallery', 'work', 'services'];
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('sec-visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('section').forEach(function(sec) {
+    if (skipIds.indexOf(sec.id) !== -1) return;
+    /* Skip if already has inline animation handling */
+    if (sec.querySelector('[data-hero]')) return;
+    sec.classList.add('sec-reveal');
+    obs.observe(sec);
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-reveals.forEach(el => revealObserver.observe(el));
+})();
+
+// Mobile menu
+var hamburger = document.getElementById('hamburger');
+var mobileMenu = document.getElementById('mobile-menu');
+hamburger.addEventListener('click', function() {
+  var open = mobileMenu.classList.toggle('open');
+  hamburger.classList.toggle('open', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+function closeMobileMenu() {
+  mobileMenu.classList.remove('open');
+  hamburger.classList.remove('open');
+  document.body.style.overflow = '';
+}
+// Resources dropdown
+var dropdownTrigger = document.querySelector('.nav-dropdown-trigger');
+var navDropdown = document.querySelector('.nav-dropdown');
+if (dropdownTrigger && navDropdown) {
+  dropdownTrigger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    var isOpen = navDropdown.classList.toggle('open');
+    dropdownTrigger.setAttribute('aria-expanded', isOpen);
+  });
+  document.addEventListener('click', function() {
+    navDropdown.classList.remove('open');
+    dropdownTrigger.setAttribute('aria-expanded', 'false');
+  });
+  navDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+}
+// Active nav state
+(function() {
+  var path = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-link[href]').forEach(function(link) {
+    var href = link.getAttribute('href').split('/').pop();
+    if (href && href === path) link.classList.add('active');
+  });
+  // Highlight Resources trigger when on playbook page
+  if (path === 'playbook.html' && navDropdown) {
+    dropdownTrigger && dropdownTrigger.classList.add('active');
+  }
+})();
+</script>
+
+<script>
+// ── Mobile: show services cards via IntersectionObserver (no wheel on touch) ──
+(function() {
+  if (!('ontouchstart' in window) && !window.matchMedia('(hover: none)').matches) return;
+  var section = document.getElementById('services');
+  if (!section) return;
+  var obs = new IntersectionObserver(function(entries) {
+    if (!entries[0].isIntersecting) return;
+    var cards = section.querySelectorAll('.linea-card');
+    cards.forEach(function(card) {
+      var pills = card.querySelectorAll('.linea-pill');
+      pills.forEach(function(p, i) { p.style.transitionDelay = (0.15 + i * 0.05) + 's'; });
+      card.classList.add('linea-card-visible');
+    });
+    // Trigger counters
+    function animateCount(elId, target, suffix, duration, delay) {
+      setTimeout(function() {
+        var el = document.getElementById(elId);
+        if (!el) return;
+        var start = null;
+        function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+        function step(ts) {
+          if (!start) start = ts;
+          var progress = Math.min((ts - start) / duration, 1);
+          el.textContent = (progress >= 1 ? target : Math.round(easeOut(progress) * target)) + suffix;
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }, delay);
+    }
+    animateCount('creative-counter', 500, '+', 1200, 0);
+    animateCount('roas-counter', 30, '%', 900, 300);
+    animateCount('pipeline-counter', 20, '%', 900, 500);
+    animateCount('faster-counter', 50, '%', 900, 700);
+    obs.disconnect();
+  }, { threshold: 0.12 });
+  obs.observe(section);
+})();
+
+// ── Touch pause for hero marquee ──────────────────────────────────────────────
+document.querySelectorAll('.hero-marquee-track').forEach(function(track) {
+  track.addEventListener('touchstart', function() {
+    track.style.animationPlayState = 'paused';
+  }, { passive: true });
+  track.addEventListener('touchend', function() {
+    track.style.animationPlayState = 'running';
+  }, { passive: true });
+  track.addEventListener('touchcancel', function() {
+    track.style.animationPlayState = 'running';
+  }, { passive: true });
+});
+
+// ── Drag + touch for testimonials ─────────────────────────────────────────────
+(function() {
+  var scroll = document.querySelector('.testimonials-scroll');
+  var track = document.querySelector('.testimonials-track');
+  if (!scroll || !track) return;
+
+  var isDown = false;
+  var startX = 0;
+  var baseOffset = 0;
+
+  function getTranslateX() {
+    var m = new DOMMatrix(window.getComputedStyle(track).transform);
+    return m.m41;
+  }
+  function startDrag(clientX) {
+    isDown = true;
+    baseOffset = getTranslateX();
+    startX = clientX;
+    track.style.animation = 'none';
+    track.style.transform = 'translateX(' + baseOffset + 'px)';
+  }
+  function moveDrag(clientX) {
+    if (!isDown) return;
+    var delta = clientX - startX;
+    track.style.transform = 'translateX(' + (baseOffset + delta) + 'px)';
+  }
+  function endDrag() {
+    if (!isDown) return;
+    isDown = false;
+    scroll.classList.remove('is-dragging', 'is-touching');
+    // Resume animation from current position (approximate)
+    var cur = getTranslateX();
+    var half = track.scrollWidth / 2;
+    var pct = Math.abs(cur % half) / half;
+    var delay = -(pct * 40); // 40s = animation duration
+    track.style.animation = 'none';
+    track.style.transform = '';
+    track.offsetHeight; // force reflow
+    track.style.animation = 'testi-scroll 40s ' + delay + 's linear infinite';
+  }
+
+  // Mouse
+  scroll.addEventListener('mousedown', function(e) {
+    startDrag(e.clientX);
+    scroll.classList.add('is-dragging');
+  });
+  document.addEventListener('mousemove', function(e) { moveDrag(e.clientX); });
+  document.addEventListener('mouseup', endDrag);
+
+  // Touch
+  scroll.addEventListener('touchstart', function(e) {
+    startDrag(e.touches[0].clientX);
+    scroll.classList.add('is-touching');
+  }, { passive: true });
+  scroll.addEventListener('touchmove', function(e) {
+    moveDrag(e.touches[0].clientX);
+  }, { passive: true });
+  scroll.addEventListener('touchend', endDrag, { passive: true });
+  scroll.addEventListener('touchcancel', endDrag, { passive: true });
+})();
+
+// ── Count-up for results stat row ─────────────────────────────────────────────
+(function() {
+  var stats = [
+    { id: 'stat-roas',     target: 5,  suffix: 'X', duration: 1000 },
+    { id: 'stat-pipeline', target: 2,  suffix: 'X', duration: 900  },
+    { id: 'stat-faster',   target: 50, suffix: '%', duration: 1100 }
+  ];
+  var triggered = false;
+  var statRow = document.getElementById('stat-roas');
+  if (!statRow) return;
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+  function runCount(id, target, suffix, duration) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var start = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / duration, 1);
+      el.textContent = (p >= 1 ? target : Math.round(easeOut(p) * target)) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var obs = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !triggered) {
+      triggered = true;
+      stats.forEach(function(s, i) {
+        setTimeout(function() { runCount(s.id, s.target, s.suffix, s.duration); }, i * 150);
+      });
+      obs.disconnect();
+    }
+  }, { threshold: 0.5 });
+  obs.observe(statRow);
+})();
 </script>
 
 </body>

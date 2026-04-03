@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M4JR5P3B');</script>
+  <!-- End Google Tag Manager -->
   <meta charset="utf-8">
   <link rel="stylesheet" href="assets/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -337,17 +340,20 @@
   </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4JR5P3B" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- NAV -->
 <nav class="nav">
   <div class="container nav-inner">
-    <a href="index-v5.html" class="nav-logo">
+    <a href="index.html" class="nav-logo">
       <span class="logo-skip">Skip the</span><span class="logo-noise">Noise</span>
     </a>
     <div class="nav-links">
       <a href="services.html" class="nav-link">Services</a>
       <a href="gallery.html" class="nav-link">Portfolio</a>
-      <a href="index-v5.html#work" class="nav-link">Results</a>
+      <a href="index.html#work" class="nav-link">Results</a>
       <div class="nav-dropdown">
         <button class="nav-link nav-dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
           Resources
@@ -362,7 +368,7 @@
         </div>
       </div>
     </div>
-    <a href="index-v5.html#book" class="btn btn-primary nav-cta" style="display:inline-flex;align-items:center;gap:8px;background:#0d0d0d;color:#fff;font-family:'Satoshi',system-ui,sans-serif;font-size:14px;font-weight:700;padding:10px 22px;border-radius:100px;text-decoration:none;">3 free ads. Keep them.</a>
+    <a href="index.html#book" class="btn btn-primary nav-cta" style="display:inline-flex;align-items:center;gap:8px;background:#0d0d0d;color:#fff;font-family:'Satoshi',system-ui,sans-serif;font-size:14px;font-weight:700;padding:10px 22px;border-radius:100px;text-decoration:none;">3 free ads. Keep them.</a>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
   </div>
 </nav>
@@ -371,9 +377,9 @@
 <div class="mobile-menu" id="mobile-menu">
   <a href="services.html" class="mobile-link" onclick="closeMobileMenu()">Services</a>
   <a href="gallery.html" class="mobile-link" onclick="closeMobileMenu()">Portfolio</a>
-  <a href="index-v5.html#work" class="mobile-link" onclick="closeMobileMenu()">Results</a>
+  <a href="index.html#work" class="mobile-link" onclick="closeMobileMenu()">Results</a>
   <a href="playbook.html" class="mobile-link" onclick="closeMobileMenu()">Playbook</a>
-  <a href="index-v5.html#book" class="mobile-cta" onclick="closeMobileMenu()">3 free ads. Keep them.</a>
+  <a href="index.html#book" class="mobile-cta" onclick="closeMobileMenu()">3 free ads. Keep them.</a>
 </div>
 
 <!-- HERO -->
@@ -576,7 +582,7 @@
 <!-- FOOTER -->
 <footer style="background:#0d0d0d; padding:48px 24px 32px;">
   <div style="max-width:1200px; margin:0 auto; text-align:center;">
-    <a href="index-v5.html" style="font-family:'Satoshi',system-ui,sans-serif; font-size:20px; font-weight:900; color:#fff; text-decoration:none; letter-spacing:-0.02em;">Skip the <span style="color:#FF4500;">Noise</span></a>
+    <a href="index.html" style="font-family:'Satoshi',system-ui,sans-serif; font-size:20px; font-weight:900; color:#fff; text-decoration:none; letter-spacing:-0.02em;">Skip the <span style="color:#FF4500;">Noise</span></a>
     <p style="font-size:13px; color:rgba(255,255,255,0.3); margin:16px 0 0; font-family:'Satoshi',system-ui,sans-serif;">&copy; 2026 Skip the Noise Media &middot; Reddit Certified Partner</p>
   </div>
 </footer>
@@ -628,7 +634,7 @@
   }
   // Active nav state
   (function() {
-    var path = window.location.pathname.split('/').pop() || 'index-v5.html';
+    var path = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.nav-link[href]').forEach(function(link) {
       var href = link.getAttribute('href').split('/').pop();
       if (href && href === path) link.classList.add('active');
