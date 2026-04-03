@@ -1818,18 +1818,22 @@
       </div>
     </div>
 
-    <!-- Full-width scrolling creative gallery (eComm — hidden by default) -->
-    <div id="hero-ecomm-gallery" class="hero-marquee-wrap" style="display:none;">
-      <div class="hero-marquee-track" id="ecommTrack">
-        <!-- images injected by JS after load -->
-      </div>
+    <!-- Static ad preview grid (eComm — hidden by default) -->
+    <div id="hero-ecomm-gallery" style="display:none; gap:12px; padding:10px 24px; justify-content:center;" class="hero-static-grid">
+      <img loading="lazy" src="assets/Cpg_l5evv8k1.jpg" style="width:160px;height:200px;object-fit:cover;border-radius:12px;flex-shrink:0;">
+      <img loading="lazy" src="assets/Lipstick_Campaign_dSJmLIvg.jpg" style="width:160px;height:200px;object-fit:cover;border-radius:12px;flex-shrink:0;">
+      <img loading="lazy" src="assets/Protein_Bar_Advertisement_CDLIA58W.jpg" style="width:160px;height:200px;object-fit:cover;border-radius:12px;flex-shrink:0;">
+      <img loading="lazy" src="assets/handbag-walk.jpg" style="width:160px;height:200px;object-fit:cover;border-radius:12px;flex-shrink:0;object-position:top;">
+      <img loading="lazy" src="assets/Cpg_nO2xZZjv.jpg" style="width:160px;height:200px;object-fit:cover;border-radius:12px;flex-shrink:0;">
     </div>
 
-    <!-- SaaS gallery — reverse scroll (shown by default) -->
-    <div id="hero-saas-gallery" class="hero-marquee-wrap" style="padding-bottom:0; padding-top:10px;">
-      <div class="hero-marquee-track hero-marquee-track--reverse" id="saasTrack">
-        <!-- images injected by JS after load -->
-      </div>
+    <!-- Static ad preview grid (SaaS — shown by default) -->
+    <div id="hero-saas-gallery" style="display:flex; gap:12px; padding:10px 24px; justify-content:center; flex-wrap:wrap;" class="hero-static-grid">
+      <img loading="lazy" src="assets/B2B_SaaS_Ads_V5F-kd5P.jpg" style="width:160px;height:160px;object-fit:cover;border-radius:12px;flex-shrink:0;">
+      <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.jpg" style="width:160px;height:160px;object-fit:cover;border-radius:12px;flex-shrink:0;">
+      <img loading="lazy" src="assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.jpg" style="width:160px;height:160px;object-fit:cover;border-radius:12px;flex-shrink:0;">
+      <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.jpg" style="width:160px;height:160px;object-fit:cover;border-radius:12px;flex-shrink:0;">
+      <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.jpg" style="width:160px;height:160px;object-fit:cover;border-radius:12px;flex-shrink:0;">
     </div>
 
   </div>
@@ -1840,11 +1844,11 @@
     var sb = document.getElementById('htoggle-saas');
     var eb = document.getElementById('htoggle-ecomm');
     if (type === 'saas') {
-      sg.style.display = ''; eg.style.display = 'none';
+      sg.style.display = 'flex'; eg.style.display = 'none';
       sb.style.background = '#5500dd'; sb.style.color = '#fff'; sb.style.boxShadow = '0 2px 8px rgba(85,0,221,0.28)';
       eb.style.background = 'transparent'; eb.style.color = 'rgba(0,0,0,0.45)'; eb.style.boxShadow = 'none';
     } else {
-      sg.style.display = 'none'; eg.style.display = '';
+      sg.style.display = 'none'; eg.style.display = 'flex';
       eb.style.background = '#ee0033'; eb.style.color = '#fff'; eb.style.boxShadow = '0 2px 8px rgba(238,0,51,0.28)';
       sb.style.background = 'transparent'; sb.style.color = 'rgba(0,0,0,0.45)'; sb.style.boxShadow = 'none';
     }
@@ -4032,90 +4036,6 @@
         if (pos > 0) pos -= halfWidth;
       });
     }
-    // ── Hero marquee drag-to-scroll ──────────────────────────────────
-    (function() {
-      function initMarqueeDrag(wrap) {
-        var track = wrap.querySelector('.hero-marquee-track');
-        if (!track) return;
-        var isReverse = track.classList.contains('hero-marquee-track--reverse');
-        var animMs = isReverse ? 130000 : 45000;
-        var jsMode = false, pos = 0, halfW = 0, speed = 0;
-        var isDragging = false, startX = 0, dragStart = 0;
-
-        function enableJsMode() {
-          if (jsMode) return;
-          jsMode = true;
-          var mat = new DOMMatrix(getComputedStyle(track).transform);
-          pos = mat.m41;
-          halfW = track.scrollWidth / 2;
-          speed = halfW / (animMs / 1000 * 60); // px per frame at 60fps
-          track.style.animation = 'none';
-          track.style.transform = 'translateX(' + pos + 'px)';
-          (function tick() {
-            if (!isDragging) {
-              pos -= speed;
-              if (pos <= -halfW) pos += halfW;
-            }
-            track.style.transform = 'translateX(' + pos + 'px)';
-            requestAnimationFrame(tick);
-          })();
-        }
-
-        wrap.style.cursor = 'grab';
-
-        wrap.addEventListener('mousedown', function(e) {
-          if (e.target.closest('button')) return;
-          enableJsMode();
-          isDragging = true;
-          startX = e.pageX;
-          dragStart = pos;
-          wrap.style.cursor = 'grabbing';
-          e.preventDefault();
-        });
-
-        window.addEventListener('mousemove', function(e) {
-          if (!isDragging) return;
-          pos = dragStart + (e.pageX - startX);
-        });
-
-        window.addEventListener('mouseup', function() {
-          if (!isDragging) return;
-          isDragging = false;
-          wrap.style.cursor = 'grab';
-          if (halfW) { while (pos <= -halfW) pos += halfW; while (pos > 0) pos -= halfW; }
-        });
-
-        var startY = 0, touchDir = null;
-
-        wrap.addEventListener('touchstart', function(e) {
-          enableJsMode();
-          startX = e.touches[0].pageX;
-          startY = e.touches[0].pageY;
-          dragStart = pos;
-          touchDir = null;
-          isDragging = false;
-        }, { passive: true });
-
-        wrap.addEventListener('touchmove', function(e) {
-          var dx = e.touches[0].pageX - startX;
-          var dy = e.touches[0].pageY - startY;
-          if (!touchDir) {
-            touchDir = Math.abs(dx) > Math.abs(dy) ? 'h' : 'v';
-            if (touchDir === 'h') isDragging = true;
-          }
-          if (touchDir !== 'h') return;
-          pos = dragStart + dx;
-        }, { passive: true });
-
-        wrap.addEventListener('touchend', function() {
-          isDragging = false;
-          touchDir = null;
-          if (halfW) { while (pos <= -halfW) pos += halfW; while (pos > 0) pos -= halfW; }
-        });
-      }
-
-      document.querySelectorAll('.hero-marquee-wrap').forEach(initMarqueeDrag);
-    })();
 
     // ── Scrollytelling: 4 lines stack up and stay ─────────────────
     const stSection = document.getElementById('scrollytell');
@@ -4359,64 +4279,5 @@ function closeMobileMenu() {
 }
 </script>
 
-<script>
-// Inject marquee images AFTER page load — prevents 500MB+ RAM spike on initial render
-// Images are 800px wide JPGs (~60-120KB each), decoded RAM ~2MB each instead of 16-64MB
-(function() {
-  var ECOMM = [
-    ['assets/Cpg_l5evv8k1.jpg', ''],
-    ['assets/handbag-fashion.jpg', 'style="object-position:top;"'],
-    ['assets/Cpg_nO2xZZjv.jpg', ''],
-    ['assets/Protein_Bar_Advertisement_CDLIA58W.jpg', ''],
-    ['assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.jpg', ''],
-    ['assets/Protein_Bar_Advertisement_cTVg3CZh.jpg', ''],
-    ['assets/Protein_Bar_Advertisement_y5ER32ip2.jpg', ''],
-    ['assets/Lipstick_Campaign_dSJmLIvg.jpg', ''],
-    ['assets/handbag-walk.jpg', 'style="object-position:top;"']
-  ];
-  var SAAS = [
-    'assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.jpg',
-    'assets/B2B_SaaS_Ads_V5F-kd5P.jpg',
-    'assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.jpg',
-    'assets/B2B_SaaS_Ads_cGkIrXL (1).jpg',
-    'assets/B2B_SaaS_Ads_wRW96YqI.jpg',
-    'assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.jpg',
-    'assets/B2B_SaaS_Ads_laAgn1rH.jpg',
-    'assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.jpg',
-    'assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.jpg',
-    'assets/B2B_SaaS_Ads_nnRo2A9l.jpg',
-    'assets/B2B_SaaS_Ads_In_a_flat_design_style_a_man_with_many_arms_duWjAS1.jpg',
-    'assets/B2B_SaaS_Ads_Vs9AWg1c.jpg'
-  ];
-
-  function buildTrack(trackEl, images, contain) {
-    var html = '';
-    // Two sets for seamless CSS loop
-    for (var s = 0; s < 2; s++) {
-      images.forEach(function(item) {
-        var src = Array.isArray(item) ? item[0] : item;
-        var extra = Array.isArray(item) ? item[1] : '';
-        var cls = 'hero-marquee-card' + (contain ? ' hero-marquee-card--contain' : '');
-        html += '<div class="' + cls + '"><img src="' + src + '" ' + extra + ' decoding="async"></div>';
-      });
-    }
-    trackEl.innerHTML = html;
-  }
-
-  function init() {
-    var ecommTrack = document.getElementById('ecommTrack');
-    var saasTrack  = document.getElementById('saasTrack');
-    if (ecommTrack) buildTrack(ecommTrack, ECOMM, false);
-    if (saasTrack)  buildTrack(saasTrack,  SAAS,  true);
-  }
-
-  // Use requestIdleCallback if available, else setTimeout after load
-  if (window.requestIdleCallback) {
-    window.addEventListener('load', function() { requestIdleCallback(init, { timeout: 2000 }); });
-  } else {
-    window.addEventListener('load', function() { setTimeout(init, 300); });
-  }
-})();
-</script>
 </body>
 </html>
