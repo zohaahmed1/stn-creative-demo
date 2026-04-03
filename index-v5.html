@@ -1254,9 +1254,9 @@
       transform: none;
     }
 
-    /* Magnetic button base */
+    /* Magnetic button base — will-change applied dynamically on hover only */
     .btn {
-      will-change: transform;
+      transition: transform 0.2s ease;
     }
 
     /* Gallery stagger children */
@@ -1279,7 +1279,7 @@
       transform: translateY(0);
     }
 
-    /* Parallax elements should not jitter */
+    /* Parallax elements — will-change applied only to hero images which get JS transform */
     .hero-collage-main,
     .hero-collage-sub,
     .hero-collage > div[style*="position:absolute"] {
@@ -1289,9 +1289,7 @@
     /* =============================================
        SCROLL-LINKED PARALLAX — depth layers
        ============================================= */
-    [data-parallax] {
-      will-change: transform;
-    }
+    /* [data-parallax] will-change removed — applied dynamically via JS when needed */
 
     /* Section scale-in reveal */
     .section-rounded[data-scroll-scale] {
@@ -1682,7 +1680,6 @@
       display: flex;
       gap: 20px;
       padding: 0 24px;
-      will-change: transform;
     }
     .hscroll-item {
       flex-shrink: 0;
@@ -3889,8 +3886,11 @@
     const heroSubs = document.querySelectorAll('.hero-collage-sub');
     const aiBadge = document.querySelector('.hero-collage > div[style*="position:absolute"]');
     let heroInView = true;
+    const heroCollageEl = document.querySelector('.hero-collage');
     const heroParallaxObs = new IntersectionObserver(entries => {
       heroInView = entries[0].isIntersecting;
+      // Pause float + pulse animations when hero is off-screen
+      if (heroCollageEl) heroCollageEl.style.animationPlayState = heroInView ? 'running' : 'paused';
     }, { threshold: 0 });
     if (heroSection) heroParallaxObs.observe(heroSection);
 
@@ -4045,17 +4045,18 @@
       opacity: '0',
     });
     document.body.appendChild(trail);
-    let tx = 0, ty = 0, cx = 0, cy = 0;
-    document.addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; });
+    let tx = 0, ty = 0, cx = 0, cy = 0, trailOnDark = false;
+    // Check dark-section on mousemove (not every rAF) — avoids elementFromPoint layout recalc at 60fps
+    document.addEventListener('mousemove', e => {
+      tx = e.clientX; ty = e.clientY;
+      trailOnDark = !!(e.target && (e.target.closest('.section-dark') || e.target.closest('.logo-strip') || e.target.closest('.cta')));
+    });
     (function animTrail() {
       cx += (tx - cx) * 0.15;
       cy += (ty - cy) * 0.15;
       trail.style.left = cx + 'px';
       trail.style.top  = cy + 'px';
-      // Only show on dark sections
-      const el = document.elementFromPoint(cx, cy);
-      const onDark = el && (el.closest('.section-dark') || el.closest('.logo-strip') || el.closest('.cta'));
-      trail.style.opacity = onDark ? '1' : '0';
+      trail.style.opacity = trailOnDark ? '1' : '0';
       requestAnimationFrame(animTrail);
     })();
 
@@ -4124,12 +4125,17 @@
       let isDragging = false, startX = 0, dragOffset = 0;
       let isHovered = false;
 
+      let tScrollInView = false;
+      new IntersectionObserver(([e]) => { tScrollInView = e.isIntersecting; }, { threshold: 0.01 }).observe(tScroll);
+
       function tick() {
-        if (!isDragging && !isHovered) {
-          pos -= speed;
-          if (pos <= -halfWidth) pos += halfWidth;
+        if (tScrollInView) {
+          if (!isDragging && !isHovered) {
+            pos -= speed;
+            if (pos <= -halfWidth) pos += halfWidth;
+          }
+          tTrack.style.transform = `translate3d(${pos}px, 0, 0)`;
         }
-        tTrack.style.transform = `translate3d(${pos}px, 0, 0)`;
         requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
@@ -4504,6 +4510,21 @@
     });
   }, { threshold: 0.15 });
   vids.forEach(function(v) { vObs.observe(v); });
+})();
+
+// Pause infinite CSS animations when their sections are off-screen
+(function() {
+  var animObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      var anims = e.target.querySelectorAll('.pain-grad-text, .grad-text');
+      anims.forEach(function(a) {
+        a.style.animationPlayState = e.isIntersecting ? 'running' : 'paused';
+      });
+    });
+  }, { threshold: 0.01 });
+  document.querySelectorAll('.pain-section, .section-dark, [class*="section"]').forEach(function(s) {
+    if (s.querySelector('.pain-grad-text, .grad-text')) animObs.observe(s);
+  });
 })();
 
 // Mobile menu
