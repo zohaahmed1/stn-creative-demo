@@ -605,6 +605,17 @@
     });
     navDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
   }
+  // Active nav state
+  (function() {
+    var path = window.location.pathname.split('/').pop() || 'index-v5.html';
+    document.querySelectorAll('.nav-link[href]').forEach(function(link) {
+      var href = link.getAttribute('href').split('/').pop();
+      if (href && href === path) link.classList.add('active');
+    });
+    if (path === 'playbook.html' && dropdownTrigger) {
+      dropdownTrigger.classList.add('active');
+    }
+  })();
 </script>
 </body>
 </html>
