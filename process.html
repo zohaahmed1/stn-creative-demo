@@ -57,7 +57,17 @@
     .nav-right { display: flex; align-items: center; gap: 8px; }
     .btn-nav { display: inline-flex; align-items: center; gap: 8px; background: #0a0a0a; color: #fff; font-family: var(--font); font-size: 13px; font-variation-settings: "wdth" var(--wdth), "wght" 700; padding: 9px 18px; border-radius: 100px; transition: opacity 0.2s; }
     .btn-nav:hover { opacity: 0.85; }
-    @media (max-width: 1199px) { .nav-links, .nav-right { display: none; } }
+    @media (max-width: 1199px) { .nav-links, .nav-right { display: none; } .hamburger { display: flex; } }
+    .hamburger { display: none; width: 40px; height: 40px; background: rgba(0,0,0,0.06); border: none; border-radius: 8px; flex-direction: column; justify-content: center; align-items: center; gap: 5px; cursor: pointer; transition: background 0.2s; }
+    .hamburger:hover { background: rgba(0,0,0,0.1); }
+    .hamburger span { display: block; width: 18px; height: 2px; background: #191923; border-radius: 2px; transition: all 0.25s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99; background: rgba(255,255,255,0.97); backdrop-filter: blur(20px); flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu-link { font-size: 28px; font-variation-settings: "wdth" 125, "wght" 800; color: #0a0a0a; text-decoration: none; padding: 10px 24px; border-radius: 12px; transition: background 0.15s; letter-spacing: -0.02em; }
+    .mobile-menu-link:hover { background: rgba(0,0,0,0.05); }
+    .mobile-menu-cta { margin-top: 24px; display: inline-block; background: #5500DD; color: white; font-size: 16px; font-variation-settings: "wdth" 125, "wght" 700; padding: 14px 32px; border-radius: 100px; text-decoration: none; }
 
     /* ── HERO ── */
     .hero {
@@ -408,8 +418,17 @@
     <div class="nav-right">
       <a href="index-v5.html#book" class="btn-nav">Get free audit →</a>
     </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
   </div>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index-v5.html#work" class="mobile-menu-link">Results</a>
+  <a href="services.html" class="mobile-menu-link">Services</a>
+  <a href="gallery.html" class="mobile-menu-link">Portfolio</a>
+  <a href="process.html" class="mobile-menu-link">Process</a>
+  <a href="index-v5.html#team" class="mobile-menu-link">Team</a>
+  <a href="index-v5.html#book" class="mobile-menu-cta">Get free audit →</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -689,6 +708,15 @@
       if (r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible');
     });
   }, 350);
+
+  // Mobile menu
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', function() {
+    var open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
 </script>
 </body>
 </html>
