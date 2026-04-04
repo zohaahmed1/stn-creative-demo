@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M4JR5P3B');</script>
+  <!-- End Google Tag Manager -->
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.bing.com/clarity.js";y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","tkmbhjjy2n");</script>
+  <!-- End Microsoft Clarity -->
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="assets/main.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Free Creative Audit — Skip the Noise Media</title>
+  <meta name="description" content="Your creative pipeline is your biggest growth bottleneck. Get a free audit from the ex-GroupM team that produces 40+ ad creatives per month with AI. $100M+ managed.">
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Free Creative Audit — Skip the Noise Media">
+  <meta property="og:description" content="AI-powered creative production and performance media buying under one roof. 40+ creatives/month. Ex-GroupM team. $100M+ managed.">
+  <meta property="og:image" content="https://zohaahmed1.github.io/stn-creative-demo/assets/One_Booth_v4.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://api.fontshare.com">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" as="style" onload="this.rel='stylesheet'">
+  <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700,900&display=swap" as="style" onload="this.rel='stylesheet'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700,900&display=swap" rel="stylesheet">
+  </noscript>
+
+  <style>
+    /* ── Landing page overrides ── */
+    .lp-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: center; align-items: center;
+      height: 64px;
+      background: rgba(250,249,247,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .lp-nav .nav-logo { pointer-events: none; }
+
+    .lp-hero {
+      position: relative;
+      min-height: 80vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      background: var(--bg);
+      overflow: hidden;
+    }
+    .lp-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(0,0,0,0.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .lp-hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 60%, rgba(85,0,221,0.08) 0%, rgba(238,0,51,0.04) 40%, transparent 70%);
+      pointer-events: none;
+    }
+    .lp-hero > * { position: relative; z-index: 1; }
+
+    .lp-badges {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+      margin-bottom: 32px;
+    }
+    .lp-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 16px; border-radius: 100px;
+      font-family: var(--font); font-size: 12px; font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .lp-headline {
+      font-family: var(--font);
+      font-size: clamp(36px, 5.5vw, 72px);
+      font-variation-settings: 'wdth' 125, 'wght' 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--dark);
+      margin: 0 0 24px;
+      max-width: 900px;
+    }
+    .lp-headline em {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--blue);
+    }
+
+    .lp-sub {
+      font-family: var(--font); font-size: 18px; line-height: 1.6;
+      color: rgba(0,0,0,0.55); max-width: 580px; margin: 0 auto 40px;
+    }
+
+    .lp-cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: #5500DD; color: #fff;
+      font-family: var(--font); font-size: 16px; font-weight: 700;
+      padding: 16px 36px; border-radius: 100px;
+      text-decoration: none; letter-spacing: -0.01em;
+      transition: background 0.2s, transform 0.2s;
+      border: none; cursor: pointer;
+    }
+    .lp-cta-btn:hover { background: #4400bb; transform: translateY(-2px); }
+    .lp-cta-btn svg { flex-shrink: 0; }
+
+    .lp-micro {
+      font-size: 13px; color: rgba(0,0,0,0.35); margin-top: 14px;
+      font-family: var(--font);
+    }
+
+    /* ── Problem section ── */
+    .lp-problem { background: #080808; padding: 100px 24px; }
+    .lp-problem .section-header { text-align: center; margin-bottom: 56px; }
+    .lp-problem .section-header span { color: rgba(255,255,255,0.35); }
+    .lp-problem .section-header h2 { color: #fff; }
+
+    .pain-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      max-width: 1100px; margin: 0 auto;
+    }
+    .pain-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px; padding: 36px 32px;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+    .pain-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.15); }
+    .pain-card-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .pain-card h3 {
+      font-family: var(--font); font-size: 20px; font-weight: 900;
+      color: #fff; line-height: 1.25; margin: 0 0 12px;
+      letter-spacing: -0.02em;
+    }
+    .pain-card p {
+      font-family: var(--font); font-size: 15px; line-height: 1.6;
+      color: rgba(255,255,255,0.45); margin: 0;
+    }
+
+    /* ── Solution section ── */
+    .lp-solution { background: #fff; padding: 100px 24px; }
+    .lp-solution-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+
+    .sol-stats {
+      display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+      margin: 48px 0 40px;
+    }
+    .sol-stat { text-align: center; }
+    .sol-stat-num {
+      font-family: var(--font);
+      font-size: clamp(36px, 4vw, 56px);
+      font-variation-settings: 'wdth' 125, 'wght' 900;
+      line-height: 1; letter-spacing: -0.03em;
+    }
+    .sol-stat-label {
+      font-family: var(--font); font-size: 13px; font-weight: 700;
+      color: rgba(0,0,0,0.4); letter-spacing: 0.03em; margin-top: 8px;
+    }
+
+    .lp-platforms {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;
+      margin-top: 32px;
+    }
+    .lp-plat {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--gray-50); border: 1px solid var(--gray-100);
+      border-radius: 100px; padding: 8px 16px;
+      font-family: var(--font); font-size: 13px; font-weight: 700; color: var(--gray-400);
+    }
+
+    /* ── Proof section ── */
+    .lp-proof { background: var(--gray-50); padding: 100px 24px; }
+
+    .testi-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+      max-width: 900px; margin: 40px auto 0;
+    }
+
+    /* ── CTA / Form section ── */
+    .lp-cta-section { background: #FFEDED; padding: 100px 24px; }
+    .lp-cta-inner { max-width: 700px; margin: 0 auto; text-align: center; }
+
+    .lp-form-card {
+      background: #fff; border-radius: 24px; padding: 40px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+      text-align: left; margin-top: 40px;
+    }
+    .lp-form-group { margin-bottom: 20px; }
+    .lp-form-group label {
+      display: block; font-family: var(--font); font-size: 14px;
+      font-weight: 700; color: var(--dark); margin-bottom: 8px;
+    }
+    .lp-form-group select,
+    .lp-form-group textarea {
+      width: 100%; padding: 14px 16px;
+      font-family: var(--font); font-size: 15px;
+      border: 1.5px solid var(--gray-200); border-radius: 12px;
+      background: var(--bg); color: var(--dark);
+      transition: border-color 0.2s;
+      -webkit-appearance: none; appearance: none;
+    }
+    .lp-form-group select { cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M3 5l3 3 3-3' stroke='%23999' fill='none' stroke-width='1.5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px; }
+    .lp-form-group textarea { resize: vertical; min-height: 80px; }
+    .lp-form-group select:focus,
+    .lp-form-group textarea:focus { outline: none; border-color: var(--blue); }
+
+    .lp-submit {
+      width: 100%; padding: 16px;
+      background: #5500DD; color: #fff;
+      font-family: var(--font); font-size: 16px; font-weight: 700;
+      border: none; border-radius: 100px; cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+    .lp-submit:hover { background: #4400bb; }
+
+    .lp-form-note {
+      text-align: center; font-size: 12px; color: rgba(0,0,0,0.35);
+      margin-top: 12px; font-family: var(--font);
+    }
+
+    .lp-calendly-wrap { margin-top: 48px; }
+    .lp-calendly-label {
+      font-family: var(--font); font-size: 14px; font-weight: 700;
+      color: rgba(0,0,0,0.35); text-transform: uppercase; letter-spacing: 0.06em;
+      margin-bottom: 16px; text-align: center;
+    }
+
+    /* ── Footer ── */
+    .lp-footer {
+      background: var(--dark); padding: 40px 24px; text-align: center;
+    }
+    .lp-footer p {
+      font-family: var(--font); font-size: 13px; color: rgba(255,255,255,0.3);
+      margin: 12px 0 0;
+    }
+    .lp-footer a { color: rgba(255,255,255,0.4); text-decoration: underline; }
+
+    /* ── Sticky mobile CTA ── */
+    .lp-sticky {
+      display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(0,0,0,0.08);
+      padding: 12px 16px; text-align: center;
+    }
+    .lp-sticky .lp-cta-btn { width: 100%; justify-content: center; padding: 14px 24px; font-size: 15px; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1199px) {
+      .pain-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+      .sol-stats { gap: 32px; }
+    }
+    @media (max-width: 809px) {
+      .lp-hero { min-height: auto; padding: 100px 16px 60px; }
+      .lp-problem, .lp-solution, .lp-proof, .lp-cta-section { padding: 60px 16px; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .testi-grid { grid-template-columns: 1fr; }
+      .case-grid { grid-template-columns: 1fr !important; }
+      .lp-form-card { padding: 28px 20px; }
+      .sol-stats { gap: 24px; }
+      .lp-sticky { display: block; }
+      .lp-footer { padding-bottom: 80px; }
+    }
+  </style>
+</head>
+<body style="margin:0; background:var(--bg);">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4JR5P3B" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<!-- ═══════════════════════════════════════ NAV ═══════════════════════════════════════ -->
+<nav class="lp-nav">
+  <a class="nav-logo" style="text-decoration:none;">
+    <span class="logo-skip">Skip the</span><span class="logo-noise">Noise</span>
+  </a>
+</nav>
+
+<!-- ═══════════════════════════════════════ HERO ═══════════════════════════════════════ -->
+<section class="lp-hero">
+  <div class="lp-badges">
+    <span class="lp-badge" style="background:rgba(85,0,221,0.08); color:#5500DD; border:1px solid rgba(85,0,221,0.2);">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#5500DD"/></svg>
+      Ex-GroupM / WPP Leaders
+    </span>
+    <span class="lp-badge" style="background:rgba(238,0,51,0.08); color:#cc0033; border:1px solid rgba(238,0,51,0.2);">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#ee0033"/></svg>
+      $100M+ in Ad Spend Managed
+    </span>
+    <span class="lp-badge" style="background:rgba(255,107,53,0.08); color:#c2410c; border:1px solid rgba(255,107,53,0.2);">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="#FF6B35"/></svg>
+      Reddit Certified Partner
+    </span>
+  </div>
+
+  <h1 class="lp-headline">
+    Your agency makes 4 ads a month.<br>
+    <em>We make 40+.</em>
+  </h1>
+
+  <p class="lp-sub">AI-accelerated creative production and performance media buying, under one roof. No headcount. No 3-week timelines. Just ads that perform.</p>
+
+  <a href="#apply" class="lp-cta-btn">
+    Get your free creative audit
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
+  <p class="lp-micro">30-min call. We audit your ad library and build you 3 creatives. Free.</p>
+</section>
+
+<!-- ═══════════════════════════════════════ PROBLEM ═══════════════════════════════════════ -->
+<section class="lp-problem">
+  <div class="container">
+    <div class="section-header">
+      <span style="text-transform:uppercase; font-weight:700; font-size:12px; letter-spacing:0.08em;">Sound familiar?</span>
+      <h2 style="font-family:var(--font); font-size:clamp(30px,4vw,52px); font-variation-settings:'wdth' 125,'wght' 900; letter-spacing:-0.03em; line-height:1.1; margin:16px 0 0;">
+        The creative <span style="display:inline-flex; align-items:center; gap:6px; background:rgba(238,0,51,0.15); border:1px solid rgba(238,0,51,0.3); border-radius:100px; padding:4px 16px; font-size:0.55em; color:#ee0033; vertical-align:middle; font-weight:700; letter-spacing:0;">bottleneck.</span>
+      </h2>
+    </div>
+
+    <div class="pain-grid">
+      <!-- Card 1 -->
+      <div class="pain-card">
+        <div class="pain-card-icon" style="background:rgba(85,0,221,0.12);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5500DD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>"We need 20 variations. Creative takes 3 weeks."</h3>
+        <p>Your media buyer knows which angles to test. But creative production can't keep up. So you test one ad when you should be testing twenty.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="pain-card">
+        <div class="pain-card-icon" style="background:rgba(238,0,51,0.12);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ee0033" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3>"Our agency charges $15K for 4 ads a month."</h3>
+        <p>You're paying for account managers, office space, and meetings. Not output. The math stops working when you need creative volume to scale.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="pain-card">
+        <div class="pain-card-icon" style="background:rgba(255,107,53,0.12);">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>"We're scaling spend but ROAS keeps declining."</h3>
+        <p>Creative fatigue is the number one killer of paid performance. When you can't refresh fast enough, every dollar hits diminishing returns.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ SOLUTION ═══════════════════════════════════════ -->
+<section class="lp-solution">
+  <div class="lp-solution-inner">
+    <span style="font-family:var(--font); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--blue);">The fix</span>
+
+    <h2 style="font-family:var(--font); font-size:clamp(30px,4vw,52px); font-variation-settings:'wdth' 125,'wght' 900; letter-spacing:-0.03em; line-height:1.1; margin:16px 0 20px; color:var(--dark);">
+      One team. Creative + media buying.<br>
+      <em style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700; color:var(--blue);">Zero gap.</em>
+    </h2>
+
+    <p style="font-family:var(--font); font-size:18px; line-height:1.6; color:rgba(0,0,0,0.55); max-width:620px; margin:0 auto;">
+      We produce your ads with AI and run them across Meta, Google, Reddit, TikTok, and LinkedIn. The people who make the creative are the people who measure it. That's why it works.
+    </p>
+
+    <div class="sol-stats">
+      <div class="sol-stat">
+        <div class="sol-stat-num" style="color:var(--blue);">40+</div>
+        <div class="sol-stat-label">Creatives / month</div>
+      </div>
+      <div class="sol-stat">
+        <div class="sol-stat-num" style="color:var(--orange);">1 wk</div>
+        <div class="sol-stat-label">First ads live</div>
+      </div>
+      <div class="sol-stat">
+        <div class="sol-stat-num" style="color:var(--yellow);">30 d</div>
+        <div class="sol-stat-label">To measurable results</div>
+      </div>
+    </div>
+
+    <a href="#apply" class="lp-cta-btn">
+      Get your free creative audit
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+
+    <div class="lp-platforms" style="margin-top:40px;">
+      <span class="lp-plat">Meta</span>
+      <span class="lp-plat">Google</span>
+      <span class="lp-plat">Reddit</span>
+      <span class="lp-plat">TikTok</span>
+      <span class="lp-plat">LinkedIn</span>
+      <span class="lp-plat">Pinterest</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ PROOF ═══════════════════════════════════════ -->
+<section class="lp-proof">
+  <div class="container">
+    <div class="section-header" style="text-align:center; margin-bottom:48px;">
+      <span style="color:rgba(0,0,0,0.35); text-transform:uppercase; font-weight:700; font-size:12px; letter-spacing:0.08em;">Results</span>
+      <h2 style="font-family:var(--font); font-size:clamp(30px,4vw,52px); font-variation-settings:'wdth' 125,'wght' 900; letter-spacing:-0.03em; line-height:1.1; margin:16px 0 0; color:var(--dark);">
+        Numbers that <em style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700; color:var(--blue);">speak.</em>
+      </h2>
+    </div>
+
+    <!-- Case study cards -->
+    <div class="case-grid" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; max-width:1100px; margin:0 auto;">
+
+      <!-- Card: Noirvere -->
+      <a href="#apply" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div class="case-img-wrap"><img loading="lazy" src="assets/Noirver%20V2.jpg" style="width:100%; height:100%;"><div class="case-stat-overlay"><span class="case-stat-number">5X</span><span class="case-stat-label">peak ROAS</span></div></div>
+        <div style="padding:14px 16px; display:flex; align-items:center; gap:8px; border-top:1px solid rgba(0,0,0,0.06);">
+          <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">Noirvere</span>
+          <span style="font-size:10px; font-weight:700; background:rgba(234,88,12,0.1); color:#c2410c; border:1px solid rgba(234,88,12,0.25); border-radius:100px; padding:2px 9px;">DTC Fashion</span>
+          <span style="font-size:10px; color:rgba(0,0,0,0.3); margin-left:auto; font-weight:600;">TikTok</span>
+        </div>
+      </a>
+
+      <!-- Card: Restream -->
+      <a href="#apply" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div class="case-img-wrap"><img loading="lazy" src="assets/Restream%20Case%20Study%20V2.jpg" style="width:100%; height:100%;"><div class="case-stat-overlay"><span class="case-stat-number">50%</span><span class="case-stat-label">lower CPL</span></div></div>
+        <div style="padding:14px 16px; display:flex; align-items:center; gap:8px; border-top:1px solid rgba(0,0,0,0.06);">
+          <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">Restream</span>
+          <span style="font-size:10px; font-weight:700; background:rgba(85,0,221,0.08); color:#5500DD; border-radius:100px; padding:2px 9px;">B2C SaaS</span>
+          <span style="font-size:10px; color:rgba(0,0,0,0.3); margin-left:auto; font-weight:600;">Multi-platform</span>
+        </div>
+      </a>
+
+      <!-- Card: Flare -->
+      <a href="#apply" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
+        <div class="case-img-wrap"><img loading="lazy" src="assets/Flare%20Case%20Study%20V2.jpg" style="width:100%; height:100%;"><div class="case-stat-overlay"><span class="case-stat-number">60</span><span class="case-stat-label">qualified leads</span></div></div>
+        <div style="padding:14px 16px; display:flex; align-items:center; gap:8px; border-top:1px solid rgba(0,0,0,0.06);">
+          <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">Flare</span>
+          <span style="font-size:10px; font-weight:700; background:rgba(85,0,221,0.08); color:#5500DD; border-radius:100px; padding:2px 9px;">B2B SaaS</span>
+          <span style="font-size:10px; color:rgba(0,0,0,0.3); margin-left:auto; font-weight:600;">Reddit</span>
+        </div>
+      </a>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="testi-grid">
+      <div class="testimonial-card">
+        <div>
+          <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+          <p style="font-size:17px;line-height:1.6;font-style:italic;">"Great collaboration. Very satisfied with the Reddit Ads work. They generated 60+ leads in just 3 months."</p>
+        </div>
+        <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+          <img loading="lazy" src="assets/faustin.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+          <div>
+            <p class="author-name" style="font-size:15px;">Faustine Foliard</p>
+            <p class="author-loc" style="font-size:13px;">Head of Marketing · Flare</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div>
+          <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+          <p style="font-size:17px;line-height:1.6;font-style:italic;">"Launched and scaled Reddit ads to $10k per month, driving 30% more subscriptions for our SaaS B2C brand. Delivered 20+ creatives every month."</p>
+        </div>
+        <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+          <img loading="lazy" src="assets/janh.jpg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+          <div>
+            <p class="author-name" style="font-size:15px;">Jan H.</p>
+            <p class="author-loc" style="font-size:13px;">CEO · 3D AI Studio</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center; font-family:var(--font); font-size:13px; color:rgba(0,0,0,0.35); margin-top:24px;">5-star reviews. Verified on Design Rush.</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ CTA / FORM ═══════════════════════════════════════ -->
+<section id="apply" class="lp-cta-section">
+  <div class="lp-cta-inner">
+    <h2 style="font-family:var(--font); font-size:clamp(30px,4vw,52px); font-variation-settings:'wdth' 125,'wght' 900; letter-spacing:-0.03em; line-height:1.1; margin:0 0 16px; color:var(--dark);">
+      Get your free <em style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700; color:var(--blue);">audit.</em>
+    </h2>
+    <p style="font-family:var(--font); font-size:17px; line-height:1.6; color:rgba(0,0,0,0.5); max-width:500px; margin:0 auto;">
+      We'll pull your ad library, show you where competitors are outproducing you, and build you 3 creatives. Free.
+    </p>
+
+    <div class="lp-form-card">
+      <form id="auditForm">
+        <div class="lp-form-group">
+          <label for="adSpend">What's your monthly ad spend?</label>
+          <select id="adSpend" required>
+            <option value="" disabled selected>Select a range</option>
+            <option value="under-20k">Under $20K</option>
+            <option value="20k-50k">$20K – $50K</option>
+            <option value="50k-100k">$50K – $100K</option>
+            <option value="100k-250k">$100K – $250K</option>
+            <option value="250k+">$250K+</option>
+          </select>
+        </div>
+        <div class="lp-form-group">
+          <label for="platforms">Which platforms are you running ads on?</label>
+          <select id="platforms" required>
+            <option value="" disabled selected>Select platforms</option>
+            <option value="meta-only">Meta only</option>
+            <option value="meta-google">Meta + Google</option>
+            <option value="meta-google-other">Meta + Google + others</option>
+            <option value="other">Other / not sure</option>
+          </select>
+        </div>
+        <div class="lp-form-group">
+          <label for="bottleneck">What's your biggest growth bottleneck?</label>
+          <textarea id="bottleneck" placeholder="e.g. Creative production is too slow, ROAS declining, can't scale past $X/mo..." rows="3"></textarea>
+        </div>
+        <button type="submit" class="lp-submit" id="submitBtn">
+          Show me my audit →
+        </button>
+        <p class="lp-form-note">No pitch deck. Just data on your ad library.</p>
+      </form>
+    </div>
+
+    <div class="lp-calendly-wrap">
+      <p class="lp-calendly-label">Pick a time</p>
+      <div class="calendly-inline-widget" data-url="https://calendly.com/skipthenoisemedia/30min?hide_gdpr_banner=1&background_color=fff5f5&text_color=1a1a4e&primary_color=5500dd" style="min-width:320px;height:700px;border-radius:24px;overflow:hidden;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ FOOTER ═══════════════════════════════════════ -->
+<footer class="lp-footer">
+  <a style="text-decoration:none; pointer-events:none;">
+    <span class="logo-skip" style="color:rgba(255,255,255,0.5);">Skip the</span><span class="logo-noise">Noise</span>
+  </a>
+  <p>&copy; 2026 Skip the Noise Media. <a href="privacy.html">Privacy</a></p>
+</footer>
+
+<!-- ═══════════════════════════════════════ STICKY MOBILE CTA ═══════════════════════════════════════ -->
+<div class="lp-sticky">
+  <a href="#apply" class="lp-cta-btn">Get your free creative audit</a>
+</div>
+
+<!-- ═══════════════════════════════════════ SCRIPTS ═══════════════════════════════════════ -->
+<script>
+/* Smooth scroll for anchor links */
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+/* Form handler — push to GTM dataLayer */
+document.getElementById('auditForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var adSpend = document.getElementById('adSpend').value;
+  var platforms = document.getElementById('platforms').value;
+  var bottleneck = document.getElementById('bottleneck').value;
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: 'creative_audit_form',
+    ad_spend: adSpend,
+    platforms: platforms,
+    bottleneck: bottleneck
+  });
+
+  var btn = document.getElementById('submitBtn');
+  btn.textContent = '✓ Saved — now pick a time below';
+  btn.style.background = '#16a34a';
+  btn.disabled = true;
+
+  var calendly = document.querySelector('.lp-calendly-wrap');
+  if (calendly) {
+    calendly.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+});
+
+/* Lazy-load Calendly widget */
+var calObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      var script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      document.body.appendChild(script);
+      calObs.disconnect();
+    }
+  });
+}, { rootMargin: '400px' });
+var calWidget = document.querySelector('.calendly-inline-widget');
+if (calWidget) calObs.observe(calWidget);
+</script>
+</body>
+</html>
