@@ -118,6 +118,20 @@
       font-family: var(--font);
     }
 
+    /* ── Hero marquee interaction ── */
+    .hero-marquee-wrap { cursor: grab; }
+    .hero-marquee-wrap:active { cursor: grabbing; }
+    .hero-marquee-wrap.is-dragging .hero-marquee-track { animation-play-state: paused; }
+
+    /* ── Scroll reveal animations ── */
+    [data-anim] { opacity: 0; transform: translateY(30px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+    [data-anim="scale"] { transform: scale(0.92); }
+    [data-anim].visible { opacity: 1; transform: none; }
+    [data-delay="1"] { transition-delay: 0.08s; }
+    [data-delay="2"] { transition-delay: 0.16s; }
+    [data-delay="3"] { transition-delay: 0.24s; }
+    [data-delay="4"] { transition-delay: 0.32s; }
+
     /* ── Creative showcase strip ── */
     .lp-showcase {
       background: var(--dark); padding: 48px 0; overflow: hidden;
@@ -210,10 +224,18 @@
     /* ── Proof section ── */
     .lp-proof { background: var(--gray-50); padding: 100px 24px; }
 
-    .testi-grid {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-      max-width: 900px; margin: 40px auto 0;
+    .lp-testi-scroll {
+      overflow: hidden; position: relative; margin-top: 40px;
     }
+    .lp-testi-track {
+      display: flex; gap: 20px; width: max-content;
+      animation: lp-testi 40s linear infinite;
+      cursor: grab;
+    }
+    .lp-testi-track:active { cursor: grabbing; }
+    .lp-testi-scroll.is-dragging .lp-testi-track,
+    .lp-testi-scroll:hover .lp-testi-track { animation-play-state: paused; }
+    @keyframes lp-testi { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* ── CTA / Form section ── */
     .lp-cta-section { background: #FFEDED; padding: 100px 24px; }
@@ -294,7 +316,7 @@
       .lp-hero { min-height: auto; padding: 100px 16px 60px; }
       .lp-problem, .lp-solution, .lp-proof, .lp-cta-section { padding: 60px 16px; }
       .pain-grid { grid-template-columns: 1fr; }
-      .testi-grid { grid-template-columns: 1fr; }
+      .lp-testi-track { animation-duration: 25s; }
       .case-grid { grid-template-columns: 1fr !important; }
       .lp-form-card { padding: 28px 20px; }
       .sol-stats { gap: 24px; }
@@ -322,7 +344,7 @@
     <div class="container hero-center">
 
       <!-- Credential badges -->
-      <div style="display:flex; align-items:center; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <div data-anim data-delay="1" style="display:flex; align-items:center; gap:12px; justify-content:center; flex-wrap:wrap;">
         <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(85,0,221,0.07);border:1px solid rgba(85,0,221,0.22);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:700;color:#5500dd;">
           <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#5500dd"/></svg>
           Ex-GroupM / WPP Leaders
@@ -344,10 +366,10 @@
       </h1>
 
       <!-- Sub-headline -->
-      <p style="max-width:620px; font-size:18px; color:var(--gray-400); line-height:1.6; text-align:center;">AI-accelerated creative production and performance media buying, under one roof. No headcount. No 3-week timelines. Just ads that perform.</p>
+      <p data-anim data-delay="3" style="max-width:620px; font-size:18px; color:var(--gray-400); line-height:1.6; text-align:center;">AI-accelerated creative production and performance media buying, under one roof. No headcount. No 3-week timelines. Just ads that perform.</p>
 
       <!-- CTA -->
-      <div style="display:flex; align-items:center; gap:10px;">
+      <div data-anim data-delay="4" style="display:flex; align-items:center; gap:10px;">
         <a href="#apply" style="display:inline-flex; align-items:center; gap:10px; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:12px 28px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
           Get your free creative audit
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -399,7 +421,7 @@
 
     <div class="pain-grid">
       <!-- Card 1 -->
-      <div class="pain-card">
+      <div class="pain-card" data-anim data-delay="1">
         <div class="pain-card-icon" style="background:rgba(85,0,221,0.12);">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5500DD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
         </div>
@@ -408,7 +430,7 @@
       </div>
 
       <!-- Card 2 -->
-      <div class="pain-card">
+      <div class="pain-card" data-anim data-delay="2">
         <div class="pain-card-icon" style="background:rgba(238,0,51,0.12);">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ee0033" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
@@ -417,7 +439,7 @@
       </div>
 
       <!-- Card 3 -->
-      <div class="pain-card">
+      <div class="pain-card" data-anim data-delay="3">
         <div class="pain-card-icon" style="background:rgba(255,107,53,0.12);">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FF6B35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
         </div>
@@ -442,7 +464,7 @@
       We produce your ads with AI and run them across Meta, Google, Reddit, TikTok, and LinkedIn. The people who make the creative are the people who measure it. That's why it works.
     </p>
 
-    <div class="sol-stats">
+    <div class="sol-stats" data-anim>
       <div class="sol-stat">
         <div class="sol-stat-num" style="color:var(--blue);">40+</div>
         <div class="sol-stat-label">Creatives / month</div>
@@ -517,32 +539,112 @@
       </a>
     </div>
 
-    <!-- Testimonials -->
-    <div class="testi-grid">
-      <div class="testimonial-card">
-        <div>
-          <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-          <p style="font-size:17px;line-height:1.6;font-style:italic;">"Great collaboration. Very satisfied with the Reddit Ads work. They generated 60+ leads in just 3 months."</p>
-        </div>
-        <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-          <img loading="lazy" src="assets/faustin.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+    <!-- Testimonials — scrolling marquee like homepage -->
+    <div class="lp-testi-scroll">
+      <div class="lp-testi-track">
+        <div class="testimonial-card">
           <div>
-            <p class="author-name" style="font-size:15px;">Faustine Foliard</p>
-            <p class="author-loc" style="font-size:13px;">Head of Marketing · Flare</p>
+            <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+            <p style="font-size:17px;line-height:1.6;font-style:italic;">"The Reddit opportunity was real. They showed up with data on exactly what our competitors were doing in the community and made it easy to say yes."</p>
+          </div>
+          <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+            <div style="width:44px;height:44px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">EC</div>
+            <div>
+              <p class="author-name" style="font-size:15px;">Eric C.</p>
+              <p class="author-loc" style="font-size:13px;">Co-founder · Cozybeds</p>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="testimonial-card">
-        <div>
-          <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-          <p style="font-size:17px;line-height:1.6;font-style:italic;">"Launched and scaled Reddit ads to $10k per month, driving 30% more subscriptions for our SaaS B2C brand. Delivered 20+ creatives every month."</p>
-        </div>
-        <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-          <img loading="lazy" src="assets/janh.jpg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+        <div class="testimonial-card">
           <div>
-            <p class="author-name" style="font-size:15px;">Jan H.</p>
-            <p class="author-loc" style="font-size:13px;">CEO · 3D AI Studio</p>
+            <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+            <p style="font-size:17px;line-height:1.6;font-style:italic;">"Great collaboration. Very satisfied with the Reddit Ads work. They generated 60+ leads in just 3 months."</p>
+          </div>
+          <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+            <img loading="lazy" src="assets/faustin.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+            <div>
+              <p class="author-name" style="font-size:15px;">Faustine Foliard</p>
+              <p class="author-loc" style="font-size:13px;">Head of Marketing · Flare</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div>
+            <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+            <p style="font-size:17px;line-height:1.6;font-style:italic;">"He grasped our objectives fast and made meaningful contributions from day one. Adds value way beyond his defined scope."</p>
+          </div>
+          <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+            <img loading="lazy" src="assets/adamacheson.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+            <div>
+              <p class="author-name" style="font-size:15px;">Adam Acheson</p>
+              <p class="author-loc" style="font-size:13px;">COO · Astronomic</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div>
+            <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+            <p style="font-size:17px;line-height:1.6;font-style:italic;">"Launched and scaled Reddit ads to $10k per month, driving 30% more subscriptions for our SaaS B2C brand. Delivered 20+ creatives every month."</p>
+          </div>
+          <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+            <img loading="lazy" src="assets/janh.jpg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+            <div>
+              <p class="author-name" style="font-size:15px;">Jan H.</p>
+              <p class="author-loc" style="font-size:13px;">CEO · 3D AI Studio</p>
+            </div>
+          </div>
+        </div>
+        <!-- duplicate for seamless loop -->
+        <div class="testimonial-card">
+          <div>
+            <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+            <p style="font-size:17px;line-height:1.6;font-style:italic;">"The Reddit opportunity was real. They showed up with data on exactly what our competitors were doing in the community and made it easy to say yes."</p>
+          </div>
+          <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+            <div style="width:44px;height:44px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">EC</div>
+            <div>
+              <p class="author-name" style="font-size:15px;">Eric C.</p>
+              <p class="author-loc" style="font-size:13px;">Co-founder · Cozybeds</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div>
+            <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+            <p style="font-size:17px;line-height:1.6;font-style:italic;">"Great collaboration. Very satisfied with the Reddit Ads work. They generated 60+ leads in just 3 months."</p>
+          </div>
+          <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+            <img loading="lazy" src="assets/faustin.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+            <div>
+              <p class="author-name" style="font-size:15px;">Faustine Foliard</p>
+              <p class="author-loc" style="font-size:13px;">Head of Marketing · Flare</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div>
+            <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+            <p style="font-size:17px;line-height:1.6;font-style:italic;">"He grasped our objectives fast and made meaningful contributions from day one. Adds value way beyond his defined scope."</p>
+          </div>
+          <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+            <img loading="lazy" src="assets/adamacheson.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+            <div>
+              <p class="author-name" style="font-size:15px;">Adam Acheson</p>
+              <p class="author-loc" style="font-size:13px;">COO · Astronomic</p>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div>
+            <div class="stars" style="margin-bottom:20px;">★★★★★</div>
+            <p style="font-size:17px;line-height:1.6;font-style:italic;">"Launched and scaled Reddit ads to $10k per month, driving 30% more subscriptions for our SaaS B2C brand. Delivered 20+ creatives every month."</p>
+          </div>
+          <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
+            <img loading="lazy" src="assets/janh.jpg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+            <div>
+              <p class="author-name" style="font-size:15px;">Jan H.</p>
+              <p class="author-loc" style="font-size:13px;">CEO · 3D AI Studio</p>
+            </div>
           </div>
         </div>
       </div>
@@ -669,6 +771,65 @@ var calObs = new IntersectionObserver(function(entries) {
 }, { rootMargin: '400px' });
 var calWidget = document.querySelector('.calendly-inline-widget');
 if (calWidget) calObs.observe(calWidget);
+
+/* Scroll reveal animations — IntersectionObserver for [data-anim] elements */
+var animObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      animObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('[data-anim]').forEach(function(el) {
+  animObs.observe(el);
+});
+
+/* Hero marquee — touch/drag scroll */
+(function() {
+  var wrap = document.querySelector('.hero-marquee-wrap');
+  if (!wrap) return;
+  var track = wrap.querySelector('.hero-marquee-track');
+  var startX, scrollLeft, isDragging = false;
+
+  function onDown(e) {
+    isDragging = true;
+    wrap.classList.add('is-dragging');
+    startX = (e.touches ? e.touches[0].pageX : e.pageX);
+    scrollLeft = wrap.scrollLeft;
+  }
+  function onMove(e) {
+    if (!isDragging) return;
+    var x = (e.touches ? e.touches[0].pageX : e.pageX);
+    wrap.scrollLeft = scrollLeft - (x - startX);
+  }
+  function onUp() {
+    isDragging = false;
+    wrap.classList.remove('is-dragging');
+  }
+
+  wrap.style.overflow = 'auto';
+  wrap.style.scrollbarWidth = 'none';
+  wrap.style.webkitOverflowScrolling = 'touch';
+
+  wrap.addEventListener('mousedown', onDown);
+  wrap.addEventListener('mousemove', onMove);
+  wrap.addEventListener('mouseup', onUp);
+  wrap.addEventListener('mouseleave', onUp);
+  wrap.addEventListener('touchstart', onDown, {passive: true});
+  wrap.addEventListener('touchmove', onMove, {passive: true});
+  wrap.addEventListener('touchend', onUp);
+})();
+
+/* Testimonial marquee — drag to pause */
+(function() {
+  var scroll = document.querySelector('.lp-testi-scroll');
+  if (!scroll) return;
+  scroll.addEventListener('mousedown', function() { scroll.classList.add('is-dragging'); });
+  document.addEventListener('mouseup', function() { scroll.classList.remove('is-dragging'); });
+  scroll.addEventListener('touchstart', function() { scroll.classList.add('is-dragging'); }, {passive: true});
+  scroll.addEventListener('touchend', function() { scroll.classList.remove('is-dragging'); });
+})();
 </script>
 </body>
 </html>
