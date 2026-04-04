@@ -666,6 +666,9 @@
 
     <div class="lp-form-card">
       <form id="auditForm">
+        <div style="position:absolute;left:-9999px;" aria-hidden="true">
+          <input type="text" name="website_url" tabindex="-1" autocomplete="off">
+        </div>
         <div class="lp-form-group">
           <label for="adSpend">What's your monthly ad spend?</label>
           <select id="adSpend" required>
@@ -734,6 +737,10 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
 /* Form handler — push to GTM dataLayer */
 document.getElementById('auditForm').addEventListener('submit', function(e) {
   e.preventDefault();
+
+  /* Honeypot bot detection */
+  if (document.querySelector('input[name="website_url"]').value) return;
+
   var adSpend = document.getElementById('adSpend').value;
   var platforms = document.getElementById('platforms').value;
   var bottleneck = document.getElementById('bottleneck').value;
@@ -830,6 +837,22 @@ document.querySelectorAll('[data-anim]').forEach(function(el) {
   scroll.addEventListener('touchstart', function() { scroll.classList.add('is-dragging'); }, {passive: true});
   scroll.addEventListener('touchend', function() { scroll.classList.remove('is-dragging'); });
 })();
+
+/* CTA click tracking */
+document.querySelectorAll('a[href="#apply"]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({event: 'cta_click', cta_text: this.textContent.trim().slice(0,50), cta_page: 'creative-audit'});
+  });
+});
+
+/* Calendly booking detection */
+window.addEventListener('message', function(e) {
+  if (e.data && e.data.event === 'calendly.event_scheduled') {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({event: 'calendly_booking', booking_page: 'creative-audit'});
+  }
+});
 </script>
 </body>
 </html>

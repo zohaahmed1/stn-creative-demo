@@ -2009,6 +2009,22 @@ document.querySelectorAll('.hero-marquee-track').forEach(function(track) {
   }, { threshold: 0.5 });
   obs.observe(statRow);
 })();
+
+/* CTA click tracking */
+document.querySelectorAll('a[href="#book"]').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({event: 'cta_click', cta_text: this.textContent.trim().slice(0,50), cta_page: 'homepage'});
+  });
+});
+
+/* Calendly booking detection */
+window.addEventListener('message', function(e) {
+  if (e.data && e.data.event === 'calendly.event_scheduled') {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({event: 'calendly_booking', booking_page: 'homepage'});
+  }
+});
 </script>
 
 </body>

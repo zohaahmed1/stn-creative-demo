@@ -237,6 +237,10 @@
       document.body.removeChild(link);
     }, 800);
   });
+
+  // Track playbook download
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({event: 'playbook_download', source: 'thanks_page'});
 </script>
 </body>
 </html>
