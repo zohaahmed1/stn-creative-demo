@@ -40,6 +40,21 @@
   </noscript>
   
 
+  <!-- FIX: Disable CSS animation conflicts. rAF JS takes over entirely. -->
+  <style>
+    /* Kill all conflicting CSS hover rules — JS drives animation now */
+    .hero-marquee-track {
+      animation: none !important;
+    }
+    .hero-marquee-wrap {
+      cursor: grab;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .hero-marquee-wrap.is-dragging {
+      cursor: grabbing;
+    }
+  </style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -2021,6 +2036,80 @@ window.addEventListener('message', function(e) {
     window.dataLayer.push({event: 'calendly_booking', booking_page: 'homepage'});
   }
 });
+</script>
+
+<!-- FIX: rAF-driven marquee — replaces CSS animation entirely. Smooth drag + no timing bugs. -->
+<script>
+(function() {
+  var SPEED_NORMAL = 0.7;  // px per frame (~42px/sec at 60fps, matches original 45s CSS)
+  var SPEED_HOVER  = 0.25; // px per frame when hovering but not dragging
+
+  document.querySelectorAll('.hero-marquee-wrap').forEach(function(wrap) {
+    var track = wrap.querySelector('.hero-marquee-track');
+    if (!track) return;
+
+    var pos = 0;
+    var halfWidth = 0;
+    var isDragging = false;
+    var isHovering = false;
+    var lastX = 0;
+
+    function init() {
+      halfWidth = track.scrollWidth / 2;
+      if (halfWidth <= 0) { setTimeout(init, 100); return; } // wait for images
+      requestAnimationFrame(tick);
+    }
+
+    function tick() {
+      if (!isDragging) {
+        var speed = isHovering ? SPEED_HOVER : SPEED_NORMAL;
+        pos -= speed;
+        if (pos <= -halfWidth) pos += halfWidth; // seamless loop
+      }
+      track.style.transform = 'translateX(' + pos + 'px)';
+      requestAnimationFrame(tick);
+    }
+
+    // Hover state (just slows scroll, no pause)
+    wrap.addEventListener('mouseenter', function() { isHovering = true; });
+    wrap.addEventListener('mouseleave', function() { isHovering = false; });
+
+    // Drag
+    function onDown(clientX) {
+      isDragging = true;
+      lastX = clientX;
+      wrap.classList.add('is-dragging');
+    }
+    function onMove(clientX) {
+      if (!isDragging) return;
+      var dx = clientX - lastX;
+      lastX = clientX;
+      pos += dx;
+      // Keep in seamless loop bounds
+      if (pos > 0) pos -= halfWidth;
+      if (pos < -halfWidth) pos += halfWidth;
+    }
+    function onUp() {
+      if (!isDragging) return;
+      isDragging = false;
+      wrap.classList.remove('is-dragging');
+    }
+
+    // Mouse
+    wrap.addEventListener('mousedown', function(e) { onDown(e.clientX); e.preventDefault(); });
+    document.addEventListener('mousemove', function(e) { if (isDragging) onMove(e.clientX); });
+    document.addEventListener('mouseup', onUp);
+
+    // Touch
+    wrap.addEventListener('touchstart', function(e) { onDown(e.touches[0].clientX); }, { passive: true });
+    document.addEventListener('touchmove', function(e) { if (isDragging) onMove(e.touches[0].clientX); }, { passive: true });
+    document.addEventListener('touchend', onUp);
+
+    // Start after layout
+    if (document.readyState === 'complete') { init(); }
+    else { window.addEventListener('load', init); }
+  });
+})();
 </script>
 
 </body>
