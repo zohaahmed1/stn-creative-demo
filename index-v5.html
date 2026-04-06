@@ -9,7 +9,7 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://zohaahmed1.github.io/stn-creative-demo/index-v5.html">
+  <meta property="og:url" content="https://zohaahmed1.github.io/stn-creative-demo/index.html">
   <meta property="og:title" content="Skip the Noise Media — AI Ad Creative + Performance Media Buying">
   <meta property="og:description" content="AI-powered creative production and performance media buying under one roof. 20+ creatives/month. 3–4x ROAS for eComm. 2x pipeline for SaaS. First ads live in 2 weeks.">
   <meta property="og:image" content="https://zohaahmed1.github.io/stn-creative-demo/assets/One_Booth_v4.jpg">
@@ -21,7 +21,7 @@
   <meta name="twitter:image" content="https://zohaahmed1.github.io/stn-creative-demo/assets/One_Booth_v4.jpg">
 
   <!-- Canonical -->
-  <link rel="canonical" href="https://zohaahmed1.github.io/stn-creative-demo/index-v5.html">
+  <link rel="canonical" href="https://zohaahmed1.github.io/stn-creative-demo/index.html">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://api.fontshare.com">
@@ -32,7 +32,37 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700,900&display=swap" rel="stylesheet">
   </noscript>
-  
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '190622266031524');
+    fbq('track', 'PageView');
+
+    /* CTA click tracking */
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('a[href="#book"]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({event: 'cta_click', cta_text: this.textContent.trim().slice(0,50), cta_page: 'index-v5'});
+          fbq('track', 'Lead');
+        });
+      });
+    });
+
+    /* Calendly booking detection */
+    window.addEventListener('message', function(e) {
+      if (e.data && e.data.event === 'calendly.event_scheduled') {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({event: 'calendly_booking', booking_page: 'index-v5'});
+        fbq('track', 'Lead');
+      }
+    });
+  </script>
 
 </head>
 <body>
@@ -1841,7 +1871,7 @@ if (dropdownTrigger && navDropdown) {
 }
 // Active nav state
 (function() {
-  var path = window.location.pathname.split('/').pop() || 'index-v5.html';
+  var path = window.location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('.nav-link[href]').forEach(function(link) {
     var href = link.getAttribute('href').split('/').pop();
     if (href && href === path) link.classList.add('active');

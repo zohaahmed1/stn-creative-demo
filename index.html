@@ -2027,11 +2027,21 @@ document.querySelectorAll('.hero-marquee-track').forEach(function(track) {
   obs.observe(statRow);
 })();
 
+/* Meta Pixel initialization */
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '190622266031524');
+fbq('track', 'PageView');
+
 /* CTA click tracking */
 document.querySelectorAll('a[href="#book"]').forEach(function(btn) {
   btn.addEventListener('click', function() {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({event: 'cta_click', cta_text: this.textContent.trim().slice(0,50), cta_page: 'homepage'});
+    fbq('track', 'Lead');
   });
 });
 
@@ -2040,6 +2050,7 @@ window.addEventListener('message', function(e) {
   if (e.data && e.data.event === 'calendly.event_scheduled') {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({event: 'calendly_booking', booking_page: 'homepage'});
+    fbq('track', 'Lead');
   }
 });
 </script>
