@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /playbook-thanks
+Disallow: /book-thanks
+Disallow: /creative-audit
+
+Sitemap: https://skipthenoisemedia.com/sitemap.xml
