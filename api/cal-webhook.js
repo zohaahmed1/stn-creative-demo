@@ -37,7 +37,7 @@ export default async function handler(req, res) {
     }
 
     // Fire Meta Conversions API
-    const pixelId = process.env.META_PIXEL_ID || '190622266031524';
+    const pixelId = process.env.META_PIXEL_ID || '1906222660310524';
     const accessToken = process.env.META_CONVERSION_TOKEN;
 
     if (!accessToken) {
