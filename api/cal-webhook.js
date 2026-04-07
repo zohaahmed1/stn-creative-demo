@@ -53,7 +53,7 @@ export default async function handler(req, res) {
         body: JSON.stringify({
           data: [
             {
-              event_name: 'Lead',
+              event_name: 'Schedule',
               event_time: Math.floor(Date.now() / 1000),
               event_id: `cal_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
               user_data: {
