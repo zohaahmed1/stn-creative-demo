@@ -9,16 +9,16 @@
   <!-- End Microsoft Clarity -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Services — Performance Creative &amp; Paid Media | Skip the Noise Media</title>
-  <meta name="description" content="Performance creative production and paid media buying for DTC and B2B SaaS brands. Reddit, Meta, TikTok, Google. 20+ creatives per month. Official Reddit Certified Partner.">
+  <title>Services — AI Creative Production + Performance Marketing | Skip the Noise Media</title>
+  <meta name="description" content="AI creative production and performance marketing for DTC and B2B SaaS brands. 40+ ad creatives per month, full-funnel paid media, first ads live in 1 week. Reddit Certified Partner.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://skipthenoisemedia.com/services">
-  <meta property="og:title" content="Services — Performance Creative &amp; Paid Media | Skip the Noise Media">
-  <meta property="og:description" content="Performance creative production and paid media buying for DTC and B2B SaaS brands. Reddit, Meta, TikTok, Google. 20+ creatives per month.">
+  <meta property="og:title" content="Services — AI Creative Production + Performance Marketing | Skip the Noise Media">
+  <meta property="og:description" content="AI creative production and performance marketing for DTC and B2B SaaS brands. 40+ ad creatives per month, full-funnel paid media, first ads live in 1 week.">
   <meta property="og:image" content="https://skipthenoisemedia.com/assets/One_Booth_v4.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Services — Performance Creative &amp; Paid Media | Skip the Noise Media">
-  <meta name="twitter:description" content="Performance creative production and paid media buying for DTC and B2B SaaS brands.">
+  <meta name="twitter:title" content="Services — AI Creative Production + Performance Marketing | Skip the Noise Media">
+  <meta name="twitter:description" content="AI creative production and performance marketing for DTC and B2B SaaS brands. 40+ ad creatives per month, first ads live in 1 week.">
   <meta name="twitter:image" content="https://skipthenoisemedia.com/assets/One_Booth_v4.png">
   <link rel="canonical" href="https://skipthenoisemedia.com/services">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -653,22 +653,43 @@
     fbq('init', '190622266031524');
     fbq('track', 'PageView');
 
-    /* CTA click tracking */
+    /* CTA click tracking - opens modal instead of linking out */
     document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('a[href*="calendly.com"]').forEach(function(link) {
-        link.addEventListener('click', function() {
+      document.querySelectorAll('.cta-booking-btn').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
           window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({event: 'cta_click', cta_text: this.textContent.trim().slice(0,50), cta_page: 'services'});
+          window.dataLayer.push({event: 'lead', cta_text: this.textContent.trim().slice(0,50), cta_page: 'services'});
           fbq('track', 'Lead');
+          document.getElementById('cal-modal').classList.add('open');
         });
       });
     });
+
+    /* Cal.com modal styles */
+    var calModalStyles = document.createElement('style');
+    calModalStyles.textContent = '.cal-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; } .cal-modal.open { display: flex; } .cal-modal-content { background: white; border-radius: 12px; width: 90%; max-width: 600px; max-height: 90vh; overflow: auto; position: relative; } .cal-modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; z-index: 1000; }';
+    document.head.appendChild(calModalStyles);
   </script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4JR5P3B" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+
+<!-- Cal.com Booking Modal -->
+<div class="cal-modal" id="cal-modal">
+  <button class="cal-modal-close" onclick="document.getElementById('cal-modal').classList.remove('open')">&times;</button>
+  <div class="cal-modal-content">
+    <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-30min"></div>
+    <script type="text/javascript">
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", "30min", {origin:"https://app.cal.com"});
+      Cal.ns["30min"]("inline", {elementOrSelector:"#my-cal-inline-30min",config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"},calLink: "skipthenoise/30min"});
+      Cal.ns["30min"]("ui", {"theme":"light","hideEventTypeDetails":false,"layout":"month_view"});
+    </script>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav class="nav">
@@ -685,7 +706,7 @@
       <a href="index.html#team" class="nav-link">Team</a>
     </div>
     <div class="nav-right">
-      <a href="https://calendly.com/skipthenoisemedia/30min" style="display:inline-block; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:10px 22px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">3 free ads. Keep them.</a>
+      <a href="#" class="cta-booking-btn" style="display:inline-block; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:10px 22px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s; cursor: pointer;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">3 free ads. Keep them.</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
   </div>
@@ -697,7 +718,7 @@
   <a href="process.html" class="mobile-menu-link">Process</a>
   <a href="blog/reddit-ads-b2b-saas.html" class="mobile-menu-link">Blog</a>
   <a href="index.html#team" class="mobile-menu-link">Team</a>
-  <a href="https://calendly.com/skipthenoisemedia/30min" class="mobile-menu-cta">3 free ads. Keep them.</a>
+  <a href="#" class="cta-booking-btn mobile-menu-cta">3 free ads. Keep them.</a>
 </div>
 
 <!-- ============================
@@ -712,10 +733,10 @@
       <span class="heading-bold" style="color:#ffffff;">Most agencies pick a lane.</span>
       <span class="heading-italic" style="color:#ffffff;">We run both.</span>
     </div>
-    <p data-anim data-delay="2" style="font-size:clamp(16px,1.2vw,19px); color:rgba(255,255,255,0.6); max-width:600px; margin:0 auto; line-height:1.7;">Most agencies take 6 weeks to get your first ad live. We do it in 2. Creative production and full media buying, moving faster than anyone else in the space.</p>
+    <p data-anim data-delay="2" style="font-size:clamp(16px,1.2vw,19px); color:rgba(255,255,255,0.6); max-width:600px; margin:0 auto; line-height:1.7;">Most agencies take 6 weeks to get your first ad live. We do it in 1. AI creative production and full-funnel performance marketing, moving faster than anyone else in the space.</p>
     <div data-anim data-delay="3">
-      <a href="https://calendly.com/skipthenoisemedia/30min" class="hero-cta-btn">Book a strategy call &rarr;</a>
-      <p class="hero-micro">First ads live in 2 weeks. No lock-in contracts.</p>
+      <a href="https://cal.com/skipthenoise/30min" class="hero-cta-btn">Book a strategy call &rarr;</a>
+      <p class="hero-micro">First ads live in 1 week. No lock-in contracts.</p>
     </div>
   </div>
 </section>
@@ -738,9 +759,9 @@
         <h3>Your ROAS is slipping and you know why.</h3>
         <p>Same creatives. Same audiences. Same results. You're not short on budget. You're short on fresh angles, tested hooks, and creative volume. And your current agency takes weeks to fix that.</p>
         <ul class="bullet-list">
-          <li><span class="bullet-dot dot-orange"></span>20+ new creatives every month across Meta, TikTok and Pinterest</li>
+          <li><span class="bullet-dot dot-orange"></span>40+ new AI-produced creatives every month across Meta, TikTok and Pinterest</li>
           <li><span class="bullet-dot dot-orange"></span>Media buying optimized to your ROAS target, not vanity metrics</li>
-          <li><span class="bullet-dot dot-orange"></span>First batch delivered in 2 weeks. Not 6.</li>
+          <li><span class="bullet-dot dot-orange"></span>First batch delivered in 1 week. Not 6.</li>
         </ul>
         <div class="proof-stat-row">
           <span class="proof-num proof-num-orange">3.2x</span>
@@ -756,7 +777,7 @@
         <ul class="bullet-list">
           <li><span class="bullet-dot dot-purple"></span>Reddit community targeting your exact buyer persona</li>
           <li><span class="bullet-dot dot-purple"></span>Pipeline-focused buying on Reddit and LinkedIn</li>
-          <li><span class="bullet-dot dot-purple"></span>Creative built for the feed, live in 2 weeks</li>
+          <li><span class="bullet-dot dot-purple"></span>Creative built for the feed, live in 1 week</li>
         </ul>
         <div class="proof-stat-row">
           <span class="proof-num proof-num-purple">$75</span>
@@ -784,8 +805,8 @@
         <div class="outcome-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
         </div>
-        <h4>20+ creatives per month</h4>
-        <p>Not 4 recycled resizes. Fresh hooks, new formats, and multiple angles tested every cycle. Volume is what powers the algorithm.</p>
+        <h4>40+ AI creatives per month</h4>
+        <p>Not 4 recycled resizes. Fresh hooks, new formats, and multiple angles tested every cycle. AI-powered production means volume without the lag. Volume is what powers the algorithm.</p>
       </div>
 
       <div class="outcome-card" data-anim data-delay="2">
@@ -824,35 +845,35 @@
     <p class="section-label" data-anim>How it works</p>
     <div data-anim data-delay="1">
       <span class="heading-bold" style="color:#0d0d0d;">From brief</span>
-      <span class="heading-italic" style="color:#0d0d0d;">to live in 4 weeks.</span>
+      <span class="heading-italic" style="color:#0d0d0d;">to live in 1 week.</span>
     </div>
 
     <div class="timeline">
 
       <div class="timeline-step" data-anim data-delay="1">
         <div class="step-circle">1</div>
-        <p class="step-week">Week 1</p>
+        <p class="step-week">Day 1–2</p>
         <p class="step-title">Audit + Brief</p>
-        <p class="step-body">We dig into your account history, competitor creative, and positioning before writing a single word.</p>
+        <p class="step-body">We dig into your account history, competitor creative, and positioning. Strategy locked before we write a single word.</p>
       </div>
 
       <div class="timeline-step" data-anim data-delay="2">
         <div class="step-circle">2</div>
-        <p class="step-week">Week 2–3</p>
+        <p class="step-week">Day 3–5</p>
         <p class="step-title">First Creative Batch</p>
-        <p class="step-body">20+ assets across formats and hooks. Static, video, UGC briefs. All platform-native, all tested against your brand.</p>
+        <p class="step-body">40+ AI-produced assets across formats and hooks. Static, video, UGC. All platform-native, all tested against your brand.</p>
       </div>
 
       <div class="timeline-step" data-anim data-delay="3">
         <div class="step-circle">3</div>
-        <p class="step-week">Week 4</p>
+        <p class="step-week">Day 6–7</p>
         <p class="step-title">Launch + Test</p>
-        <p class="step-body">Ads go live with a proper A/B framework. Baseline established in the first 7 days. Nothing runs blind.</p>
+        <p class="step-body">Ads go live with a proper A/B framework. Baseline established in the first 72 hours. Nothing runs blind.</p>
       </div>
 
       <div class="timeline-step" data-anim data-delay="4">
         <div class="step-circle">4</div>
-        <p class="step-week">Month 2+</p>
+        <p class="step-week">Week 2+</p>
         <p class="step-title">Optimize + Scale</p>
         <p class="step-body">Double down on winners. Kill losers fast. New hooks every cycle based on real data, not gut feel.</p>
       </div>
@@ -884,8 +905,8 @@
         <div class="stat-desc">CPL &middot; B2C SaaS on Reddit</div>
       </div>
       <div class="stat-block" data-anim data-delay="3">
-        <div class="stat-number">20+</div>
-        <div class="stat-desc">Creatives delivered per month</div>
+        <div class="stat-number">40+</div>
+        <div class="stat-desc">AI creatives delivered per month</div>
       </div>
       <div class="stat-block" data-anim data-delay="4">
         <div class="stat-number">100+</div>
@@ -927,7 +948,7 @@
           How fast can we actually get started?
           <span class="faq-icon">+</span>
         </button>
-        <div class="faq-a">First creative brief within Week 1. First ads live within 4 weeks of signing. We don't do 3-month onboarding. You'll have real creative in market faster than most agencies have finished their kickoff deck.</div>
+        <div class="faq-a">First creative brief within 48 hours. First ads live within 1 week of signing. We don't do 3-month onboarding. You'll have real creative in market faster than most agencies have finished their kickoff deck.</div>
       </div>
 
       <div class="faq-item" data-anim>
@@ -985,7 +1006,7 @@
     </div>
     <p data-anim data-delay="1" style="font-size:clamp(15px,1.1vw,18px); color:rgba(255,255,255,0.6); max-width:560px; margin:16px auto 0; line-height:1.7;">We'll build 3 ads for your brand. Free. Run them, keep them, use them however you want. If you want more, we'll talk. If not, no hard feelings.</p>
     <div data-anim data-delay="2">
-      <a href="https://calendly.com/skipthenoisemedia/30min" class="cta-strip-btn">Book a strategy call &rarr;</a>
+      <a href="https://cal.com/skipthenoise/30min" class="cta-strip-btn">Book a strategy call &rarr;</a>
       <p class="cta-strip-email">Or email us at <a href="mailto:hello@tryskipthenoisemedia.com">hello@tryskipthenoisemedia.com</a></p>
     </div>
   </div>
@@ -1012,12 +1033,12 @@
             <a href="index.html#work" style="color:var(--gray-300); font-size:15px;">Results</a>
             <a href="gallery.html" style="color:var(--gray-300); font-size:15px;">Portfolio</a>
             <a href="index.html#process" style="color:var(--gray-300); font-size:15px;">Process</a>
-            <a href="https://calendly.com/skipthenoisemedia/30min" style="color:var(--gray-300); font-size:15px;">Contact</a>
+            <a href="https://cal.com/skipthenoise/30min" style="color:var(--gray-300); font-size:15px;">Contact</a>
           </div>
         </div>
         <div>
           <p style="color:var(--white); font-weight:700; margin-bottom:16px;">3 free ads. Keep them.</p>
-          <a href="https://calendly.com/skipthenoisemedia/30min" style="display:inline-block; background:#5500DD; color:white; font-size:14px; padding:12px 20px; border-radius:100px; text-decoration:none; white-space:nowrap;">Get started</a>
+          <a href="https://cal.com/skipthenoise/30min" style="display:inline-block; background:#5500DD; color:white; font-size:14px; padding:12px 20px; border-radius:100px; text-decoration:none; white-space:nowrap;">Get started</a>
         </div>
       </div>
     </div>
