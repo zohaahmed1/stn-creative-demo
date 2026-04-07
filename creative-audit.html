@@ -280,7 +280,7 @@
       margin-top: 12px; font-family: var(--font);
     }
 
-    .lp-calendly-wrap { margin-top: 48px; }
+    .lp-cal-wrap { margin-top: 48px; }
     .lp-calendly-label {
       font-family: var(--font); font-size: 14px; font-weight: 700;
       color: rgba(0,0,0,0.35); text-transform: uppercase; letter-spacing: 0.06em;
@@ -701,9 +701,9 @@
       </form>
     </div>
 
-    <div class="lp-calendly-wrap">
+    <div class="lp-cal-wrap">
       <p class="lp-calendly-label">Pick a time</p>
-      <div class="calendly-inline-widget" data-url="https://calendly.com/skipthenoisemedia/30min?hide_gdpr_banner=1&background_color=fff5f5&text_color=1a1a4e&primary_color=5500dd" style="min-width:320px;height:700px;border-radius:24px;overflow:hidden;"></div>
+      <div id="cal-embed-audit" style="min-width:320px;height:700px;border-radius:24px;overflow:hidden;"></div>
     </div>
   </div>
 </section>
@@ -758,26 +758,34 @@ document.getElementById('auditForm').addEventListener('submit', function(e) {
   btn.style.background = '#16a34a';
   btn.disabled = true;
 
-  var calendly = document.querySelector('.lp-calendly-wrap');
-  if (calendly) {
-    calendly.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  var calWrap = document.querySelector('.lp-cal-wrap');
+  if (calWrap) {
+    calWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 });
 
-/* Lazy-load Calendly widget */
-var calObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      var script = document.createElement('script');
-      script.src = 'https://assets.calendly.com/assets/external/widget.js';
-      script.async = true;
-      document.body.appendChild(script);
-      calObs.disconnect();
+/* Lazy-load Cal.com widget */
+(function(){
+  var loaded = false;
+  var obs = new IntersectionObserver(function(entries){
+    if(entries[0].isIntersecting && !loaded){
+      loaded = true;
+      var s = document.createElement("script");
+      s.src = "https://app.cal.com/embed.js";
+      s.async = true;
+      s.onload = function() {
+        Cal.ns["30min"]("inline", {
+          elementOrSelector: "#cal-embed-audit",
+          config: { theme: "light", layout: "month_view" }
+        });
+      };
+      document.head.appendChild(s);
+      obs.disconnect();
     }
-  });
-}, { rootMargin: '400px' });
-var calWidget = document.querySelector('.calendly-inline-widget');
-if (calWidget) calObs.observe(calWidget);
+  }, { rootMargin: '400px' });
+  var calWidget = document.getElementById('cal-embed-audit');
+  if (calWidget) obs.observe(calWidget);
+})();
 
 /* Scroll reveal animations — IntersectionObserver for [data-anim] elements */
 var animObs = new IntersectionObserver(function(entries) {
@@ -838,7 +846,9 @@ document.querySelectorAll('[data-anim]').forEach(function(el) {
   scroll.addEventListener('touchend', function() { scroll.classList.remove('is-dragging'); });
 })();
 
-/* CTA click tracking */
+/* Meta Pixel tracking via GTM dataLayer only (no direct fbq calls) */
+
+/* CTA click tracking — GTM will handle pixel firing */
 document.querySelectorAll('a[href="#apply"]').forEach(function(btn) {
   btn.addEventListener('click', function() {
     window.dataLayer = window.dataLayer || [];
@@ -846,11 +856,11 @@ document.querySelectorAll('a[href="#apply"]').forEach(function(btn) {
   });
 });
 
-/* Calendly booking detection */
+/* Cal.com booking detection — GTM will handle pixel firing */
 window.addEventListener('message', function(e) {
-  if (e.data && e.data.event === 'calendly.event_scheduled') {
+  if (e.data && e.data.event && e.data.event.startsWith('booking.')) {
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({event: 'calendly_booking', booking_page: 'creative-audit'});
+    window.dataLayer.push({event: 'cal_booking', booking_page: 'creative-audit', event_type: e.data.event});
   }
 });
 </script>

@@ -670,16 +670,15 @@ body {
   max-width: 56ch;
   margin: 0 auto;
 }
-.calendly-wrap {
+.cal-wrap {
   max-width: 1000px;
   margin: 0 auto;
   border-radius: var(--radius-card);
   overflow: hidden;
 }
-.calendly-wrap iframe {
+#cal-embed-audit-old {
   width: 100%;
   height: 700px;
-  border: none;
 }
 .cta-disclaimer {
   text-align: center;
@@ -745,7 +744,7 @@ body {
   .results-grid-bottom { grid-template-columns: 1fr; }
   .result-card { padding: 24px; }
 
-  .calendly-wrap iframe { height: 650px; }
+  #cal-embed-audit-old { height: 650px; }
 
   .footer-inner { justify-content: center; text-align: center; }
 }
@@ -1010,10 +1009,31 @@ body {
       <p class="cta-sub">Book a free creative audit. We'll review your ad library across every platform and show you exactly where you're leaving pipeline on the table.</p>
     </div>
 
-    <div class="calendly-wrap reveal">
-      <div class="calendly-inline-widget" data-url="https://calendly.com/skipthenoisemedia/creative-audit?hide_gdpr_banner=1&background_color=f5f2ee&text_color=1a1a4e&primary_color=ee0033" style="min-width:300px;height:700px;"></div>
-      <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <div class="cal-wrap reveal">
+      <div id="cal-embed-audit-old" style="min-width:300px;"></div>
     </div>
+    <script>
+    (function(){
+      var loaded = false;
+      var obs = new IntersectionObserver(function(entries){
+        if(entries[0].isIntersecting && !loaded){
+          loaded = true;
+          var s = document.createElement("script");
+          s.src = "https://app.cal.com/embed.js";
+          s.async = true;
+          s.onload = function() {
+            Cal.ns["30min"]("inline", {
+              elementOrSelector: "#cal-embed-audit-old",
+              config: { theme: "light", layout: "month_view" }
+            });
+          };
+          document.head.appendChild(s);
+          obs.disconnect();
+        }
+      }, {rootMargin:"200px"});
+      obs.observe(document.getElementById("cal-embed-audit-old"));
+    })();
+    </script>
 
     <p class="cta-disclaimer reveal">No retainer. No commitment. 30 minutes.</p>
   </div>

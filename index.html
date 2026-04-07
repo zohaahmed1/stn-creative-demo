@@ -1575,7 +1575,7 @@
       <p class="book-sub body" style="margin-top:20px; max-width:520px; margin-left:auto; margin-right:auto; opacity:0; transform:translateY(20px); transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1) 0.7s, transform 0.8s cubic-bezier(0.16,1,0.3,1) 0.7s;">30 minutes. We'll audit your ad library, show you where competitors are outproducing you, and build you 3 creatives. Free. No strings.</p>
     </div>
     <div class="book-widget" style="opacity:0; transform:scale(0.97); transition:opacity 0.9s cubic-bezier(0.16,1,0.3,1) 1.1s, transform 0.9s cubic-bezier(0.16,1,0.3,1) 1.1s;">
-      <div class="calendly-inline-widget" data-url="https://calendly.com/skipthenoisemedia/30min" style="min-width:320px;height:700px;border-radius:24px;overflow:hidden;"></div>
+      <div id="cal-embed" style="width:100%; height:700px; border-radius:24px; overflow:hidden;"></div>
       <script>
         (function(){
           var loaded = false;
@@ -1583,8 +1583,17 @@
             if(entries[0].isIntersecting && !loaded){
               loaded = true;
               var s = document.createElement("script");
-              s.src = "https://assets.calendly.com/assets/external/widget.js";
+              s.src = "https://app.cal.com/embed.js";
               s.async = true;
+              s.onload = function() {
+                Cal.ns["30min"]("inline", {
+                  elementOrSelector: "#cal-embed",
+                  config: {
+                    theme: "light",
+                    layout: "month_view"
+                  }
+                });
+              };
               document.head.appendChild(s);
               obs.disconnect();
             }
@@ -2040,16 +2049,16 @@ fbq('track', 'PageView');
 document.querySelectorAll('a[href="#book"]').forEach(function(btn) {
   btn.addEventListener('click', function() {
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({event: 'cta_click', cta_text: this.textContent.trim().slice(0,50), cta_page: 'homepage'});
+    window.dataLayer.push({event: 'lead', cta_text: this.textContent.trim().slice(0,50), cta_page: 'homepage'});
     fbq('track', 'Lead');
   });
 });
 
-/* Calendly booking detection */
+/* Cal.com booking detection */
 window.addEventListener('message', function(e) {
-  if (e.data && e.data.event === 'calendly.event_scheduled') {
+  if (e.data && e.data.event && e.data.event.startsWith('booking.')) {
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({event: 'calendly_booking', booking_page: 'homepage'});
+    window.dataLayer.push({event: 'cal_booking', booking_page: 'homepage', event_type: e.data.event});
     fbq('track', 'Lead');
   }
 });
