@@ -728,26 +728,14 @@
   </div>
 </section>
 <script>
-(function(){
-  var loaded = false;
-  var obs = new IntersectionObserver(function(entries){
-    if(entries[0].isIntersecting && !loaded){
-      loaded = true;
-      var s = document.createElement("script");
-      s.src = "https://app.cal.com/embed.js";
-      s.async = true;
-      s.onload = function() {
-        Cal.ns["30min"]("inline", {
-          elementOrSelector: "#cal-embed-process",
-          config: { theme: "light", layout: "month_view" }
-        });
-      };
-      document.head.appendChild(s);
-      obs.disconnect();
-    }
-  }, {rootMargin:"200px"});
-  obs.observe(document.getElementById("cal-embed-process"));
-})();
+  (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);return;} p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+  Cal("init", "30min", {origin:"https://cal.com"});
+  Cal.ns["30min"]("inline", {
+    elementOrSelector: "#cal-embed-process",
+    calLink: "skipthenoise/30min",
+    layout: "month_view"
+  });
+  Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
 </script>
 
 <!-- FOOTER -->
