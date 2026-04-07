@@ -16,8 +16,10 @@ export default async function handler(req, res) {
   const { triggerEvent, payload } = req.body;
 
   // Only process booking creation events
-  if (triggerEvent !== 'booking.created') {
-    return res.status(200).json({ received: true });
+  // Cal.com sends BOOKING_CREATED (uppercase) not booking.created
+  if (triggerEvent !== 'BOOKING_CREATED') {
+    console.log('Ignoring event:', triggerEvent);
+    return res.status(200).json({ received: true, event: triggerEvent });
   }
 
   try {
