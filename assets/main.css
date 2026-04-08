@@ -1403,15 +1403,12 @@
        MOBILE OVERHAUL — main landing page
        ============================================= */
     @media (max-width: 809px) {
-      /* Nav */
-      .nav-links, .nav-email { display: none !important; }
+      /* Nav — clean mobile bar: logo + hamburger only. CTA lives in hero + drawer. */
+      .nav-links, .nav-email, .nav-right { display: none !important; }
       .hamburger { display: flex !important; }
-      .nav-right { display: flex !important; }
       .nav-inner { padding: 12px 0 !important; }
       .nav-logo { font-size: 18px !important; white-space: nowrap; }
       .nav-logo img { height: 32px !important; }
-      .nav-right .btn .btn-inner { padding: 10px 14px !important; font-size: 12px !important; white-space: nowrap; }
-      .nav-right a { font-size: 12px !important; padding: 8px 14px !important; white-space: nowrap; }
       .nav.scrolled { left: 12px; right: 12px; border-radius: 14px; top: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
 
       /* Results section */
