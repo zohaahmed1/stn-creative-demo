@@ -384,7 +384,14 @@
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
-      <p style="font-size:13px; color:rgba(0,0,0,0.35); margin-top:8px;">30-min call. We audit your ad library and build you 3 creatives. Free.</p>
+      <!-- Offer + risk reversal: 2x bigger, black, prominent -->
+      <p class="ca-hero-offer" data-anim data-delay="5">30-min call. We audit your ad library and build you 3 creatives. <strong>Free. No contract. No catch.</strong></p>
+
+      <!-- Scroll indicator -->
+      <a href="#what-inside" class="ca-scroll-indicator" data-anim data-delay="6">
+        What's inside
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M4 9l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
 
     </div>
 
@@ -426,6 +433,41 @@
         line-height: 1.75 !important;
         text-align: center;
         padding: 0 20px;
+      }
+      /* Offer line under CTA: 2x bigger, black, prominent */
+      .ca-hero-offer {
+        font-size: clamp(15px, 1.3vw, 17px);
+        color: #0d0d0d;
+        font-weight: 500;
+        margin: 18px auto 0;
+        max-width: 720px;
+        text-align: center;
+        padding: 0 20px;
+        line-height: 1.55;
+      }
+      .ca-hero-offer strong {
+        font-weight: 800;
+        color: #0d0d0d;
+      }
+      /* Scroll indicator */
+      .ca-scroll-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 28px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(0,0,0,0.55);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .ca-scroll-indicator:hover { color: #0d0d0d; }
+      .ca-scroll-indicator svg { animation: ca-bounce 2s ease-in-out infinite; }
+      @keyframes ca-bounce {
+        0%, 100% { transform: translateY(0); }
+        50%      { transform: translateY(4px); }
       }
 
       /* Floating platform logos in hero background — full color, asymmetric, spread around the outer frame */
@@ -561,7 +603,7 @@
 </section>
 
 <!-- ═══════════════════════════════════════ PROBLEM ═══════════════════════════════════════ -->
-<section class="lp-problem">
+<section class="lp-problem" id="what-inside">
   <div class="container">
     <div class="section-header">
       <span style="text-transform:uppercase; font-weight:700; font-size:12px; letter-spacing:0.08em;">Sound familiar?</span>
