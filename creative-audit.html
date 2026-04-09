@@ -456,6 +456,42 @@
         font-weight: 800;
         color: #0d0d0d;
       }
+      /* Team strip above Cal embed */
+      .ca-team-strip { max-width: 620px; margin: 36px auto 28px; text-align: center; }
+      .ca-team-label {
+        font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+        color: rgba(0,0,0,0.45); margin-bottom: 18px;
+      }
+      .ca-team-row {
+        display: flex; align-items: center; justify-content: center; gap: 28px; flex-wrap: wrap;
+      }
+      .ca-team-card {
+        display: flex; align-items: center; gap: 12px;
+        padding: 10px 18px 10px 10px;
+        background: #fff;
+        border: 1px solid rgba(0,0,0,0.08);
+        border-radius: 100px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      }
+      .ca-team-card img {
+        width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+      }
+      .ca-team-meta { display: flex; flex-direction: column; align-items: flex-start; }
+      .ca-team-name {
+        font-family: 'Satoshi', system-ui, sans-serif;
+        font-size: 14px; font-weight: 800; color: #0d0d0d; letter-spacing: -0.01em; line-height: 1.2;
+      }
+      .ca-team-title {
+        font-size: 12px; font-weight: 600; color: rgba(0,0,0,0.5); line-height: 1.3;
+      }
+      @media (max-width: 560px) {
+        .ca-team-row { gap: 12px; }
+        .ca-team-card { padding: 8px 14px 8px 8px; }
+        .ca-team-card img { width: 40px; height: 40px; }
+        .ca-team-name { font-size: 13px; }
+        .ca-team-title { font-size: 11px; }
+      }
+
       /* Scroll indicator */
       .ca-scroll-indicator {
         display: inline-flex;
@@ -866,6 +902,27 @@
     <p style="font-family:var(--font); font-size:17px; line-height:1.6; color:#0d0d0d; max-width:620px; margin:0 auto; font-weight:700;">
       Free, even if you don't work with us.
     </p>
+
+    <!-- Team strip: who you're about to book a call with -->
+    <div class="ca-team-strip">
+      <p class="ca-team-label">Who you'll be on the call with</p>
+      <div class="ca-team-row">
+        <div class="ca-team-card">
+          <img src="assets/zoha.jpg" alt="Zoha Ahmed" loading="lazy">
+          <div class="ca-team-meta">
+            <span class="ca-team-name">Zoha Ahmed</span>
+            <span class="ca-team-title">Co-Founder · Ex-GroupM</span>
+          </div>
+        </div>
+        <div class="ca-team-card">
+          <img src="assets/sonia.jpg" alt="Sonia Mohapatra" loading="lazy">
+          <div class="ca-team-meta">
+            <span class="ca-team-name">Sonia Mohapatra</span>
+            <span class="ca-team-title">Co-Founder · Ex-WPP</span>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="lp-cal-wrap">
       <div id="cal-embed-audit" style="min-width:320px;height:700px;border-radius:24px;overflow:hidden;"></div>
