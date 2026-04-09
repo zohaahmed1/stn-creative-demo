@@ -347,7 +347,7 @@
     <div class="ca-platform-logo"><img loading="lazy" src="https://cdn.simpleicons.org/tiktok/000000" alt=""></div>
     <div class="ca-platform-logo"><img loading="lazy" src="https://cdn.simpleicons.org/reddit/FF4500" alt=""></div>
     <div class="ca-platform-logo"><img loading="lazy" src="https://cdn.simpleicons.org/pinterest/BD081C" alt=""></div>
-    <div class="ca-platform-logo"><img loading="lazy" src="https://cdn.simpleicons.org/snapchat/F7B500" alt=""></div>
+    <div class="ca-platform-logo"><img loading="lazy" src="https://cdn.simpleicons.org/snapchat/FFFC00" alt=""></div>
   </div>
   <div class="hero-content">
     <div class="container hero-center">
@@ -439,17 +439,17 @@
       }
       .ca-platform-logo {
         position: absolute;
-        opacity: 1;
+        opacity: 0.5;
         animation: ca-float 14s ease-in-out infinite;
       }
       .ca-platform-logo img { width: 100%; height: 100%; display: block; }
-      /* Top offsets in pixels to clear the 64px fixed nav. Left/right in outer safe zone (text col ~860px centered). */
-      .ca-platform-logo:nth-child(1) { top: 96px;  left: 3.5%;  width: 96px; height: 96px; animation-delay: 0s;    animation-duration: 13s; }  /* Meta, top-left */
-      .ca-platform-logo:nth-child(2) { top: 110px; right: 5%;   width: 84px; height: 84px; animation-delay: -4s;   animation-duration: 15s; }  /* LinkedIn, top-right */
-      .ca-platform-logo:nth-child(3) { top: 38%;   left: 2%;    width: 80px; height: 80px; animation-delay: -7s;   animation-duration: 16s; }  /* TikTok, mid-left */
-      .ca-platform-logo:nth-child(4) { top: 42%;   right: 2.5%; width: 100px; height: 100px; animation-delay: -2s; animation-duration: 14s; }  /* Reddit, mid-right, biggest */
-      .ca-platform-logo:nth-child(5) { bottom: 22%; left: 4%;   width: 88px; height: 88px; animation-delay: -10s;  animation-duration: 17s; }  /* Pinterest, lower-left */
-      .ca-platform-logo:nth-child(6) { bottom: 18%; right: 3.5%; width: 92px; height: 92px; animation-delay: -6s;  animation-duration: 12s; }  /* Snapchat, lower-right */
+      /* Truly scattered: 6 distinct vertical bands + varied horizontal depths. All outside the 860px text column. */
+      .ca-platform-logo:nth-child(1) { top: 90px;  left: 6%;    width: 96px; height: 96px; animation-delay: 0s;    animation-duration: 13s; }  /* Meta, highest left */
+      .ca-platform-logo:nth-child(2) { top: 170px; right: 5%;   width: 84px; height: 84px; animation-delay: -4s;   animation-duration: 15s; }  /* LinkedIn, upper right (lower than Meta) */
+      .ca-platform-logo:nth-child(3) { top: 30%;   left: 12%;   width: 80px; height: 80px; animation-delay: -7s;   animation-duration: 16s; }  /* TikTok, upper-mid-left (deeper in) */
+      .ca-platform-logo:nth-child(4) { top: 46%;   right: 4%;   width: 100px; height: 100px; animation-delay: -2s; animation-duration: 14s; }  /* Reddit, mid-right, biggest */
+      .ca-platform-logo:nth-child(5) { top: 64%;   left: 8%;    width: 88px; height: 88px; animation-delay: -10s;  animation-duration: 17s; }  /* Pinterest, lower-left */
+      .ca-platform-logo:nth-child(6) { top: 78%;   right: 12%;  width: 92px; height: 92px; animation-delay: -6s;   animation-duration: 12s; }  /* Snapchat, bottom-right (deeper in) */
       @keyframes ca-float {
         0%, 100% { transform: translateY(0) rotate(-5deg); }
         50%      { transform: translateY(-24px) rotate(5deg); }
