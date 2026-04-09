@@ -9,18 +9,7 @@
   <!-- End Microsoft Clarity -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ad Creative Portfolio — Skip the Noise Media</title>
-  <meta name="description" content="Browse our ad creative portfolio. Static ads, video ads, UGC, and AI-generated creatives for DTC and B2B SaaS brands on Reddit, Meta, and TikTok.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://skipthenoisemedia.com/gallery">
-  <meta property="og:title" content="Ad Creative Portfolio — Skip the Noise Media">
-  <meta property="og:description" content="Static ads, video ads, UGC, and AI-generated creatives for DTC and B2B SaaS brands on Reddit, Meta, and TikTok.">
-  <meta property="og:image" content="https://skipthenoisemedia.com/assets/One_Booth_v4.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Ad Creative Portfolio — Skip the Noise Media">
-  <meta name="twitter:description" content="Static ads, video ads, UGC, and AI-generated creatives for DTC and B2B SaaS brands.">
-  <meta name="twitter:image" content="https://skipthenoisemedia.com/assets/One_Booth_v4.png">
-  <link rel="canonical" href="https://skipthenoisemedia.com/gallery">
+  <title>Portfolio — Skip the Noise Media</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
@@ -375,48 +364,11 @@
       }
     }
   </style>
-  <!-- Meta Pixel -->
-  <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-    document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1906222660310524');
-    fbq('track', 'PageView');
-
-    /* CTA click tracking - opens modal instead of linking out */
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('.cta-booking-btn').forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({event: 'lead', cta_text: this.textContent.trim().slice(0,50), cta_page: 'gallery'});
-          fbq('track', 'Lead');
-          document.getElementById('cal-modal').classList.add('open');
-        });
-      });
-    });
-  </script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4JR5P3B" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-
-<!-- Cal.com Booking Modal -->
-<div class="cal-modal" id="cal-modal">
-  <button class="cal-modal-close" onclick="document.getElementById('cal-modal').classList.remove('open')">&times;</button>
-  <div class="cal-modal-content">
-    <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-30min"></div>
-    <script type="text/javascript">
-      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-      Cal("init", "30min", {origin:"https://app.cal.com"});
-      Cal.ns["30min"]("inline", {elementOrSelector:"#my-cal-inline-30min",config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"},calLink: "skipthenoise/30min"});
-      Cal.ns["30min"]("ui", {"theme":"light","hideEventTypeDetails":false,"layout":"month_view"});
-    </script>
-  </div>
-</div>
 
 <!-- Scroll progress bar -->
 <div class="scroll-progress" id="scroll-progress"></div>
@@ -428,23 +380,25 @@
       <span class="logo-skip">Skip the </span><span class="logo-noise">Noise</span>
     </a>
     <div class="nav-links">
+      <a href="index.html#work" class="nav-link">Results</a>
       <a href="services.html" class="nav-link">Services</a>
-      <a href="process.html" class="nav-link">Process</a>
       <a href="gallery.html" class="nav-link active">Portfolio</a>
-      <a href="blog/index.html" class="nav-link">Resources</a>
+      <a href="process.html" class="nav-link">Process</a>
+      <a href="index.html#team" class="nav-link">Team</a>
     </div>
     <div class="nav-right">
-      <a href="#" class="cta-booking-btn" style="display:inline-block; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:10px 22px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s; cursor: pointer;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">3 free ads. Keep them.</a>
+      <a href="https://calendly.com/skipthenoisemedia/30min" style="display:inline-block; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:10px 22px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">3 free ads. Keep them.</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
   </div>
 </nav>
 <div class="mobile-menu" id="mobile-menu">
+  <a href="index.html#work" class="mobile-menu-link">Results</a>
   <a href="services.html" class="mobile-menu-link">Services</a>
-  <a href="process.html" class="mobile-menu-link">Process</a>
   <a href="gallery.html" class="mobile-menu-link">Portfolio</a>
-  <a href="blog/index.html" class="mobile-menu-link">Resources</a>
-  <a href="#" class="cta-booking-btn mobile-menu-cta">3 free ads. Keep them.</a>
+  <a href="process.html" class="mobile-menu-link">Process</a>
+  <a href="index.html#team" class="mobile-menu-link">Team</a>
+  <a href="https://calendly.com/skipthenoisemedia/30min" class="mobile-menu-cta">3 free ads. Keep them.</a>
 </div>
 
 <!-- HERO -->
@@ -846,6 +800,8 @@
           <div style="display:flex; flex-direction:column; gap:8px;">
             <a href="services.html" style="color:var(--gray-300); font-size:15px;">Performance Creative</a>
             <a href="services.html" style="color:var(--gray-300); font-size:15px;">Media Buying</a>
+            <a href="services.html" style="color:var(--gray-300); font-size:15px;">Creative Strategy</a>
+            <a href="services.html" style="color:var(--gray-300); font-size:15px;">UGC Production</a>
           </div>
         </div>
         <div>
@@ -854,27 +810,34 @@
             <a href="index.html#work" style="color:var(--gray-300); font-size:15px;">Results</a>
             <a href="gallery.html" style="color:var(--gray-300); font-size:15px;">Portfolio</a>
             <a href="index.html#process" style="color:var(--gray-300); font-size:15px;">Process</a>
-            <a href="https://cal.com/skipthenoise/30min" style="color:var(--gray-300); font-size:15px;">Contact</a>
+            <a href="https://calendly.com/skipthenoisemedia/30min" style="color:var(--gray-300); font-size:15px;">Contact</a>
+          </div>
+        </div>
+        <div>
+          <p style="color:var(--white); font-weight:700; margin-bottom:16px;">Platforms</p>
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <span style="color:var(--gray-300); font-size:15px;">Meta</span>
+            <span style="color:var(--gray-300); font-size:15px;">Reddit</span>
+            <span style="color:var(--gray-300); font-size:15px;">LinkedIn</span>
+            <span style="color:var(--gray-300); font-size:15px;">TikTok</span>
           </div>
         </div>
         <div>
           <p style="color:var(--white); font-weight:700; margin-bottom:16px;">3 free ads. Keep them.</p>
-          <a href="https://cal.com/skipthenoise/30min" style="display:inline-block; background:#5500DD; color:white; font-size:14px; padding:12px 20px; border-radius:100px; text-decoration:none; white-space:nowrap;">Get started</a>
+          <a href="https://calendly.com/skipthenoisemedia/30min" style="display:inline-block; background:#5500DD; color:white; font-size:14px; padding:12px 20px; border-radius:100px; text-decoration:none; white-space:nowrap;">Get started</a>
         </div>
       </div>
     </div>
     <div style="display:flex; flex-direction:column; align-items:center; gap:20px; padding-top:48px; border-top:1px solid rgba(255,255,255,0.08);">
       <div style="display:flex; align-items:center; gap:16px;">
-        <a href="https://www.linkedin.com/company/skip-the-noise-media-agency" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="color:var(--gray-300); transition:color 0.2s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">
+        <a href="https://www.linkedin.com/company/skip-the-noise-media" target="_blank" style="color:var(--gray-300); transition:color 0.2s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
         </a>
-        <a href="https://www.instagram.com/skipthenoisemedia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="color:var(--gray-300); transition:color 0.2s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        <a href="https://x.com/skipthenoisemed" target="_blank" style="color:var(--gray-300); transition:color 0.2s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
       </div>
       <p style="font-size:15px; color:var(--gray-300);">&copy; 2026 Skip the Noise Media &middot; Reddit Certified Partner</p>
-      <p style="font-size:15px; color:var(--gray-300);"><a href="mailto:sales@skipthenoisemedia.com" style="color:var(--gray-300); text-decoration:none;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">sales@skipthenoisemedia.com</a></p>
-      <p style="font-size:13px; color:var(--gray-300);"><a href="privacy.html" style="color:var(--gray-300); text-decoration:none;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">Privacy Policy</a> &middot; <a href="cookies.html" style="color:var(--gray-300); text-decoration:none;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">Cookie Policy</a> &middot; <a href="terms.html" style="color:var(--gray-300); text-decoration:none;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">Terms of Service</a></p>
     </div>
   </div>
 </footer>
