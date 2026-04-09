@@ -371,7 +371,7 @@
       <!-- Headline -->
       <h1 class="ca-hero-h1">
         <span class="ca-hero-bold">Your competitor is testing</span>
-        <em>ads right now.</em>
+        <span class="ca-hero-line2"><span class="ca-hero-ads">ads</span> <em>right now.</em></span>
       </h1>
 
       <!-- Sub-headline -->
@@ -413,6 +413,13 @@
         text-align: center;
       }
       .ca-hero-h1 .ca-hero-bold { display: block; }
+      .ca-hero-h1 .ca-hero-line2 { display: block; }
+      .ca-hero-h1 .ca-hero-ads {
+        font-family: "Playfair Display", Georgia, serif;
+        font-style: italic;
+        font-weight: 700;
+        color: #0a0a0a;
+      }
       .ca-hero-h1 em {
         font-family: "Playfair Display", Georgia, serif;
         font-style: italic;
@@ -421,7 +428,7 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        display: block;
+        display: inline;
         padding-right: 0.08em;
       }
       /* Subtext sizing — wide enough for line 1 to fit on a single line */
