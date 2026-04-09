@@ -7,6 +7,13 @@
   <!-- Microsoft Clarity -->
   <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","tkmbhjjy2n");</script>
   <!-- End Microsoft Clarity -->
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '190622266031524');
+    fbq('track', 'PageView');
+  </script>
+  <!-- End Meta Pixel Code -->
   <meta charset="utf-8">
   <link rel="stylesheet" href="assets/main.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -372,12 +379,30 @@
       .pb-form-card { padding: 24px; }
       .pb-submit-btn { width: 100%; justify-content: center; }
     }
+    .cal-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; }
+    .cal-modal.open { display: flex; }
+    .cal-modal-content { background: white; border-radius: 12px; width: 90%; max-width: 600px; max-height: 90vh; overflow: auto; position: relative; }
+    .cal-modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; z-index: 1000; }
   </style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4JR5P3B" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
+
+<!-- Cal.com Booking Modal -->
+<div class="cal-modal" id="cal-modal">
+  <button class="cal-modal-close" onclick="document.getElementById('cal-modal').classList.remove('open')">&times;</button>
+  <div class="cal-modal-content">
+    <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-30min"></div>
+    <script type="text/javascript">
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", "30min", {origin:"https://app.cal.com"});
+      Cal.ns["30min"]("inline", {elementOrSelector:"#my-cal-inline-30min",config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"},calLink: "skipthenoise/30min"});
+      Cal.ns["30min"]("ui", {"theme":"light","hideEventTypeDetails":false,"layout":"month_view"});
+    </script>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav class="nav">
@@ -387,6 +412,7 @@
     </a>
     <div class="nav-links">
       <a href="services.html" class="nav-link">Services</a>
+      <a href="process.html" class="nav-link">Process</a>
       <a href="gallery.html" class="nav-link">Portfolio</a>
       <a href="index.html#work" class="nav-link">Results</a>
       <div class="nav-dropdown">
@@ -403,7 +429,7 @@
         </div>
       </div>
     </div>
-    <a href="index.html#book" class="btn btn-primary nav-cta" style="display:inline-flex;align-items:center;gap:8px;background:#0d0d0d;color:#fff;font-family:'Satoshi',system-ui,sans-serif;font-size:14px;font-weight:700;padding:10px 22px;border-radius:100px;text-decoration:none;">3 free ads. Keep them.</a>
+    <a href="#" class="cta-booking-btn btn btn-primary nav-cta" style="display:inline-flex;align-items:center;gap:8px;background:#0d0d0d;color:#fff;font-family:'Satoshi',system-ui,sans-serif;font-size:14px;font-weight:700;padding:10px 22px;border-radius:100px;text-decoration:none;cursor:pointer;">3 free ads. Keep them.</a>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
   </div>
 </nav>
@@ -411,10 +437,11 @@
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobile-menu">
   <a href="services.html" class="mobile-link" onclick="closeMobileMenu()">Services</a>
+  <a href="process.html" class="mobile-link" onclick="closeMobileMenu()">Process</a>
   <a href="gallery.html" class="mobile-link" onclick="closeMobileMenu()">Portfolio</a>
   <a href="index.html#work" class="mobile-link" onclick="closeMobileMenu()">Results</a>
   <a href="playbook.html" class="mobile-link" onclick="closeMobileMenu()">Playbook</a>
-  <a href="index.html#book" class="mobile-cta" onclick="closeMobileMenu()">3 free ads. Keep them.</a>
+  <a href="#" class="cta-booking-btn mobile-cta" onclick="closeMobileMenu(); event.preventDefault();">3 free ads. Keep them.</a>
 </div>
 
 <!-- HERO -->
@@ -682,6 +709,19 @@
       dropdownTrigger.classList.add('active');
     }
   })();
+
+  // CTA click tracking for "3 free ads. Keep them." button
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.cta-booking-btn').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({event: 'lead', cta_text: this.textContent.trim().slice(0,50), cta_page: 'playbook'});
+        fbq('track', 'Lead');
+        document.getElementById('cal-modal').classList.add('open');
+      });
+    });
+  });
 
   // Playbook form — fetch submit + redirect to thank you page
   var pbForm = document.getElementById('pb-form');

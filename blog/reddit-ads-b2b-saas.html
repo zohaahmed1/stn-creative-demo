@@ -385,7 +385,32 @@
       .case-card .case-stats { gap: 16px; }
       .nav-links { display: none; }
     }
+    .cal-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; }
+    .cal-modal.open { display: flex; }
+    .cal-modal-content { background: white; border-radius: 12px; width: 90%; max-width: 600px; max-height: 90vh; overflow: auto; position: relative; }
+    .cal-modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; z-index: 1000; }
   </style>
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '190622266031524');
+    fbq('track', 'PageView');
+
+    /* CTA click tracking - opens modal instead of linking out */
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.cta-booking-btn').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({event: 'lead', cta_text: this.textContent.trim().slice(0,50), cta_page: 'blog-reddit-ads'});
+          fbq('track', 'Lead');
+          document.getElementById('cal-modal').classList.add('open');
+        });
+      });
+    });
+  </script>
+  <!-- End Meta Pixel Code -->
 </head>
 <body>
 <!-- GTM noscript -->
@@ -395,8 +420,9 @@
 <nav>
   <a href="/" class="nav-logo">Skip the Noise Media</a>
   <div class="nav-links">
-    <a href="/gallery">Work</a>
     <a href="/services">Services</a>
+    <a href="/process">Process</a>
+    <a href="/gallery">Work</a>
     <a href="/playbook">Free Playbook</a>
     <a href="/#book" class="nav-cta">3 free ads</a>
   </div>
@@ -622,7 +648,7 @@
 
   <p>As a Reddit Certified Partner, we work with B2B SaaS and DTC brands to run Reddit as a serious performance channel. Not as an experiment. Our team comes from WPP and GroupM, and we've managed over $50M in paid media spend.</p>
 
-  <p>If you want to see what Reddit could look like for your pipeline, <a href="/#book">we offer a free creative audit</a> — we'll show you where your competitors are showing up on Reddit and give you 3 free ad creatives to test.</p>
+  <p>If you want to see what Reddit could look like for your pipeline, <a href="#" class="cta-booking-btn">we offer a free creative audit</a> — we'll show you where your competitors are showing up on Reddit and give you 3 free ad creatives to test.</p>
 
   <h2>Frequently asked questions</h2>
 
@@ -642,6 +668,20 @@
   <p>Most B2B SaaS companies see meaningful data within 30 days and reach profitability within 90 days. Reddit also drives branded search lift — expect increases in branded search volume within 60 days as Reddit users who saw your ads search for you directly.</p>
 
 </article>
+
+<!-- Cal.com Booking Modal -->
+<div class="cal-modal" id="cal-modal">
+  <button class="cal-modal-close" onclick="document.getElementById('cal-modal').classList.remove('open')">&times;</button>
+  <div class="cal-modal-content">
+    <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-30min"></div>
+    <script type="text/javascript">
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", "30min", {origin:"https://app.cal.com"});
+      Cal.ns["30min"]("inline", {elementOrSelector:"#my-cal-inline-30min",config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"},calLink: "skipthenoise/30min"});
+      Cal.ns["30min"]("ui", {"theme":"light","hideEventTypeDetails":false,"layout":"month_view"});
+    </script>
+  </div>
+</div>
 
 <!-- Footer -->
 <footer>
