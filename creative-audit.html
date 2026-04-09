@@ -343,7 +343,7 @@
   <!-- Floating platform logos (background layer, outer margins only) -->
   <div class="ca-platform-logos" aria-hidden="true">
     <div class="ca-platform-logo"><img loading="lazy" src="https://cdn.simpleicons.org/meta/0866FF" alt=""></div>
-    <div class="ca-platform-logo"><img loading="lazy" src="https://cdn.simpleicons.org/linkedin/0A66C2" alt=""></div>
+    <div class="ca-platform-logo"><svg viewBox="0 0 24 24" fill="#0A66C2" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;display:block;"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.268 2.37 4.268 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.063 2.063 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></div>
     <div class="ca-platform-logo"><img loading="lazy" src="https://cdn.simpleicons.org/tiktok/000000" alt=""></div>
     <div class="ca-platform-logo"><img loading="lazy" src="https://cdn.simpleicons.org/reddit/FF4500" alt=""></div>
     <div class="ca-platform-logo"><img loading="lazy" src="https://cdn.simpleicons.org/pinterest/BD081C" alt=""></div>
@@ -393,13 +393,16 @@
       /* Process-style H1: huge, 900 weight, italic gradient em */
       .ca-hero-h1 {
         font-family: 'Satoshi', system-ui, sans-serif;
-        font-size: clamp(48px, 7vw, 92px) !important;
+        font-size: clamp(44px, 6vw, 78px) !important;
         font-variation-settings: "wdth" 125, "wght" 900;
         font-weight: 900 !important;
         color: #0a0a0a !important;
-        line-height: 1.0 !important;
+        line-height: 1.05 !important;
         letter-spacing: -0.03em !important;
         margin: 0 0 24px !important;
+        padding: 0 32px !important;
+        max-width: 100%;
+        box-sizing: border-box;
         text-align: center;
       }
       .ca-hero-h1 .ca-hero-bold { display: block; }
@@ -412,6 +415,7 @@
         -webkit-text-fill-color: transparent;
         background-clip: text;
         display: block;
+        padding-right: 0.08em;
       }
       /* Subtext sizing to match process page — widened so lines balance */
       .ca-hero-sub {
@@ -425,42 +429,42 @@
         text-wrap: balance;
       }
 
-      /* Floating platform logos in hero background — larger, asymmetric, spread around the outer frame */
+      /* Floating platform logos in hero background — full color, asymmetric, spread around the outer frame */
       .ca-platform-logos {
         position: absolute;
         inset: 0;
         pointer-events: none;
         z-index: 0;
-        overflow: hidden;
+        overflow: visible;
       }
       .ca-platform-logo {
         position: absolute;
-        opacity: 0.16;
+        opacity: 1;
         animation: ca-float 14s ease-in-out infinite;
       }
       .ca-platform-logo img { width: 100%; height: 100%; display: block; }
-      /* Safe zone: 860px centered text column. All logos live outside that zone. Sizes 80-100px, positions asymmetric. */
-      .ca-platform-logo:nth-child(1) { top: 6%;   left: 3.5%;  width: 96px; height: 96px; animation-delay: 0s;    animation-duration: 13s; }  /* Meta, top-left, big */
-      .ca-platform-logo:nth-child(2) { top: 11%;  right: 6%;   width: 84px; height: 84px; animation-delay: -4s;   animation-duration: 15s; }  /* LinkedIn, top-right */
-      .ca-platform-logo:nth-child(3) { top: 34%;  left: 2%;    width: 80px; height: 80px; animation-delay: -7s;   animation-duration: 16s; }  /* TikTok, mid-left */
-      .ca-platform-logo:nth-child(4) { top: 42%;  right: 2.5%; width: 100px; height: 100px; animation-delay: -2s; animation-duration: 14s; }  /* Reddit, mid-right, biggest */
-      .ca-platform-logo:nth-child(5) { bottom: 12%; left: 5%;  width: 88px; height: 88px; animation-delay: -10s;  animation-duration: 17s; }  /* Pinterest, lower-left */
-      .ca-platform-logo:nth-child(6) { bottom: 6%; right: 4%;  width: 92px; height: 92px; animation-delay: -6s;   animation-duration: 12s; }  /* Snapchat, lower-right */
+      /* Top offsets in pixels to clear the 64px fixed nav. Left/right in outer safe zone (text col ~860px centered). */
+      .ca-platform-logo:nth-child(1) { top: 96px;  left: 3.5%;  width: 96px; height: 96px; animation-delay: 0s;    animation-duration: 13s; }  /* Meta, top-left */
+      .ca-platform-logo:nth-child(2) { top: 110px; right: 5%;   width: 84px; height: 84px; animation-delay: -4s;   animation-duration: 15s; }  /* LinkedIn, top-right */
+      .ca-platform-logo:nth-child(3) { top: 38%;   left: 2%;    width: 80px; height: 80px; animation-delay: -7s;   animation-duration: 16s; }  /* TikTok, mid-left */
+      .ca-platform-logo:nth-child(4) { top: 42%;   right: 2.5%; width: 100px; height: 100px; animation-delay: -2s; animation-duration: 14s; }  /* Reddit, mid-right, biggest */
+      .ca-platform-logo:nth-child(5) { bottom: 22%; left: 4%;   width: 88px; height: 88px; animation-delay: -10s;  animation-duration: 17s; }  /* Pinterest, lower-left */
+      .ca-platform-logo:nth-child(6) { bottom: 18%; right: 3.5%; width: 92px; height: 92px; animation-delay: -6s;  animation-duration: 12s; }  /* Snapchat, lower-right */
       @keyframes ca-float {
         0%, 100% { transform: translateY(0) rotate(-5deg); }
-        50%      { transform: translateY(-28px) rotate(5deg); }
+        50%      { transform: translateY(-24px) rotate(5deg); }
       }
       /* Scale down on medium screens */
       @media (max-width: 1280px) {
-        .ca-platform-logo:nth-child(1) { width: 72px !important; height: 72px !important; }
-        .ca-platform-logo:nth-child(2) { width: 64px !important; height: 64px !important; }
-        .ca-platform-logo:nth-child(3) { width: 60px !important; height: 60px !important; }
-        .ca-platform-logo:nth-child(4) { width: 76px !important; height: 76px !important; }
-        .ca-platform-logo:nth-child(5) { width: 68px !important; height: 68px !important; }
-        .ca-platform-logo:nth-child(6) { width: 72px !important; height: 72px !important; }
+        .ca-platform-logo:nth-child(1) { width: 76px !important; height: 76px !important; }
+        .ca-platform-logo:nth-child(2) { width: 68px !important; height: 68px !important; top: 100px !important; }
+        .ca-platform-logo:nth-child(3) { width: 64px !important; height: 64px !important; }
+        .ca-platform-logo:nth-child(4) { width: 80px !important; height: 80px !important; }
+        .ca-platform-logo:nth-child(5) { width: 72px !important; height: 72px !important; }
+        .ca-platform-logo:nth-child(6) { width: 76px !important; height: 76px !important; }
       }
       /* Hide on narrow screens where the safe zone doesn't exist */
-      @media (max-width: 960px) {
+      @media (max-width: 1000px) {
         .ca-platform-logos { display: none; }
       }
 
