@@ -338,8 +338,16 @@
 </nav>
 
 <!-- ═══════════════════════════════════════ HERO ═══════════════════════════════════════ -->
-<section class="hero">
+<section class="hero" style="position:relative;">
   <div class="hero-bg"></div>
+  <!-- Floating platform logos (background layer, outer margins only) -->
+  <div class="ca-platform-logos" aria-hidden="true">
+    <div class="ca-platform-logo"><img loading="lazy" src="https://cdn.simpleicons.org/meta/0866FF" alt=""></div>
+    <div class="ca-platform-logo"><img loading="lazy" src="https://cdn.simpleicons.org/tiktok/000000" alt=""></div>
+    <div class="ca-platform-logo"><img loading="lazy" src="https://cdn.simpleicons.org/reddit/FF4500" alt=""></div>
+    <div class="ca-platform-logo"><img loading="lazy" src="https://cdn.simpleicons.org/pinterest/BD081C" alt=""></div>
+    <div class="ca-platform-logo"><img loading="lazy" src="https://cdn.simpleicons.org/snapchat/FFFC00" alt=""></div>
+  </div>
   <div class="hero-content">
     <div class="container hero-center">
 
@@ -360,13 +368,13 @@
       </div>
 
       <!-- Headline -->
-      <h1 class="hero-headline">
-        <span class="hero-headline-bold">Your competitor is testing</span>
-        <span class="hero-headline-italic"><em style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700;">ads right now.</em></span>
+      <h1 class="ca-hero-h1">
+        <span class="ca-hero-bold">Your competitor is testing</span>
+        <em>ads right now.</em>
       </h1>
 
       <!-- Sub-headline -->
-      <p data-anim data-delay="3" style="max-width:720px; padding:0 20px; font-size:18px; color:var(--gray-400); line-height:1.6; text-align:center;">Platform algorithms now reward creative volume. Your competitors have already figured that out. Most brands still take 2 to 3 weeks to launch anything new. We're live in 7 days.</p>
+      <p class="ca-hero-sub" data-anim data-delay="3">Platform algorithms now reward creative volume. Your competitors have already figured that out. Most brands still take 2 to 3 weeks to launch anything new. We're live in 7 days.</p>
 
       <!-- CTA -->
       <div data-anim data-delay="4" style="display:flex; align-items:center; gap:10px;">
@@ -379,8 +387,83 @@
 
     </div>
 
-    <!-- Page-local override: faster marquee + filter pill styles -->
+    <!-- Page-local override: process-style headline only + faster marquee + filter pills -->
     <style>
+      /* Process-style H1: huge, 900 weight, italic gradient em */
+      .ca-hero-h1 {
+        font-family: 'Satoshi', system-ui, sans-serif;
+        font-size: clamp(48px, 7vw, 92px) !important;
+        font-variation-settings: "wdth" 125, "wght" 900;
+        font-weight: 900 !important;
+        color: #0a0a0a !important;
+        line-height: 1.0 !important;
+        letter-spacing: -0.03em !important;
+        margin: 0 0 24px !important;
+        text-align: center;
+      }
+      .ca-hero-h1 .ca-hero-bold { display: block; }
+      .ca-hero-h1 em {
+        font-family: "Playfair Display", Georgia, serif;
+        font-style: italic;
+        font-weight: 700;
+        background: linear-gradient(135deg, #7c3aed, #db2777);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        display: block;
+      }
+      /* Subtext sizing to match process page */
+      .ca-hero-sub {
+        font-size: clamp(16px, 1.8vw, 19px) !important;
+        color: #444 !important;
+        max-width: 680px !important;
+        margin: 0 auto 32px !important;
+        line-height: 1.75 !important;
+        text-align: center;
+        padding: 0 20px;
+      }
+
+      /* Floating platform logos in hero background — positioned in outer margins only, away from the 720px text column */
+      .ca-platform-logos {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+      }
+      .ca-platform-logo {
+        position: absolute;
+        width: 56px;
+        height: 56px;
+        opacity: 0.14;
+        animation: ca-float 14s ease-in-out infinite;
+      }
+      .ca-platform-logo img { width: 100%; height: 100%; display: block; }
+      /* Keep logos outside a ~820px centered safe zone (text column + padding) */
+      .ca-platform-logo:nth-child(1) { top: 10%;  left: 4%;               width: 64px; height: 64px; animation-delay: 0s;   }
+      .ca-platform-logo:nth-child(2) { top: 8%;   right: 5%;              width: 56px; height: 56px; animation-delay: -3s;  }
+      .ca-platform-logo:nth-child(3) { top: 46%;  left: 3%;               width: 60px; height: 60px; animation-delay: -6s;  }
+      .ca-platform-logo:nth-child(4) { top: 52%;  right: 4%;              width: 68px; height: 68px; animation-delay: -9s;  }
+      .ca-platform-logo:nth-child(5) { bottom: 8%; left: 50%; transform: translateX(-50%) translateX(-500px); width: 52px; height: 52px; animation-delay: -4s; }
+      @keyframes ca-float {
+        0%, 100% { transform: translateY(0) rotate(-4deg); }
+        50%      { transform: translateY(-26px) rotate(4deg); }
+      }
+      .ca-platform-logo:nth-child(5) { animation-name: ca-float-center; }
+      @keyframes ca-float-center {
+        0%, 100% { transform: translateX(-50%) translateX(-500px) translateY(0) rotate(-4deg); }
+        50%      { transform: translateX(-50%) translateX(-500px) translateY(-22px) rotate(4deg); }
+      }
+      /* Hide on narrow screens where the safe zone doesn't exist */
+      @media (max-width: 1100px) {
+        .ca-platform-logo:nth-child(5) { display: none; }
+        .ca-platform-logo { width: 44px !important; height: 44px !important; opacity: 0.11; }
+      }
+      @media (max-width: 820px) {
+        .ca-platform-logos { display: none; }
+      }
+
+      /* Marquee speed + filter pills */
       .hero-marquee-track { animation-duration: 22s !important; }
       .ca-toggle-wrap { display:flex; justify-content:center; align-items:center; gap:12px; margin:16px 0 8px; }
       .ca-toggle-inner { display:flex; background:rgba(0,0,0,0.06); border-radius:100px; padding:4px; gap:0; border:1.5px solid rgba(0,0,0,0.08); }
