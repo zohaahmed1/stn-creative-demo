@@ -361,12 +361,12 @@
 
       <!-- Headline -->
       <h1 class="hero-headline">
-        <span class="hero-headline-bold">Your agency makes 4 ads a month.</span>
-        <span class="hero-headline-italic"><em style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700;">We make 40+.</em></span>
+        <span class="hero-headline-bold">Your competitor is testing</span>
+        <span class="hero-headline-italic"><em style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700;">ads right now.</em></span>
       </h1>
 
       <!-- Sub-headline -->
-      <p data-anim data-delay="3" style="max-width:620px; font-size:18px; color:var(--gray-400); line-height:1.6; text-align:center;">AI-accelerated creative production and performance media buying, under one roof. No headcount. No 3-week timelines. Just ads that perform.</p>
+      <p data-anim data-delay="3" style="max-width:720px; padding:0 20px; font-size:18px; color:var(--gray-400); line-height:1.6; text-align:center;">Platform algorithms now reward creative volume. Your competitors have already figured that out. Most brands still take 2 to 3 weeks to launch anything new. We're live in 7 days.</p>
 
       <!-- CTA -->
       <div data-anim data-delay="4" style="display:flex; align-items:center; gap:10px;">
@@ -379,34 +379,98 @@
 
     </div>
 
-    <!-- Marquee of creatives — same pattern as homepage -->
-    <div class="hero-marquee-wrap">
+    <!-- Page-local override: faster marquee + filter pill styles -->
+    <style>
+      .hero-marquee-track { animation-duration: 22s !important; }
+      .ca-toggle-wrap { display:flex; justify-content:center; align-items:center; gap:12px; margin:16px 0 8px; }
+      .ca-toggle-inner { display:flex; background:rgba(0,0,0,0.06); border-radius:100px; padding:4px; gap:0; border:1.5px solid rgba(0,0,0,0.08); }
+      .ca-toggle-btn { font-size:13px; font-weight:700; padding:11px 22px; min-height:44px; border-radius:100px; border:none; cursor:pointer; transition:all 0.22s; background:transparent; color:rgba(0,0,0,0.45); box-shadow:none; }
+      .ca-toggle-btn.is-active-saas { background:#5500dd; color:#fff; box-shadow:0 2px 8px rgba(85,0,221,0.28); }
+      .ca-toggle-btn.is-active-ecomm { background:#ee0033; color:#fff; box-shadow:0 2px 8px rgba(238,0,51,0.28); }
+    </style>
+
+    <!-- Gallery toggle -->
+    <div class="ca-toggle-wrap">
+      <div class="ca-toggle-inner">
+        <button type="button" id="ca-toggle-saas" class="ca-toggle-btn is-active-saas" onclick="switchCAGallery('saas')">SaaS</button>
+        <button type="button" id="ca-toggle-ecomm" class="ca-toggle-btn" onclick="switchCAGallery('ecomm')">eComm / DTC</button>
+      </div>
+    </div>
+
+    <!-- SaaS marquee (shown by default) -->
+    <div id="ca-saas-gallery" class="hero-marquee-wrap" style="display:block;">
       <div class="hero-marquee-track">
-        <img loading="eager" src="assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.jpg" class="hero-marquee-img">
-        <img loading="eager" src="assets/Lipstick_Campaign_dSJmLIvg.jpg" class="hero-marquee-img">
-        <img loading="eager" src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.jpg" class="hero-marquee-img">
-        <img loading="eager" src="assets/handbag-fashion.jpg" class="hero-marquee-img" style="object-position:top;">
-        <img loading="eager" src="assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.jpg" class="hero-marquee-img">
-        <img loading="eager" src="assets/Protein_Bar_Advertisement_CDLIA58W.jpg" class="hero-marquee-img">
-        <img loading="eager" src="assets/B2B_SaaS_Ads_V5F-kd5P.jpg" class="hero-marquee-img">
-        <img loading="eager" src="assets/lipstick-studio.jpg" class="hero-marquee-img">
-        <img loading="eager" src="assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.jpg" class="hero-marquee-img">
-        <img loading="eager" src="assets/Cpg_l5evv8k1.jpg" class="hero-marquee-img">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_V5F-kd5P.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_cGkIrXL (1).jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_wRW96YqI.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_laAgn1rH.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_nnRo2A9l.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_In_a_flat_design_style_a_man_with_many_arms_duWjAS1.jpg" class="hero-marquee-img hero-marquee-img--sq">
+        <img loading="eager" src="assets/B2B_SaaS_Ads_Vs9AWg1c.jpg" class="hero-marquee-img hero-marquee-img--sq">
         <!-- duplicate for seamless loop -->
-        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.jpg" class="hero-marquee-img" aria-hidden="true">
-        <img loading="lazy" src="assets/Lipstick_Campaign_dSJmLIvg.jpg" class="hero-marquee-img" aria-hidden="true">
-        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.jpg" class="hero-marquee-img" aria-hidden="true">
-        <img loading="lazy" src="assets/handbag-fashion.jpg" class="hero-marquee-img" aria-hidden="true" style="object-position:top;">
-        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.jpg" class="hero-marquee-img" aria-hidden="true">
-        <img loading="lazy" src="assets/Protein_Bar_Advertisement_CDLIA58W.jpg" class="hero-marquee-img" aria-hidden="true">
-        <img loading="lazy" src="assets/B2B_SaaS_Ads_V5F-kd5P.jpg" class="hero-marquee-img" aria-hidden="true">
-        <img loading="lazy" src="assets/lipstick-studio.jpg" class="hero-marquee-img" aria-hidden="true">
-        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_V5F-kd5P.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_cGkIrXL (1).jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_wRW96YqI.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_laAgn1rH.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_nnRo2A9l.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_In_a_flat_design_style_a_man_with_many_arms_duWjAS1.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+        <img loading="lazy" src="assets/B2B_SaaS_Ads_Vs9AWg1c.jpg" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
+      </div>
+    </div>
+
+    <!-- eComm marquee (hidden by default) -->
+    <div id="ca-ecomm-gallery" class="hero-marquee-wrap" style="display:none;">
+      <div class="hero-marquee-track">
+        <img loading="lazy" src="assets/Cpg_l5evv8k1.jpg" class="hero-marquee-img">
+        <img loading="lazy" src="assets/handbag-fashion.jpg" class="hero-marquee-img" style="object-position:top;">
+        <img loading="lazy" src="assets/Cpg_nO2xZZjv.jpg" class="hero-marquee-img">
+        <img loading="lazy" src="assets/Protein_Bar_Advertisement_CDLIA58W.jpg" class="hero-marquee-img">
+        <img loading="lazy" src="assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.jpg" class="hero-marquee-img">
+        <img loading="lazy" src="assets/Protein_Bar_Advertisement_cTVg3CZh.jpg" class="hero-marquee-img">
+        <img loading="lazy" src="assets/Protein_Bar_Advertisement_y5ER32ip2.jpg" class="hero-marquee-img">
+        <img loading="lazy" src="assets/Lipstick_Campaign_dSJmLIvg.jpg" class="hero-marquee-img">
+        <img loading="lazy" src="assets/handbag-walk.jpg" class="hero-marquee-img" style="object-position:top;">
+        <!-- duplicate for seamless loop -->
         <img loading="lazy" src="assets/Cpg_l5evv8k1.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/handbag-fashion.jpg" class="hero-marquee-img" aria-hidden="true" style="object-position:top;">
+        <img loading="lazy" src="assets/Cpg_nO2xZZjv.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/Protein_Bar_Advertisement_CDLIA58W.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/Protein_Bar_Advertisement_cTVg3CZh.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/Protein_Bar_Advertisement_y5ER32ip2.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/Lipstick_Campaign_dSJmLIvg.jpg" class="hero-marquee-img" aria-hidden="true">
+        <img loading="lazy" src="assets/handbag-walk.jpg" class="hero-marquee-img" aria-hidden="true" style="object-position:top;">
       </div>
     </div>
 
   </div>
+  <script>
+  function switchCAGallery(type) {
+    var sg = document.getElementById('ca-saas-gallery');
+    var eg = document.getElementById('ca-ecomm-gallery');
+    var sb = document.getElementById('ca-toggle-saas');
+    var eb = document.getElementById('ca-toggle-ecomm');
+    if (type === 'ecomm') {
+      eg.style.display = 'block'; sg.style.display = 'none';
+      eb.className = 'ca-toggle-btn is-active-ecomm';
+      sb.className = 'ca-toggle-btn';
+    } else {
+      sg.style.display = 'block'; eg.style.display = 'none';
+      sb.className = 'ca-toggle-btn is-active-saas';
+      eb.className = 'ca-toggle-btn';
+    }
+  }
+  </script>
 </section>
 
 <!-- ═══════════════════════════════════════ PROBLEM ═══════════════════════════════════════ -->
