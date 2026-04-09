@@ -379,13 +379,13 @@
 
       <!-- CTA -->
       <div data-anim data-delay="4" style="display:flex; align-items:center; gap:10px;">
-        <a href="#apply" style="display:inline-flex; align-items:center; gap:10px; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:12px 28px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
-          Get your free creative audit
+        <a href="#apply" class="cta-booking-btn" style="display:inline-flex; align-items:center; gap:10px; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:12px 28px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+          Book my free audit call
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
       <!-- Offer + risk reversal: 2x bigger, black, prominent -->
-      <p class="ca-hero-offer" data-anim data-delay="5">30-min call. We audit your ad library and build you 3 creatives.<br><strong>Free. No contract. No catch.</strong></p>
+      <p class="ca-hero-offer" data-anim data-delay="5">30-min call. We audit your Meta Ad Library and build 3 free ad concepts you can keep.<br><strong>Free, even if you don't work with us.</strong></p>
 
       <!-- Scroll indicator -->
       <a href="#what-inside" class="ca-scroll-indicator" data-anim data-delay="6">
@@ -672,8 +672,8 @@
       </div>
     </div>
 
-    <a href="#apply" class="lp-cta-btn">
-      Get your free creative audit
+    <a href="#apply" class="lp-cta-btn cta-booking-btn">
+      Book my free audit call
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>
 
@@ -847,55 +847,20 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════ CTA / FORM ═══════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════ CTA / CAL EMBED ═══════════════════════════════════════ -->
 <section id="apply" class="lp-cta-section">
   <div class="lp-cta-inner">
     <h2 style="font-family:var(--font); font-size:clamp(30px,4vw,52px); font-variation-settings:'wdth' 125,'wght' 900; letter-spacing:-0.03em; line-height:1.1; margin:0 0 16px; color:var(--dark);">
-      Get your free <em style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700; color:var(--blue);">audit.</em>
+      Book your free <em style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700; color:var(--blue);">audit call.</em>
     </h2>
-    <p style="font-family:var(--font); font-size:17px; line-height:1.6; color:rgba(0,0,0,0.5); max-width:500px; margin:0 auto;">
-      We'll pull your ad library, show you where competitors are outproducing you, and build you 3 creatives. Free.
+    <p style="font-family:var(--font); font-size:17px; line-height:1.6; color:rgba(0,0,0,0.6); max-width:620px; margin:0 auto 8px;">
+      30-min call. We audit your Meta Ad Library and build 3 free ad concepts you can keep.
+    </p>
+    <p style="font-family:var(--font); font-size:17px; line-height:1.6; color:#0d0d0d; max-width:620px; margin:0 auto; font-weight:700;">
+      Free, even if you don't work with us.
     </p>
 
-    <div class="lp-form-card">
-      <form id="auditForm">
-        <div style="position:absolute;left:-9999px;" aria-hidden="true">
-          <input type="text" name="website_url" tabindex="-1" autocomplete="off">
-        </div>
-        <div class="lp-form-group">
-          <label for="adSpend">What's your monthly ad spend?</label>
-          <select id="adSpend" required>
-            <option value="" disabled selected>Select a range</option>
-            <option value="under-20k">Under $20K</option>
-            <option value="20k-50k">$20K – $50K</option>
-            <option value="50k-100k">$50K – $100K</option>
-            <option value="100k-250k">$100K – $250K</option>
-            <option value="250k+">$250K+</option>
-          </select>
-        </div>
-        <div class="lp-form-group">
-          <label for="platforms">Which platforms are you running ads on?</label>
-          <select id="platforms" required>
-            <option value="" disabled selected>Select platforms</option>
-            <option value="meta-only">Meta only</option>
-            <option value="meta-google">Meta + Google</option>
-            <option value="meta-google-other">Meta + Google + others</option>
-            <option value="other">Other / not sure</option>
-          </select>
-        </div>
-        <div class="lp-form-group">
-          <label for="bottleneck">What's your biggest growth bottleneck?</label>
-          <textarea id="bottleneck" placeholder="e.g. Creative production is too slow, ROAS declining, can't scale past $X/mo..." rows="3"></textarea>
-        </div>
-        <button type="submit" class="lp-submit" id="submitBtn">
-          Show me my audit →
-        </button>
-        <p class="lp-form-note">No pitch deck. Just data on your ad library.</p>
-      </form>
-    </div>
-
     <div class="lp-cal-wrap">
-      <p class="lp-calendly-label">Pick a time</p>
       <div id="cal-embed-audit" style="min-width:320px;height:700px;border-radius:24px;overflow:hidden;"></div>
     </div>
   </div>
@@ -911,7 +876,7 @@
 
 <!-- ═══════════════════════════════════════ STICKY MOBILE CTA ═══════════════════════════════════════ -->
 <div class="lp-sticky">
-  <a href="#apply" class="lp-cta-btn">Get your free creative audit</a>
+  <a href="#apply" class="lp-cta-btn cta-booking-btn">Book my free audit call</a>
 </div>
 
 <!-- ═══════════════════════════════════════ SCRIPTS ═══════════════════════════════════════ -->
@@ -927,35 +892,8 @@ document.querySelectorAll('a[href^="#"]').forEach(function(a) {
   });
 });
 
-/* Form handler — push to GTM dataLayer */
-document.getElementById('auditForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-
-  /* Honeypot bot detection */
-  if (document.querySelector('input[name="website_url"]').value) return;
-
-  var adSpend = document.getElementById('adSpend').value;
-  var platforms = document.getElementById('platforms').value;
-  var bottleneck = document.getElementById('bottleneck').value;
-
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: 'creative_audit_form',
-    ad_spend: adSpend,
-    platforms: platforms,
-    bottleneck: bottleneck
-  });
-
-  var btn = document.getElementById('submitBtn');
-  btn.textContent = '✓ Saved — now pick a time below';
-  btn.style.background = '#16a34a';
-  btn.disabled = true;
-
-  var calWrap = document.querySelector('.lp-cal-wrap');
-  if (calWrap) {
-    calWrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-});
+/* Form removed to prevent bot abuse from Meta cold traffic.
+   Conversion gate is now the Cal.com booking flow, which is bot-resistant. */
 
 /* Cal.com inline embed */
 (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);return;} p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
