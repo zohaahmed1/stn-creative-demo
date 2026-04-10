@@ -1,109 +1,70 @@
+import { createHash } from 'crypto';
+
+function sha256(value) {
+  return createHash('sha256').update(value.toLowerCase().trim()).digest('hex');
+}
+
 export default async function handler(req, res) {
-  // Only accept POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  // Verify webhook secret if provided
-  const webhookSecret = process.env.CAL_WEBHOOK_SECRET;
-  if (webhookSecret) {
-    const signature = req.headers['x-cal-signature'];
-    if (!signature || signature !== webhookSecret) {
-      return res.status(401).json({ error: 'Invalid signature' });
-    }
-  }
-
   const { triggerEvent, payload } = req.body;
 
-  // Only process booking creation events
-  // Cal.com sends BOOKING_CREATED (uppercase) not booking.created
   if (triggerEvent !== 'BOOKING_CREATED') {
-    console.log('Ignoring event:', triggerEvent);
-    return res.status(200).json({ received: true, event: triggerEvent });
+    return res.status(200).json({ received: true, skipped: triggerEvent });
   }
 
   try {
-    const { attendees, title, startTime } = payload;
-    const attendeeEmail = attendees?.[0]?.email;
-
-    // Hash email for Meta
-    let hashedEmail;
-    if (attendeeEmail) {
-      const crypto = require('crypto');
-      hashedEmail = crypto
-        .createHash('sha256')
-        .update(attendeeEmail.toLowerCase().trim())
-        .digest('hex');
-    }
-
-    // Fire Meta Conversions API
+    const { attendees, title, startTime } = payload || {};
+    const attendee = attendees?.[0] || {};
     const pixelId = process.env.META_PIXEL_ID || '1906222660310524';
     const accessToken = process.env.META_CONVERSION_TOKEN;
 
     if (!accessToken) {
-      console.error('META_CONVERSION_TOKEN not set');
-      return res.status(200).json({ warning: 'Token not configured' });
+      return res.status(200).json({ error: 'META_CONVERSION_TOKEN not set' });
     }
 
-    const metaResponse = await fetch(
+    const nameParts = (attendee.name || '').split(' ');
+
+    const eventData = {
+      data: [
+        {
+          event_name: 'Schedule',
+          event_time: Math.floor(Date.now() / 1000),
+          event_id: `cal_${Date.now()}_${Math.random().toString(36).slice(2, 11)}`,
+          action_source: 'website',
+          user_data: {
+            em: attendee.email ? [sha256(attendee.email)] : undefined,
+            fn: nameParts[0] ? [sha256(nameParts[0])] : undefined,
+            ln: nameParts[1] ? [sha256(nameParts[1])] : undefined,
+          },
+          custom_data: {
+            event_name: title,
+            booking_time: startTime,
+          },
+        },
+      ],
+      access_token: accessToken,
+    };
+
+    const metaRes = await fetch(
       `https://graph.facebook.com/v21.0/${pixelId}/events`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          data: [
-            {
-              event_name: 'Schedule',
-              event_time: Math.floor(Date.now() / 1000),
-              event_id: `cal_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-              user_data: {
-                em: hashedEmail,
-                phone: attendees?.[0]?.phoneNumber ?
-                  require('crypto').createHash('sha256')
-                    .update(attendees[0].phoneNumber.toLowerCase().replace(/\D/g, ''))
-                    .digest('hex') : undefined,
-                fn: attendees?.[0]?.name ?
-                  require('crypto').createHash('sha256')
-                    .update(attendees[0].name.split(' ')[0].toLowerCase())
-                    .digest('hex') : undefined,
-                ln: attendees?.[0]?.name && attendees[0].name.includes(' ') ?
-                  require('crypto').createHash('sha256')
-                    .update(attendees[0].name.split(' ')[1].toLowerCase())
-                    .digest('hex') : undefined
-              },
-              custom_data: {
-                event_name: title,
-                booking_time: startTime
-              }
-            }
-          ],
-          access_token: accessToken
-        })
+        body: JSON.stringify(eventData),
       }
     );
 
-    const metaData = await metaResponse.json();
+    const metaData = await metaRes.json();
 
-    if (!metaResponse.ok) {
-      console.error('Meta API error:', metaData);
-      // Still return 200 to acknowledge webhook receipt
-      return res.status(200).json({
-        received: true,
-        meta_error: metaData.error?.message
-      });
+    if (!metaRes.ok) {
+      return res.status(200).json({ received: true, meta_error: metaData?.error?.message || metaData });
     }
 
-    console.log('Meta conversion tracked:', metaData);
-    return res.status(200).json({
-      success: true,
-      meta_response: metaData
-    });
-  } catch (error) {
-    console.error('Webhook error:', error);
-    // Return 200 to prevent Cal.com from retrying
-    return res.status(200).json({
-      received: true,
-      error: error.message
-    });
+    return res.status(200).json({ success: true, events_received: metaData?.events_received, fbtrace_id: metaData?.fbtrace_id });
+  } catch (err) {
+    return res.status(200).json({ received: true, error: String(err) });
   }
 }
