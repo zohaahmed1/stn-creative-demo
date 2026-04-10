@@ -204,7 +204,7 @@
     /* Two side-by-side service cards — glassy on dark, aligned heights */
     .who-grid {
       display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;
-      max-width: 1100px; margin: 0 auto;
+      max-width: 1320px; margin: 0 auto;
       align-items: stretch;
     }
     .who-card {
@@ -297,7 +297,7 @@
 
     /* Trust strip ABOVE the 2 cards — numbered, bolder, prominent */
     .who-trust {
-      max-width: 1100px; margin: 0 auto 44px;
+      max-width: 1320px; margin: 0 auto 44px;
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
     }
     .who-trust-item {
@@ -644,6 +644,49 @@
       .sol-stats { gap: 24px; }
       .lp-sticky { display: block; }
       .lp-footer { padding-bottom: 80px; }
+      /* Mobile: Cal embed + CTA section need breathing room above sticky bar */
+      .lp-cta-section { padding-bottom: 100px !important; }
+    }
+    /* ── Mobile-specific fixes (375px) ── */
+    @media (max-width: 480px) {
+      /* Hero: tighter offer text */
+      .ca-hero-offer { font-size: 14px !important; max-width: 100% !important; padding: 0 16px !important; }
+      /* Hero H1: prevent overflow */
+      .ca-hero-h1 { font-size: clamp(32px, 9vw, 44px) !important; padding: 0 16px !important; }
+      /* Section 2: card headers auto-height on mobile */
+      .who-card-head { height: auto !important; min-height: 140px !important; padding: 28px 20px !important; }
+      .who-dual { gap: 16px !important; }
+      .who-dual-stat .who-big-num { font-size: clamp(36px, 10vw, 52px) !important; }
+      .who-dual-divider { height: 48px !important; }
+      .who-card-body { padding: 24px 20px !important; }
+      .who-card-body h3 { font-size: 18px !important; }
+      .who-card-body > p { font-size: 14px !important; }
+      .who-pill { font-size: 12px !important; padding: 8px 12px !important; }
+      /* Section 2: trust strip tighter */
+      .who-trust-item { padding: 14px 16px !important; }
+      .who-trust-num { font-size: 22px !important; }
+      .who-trust-text { font-size: 13px !important; }
+      /* Section 2: subtext prevent overflow, remove nowrap */
+      .lp-problem .section-header p { font-size: 15px !important; }
+      .lp-problem .section-header p span[style*="white-space"] { white-space: normal !important; }
+      /* Team strip: remove min-width so cards fill screen */
+      .ca-team-card { min-width: 0 !important; width: 100% !important; }
+      .ca-team-row { flex-direction: column !important; gap: 10px !important; width: 100% !important; }
+      /* Cal embed: shorter on mobile */
+      #cal-embed-audit { height: 420px !important; min-width: 0 !important; }
+      /* Price cards: tighter padding */
+      .vs-card { padding: 24px 18px !important; }
+      .vs-card-price { font-size: 36px !important; }
+      .vs-card-price-them { font-size: 24px !important; }
+      .vs-card-list li, .vs-card-list-them li { font-size: 13px !important; }
+      /* Guarantee: tighter */
+      .vs-guarantee { padding: 18px 16px !important; }
+      .vs-guarantee-text { font-size: 13px !important; }
+      /* Section header: prevent overflow */
+      .lp-problem .section-header h2 { font-size: clamp(26px, 7vw, 42px) !important; }
+      /* Value stack section */
+      .lp-value-stack { padding: 70px 16px !important; }
+      .lp-value-stack h2 { font-size: clamp(26px, 7vw, 42px) !important; }
     }
   </style>
 </head>
@@ -1103,7 +1146,7 @@
     </div>
 
     <!-- Case study cards -->
-    <div class="case-grid" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px; max-width:1100px; margin:0 auto;">
+    <div class="case-grid" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; max-width:1320px; margin:0 auto;">
 
       <!-- Card: Noirvere -->
       <a href="#apply" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
@@ -1334,8 +1377,8 @@
     <h2 style="font-family:var(--font); font-size:clamp(30px,4vw,52px); font-variation-settings:'wdth' 125,'wght' 900; letter-spacing:-0.03em; line-height:1.1; margin:0 0 16px; color:var(--dark);">
       Book your free <em style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700; color:var(--blue);">audit call.</em>
     </h2>
-    <p style="font-family:var(--font); font-size:17px; line-height:1.6; color:rgba(0,0,0,0.6); max-width:660px; margin:0 auto 8px;">
-      30-min call. We'll review your current creative testing framework, find improvement opportunities, and send you 3 free ad concepts after the call.
+    <p style="font-family:var(--font); font-size:17px; line-height:1.6; color:rgba(0,0,0,0.6); max-width:760px; margin:0 auto 8px;">
+      30-min call. We'll review your current creative testing framework, find improvement opportunities<br>and send you 3 free ad concepts after the call.
     </p>
     <p style="font-family:var(--font); font-size:17px; line-height:1.6; color:#0d0d0d; max-width:660px; margin:0 auto; font-weight:700;">
       Yours to keep, even if you don't work with us.
@@ -1365,7 +1408,7 @@
     </div>
 
     <div class="lp-cal-wrap">
-      <div id="cal-embed-audit" style="min-width:320px;height:700px;border-radius:24px;overflow:hidden;"></div>
+      <div id="cal-embed-audit" style="min-width:300px;height:480px;border-radius:20px;overflow:hidden;"></div>
     </div>
   </div>
 </section>
