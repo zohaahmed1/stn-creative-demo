@@ -554,7 +554,13 @@
       .vs-savings { flex-direction: column; gap: 4px; }
     }
 
-    .lp-cta-section { background: #FFEDED; padding: 100px 24px; }
+    .lp-cta-section {
+      background:
+        radial-gradient(ellipse at 30% 20%, rgba(85,0,221,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 80%, rgba(85,0,221,0.04) 0%, transparent 60%),
+        #ffffff;
+      padding: 100px 24px;
+    }
     .lp-cta-inner { max-width: 700px; margin: 0 auto; text-align: center; }
 
     .lp-form-card {
@@ -1250,7 +1256,7 @@
   <div style="max-width:1000px; margin:0 auto; padding:0 24px;">
 
     <div style="text-align:center; margin-bottom:48px;">
-      <span style="display:inline-block; font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:20px;">What you get vs what you save</span>
+      <span style="display:inline-block; font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:20px;">What you get vs what you save · All prices in USD</span>
       <h2 style="font-family:var(--font); font-size:clamp(32px,4.2vw,56px); font-variation-settings:'wdth' 125,'wght' 900; letter-spacing:-0.03em; line-height:1.1; color:#fff; margin:0 0 20px;">
         Here's everything <em style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700; background:linear-gradient(135deg,#a78bfa,#f472b6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">included.</em>
       </h2>
@@ -1262,20 +1268,20 @@
       <!-- Card 1: Us (highlighted) -->
       <div class="vs-card vs-card-us">
         <span class="vs-card-badge">Skip the Noise</span>
-        <div class="vs-card-price">$14,000<span>/mo</span></div>
+        <div class="vs-card-price">$14k<span>/mo</span></div>
         <ul class="vs-card-list">
           <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Live in 1 week</li>
           <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>40+ creatives / month</li>
           <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>3 platforms managed</li>
           <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>One team, one invoice</li>
         </ul>
-        <span class="vs-card-note">Starting at $8k/mo for 1 platform. $14k shown for 3.</span>
+        <span class="vs-card-note">Starts at $8k/mo for 1 platform. $14k shown for 3.</span>
       </div>
 
       <!-- Card 2: In-house -->
       <div class="vs-card vs-card-them">
         <span class="vs-card-badge-them">In-House Team</span>
-        <div class="vs-card-price-them">$23,000<span>/mo</span></div>
+        <div class="vs-card-price-them">$23k<span>/mo</span></div>
         <ul class="vs-card-list-them">
           <li>Creative Strategist</li>
           <li>Designer</li>
@@ -1287,7 +1293,7 @@
       <!-- Card 3: Traditional agencies -->
       <div class="vs-card vs-card-them">
         <span class="vs-card-badge-them">Two Agencies</span>
-        <div class="vs-card-price-them">$30,000<span>/mo</span></div>
+        <div class="vs-card-price-them">$30k<span>/mo</span></div>
         <ul class="vs-card-list-them">
           <li>Creative agency retainer</li>
           <li>Media buying agency retainer</li>
@@ -1302,7 +1308,7 @@
     <!-- Savings callout -->
     <div class="vs-savings">
       <span class="vs-savings-label">You save</span>
-      <span class="vs-savings-num">$9,000–16,000</span>
+      <span class="vs-savings-num">$9k–16k</span>
       <span class="vs-savings-sub">per month vs hiring in-house or using two agencies</span>
     </div>
 
