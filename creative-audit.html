@@ -602,7 +602,7 @@
       margin-top: 12px; font-family: var(--font);
     }
 
-    .lp-cal-wrap { margin-top: 48px; }
+    .lp-cal-wrap { margin-top: 48px; overflow: visible; }
     .lp-calendly-label {
       font-family: var(--font); font-size: 14px; font-weight: 700;
       color: rgba(0,0,0,0.35); text-transform: uppercase; letter-spacing: 0.06em;
@@ -673,7 +673,7 @@
       .ca-team-card { min-width: 0 !important; width: 100% !important; }
       .ca-team-row { flex-direction: column !important; gap: 10px !important; width: 100% !important; }
       /* Cal embed: shorter on mobile */
-      #cal-embed-audit { height: 420px !important; min-width: 0 !important; }
+      #cal-embed-audit { min-height: 500px !important; height: auto !important; min-width: 0 !important; overflow: visible !important; }
       /* Price cards: tighter padding */
       .vs-card { padding: 24px 18px !important; }
       .vs-card-price { font-size: 36px !important; }
@@ -1408,7 +1408,7 @@
     </div>
 
     <div class="lp-cal-wrap">
-      <div id="cal-embed-audit" style="min-width:300px;height:480px;border-radius:20px;overflow:hidden;"></div>
+      <div id="cal-embed-audit" style="min-width:300px;min-height:600px;border-radius:20px;overflow:visible;"></div>
     </div>
   </div>
 </section>
@@ -1448,7 +1448,10 @@ Cal("init", "30min", {origin:"https://cal.com"});
 Cal.ns["30min"]("inline", {
   elementOrSelector: "#cal-embed-audit",
   calLink: "skipthenoise/30min",
-  layout: "month_view"
+  config: {
+    layout: "month_view",
+    useSlotsViewOnSmallScreen: true
+  }
 });
 Cal.ns["30min"]("ui", {"theme":"light","hideEventTypeDetails":false,"layout":"month_view"});
 
