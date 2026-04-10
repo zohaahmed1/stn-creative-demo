@@ -12,7 +12,7 @@ module.exports = async function handler(req, res) {
   const { triggerEvent, payload } = req.body;
 
   if (triggerEvent !== 'BOOKING_CREATED') {
-    return res.status(200).json({ received: true, skipped: triggerEvent });
+    return res.status(200).json({ received: true, skipped: triggerEvent, v: 3 });
   }
 
   try {
