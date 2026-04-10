@@ -1378,7 +1378,7 @@
       Book your free <em style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700; color:var(--blue);">audit call.</em>
     </h2>
     <p style="font-family:var(--font); font-size:17px; line-height:1.6; color:rgba(0,0,0,0.6); max-width:760px; margin:0 auto 8px;">
-      30-min call. We'll review your current creative testing framework, find improvement opportunities<br>and send you 3 free ad concepts after the call.
+      30-min call. We'll review your current creative testing framework, find improvement opportunities, and send you 3 free ad concepts after the call.
     </p>
     <p style="font-family:var(--font); font-size:17px; line-height:1.6; color:#0d0d0d; max-width:660px; margin:0 auto; font-weight:700;">
       Yours to keep, even if you don't work with us.
@@ -1468,50 +1468,74 @@ document.querySelectorAll('[data-anim]').forEach(function(el) {
   animObs.observe(el);
 });
 
-/* Hero marquee — touch/drag scroll */
+/* Hero marquee — touch/drag scroll (ALL marquee wraps, not just the first) */
 (function() {
-  var wrap = document.querySelector('.hero-marquee-wrap');
-  if (!wrap) return;
-  var track = wrap.querySelector('.hero-marquee-track');
+  document.querySelectorAll('.hero-marquee-wrap').forEach(function(wrap) {
+    var startX, scrollLeft, isDragging = false;
+
+    function onDown(e) {
+      isDragging = true;
+      wrap.classList.add('is-dragging');
+      startX = (e.touches ? e.touches[0].pageX : e.pageX);
+      scrollLeft = wrap.scrollLeft;
+    }
+    function onMove(e) {
+      if (!isDragging) return;
+      var x = (e.touches ? e.touches[0].pageX : e.pageX);
+      wrap.scrollLeft = scrollLeft - (x - startX);
+    }
+    function onUp() {
+      isDragging = false;
+      wrap.classList.remove('is-dragging');
+    }
+
+    wrap.style.overflow = 'auto';
+    wrap.style.scrollbarWidth = 'none';
+    wrap.style.webkitOverflowScrolling = 'touch';
+
+    wrap.addEventListener('mousedown', onDown);
+    wrap.addEventListener('mousemove', onMove);
+    wrap.addEventListener('mouseup', onUp);
+    wrap.addEventListener('mouseleave', onUp);
+    wrap.addEventListener('touchstart', onDown, {passive: true});
+    wrap.addEventListener('touchmove', onMove, {passive: true});
+    wrap.addEventListener('touchend', onUp);
+  });
+})();
+
+/* Testimonial marquee — touch/drag scroll (same pattern as hero) */
+(function() {
+  var scroll = document.querySelector('.lp-testi-scroll');
+  if (!scroll) return;
   var startX, scrollLeft, isDragging = false;
 
   function onDown(e) {
     isDragging = true;
-    wrap.classList.add('is-dragging');
+    scroll.classList.add('is-dragging');
     startX = (e.touches ? e.touches[0].pageX : e.pageX);
-    scrollLeft = wrap.scrollLeft;
+    scrollLeft = scroll.scrollLeft;
   }
   function onMove(e) {
     if (!isDragging) return;
     var x = (e.touches ? e.touches[0].pageX : e.pageX);
-    wrap.scrollLeft = scrollLeft - (x - startX);
+    scroll.scrollLeft = scrollLeft - (x - startX);
   }
   function onUp() {
     isDragging = false;
-    wrap.classList.remove('is-dragging');
+    scroll.classList.remove('is-dragging');
   }
 
-  wrap.style.overflow = 'auto';
-  wrap.style.scrollbarWidth = 'none';
-  wrap.style.webkitOverflowScrolling = 'touch';
+  scroll.style.overflow = 'auto';
+  scroll.style.scrollbarWidth = 'none';
+  scroll.style.webkitOverflowScrolling = 'touch';
 
-  wrap.addEventListener('mousedown', onDown);
-  wrap.addEventListener('mousemove', onMove);
-  wrap.addEventListener('mouseup', onUp);
-  wrap.addEventListener('mouseleave', onUp);
-  wrap.addEventListener('touchstart', onDown, {passive: true});
-  wrap.addEventListener('touchmove', onMove, {passive: true});
-  wrap.addEventListener('touchend', onUp);
-})();
-
-/* Testimonial marquee — drag to pause */
-(function() {
-  var scroll = document.querySelector('.lp-testi-scroll');
-  if (!scroll) return;
-  scroll.addEventListener('mousedown', function() { scroll.classList.add('is-dragging'); });
-  document.addEventListener('mouseup', function() { scroll.classList.remove('is-dragging'); });
-  scroll.addEventListener('touchstart', function() { scroll.classList.add('is-dragging'); }, {passive: true});
-  scroll.addEventListener('touchend', function() { scroll.classList.remove('is-dragging'); });
+  scroll.addEventListener('mousedown', onDown);
+  scroll.addEventListener('mousemove', onMove);
+  scroll.addEventListener('mouseup', onUp);
+  scroll.addEventListener('mouseleave', onUp);
+  scroll.addEventListener('touchstart', onDown, {passive: true});
+  scroll.addEventListener('touchmove', onMove, {passive: true});
+  scroll.addEventListener('touchend', onUp);
 })();
 
 /* Meta Pixel tracking via GTM dataLayer only (no direct fbq calls) */
