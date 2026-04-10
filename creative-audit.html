@@ -603,6 +603,8 @@
     }
 
     .lp-cal-wrap { margin-top: 48px; overflow: visible; }
+    /* Offset scroll targets so fixed nav (64px) doesn't cover section headings */
+    #apply, #what-inside { scroll-margin-top: 80px; }
     .lp-calendly-label {
       font-family: var(--font); font-size: 14px; font-weight: 700;
       color: rgba(0,0,0,0.35); text-transform: uppercase; letter-spacing: 0.06em;
