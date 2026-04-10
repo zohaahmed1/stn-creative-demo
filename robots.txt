@@ -5,4 +5,23 @@ Disallow: /playbook-thanks
 Disallow: /book-thanks
 Disallow: /creative-audit
 
+# Allow AI assistants to read site content
+User-agent: Claude-Web
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: Anthropic
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://skipthenoisemedia.com/sitemap.xml
