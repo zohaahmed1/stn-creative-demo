@@ -82,6 +82,10 @@
     footer p { font-size: 14px; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
     footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
     footer a:hover { color: rgba(255,255,255,0.7); }
+    @media (max-width: 480px) {
+      .blog-grid-inner { grid-template-columns: 1fr !important; gap: 24px; }
+      .blog-grid { padding: 40px 16px 64px; }
+    }
   </style>
 </head>
 <body>
