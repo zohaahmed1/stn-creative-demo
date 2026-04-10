@@ -419,129 +419,105 @@
     .vs-guarantee-text strong {
       color: #4ade80; font-weight: 800; display: block; margin-bottom: 4px; font-size: 16px;
     }
-    /* 3-column comparison table */
-    .vs-table-wrap {
-      overflow-x: auto;
+    /* 3 price cards */
+    .vs-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
       margin-bottom: 32px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.1);
     }
-    .vs-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-family: var(--font);
-    }
-    .vs-table th, .vs-table td {
-      padding: 16px 20px;
-      text-align: left;
-      font-size: 14px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      vertical-align: top;
-    }
-    .vs-th-role {
-      width: 28%;
-      background: rgba(255,255,255,0.02);
-      font-size: 11px !important;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: rgba(255,255,255,0.35);
-    }
-    .vs-th-us {
-      background: linear-gradient(135deg, rgba(167,139,250,0.15), rgba(244,114,182,0.1));
+    .vs-card {
+      border-radius: 20px;
+      padding: 32px 24px;
+      display: flex; flex-direction: column; align-items: center;
       text-align: center;
-      width: 24%;
     }
-    .vs-th-badge {
+    .vs-card-us {
+      background: linear-gradient(135deg, rgba(167,139,250,0.12), rgba(244,114,182,0.08));
+      border: 1.5px solid rgba(167,139,250,0.4);
+      position: relative;
+    }
+    .vs-card-us::before {
+      content: 'RECOMMENDED';
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, #a78bfa, #f472b6);
+      color: #fff; font-size: 10px; font-weight: 800;
+      letter-spacing: 0.1em; padding: 4px 14px; border-radius: 100px;
+    }
+    .vs-card-them {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .vs-card-badge {
       display: inline-block;
       background: linear-gradient(135deg, #a78bfa, #f472b6);
       color: #fff; font-size: 11px; font-weight: 800;
       letter-spacing: 0.06em; text-transform: uppercase;
-      padding: 5px 14px; border-radius: 100px;
+      padding: 5px 16px; border-radius: 100px;
+      margin-bottom: 20px;
     }
-    .vs-th-them {
-      background: rgba(255,255,255,0.03);
-      font-size: 12px !important;
-      font-weight: 700;
-      color: rgba(255,255,255,0.45);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      width: 24%;
+    .vs-card-badge-them {
+      display: inline-block;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.5); font-size: 11px; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 5px 16px; border-radius: 100px;
+      margin-bottom: 20px;
     }
-    .vs-td-role {
-      font-weight: 600;
-      color: rgba(255,255,255,0.7);
-      font-size: 14px;
-    }
-    .vs-td-us {
-      background: rgba(167,139,250,0.06);
-      text-align: center;
-      vertical-align: middle !important;
-    }
-    .vs-td-included {
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      font-size: 15px; font-weight: 800; color: #a78bfa;
-    }
-    .vs-td-cost {
-      color: rgba(255,255,255,0.5);
-      font-weight: 600;
-      font-size: 14px;
-    }
-    .vs-td-cost span {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      color: rgba(255,255,255,0.3);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      margin-bottom: 4px;
-    }
-    .vs-td-cost strong {
-      color: rgba(255,255,255,0.6);
-      font-weight: 800;
-      font-size: 15px;
-    }
-    .vs-total-row-table td {
-      border-top: 2px solid rgba(255,255,255,0.12);
-      border-bottom: none;
-      padding-top: 20px;
-      padding-bottom: 8px;
-    }
-    .vs-td-total-label {
-      font-weight: 800 !important;
-      color: rgba(255,255,255,0.5) !important;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      font-size: 12px !important;
-    }
-    .vs-td-total-us {
-      background: rgba(167,139,250,0.06);
-      text-align: center;
+    .vs-card-price {
       font-family: var(--font);
-      font-size: clamp(32px, 4vw, 44px) !important;
+      font-size: clamp(40px, 5vw, 56px);
       font-variation-settings: "wdth" 125, "wght" 900;
-      color: #ffffff;
-      letter-spacing: -0.03em;
-      line-height: 1;
+      color: #ffffff; letter-spacing: -0.03em; line-height: 1;
+      margin-bottom: 24px;
     }
-    .vs-td-total-them {
+    .vs-card-price span {
+      font-size: 18px; font-variation-settings: "wdth" 100, "wght" 600;
+      color: rgba(255,255,255,0.4);
+    }
+    .vs-card-price-them {
       font-family: var(--font);
-      font-size: clamp(20px, 2.5vw, 28px) !important;
+      font-size: clamp(28px, 3.5vw, 40px);
       font-variation-settings: "wdth" 125, "wght" 800;
-      color: rgba(255,255,255,0.35);
+      color: rgba(255,255,255,0.3); letter-spacing: -0.03em; line-height: 1;
       text-decoration: line-through;
-      line-height: 1;
+      margin-bottom: 24px;
     }
-    .vs-note-row td {
-      border-bottom: none;
-      padding-top: 0;
-      padding-bottom: 20px;
+    .vs-card-price-them span {
+      font-size: 16px; font-variation-settings: "wdth" 100, "wght" 600;
+      color: rgba(255,255,255,0.2);
     }
-    .vs-td-note {
-      font-size: 11px !important;
-      font-weight: 600;
-      color: rgba(255,255,255,0.3) !important;
-      font-style: italic;
+    .vs-card-list {
+      list-style: none; padding: 0; margin: 0 0 20px;
+      display: flex; flex-direction: column; gap: 10px;
+      text-align: left; width: 100%;
+    }
+    .vs-card-list li {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font); font-size: 14px; font-weight: 600;
+      color: rgba(255,255,255,0.85); line-height: 1.35;
+    }
+    .vs-card-list li svg { flex-shrink: 0; }
+    .vs-card-list-them {
+      list-style: none; padding: 0; margin: 0 0 20px;
+      display: flex; flex-direction: column; gap: 10px;
+      text-align: left; width: 100%;
+    }
+    .vs-card-list-them li {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font); font-size: 13px; font-weight: 500;
+      color: rgba(255,255,255,0.45); line-height: 1.35;
+    }
+    .vs-card-list-them li::before {
+      content: ''; display: block;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: rgba(255,255,255,0.2); flex-shrink: 0;
+    }
+    .vs-card-note {
+      font-family: var(--font); font-size: 12px; font-weight: 600;
+      color: rgba(255,255,255,0.4); margin-top: auto;
+    }
+    .vs-card-note-them {
+      font-family: var(--font); font-size: 11px; font-weight: 600;
+      color: rgba(255,255,255,0.25); font-style: italic; margin-top: auto;
     }
     /* Savings callout */
     .vs-savings {
@@ -569,12 +545,11 @@
       color: rgba(255,255,255,0.5);
     }
     @media (max-width: 700px) {
-      .vs-table th, .vs-table td { padding: 12px 10px; font-size: 12px; }
-      .vs-td-total-us { font-size: 28px !important; }
-      .vs-td-total-them { font-size: 18px !important; }
-      .vs-td-cost strong { font-size: 13px; }
+      .vs-cards { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+      .vs-card { padding: 28px 20px; }
+      .vs-card-price { font-size: 40px; }
+      .vs-card-price-them { font-size: 28px; }
       .vs-savings { flex-direction: column; gap: 4px; }
-      .vs-th-badge { font-size: 10px; padding: 4px 10px; }
     }
 
     .lp-cta-section { background: #FFEDED; padding: 100px 24px; }
@@ -1279,66 +1254,48 @@
       </h2>
     </div>
 
-    <!-- 3-column comparison table: Us vs In-House vs Traditional Agency -->
-    <div class="vs-table-wrap">
-      <table class="vs-table">
-        <thead>
-          <tr>
-            <th class="vs-th-role"></th>
-            <th class="vs-th-us">
-              <span class="vs-th-badge">Skip the Noise</span>
-            </th>
-            <th class="vs-th-them">In-House Hire</th>
-            <th class="vs-th-them">Traditional Agencies</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="vs-td-role">Creative Strategist</td>
-            <td class="vs-td-us" rowspan="4">
-              <div class="vs-td-included">
-                <svg width="18" height="18" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                <span>All included</span>
-              </div>
-            </td>
-            <td class="vs-td-cost">$8,000/mo</td>
-            <td class="vs-td-cost" rowspan="2">
-              <span>Creative agency retainer</span>
-              <strong>$10,000–15,000/mo</strong>
-            </td>
-          </tr>
-          <tr>
-            <td class="vs-td-role">Designer (mid-level)</td>
-            <td class="vs-td-cost">$6,000/mo</td>
-          </tr>
-          <tr>
-            <td class="vs-td-role">Sr. Performance Marketer</td>
-            <td class="vs-td-cost">$9,000/mo</td>
-            <td class="vs-td-cost" rowspan="2">
-              <span>Media buying agency</span>
-              <strong>$8,000–12,000/mo</strong>
-            </td>
-          </tr>
-          <tr>
-            <td class="vs-td-role">Jr. Performance Marketer</td>
-            <td class="vs-td-cost">$4,000/mo</td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <tr class="vs-total-row-table">
-            <td class="vs-td-role vs-td-total-label">Monthly total</td>
-            <td class="vs-td-total-us">$8,000<span class="vs-price-period">/mo</span></td>
-            <td class="vs-td-total-them">$27,000<span style="font-size:13px;color:rgba(255,255,255,0.35)">/mo</span></td>
-            <td class="vs-td-total-them">$18,000–27,000<span style="font-size:13px;color:rgba(255,255,255,0.35)">/mo</span></td>
-          </tr>
-          <tr class="vs-note-row">
-            <td></td>
-            <td class="vs-td-note">+ $2,000/mo per extra platform</td>
-            <td class="vs-td-note">+ benefits, tools, recruiting</td>
-            <td class="vs-td-note">+ two contracts, two teams, slow handoffs</td>
-          </tr>
-        </tfoot>
-      </table>
+    <!-- 3 price cards: us vs in-house vs agencies -->
+    <div class="vs-cards">
+
+      <!-- Card 1: Us (highlighted) -->
+      <div class="vs-card vs-card-us">
+        <span class="vs-card-badge">Skip the Noise</span>
+        <div class="vs-card-price">$8,000<span>/mo</span></div>
+        <ul class="vs-card-list">
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Everything included</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>40+ creatives / month</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>3 platforms managed</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>One team, one invoice</li>
+        </ul>
+        <span class="vs-card-note">+ $2k/mo per additional platform</span>
+      </div>
+
+      <!-- Card 2: In-house -->
+      <div class="vs-card vs-card-them">
+        <span class="vs-card-badge-them">In-House Team</span>
+        <div class="vs-card-price-them">$27,000<span>/mo</span></div>
+        <ul class="vs-card-list-them">
+          <li>Creative Strategist</li>
+          <li>Designer</li>
+          <li>Sr. Performance Marketer</li>
+          <li>Jr. Performance Marketer</li>
+        </ul>
+        <span class="vs-card-note-them">+ benefits, tools, recruiting, management</span>
+      </div>
+
+      <!-- Card 3: Traditional agencies -->
+      <div class="vs-card vs-card-them">
+        <span class="vs-card-badge-them">Two Agencies</span>
+        <div class="vs-card-price-them">$18–27k<span>/mo</span></div>
+        <ul class="vs-card-list-them">
+          <li>Creative agency retainer</li>
+          <li>Media buying agency retainer</li>
+          <li>Two contracts, two teams</li>
+          <li>Slow handoffs between them</li>
+        </ul>
+        <span class="vs-card-note-them">+ misaligned incentives, finger-pointing</span>
+      </div>
+
     </div>
 
     <!-- Savings callout -->
