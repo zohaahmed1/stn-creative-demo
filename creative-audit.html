@@ -391,6 +391,86 @@
     @keyframes lp-testi { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
     /* ── CTA / Form section ── */
+    /* ── Value Stack (Hormozi-style) ── */
+    .lp-value-stack {
+      background: #0a0a0a;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 24px 24px;
+      padding: 110px 24px;
+    }
+    .vs-stack { display: flex; flex-direction: column; gap: 0; margin-bottom: 40px; }
+    .vs-row {
+      display: flex; align-items: center; gap: 16px;
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .vs-row:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+    .vs-check { flex-shrink: 0; }
+    .vs-desc {
+      font-family: var(--font); font-size: 16px; font-weight: 600;
+      color: rgba(255,255,255,0.85); flex: 1; line-height: 1.4;
+    }
+    .vs-val {
+      font-family: var(--font); font-size: 16px; font-weight: 700;
+      color: rgba(255,255,255,0.35); text-decoration: line-through;
+      white-space: nowrap; flex-shrink: 0;
+    }
+    .vs-total-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 20px 0 8px;
+      border-top: 2px solid rgba(255,255,255,0.12);
+    }
+    .vs-total-label {
+      font-family: var(--font); font-size: 14px; font-weight: 700;
+      color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .vs-total-num {
+      font-family: var(--font); font-size: 20px; font-weight: 800;
+      color: rgba(255,255,255,0.4);
+    }
+    .vs-total-num s { text-decoration: line-through; }
+    .vs-price-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 16px 0 0;
+    }
+    .vs-price-label {
+      font-family: var(--font); font-size: 14px; font-weight: 700;
+      color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .vs-price-num {
+      font-family: var(--font);
+      font-size: clamp(44px, 5vw, 64px);
+      font-variation-settings: "wdth" 125, "wght" 900;
+      color: #ffffff;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+    .vs-price-period {
+      font-size: 20px;
+      font-variation-settings: "wdth" 100, "wght" 600;
+      color: rgba(255,255,255,0.5);
+    }
+    .vs-guarantee {
+      display: flex; align-items: flex-start; gap: 16px;
+      margin-top: 40px;
+      padding: 24px 28px;
+      background: rgba(22,163,106,0.08);
+      border: 1px solid rgba(22,163,106,0.3);
+      border-radius: 16px;
+    }
+    .vs-guarantee-icon { flex-shrink: 0; margin-top: 2px; }
+    .vs-guarantee-text {
+      font-family: var(--font); font-size: 15px; line-height: 1.6;
+      color: rgba(255,255,255,0.8);
+    }
+    .vs-guarantee-text strong {
+      color: #4ade80; font-weight: 800; display: block; margin-bottom: 4px; font-size: 16px;
+    }
+    @media (max-width: 600px) {
+      .vs-val { display: none; }
+      .vs-price-num { font-size: 44px; }
+    }
+
     .lp-cta-section { background: #FFEDED; padding: 100px 24px; }
     .lp-cta-inner { max-width: 700px; margin: 0 auto; text-align: center; }
 
@@ -1100,6 +1180,73 @@
     </div>
 
   <p style="text-align:center; font-family:var(--font); font-size:13px; color:rgba(0,0,0,0.35); margin-top:24px;">5-star reviews. Verified on Design Rush.</p>
+</section>
+
+<!-- ═══════════════════════════════════════ VALUE STACK + PRICING ═══════════════════════════════════════ -->
+<section class="lp-value-stack">
+  <div style="max-width:760px; margin:0 auto; padding:0 24px;">
+
+    <div style="text-align:center; margin-bottom:48px;">
+      <span style="display:inline-block; font-size:12px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:rgba(255,255,255,0.4); margin-bottom:20px;">What you get</span>
+      <h2 style="font-family:var(--font); font-size:clamp(32px,4.2vw,56px); font-variation-settings:'wdth' 125,'wght' 900; letter-spacing:-0.03em; line-height:1.1; color:#fff; margin:0 0 20px;">
+        Here's everything <em style="font-family:'Playfair Display',Georgia,serif; font-style:italic; font-weight:700; background:linear-gradient(135deg,#a78bfa,#f472b6); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">included.</em>
+      </h2>
+    </div>
+
+    <!-- Value stack items -->
+    <div class="vs-stack">
+      <div class="vs-row">
+        <div class="vs-check"><svg width="18" height="18" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="vs-desc">40+ AI ad creatives per month (static, video, UGC)</div>
+        <div class="vs-val">$80,000</div>
+      </div>
+      <div class="vs-row">
+        <div class="vs-check"><svg width="18" height="18" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="vs-desc">Full-funnel media buying across 6 platforms</div>
+        <div class="vs-val">$12,000</div>
+      </div>
+      <div class="vs-row">
+        <div class="vs-check"><svg width="18" height="18" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="vs-desc">Weekly optimization + live reporting dashboard</div>
+        <div class="vs-val">$3,000</div>
+      </div>
+      <div class="vs-row">
+        <div class="vs-check"><svg width="18" height="18" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="vs-desc">Creative testing framework audit</div>
+        <div class="vs-val">$5,000</div>
+      </div>
+      <div class="vs-row">
+        <div class="vs-check"><svg width="18" height="18" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="vs-desc">3 free ad concepts before you commit (yours to keep)</div>
+        <div class="vs-val">$2,000</div>
+      </div>
+    </div>
+
+    <!-- Total vs price -->
+    <div class="vs-total-row">
+      <div class="vs-total-label">Total value if built in-house</div>
+      <div class="vs-total-num"><s>$102,000</s>/mo</div>
+    </div>
+
+    <div class="vs-price-row">
+      <div class="vs-price-label">Your investment (1 platform)</div>
+      <div class="vs-price-num">$8,000<span class="vs-price-period">/mo</span></div>
+    </div>
+    <p style="text-align:center; font-family:var(--font); font-size:15px; color:rgba(255,255,255,0.65); margin-top:12px;">+ $2,000/mo per additional platform (Meta, TikTok, Reddit, Google, LinkedIn, Pinterest)</p>
+
+    <!-- Guarantee badge -->
+    <div class="vs-guarantee">
+      <div class="vs-guarantee-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <div class="vs-guarantee-text">
+        <strong>90-day performance guarantee.</strong> If we don't improve your ROAS or pipeline metrics within 90 days, we work for free in month 4 until we do.
+      </div>
+    </div>
+
+    <p style="text-align:center; font-family:var(--font); font-size:15px; color:rgba(255,255,255,0.55); margin-top:32px; font-weight:600;">No lock-in. Cancel anytime. No setup fees.</p>
+
+  </div>
 </section>
 
 <!-- ═══════════════════════════════════════ CTA / CAL EMBED ═══════════════════════════════════════ -->
