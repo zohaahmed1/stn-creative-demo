@@ -882,10 +882,12 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 16px; height: 16px;
+        width: 18px; height: 18px;
         flex-shrink: 0;
       }
       .ca-ticker-ico svg { width: 100%; height: 100%; }
+      /* WPP logo is deep navy (#191d63) — force to pure black so it reads clearly on the purple pill */
+      .ca-ticker-ico img[src*="WPPlogo"] { filter: brightness(0); }
       @media (max-width: 560px) {
         .ca-ticker-pill { font-size: 12px; padding: 6px 14px 6px 12px; }
       }
