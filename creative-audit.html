@@ -1780,42 +1780,13 @@
 </style>
 
 <script>
-/* Live client wins ticker — cycles through real client results with real metrics.
-   Persistent: stays on screen until user dismisses. Swaps content every 18s. */
+/* Client win toast — single static message, persistent until dismissed. */
 (function(){
-  var wins = [
-    { title: 'Recent client result', meta: 'Noirvere · 5X peak ROAS',            time: 'DTC Fashion · TikTok'        },
-    { title: 'Recent client result', meta: 'Flare · 60 qualified leads',         time: 'B2B SaaS · Reddit'           },
-    { title: 'Recent client result', meta: 'Restream · 50% lower CPL',           time: 'B2C SaaS · Multi-platform'   },
-    { title: 'Recent client result', meta: 'Cozybeds · data-backed Reddit strategy', time: 'DTC · Reddit'           },
-    { title: 'Recent client result', meta: 'Tiny Protectors · scaling on Meta + Pinterest', time: 'DTC · Meta + Pinterest' },
-    { title: 'Recent client result', meta: '3D AI Studio · 30% more subscriptions', time: 'B2C SaaS · Reddit'       }
-  ];
-  var idx = 0;
   var toast = document.getElementById('ca-booking-toast');
-  var titleEl = document.getElementById('ca-toast-title');
-  var metaEl = document.getElementById('ca-toast-meta');
-  var timeEl = document.getElementById('ca-toast-time');
   if (!toast) return;
-
-  function swap() {
-    idx = (idx + 1) % wins.length;
-    var w = wins[idx];
-    // fade content briefly while swapping
-    titleEl.style.opacity = '0'; metaEl.style.opacity = '0'; timeEl.style.opacity = '0';
-    setTimeout(function(){
-      titleEl.textContent = w.title;
-      metaEl.textContent = w.meta;
-      timeEl.textContent = w.time;
-      titleEl.style.opacity = ''; metaEl.style.opacity = ''; timeEl.style.opacity = '';
-    }, 220);
-  }
-
-  // Reveal after 2s; persistent — stays on screen, content rotates every 18s
   setTimeout(function(){
     toast.classList.remove('ca-toast-dismissed');
     toast.classList.add('ca-toast-visible');
-    setInterval(swap, 18000);
   }, 2000);
 })();
 </script>
