@@ -830,6 +830,7 @@
       .ca-ticker-pill {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 10px;
         padding: 7px 18px 7px 14px;
         background: linear-gradient(135deg, rgba(85,0,221,0.08), rgba(167,139,250,0.08));
@@ -842,6 +843,8 @@
         letter-spacing: -0.005em;
         box-shadow: 0 2px 10px rgba(85,0,221,0.06);
         min-height: 34px;
+        width: 340px;         /* fixed width so box doesn't jump on text swap */
+        max-width: 92vw;
       }
       .ca-ticker-pulse {
         flex-shrink: 0;
@@ -858,9 +861,16 @@
       .ca-ticker-slide {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         gap: 7px;
         white-space: nowrap;
         transition: opacity 0.32s ease, transform 0.32s ease;
+        flex: 1;
+        min-width: 0;
+      }
+      .ca-ticker-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .ca-ticker-slide.ca-ticker-out {
         opacity: 0;
