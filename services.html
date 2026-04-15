@@ -642,6 +642,12 @@
       padding-bottom: 64px; text-align: center;
     }
     .footer a { text-decoration: none; }
+
+    /* Cal.com booking modal — hidden until .open class added */
+    .cal-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; }
+    .cal-modal.open { display: flex; }
+    .cal-modal-content { background: white; border-radius: 12px; width: 90%; max-width: 600px; max-height: 90vh; overflow: auto; position: relative; }
+    .cal-modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; z-index: 1000; }
   </style>
   <!-- Meta Pixel -->
   <script>
@@ -666,10 +672,8 @@
       });
     });
 
-    /* Cal.com modal styles */
-    var calModalStyles = document.createElement('style');
-    calModalStyles.textContent = '.cal-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; } .cal-modal.open { display: flex; } .cal-modal-content { background: white; border-radius: 12px; width: 90%; max-width: 600px; max-height: 90vh; overflow: auto; position: relative; } .cal-modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; z-index: 1000; }';
-    document.head.appendChild(calModalStyles);
+    /* Cal.com modal styles now live in the main <style> block above.
+       Previously injected here via JS, which is fragile if any prior line throws. */
   </script>
 </head>
 <body>
