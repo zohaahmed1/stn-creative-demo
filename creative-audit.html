@@ -1751,15 +1751,15 @@
     toast.classList.remove('ca-toast-dismissed');
     toast.classList.add('ca-toast-visible');
     idx++;
-    // hide after 6s
-    setTimeout(function(){ toast.classList.remove('ca-toast-visible'); }, 6000);
+    // hide after 8s
+    setTimeout(function(){ toast.classList.remove('ca-toast-visible'); }, 8000);
   }
 
-  // First toast appears 8s after page load, then every 45s
+  // First toast appears 2.5s after page load, then every 30s
   setTimeout(function(){
     show();
-    setInterval(show, 45000);
-  }, 8000);
+    setInterval(show, 30000);
+  }, 2500);
 })();
 </script>
 
