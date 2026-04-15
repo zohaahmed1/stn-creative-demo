@@ -745,10 +745,10 @@
       <p class="ca-hero-sub">Book a 30-min audit call with our performance + creative leads. We'll understand your current brand goals and ship 3 conversion-driven ad concepts after the call.<br><strong style="color:#0d0d0d; font-weight:700;">Yours to keep, even if you don't work with us.</strong></p>
 
       <!-- CTA + urgency -->
-      <div style="display:flex; flex-direction:column; align-items:center; gap:10px;">
-        <a href="#apply" class="cta-booking-btn" style="display:inline-flex; align-items:center; gap:10px; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:12px 28px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">
+      <div style="display:flex; flex-direction:column; align-items:center; gap:14px;">
+        <a href="#apply" class="cta-booking-btn ca-hero-cta" style="display:inline-flex; align-items:center; gap:12px; background:#5500DD; color:white; text-decoration:none; white-space:nowrap;">
           Claim my 3 free ads
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="20" height="20" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <span class="ca-hero-urgency">
           <span class="ca-hero-urgency-dot"></span>
@@ -824,6 +824,34 @@
       .ca-hero-offer strong {
         font-weight: 800;
         color: #0d0d0d;
+      }
+      /* Enlarged hero CTA — bigger presence, stronger shadow, subtle hover lift */
+      .ca-hero-cta {
+        font-family: var(--font);
+        font-size: 17px !important;
+        font-weight: 800 !important;
+        font-variation-settings: "wdth" 115, "wght" 800;
+        letter-spacing: -0.005em;
+        padding: 18px 38px !important;
+        border-radius: 100px !important;
+        box-shadow: 0 6px 20px rgba(85,0,221,0.28), 0 2px 6px rgba(85,0,221,0.18);
+        transition: transform 0.22s cubic-bezier(0.16,1,0.3,1), box-shadow 0.22s, background 0.22s;
+      }
+      .ca-hero-cta:hover {
+        background: #4300b3 !important;
+        box-shadow: 0 10px 28px rgba(85,0,221,0.38), 0 3px 8px rgba(85,0,221,0.22);
+        transform: translateY(-2px);
+      }
+      .ca-hero-cta:active {
+        transform: translateY(0);
+        box-shadow: 0 3px 10px rgba(85,0,221,0.28);
+      }
+      @media (max-width: 600px) {
+        .ca-hero-cta {
+          font-size: 16px !important;
+          padding: 16px 30px !important;
+          width: auto;
+        }
       }
       /* Urgency pill under hero CTA */
       .ca-hero-urgency {
