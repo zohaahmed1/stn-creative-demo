@@ -1673,15 +1673,15 @@
   <a href="#apply" class="lp-cta-btn cta-booking-btn">Claim my 3 free ads</a>
 </div>
 
-<!-- ═══════════════════════════════════════ LIVE BOOKING TICKER (bottom-left toast) ═══════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════ LIVE CLIENT WINS TICKER (bottom-left toast) ═══════════════════════════════════════ -->
 <div id="ca-booking-toast" class="ca-toast" role="status" aria-live="polite" aria-atomic="true">
-  <div class="ca-toast-icon">
+  <div class="ca-toast-icon" id="ca-toast-icon">
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
   </div>
   <div class="ca-toast-body">
-    <div class="ca-toast-title">New audit call booked</div>
-    <div class="ca-toast-meta" id="ca-toast-meta">VP Marketing · DTC apparel brand</div>
-    <div class="ca-toast-time" id="ca-toast-time">3 minutes ago</div>
+    <div class="ca-toast-title" id="ca-toast-title">Recent client win</div>
+    <div class="ca-toast-meta" id="ca-toast-meta">Noirvere · 5X peak ROAS on TikTok</div>
+    <div class="ca-toast-time" id="ca-toast-time">DTC Fashion</div>
   </div>
   <button class="ca-toast-close" aria-label="Dismiss" onclick="document.getElementById('ca-booking-toast').classList.add('ca-toast-dismissed');">×</button>
 </div>
@@ -1727,25 +1727,30 @@
   }
   .ca-toast-body { flex: 1; min-width: 0; }
   .ca-toast-title {
-    font-size: 13px;
-    font-weight: 800;
-    color: #0d0d0d;
-    letter-spacing: -0.005em;
+    font-size: 11px;
+    font-weight: 700;
+    color: #5500DD;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     line-height: 1.3;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
+    transition: opacity 0.22s ease;
   }
   .ca-toast-meta {
-    font-size: 12.5px;
-    font-weight: 600;
-    color: rgba(0,0,0,0.62);
+    font-size: 13.5px;
+    font-weight: 800;
+    color: #0d0d0d;
+    letter-spacing: -0.01em;
     line-height: 1.35;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
+    transition: opacity 0.22s ease;
   }
   .ca-toast-time {
-    font-size: 11px;
+    font-size: 11.5px;
     font-weight: 600;
-    color: rgba(0,0,0,0.38);
+    color: rgba(0,0,0,0.5);
     letter-spacing: 0.005em;
+    transition: opacity 0.22s ease;
   }
   .ca-toast-close {
     position: absolute;
@@ -1775,39 +1780,43 @@
 </style>
 
 <script>
-/* Live booking ticker — rotates through realistic role + industry combos.
-   No fabricated names. Uses role + industry + timestamp to feel real without deception. */
+/* Live client wins ticker — cycles through real client results with real metrics.
+   Persistent: stays on screen until user dismisses. Swaps content every 18s. */
 (function(){
-  var bookings = [
-    { meta: 'VP Marketing · DTC apparel brand',     time: '3 minutes ago' },
-    { meta: 'Growth Lead · B2B SaaS (Series B)',    time: '12 minutes ago' },
-    { meta: 'Founder · DTC skincare brand',         time: '24 minutes ago' },
-    { meta: 'Head of Performance · B2C SaaS',       time: '41 minutes ago' },
-    { meta: 'Director of Demand Gen · B2B SaaS',    time: '1 hour ago' },
-    { meta: 'Co-founder · DTC home goods',          time: '2 hours ago' }
+  var wins = [
+    { title: 'Recent client result', meta: 'Noirvere · 5X peak ROAS',            time: 'DTC Fashion · TikTok'        },
+    { title: 'Recent client result', meta: 'Flare · 60 qualified leads',         time: 'B2B SaaS · Reddit'           },
+    { title: 'Recent client result', meta: 'Restream · 50% lower CPL',           time: 'B2C SaaS · Multi-platform'   },
+    { title: 'Recent client result', meta: 'Cozybeds · data-backed Reddit strategy', time: 'DTC · Reddit'           },
+    { title: 'Recent client result', meta: 'Tiny Protectors · scaling on Meta + Pinterest', time: 'DTC · Meta + Pinterest' },
+    { title: 'Recent client result', meta: '3D AI Studio · 30% more subscriptions', time: 'B2C SaaS · Reddit'       }
   ];
   var idx = 0;
   var toast = document.getElementById('ca-booking-toast');
+  var titleEl = document.getElementById('ca-toast-title');
   var metaEl = document.getElementById('ca-toast-meta');
   var timeEl = document.getElementById('ca-toast-time');
   if (!toast) return;
 
-  function show() {
-    var b = bookings[idx % bookings.length];
-    metaEl.textContent = b.meta;
-    timeEl.textContent = b.time;
-    toast.classList.remove('ca-toast-dismissed');
-    toast.classList.add('ca-toast-visible');
-    idx++;
-    // hide after 8s
-    setTimeout(function(){ toast.classList.remove('ca-toast-visible'); }, 8000);
+  function swap() {
+    idx = (idx + 1) % wins.length;
+    var w = wins[idx];
+    // fade content briefly while swapping
+    titleEl.style.opacity = '0'; metaEl.style.opacity = '0'; timeEl.style.opacity = '0';
+    setTimeout(function(){
+      titleEl.textContent = w.title;
+      metaEl.textContent = w.meta;
+      timeEl.textContent = w.time;
+      titleEl.style.opacity = ''; metaEl.style.opacity = ''; timeEl.style.opacity = '';
+    }, 220);
   }
 
-  // First toast appears 2.5s after page load, then every 30s
+  // Reveal after 2s; persistent — stays on screen, content rotates every 18s
   setTimeout(function(){
-    show();
-    setInterval(show, 30000);
-  }, 2500);
+    toast.classList.remove('ca-toast-dismissed');
+    toast.classList.add('ca-toast-visible');
+    setInterval(swap, 18000);
+  }, 2000);
 })();
 </script>
 
