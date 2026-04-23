@@ -760,6 +760,8 @@
       .ca-hero-h1 {
         font-family: 'Satoshi', system-ui, sans-serif;
         font-size: clamp(36px, 4.5vw, 60px) !important;
+        hyphens: none !important;
+        word-break: keep-all !important;
         font-variation-settings: "wdth" 125, "wght" 900;
         font-weight: 900 !important;
         color: #0a0a0a !important;
@@ -1084,6 +1086,10 @@
       .ca-toggle-btn { font-size:13px; font-weight:700; padding:11px 22px; min-height:44px; border-radius:100px; border:none; cursor:pointer; transition:all 0.22s; background:transparent; color:rgba(0,0,0,0.45); box-shadow:none; }
       .ca-toggle-btn.is-active-saas { background:#5500dd; color:#fff; box-shadow:0 2px 8px rgba(85,0,221,0.28); }
       .ca-toggle-btn.is-active-ecomm { background:#ee0033; color:#fff; box-shadow:0 2px 8px rgba(238,0,51,0.28); }
+      @media (max-width: 480px) {
+        .ca-hero-h1 { font-size: clamp(22px, 6vw, 28px) !important; padding: 0 12px !important; line-height: 1.18 !important; }
+        .ca-hero-h1 em { font-size: inherit !important; }
+      }
     </style>
 
     <!-- eComm marquee only -->
@@ -1763,6 +1769,19 @@ window.addEventListener('message', function(e) {
     window.dataLayer.push({event: 'cal_booking', booking_page: 'creative-audit', event_type: e.data.event});
   }
 });
+
+/* Sticky CTA — only show after scrolling past hero */
+(function(){
+  var sticky = document.querySelector('.lp-sticky');
+  var hero = document.querySelector('.hero');
+  if (!sticky || !hero) return;
+  function onScroll() {
+    var heroBottom = hero.getBoundingClientRect().bottom;
+    sticky.style.display = heroBottom < 0 ? '' : 'none';
+  }
+  sticky.style.display = 'none';
+  window.addEventListener('scroll', onScroll, { passive: true });
+})();
 </script>
 </body>
 </html>
