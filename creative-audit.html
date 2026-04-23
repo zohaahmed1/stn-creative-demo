@@ -652,24 +652,28 @@
     /* ── Mobile-specific fixes (375px) ── */
     @media (max-width: 480px) {
       /* Hero: tighter offer text */
-      .ca-hero-offer { font-size: 14px !important; max-width: 100% !important; padding: 0 16px !important; }
-      /* Hero H1: prevent overflow */
-      .ca-hero-h1 { font-size: clamp(32px, 9vw, 44px) !important; padding: 0 16px !important; }
+      .ca-hero-offer { font-size: 13px !important; max-width: 100% !important; padding: 0 16px !important; }
+      /* Hero H1: smaller on mobile */
+      .ca-hero-h1 { font-size: clamp(26px, 7vw, 36px) !important; padding: 0 16px !important; line-height: 1.1 !important; }
+      /* Hero sub */
+      .ca-hero-sub { font-size: 14px !important; }
       /* Section 2: card headers auto-height on mobile */
-      .who-card-head { height: auto !important; min-height: 140px !important; padding: 28px 20px !important; }
+      .who-card-head { height: auto !important; min-height: 120px !important; padding: 24px 16px !important; }
       .who-dual { gap: 16px !important; }
-      .who-dual-stat .who-big-num { font-size: clamp(36px, 10vw, 52px) !important; }
+      .who-dual-stat .who-big-num { font-size: clamp(28px, 8vw, 40px) !important; }
       .who-dual-divider { height: 48px !important; }
-      .who-card-body { padding: 24px 20px !important; }
-      .who-card-body h3 { font-size: 18px !important; }
-      .who-card-body > p { font-size: 14px !important; }
-      .who-pill { font-size: 12px !important; padding: 8px 12px !important; }
+      .who-card-body { padding: 20px 16px !important; }
+      .who-card-body h3 { font-size: 16px !important; }
+      .who-card-body > p { font-size: 13px !important; }
+      .who-pill { font-size: 11px !important; padding: 7px 10px !important; }
+      .who-big-num { font-size: clamp(36px, 9vw, 52px) !important; }
       /* Section 2: trust strip tighter */
-      .who-trust-item { padding: 14px 16px !important; }
-      .who-trust-num { font-size: 22px !important; }
-      .who-trust-text { font-size: 13px !important; }
-      /* Section 2: subtext prevent overflow, remove nowrap */
-      .lp-problem .section-header p { font-size: 15px !important; }
+      .who-trust-item { padding: 12px 14px !important; }
+      .who-trust-num { font-size: 20px !important; }
+      .who-trust-text { font-size: 12px !important; }
+      /* Section headers */
+      .lp-problem .section-header h2 { font-size: clamp(22px, 6vw, 32px) !important; }
+      .lp-problem .section-header p { font-size: 13px !important; }
       .lp-problem .section-header p span[style*="white-space"] { white-space: normal !important; }
       /* Team strip: remove min-width so cards fill screen */
       .ca-team-card { min-width: 0 !important; width: 100% !important; }
