@@ -253,7 +253,7 @@
       color: rgba(255,255,255,0.75); margin-top: 10px;
       display: block;
     }
-    /* Dual-stat layout (box 2 — 3-4x ROAS DTC + 2x pipeline SaaS) */
+    /* Dual-stat layout (box 2 — outcome pills) */
     .who-dual {
       display: flex; align-items: center; justify-content: center;
       gap: 28px; width: 100%;
@@ -1215,7 +1215,7 @@
           <p>Strategists brief. AI handles production. 40+ creatives per month, custom designed for your audience. Live in a week, results in 30 days.</p>
           <div class="who-pills">
             <span class="who-pill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Pipeline lift in 30 days</span>
-            <span class="who-pill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>ROAS lift in 30 days</span>
+            <span class="who-pill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>CPL reduction in 30 days</span>
             <span class="who-pill"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="7" fill="#a78bfa"/><path d="M4 7l2 2 4-4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Minimum ad spend: $30k / month per platform</span>
           </div>
         </div>
@@ -1224,15 +1224,11 @@
       <!-- Card 2 — Performance Media Buying -->
       <div class="who-card" data-anim data-delay="2">
         <div class="who-card-head who-card-head-purple">
-          <div class="who-dual">
-            <div class="who-dual-stat">
-              <span class="who-big-num">3-4x</span>
-              <span class="who-big-sub">ROAS for DTC</span>
-            </div>
-            <div class="who-dual-divider"></div>
-            <div class="who-dual-stat">
-              <span class="who-big-num">2x</span>
-              <span class="who-big-sub">pipeline for SaaS</span>
+          <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px;">
+            <span style="font-family:var(--font); font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.5);">The outcome</span>
+            <div style="display:flex; align-items:center; justify-content:center; gap:16px; flex-wrap:wrap;">
+              <span style="font-family:var(--font); font-size:15px; font-weight:800; color:#fff; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.18); border-radius:100px; padding:6px 16px; white-space:nowrap;">↓ CPL</span>
+              <span style="font-family:var(--font); font-size:15px; font-weight:800; color:#fff; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.18); border-radius:100px; padding:6px 16px; white-space:nowrap;">↑ Pipeline</span>
             </div>
           </div>
         </div>
@@ -1277,17 +1273,7 @@
     </div>
 
     <!-- Case study cards -->
-    <div class="case-grid" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; max-width:1320px; margin:0 auto;">
-
-      <!-- Card: Noirvere -->
-      <a href="#apply" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
-        <div class="case-img-wrap"><img loading="lazy" src="assets/Noirver%20V2.jpg" style="width:100%; height:100%;"><div class="case-stat-overlay"><span class="case-stat-number">5X</span><span class="case-stat-label">peak ROAS</span></div></div>
-        <div style="padding:14px 16px; display:flex; align-items:center; gap:8px; border-top:1px solid rgba(0,0,0,0.06);">
-          <span style="font-family:'Satoshi',system-ui,sans-serif; font-size:15px; font-weight:900; color:#0d0d0d; letter-spacing:-0.02em;">Noirvere</span>
-          <span style="font-size:10px; font-weight:700; background:rgba(234,88,12,0.1); color:#c2410c; border:1px solid rgba(234,88,12,0.25); border-radius:100px; padding:2px 9px;">DTC Fashion</span>
-          <span style="font-size:10px; color:rgba(0,0,0,0.3); margin-left:auto; font-weight:600;">TikTok</span>
-        </div>
-      </a>
+    <div class="case-grid" style="display:grid; grid-template-columns:repeat(2, 1fr); gap:20px; max-width:900px; margin:0 auto;">
 
       <!-- Card: Restream -->
       <a href="#apply" class="case-card-link" style="display:block; border-radius:16px; overflow:hidden; border:1.5px solid rgba(0,0,0,0.07); text-decoration:none; color:inherit; background:#fff; transition:box-shadow 0.2s, transform 0.2s;" onmouseover="this.style.boxShadow='0 8px 32px rgba(0,0,0,0.1)';this.style.transform='translateY(-2px)'" onmouseout="this.style.boxShadow='none';this.style.transform='none'">
@@ -1317,13 +1303,13 @@
         <div class="testimonial-card">
           <div>
             <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-            <p style="font-size:17px;line-height:1.6;font-style:italic;">"The Reddit opportunity was real. They showed up with data on exactly what our competitors were doing in the community and made it easy to say yes."</p>
+            <p style="font-size:17px;line-height:1.6;font-style:italic;">"We needed an agency that could execute across multiple channels without us managing four separate vendors. STN handled Meta, TikTok, LinkedIn, and Reddit end-to-end — and the numbers showed it. 10% YoY improvement in CAC, 50% reduction in CPL, and a 50% lift in LinkedIn followers."</p>
           </div>
           <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-            <div style="width:44px;height:44px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">EC</div>
+            <div style="width:44px;height:44px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">AR</div>
             <div>
-              <p class="author-name" style="font-size:15px;">Eric C.</p>
-              <p class="author-loc" style="font-size:13px;">Co-founder · Cozybeds</p>
+              <p class="author-name" style="font-size:15px;">Anya Razina</p>
+              <p class="author-loc" style="font-size:13px;">Director of Product Marketing</p>
             </div>
           </div>
         </div>
@@ -1343,13 +1329,13 @@
         <div class="testimonial-card">
           <div>
             <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-            <p style="font-size:17px;line-height:1.6;font-style:italic;">"STN team helped us scale on both Meta &amp; Pinterest, testing new creatives each week and we've been really happy with the results so far!"</p>
+            <p style="font-size:17px;line-height:1.6;font-style:italic;">"We scaled Reddit ads to $10k/month and found a channel that actually resonates with our music creator community. The strategy was spot on — they understood the audience immediately and built creative that didn't feel out of place."</p>
           </div>
           <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-            <div style="width:44px;height:44px;border-radius:50%;background:#ee0033;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">KA</div>
+            <div style="width:44px;height:44px;border-radius:50%;background:#7c3aed;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">M</div>
             <div>
-              <p class="author-name" style="font-size:15px;">Kevin Aguilar</p>
-              <p class="author-loc" style="font-size:13px;">COO · Tiny Protectors</p>
+              <p class="author-name" style="font-size:15px;">Matus</p>
+              <p class="author-loc" style="font-size:13px;">Founder · Apolone</p>
             </div>
           </div>
         </div>
@@ -1370,13 +1356,13 @@
         <div class="testimonial-card">
           <div>
             <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-            <p style="font-size:17px;line-height:1.6;font-style:italic;">"The Reddit opportunity was real. They showed up with data on exactly what our competitors were doing in the community and made it easy to say yes."</p>
+            <p style="font-size:17px;line-height:1.6;font-style:italic;">"We needed an agency that could execute across multiple channels without us managing four separate vendors. STN handled Meta, TikTok, LinkedIn, and Reddit end-to-end — and the numbers showed it. 10% YoY improvement in CAC, 50% reduction in CPL, and a 50% lift in LinkedIn followers."</p>
           </div>
           <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-            <div style="width:44px;height:44px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">EC</div>
+            <div style="width:44px;height:44px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">AR</div>
             <div>
-              <p class="author-name" style="font-size:15px;">Eric C.</p>
-              <p class="author-loc" style="font-size:13px;">Co-founder · Cozybeds</p>
+              <p class="author-name" style="font-size:15px;">Anya Razina</p>
+              <p class="author-loc" style="font-size:13px;">Director of Product Marketing</p>
             </div>
           </div>
         </div>
@@ -1396,13 +1382,13 @@
         <div class="testimonial-card">
           <div>
             <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-            <p style="font-size:17px;line-height:1.6;font-style:italic;">"STN team helped us scale on both Meta &amp; Pinterest, testing new creatives each week and we've been really happy with the results so far!"</p>
+            <p style="font-size:17px;line-height:1.6;font-style:italic;">"We scaled Reddit ads to $10k/month and found a channel that actually resonates with our music creator community. The strategy was spot on — they understood the audience immediately and built creative that didn't feel out of place."</p>
           </div>
           <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-            <div style="width:44px;height:44px;border-radius:50%;background:#ee0033;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">KA</div>
+            <div style="width:44px;height:44px;border-radius:50%;background:#7c3aed;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">M</div>
             <div>
-              <p class="author-name" style="font-size:15px;">Kevin Aguilar</p>
-              <p class="author-loc" style="font-size:13px;">COO · Tiny Protectors</p>
+              <p class="author-name" style="font-size:15px;">Matus</p>
+              <p class="author-loc" style="font-size:13px;">Founder · Apolone</p>
             </div>
           </div>
         </div>
@@ -1453,7 +1439,7 @@
       <details class="faq-item">
         <summary>What happens if we don't hit the 45-day guarantee?</summary>
         <div class="faq-body">
-          <p>We work for free until we do. The guarantee is tied to ROAS improvement (DTC) or CPL / pipeline lift (SaaS) benchmarked against your trailing 30-day baseline before we start. No fine print.</p>
+          <p>We work for free until we do. The guarantee is tied to CPL reduction or pipeline lift benchmarked against your trailing 30-day baseline before we start. No fine print.</p>
         </div>
       </details>
 
@@ -1474,7 +1460,7 @@
       <details class="faq-item">
         <summary>Which platforms do you run?</summary>
         <div class="faq-body">
-          <p>Meta, Google, Reddit, TikTok, LinkedIn, and Pinterest. We're a Reddit Certified Partner, so Reddit is often a high-leverage add-on for SaaS and DTC brands not already there. On the call we'll tell you the 1–2 platforms most likely to move your metric.</p>
+          <p>Meta, Google, Reddit, TikTok, LinkedIn, and Pinterest. We're a Reddit Certified Partner, so Reddit is often a high-leverage add-on for SaaS brands not already there. On the call we'll tell you the 1–2 platforms most likely to move your metric.</p>
         </div>
       </details>
 
@@ -1609,7 +1595,7 @@
           <li>8–12 creatives per month</li>
           <li>2–3 weeks to launch anything new</li>
         </ul>
-        <span class="vs-card-note-them">Cheaper, but blaming your creative for flat ROAS</span>
+        <span class="vs-card-note-them">Cheaper, but blaming your creative for rising CPL</span>
       </div>
 
     </div>
@@ -1627,7 +1613,7 @@
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
       </div>
       <div class="vs-guarantee-text">
-        <strong>45-day performance guarantee.</strong> If we don't improve your ROAS or pipeline metrics within 45 days, we work for free until we do.
+        <strong>45-day performance guarantee.</strong> If we don't improve your CPL or pipeline metrics within 45 days, we work for free until we do.
       </div>
     </div>
 
