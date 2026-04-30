@@ -305,34 +305,20 @@
     .nav-dropdown.open .nav-dropdown-menu { display: block; }
     .nav-dropdown.open .nav-dropdown-trigger > svg { transform: rotate(180deg); }
 
-    /* Accordion groups */
+    /* Section groups */
     .nav-acc-group {
       border-bottom: 1px solid rgba(0,0,0,0.06);
-      padding-bottom: 2px; margin-bottom: 2px;
+      padding-bottom: 4px; margin-bottom: 4px;
     }
-    .nav-acc-trigger {
-      display: flex; align-items: center; justify-content: space-between;
-      width: 100%; background: none; border: none; cursor: pointer;
-      font-family: inherit;
+    .nav-acc-label {
       font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; color: #FF4500;
-      padding: 8px 10px 6px; border-radius: 8px;
-      transition: background 0.15s;
+      text-transform: uppercase; color: rgba(0,0,0,0.35);
+      padding: 8px 10px 4px;
+      display: block;
     }
-    .nav-acc-trigger:hover { background: rgba(0,0,0,0.03); }
-    .nav-acc-chevron {
-      flex-shrink: 0; color: rgba(0,0,0,0.3);
-      transition: transform 0.22s ease;
-    }
-    .nav-acc-trigger.open .nav-acc-chevron { transform: rotate(180deg); }
-
-    /* Accordion panel — slide open/closed */
     .nav-acc-panel {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.26s ease;
+      display: block;
     }
-    .nav-acc-panel.open { max-height: 300px; }
 
     .nav-dropdown-item {
       display: flex; align-items: center; gap: 8px;
