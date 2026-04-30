@@ -408,6 +408,17 @@
       letter-spacing: -0.02em;
     }
     .mobile-menu-link:hover { background: rgba(0,0,0,0.05); }
+    .mobile-menu-section {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(0,0,0,0.35);
+      padding: 16px 24px 4px; width: 100%; text-align: center;
+    }
+    .mobile-menu-sublink {
+      font-size: 17px; font-variation-settings: "wdth" 110, "wght" 600;
+      color: #0a0a0a; text-decoration: none; padding: 8px 24px;
+      border-radius: 10px; transition: background 0.15s, color 0.15s;
+    }
+    .mobile-menu-sublink:hover { background: rgba(0,0,0,0.05); color: #5500DD; }
     .mobile-menu-cta {
       margin-top: 24px; display: inline-block;
       background: #5500DD; color: white; font-size: 16px;
