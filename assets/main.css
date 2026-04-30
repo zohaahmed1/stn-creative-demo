@@ -302,6 +302,14 @@
       min-width: 248px; box-shadow: 0 12px 48px rgba(0,0,0,0.14);
       z-index: 200;
     }
+    /* Bridge the gap between trigger and menu so hover doesn't drop */
+    .nav-dropdown-menu::before {
+      content: '';
+      position: absolute;
+      top: -12px;
+      left: 0; right: 0;
+      height: 12px;
+    }
     .nav-dropdown.open .nav-dropdown-menu { display: block; }
     .nav-dropdown:hover .nav-dropdown-menu { display: block; }
     .nav-dropdown.open .nav-dropdown-trigger > svg { transform: rotate(180deg); }
@@ -342,6 +350,14 @@
       min-width: 220px;
       box-shadow: 0 12px 48px rgba(0,0,0,0.14);
       z-index: 300;
+    }
+    /* Bridge the 4px gap between label and flyout panel */
+    .nav-acc-panel::before {
+      content: '';
+      position: absolute;
+      left: -8px;
+      top: 0; bottom: 0;
+      width: 8px;
     }
     .nav-acc-group:hover .nav-acc-panel { display: block; }
 
