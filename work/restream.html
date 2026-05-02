@@ -21,6 +21,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" as="style" onload="this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet"></noscript>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Leading Streaming Platform — CAC Down 19%, Subscriber Growth at 70-Week High",
+  "description": "How Skip the Noise Media built a cross-channel measurement framework for a leading streaming platform — identifying wasted spend, cutting CAC by 19%, and driving subscriber growth to a 70-week high.",
+  "author": { "@type": "Organization", "name": "Skip the Noise Media", "url": "https://skipthenoisemedia.com" },
+  "publisher": { "@type": "Organization", "name": "Skip the Noise Media", "url": "https://skipthenoisemedia.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://skipthenoisemedia.com/work/restream" }
+}
+</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --purple: #5500DD; --dark: #0d0d0d; --gray-500: #6b7280; --gray-200: #e5e7eb; --gray-100: #f3f4f6; }
@@ -63,6 +74,20 @@
     .cs-cta p { font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 24px; }
     .cs-cta a { display: inline-block; background: #fff; color: var(--purple); font-weight: 800; font-size: 14px; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
     .cs-cta a:hover { opacity: 0.9; }
+    .cs-insight { background: #0a0520; border-radius: 16px; padding: 28px 32px; margin: 0 0 48px; border-left: 4px solid var(--purple); }
+    .cs-insight .insight-label { font-size: 11px; font-weight: 700; color: #a78bfa; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+    .cs-insight p { font-size: 16px; color: rgba(255,255,255,0.85); line-height: 1.7; margin: 0; }
+    .cs-section h3 { font-size: 17px; font-weight: 800; color: var(--dark); margin: 24px 0 10px; letter-spacing: -0.01em; }
+    .cs-related { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+    .cs-related a { display: block; background: var(--gray-100); border-radius: 12px; padding: 16px 20px; text-decoration: none; color: var(--dark); transition: background 0.2s; }
+    .cs-related a:hover { background: var(--gray-200); }
+    .cs-related a .rel-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .cs-related a .rel-title { font-size: 14px; font-weight: 800; color: var(--dark); line-height: 1.3; margin-bottom: 4px; }
+    .cs-related a .rel-stat { font-size: 12px; color: var(--purple); font-weight: 700; }
+    .faq-item { border-bottom: 1px solid var(--gray-200); padding: 20px 0; }
+    .faq-item:first-child { padding-top: 0; }
+    .faq-item h3 { font-size: 16px; font-weight: 800; color: var(--dark); margin-bottom: 10px; letter-spacing: -0.01em; }
+    .faq-item p { font-size: 15px; color: #444; line-height: 1.7; margin: 0; }
     footer { background: #0d0d14; padding: 40px 24px; text-align: center; }
     footer p { font-size: 14px; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
     footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
@@ -112,37 +137,46 @@
   </div>
 </section>
 <div class="cs-body">
+
   <div class="cs-section">
     <h2>The problem</h2>
-    <p>A leading streaming platform was spending $30–50k per week across paid channels and growing — but standard attribution couldn't tell them which channels were actually driving new subscribers versus just claiming credit. Branded search looked efficient on paper. In reality, it was consuming nearly half the paid media budget and had an actual CAC north of $600.</p>
-    <p>They needed two things: a measurement framework they could trust, and a creative strategy that could actually scale to new regions without blowing up CAC.</p>
+    <p>A leading streaming platform was spending $30–50K per week across paid channels and growing — but standard last-click attribution couldn't tell them which channels were actually driving new subscribers versus just claiming credit for conversions that would have happened anyway.</p>
+    <p>Branded search looked efficient on paper. A user clicks a branded keyword, converts, and gets counted as a paid acquisition. In reality, that user was going to convert regardless — they already knew the product. The paid click just intercepted an organic journey and charged the business for it. When we modeled the actual CAC on branded search, it was north of $600 per subscriber and consuming nearly half the total paid media budget.</p>
+    <p>They needed two things: a measurement framework they could actually trust, and a creative strategy that could scale to new regions — Europe, Canada, Australia — without the CAC blowing up in the process.</p>
   </div>
 
   <div class="cs-section">
     <h2>What we built</h2>
-    <ul>
-      <li>A triangulated measurement framework combining Marketing Mix Modeling (MMM), multi-touch attribution (MTA), and incrementality testing — integrated directly with their subscription and reactivation data for clean, reliable inputs</li>
-      <li>Incrementality tests to isolate the true impact of paid social on overall conversions, separate from what last-click attribution was reporting</li>
-      <li>Persona-level creative strategy for three audience segments — Creators, Coaches, and Marketing Leaders — with messaging tailored to each segment's core pain points: discoverability, monetization, and audience growth</li>
-      <li>A content strategy built around resources each segment actually wanted: webinars, creator monetization ebooks, and competitor comparison guides</li>
-      <li>Expansion into Europe, Canada, and Australia with region-specific creative and budget allocation</li>
-    </ul>
+
+    <h3>A triangulated measurement framework</h3>
+    <p>We built a three-layer measurement stack: Marketing Mix Modeling (MMM) to understand contribution at the channel level, multi-touch attribution (MTA) to track the path to conversion across touchpoints, and incrementality testing to isolate true causal impact from correlation. All three were integrated with subscription data and reactivation data directly — clean inputs produce clean outputs.</p>
+    <p>This wasn't a dashboard exercise. The purpose was to answer a specific question: which spend is actually moving the subscriber number, and which spend is just showing up near conversions that were already happening?</p>
+
+    <h3>Incrementality testing to separate causation from correlation</h3>
+    <p>The branded search finding came from incrementality testing — running holdout experiments that temporarily suppressed branded spend in defined markets and measuring what happened to organic conversion volume. The results confirmed what the MMM was suggesting: organic conversions held steady. The branded clicks were intercepting organic journeys, not creating new ones.</p>
+    <p>The same methodology was applied to paid social to quantify its halo effect on search demand — a line of impact that last-click attribution was completely missing.</p>
+
+    <h3>Persona-level creative strategy for three audience segments</h3>
+    <p>With the measurement infrastructure in place, we rebuilt the creative strategy from the audience up. Three core segments emerged: Creators (focused on discoverability and reach), Coaches and educators (focused on audience growth and monetization), and Marketing Leaders (focused on multi-platform distribution). Each got distinct messaging, distinct content formats, and distinct lead magnet strategies.</p>
+    <p>Content assets were built around what each segment actually wanted: creator monetization guides, webinar series on audience growth, competitor comparison frameworks for marketing teams evaluating streaming tools.</p>
+
+    <h3>Geographic expansion with controlled CAC</h3>
+    <p>European, Canadian, and Australian market expansion required region-specific creative and budget allocation — not a translation of existing US campaigns. Each region got its own audience sizing, CAC targets, and performance benchmarks before budget was scaled. The measurement framework made it possible to expand aggressively without losing visibility into where the spend was actually working.</p>
   </div>
 
-  <div class="cs-section">
-    <h2>What the data revealed</h2>
-    <p>The MMM surfaced something the client hadn't seen before: branded search had a CAC of over $600 and was taking up to 48% of the total paid media mix. Non-brand search and paid social were being systematically underutilized — they were more efficient, but getting a smaller share of budget.</p>
-    <p>We recommended cutting branded search spend and reallocating toward higher-efficiency channels. The results came quickly. Within weeks of the reallocation, CAC dropped below 2024 averages for the first time all year while new subscriber growth accelerated simultaneously.</p>
+  <div class="cs-insight">
+    <div class="insight-label">Key insight</div>
+    <p>Last-click attribution systematically overvalues branded search because it counts brand-intent clicks as paid acquisitions. The user was coming anyway — the ad just got in the way and took the credit. When you model true incrementality, branded search CAC is often 5–10x higher than it appears on a standard dashboard. For this platform, it was over $600. Cutting it freed budget for channels that were actually growing the subscriber base.</p>
   </div>
 
   <div class="cs-section">
     <h2>Results</h2>
     <ul>
-      <li>CAC dropped 19% after the branded search reallocation — YoY subscriber growth went from ~9% to 28% in the same period. Growth got bigger, not just more efficient.</li>
-      <li>New subscriber YoY growth rate hit its highest point in 70 weeks</li>
-      <li>Non-brand search acquisitions grew 57% YoY (2,561 → 4,010) while CAC fell from $430 to $327 — on 18% more spend</li>
-      <li>At $90k/week in spend, blended CAC landed in the low $60s — a level that typically produces CACs in the $80s</li>
-      <li>Paid social incrementality test confirmed a 6% relative lift in search demand driven by paid social (p-value 0.004, R² 0.99) — proving cross-channel halo effects that last-click attribution had been missing entirely</li>
+      <li>CAC dropped 19% after the branded search reallocation — while YoY subscriber growth simultaneously accelerated from ~9% to 28%</li>
+      <li>New subscriber growth hit its highest rate in 70 consecutive weeks after the reallocation</li>
+      <li>Non-brand search acquisitions grew 57% YoY (2,561 → 4,010) while CAC on that channel fell from $430 to $327 — on 18% more spend</li>
+      <li>At $90K/week in blended spend, CAC landed in the low $60s — a level that typically produces $80s CAC at that scale</li>
+      <li>Paid social incrementality test confirmed a 6% relative lift in search demand attributable to paid social (p-value 0.004, R² 0.99) — cross-channel halo effect that last-click was missing entirely</li>
     </ul>
   </div>
 
@@ -155,6 +189,70 @@
       <span class="cs-platform-pill">X</span>
       <span class="cs-platform-pill">Google</span>
       <span class="cs-platform-pill">Bing</span>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <h2>Frequently asked questions</h2>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is Marketing Mix Modeling (MMM) and why does it matter for SaaS?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Marketing Mix Modeling is a statistical method that quantifies the contribution of each marketing channel to business outcomes — revenue, subscribers, or signups. Unlike last-click attribution, MMM accounts for the baseline conversions that would happen organically and measures the true incremental impact of each channel. For SaaS companies with high branded search volume, MMM typically reveals that branded search CAC is far higher than last-click reporting suggests — often 3–10x higher." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you reduce CAC for a SaaS company running paid media at scale?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The first step is accurate measurement — understanding which spend is actually driving incremental acquisitions versus claiming credit for organic conversions. For most SaaS companies spending more than $50K/month, branded search is significantly overvalued by last-click attribution. Incrementality testing typically reveals 20–40% of branded search conversions were going to happen organically. Reallocating that budget to genuinely incremental channels directly reduces blended CAC." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is incrementality testing in paid media?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Incrementality testing measures whether a marketing channel is actually causing conversions or just showing up near them. A holdout experiment suppresses spend in a defined market or audience group and compares conversion rates to a control group that continued seeing ads. The difference in conversion rates — adjusted for statistical significance — is the true incremental lift. It's the most reliable way to separate causation from correlation in paid media measurement." }
+        },
+        {
+          "@type": "Question",
+          "name": "How much should a SaaS company spend on branded search?",
+          "acceptedAnswer": { "@type": "Answer", "text": "It depends on competitive bidding on your brand terms. If competitors aren't bidding on your brand, branded search spend has low incrementality — most of those conversions would happen via organic results anyway. If competitors are actively bidding on your brand, some defensive spend is justified to protect conversion rates. The key is measuring actual incrementality rather than assuming branded search is efficient because the conversion rate looks high." }
+        }
+      ]
+    }
+    </script>
+    <div class="faq-item">
+      <h3>What is Marketing Mix Modeling and why does it matter for SaaS?</h3>
+      <p>Marketing Mix Modeling (MMM) is a statistical method that quantifies the true incremental contribution of each marketing channel. Unlike last-click attribution, MMM accounts for baseline organic conversions and measures what each channel actually adds on top. For SaaS companies with high branded search volume, MMM typically reveals branded search CAC is 3–10x higher than standard reporting shows.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How do you reduce CAC for a SaaS company running paid media at scale?</h3>
+      <p>Start with accurate measurement. For most SaaS companies spending $50K+/month, branded search is significantly overvalued by last-click attribution — 20–40% of those conversions were going to happen organically. Incrementality testing surfaces this. Reallocating that budget to genuinely incremental channels directly reduces blended CAC without cutting overall spend.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What is incrementality testing in paid media?</h3>
+      <p>Incrementality testing measures whether a channel is causing conversions or just appearing near them. A holdout experiment suppresses spend for a defined audience group and compares conversion rates to a control group. The difference — adjusted for statistical significance — is the true incremental lift. It's the most reliable way to separate causation from correlation in paid media attribution.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How much should a SaaS company spend on branded search?</h3>
+      <p>Only enough to defend against competitor bidding on your brand terms. If competitors aren't actively bidding on your brand, branded search has low incrementality — those conversions happen via organic anyway. The key is measuring actual incrementality rather than assuming branded search is efficient because the conversion rate looks high on the dashboard.</p>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <h2>Related case studies</h2>
+    <div class="cs-related">
+      <a href="/work/flare">
+        <div class="rel-label">Cybersecurity SaaS · Reddit + LinkedIn</div>
+        <div class="rel-title">Flare — 75 Qualified Leads in 3 Months</div>
+        <div class="rel-stat">$10K/month at scale →</div>
+      </a>
+      <a href="/work/3d-ai-studio">
+        <div class="rel-label">AI SaaS · Reddit Ads</div>
+        <div class="rel-title">3D AI Studio — Creative Testing</div>
+        <div class="rel-stat">€30 CPA after 90 days →</div>
+      </a>
     </div>
   </div>
 

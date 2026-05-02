@@ -21,6 +21,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" as="style" onload="this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet"></noscript>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Non-Profit Lottery — 3x ROAS in a 4-Week Sprint",
+  "description": "How Skip the Noise Media helped Canadian non-profit lottery organizations hit a $350K+ jackpot target in 4 weeks with 3x ROAS and 50% faster campaign activation.",
+  "author": { "@type": "Organization", "name": "Skip the Noise Media", "url": "https://skipthenoisemedia.com" },
+  "publisher": { "@type": "Organization", "name": "Skip the Noise Media", "url": "https://skipthenoisemedia.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://skipthenoisemedia.com/work/lottery" }
+}
+</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --purple: #5500DD; --dark: #0d0d0d; --gray-500: #6b7280; --gray-200: #e5e7eb; --gray-100: #f3f4f6; }
@@ -63,6 +74,20 @@
     .cs-cta p { font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 24px; }
     .cs-cta a { display: inline-block; background: #fff; color: var(--purple); font-weight: 800; font-size: 14px; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
     .cs-cta a:hover { opacity: 0.9; }
+    .cs-insight { background: #0a0520; border-radius: 16px; padding: 28px 32px; margin: 0 0 48px; border-left: 4px solid var(--purple); }
+    .cs-insight .insight-label { font-size: 11px; font-weight: 700; color: #a78bfa; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+    .cs-insight p { font-size: 16px; color: rgba(255,255,255,0.85); line-height: 1.7; margin: 0; }
+    .cs-section h3 { font-size: 17px; font-weight: 800; color: var(--dark); margin: 24px 0 10px; letter-spacing: -0.01em; }
+    .cs-related { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+    .cs-related a { display: block; background: var(--gray-100); border-radius: 12px; padding: 16px 20px; text-decoration: none; color: var(--dark); transition: background 0.2s; }
+    .cs-related a:hover { background: var(--gray-200); }
+    .cs-related a .rel-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .cs-related a .rel-title { font-size: 14px; font-weight: 800; color: var(--dark); line-height: 1.3; margin-bottom: 4px; }
+    .cs-related a .rel-stat { font-size: 12px; color: var(--purple); font-weight: 700; }
+    .faq-item { border-bottom: 1px solid var(--gray-200); padding: 20px 0; }
+    .faq-item:first-child { padding-top: 0; }
+    .faq-item h3 { font-size: 16px; font-weight: 800; color: var(--dark); margin-bottom: 10px; letter-spacing: -0.01em; }
+    .faq-item p { font-size: 15px; color: #444; line-height: 1.7; margin: 0; }
     footer { background: #0d0d14; padding: 40px 24px; text-align: center; }
     footer p { font-size: 14px; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
     footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
@@ -90,7 +115,7 @@
   </div>
 </nav>
 <div class="cs-breadcrumb">
-  <a href="/gallery"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> All work</a>
+  <a href="/case-studies"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> All case studies</a>
 </div>
 <section class="cs-hero">
   <div class="cs-hero-inner">
@@ -112,19 +137,47 @@
   </div>
 </section>
 <div class="cs-body">
+
   <div class="cs-section">
-    <h2>The goal</h2>
-    <p>Achieve a $350K+ jackpot amount in 4 weeks for Ontario, Alberta, and British Columbia based non-profit lottery companies. The campaign had a hard deadline and needed to perform from day one.</p>
+    <h2>The problem</h2>
+    <p>Non-profit lottery campaigns are structurally different from standard DTC campaigns. You have a hard deadline — the draw date — a specific dollar target that must be hit, and a geographic constraint: only residents of the province where the lottery is licensed can legally purchase. Miss the deadline or miss the target and the fundraising goal fails entirely.</p>
+    <p>For this campaign, the brief was to hit a combined $350K+ in ticket sales across Ontario, Alberta, and British Columbia within four weeks. The previous campaign infrastructure had slow activation timelines — cross-team approval and production processes were adding days to what should have been hours. By the time campaigns went live, usable campaign days were already being lost.</p>
+    <p>The two problems were connected: slow activation meant less time to optimize, which meant higher CPAs and harder targets to hit. Speed and performance had to be solved together.</p>
   </div>
+
   <div class="cs-section">
-    <h2>Our approach</h2>
+    <h2>The strategy</h2>
+
+    <h3>Cutting activation time by 50%</h3>
+    <p>We audited the end-to-end campaign activation workflow — from brief to live ads — and identified the steps adding delay without adding value. Creative approvals, asset handoffs, and platform setup were streamlined into a pre-built sprint template: standard creative formats pre-approved, audience lists pre-built, campaign structures templated and ready to populate. When the campaign window opened, we were live within hours rather than days.</p>
+    <p>Activation speed isn't just an operational metric in a time-sensitive campaign — it directly compounds ROI. An extra 3 days of live time at the end of a 28-day sprint is an 11% increase in available optimization cycles. That translates directly to CPA and ticket sales.</p>
+
+    <h3>AI-powered audience building for high-intent buyers</h3>
+    <p>Lottery ticket buyers are a specific audience: they need to be in-province (legally required), they need to be aware of charitable giving as a value, and they need to be in an active consideration mindset rather than purely entertainment-driven. We used AI-powered audience tools to build lookalike and custom audience segments from historical buyer data and high-intent behavioral signals — giving Meta and Google's algorithms a strong seed to work from rather than cold prospecting from scratch.</p>
+
+    <h3>Provincial phasing and daily budget reallocation</h3>
+    <p>Ontario, Alberta, and British Columbia have different audience sizes, different CPA curves, and different conversion rate profiles. Rather than splitting budget evenly on day one, we launched simultaneously across all three and reallocated daily based on which province was delivering lowest CPA and most remaining headroom. Budget followed performance on a 24-hour cycle throughout the sprint.</p>
+
+    <h3>Creative built for urgency without desperation</h3>
+    <p>Charitable lottery creative has a specific tonal challenge: you need urgency (deadline, limited tickets) without sounding like high-pressure sales. The winning creative framing was cause-first — lead with the charitable mission the lottery funds, then the prize, then the deadline. This sequencing produced higher CTR and lower CPM than prize-first messaging in testing, because the charitable cause differentiates the lottery from commercial gambling and creates a genuine reason to buy beyond the prize.</p>
+  </div>
+
+  <div class="cs-insight">
+    <div class="insight-label">Key insight</div>
+    <p>In time-constrained campaigns, activation speed is a performance lever, not just an operational metric. Every day a campaign isn't live is a day the algorithm can't learn. Every day the algorithm is learning is a day CPA is still falling. A campaign that launches 3 days late on a 28-day window has effectively lost 11% of its optimization budget before the first impression served.</p>
+  </div>
+
+  <div class="cs-section">
+    <h2>Results</h2>
     <ul>
-      <li>Streamlined existing cross-team processes to reduce end-to-end activation timelines by 50% — getting campaigns live faster than any previous sprint</li>
-      <li>Utilized AI-powered audience building and custom audience list targeting to reach high-intent buyers quickly</li>
-      <li>Built an adaptive strategy focused on real-time optimizations — budget was reallocated daily based on performance signals</li>
-      <li>Executed a phased rollout across provinces to prioritize highest-performing regions early</li>
+      <li>$350K+ jackpot target achieved within the 4-week campaign window</li>
+      <li>3x return on ad spend across Meta and Google combined</li>
+      <li>50% reduction in campaign activation timeline — from multi-day setup to same-day launch</li>
+      <li>Multi-province campaign successfully executed across Ontario, Alberta, and British Columbia with province-level budget optimization</li>
+      <li>Charitable cause-first creative outperformed prize-first messaging on CTR and CPM in A/B testing</li>
     </ul>
   </div>
+
   <div class="cs-section">
     <h2>Platforms</h2>
     <div class="cs-platforms">
@@ -132,6 +185,71 @@
       <span class="cs-platform-pill">Google Ads</span>
     </div>
   </div>
+
+  <div class="cs-section">
+    <h2>Frequently asked questions</h2>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do you run a successful time-sensitive paid advertising campaign?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Three things matter most: activation speed, daily optimization cadence, and pre-built creative. Slow activation wastes the early days when CPAs tend to be higher and optimization potential is greatest. Build campaign structures, audience lists, and creative formats in advance so you go live immediately when the window opens. Then run daily budget reallocation based on real-time CPA signals rather than weekly or bi-weekly check-ins — in a 4-week sprint, weekly optimization is too slow." }
+        },
+        {
+          "@type": "Question",
+          "name": "What digital advertising platforms work best for non-profit campaigns?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Meta and Google are the highest-volume, most targetable options for non-profit campaigns with geographic and demographic constraints. Meta excels at building awareness and emotional connection with cause-based creative. Google captures high-intent search traffic from people actively looking for ways to give or participate. For lottery-style campaigns with geographic restrictions, both platforms support province or state-level geographic targeting with strong precision." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you target lottery ticket buyers with digital ads?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Start with geographic containment — only target within the licensed jurisdiction. Layer on behavioral and interest signals associated with charitable giving, community involvement, and lottery participation from historical buyer data. Lookalike audiences built from past buyers typically outperform cold interest-based targeting for lottery campaigns. AI-powered audience tools can accelerate this by scoring broad audience pools against buyer-behavior patterns before spend begins." }
+        },
+        {
+          "@type": "Question",
+          "name": "What creative approach works best for charitable lottery advertising?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Lead with the cause, not the prize. Charitable lottery advertising that leads with what the money funds — medical equipment, community programs, research — outperforms prize-first messaging on CTR and CPM. The cause differentiates the product from commercial gambling and gives buyers a reason beyond winning to participate. Urgency (deadline, limited tickets) should appear in the ad but not dominate the first frame." }
+        }
+      ]
+    }
+    </script>
+    <div class="faq-item">
+      <h3>How do you run a successful time-sensitive paid advertising campaign?</h3>
+      <p>Three things matter most: activation speed, daily optimization cadence, and pre-built creative. Slow activation wastes the early days when CPAs tend to be higher and optimization potential is greatest. Build campaign structures, audience lists, and creative in advance so you go live immediately when the window opens. Then run daily budget reallocation — in a 4-week sprint, weekly optimization is too slow.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What digital advertising platforms work best for non-profit campaigns?</h3>
+      <p>Meta and Google are the highest-volume options for non-profit campaigns with geographic and demographic constraints. Meta excels at emotional connection with cause-based creative. Google captures high-intent search traffic from people actively looking to give. Both support province or state-level geographic targeting with strong precision.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How do you target lottery ticket buyers with digital ads?</h3>
+      <p>Start with geographic containment — target only within the licensed jurisdiction. Layer behavioral and interest signals associated with charitable giving and community involvement. Lookalike audiences built from past buyers typically outperform cold interest-based targeting. AI-powered audience tools can accelerate this by scoring broad audience pools against buyer-behavior patterns before spend begins.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What creative approach works best for charitable lottery advertising?</h3>
+      <p>Lead with the cause, not the prize. Advertising that leads with what the money funds outperforms prize-first messaging on CTR and CPM. The cause differentiates the product from commercial gambling and gives buyers a reason beyond winning to participate. Urgency (deadline, limited tickets) should appear in the ad but not dominate the first frame.</p>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <h2>Related case studies</h2>
+    <div class="cs-related">
+      <a href="/work/cozybeds">
+        <div class="rel-label">eComm · DTC · High-Ticket</div>
+        <div class="rel-title">CozyBeds — High-Ticket Furniture</div>
+        <div class="rel-stat">4x ROI, $12.7K in 30 days →</div>
+      </a>
+      <a href="/work/tp">
+        <div class="rel-label">DTC Lifestyle · Meta · Pinterest</div>
+        <div class="rel-title">US Women's Lifestyle Brand</div>
+        <div class="rel-stat">4.5x ROAS on Meta, 6.8x on Pinterest →</div>
+      </a>
+    </div>
+  </div>
+
   <div class="cs-cta">
     <h3>Working on a time-sensitive campaign?</h3>
     <p>We know how to build for speed without sacrificing performance. Let's talk.</p>

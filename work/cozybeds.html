@@ -21,6 +21,17 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" as="style" onload="this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet"></noscript>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "CozyBeds — 4x ROI on High-Ticket DTC Furniture",
+  "description": "How Skip the Noise Media helped CozyBeds build a DTC brand from scratch and achieve 4x ROI on furniture products with a $500–$2,000 average order value.",
+  "author": { "@type": "Organization", "name": "Skip the Noise Media", "url": "https://skipthenoisemedia.com" },
+  "publisher": { "@type": "Organization", "name": "Skip the Noise Media", "url": "https://skipthenoisemedia.com" },
+  "mainEntityOfPage": { "@type": "WebPage", "@id": "https://skipthenoisemedia.com/work/cozybeds" }
+}
+</script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --purple: #5500DD; --dark: #0d0d0d; --gray-500: #6b7280; --gray-200: #e5e7eb; --gray-100: #f3f4f6; }
@@ -63,6 +74,20 @@
     .cs-cta p { font-size: 15px; color: rgba(255,255,255,0.75); margin-bottom: 24px; }
     .cs-cta a { display: inline-block; background: #fff; color: var(--purple); font-weight: 800; font-size: 14px; padding: 12px 28px; border-radius: 100px; text-decoration: none; transition: opacity 0.2s; }
     .cs-cta a:hover { opacity: 0.9; }
+    .cs-insight { background: #0a0520; border-radius: 16px; padding: 28px 32px; margin: 0 0 48px; border-left: 4px solid var(--purple); }
+    .cs-insight .insight-label { font-size: 11px; font-weight: 700; color: #a78bfa; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 10px; }
+    .cs-insight p { font-size: 16px; color: rgba(255,255,255,0.85); line-height: 1.7; margin: 0; }
+    .cs-section h3 { font-size: 17px; font-weight: 800; color: var(--dark); margin: 24px 0 10px; letter-spacing: -0.01em; }
+    .cs-related { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 4px; }
+    .cs-related a { display: block; background: var(--gray-100); border-radius: 12px; padding: 16px 20px; text-decoration: none; color: var(--dark); transition: background 0.2s; }
+    .cs-related a:hover { background: var(--gray-200); }
+    .cs-related a .rel-label { font-size: 11px; font-weight: 700; color: var(--gray-500); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+    .cs-related a .rel-title { font-size: 14px; font-weight: 800; color: var(--dark); line-height: 1.3; margin-bottom: 4px; }
+    .cs-related a .rel-stat { font-size: 12px; color: var(--purple); font-weight: 700; }
+    .faq-item { border-bottom: 1px solid var(--gray-200); padding: 20px 0; }
+    .faq-item:first-child { padding-top: 0; }
+    .faq-item h3 { font-size: 16px; font-weight: 800; color: var(--dark); margin-bottom: 10px; letter-spacing: -0.01em; }
+    .faq-item p { font-size: 15px; color: #444; line-height: 1.7; margin: 0; }
     footer { background: #0d0d14; padding: 40px 24px; text-align: center; }
     footer p { font-size: 14px; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
     footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
@@ -90,7 +115,7 @@
   </div>
 </nav>
 <div class="cs-breadcrumb">
-  <a href="/gallery"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> All work</a>
+  <a href="/case-studies"><svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> All case studies</a>
 </div>
 <section class="cs-hero">
   <div class="cs-hero-inner">
@@ -111,20 +136,48 @@
   </div>
 </section>
 <div class="cs-body">
+
   <div class="cs-section">
-    <h2>The goal</h2>
-    <p>Bring CozyBeds' success from Amazon and Wayfair into a real DTC brand — with its own website, identity, and direct customer relationships. Drive sales for high-ticket products in the $500 to $2,000 price range.</p>
+    <h2>The problem</h2>
+    <p>CozyBeds had proven demand — strong sales on Amazon and Wayfair confirmed the product had real buyers. But marketplace success doesn't translate automatically to DTC success. On Amazon, the brand was invisible: no identity, no customer relationship, no email list, no repeat purchase loop. When a customer bought on Wayfair, they became Wayfair's customer, not CozyBeds'.</p>
+    <p>Building a DTC channel for high-ticket furniture ($500–$2,000 AOV) is fundamentally different from building one for impulse-priced products. Nobody buys a $1,200 bed frame after seeing one Instagram ad. The purchase cycle is long — weeks of consideration, multiple return visits, price comparison with alternatives, and a significant trust requirement before the first conversion.</p>
+    <p>The challenge was building a brand and a paid media funnel that could support that decision cycle while maintaining strong ROI at a meaningful spend level.</p>
   </div>
+
   <div class="cs-section">
-    <h2>Our approach</h2>
+    <h2>The strategy</h2>
+
+    <h3>Brand build first, media second</h3>
+    <p>We started with the brand infrastructure — visual identity, website development, conversion rate optimization, and UX improvements to bring the site up to a standard where paid traffic could actually convert. Sending media budget to a weak landing page on a high-ticket product is a reliable way to destroy ROI.</p>
+    <p>The site was built around the considered-purchase buyer journey: detailed product pages with room lifestyle imagery, material and quality callouts, comparison guides against marketplace alternatives, and a clear trust architecture (reviews, warranty information, return policy) surfaced early in the browse experience.</p>
+
+    <h3>Full-funnel paid media for a long consideration cycle</h3>
+    <p>At $500–$2,000 AOV, a single-touch acquisition funnel doesn't work. We built a three-stage paid media approach: awareness content at the top to introduce the brand and product range to cold audiences, consideration content in the middle to capture returning visitors and comparison shoppers, and conversion-focused retargeting for cart abandoners and high-intent product viewers.</p>
+    <p>Each stage had distinct creative: lifestyle and room-in-context imagery at the awareness stage, product detail and quality comparison content for consideration, and direct response with urgency signals for retargeting.</p>
+
+    <h3>Catalog and SKU prioritization</h3>
+    <p>Shopify inventory analysis identified the highest-margin, fastest-moving SKUs. Ad spend was prioritized toward the products where conversion was most reliable and margin supported the media cost — not spread evenly across the catalog. This kept ROAS sustainable while the brand built momentum.</p>
+
+    <h3>Multi-channel coverage across the purchase journey</h3>
+    <p>Meta for broad prospecting and visual storytelling. Pinterest to capture buyers in planning and home improvement discovery mode — a high-intent channel for furniture that is chronically underutilized. Google for intent-based search traffic. Email to nurture the consideration window and recover abandoned carts. Each channel was assigned a distinct role in the funnel rather than all pointing at immediate conversion.</p>
+  </div>
+
+  <div class="cs-insight">
+    <div class="insight-label">Key insight</div>
+    <p>High-ticket DTC brands fail at paid media when they treat the funnel like an impulse product funnel. A $1,200 furniture purchase requires 5–15 touchpoints before conversion. The paid media job at the top of the funnel isn't to close the sale — it's to introduce the brand credibly and get the buyer into a remarketing window. Brands that measure top-of-funnel spend by immediate ROAS will always underfund awareness and wonder why retargeting costs keep rising.</p>
+  </div>
+
+  <div class="cs-section">
+    <h2>Results</h2>
     <ul>
-      <li>Built the brand from scratch: branding, website development, conversion rate optimization, and UX improvements</li>
-      <li>Developed practical, value-based messaging that spoke to buyers making a considered, high-investment purchase</li>
-      <li>Created a custom creative strategy emphasizing product quality, comfort, and long-term value</li>
-      <li>Conducted Shopify inventory analysis to prioritize ad spend on highest-margin, fastest-moving SKUs</li>
-      <li>Built a full-funnel paid social strategy from awareness through purchase, with retargeting for cart abandoners</li>
+      <li>4x return on investment across the full campaign period</li>
+      <li>$12.7K in sales generated within the first 30 days of full campaign launch</li>
+      <li>$500 average order value maintained — no discounting required to drive conversions</li>
+      <li>DTC channel established as a primary revenue source independent of Amazon and Wayfair</li>
+      <li>Email list and owned audience built for the first time — repeat purchase and referral capability created</li>
     </ul>
   </div>
+
   <div class="cs-section">
     <h2>Platforms</h2>
     <div class="cs-platforms">
@@ -134,9 +187,74 @@
       <span class="cs-platform-pill">Email</span>
     </div>
   </div>
+
+  <div class="cs-section">
+    <h2>Frequently asked questions</h2>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What paid media channels work best for high-ticket DTC furniture brands?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Meta for prospecting and visual storytelling, Pinterest for high-intent home improvement and decor discovery, Google for search-intent capture, and email for nurturing the long consideration cycle. High-ticket furniture buyers research extensively — a multi-channel approach that keeps the brand visible across the 2–4 week consideration window consistently outperforms single-channel approaches that push for immediate conversion." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you achieve good ROAS on a $500+ average order value product?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Separate your funnel by stage and measure each stage against appropriate metrics. Top-of-funnel awareness spend should not be measured by immediate ROAS — it builds the remarketing audience that makes retargeting ROI possible. Retargeting cart abandoners on a $800 purchase at 5–8x ROAS is achievable but requires a well-funded and well-structured awareness stage to fill that retargeting pool. Brands that cut awareness because it doesn't immediately convert end up with a shrinking retargeting audience and rising blended CPA." }
+        },
+        {
+          "@type": "Question",
+          "name": "Should high-ticket DTC brands use Pinterest ads?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes — Pinterest is significantly underutilized by furniture and home goods brands. Pinterest users are actively in planning mode for home purchases: searching, saving, building mood boards. The intent signal is structurally stronger than Meta because the user is arriving with a purpose. CPMs on Pinterest are typically lower than Meta for home and furniture categories, and the conversion intent of the audience is higher." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does it take to see results from DTC paid media for a new brand?",
+          "acceptedAnswer": { "@type": "Answer", "text": "For a high-ticket DTC brand launching a new channel, budget for 8–12 weeks before drawing strong conclusions. The first 4 weeks build the remarketing pool and generate initial conversion data. Weeks 4–8 allow the algorithm to optimize toward your best-converting audiences. By week 8–12, you should have enough data to make confident decisions about budget allocation and creative direction. CozyBeds generated $12.7K in sales within the first 30 days of full launch." }
+        }
+      ]
+    }
+    </script>
+    <div class="faq-item">
+      <h3>What paid media channels work best for high-ticket DTC furniture brands?</h3>
+      <p>Meta for prospecting and visual storytelling, Pinterest for high-intent home improvement discovery, Google for search-intent capture, and email for nurturing the long consideration cycle. Furniture buyers research extensively — a multi-channel approach that keeps the brand visible across the 2–4 week consideration window consistently outperforms single-channel approaches pushing for immediate conversion.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How do you achieve good ROAS on a $500+ average order value product?</h3>
+      <p>Separate your funnel by stage and measure each stage against appropriate metrics. Top-of-funnel spend shouldn't be judged by immediate ROAS — it builds the remarketing audience that makes retargeting ROI possible. Brands that cut awareness because it doesn't immediately convert end up with a shrinking retargeting pool and rising blended CPA.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Should high-ticket DTC brands use Pinterest ads?</h3>
+      <p>Yes — Pinterest is underutilized by furniture brands. Pinterest users are actively in planning mode for home purchases: searching, saving, building mood boards. The intent signal is stronger than Meta because they arrive with a purpose. CPMs are typically lower than Meta for home and furniture categories.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How long does it take to see results from DTC paid media for a new brand?</h3>
+      <p>Budget for 8–12 weeks before drawing strong conclusions. The first 4 weeks build the remarketing pool and generate initial conversion data. By weeks 8–12, you have enough data to make confident decisions about budget allocation and creative direction. CozyBeds generated $12.7K in sales within the first 30 days of full launch.</p>
+    </div>
+  </div>
+
+  <div class="cs-section">
+    <h2>Related case studies</h2>
+    <div class="cs-related">
+      <a href="/work/tp">
+        <div class="rel-label">DTC Lifestyle · Meta · Pinterest</div>
+        <div class="rel-title">US Women's Lifestyle Brand</div>
+        <div class="rel-stat">4.5x ROAS on Meta, 6.8x on Pinterest →</div>
+      </a>
+      <a href="/work/noirver">
+        <div class="rel-label">eComm Fashion · TikTok · Snapchat</div>
+        <div class="rel-title">Noirvere — European Handbag Brand</div>
+        <div class="rel-stat">4.3x ROAS on TikTok →</div>
+      </a>
+    </div>
+  </div>
+
   <div class="cs-cta">
     <h3>Selling high-ticket DTC?</h3>
-    <p>We specialize in paid media for considered-purchase brands. Let us show you what's possible.</p>
+    <p>We specialize in paid media for considered-purchase brands. Let us show you what's possible. Free audit.</p>
     <a href="/#book">Get a free audit</a>
   </div>
 </div>
