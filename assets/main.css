@@ -347,9 +347,20 @@
       border: 1px solid rgba(0,0,0,0.08);
       border-radius: 16px;
       padding: 8px;
-      min-width: 220px;
+      min-width: 252px;
       box-shadow: 0 12px 48px rgba(0,0,0,0.14);
       z-index: 300;
+    }
+    .nav-dropdown-cat {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(0,0,0,0.35);
+      padding: 6px 10px 3px;
+      pointer-events: none;
+    }
+    .nav-dropdown-cat.is-second {
+      margin-top: 4px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(0,0,0,0.07);
     }
     /* Bridge the 4px gap between label and flyout panel */
     .nav-acc-panel::before {
