@@ -1630,7 +1630,12 @@
         clip-path: none !important;
         min-height: auto !important;
         padding: 32px 24px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+        overflow: hidden !important;
       }
+      /* Inner tool logo grids inside panels — 2 cols on mobile */
+      .linea-panel-left div[style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
       .linea-panel-right { opacity: 1 !important; transform: none !important; padding: 28px 24px !important; }
       .linea-pill { opacity: 1 !important; transform: none !important; }
       .linea-card div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
