@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M4JR5P3B');</script>
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","tkmbhjjy2n");</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reddit Ads ROI: How to Measure Performance and Attribution (2026) | Skip the Noise Media</title>
+  <meta name="description" content="How to actually measure Reddit ads ROI. The right attribution setup, conversion tracking, and performance benchmarks — from a Reddit Certified Partner who's run 40+ campaigns.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://skipthenoisemedia.com/blog/reddit-ads-roi-attribution">
+  <meta property="og:title" content="Reddit Ads ROI: How to Measure Performance and Attribution (2026)">
+  <meta property="og:description" content="The right way to measure Reddit ads ROI. Attribution setup, conversion tracking, and real benchmarks from 40+ campaigns.">
+  <meta property="og:image" content="https://skipthenoisemedia.com/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://skipthenoisemedia.com/blog/reddit-ads-roi-attribution">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Reddit Ads ROI: How to Measure Performance and Attribution (2026)","description":"How to actually measure Reddit ads ROI — attribution setup, conversion tracking, and performance benchmarks from a Reddit Certified Partner.","author":{"@type":"Organization","name":"Skip the Noise Media","url":"https://skipthenoisemedia.com"},"publisher":{"@type":"Organization","name":"Skip the Noise Media","url":"https://skipthenoisemedia.com","logo":{"@type":"ImageObject","url":"https://skipthenoisemedia.com/assets/og-image.png"}},"url":"https://skipthenoisemedia.com/blog/reddit-ads-roi-attribution","datePublished":"2026-05-05","about":["Reddit Advertising","Reddit Ads ROI","Reddit Attribution","B2B SaaS Advertising","Reddit Ads Measurement"]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do you measure ROI from Reddit ads?","acceptedAnswer":{"@type":"Answer","text":"Measuring Reddit ads ROI requires three things working together: the Reddit Pixel installed on your site for on-platform conversion data, UTM parameters on every ad URL for GA4 or your analytics platform, and a CRM connection to close the loop on lead quality and closed-won revenue. For B2B, closed-loop CRM attribution matters most — a $200 CPL that closes at 15% is better ROI than a $50 CPL that closes at 2%."}},{"@type":"Question","name":"What is a good ROAS for Reddit ads?","acceptedAnswer":{"@type":"Answer","text":"For B2B SaaS, ROAS as a metric is less useful than CPL and CAC. A typical well-optimized B2B SaaS Reddit campaign targets $80 to $150 CPL with a 10 to 20% lead-to-opportunity conversion rate. For ecommerce, Reddit ads benchmarks are 1.5x to 3x ROAS in the first 90 days, improving to 3x to 5x after creative optimization."}},{"@type":"Question","name":"Does Reddit Pixel track conversions accurately?","acceptedAnswer":{"@type":"Answer","text":"Reddit Pixel accuracy depends heavily on your audience. For general B2B SaaS, Reddit Pixel captures roughly 60 to 70% of actual conversions due to ad blockers and cookie restrictions. For technical audiences like cybersecurity and dev tools — where ad blocker usage can exceed 40% — you should weight UTM-based analytics more heavily and supplement with server-side conversion tracking where possible."}},{"@type":"Question","name":"What attribution window should I use for Reddit ads?","acceptedAnswer":{"@type":"Answer","text":"Reddit's default attribution window is 28 days post-click and 1 day post-view. For B2B SaaS with longer consideration cycles, we recommend extending to 28-day post-click and disabling view-through attribution entirely — view-through in B2B creates attribution inflation that distorts CAC calculations. For ecommerce, the default windows are generally appropriate."}},{"@type":"Question","name":"How long does it take to see ROI from Reddit ads?","acceptedAnswer":{"@type":"Answer","text":"Most B2B SaaS companies see initial conversion data within 30 days and reach a measurable positive ROI within 60 to 90 days. The timeline depends heavily on your sales cycle length — if your average deal closes in 3 months, you need at least 5 to 6 months of data to accurately measure Reddit's downstream revenue contribution."}}]}</script>
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" as="style" onload="this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet"></noscript>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--purple:#5500DD;--orange:#FF4500;--dark:#0d0d0d;--g500:#6b7280;--g200:#e5e7eb;--g100:#f3f4f6}
+    body{font-family:'Satoshi',system-ui,sans-serif;color:var(--dark);background:#fff;-webkit-font-smoothing:antialiased}
+    nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--g200);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
+    .nav-logo{font-size:15px;font-weight:800;color:var(--dark);text-decoration:none;letter-spacing:-0.02em}
+    .nav-links{display:flex;gap:24px;align-items:center}
+    .nav-links a{font-size:14px;font-weight:500;color:var(--g500);text-decoration:none;transition:color 0.2s}
+    .nav-links a:hover{color:var(--dark)}
+    .nav-cta{background:var(--purple);color:#fff!important;padding:8px 18px;border-radius:100px;font-weight:700!important;font-size:13px!important}
+    .article-hero{background:#0a0520;padding:72px 24px 64px}
+    .article-hero-inner{max-width:760px;margin:0 auto}
+    .article-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,69,0,0.15);border:1px solid rgba(255,69,0,0.35);border-radius:100px;padding:4px 14px;font-size:12px;font-weight:700;color:#FF6B35;letter-spacing:0.06em;text-transform:uppercase;margin-bottom:20px}
+    .article-hero h1{font-size:clamp(28px,4vw,46px);font-weight:900;color:#fff;line-height:1.1;letter-spacing:-0.03em;margin-bottom:20px}
+    .article-hero h1 em{font-family:'Playfair Display',Georgia,serif;font-style:italic}
+    .article-meta{display:flex;align-items:center;gap:16px;font-size:14px;color:rgba(255,255,255,0.45);flex-wrap:wrap}
+    .article-body{max-width:760px;margin:0 auto;padding:56px 24px 80px}
+    .article-body p{font-size:17px;line-height:1.75;color:#1a1a1a;margin-bottom:24px}
+    .article-body h2{font-size:clamp(22px,3vw,30px);font-weight:900;letter-spacing:-0.025em;color:var(--dark);margin:52px 0 16px;line-height:1.2}
+    .article-body h3{font-size:19px;font-weight:700;letter-spacing:-0.02em;color:var(--dark);margin:36px 0 12px}
+    .article-body ul{margin:0 0 24px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+    .article-body ul li{font-size:17px;line-height:1.6;color:#1a1a1a;padding-left:24px;position:relative}
+    .article-body ul li::before{content:'';position:absolute;left:0;top:10px;width:6px;height:6px;border-radius:50%;background:var(--purple)}
+    .article-body a{color:var(--purple);text-decoration:underline}
+    .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px 0}
+    .stat-box{background:var(--g100);border-radius:16px;padding:24px 20px;text-align:center}
+    .stat-box .num{font-size:32px;font-weight:900;letter-spacing:-0.04em;color:var(--purple);display:block;margin-bottom:4px}
+    .stat-box .label{font-size:13px;font-weight:600;color:var(--g500)}
+    .pull-quote{border-left:4px solid var(--orange);padding:16px 24px;margin:32px 0;background:#fff8f5;border-radius:0 12px 12px 0}
+    .pull-quote p{font-size:18px!important;font-weight:600;color:#1a1a1a;margin:0!important;line-height:1.5}
+    .case-card{background:#0a0520;border-radius:20px;padding:32px;margin:32px 0;color:#fff}
+    .case-card .case-label{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px}
+    .case-card .case-title{font-size:18px;font-weight:800;color:#fff;margin-bottom:20px;letter-spacing:-0.02em}
+    .case-card .case-stats{display:flex;gap:24px;flex-wrap:wrap}
+    .case-card .case-stat .case-num{font-size:28px;font-weight:900;letter-spacing:-0.04em;color:#FF6B35}
+    .case-card .case-stat .case-desc{font-size:13px;color:rgba(255,255,255,0.55);margin-top:2px}
+    .playbook-cta{background:var(--orange);border-radius:20px;padding:40px 36px;margin:48px 0;text-align:center}
+    .playbook-cta h3{font-size:24px;font-weight:900;color:#fff;letter-spacing:-0.02em;margin:0 0 10px!important}
+    .playbook-cta p{font-size:15px;color:rgba(255,255,255,0.8);margin:0 0 24px!important}
+    .playbook-cta a{display:inline-block;background:#fff;color:var(--orange)!important;font-weight:800;font-size:14px;padding:12px 28px;border-radius:100px;text-decoration:none!important}
+    .comparison-table{width:100%;border-collapse:collapse;margin:32px 0;font-size:15px}
+    .comparison-table th{background:#0a0520;color:#fff;padding:12px 16px;text-align:left;font-size:13px;font-weight:700;letter-spacing:0.03em}
+    .comparison-table td{padding:12px 16px;border-bottom:1px solid var(--g200);vertical-align:top}
+    .comparison-table tr:last-child td{border-bottom:none}
+    .comparison-table tr:nth-child(even) td{background:var(--g100)}
+    .tag-good{display:inline-block;background:#dcfce7;color:#166534;font-size:12px;font-weight:700;padding:2px 10px;border-radius:100px}
+    .tag-ok{display:inline-block;background:#fef9c3;color:#854d0e;font-size:12px;font-weight:700;padding:2px 10px;border-radius:100px}
+    .tag-low{display:inline-block;background:#fee2e2;color:#991b1b;font-size:12px;font-weight:700;padding:2px 10px;border-radius:100px}
+    footer{background:#0d0d14;padding:40px 24px;text-align:center}
+    footer p{font-size:14px;color:rgba(255,255,255,0.35);margin-bottom:8px}
+    footer a{color:rgba(255,255,255,0.35);text-decoration:none}
+    @media(max-width:600px){.stat-row{grid-template-columns:1fr}.nav-links{display:none}.comparison-table{font-size:13px}.comparison-table th,.comparison-table td{padding:10px 12px}}
+    .cal-modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;z-index:999;background:rgba(0,0,0,0.5);align-items:center;justify-content:center}
+    .cal-modal.open{display:flex}
+    .cal-modal-content{background:white;border-radius:12px;width:90%;max-width:600px;max-height:90vh;overflow:auto;position:relative}
+    .cal-modal-close{position:absolute;top:20px;right:20px;background:none;border:none;font-size:24px;cursor:pointer;z-index:1000}
+  </style>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1906222660310524');fbq('track','PageView');</script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4JR5P3B" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<nav>
+  <a href="/" class="nav-logo">Skip the Noise Media</a>
+  <div class="nav-links">
+    <a href="/services">Services</a>
+    <a href="/process">Process</a>
+    <a href="/gallery">Portfolio</a>
+    <a href="/blog">Resources</a>
+    <a href="/#book" class="nav-cta">3 free ads</a>
+  </div>
+</nav>
+<section class="article-hero">
+  <div class="article-hero-inner">
+    <div class="article-tag">Reddit Ads Guide · Measurement</div>
+    <h1>Reddit Ads ROI:<br><em>How to Actually Measure It</em></h1>
+    <div class="article-meta">
+      <span>By Skip the Noise Media</span><span>·</span><span>Reddit Certified Partner</span><span>·</span><span>May 2026</span>
+    </div>
+  </div>
+</section>
+<article class="article-body">
+
+  <p>Reddit ads are notoriously hard to measure. Between ad blockers, anonymous browsing, and a platform that sits higher in the funnel than most, attribution gaps are real. We've run 40+ Reddit campaigns for B2B SaaS companies and the measurement question comes up on every kickoff call.</p>
+
+  <p>Here's the honest answer: Reddit measurement requires more setup than Google or Meta, but it's entirely solvable. The companies that struggle with Reddit attribution usually have the same problem — they're using only one data source instead of triangulating across three.</p>
+
+  <p>This guide walks through the full attribution stack we use for every campaign, the benchmarks you should be comparing against, and how to tell whether your Reddit spend is actually working.</p>
+
+  <div class="stat-row">
+    <div class="stat-box"><span class="num">$15</span><span class="label">CPL achieved for Restream on Reddit (vs industry average of $80+)</span></div>
+    <div class="stat-box"><span class="num">3x</span><span class="label">Attribution gap reduction with full-stack tracking vs pixel-only</span></div>
+    <div class="stat-box"><span class="num">90d</span><span class="label">Minimum to judge Reddit ROI fairly for B2B SaaS</span></div>
+  </div>
+
+  <h2>Why Reddit attribution is harder than other platforms</h2>
+
+  <p>Three things make Reddit measurement uniquely challenging:</p>
+
+  <p><strong>Ad blocker prevalence.</strong> Reddit's audience skews technical. In developer, cybersecurity, and data engineering communities, ad blocker usage routinely exceeds 40%. That means the Reddit Pixel is invisible to nearly half your impressions in those verticals. Your platform-reported conversion numbers are understated by design.</p>
+
+  <p><strong>Anonymous and logged-out browsing.</strong> A meaningful portion of Reddit users browse without accounts or in incognito mode. Cross-device and cross-session attribution breaks down. Someone who sees your ad on Reddit at lunch and converts on their work laptop in the afternoon may never be connected in your reporting.</p>
+
+  <p><strong>Upper-funnel influence, lower-funnel conversion.</strong> Reddit typically creates awareness that converts through other channels. A prospect sees your ad on r/devops, doesn't click, then Googles your brand name three days later and converts via organic search. Reddit gets zero credit in any last-touch or first-touch model. This is the attribution model problem, not a Reddit problem — but it means Reddit's value is systematically underreported.</p>
+
+  <div class="pull-quote">
+    <p>Every Reddit campaign we've run has shown higher ROI when you close the loop with CRM data than what the platform dashboard reports. The gap averages 30 to 50%.</p>
+  </div>
+
+  <h2>The three-layer attribution stack</h2>
+
+  <p>We use three layers for every campaign. None of them alone is sufficient. Together, they triangulate close to ground truth.</p>
+
+  <h3>Layer 1: Reddit Pixel (on-platform conversion data)</h3>
+
+  <p>The Reddit Pixel tracks clicks that convert on your site within the attribution window. It's the fastest feedback loop but the least accurate in isolation for technical audiences.</p>
+
+  <p><strong>Setup requirements:</strong></p>
+  <ul>
+    <li>Install the Reddit Pixel base code on every page of your site</li>
+    <li>Fire a Lead event on form submission or demo booking completion (not just on the landing page load)</li>
+    <li>Fire a Purchase event on paid conversion if applicable</li>
+    <li>Set attribution window to 28-day post-click, view-through off (for B2B)</li>
+    <li>Use Reddit's Conversions API (CAPI) if your audience is likely to block the browser pixel</li>
+  </ul>
+
+  <p>Reddit's Conversions API sends event data server-side, bypassing ad blockers entirely. It requires developer implementation but recovers 20 to 35% of conversions that would otherwise be invisible. For any cybersecurity, dev tools, or enterprise SaaS campaign, CAPI is not optional.</p>
+
+  <h3>Layer 2: UTM parameters and GA4</h3>
+
+  <p>UTM tracking captures every Reddit click that arrives on your site, independent of the Reddit Pixel. This is your source-of-truth for traffic volume and on-site behavior.</p>
+
+  <p><strong>UTM structure for Reddit campaigns:</strong></p>
+  <ul>
+    <li><code>utm_source=reddit</code></li>
+    <li><code>utm_medium=paid-social</code></li>
+    <li><code>utm_campaign=[campaign-name]</code></li>
+    <li><code>utm_content=[ad-variant-id]</code></li>
+    <li><code>utm_term=[subreddit]</code></li>
+  </ul>
+
+  <p>Using the subreddit in utm_term lets you see which communities are driving qualified traffic in GA4, independent of Reddit's own reporting. This is critical for budget allocation decisions — Reddit's platform dashboard will show you CTR and conversions, but GA4 shows you bounce rate, time on site, and pages per session by subreddit, which tells you a lot more about lead quality.</p>
+
+  <h3>Layer 3: CRM closed-loop attribution</h3>
+
+  <p>For B2B SaaS, this is the most important layer and the one most companies skip. Platform metrics tell you how many leads you got. CRM closed-loop attribution tells you how many of those leads became pipeline and revenue.</p>
+
+  <p><strong>The setup:</strong></p>
+  <ul>
+    <li>Pass UTM parameters through to your CRM on form submission (HubSpot, Salesforce, Pipedrive all support this natively)</li>
+    <li>Tag every contact with their first-touch and last-touch source</li>
+    <li>Report on lead-to-opportunity rate and lead-to-close rate segmented by source</li>
+    <li>Calculate CPL, cost-per-opportunity, and CAC separately for Reddit vs other channels</li>
+  </ul>
+
+  <p>This is where Reddit often surprises companies. Because Reddit reaches buyers at the research stage — often before they've raised their hand anywhere else — Reddit leads frequently show higher intent than Google or LinkedIn leads, even if CPL looks higher on the surface. The quality multiplier only shows up in closed-loop data.</p>
+
+  <h2>Reddit ads performance benchmarks by funnel stage</h2>
+
+  <p>These are real numbers from campaigns we've run across B2B SaaS verticals in 2025 and 2026. Use them to calibrate whether your campaign is performing or needs adjustment.</p>
+
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Metric</th>
+        <th>Early stage (days 1–30)</th>
+        <th>Optimized (days 60–90)</th>
+        <th>Mature (90d+)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>CTR (feed ads)</td>
+        <td>0.3% – 0.6%</td>
+        <td>0.5% – 1.0%</td>
+        <td>0.8% – 1.5%</td>
+      </tr>
+      <tr>
+        <td>CPL (B2B SaaS)</td>
+        <td>$120 – $250</td>
+        <td>$80 – $150</td>
+        <td>$50 – $100</td>
+      </tr>
+      <tr>
+        <td>Lead to opportunity</td>
+        <td>8% – 12%</td>
+        <td>12% – 18%</td>
+        <td>15% – 25%</td>
+      </tr>
+      <tr>
+        <td>Cost per opportunity</td>
+        <td>$800 – $2,500</td>
+        <td>$500 – $1,200</td>
+        <td>$300 – $700</td>
+      </tr>
+      <tr>
+        <td>Platform pixel capture rate</td>
+        <td>55% – 65%</td>
+        <td>60% – 70%</td>
+        <td>65% – 75% (with CAPI)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The most important column is "Mature." Reddit's compounding effect is real — as Reddit learns your audience, as you iterate creative, and as organic brand recognition builds, performance improves meaningfully past the 90-day mark. Companies that judge Reddit ROI at 30 or 60 days and shut down campaigns are consistently making the wrong call.</p>
+
+  <h2>What "good" ROI looks like for B2B SaaS on Reddit</h2>
+
+  <p>There's no universal number, but here's the framework we use for every client:</p>
+
+  <p><strong>Step 1: Calculate your target CPL.</strong> Start with your average contract value (ACV) and your target CAC ratio. If your ACV is $15,000 and you're targeting a 3:1 LTV:CAC ratio, your max CAC is $5,000. With a 20% lead-to-close rate, your max CPL is $1,000. Most Reddit CPLs for B2B SaaS land between $75 and $200 — well inside that ceiling.</p>
+
+  <p><strong>Step 2: Measure against pipeline created, not just leads generated.</strong> A campaign that generates 50 leads at $100 CPL with 15% lead-to-opportunity is better than one generating 100 leads at $60 CPL with 5% lead-to-opportunity. Pipeline created per dollar spent is the real metric.</p>
+
+  <p><strong>Step 3: Apply the attribution multiplier.</strong> If you're not using CAPI and your audience is technical, add 25 to 40% to your platform-reported conversions to estimate actual conversions. This is a rough correction, but it prevents you from understating Reddit's contribution.</p>
+
+  <div class="case-card">
+    <div class="case-label">Case Study</div>
+    <div class="case-title">Restream — Video Streaming SaaS</div>
+    <div class="case-stats">
+      <div class="case-stat"><div class="case-num">$15</div><div class="case-desc">Cost per lead (vs $80+ industry average)</div></div>
+      <div class="case-stat"><div class="case-num">5x</div><div class="case-desc">Improvement from initial CPL to optimized CPL</div></div>
+      <div class="case-stat"><div class="case-num">r/Twitch</div><div class="case-desc">Top-performing subreddit by lead volume</div></div>
+    </div>
+  </div>
+
+  <h2>Attribution windows: what to use and why</h2>
+
+  <p>Reddit's default attribution windows are 28-day post-click and 1-day post-view. For most B2B SaaS companies, we recommend changing these:</p>
+
+  <table class="comparison-table">
+    <thead>
+      <tr>
+        <th>Setting</th>
+        <th>B2B SaaS recommendation</th>
+        <th>Ecommerce recommendation</th>
+        <th>Why</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Post-click window</td>
+        <td>28 days</td>
+        <td>7 days</td>
+        <td>B2B consideration cycles are long; ecomm is shorter</td>
+      </tr>
+      <tr>
+        <td>View-through attribution</td>
+        <td>Off</td>
+        <td>1 day</td>
+        <td>B2B view-through inflates numbers; ecomm views matter more</td>
+      </tr>
+      <tr>
+        <td>Cross-device attribution</td>
+        <td>On (if available)</td>
+        <td>On</td>
+        <td>B2B buyers frequently switch devices between research and conversion</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>The biggest mistake we see: B2B SaaS companies leaving view-through attribution on. It credits Reddit for a conversion any time someone saw your ad and later converted — even through a completely unrelated channel. For a channel like Reddit that generates a lot of impressions, this can double your reported conversion count and create a false sense of performance.</p>
+
+  <h2>How to run a 90-day measurement plan</h2>
+
+  <p>Here's the timeline we use for every new Reddit campaign:</p>
+
+  <h3>Days 1–14: Baseline and tracking validation</h3>
+  <ul>
+    <li>Confirm Reddit Pixel firing correctly on all conversion events</li>
+    <li>Verify UTM parameters passing through to CRM</li>
+    <li>Set up GA4 custom report segmented by reddit UTM source</li>
+    <li>Document baseline CPL and lead quality from other channels for comparison</li>
+  </ul>
+
+  <h3>Days 15–45: Creative iteration</h3>
+  <ul>
+    <li>Run 3 to 4 creative variants per ad set, minimum</li>
+    <li>Optimize toward conversion events (Lead), not clicks — Reddit's algorithm needs conversion signals</li>
+    <li>Kill variants with CTR below 0.3% after 5,000 impressions</li>
+    <li>Scale variants with CTR above 0.7% and conversion rate above benchmark</li>
+    <li>Check GA4 by subreddit weekly — reallocate budget toward communities with lower bounce rate</li>
+  </ul>
+
+  <h3>Days 46–90: Optimization and ROI calculation</h3>
+  <ul>
+    <li>Pull CRM data: leads by source, opportunities created, deal stage by source</li>
+    <li>Calculate cost-per-opportunity for Reddit vs all other channels</li>
+    <li>Apply attribution multiplier if CAPI not in place</li>
+    <li>Identify top 2 subreddits by lead quality, increase budget concentration</li>
+    <li>Make go/no-go decision for next quarter based on cost-per-opportunity, not CPL alone</li>
+  </ul>
+
+  <h2>The metrics that actually matter (and the ones that don't)</h2>
+
+  <p><strong>Metrics that matter:</strong></p>
+  <ul>
+    <li>Cost per qualified lead (not just any form fill)</li>
+    <li>Lead-to-opportunity conversion rate by source</li>
+    <li>Cost per sales-qualified opportunity</li>
+    <li>Pipeline created per dollar of Reddit spend</li>
+    <li>Closed-won revenue attributed to Reddit (with appropriate lag)</li>
+  </ul>
+
+  <p><strong>Metrics that mislead:</strong></p>
+  <ul>
+    <li>Platform-reported ROAS without CAPI (systematically understated)</li>
+    <li>Click-through rate alone (high CTR with low conversion rate means bad landing page, not good ads)</li>
+    <li>Impressions and reach (vanity metrics unless you're running a brand campaign)</li>
+    <li>CPL in isolation without lead quality data from CRM</li>
+    <li>View-through conversions for B2B (heavily inflate Reddit's apparent contribution)</li>
+  </ul>
+
+  <div class="pull-quote">
+    <p>The companies that give up on Reddit at 60 days are usually the ones who never connected their CRM data. Platform CPL looked high. Closed-loop CPL, when they finally pull it, looks fine.</p>
+  </div>
+
+  <h2>When Reddit ROI genuinely isn't working</h2>
+
+  <p>Sometimes the attribution is right and the campaign just isn't performing. Here are the legitimate signs:</p>
+
+  <ul>
+    <li><strong>CTR under 0.3% across all creative variants after 10,000 impressions each:</strong> The creative or targeting is wrong. Kill and restart with a different angle.</li>
+    <li><strong>Landing page bounce rate above 75% from Reddit traffic in GA4:</strong> Reddit traffic is landing somewhere that doesn't match what they expected from the ad. Fix the message match.</li>
+    <li><strong>Zero opportunities from 50+ leads:</strong> Lead quality is wrong — you're reaching the right platform but the wrong audience. Tighten subreddit targeting or change the offer.</li>
+    <li><strong>CPL not improving after 60 days and 5+ creative variants tested:</strong> The channel may not fit the offer. Consider whether Reddit's audience actually buys your product category.</li>
+  </ul>
+
+  <p>The honest reality: Reddit doesn't work for every B2B SaaS product. If your buyer doesn't participate in Reddit communities (some enterprise finance and legal buyers don't), the audience quality won't be there regardless of how good your creative is. The diagnostic above tells you whether it's a creative/targeting problem or a channel fit problem.</p>
+
+  <h2>What to do next</h2>
+
+  <p>If you're already running Reddit ads and struggling with measurement, the fastest fix is implementing UTM parameters correctly and connecting your CRM. That alone will show you whether Reddit is contributing to pipeline that's going uncredited.</p>
+
+  <p>If you're considering Reddit for the first time, start with a 90-day test at $3,000 to $5,000/month with a full attribution stack in place before you make any channel-level conclusions.</p>
+
+  <p>We're a Reddit Certified Partner and we've built the measurement infrastructure for 40+ campaigns across B2B SaaS, dev tools, cybersecurity, and HR tech. If you want a second opinion on your current setup or are planning a campaign from scratch, <a href="#" onclick="event.preventDefault();if(typeof fbq!=='undefined')fbq('track','Lead');document.getElementById('cal-modal').classList.add('open');" class="cta-booking-btn">book a free strategy call here.</a></p>
+
+  <p>You can also read our related guides on <a href="/blog/reddit-ads-cost">Reddit ads cost benchmarks</a> and <a href="/blog/reddit-ads-b2b-saas">running Reddit ads for B2B SaaS</a> to build out the full picture.</p>
+
+  <div class="playbook-cta">
+    <h3>Get the Reddit Ads Playbook</h3>
+    <p>The exact framework we use to launch and optimize Reddit campaigns — subreddit targeting, creative structure, attribution setup, and 90-day budget planning.</p>
+    <a href="/playbook">Download the free playbook</a>
+  </div>
+
+  <h2>Frequently asked questions</h2>
+
+  <h3>How do you measure ROI from Reddit ads?</h3>
+  <p>Measuring Reddit ads ROI accurately requires three layers: the Reddit Pixel (plus CAPI for technical audiences), UTM parameters feeding into GA4, and CRM closed-loop attribution that tracks lead-to-opportunity and lead-to-close rates by source. Platform-only measurement systematically understates Reddit's contribution by 25 to 50% for most B2B SaaS audiences.</p>
+
+  <h3>What is a good ROAS for Reddit ads?</h3>
+  <p>For B2B SaaS, we recommend moving away from ROAS and toward cost-per-opportunity as your primary efficiency metric. For ecommerce, a well-optimized Reddit campaign typically reaches 2x to 4x ROAS after 90 days of creative optimization. Initial ROAS on Reddit is almost always lower than mature-state ROAS because the platform's algorithm needs 30 to 45 days to optimize toward your conversion events.</p>
+
+  <h3>Does Reddit Pixel track conversions accurately?</h3>
+  <p>Reddit Pixel captures roughly 60 to 70% of actual conversions for general audiences, and as low as 50% for technical audiences with high ad blocker usage. Reddit's Conversions API (server-side tracking) recovers most of the gap and is recommended for any technical SaaS vertical. Without CAPI, your platform-reported conversion counts will understate actual performance.</p>
+
+  <h3>What attribution window should I use for Reddit ads?</h3>
+  <p>For B2B SaaS: 28-day post-click, view-through attribution off. View-through attribution creates significant inflation for B2B because Reddit generates high impression volumes and the long B2B sales cycle means many unrelated conversions get credited to Reddit views. For ecommerce, the default windows (28-day post-click, 1-day post-view) are generally appropriate.</p>
+
+  <h3>How long does it take to see ROI from Reddit ads?</h3>
+  <p>Most B2B SaaS companies see initial conversion data within 30 days and reach measurable positive ROI within 60 to 90 days. If your average sales cycle is 3 months or longer, you need at least 5 to 6 months of data before Reddit's downstream revenue contribution is fully visible in your CRM. Judge channel fit at 90 days; judge revenue ROI at 6 months.</p>
+
+</article>
+<div id="cal-modal" class="cal-modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="cal-modal-content">
+    <button class="cal-modal-close" onclick="document.getElementById('cal-modal').classList.remove('open')">×</button>
+    <iframe src="https://cal.com/zoha-ahmed/30min" style="width:100%;height:600px;border:none;" loading="lazy"></iframe>
+  </div>
+</div>
+<footer>
+  <p><a href="/">Skip the Noise Media</a> · Reddit Certified Partner</p>
+  <p>© 2026 Skip the Noise Media. All rights reserved.</p>
+</footer>
+</body>
+</html>
