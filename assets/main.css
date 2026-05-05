@@ -299,7 +299,7 @@
       position: absolute; top: calc(100% + 8px); right: 0;
       background: #fff; border: 1px solid rgba(0,0,0,0.08);
       border-radius: 16px; padding: 12px;
-      width: 460px;
+      width: 540px;
       box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
       z-index: 200;
     }
@@ -351,6 +351,26 @@
       line-height: 1.4;
     }
     .nav-dropdown-item:hover { background: rgba(85,0,221,0.07); color: #5500DD; }
+    .nav-dropdown-all {
+      display: block; font-size: 12px !important; color: #5500DD;
+      text-decoration: none; padding: 3px 8px 8px;
+      font-variation-settings: "wdth" var(--wdth), "wght" 600;
+    }
+    .nav-dropdown-all:hover { text-decoration: underline; }
+    .nav-playbook-promo {
+      display: block; background: linear-gradient(135deg, #FF4500, #ff6b35);
+      border-radius: 10px; padding: 12px 14px; text-decoration: none; margin: 4px 0 2px;
+    }
+    .nav-playbook-promo:hover { opacity: 0.92; }
+    .nav-playbook-eyebrow {
+      display: block; font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 2px;
+    }
+    .nav-playbook-title {
+      display: block; font-size: 14px; font-weight: 800; color: #fff;
+      margin-bottom: 3px; letter-spacing: -0.01em;
+    }
+    .nav-playbook-sub { display: block; font-size: 11px; color: rgba(255,255,255,0.75); line-height: 1.4; }
     .nav-right { display: flex; align-items: center; gap: 8px; }
     .nav-email {
       display: flex; align-items: center; gap: 6px;
@@ -380,7 +400,8 @@
       display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
       z-index: 99; padding-top: 80px;
       background: rgba(255,255,255,0.99);
-      flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+      flex-direction: column; align-items: center; justify-content: flex-start; gap: 8px;
+      overflow-y: auto; padding-top: 100px; padding-bottom: 40px;
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu-link {
@@ -402,11 +423,23 @@
     }
     .mobile-menu-sublink:hover { background: rgba(0,0,0,0.05); color: #5500DD; }
     .mobile-menu-cta {
-      margin-top: 24px; display: inline-block;
+      margin-bottom: 8px; display: inline-block;
       background: #5500DD; color: white; font-size: 16px;
       font-variation-settings: "wdth" 125, "wght" 700;
       padding: 14px 32px; border-radius: 100px; text-decoration: none;
     }
+    .mobile-menu-all {
+      font-size: 14px; font-variation-settings: "wdth" 110, "wght" 600;
+      color: #5500DD; text-decoration: none; padding: 6px 24px;
+      border-radius: 10px; display: block;
+    }
+    .mobile-menu-all:hover { text-decoration: underline; }
+    .mobile-menu-playbook {
+      margin-top: 8px; display: inline-block; background: #FF4500; color: white;
+      font-size: 15px; font-variation-settings: "wdth" 125, "wght" 700;
+      padding: 12px 28px; border-radius: 100px; text-decoration: none;
+    }
+    .mobile-menu-playbook:hover { opacity: 0.9; }
     @media (max-width: 809px) {
       .nav-inner { padding-top: 24px; padding-bottom: 24px; }
     }
