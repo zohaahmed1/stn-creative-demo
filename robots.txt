@@ -3,6 +3,7 @@ Allow: /
 
 Disallow: /playbook-thanks
 Disallow: /book-thanks
+Allow: /creative-audit-saas
 Disallow: /creative-audit
 
 # Allow AI assistants to read site content
