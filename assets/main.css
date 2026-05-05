@@ -1525,8 +1525,28 @@
       #services div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
       #services div[style*="grid-template-columns:1fr 1fr"] > div[style*="border-right"] { border-right: none !important; }
 
-      /* Testimonials */
-      .testimonial-card { width: 260px !important; padding: 20px !important; }
+      /* Testimonials — native swipe with snap on mobile */
+      .testimonials-scroll {
+        overflow-x: scroll !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        cursor: default !important;
+        padding: 0 20px !important;
+      }
+      .testimonials-track {
+        animation: none !important;
+        transform: none !important;
+        padding-left: 0 !important;
+        gap: 16px !important;
+      }
+      .testimonial-card {
+        width: 82vw !important;
+        max-width: 300px !important;
+        padding: 24px 20px !important;
+        scroll-snap-align: start !important;
+        flex-shrink: 0 !important;
+      }
 
       /* Pricing grid */
       .pricing-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
@@ -1590,8 +1610,7 @@
         margin-bottom: -4px;
       }
 
-      /* Testimonials — add padding so cards don't clip at edges */
-      .testimonials-scroll { padding: 0 8px !important; }
+      /* Testimonials — padding handled in mobile block above */
 
       /* Footer cols — wrap into 2x2 grid on mobile */
       .footer-cols-row { gap: 32px 40px !important; }
@@ -1634,8 +1653,8 @@
         box-sizing: border-box !important;
         overflow: hidden !important;
       }
-      /* Inner tool logo grids inside panels — 2 cols on mobile */
-      .linea-panel-left div[style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: repeat(2, 1fr) !important; }
+      /* Inner tool logo grids inside panels — 3 cols on mobile */
+      .linea-panel-left div[style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; }
       .linea-panel-right { opacity: 1 !important; transform: none !important; padding: 28px 24px !important; }
       .linea-pill { opacity: 1 !important; transform: none !important; }
       .linea-card div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
