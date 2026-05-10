@@ -14,13 +14,58 @@
   <meta property="og:image" content="https://skipthenoisemedia.com/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://skipthenoisemedia.com/blog/reddit-ads-roi-attribution">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Reddit Ads ROI: How to Measure Performance and Attribution (2026)","description":"How to actually measure Reddit ads ROI — attribution setup, conversion tracking, and performance benchmarks from a Reddit Certified Partner.","author":{"@type":"Organization","name":"Skip the Noise Media","url":"https://skipthenoisemedia.com"},"publisher":{"@type":"Organization","name":"Skip the Noise Media","url":"https://skipthenoisemedia.com","logo":{"@type":"ImageObject","url":"https://skipthenoisemedia.com/assets/og-image.png"}},"url":"https://skipthenoisemedia.com/blog/reddit-ads-roi-attribution","datePublished":"2026-05-05","about":["Reddit Advertising","Reddit Ads ROI","Reddit Attribution","B2B SaaS Advertising","Reddit Ads Measurement"]}</script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Reddit Ads ROI: How to Measure Performance and Attribution (2026)",
+  "description": "How to actually measure Reddit ads ROI — attribution setup, conversion tracking, and performance benchmarks from a Reddit Certified Partner.",
+  "author": {
+    "@type": "Person",
+    "name": "Zoha Ahmed",
+    "url": "https://skipthenoisemedia.com/zoha",
+    "sameAs": "https://www.linkedin.com/company/skip-the-noise-media"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Skip the Noise Media",
+    "url": "https://skipthenoisemedia.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://skipthenoisemedia.com/assets/og-image.png",
+      "width": 1200,
+      "height": 630
+    }
+  },
+  "url": "https://skipthenoisemedia.com/blog/reddit-ads-roi-attribution",
+  "datePublished": "2026-05-05",
+  "about": [
+    "Reddit Advertising",
+    "Reddit Ads ROI",
+    "Reddit Attribution",
+    "B2B SaaS Advertising",
+    "Reddit Ads Measurement"
+  ],
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://skipthenoisemedia.com/assets/og-image.png",
+    "width": 1200,
+    "height": 630
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://skipthenoisemedia.com/blog/reddit-ads-roi-attribution"
+  },
+  "dateModified": "2026-05-05"
+}
+  </script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do you measure ROI from Reddit ads?","acceptedAnswer":{"@type":"Answer","text":"Measuring Reddit ads ROI requires three things working together: the Reddit Pixel installed on your site for on-platform conversion data, UTM parameters on every ad URL for GA4 or your analytics platform, and a CRM connection to close the loop on lead quality and closed-won revenue. For B2B, closed-loop CRM attribution matters most — a $200 CPL that closes at 15% is better ROI than a $50 CPL that closes at 2%."}},{"@type":"Question","name":"What is a good ROAS for Reddit ads?","acceptedAnswer":{"@type":"Answer","text":"For B2B SaaS, ROAS as a metric is less useful than CPL and CAC. A typical well-optimized B2B SaaS Reddit campaign targets $80 to $150 CPL with a 10 to 20% lead-to-opportunity conversion rate. For ecommerce, Reddit ads benchmarks are 1.5x to 3x ROAS in the first 90 days, improving to 3x to 5x after creative optimization."}},{"@type":"Question","name":"Does Reddit Pixel track conversions accurately?","acceptedAnswer":{"@type":"Answer","text":"Reddit Pixel accuracy depends heavily on your audience. For general B2B SaaS, Reddit Pixel captures roughly 60 to 70% of actual conversions due to ad blockers and cookie restrictions. For technical audiences like cybersecurity and dev tools — where ad blocker usage can exceed 40% — you should weight UTM-based analytics more heavily and supplement with server-side conversion tracking where possible."}},{"@type":"Question","name":"What attribution window should I use for Reddit ads?","acceptedAnswer":{"@type":"Answer","text":"Reddit's default attribution window is 28 days post-click and 1 day post-view. For B2B SaaS with longer consideration cycles, we recommend extending to 28-day post-click and disabling view-through attribution entirely — view-through in B2B creates attribution inflation that distorts CAC calculations. For ecommerce, the default windows are generally appropriate."}},{"@type":"Question","name":"How long does it take to see ROI from Reddit ads?","acceptedAnswer":{"@type":"Answer","text":"Most B2B SaaS companies see initial conversion data within 30 days and reach a measurable positive ROI within 60 to 90 days. The timeline depends heavily on your sales cycle length — if your average deal closes in 3 months, you need at least 5 to 6 months of data to accurately measure Reddit's downstream revenue contribution."}}]}</script>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet"></noscript>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" as="style" onload="this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="../assets/main.css">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--purple:#5500DD;--orange:#FF4500;--dark:#0d0d0d;--g500:#6b7280;--g200:#e5e7eb;--g100:#f3f4f6}
@@ -82,22 +127,96 @@
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4JR5P3B" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<nav>
-  <a href="/" class="nav-logo">Skip the Noise Media</a>
-  <div class="nav-links">
-    <a href="/services">Services</a>
-    <a href="/process">Process</a>
-    <a href="/gallery">Portfolio</a>
-    <a href="/blog">Resources</a>
-    <a href="/#book" class="nav-cta">3 free ads</a>
+<!-- Nav -->
+<nav class="nav" id="main-nav">
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="logo-skip">Skip the</span><span class="logo-noise">Noise</span>
+    </a>
+    <div class="nav-links">
+      <a href="/services" class="nav-link">Services</a>
+      <a href="/process" class="nav-link">Process</a>
+      <a href="/gallery" class="nav-link">Portfolio</a>
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          Resources
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="margin-left:3px;transition:transform 0.2s;"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu" role="menu">
+          <div class="nav-mega-col">
+            <div class="nav-mega-label">Reddit Ads</div>
+            <a href="/blog/how-to-advertise-on-reddit" class="nav-dropdown-item" role="menuitem">How to Advertise on Reddit</a>
+            <a href="/blog/reddit-ads-b2b-saas" class="nav-dropdown-item" role="menuitem">Reddit Ads for B2B SaaS</a>
+            <a href="/blog/reddit-vs-facebook-ads" class="nav-dropdown-item" role="menuitem">Reddit vs Facebook Ads</a>
+            <a href="/blog/reddit-ads-cost" class="nav-dropdown-item" role="menuitem">Reddit Ads Cost Guide</a>
+            <a href="/blog" class="nav-dropdown-all" role="menuitem">View all guides &rarr;</a>
+            <div class="nav-mega-label is-spaced">AI Creative</div>
+            <a href="/blog/ai-creative-production-guide" class="nav-dropdown-item" role="menuitem">AI Creative Production Guide</a>
+            <a href="/blog/ai-ugc-ads" class="nav-dropdown-item" role="menuitem">AI UGC Ads</a>
+            <a href="/blog/ad-creative-testing-framework" class="nav-dropdown-item" role="menuitem">Creative Testing Framework</a>
+            <a href="/blog/ai-video-ads-saas" class="nav-dropdown-item" role="menuitem">AI Video Ads for SaaS</a>
+            <a href="/blog" class="nav-dropdown-all" role="menuitem">View all guides &rarr;</a>
+          </div>
+          <div class="nav-mega-divider"></div>
+          <div class="nav-mega-col">
+            <a href="/playbook" class="nav-playbook-promo" role="menuitem">
+              <span class="nav-playbook-eyebrow">Free Download</span>
+              <span class="nav-playbook-title">Reddit Ads Playbook</span>
+              <span class="nav-playbook-sub">Campaign structure, targeting &amp; copy frameworks</span>
+            </a>
+            <div class="nav-mega-label is-spaced">Case Studies</div>
+            <a href="/work/flare" class="nav-dropdown-item" role="menuitem">Cybersecurity SaaS: 75 Leads</a>
+            <a href="/work/restream" class="nav-dropdown-item" role="menuitem">Streaming Platform: CAC &minus;19%</a>
+            <a href="/work/noirver" class="nav-dropdown-item" role="menuitem">Noirvere: 4.3x ROAS</a>
+            <a href="/work/tp" class="nav-dropdown-item" role="menuitem">US Lifestyle: 6.8x ROAS</a>
+            <a href="/case-studies" class="nav-dropdown-all" role="menuitem">View all case studies &rarr;</a>
+            <div class="nav-mega-label is-spaced">Services</div>
+            <a href="/reddit-ads-agency" class="nav-dropdown-item" role="menuitem">Reddit Ads Agency</a>
+            <a href="/saas-ads-agency" class="nav-dropdown-item" role="menuitem">SaaS Ads Agency</a>
+            <a href="/b2c-saas-ads" class="nav-dropdown-item" role="menuitem">B2C SaaS Ads</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="/#book" style="display:inline-block; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:10px 22px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">3 free ads. Keep them.</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
   </div>
 </nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="/#book" class="mobile-menu-cta" onclick="closeMobileMenu()">3 free ads. Keep them.</a>
+  <a href="/services" class="mobile-menu-link">Services</a>
+  <a href="/process" class="mobile-menu-link">Process</a>
+  <a href="/gallery" class="mobile-menu-link">Portfolio</a>
+  <span class="mobile-menu-section">Reddit Ads</span>
+  <a href="/blog/how-to-advertise-on-reddit" class="mobile-menu-sublink">How to Advertise on Reddit</a>
+  <a href="/blog/reddit-ads-b2b-saas" class="mobile-menu-sublink">Reddit Ads for B2B SaaS</a>
+  <a href="/blog/reddit-vs-facebook-ads" class="mobile-menu-sublink">Reddit vs Facebook Ads</a>
+  <a href="/blog/reddit-ads-cost" class="mobile-menu-sublink">Reddit Ads Cost Guide</a>
+  <a href="/blog" class="mobile-menu-all">View all guides &rarr;</a>
+  <span class="mobile-menu-section">AI Creative</span>
+  <a href="/blog/ai-creative-production-guide" class="mobile-menu-sublink">AI Creative Production Guide</a>
+  <a href="/blog/ai-ugc-ads" class="mobile-menu-sublink">AI UGC Ads</a>
+  <a href="/blog/ad-creative-testing-framework" class="mobile-menu-sublink">Creative Testing Framework</a>
+  <a href="/blog" class="mobile-menu-all">View all guides &rarr;</a>
+  <span class="mobile-menu-section">Case Studies</span>
+  <a href="/work/flare" class="mobile-menu-sublink">Cybersecurity SaaS: 75 Leads</a>
+  <a href="/work/restream" class="mobile-menu-sublink">Streaming: CAC &minus;19%</a>
+  <a href="/work/noirver" class="mobile-menu-sublink">Noirvere: 4.3x ROAS</a>
+  <a href="/case-studies" class="mobile-menu-all">View all case studies &rarr;</a>
+  <span class="mobile-menu-section">Services</span>
+  <a href="/reddit-ads-agency" class="mobile-menu-sublink">Reddit Ads Agency</a>
+  <a href="/saas-ads-agency" class="mobile-menu-sublink">SaaS Ads Agency</a>
+  <a href="/b2c-saas-ads" class="mobile-menu-sublink">B2C SaaS Ads</a>
+  <a href="/playbook" class="mobile-menu-playbook">📥 Free: Reddit Ads Playbook</a>
+</div>
 <section class="article-hero">
   <div class="article-hero-inner">
     <div class="article-tag">Reddit Ads Guide · Measurement</div>
     <h1>Reddit Ads ROI:<br><em>How to Actually Measure It</em></h1>
     <div class="article-meta">
-      <span>By Skip the Noise Media</span><span>·</span><span>Reddit Certified Partner</span><span>·</span><span>May 2026</span>
+      <a href="/zoha" style="color:rgba(255,255,255,0.6);text-decoration:none;font-weight:600;" onmouseover="this.style.color='#5500DD'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">By Zoha Ahmed</a><span>·</span><span>Reddit Certified Partner</span><span>·</span><span>May 2026</span>
     </div>
   </div>
 </section>
@@ -394,5 +513,46 @@
   <p><a href="/">Skip the Noise Media</a> · Reddit Certified Partner</p>
   <p>© 2026 Skip the Noise Media. All rights reserved.</p>
 </footer>
+<script>
+// Nav scroll + hamburger + dropdown
+(function() {
+  var nav = document.querySelector('.nav');
+  if (nav) {
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 80);
+    }, { passive: true });
+  }
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobile-menu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function() {
+      var open = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  }
+  var dropdownTrigger = document.querySelector('.nav-dropdown-trigger');
+  var navDropdown = document.querySelector('.nav-dropdown');
+  if (dropdownTrigger && navDropdown) {
+    dropdownTrigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = navDropdown.classList.toggle('open');
+      dropdownTrigger.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', function() {
+      navDropdown.classList.remove('open');
+      dropdownTrigger.setAttribute('aria-expanded', 'false');
+    });
+    navDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+  }
+})();
+function closeMobileMenu() {
+  var mm = document.getElementById('mobile-menu');
+  var hb = document.getElementById('hamburger');
+  if (mm) mm.classList.remove('open');
+  if (hb) hb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
 </body>
 </html>

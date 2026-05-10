@@ -28,7 +28,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" as="style" onload="this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="../assets/main.css">
   <style>
+    /* ── Blog nav overrides: sticky white nav ── */
+    .nav { position: sticky !important; top: 0 !important; left: 0 !important; right: 0 !important; background: rgba(255,255,255,0.97) !important; border-radius: 0 !important; border-bottom: 1px solid rgba(0,0,0,0.08) !important; }
+    .nav.scrolled { position: sticky !important; top: 0 !important; left: 0 !important; right: 0 !important; border-radius: 0 !important; box-shadow: 0 2px 12px rgba(0,0,0,0.07) !important; background: rgba(255,255,255,0.97) !important; }
+    .nav-logo .logo-skip { color: #191923; }
+    .nav-logo .logo-noise { background: linear-gradient(90deg, #5500dd, #cc0000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --purple: #5500DD;
@@ -51,7 +57,7 @@
     .nav-link.active { color: var(--dark); font-weight: 700; }
     .nav-cta { background: var(--purple); color: #fff !important; padding: 8px 18px; border-radius: 100px; font-weight: 700 !important; font-size: 13px !important; }
     .nav-cta:hover { opacity: 0.9; background: var(--purple) !important; }
-    @media (max-width: 768px) { .nav-links { display: none; } }
+    @media (max-width: 768px) { }
 
     /* Hero */
     .blog-hero { padding: 64px 24px 48px; text-align: center; border-bottom: 1px solid var(--gray-200); }
@@ -904,5 +910,46 @@
   <p><a href="mailto:sales@skipthenoisemedia.com">sales@skipthenoisemedia.com</a></p>
   <p style="font-size:13px; margin-top:8px;"><a href="../privacy.html">Privacy Policy</a> &middot; <a href="../cookies.html">Cookie Policy</a> &middot; <a href="../terms.html">Terms of Service</a></p>
 </footer>
+<script>
+// Nav scroll + hamburger + dropdown
+(function() {
+  var nav = document.querySelector('.nav');
+  if (nav) {
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 80);
+    }, { passive: true });
+  }
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobile-menu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function() {
+      var open = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  }
+  var dropdownTrigger = document.querySelector('.nav-dropdown-trigger');
+  var navDropdown = document.querySelector('.nav-dropdown');
+  if (dropdownTrigger && navDropdown) {
+    dropdownTrigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = navDropdown.classList.toggle('open');
+      dropdownTrigger.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', function() {
+      navDropdown.classList.remove('open');
+      dropdownTrigger.setAttribute('aria-expanded', 'false');
+    });
+    navDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+  }
+})();
+function closeMobileMenu() {
+  var mm = document.getElementById('mobile-menu');
+  var hb = document.getElementById('hamburger');
+  if (mm) mm.classList.remove('open');
+  if (hb) hb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
 </body>
 </html>
