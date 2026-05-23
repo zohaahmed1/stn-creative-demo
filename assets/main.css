@@ -1518,6 +1518,19 @@
       .hero-collage-sub { display: block !important; max-height: 120px; border-radius: 12px; overflow: hidden; }
       .bloom-overlay { display: none !important; }
 
+      /* Hero marquee: native-scroll on mobile so users can swipe through images.
+         JS auto-scroll loop handles the continuous movement (see index.html).
+         CSS animation is disabled — it fights with native scroll AND has iOS Safari
+         resumption bugs when animationPlayState is toggled. */
+      .hero-marquee-wrap {
+        overflow-x: scroll !important;
+        overflow-y: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+      }
+      .hero-marquee-wrap::-webkit-scrollbar { display: none !important; }
+      .hero-marquee-track { animation: none !important; }
+
       /* General sections */
       .container { padding: 0 16px !important; }
       .section-inner { padding: 40px 0 !important; }

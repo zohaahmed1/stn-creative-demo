@@ -2010,9 +2010,54 @@ if (dropdownTrigger && navDropdown) {
   obs.observe(section);
 })();
 
-// ── Hero marquee: CSS animation runs continuously on mobile.
-// No touch pause — iOS Safari has bugs resuming paused CSS animations mid-scroll.
-// Desktop hover pause is handled via @media (hover: hover) in main.css.
+// ── Hero marquee: CSS animation for desktop, native-scroll auto-advance for mobile ──
+// On touch devices the CSS animation is disabled (see main.css mobile overrides).
+// We drive the scroll position via rAF — touch naturally overrides it.
+// After 1.5s of idle, auto-scroll resumes.  Seamless loop via first-duplicate offset.
+(function() {
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) return; // desktop: CSS handles it
+
+  var speed = 1.7; // px/frame ≈ 102 px/s at 60 fps — matches the 22 s CSS animation
+
+  document.querySelectorAll('.hero-marquee-wrap').forEach(function(wrap) {
+    var touching   = false;
+    var resumeTimer = null;
+
+    // Find the reset point: left edge of first duplicate image (aria-hidden)
+    // Calculated lazily so layout is settled before we read offsetLeft
+    var resetAt = 0;
+    function getResetAt() {
+      if (resetAt > 0) return resetAt;
+      var dupe = wrap.querySelector('.hero-marquee-img[aria-hidden="true"]');
+      resetAt = dupe ? dupe.offsetLeft : (wrap.scrollWidth / 2);
+      return resetAt;
+    }
+
+    wrap.addEventListener('touchstart', function() {
+      touching = true;
+      clearTimeout(resumeTimer);
+    }, { passive: true });
+
+    wrap.addEventListener('touchend', function() {
+      resumeTimer = setTimeout(function() { touching = false; }, 1500);
+    }, { passive: true });
+
+    wrap.addEventListener('touchcancel', function() {
+      touching = false; // page scroll interrupted — resume immediately
+    }, { passive: true });
+
+    (function tick() {
+      if (wrap.scrollWidth > 10 && !touching) {
+        wrap.scrollLeft += speed;
+        var r = getResetAt();
+        if (wrap.scrollLeft >= r) {
+          wrap.scrollLeft -= r; // seamless loop: jump back by exactly one full set
+        }
+      }
+      requestAnimationFrame(tick);
+    })();
+  });
+})();
 
 // ── Drag + touch for testimonials ─────────────────────────────────────────────
 (function() {
