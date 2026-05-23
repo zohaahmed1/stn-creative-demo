@@ -2010,18 +2010,9 @@ if (dropdownTrigger && navDropdown) {
   obs.observe(section);
 })();
 
-// ── Touch pause for hero marquee ──────────────────────────────────────────────
-document.querySelectorAll('.hero-marquee-track').forEach(function(track) {
-  track.addEventListener('touchstart', function() {
-    track.style.animationPlayState = 'paused';
-  }, { passive: true });
-  track.addEventListener('touchend', function() {
-    track.style.animationPlayState = 'running';
-  }, { passive: true });
-  track.addEventListener('touchcancel', function() {
-    track.style.animationPlayState = 'running';
-  }, { passive: true });
-});
+// ── Hero marquee: CSS animation runs continuously on mobile.
+// No touch pause — iOS Safari has bugs resuming paused CSS animations mid-scroll.
+// Desktop hover pause is handled via @media (hover: hover) in main.css.
 
 // ── Drag + touch for testimonials ─────────────────────────────────────────────
 (function() {
