@@ -2117,6 +2117,68 @@ if (dropdownTrigger && navDropdown) {
   scroll.addEventListener('touchcancel', endDrag, { passive: true });
 })();
 
+// ── Testimonials: auto-advance one card at a time on mobile ───────────────────
+// Desktop uses the CSS animation (testi-scroll 40s). On mobile that animation is
+// disabled; this advances a card every 4 s. Touch pauses it; resumes 3 s after.
+(function() {
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  var scroll = document.querySelector('.testimonials-scroll');
+  var track  = document.querySelector('.testimonials-track');
+  if (!scroll || !track) return;
+
+  var cards = Array.from(track.querySelectorAll('.testimonial-card'));
+  var n     = cards.length;
+  var idx   = 0;
+  var timer = null;
+
+  function goTo(i) {
+    idx = ((i % n) + n) % n;
+    // card.offsetLeft already accounts for scroll-container padding
+    scroll.scrollTo({ left: cards[idx].offsetLeft - 20, behavior: 'smooth' });
+  }
+
+  function advance() {
+    if (idx >= n - 1) {
+      scroll.scrollLeft = 0; // instant reset to first card
+      idx = 0;
+    } else {
+      goTo(idx + 1);
+    }
+    schedule();
+  }
+
+  function schedule() {
+    clearTimeout(timer);
+    timer = setTimeout(advance, 4000);
+  }
+
+  scroll.addEventListener('touchstart', function() {
+    clearTimeout(timer);
+  }, { passive: true });
+
+  scroll.addEventListener('touchend', function() {
+    // Wait for snap to settle then detect which card is in view
+    setTimeout(function() {
+      var sl = scroll.scrollLeft;
+      var best = 0, bestDist = Infinity;
+      cards.forEach(function(c, i) {
+        var d = Math.abs((c.offsetLeft - 20) - sl);
+        if (d < bestDist) { bestDist = d; best = i; }
+      });
+      idx = best;
+      schedule();
+    }, 600);
+  }, { passive: true });
+
+  scroll.addEventListener('touchcancel', function() {
+    schedule();
+  }, { passive: true });
+
+  // Kick off after page settles
+  setTimeout(schedule, 3000);
+})();
+
 // ── Count-up for results stat row ─────────────────────────────────────────────
 (function() {
   var stats = [
