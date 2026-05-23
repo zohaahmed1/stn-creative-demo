@@ -2039,9 +2039,10 @@ document.querySelectorAll('.hero-marquee-track').forEach(function(track) {
   }
   function startDrag(clientX) {
     isDown = true;
-    baseOffset = getTranslateX();
+    baseOffset = getTranslateX(); // capture current animation position
     startX = clientX;
-    track.style.animation = 'none';
+    // Pause CSS animation in-place — preserves its timeline position
+    track.style.animationPlayState = 'paused';
     track.style.transform = 'translateX(' + baseOffset + 'px)';
   }
   function moveDrag(clientX) {
@@ -2053,24 +2054,20 @@ document.querySelectorAll('.hero-marquee-track').forEach(function(track) {
     if (!isDown) return;
     isDown = false;
     scroll.classList.remove('is-dragging', 'is-touching');
-    // Resume animation from current position (approximate)
-    var cur = getTranslateX();
-    var half = track.scrollWidth / 2;
-    var pct = Math.abs(cur % half) / half;
-    var delay = -(pct * 40); // 40s = animation duration
-    track.style.animation = 'none';
+    // Clear inline overrides — CSS animation resumes from where it was paused
     track.style.transform = '';
-    track.offsetHeight; // force reflow
-    track.style.animation = 'testi-scroll 40s ' + delay + 's linear infinite';
+    track.style.animationPlayState = '';
   }
 
-  // Mouse
-  scroll.addEventListener('mousedown', function(e) {
-    startDrag(e.clientX);
-    scroll.classList.add('is-dragging');
-  });
-  document.addEventListener('mousemove', function(e) { moveDrag(e.clientX); });
-  document.addEventListener('mouseup', endDrag);
+  // Mouse — desktop pointer devices only
+  if (window.matchMedia('(hover: hover)').matches) {
+    scroll.addEventListener('mousedown', function(e) {
+      startDrag(e.clientX);
+      scroll.classList.add('is-dragging');
+    });
+    document.addEventListener('mousemove', function(e) { moveDrag(e.clientX); });
+    document.addEventListener('mouseup', endDrag);
+  }
 
   // Touch
   scroll.addEventListener('touchstart', function(e) {
@@ -2147,21 +2144,23 @@ window.addEventListener('message', function(e) {
 });
 </script>
 
-<!-- Marquee: CSS animation runs on GPU compositor. Minimal JS only for mouse pause on click. -->
+<!-- Marquee: mouse pause for desktop pointer devices only — no ghost events on mobile -->
 <script>
-document.querySelectorAll('.hero-marquee-wrap').forEach(function(wrap) {
-  var track = wrap.querySelector('.hero-marquee-track');
-  if (!track) return;
-  wrap.addEventListener('mousedown', function() {
-    wrap.classList.add('is-dragging');
-    track.style.animationPlayState = 'paused';
+if (window.matchMedia('(hover: hover)').matches) {
+  document.querySelectorAll('.hero-marquee-wrap').forEach(function(wrap) {
+    var track = wrap.querySelector('.hero-marquee-track');
+    if (!track) return;
+    wrap.addEventListener('mousedown', function() {
+      wrap.classList.add('is-dragging');
+      track.style.animationPlayState = 'paused';
+    });
+    document.addEventListener('mouseup', function() {
+      if (!wrap.classList.contains('is-dragging')) return;
+      wrap.classList.remove('is-dragging');
+      track.style.animationPlayState = '';
+    });
   });
-  document.addEventListener('mouseup', function() {
-    if (!wrap.classList.contains('is-dragging')) return;
-    wrap.classList.remove('is-dragging');
-    track.style.animationPlayState = '';
-  });
-});
+}
 </script>
 
 </body>

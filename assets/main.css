@@ -532,9 +532,11 @@
     .hero-marquee-track--reverse {
       animation: hero-scroll 130s linear infinite;
     }
-    /* Pause on hover */
-    .hero-marquee-wrap:hover .hero-marquee-track {
-      animation-play-state: paused;
+    /* Pause on hover — desktop/pointer devices only; prevents stuck hover state on touch */
+    @media (hover: hover) {
+      .hero-marquee-wrap:hover .hero-marquee-track {
+        animation-play-state: paused;
+      }
     }
     .hero-marquee-card {
       flex-shrink: 0;
@@ -1053,9 +1055,12 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Testimonial cards pause on hover or touch */
-    .testimonials-track:hover,
+    /* Testimonial cards pause while touch-dragging */
     .testimonials-scroll.is-touching .testimonials-track { animation-play-state: paused; }
+    /* Pause on hover — desktop only; prevents stuck hover state on touch */
+    @media (hover: hover) {
+      .testimonials-track:hover { animation-play-state: paused; }
+    }
     .testimonials-scroll { cursor: grab; }
     .testimonials-scroll.is-dragging,
     .testimonials-scroll.is-touching { cursor: grabbing; }
@@ -1082,9 +1087,11 @@
       cursor: pointer;
     }
 
-    /* ── Marquee slow-on-hover (instead of hard stop) ─────────────── */
-    .hero-marquee-wrap:hover .hero-marquee-track {
-      animation-duration: 180s;
+    /* ── Marquee slow-on-hover — desktop only ─────────────────────── */
+    @media (hover: hover) {
+      .hero-marquee-wrap:hover .hero-marquee-track {
+        animation-duration: 180s;
+      }
     }
 
     /* ── Floating platform badges in hero ─────────────────────────── */
@@ -2183,8 +2190,10 @@
 .hero-marquee-track--reverse {
   animation-direction: reverse;
 }
-.hero-marquee-wrap:hover .hero-marquee-track {
-  animation-play-state: paused;
+@media (hover: hover) {
+  .hero-marquee-wrap:hover .hero-marquee-track {
+    animation-play-state: paused;
+  }
 }
 @keyframes hero-slide {
   from { transform: translateX(0); }
