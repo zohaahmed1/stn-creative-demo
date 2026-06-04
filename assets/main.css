@@ -1518,18 +1518,12 @@
       .hero-collage-sub { display: block !important; max-height: 120px; border-radius: 12px; overflow: hidden; }
       .bloom-overlay { display: none !important; }
 
-      /* Hero marquee: native-scroll on mobile so users can swipe through images.
-         JS auto-scroll loop handles the continuous movement (see index.html).
-         CSS animation is disabled — it fights with native scroll AND has iOS Safari
-         resumption bugs when animationPlayState is toggled. */
+      /* Hero marquee: CSS animation runs continuously on mobile.
+         No touch interaction — animationPlayState resume has iOS Safari bugs.
+         Desktop hover-pause is handled via @media (hover: hover). */
       .hero-marquee-wrap {
-        overflow-x: scroll !important;
-        overflow-y: hidden !important;
-        -webkit-overflow-scrolling: touch !important;
-        scrollbar-width: none !important;
+        overflow: hidden !important;
       }
-      .hero-marquee-wrap::-webkit-scrollbar { display: none !important; }
-      .hero-marquee-track { animation: none !important; }
 
       /* General sections */
       .container { padding: 0 16px !important; }
@@ -1580,26 +1574,18 @@
       #services div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
       #services div[style*="grid-template-columns:1fr 1fr"] > div[style*="border-right"] { border-right: none !important; }
 
-      /* Testimonials — native swipe with snap on mobile */
+      /* Testimonials — CSS auto-scroll on mobile, touch-drag via JS handler */
       .testimonials-scroll {
-        overflow-x: scroll !important;
-        overflow-y: hidden !important;
-        scroll-snap-type: x mandatory !important;
-        -webkit-overflow-scrolling: touch !important;
+        overflow: hidden !important;
         cursor: default !important;
-        padding: 0 20px !important;
       }
       .testimonials-track {
-        animation: none !important;
-        transform: none !important;
-        padding-left: 0 !important;
         gap: 16px !important;
       }
       .testimonial-card {
         width: 82vw !important;
         max-width: 300px !important;
         padding: 24px 20px !important;
-        scroll-snap-align: start !important;
         flex-shrink: 0 !important;
       }
 

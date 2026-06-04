@@ -1,6 +1,7 @@
 User-agent: *
 Allow: /
 
+Disallow: /progress/
 Disallow: /playbook-thanks
 Disallow: /book-thanks
 Allow: /creative-audit-saas
