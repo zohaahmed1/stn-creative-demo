@@ -71,7 +71,7 @@
     :root{--purple:#5500DD;--orange:#FF4500;--dark:#0d0d0d;--g500:#6b7280;--g200:#e5e7eb;--g100:#f3f4f6}
     body{font-family:'Satoshi',system-ui,sans-serif;color:var(--dark);background:#fff;-webkit-font-smoothing:antialiased}
     nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--g200);padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between}
-    .nav-logo{font-size:15px;font-weight:800;color:var(--dark);text-decoration:none;letter-spacing:-0.02em}
+    .nav-logo{font-size:20px;font-weight:800;color:var(--dark);text-decoration:none;letter-spacing:-0.02em}
     .nav-links{display:flex;gap:24px;align-items:center}
     .nav-links a{font-size:14px;font-weight:500;color:var(--g500);text-decoration:none;transition:color 0.2s}
     .nav-links a:hover{color:var(--dark)}
@@ -139,6 +139,10 @@
     .cal-modal.open{display:flex}
     .cal-modal-content{background:white;border-radius:12px;width:90%;max-width:600px;max-height:90vh;overflow:auto;position:relative}
     .cal-modal-close{position:absolute;top:20px;right:20px;background:none;border:none;font-size:24px;cursor:pointer;z-index:1000}
+      /* nav: match homepage (full-width bar + 20px logo) */
+    nav.nav { display: block; height: auto; padding: 0; }
+    .nav-logo { font-size: 20px; }
+    .nav .nav-inner { max-width: 1400px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
   </style>
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1906222660310524');fbq('track','PageView');</script>
   <!-- JSON-LD: Breadcrumb -->

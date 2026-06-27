@@ -137,7 +137,7 @@
     body { font-family: 'Satoshi', system-ui, -apple-system, sans-serif; color: var(--dark); background: #fff; -webkit-font-smoothing: antialiased; }
 
     nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--gray-200); padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-size: 15px; font-weight: 800; color: var(--dark); text-decoration: none; letter-spacing: -0.02em; }
+    .nav-logo { font-size: 20px; font-weight: 800; color: var(--dark); text-decoration: none; letter-spacing: -0.02em; }
     .nav-links { display: flex; gap: 24px; align-items: center; }
     .nav-links a { font-size: 14px; font-weight: 500; color: var(--gray-500); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--dark); }
@@ -203,6 +203,10 @@
     .cal-modal.open { display: flex; }
     .cal-modal-content { background: white; border-radius: 12px; width: 90%; max-width: 600px; max-height: 90vh; overflow: auto; position: relative; }
     .cal-modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; z-index: 1000; }
+      /* nav: match homepage (full-width bar + 20px logo) */
+    nav.nav { display: block; height: auto; padding: 0; }
+    .nav-logo { font-size: 20px; }
+    .nav .nav-inner { max-width: 1400px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
   </style>
 
   <!-- Meta Pixel Code -->

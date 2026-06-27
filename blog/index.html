@@ -50,7 +50,7 @@
 
     /* Nav */
     nav { position: sticky; top: 0; z-index: 100; background: rgba(250,249,247,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--gray-200); padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-size: 15px; font-weight: 800; color: var(--dark); text-decoration: none; letter-spacing: -0.02em; }
+    .nav-logo { font-size: 20px; font-weight: 800; color: var(--dark); text-decoration: none; letter-spacing: -0.02em; }
     .nav-links { display: flex; gap: 4px; align-items: center; }
     .nav-link { font-size: 14px; font-weight: 500; color: var(--gray-500); text-decoration: none; padding: 7px 14px; border-radius: 100px; transition: background 0.2s, color 0.2s; }
     .nav-link:hover { background: rgba(0,0,0,0.05); color: var(--dark); }
@@ -92,6 +92,10 @@
       .blog-grid-inner { grid-template-columns: 1fr !important; gap: 24px; }
       .blog-grid { padding: 40px 16px 64px; }
     }
+      /* nav: match homepage (full-width bar + 20px logo) */
+    nav.nav { display: block; height: auto; padding: 0; }
+    .nav-logo { font-size: 20px; }
+    .nav .nav-inner { max-width: 1400px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
   </style>
 </head>
 <body>

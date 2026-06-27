@@ -129,7 +129,7 @@
     :root { --purple: #5500DD; --dark: #0d0d0d; --navy: #19213d; --gray-500: #6b7280; --gray-300: #a8a8a8; --gray-200: #e5e7eb; --gray-100: #f3f4f6; --bg: #faf9f7; }
     body { font-family: 'Satoshi', system-ui, sans-serif; color: var(--dark); background: var(--bg); -webkit-font-smoothing: antialiased; }
     nav { position: sticky; top: 0; z-index: 100; background: rgba(250,249,247,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--gray-200); padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
-    .nav-logo { font-size: 15px; font-weight: 800; color: var(--dark); text-decoration: none; letter-spacing: -0.02em; }
+    .nav-logo { font-size: 20px; font-weight: 800; color: var(--dark); text-decoration: none; letter-spacing: -0.02em; }
     .nav-links { display: flex; gap: 4px; align-items: center; }
     .nav-link { font-size: 14px; font-weight: 500; color: var(--gray-500); text-decoration: none; padding: 7px 14px; border-radius: 100px; transition: background 0.2s, color 0.2s; }
     .nav-link:hover { background: rgba(0,0,0,0.05); color: var(--dark); }
@@ -197,6 +197,10 @@
     .qa-block:first-child { border-top: none; padding-top: 0; }
     .qa-block strong { font-size: 15px; font-weight: 700; color: var(--dark); display: block; margin-bottom: 8px; }
     .qa-block p { font-size: 15px; line-height: 1.65; color: var(--gray-500); margin: 0; }
+      /* nav: match homepage (full-width bar + 20px logo) */
+    nav.nav { display: block; height: auto; padding: 0; }
+    .nav-logo { font-size: 20px; }
+    .nav .nav-inner { max-width: 1400px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
   </style>
 
   <!-- Meta Pixel -->
