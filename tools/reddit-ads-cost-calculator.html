@@ -311,6 +311,7 @@
     var vertical = 'b2b';
 
     function money(n){ return '$' + Math.round(n).toLocaleString('en-US'); }
+    function cpcFmt(n){ return '$' + n.toFixed(2); }
     function rng(a,b,fmt){ a=fmt(a); b=fmt(b); return a===b ? a : a+'–'+b; }
     function num(n){ var r = n>=1000 ? Math.round(n/10)*10 : Math.round(n); return r.toLocaleString('en-US'); }
 
@@ -333,14 +334,14 @@
         document.getElementById('r-cpl-label').textContent = 'Est. ROAS';
         document.getElementById('r-cpl').textContent = rng(roasLo, roasHi, function(x){return x.toFixed(1)+'x';});
         document.getElementById('assumptions').innerHTML =
-          'Based on <strong>'+money(v.cpc[0])+'–'+money(v.cpc[1])+' CPC</strong> and a <strong>'+(v.conv[0]*100)+'–'+(v.conv[1]*100)+'% purchase rate</strong> for '+v.label+', at a '+money(aov)+' average order value.';
+          'Based on <strong>'+cpcFmt(v.cpc[0])+'–'+cpcFmt(v.cpc[1])+' CPC</strong> and a <strong>'+(v.conv[0]*100)+'–'+(v.conv[1]*100)+'% purchase rate</strong> for '+v.label+', at a '+money(aov)+' average order value.';
       } else {
         document.getElementById('r-leads-label').textContent = 'Est. leads / mo';
         document.getElementById('r-leads').textContent = rng(leadsLo, leadsHi, num);
         document.getElementById('r-cpl-label').textContent = 'Est. cost per lead';
         document.getElementById('r-cpl').textContent = (leadsLo>0) ? rng(cplLo, cplHi, money) : '—';
         document.getElementById('assumptions').innerHTML =
-          'Based on <strong>'+money(v.cpc[0])+'–'+money(v.cpc[1])+' CPC</strong> and a <strong>'+(v.conv[0]*100)+'–'+(v.conv[1]*100)+'% landing-page conversion rate</strong> for '+v.label+'. CPM assumed $3–$8.';
+          'Based on <strong>'+cpcFmt(v.cpc[0])+'–'+cpcFmt(v.cpc[1])+' CPC</strong> and a <strong>'+(v.conv[0]*100)+'–'+(v.conv[1]*100)+'% landing-page conversion rate</strong> for '+v.label+'. CPM assumed $3–$8.';
       }
 
       var warn = document.getElementById('budget-warn');
