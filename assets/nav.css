@@ -1,0 +1,64 @@
+/* Skip the Noise Media — shared site nav (self-contained; no main.css dependency).
+   Produces the same sticky white nav + Resources mega-menu + mobile drawer as the blog pages. */
+
+/* Neutralize any older inline `nav { ... }` element rules on self-contained pages */
+nav.nav { display: block; height: auto; min-height: 0; padding: 0; backdrop-filter: none; }
+
+.nav { position: sticky; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.97); border-bottom: 1px solid rgba(0,0,0,0.08); }
+.nav.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+.nav .nav-inner { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; padding: 12px 24px; }
+
+.nav-logo { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 800; letter-spacing: -0.02em; text-decoration: none; }
+.nav-logo .logo-skip { color: #191923; }
+.nav-logo .logo-noise { background: linear-gradient(90deg,#5500dd,#cc0000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+.nav-links { display: flex; align-items: center; gap: 2px; }
+.nav-link { font-size: 14px; font-weight: 500; padding: 7px 14px; border-radius: 100px; color: #555; text-decoration: none; transition: background .2s,color .2s; }
+.nav-link:hover { background: rgba(0,0,0,0.05); color: #191923; }
+
+.nav-dropdown { position: relative; }
+.nav-dropdown-trigger { display: flex; align-items: center; gap: 2px; background: none; border: none; cursor: pointer; font-family: inherit; color: #555; }
+.nav-dropdown-menu { display: none; position: absolute; top: calc(100% + 8px); right: 0; background: #fff; border: 1px solid rgba(0,0,0,0.08); border-radius: 16px; padding: 12px; width: 540px; box-shadow: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06); z-index: 200; }
+.nav-dropdown-menu::before { content:''; position:absolute; top:-12px; left:0; right:0; height:12px; }
+.nav-dropdown.open .nav-dropdown-menu, .nav-dropdown:hover .nav-dropdown-menu { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 0; }
+.nav-dropdown.open .nav-dropdown-trigger > svg, .nav-dropdown:hover .nav-dropdown-trigger > svg { transform: rotate(180deg); }
+
+.nav-mega-col { display: flex; flex-direction: column; padding: 0 4px; }
+.nav-mega-col:first-child { padding-right: 10px; }
+.nav-mega-col:last-child { padding-left: 10px; }
+.nav-mega-divider { background: rgba(0,0,0,0.07); }
+.nav-mega-label { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(0,0,0,0.38); padding: 10px 8px 3px; pointer-events: none; line-height: 1; }
+.nav-mega-label.is-spaced { margin-top: 4px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.07); }
+.nav-dropdown-item { display: block; font-size: 13px; color: #191923; text-decoration: none; padding: 6px 8px; border-radius: 7px; font-weight: 450; transition: background .12s,color .12s; white-space: nowrap; line-height: 1.4; }
+.nav-dropdown-item:hover { background: rgba(85,0,221,0.07); color: #5500DD; }
+.nav-dropdown-all { display: block; font-size: 12px; color: #5500DD; text-decoration: none; padding: 3px 8px 8px; font-weight: 600; }
+.nav-dropdown-all:hover { text-decoration: underline; }
+.nav-playbook-promo { display: block; background: linear-gradient(135deg,#FF4500,#ff6b35); border-radius: 10px; padding: 12px 14px; text-decoration: none; margin: 4px 0 2px; }
+.nav-playbook-promo:hover { opacity: 0.92; }
+.nav-playbook-eyebrow { display: block; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 2px; }
+.nav-playbook-title { display: block; font-size: 14px; font-weight: 800; color: #fff; margin-bottom: 3px; letter-spacing: -0.01em; }
+.nav-playbook-sub { display: block; font-size: 11px; color: rgba(255,255,255,0.75); line-height: 1.4; }
+
+.nav-right { display: flex; align-items: center; gap: 8px; }
+.hamburger { display: none; width: 40px; height: 40px; background: rgba(0,0,0,0.06); border: none; border-radius: 8px; flex-direction: column; justify-content: center; align-items: center; gap: 5px; cursor: pointer; transition: background .2s; }
+.hamburger:hover { background: rgba(0,0,0,0.1); }
+.hamburger span { display: block; width: 18px; height: 2px; background: #191923; border-radius: 2px; transition: all .25s; }
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 1199px) {
+  .nav-links, .nav-right { display: none; }
+  .hamburger { display: flex; }
+}
+
+.mobile-menu { display: none; position: fixed; inset: 0; z-index: 99; background: rgba(255,255,255,0.99); flex-direction: column; align-items: stretch; gap: 4px; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 90px 24px 60px; }
+.mobile-menu.open { display: flex; }
+.mobile-menu-cta { margin-bottom: 8px; display: block; text-align: center; background: #5500DD; color: #fff; font-size: 16px; font-weight: 700; padding: 14px 32px; border-radius: 100px; text-decoration: none; }
+.mobile-menu-link { font-size: 28px; font-weight: 800; color: #0a0a0a; text-decoration: none; padding: 10px 0; border-radius: 12px; letter-spacing: -0.02em; text-align: center; }
+.mobile-menu-link:hover { background: rgba(0,0,0,0.05); }
+.mobile-menu-section { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(0,0,0,0.35); padding: 16px 0 4px; text-align: center; }
+.mobile-menu-sublink { font-size: 17px; font-weight: 600; color: #0a0a0a; text-decoration: none; padding: 8px 12px; border-radius: 10px; text-align: center; display: block; }
+.mobile-menu-sublink:hover { background: rgba(0,0,0,0.05); color: #5500DD; }
+.mobile-menu-all { font-size: 14px; font-weight: 600; color: #5500DD; text-decoration: none; padding: 6px 12px; border-radius: 10px; display: block; text-align: center; }
+.mobile-menu-all:hover { text-decoration: underline; }
+.mobile-menu-playbook { font-size: 16px; font-weight: 700; color: #FF4500; text-decoration: none; padding: 14px; text-align: center; display: block; margin-top: 10px; border: 1.5px solid rgba(255,69,0,0.3); border-radius: 12px; }
