@@ -100,12 +100,13 @@
     .nav.scrolled { position: sticky !important; top: 0 !important; left: 0 !important; right: 0 !important; border-radius: 0 !important; box-shadow: 0 2px 12px rgba(0,0,0,0.07) !important; background: rgba(255,255,255,0.97) !important; }
     .nav-logo .logo-skip { color: #191923; }
     .nav-logo .logo-noise { background: linear-gradient(90deg, #5500dd, #cc0000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .hero { background:#0a0520; padding:64px 24px 56px; }
-    .hero-inner { max-width:820px; margin:0 auto; }
-    .hero .tag { display:inline-flex; align-items:center; gap:6px; background:rgba(255,69,0,0.15); border:1px solid rgba(255,69,0,0.35); border-radius:100px; padding:4px 14px; font-size:12px; font-weight:700; color:#FF6B35; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:18px; }
+    .hero { position:relative; overflow:hidden; background:linear-gradient(125deg,#5500DD 0%,#7a1fd0 42%,#c4124e 100%); padding:64px 24px 60px; }
+    .hero::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle,rgba(255,255,255,0.11) 1px,transparent 1px); background-size:22px 22px; opacity:0.55; pointer-events:none; }
+    .hero-inner { position:relative; z-index:1; max-width:820px; margin:0 auto; }
+    .hero .tag { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.16); border:1px solid rgba(255,255,255,0.34); border-radius:100px; padding:5px 14px; font-size:12px; font-weight:700; color:#fff; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:18px; }
     .hero h1 { font-size:clamp(28px,4vw,44px); font-weight:900; color:#fff; line-height:1.1; letter-spacing:-0.03em; margin-bottom:16px; }
-    .hero h1 em { font-family:'Playfair Display',Georgia,serif; font-style:italic; }
-    .hero p { font-size:17px; line-height:1.6; color:rgba(255,255,255,0.7); max-width:640px; }
+    .hero h1 em { font-family:'Playfair Display',Georgia,serif; font-style:italic; color:#ffdca8; }
+    .hero p { font-size:17px; line-height:1.6; color:rgba(255,255,255,0.9); max-width:640px; }
     .wrap { max-width:820px; margin:0 auto; padding:0 24px; }
     /* Calculator */
     .calc { background:#fff; border:1.5px solid var(--gray-200); border-radius:20px; padding:28px; margin:-32px auto 0; max-width:820px; position:relative; box-shadow:0 8px 40px rgba(0,0,0,0.08); }
