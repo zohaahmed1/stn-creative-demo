@@ -107,7 +107,16 @@
       .cs-results-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
     }
-  </style>
+  
+    /* ── Light hero (process-page style) ── */
+    .cs-hero { position: relative; overflow: hidden; background: #ffffff; }
+    .cs-hero::before { content:''; position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:1200px; height:560px; background: radial-gradient(ellipse 520px 360px at 28% 45%, rgba(85,0,221,0.18) 0%, transparent 60%), radial-gradient(ellipse 420px 320px at 72% 58%, rgba(238,0,51,0.13) 0%, transparent 62%); pointer-events:none; z-index:0; }
+    .cs-hero-inner { position: relative; z-index: 1; }
+    .cs-tag { background: rgba(85,0,221,0.08) !important; border-color: rgba(85,0,221,0.25) !important; color: #5500DD !important; }
+    .cs-hero h1 { color: #0a0a0a !important; }
+    .cs-hero h1 em { background: linear-gradient(135deg,#7c3aed,#db2777); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .cs-hero-desc { color: #444 !important; }
+</style>
   <link rel="stylesheet" href="/assets/nav.css">
 </head>
 <body>

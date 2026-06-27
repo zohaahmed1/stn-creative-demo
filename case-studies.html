@@ -72,7 +72,15 @@
 
     @media (max-width: 900px) { .cs-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 600px) { .cs-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
-  </style>
+  
+    /* ── Light hero (process-page style) ── */
+    .page-hero { position: relative; overflow: hidden; background: #ffffff; }
+    .page-hero::before { content:''; position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:1200px; height:560px; background: radial-gradient(ellipse 520px 360px at 28% 45%, rgba(85,0,221,0.18) 0%, transparent 60%), radial-gradient(ellipse 420px 320px at 72% 58%, rgba(238,0,51,0.13) 0%, transparent 62%); pointer-events:none; z-index:0; }
+    .page-hero h1, .page-hero p { position: relative; z-index: 1; }
+    .page-hero h1 { color: #0a0a0a !important; }
+    .page-hero h1 em { background: linear-gradient(135deg,#7c3aed,#db2777); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page-hero p { color: #444 !important; }
+</style>
   <link rel="stylesheet" href="/assets/nav.css">
 </head>
 <body>

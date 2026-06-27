@@ -154,7 +154,16 @@
     .cal-modal.open { display: flex; }
     .cal-modal-content { background: white; border-radius: 12px; width: 90%; max-width: 600px; max-height: 90vh; overflow: auto; position: relative; }
     .cal-modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; z-index: 1000; }
-  </style>
+  
+    /* ── Light hero (process-page style) ── */
+    .article-hero { position: relative; overflow: hidden; background: #ffffff; }
+    .article-hero::before { content:''; position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:1200px; height:560px; background: radial-gradient(ellipse 520px 360px at 28% 45%, rgba(85,0,221,0.18) 0%, transparent 60%), radial-gradient(ellipse 420px 320px at 72% 58%, rgba(238,0,51,0.13) 0%, transparent 62%); pointer-events:none; z-index:0; }
+    .article-hero-inner { position: relative; z-index: 1; }
+    .article-tag { background: rgba(255,69,0,0.10) !important; border-color: rgba(255,69,0,0.30) !important; color: #c2410c !important; }
+    .article-hero h1 { color: #0a0a0a !important; }
+    .article-hero h1 em { background: linear-gradient(135deg,#7c3aed,#db2777); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .article-meta, .article-meta a, .article-meta span { color: #6b7280 !important; }
+</style>
 
   <!-- Meta Pixel Code -->
   <script>
