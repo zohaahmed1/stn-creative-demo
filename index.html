@@ -2115,16 +2115,18 @@ if (dropdownTrigger && navDropdown) {
     document.addEventListener('mouseup', endDrag);
   }
 
-  // Touch
-  scroll.addEventListener('touchstart', function(e) {
-    startDrag(e.touches[0].clientX);
-    scroll.classList.add('is-touching');
-  }, { passive: true });
-  scroll.addEventListener('touchmove', function(e) {
-    moveDrag(e.touches[0].clientX);
-  }, { passive: true });
-  scroll.addEventListener('touchend', endDrag, { passive: true });
-  scroll.addEventListener('touchcancel', endDrag, { passive: true });
+  // Touch — only on desktop-like devices (hover:hover); mobile uses native scroll+snap
+  if (window.matchMedia('(hover: hover)').matches) {
+    scroll.addEventListener('touchstart', function(e) {
+      startDrag(e.touches[0].clientX);
+      scroll.classList.add('is-touching');
+    }, { passive: true });
+    scroll.addEventListener('touchmove', function(e) {
+      moveDrag(e.touches[0].clientX);
+    }, { passive: true });
+    scroll.addEventListener('touchend', endDrag, { passive: true });
+    scroll.addEventListener('touchcancel', endDrag, { passive: true });
+  }
 })();
 
 // ── Testimonials: auto-advance one card at a time on mobile ───────────────────
