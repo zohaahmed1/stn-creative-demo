@@ -2115,7 +2115,7 @@ if (dropdownTrigger && navDropdown) {
     document.addEventListener('mouseup', endDrag);
   }
 
-  // Touch — only on desktop-like devices (hover:hover); mobile uses native scroll+snap
+  // Touch — desktop: pause CSS animation + transform; mobile: drive scrollLeft directly
   if (window.matchMedia('(hover: hover)').matches) {
     scroll.addEventListener('touchstart', function(e) {
       startDrag(e.touches[0].clientX);
@@ -2126,6 +2126,20 @@ if (dropdownTrigger && navDropdown) {
     }, { passive: true });
     scroll.addEventListener('touchend', endDrag, { passive: true });
     scroll.addEventListener('touchcancel', endDrag, { passive: true });
+  } else {
+    // Mobile: touch-action:pan-y owns vertical (page scroll); JS owns horizontal
+    var tStartX = 0, tStartLeft = 0, tDragging = false;
+    scroll.addEventListener('touchstart', function(e) {
+      tStartX = e.touches[0].clientX;
+      tStartLeft = scroll.scrollLeft;
+      tDragging = true;
+    }, { passive: true });
+    scroll.addEventListener('touchmove', function(e) {
+      if (!tDragging) return;
+      scroll.scrollLeft = tStartLeft + (tStartX - e.touches[0].clientX);
+    }, { passive: true });
+    scroll.addEventListener('touchend', function() { tDragging = false; }, { passive: true });
+    scroll.addEventListener('touchcancel', function() { tDragging = false; }, { passive: true });
   }
 })();
 

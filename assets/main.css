@@ -1574,14 +1574,15 @@
       #services div[style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; }
       #services div[style*="grid-template-columns:1fr 1fr"] > div[style*="border-right"] { border-right: none !important; }
 
-      /* Testimonials — native scroll + snap on mobile; no CSS auto-scroll */
+      /* Testimonials — JS-driven horizontal drag + snap on mobile; no CSS auto-scroll */
       .testimonials-scroll {
         overflow-x: scroll !important;
         overflow-y: hidden !important;
-        -webkit-overflow-scrolling: touch;
         scroll-snap-type: x mandatory;
+        touch-action: pan-y !important; /* vertical → native page scroll; horizontal → JS drag */
         cursor: default !important;
         scrollbar-width: none;
+        overscroll-behavior-x: contain;
       }
       .testimonials-scroll::-webkit-scrollbar { display: none; }
       .testimonials-track {
