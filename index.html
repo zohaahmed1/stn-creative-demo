@@ -2115,7 +2115,9 @@ if (dropdownTrigger && navDropdown) {
     document.addEventListener('mouseup', endDrag);
   }
 
-  // Touch — desktop: pause CSS animation + transform; mobile: drive scrollLeft directly
+  // Touch — desktop touch-screens only (pause CSS animation + transform drag).
+  // Mobile needs NO JS here: overflow-x:scroll gives native swipe with momentum,
+  // scroll-snap aligns cards. JS scrollLeft-during-touch fights mandatory snap.
   if (window.matchMedia('(hover: hover)').matches) {
     scroll.addEventListener('touchstart', function(e) {
       startDrag(e.touches[0].clientX);
@@ -2126,20 +2128,6 @@ if (dropdownTrigger && navDropdown) {
     }, { passive: true });
     scroll.addEventListener('touchend', endDrag, { passive: true });
     scroll.addEventListener('touchcancel', endDrag, { passive: true });
-  } else {
-    // Mobile: touch-action:pan-y owns vertical (page scroll); JS owns horizontal
-    var tStartX = 0, tStartLeft = 0, tDragging = false;
-    scroll.addEventListener('touchstart', function(e) {
-      tStartX = e.touches[0].clientX;
-      tStartLeft = scroll.scrollLeft;
-      tDragging = true;
-    }, { passive: true });
-    scroll.addEventListener('touchmove', function(e) {
-      if (!tDragging) return;
-      scroll.scrollLeft = tStartLeft + (tStartX - e.touches[0].clientX);
-    }, { passive: true });
-    scroll.addEventListener('touchend', function() { tDragging = false; }, { passive: true });
-    scroll.addEventListener('touchcancel', function() { tDragging = false; }, { passive: true });
   }
 })();
 
@@ -2160,8 +2148,9 @@ if (dropdownTrigger && navDropdown) {
 
   function goTo(i) {
     idx = ((i % n) + n) % n;
-    // card.offsetLeft already accounts for scroll-container padding
-    scroll.scrollTo({ left: cards[idx].offsetLeft - 20, behavior: 'smooth' });
+    // Target the exact snap position (scroll-padding-left: 16px) so mandatory
+    // snap doesn't re-adjust after the smooth scroll lands
+    scroll.scrollTo({ left: cards[idx].offsetLeft - 16, behavior: 'smooth' });
   }
 
   function advance() {
@@ -2189,7 +2178,7 @@ if (dropdownTrigger && navDropdown) {
       var sl = scroll.scrollLeft;
       var best = 0, bestDist = Infinity;
       cards.forEach(function(c, i) {
-        var d = Math.abs((c.offsetLeft - 20) - sl);
+        var d = Math.abs((c.offsetLeft - 16) - sl);
         if (d < bestDist) { bestDist = d; best = i; }
       });
       idx = best;
