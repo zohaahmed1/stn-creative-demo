@@ -950,8 +950,10 @@
       left: 50%;
       transform: translateX(-50%);
       cursor: grab;
+      user-select: none; /* text selection would otherwise hijack the drag gesture */
     }
     .testimonials-scroll:active { cursor: grabbing; }
+    .testimonials-scroll img { -webkit-user-drag: none; } /* native image-drag would otherwise hijack the gesture */
     /* Preserve the horizontal centering transform when visible — data-anim:visible sets transform:none which would remove translateX(-50%) */
     .testimonials-scroll[data-anim].visible { transform: translateX(-50%); }
     .testimonials-scroll.is-dragging .testimonials-track { animation-play-state: paused; }

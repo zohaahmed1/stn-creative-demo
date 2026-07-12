@@ -2108,6 +2108,7 @@ if (dropdownTrigger && navDropdown) {
   // Mouse — desktop pointer devices only
   if (window.matchMedia('(hover: hover)').matches) {
     scroll.addEventListener('mousedown', function(e) {
+      e.preventDefault(); // block native image-drag and text-selection from hijacking the gesture
       startDrag(e.clientX);
       scroll.classList.add('is-dragging');
     });
