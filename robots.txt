@@ -7,23 +7,59 @@ Disallow: /book-thanks
 Allow: /creative-audit-saas
 Disallow: /creative-audit
 
-# Allow AI assistants to read site content
+# ── AI assistant / answer-engine crawlers ──────────────────────────
+# Cloudflare prepends a managed block that disallows several AI bots.
+# The explicit Allow groups below override it for spec-compliant
+# parsers (on an equal-length rule tie, Allow wins — Google REP).
+# Being cited by AI assistants is a business goal for this site.
+
+# Anthropic (Claude)
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
 User-agent: Claude-Web
+Allow: /
+
+# OpenAI (ChatGPT)
+User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: GPTBot
+User-agent: OAI-SearchBot
 Allow: /
 
-User-agent: Anthropic
+# Google (Gemini grounding)
+User-agent: Google-Extended
 Allow: /
 
+# Perplexity
 User-agent: PerplexityBot
 Allow: /
 
-User-agent: Google-Extended
+User-agent: Perplexity-User
+Allow: /
+
+# Meta AI
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# Apple Intelligence / Siri
+User-agent: Applebot-Extended
+Allow: /
+
+# Amazon (Alexa answers)
+User-agent: Amazonbot
 Allow: /
 
 Sitemap: https://skipthenoisemedia.com/sitemap.xml

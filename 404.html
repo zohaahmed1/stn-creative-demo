@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Page not found | Skip the Noise Media</title>
+  <!-- Self-contained on purpose: this page renders at any URL depth, so no
+       relative asset references are safe here. Inline styles only. -->
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      background: #ffffff;
+      color: #0d0d0d;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .box { max-width: 520px; text-align: center; }
+    .code {
+      font-size: 96px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      background: linear-gradient(90deg, #5500DD, #FF4500);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: #5500DD;
+    }
+    h1 { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; margin: 16px 0 10px; }
+    p { font-size: 15px; color: rgba(13,13,13,0.65); line-height: 1.6; margin-bottom: 28px; }
+    .links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    a {
+      display: inline-block;
+      padding: 12px 22px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      color: #0d0d0d;
+      border: 1.5px solid rgba(13,13,13,0.2);
+      transition: border-color 0.15s;
+    }
+    a:hover { border-color: #0d0d0d; }
+    a.primary { background: #5500DD; border-color: #5500DD; color: #fff; }
+    a.primary:hover { background: #4600b8; border-color: #4600b8; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="code">404</div>
+    <h1>This page doesn't exist.</h1>
+    <p>The link may be old or mistyped. Everything worth reading is one click away.</p>
+    <div class="links">
+      <a class="primary" href="/">Home</a>
+      <a href="/case-studies">Case studies</a>
+      <a href="/blog">Blog</a>
+      <a href="/book">Book a call</a>
+    </div>
+  </div>
+</body>
+</html>
