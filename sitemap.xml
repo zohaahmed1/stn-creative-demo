@@ -293,6 +293,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://skipthenoisemedia.com/work/simple-booth</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://skipthenoisemedia.com/work/restream</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
