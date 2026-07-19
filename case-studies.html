@@ -181,10 +181,17 @@
   <p>Real campaigns, real numbers. From Reddit-first B2B pipeline generation to cross-channel measurement that uncovered where budget was actually going.</p>
 </section>
 
+<div class="filter-bar" role="tablist" aria-label="Filter case studies by category">
+  <button class="filter-btn active" data-cat="all" onclick="filterCaseStudies('all', this)">All</button>
+  <button class="filter-btn" data-cat="saas" onclick="filterCaseStudies('saas', this)">B2B SaaS</button>
+  <button class="filter-btn" data-cat="b2csaas" onclick="filterCaseStudies('b2csaas', this)">B2C SaaS</button>
+  <button class="filter-btn" data-cat="dtc" onclick="filterCaseStudies('dtc', this)">eComm / DTC</button>
+</div>
+
 <div class="cs-grid">
 
   <!-- Flare -->
-  <a href="/work/flare" class="cs-card">
+  <a href="/work/flare" class="cs-card" data-cat="saas">
     <div class="cs-card-img">
       <img src="/assets/Flare Case Study V2.jpg" alt="Flare cybersecurity Reddit ads case study" loading="lazy">
       <div class="cs-card-stat"><span class="num">74</span><span class="lbl">Qualified leads / 3 months</span></div>
@@ -198,7 +205,7 @@
   </a>
 
   <!-- Restream -->
-  <a href="/work/restream" class="cs-card">
+  <a href="/work/restream" class="cs-card" data-cat="b2csaas">
     <div class="cs-card-img">
       <img src="/assets/Restream Case Study V2.jpg" alt="Streaming platform paid media case study" loading="lazy">
       <div class="cs-card-stat"><span class="num">19%</span><span class="lbl">CAC reduction</span></div>
@@ -212,7 +219,7 @@
   </a>
 
   <!-- Simple Booth -->
-  <a href="/work/simple-booth" class="cs-card">
+  <a href="/work/simple-booth" class="cs-card" data-cat="saas b2csaas">
     <div class="cs-card-img">
       <img src="/assets/Simple Booth Case Study.jpg" alt="Simple Booth HALO photo booth DTC and B2B case study" loading="lazy">
       <div class="cs-card-stat"><span class="num">11x</span><span class="lbl">Platform ROAS on retargeting</span></div>
@@ -226,7 +233,7 @@
   </a>
 
   <!-- Apolone -->
-  <a href="/work/apolone" class="cs-card">
+  <a href="/work/apolone" class="cs-card" data-cat="b2csaas">
     <div class="cs-card-img">
       <img src="/assets/apolone-hero.png" alt="Apolone music SaaS TikTok ads case study — $70 CPA" loading="lazy">
       <div class="cs-card-stat"><span class="num">$70</span><span class="lbl">CPA on TikTok</span></div>
@@ -240,7 +247,7 @@
   </a>
 
   <!-- 3D AI Studio -->
-  <a href="/work/3d-ai-studio" class="cs-card">
+  <a href="/work/3d-ai-studio" class="cs-card" data-cat="b2csaas">
     <div class="cs-card-img">
       <img src="/assets/3d-ai-studio-hero.png" alt="3D AI Studio Reddit ads case study — €30 CPA after 90 days" loading="lazy">
       <div class="cs-card-stat"><span class="num">€30</span><span class="lbl">CPA after 90 days</span></div>
@@ -254,7 +261,7 @@
   </a>
 
   <!-- Noirver -->
-  <a href="/work/noirver" class="cs-card">
+  <a href="/work/noirver" class="cs-card" data-cat="dtc">
     <div class="cs-card-img">
       <img src="/assets/Noirver V2.png" alt="Noirver European handbag brand TikTok Snapchat case study" loading="lazy">
       <div class="cs-card-stat"><span class="num">4.3x</span><span class="lbl">ROAS on TikTok</span></div>
@@ -268,7 +275,7 @@
   </a>
 
   <!-- CozyBeds -->
-  <a href="/work/cozybeds" class="cs-card">
+  <a href="/work/cozybeds" class="cs-card" data-cat="dtc">
     <div class="cs-card-img">
       <img src="/assets/CozyBeds Case Study V2.jpg" alt="CozyBeds high-ticket furniture case study" loading="lazy">
       <div class="cs-card-stat"><span class="num">4x</span><span class="lbl">ROI</span></div>
@@ -282,7 +289,7 @@
   </a>
 
   <!-- Tiny Protectors -->
-  <a href="/work/tp" class="cs-card">
+  <a href="/work/tp" class="cs-card" data-cat="dtc">
     <div class="cs-card-img">
       <img src="/assets/TP Case Study v2.png" alt="Women's lifestyle accessories brand Meta Pinterest case study" loading="lazy">
       <div class="cs-card-stat"><span class="num">6.8x</span><span class="lbl">ROAS on Pinterest</span></div>
@@ -296,7 +303,7 @@
   </a>
 
   <!-- Lottery -->
-  <a href="/work/lottery" class="cs-card">
+  <a href="/work/lottery" class="cs-card" data-cat="other">
     <div class="cs-card-img">
       <img src="/assets/Lottery Case Study V2.jpg" alt="Non-profit lottery case study" loading="lazy">
       <div class="cs-card-stat"><span class="num">3x</span><span class="lbl">ROAS in 4 weeks</span></div>
@@ -322,5 +329,15 @@
   <p><a href="mailto:sales@skipthenoisemedia.com">sales@skipthenoisemedia.com</a></p>
   <p style="font-size:13px; margin-top:8px;"><a href="/privacy.html">Privacy Policy</a> &middot; <a href="/cookies.html">Cookie Policy</a> &middot; <a href="/terms.html">Terms of Service</a></p>
 </footer>
+
+<script>
+function filterCaseStudies(cat, btn){
+  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.toggle('active', b===btn); });
+  document.querySelectorAll('.cs-card').forEach(function(card){
+    var cats=(card.dataset.cat||'').split(' ');
+    card.style.display=(cat==='all'||cats.indexOf(cat)>-1)?'':'none';
+  });
+}
+</script>
 </body>
 </html>
