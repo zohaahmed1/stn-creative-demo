@@ -490,7 +490,7 @@
       padding-bottom: 36px;
     }
     .hero-headline {
-      font-size: clamp(36px, 4.7vw, 72px);
+      font-size: clamp(36px, 5.2vw, 80px);
       line-height: 1.08;
       letter-spacing: -0.03em;
       color: var(--navy);
