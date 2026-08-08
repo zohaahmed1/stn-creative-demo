@@ -1093,13 +1093,6 @@
       cursor: pointer;
     }
 
-    /* ── Marquee slow-on-hover — desktop only ─────────────────────── */
-    @media (hover: hover) {
-      .hero-marquee-wrap:hover .hero-marquee-track {
-        animation-duration: 180s;
-      }
-    }
-
     /* ── Floating platform badges in hero ─────────────────────────── */
     .hero-float-badges {
       position: absolute;
