@@ -500,6 +500,11 @@
       font-family: "Satoshi", system-ui, sans-serif;
       font-weight: 900;
       letter-spacing: -0.04em;
+      white-space: nowrap;
+      font-size: clamp(30px, 4.7vw, 72px);
+    }
+    @media (max-width: 640px) {
+      .hero-headline-bold { white-space: normal; font-size: 1em; }
     }
     .hero-headline-italic {
       display: block;
