@@ -490,7 +490,7 @@
       padding-bottom: 36px;
     }
     .hero-headline {
-      font-size: clamp(40px, 5.8vw, 92px);
+      font-size: clamp(36px, 4.7vw, 72px);
       line-height: 1.08;
       letter-spacing: -0.03em;
       color: var(--navy);
@@ -501,10 +501,9 @@
       font-weight: 900;
       letter-spacing: -0.04em;
       white-space: nowrap;
-      font-size: clamp(30px, 4.7vw, 72px);
     }
     @media (max-width: 640px) {
-      .hero-headline-bold { white-space: normal; font-size: 1em; }
+      .hero-headline-bold { white-space: normal; }
     }
     .hero-headline-italic {
       display: block;
