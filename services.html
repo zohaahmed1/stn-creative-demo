@@ -175,7 +175,7 @@
        SECTION 1: HERO
        ============================ */
     .hero {
-      background: #080808;
+      background: #ffffff;
       padding: 120px 24px 0;
       text-align: center;
       position: relative;
@@ -186,8 +186,8 @@
       position: absolute;
       top: 0; left: 50%;
       transform: translateX(-50%);
-      width: 800px; height: 500px;
-      background: radial-gradient(ellipse at center, rgba(85,0,221,0.15) 0%, rgba(238,0,51,0.06) 50%, transparent 75%);
+      width: 1200px; height: 560px;
+      background: radial-gradient(ellipse 520px 360px at 28% 45%, rgba(85,0,221,0.16) 0%, transparent 60%), radial-gradient(ellipse 420px 320px at 72% 58%, rgba(238,0,51,0.12) 0%, transparent 62%);
       pointer-events: none;
     }
     .hero-content { position: relative; z-index: 1; }
@@ -218,7 +218,7 @@
     .hero-micro {
       margin-top: 12px;
       font-size: 13px;
-      color: rgba(255,255,255,0.35);
+      color: #9ca3af;
       font-variation-settings: "wdth" var(--wdth), "wght" 500;
     }
     .hero-h1 { margin: 0 0 20px; }
@@ -229,26 +229,26 @@
     .hero-proof .hp {
       padding: 0 28px; text-align: center;
     }
-    .hero-proof .hp + .hp { border-left: 1px solid rgba(255,255,255,0.14); }
+    .hero-proof .hp + .hp { border-left: 1px solid rgba(0,0,0,0.12); }
     .hero-proof .hp-n {
-      display: block; font-size: 30px; color: #fff;
+      display: block; font-size: 30px; color: #0a0a0a;
       font-variation-settings: "wdth" var(--wdth), "wght" 800; letter-spacing: -0.03em;
     }
     .hero-proof .hp-l {
       display: block; font-size: 12px; margin-top: 4px;
-      color: rgba(255,255,255,0.45);
+      color: #6b7280;
       font-variation-settings: "wdth" var(--wdth), "wght" 600;
       text-transform: uppercase; letter-spacing: 0.06em;
     }
     .hero-secondary {
       display: inline-block; margin-left: 18px; font-size: 14px;
-      color: rgba(255,255,255,0.55); text-decoration: underline;
+      color: #6b7280; text-decoration: underline;
       text-underline-offset: 3px; transition: color 0.2s;
       font-variation-settings: "wdth" var(--wdth), "wght" 600;
     }
-    .hero-secondary:hover { color: #fff; }
+    .hero-secondary:hover { color: #0a0a0a; }
     /* creative proof strip */
-    .hero-strip { margin-top: 56px; width: 100%; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+    .hero-strip { margin-top: 56px; width: calc(100% + 48px); margin-left: -24px; margin-right: -24px; overflow: hidden; background: #080808; padding: 40px 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
     .hero-strip-track { display: flex; gap: 14px; width: max-content; animation: stripScroll 46s linear infinite; }
     .hero-strip img { height: 190px; width: auto; border-radius: 12px; display: block; object-fit: cover; }
     @keyframes stripScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
@@ -465,6 +465,10 @@
       color: var(--gray-300);
       margin-bottom: 6px;
     }
+    .step-sub {
+      font-size: 13px; color: #8b90a0; margin-top: 3px;
+      font-variation-settings: "wdth" var(--wdth), "wght" 500;
+    }
     .step-title {
       font-size: 17px;
       font-variation-settings: "wdth" var(--wdth), "wght" 800;
@@ -623,6 +627,56 @@
     }
 
     /* ============================
+       SECTION 2: WHICH ONE ARE YOU (editorial split)
+       ============================ */
+    .split-section { background: var(--white); padding: 100px 0 0; }
+    .split-section .container { padding-bottom: 8px; }
+    .split-wrap { display: grid; grid-template-columns: 1fr 1fr; margin-top: 48px; }
+    .split-half {
+      display: block; text-decoration: none; color: inherit;
+      padding: 64px clamp(28px, 4vw, 72px) 68px;
+      border-top: 1px solid rgba(0,0,0,0.08);
+      transition: background 0.25s;
+      position: relative;
+    }
+    .split-half.dtc  { background: #fdf7f8; }
+    .split-half.saas { background: #f8f7fd; border-left: 1px solid rgba(0,0,0,0.06); }
+    .split-half.dtc:hover  { background: #fbeef1; }
+    .split-half.saas:hover { background: #f2effc; }
+    .split-kicker {
+      display: block; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
+      font-variation-settings: "wdth" var(--wdth), "wght" 700; margin-bottom: 22px;
+    }
+    .split-half.dtc  .split-kicker { color: #c2183a; }
+    .split-half.saas .split-kicker { color: #5500dd; }
+    .split-half h3 {
+      font-size: clamp(24px, 2.4vw, 34px); line-height: 1.18; letter-spacing: -0.03em;
+      color: #0d0d0d; margin: 0 0 18px;
+      font-variation-settings: "wdth" var(--wdth), "wght" 800;
+    }
+    .split-half > p { font-size: 16.5px; line-height: 1.7; color: #4b5563; margin: 0 0 32px; max-width: 46ch; }
+    .split-stat { display: flex; align-items: baseline; gap: 12px; padding-top: 26px; border-top: 1px solid rgba(0,0,0,0.09); }
+    .split-stat strong {
+      font-size: clamp(38px, 4vw, 54px); line-height: 1; letter-spacing: -0.04em;
+      font-variation-settings: "wdth" var(--wdth), "wght" 800;
+    }
+    .split-half.dtc  .split-stat strong { color: #ee0033; }
+    .split-half.saas .split-stat strong { color: #5500dd; }
+    .split-stat span { font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; color: #6b7280; font-variation-settings: "wdth" var(--wdth), "wght" 600; }
+    .split-go {
+      display: block; margin-top: 30px; font-size: 15px;
+      font-variation-settings: "wdth" var(--wdth), "wght" 700; color: #0d0d0d;
+    }
+    .split-half:hover .split-go { text-decoration: underline; text-underline-offset: 4px; }
+    .split-alt { display: block; margin-top: 12px; font-size: 13.5px; color: #8b90a0; }
+    .split-alt a { color: #6b7280; text-decoration: underline; text-underline-offset: 3px; }
+    @media (max-width: 860px) {
+      .split-wrap { grid-template-columns: 1fr; }
+      .split-half.saas { border-left: none; }
+      .split-half { padding: 48px 24px 54px; }
+    }
+
+    /* ============================
        SECTION 6b: FIT + ROUTING + CHART
        ============================ */
     .fit-section { background: var(--white); padding: 100px 24px; }
@@ -639,12 +693,15 @@
     .fit-card.yes .fit-list li::before { content: '✓'; color: #1f7a4f; }
     .fit-card.no .fit-list li::before { content: '—'; color: #a8a8a8; }
     /* creative-volume chart */
-    .vol-chart { display: flex; align-items: flex-end; gap: 34px; justify-content: center; margin-top: 44px; height: 210px; }
+    .vol-row { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin-top: 64px; padding-top: 56px; border-top: 1px solid rgba(255,255,255,0.1); }
+    .vol-copy h4 { font-size: clamp(22px,2vw,30px); color: #fff; margin: 0 0 14px; font-variation-settings: "wdth" var(--wdth), "wght" 800; letter-spacing: -0.025em; line-height: 1.2; }
+    .vol-copy p { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.6); margin: 0; }
+    .vol-chart { display: flex; align-items: flex-end; gap: 26px; justify-content: center; height: 210px; }
     .vol-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
     .vol-bar { width: 92px; border-radius: 10px 10px 0 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 10px; color: #fff; font-size: 15px; font-variation-settings: "wdth" var(--wdth), "wght" 800; }
-    .vol-bar.them { background: #d8d6da; color: #4a4a4a; }
+    .vol-bar.them { background: rgba(255,255,255,0.18); color: rgba(255,255,255,0.75); }
     .vol-bar.us { background: linear-gradient(180deg,#7c3aed,#5500dd); }
-    .vol-lab { margin-top: 12px; font-size: 13px; color: #6b7280; font-variation-settings: "wdth" var(--wdth), "wght" 600; text-align: center; line-height: 1.35; }
+    .vol-lab { margin-top: 12px; font-size: 13px; color: rgba(255,255,255,0.45); font-variation-settings: "wdth" var(--wdth), "wght" 600; text-align: center; line-height: 1.35; }
     /* routing to service pages */
     .route-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
     .route-card { display: block; padding: 26px 24px; border: 1.5px solid #e5e5ea; border-radius: 16px; text-decoration: none; color: inherit; background: #fff; transition: transform .2s, box-shadow .2s, border-color .2s; }
@@ -656,6 +713,7 @@
     @media (max-width: 768px) {
       .fit-grid { grid-template-columns: 1fr; }
       .route-grid { grid-template-columns: 1fr; }
+      .vol-row { grid-template-columns: 1fr; gap: 32px; }
       .vol-chart { gap: 20px; }
       .vol-bar { width: 70px; }
     }
@@ -808,10 +866,10 @@
       <span class="partner-badge">Reddit Certified Partner ✓</span>
     </div>
     <h1 class="hero-h1" data-anim data-delay="1">
-      <span class="heading-bold" style="color:#ffffff;">We make the ads.</span>
-      <span class="heading-italic" style="color:#ffffff;">We run the media.</span>
+      <span class="heading-bold" style="color:#0a0a0a;">We make the ads.</span>
+      <span class="heading-italic" style="color:#0a0a0a;">We run the media.</span>
     </h1>
-    <p data-anim data-delay="2" style="font-size:clamp(16px,1.2vw,19px); color:rgba(255,255,255,0.6); max-width:640px; margin:0 auto; line-height:1.7;">Creative production and cross-channel media buying for DTC and SaaS brands. Most agencies take 6 weeks to get your first ad live. We do it in one.</p>
+    <p data-anim data-delay="2" style="font-size:clamp(16px,1.2vw,19px); color:#444; max-width:640px; margin:0 auto; line-height:1.7;">Creative production and cross-channel media buying for DTC and SaaS brands. Most agencies take 6 weeks to get your first ad live. We do it in one.</p>
 
     <div class="hero-proof" data-anim data-delay="3">
       <div class="hp"><span class="hp-n">74</span><span class="hp-l">Qualified B2B leads &middot; 3 months</span></div>
@@ -850,98 +908,35 @@
 </section>
 
 <!-- ============================
-     SECTION 2: WHO IT'S FOR
+     SECTION 2: WHICH ONE ARE YOU
      ============================ -->
-<section class="who-section">
+<section class="split-section">
   <div class="container">
     <p class="section-label" data-anim>Who we work with</p>
     <div data-anim data-delay="1">
-      <span class="heading-bold" style="color:#0d0d0d;">Most agencies pick a lane.</span>
-      <span class="heading-italic" style="color:#0d0d0d;">We run both.</span>
-    </div>
-    <div class="who-cards">
-
-      <!-- DTC Card -->
-      <a href="/case-studies" class="who-card who-card-dtc" data-anim data-delay="2" style="display:block; text-decoration:none; color:inherit;">
-        <span class="who-tag tag-orange">eComm / DTC</span>
-        <h3>Your ROAS is slipping and you know why.</h3>
-        <p>Same creatives. Same audiences. Same results. You're not short on budget. You're short on fresh angles, tested hooks, and creative volume. And your current agency takes weeks to fix that.</p>
-        <ul class="bullet-list">
-          <li><span class="bullet-dot dot-orange"></span>Up to 40 new AI-produced creatives a month across Meta, TikTok and Pinterest — scaled to your spend</li>
-          <li><span class="bullet-dot dot-orange"></span>Media buying optimized to your ROAS target, not vanity metrics</li>
-          <li><span class="bullet-dot dot-orange"></span>First batch delivered in 1 week. Not 6.</li>
-        </ul>
-        <div class="proof-stat-row">
-          <span class="proof-num proof-num-orange">3–4x</span>
-          <span class="proof-label">ROAS across DTC accounts</span>
-        </div>
-      </a>
-
-      <!-- SaaS Card -->
-      <a href="/reddit-ads-agency" class="who-card who-card-saas" data-anim data-delay="3" style="display:block; text-decoration:none; color:inherit;">
-        <span class="who-tag tag-purple">B2B &amp; B2C SaaS</span>
-        <h3>You're paying Google prices while Reddit sits untapped.</h3>
-        <p>Your buyers are on Reddit right now. Asking which tool to switch to, venting about your competitor, looking for exactly what you offer. Almost no one in your space is advertising there. We're Reddit Certified. They're not.</p>
-        <ul class="bullet-list">
-          <li><span class="bullet-dot dot-purple"></span>Reddit community targeting your exact buyer persona</li>
-          <li><span class="bullet-dot dot-purple"></span>Pipeline-focused buying on Reddit and LinkedIn</li>
-          <li><span class="bullet-dot dot-purple"></span>Creative built for the feed, live in 1 week</li>
-        </ul>
-        <div class="proof-stat-row">
-          <span class="proof-num proof-num-purple">74</span>
-          <span class="proof-label">qualified B2B leads in 3 months</span>
-        </div>
-      </a>
-
+      <span class="heading-bold" style="color:#0d0d0d;">Which one</span>
+      <span class="heading-italic" style="color:#0d0d0d;">are you?</span>
     </div>
   </div>
-</section>
 
-<!-- ============================
-     SECTION 3: OUTCOMES
-     ============================ -->
-<section class="outcomes-section">
-  <div class="container">
-    <p class="section-label section-label-white" data-anim>What you actually get</p>
-    <div data-anim data-delay="1">
-      <span class="heading-bold" style="color:#ffffff;">Not features.</span>
-      <span class="heading-italic" style="color:#ffffff;">Outcomes.</span>
-    </div>
-    <div class="outcomes-grid">
+  <div class="split-wrap">
+    <a class="split-half dtc" href="/reddit-ads-agency" data-anim data-delay="2">
+      <span class="split-kicker">eComm &amp; DTC</span>
+      <h3>Your ROAS is slipping and you know why.</h3>
+      <p>Same creatives. Same audiences. Same results. You're not short on budget — you're short on fresh angles and creative volume. And your current agency takes weeks to fix that.</p>
+      <div class="split-stat"><strong>4.3x</strong><span>ROAS on TikTok &middot; fashion eComm</span></div>
+      <span class="split-go">See how we run it &rarr;</span>
+      <span class="split-alt">Also: <a href="/reddit-organic-marketing">Reddit organic &rarr;</a></span>
+    </a>
 
-      <a href="/gallery" class="outcome-card" data-anim data-delay="1" style="display:block; text-decoration:none; color:inherit;">
-        <div class="outcome-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        </div>
-        <h4>Up to 40 AI creatives per month</h4>
-        <p>Not 4 recycled resizes. Fresh hooks, new formats, and multiple angles tested every cycle. AI-powered production means volume without the lag. Volume is what powers the algorithm.</p>
-      </a>
-
-      <a href="/case-studies" class="outcome-card" data-anim data-delay="2" style="display:block; text-decoration:none; color:inherit;">
-        <div class="outcome-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-        </div>
-        <h4>ROAS above benchmark</h4>
-        <p>We optimize against your numbers, not industry averages. If it's not beating your baseline, we iterate. That's the job.</p>
-      </a>
-
-      <a href="/blog/ad-creative-testing-framework" class="outcome-card" data-anim data-delay="3" style="display:block; text-decoration:none; color:inherit;">
-        <div class="outcome-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <h4>Always-on A/B testing</h4>
-        <p>Every creative launches as a test. Winners get budget. Losers stop in under 2 weeks. No wasted spend on bad creative that just keeps running.</p>
-      </a>
-
-      <a href="/process" class="outcome-card" data-anim data-delay="4" style="display:block; text-decoration:none; color:inherit;">
-        <div class="outcome-icon">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-        </div>
-        <h4>Reports you can actually act on</h4>
-        <p>Weekly dashboards with clear next steps. Not vanity metrics and graphs that mean nothing. You'll always know what's working and why.</p>
-      </a>
-
-    </div>
+    <a class="split-half saas" href="/saas-ads-agency" data-anim data-delay="3">
+      <span class="split-kicker">B2B &amp; B2C SaaS</span>
+      <h3>You're paying Google prices while Reddit sits untapped.</h3>
+      <p>Your buyers are on Reddit right now — asking which tool to switch to, venting about your competitor, looking for exactly what you offer. Almost nobody in your space is advertising there. We're Reddit Certified. They're not.</p>
+      <div class="split-stat"><strong>$157</strong><span>Cost per lead &middot; cybersecurity SaaS</span></div>
+      <span class="split-go">See how we run it &rarr;</span>
+      <span class="split-alt">Also: <a href="/b2c-saas-ads">B2C SaaS ads &rarr;</a></span>
+    </a>
   </div>
 </section>
 
@@ -955,39 +950,60 @@
       <span class="heading-bold" style="color:#0d0d0d;">The Signal Method.</span>
       <span class="heading-italic" style="color:#0d0d0d;">Volume in, signal out.</span>
     </div>
-    <p data-anim data-delay="2" style="font-size:17px; color:#5b6070; max-width:640px; margin:18px auto 0; line-height:1.7; text-align:center;">Most agencies make a few ads and hope. We make a lot, find the ones that work, and put your budget behind those. Four steps, live in a week.</p>
+    <p data-anim data-delay="2" style="font-size:17px; color:#5b6070; max-width:640px; margin:18px auto 0; line-height:1.7; text-align:center;">You cannot find the signal without volume. So we produce a lot, isolate what actually works, then put your budget behind that. Baseline, Volume, Isolate, Amplify &mdash; live in a week.</p>
 
     <div class="timeline">
 
       <div class="timeline-step" data-anim data-delay="1">
         <div class="step-circle">1</div>
         <p class="step-week">Day 1–2</p>
-        <p class="step-title">Audit + Brief</p>
+        <p class="step-title">Baseline</p><p class="step-sub">Audit + brief</p>
         <p class="step-body">We dig into your account history, competitor creative, and positioning. Strategy locked before we write a single word.</p>
       </div>
 
       <div class="timeline-step" data-anim data-delay="2">
         <div class="step-circle">2</div>
         <p class="step-week">Day 3–5</p>
-        <p class="step-title">First Creative Batch</p>
+        <p class="step-title">Volume</p><p class="step-sub">First creative batch</p>
         <p class="step-body">Up to 40 AI-produced assets across formats and hooks. Static, video, UGC. All platform-native, all tested against your brand.</p>
       </div>
 
       <div class="timeline-step" data-anim data-delay="3">
         <div class="step-circle">3</div>
         <p class="step-week">Day 6–7</p>
-        <p class="step-title">Launch + Test</p>
+        <p class="step-title">Isolate</p><p class="step-sub">Launch + test</p>
         <p class="step-body">Ads go live with a proper A/B framework. Baseline established in the first 72 hours. Nothing runs blind.</p>
       </div>
 
       <div class="timeline-step" data-anim data-delay="4">
         <div class="step-circle">4</div>
         <p class="step-week">Week 2+</p>
-        <p class="step-title">Optimize + Scale</p>
+        <p class="step-title">Amplify</p><p class="step-sub">Scale winners, cut losers</p>
         <p class="step-body">Double down on winners. Kill losers fast. New hooks every cycle based on real data, not gut feel.</p>
       </div>
 
     </div>
+    <div class="vol-row" data-anim data-delay="5">
+      <div class="vol-copy">
+        <h4>Volume is the unlock.</h4>
+        <p>You cannot find a winning ad by making four of them. We produce enough creative to actually find the outliers, then put your budget behind the ones that work. That is the whole difference.</p>
+      </div>
+      <div class="vol-chart" data-anim data-delay="4">
+      <div class="vol-col">
+        <div class="vol-bar them" style="height:22%;">4</div>
+        <div class="vol-lab">Typical agency<br>creatives / month</div>
+      </div>
+      <div class="vol-col">
+        <div class="vol-bar them" style="height:44%;">8</div>
+        <div class="vol-lab">In-house team<br>creatives / month</div>
+      </div>
+      <div class="vol-col">
+        <div class="vol-bar us" style="height:100%;">Up to 40</div>
+        <div class="vol-lab">With us<br>scaled to your spend</div>
+      </div>
+    </div>
+    </div>
+
   </div>
 </section>
 
@@ -1000,39 +1016,76 @@
       <p class="section-label" data-anim>The numbers</p>
       <div data-anim data-delay="1">
         <span class="heading-bold" style="color:#0d0d0d;">Numbers</span>
-        <span class="heading-italic" style="color:#0d0d0d;">we've driven.</span>
+        <span class="heading-italic" style="color:#0d0d0d;">from real accounts.</span>
       </div>
     </div>
 
     <div class="stats-row">
       <div class="stat-block" data-anim data-delay="1">
-        <div class="stat-number">74</div>
-        <div class="stat-desc">Qualified B2B leads &middot; 3 months</div>
+        <div class="stat-number">19%</div>
+        <div class="stat-desc">CAC reduction &middot; streaming platform</div>
       </div>
       <div class="stat-block" data-anim data-delay="2">
-        <div class="stat-number">$15</div>
-        <div class="stat-desc">Per signup &middot; B2C SaaS on Reddit</div>
+        <div class="stat-number">&euro;30</div>
+        <div class="stat-desc">Cost per acquisition &middot; AI SaaS on Reddit</div>
       </div>
       <div class="stat-block" data-anim data-delay="3">
-        <div class="stat-number">Up to 40</div>
-        <div class="stat-desc">AI creatives a month, scaled to your spend</div>
+        <div class="stat-number">+114%</div>
+        <div class="stat-desc">Store revenue YoY &middot; gifting brand</div>
       </div>
       <div class="stat-block" data-anim data-delay="4">
-        <div class="stat-number">100+</div>
-        <div class="stat-desc">Reddit Ads Playbook downloads</div>
+        <div class="stat-number">$50M+</div>
+        <div class="stat-desc">Paid media managed by the team</div>
       </div>
     </div>
 
     <div class="testimonial-card" data-anim>
-      <p class="testimonial-quote">"They completely changed how we think about Reddit as a performance channel. The creative quality and targeting precision blew us away."</p>
+      <p class="testimonial-quote">"Skip the Noise built our Reddit channel from scratch and made it a real source of qualified pipeline. The creative was native to the platform in a way our other agencies never managed."</p>
       <div class="testimonial-footer">
-        <span class="testimonial-attr">— Head of Growth, B2B SaaS</span>
+        <span class="testimonial-attr">— Faustine Foliard, Head of Marketing at Flare</span>
         <span class="reddit-badge">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.6 11.4c.1.3.1.6.1.9 0 2.9-3.4 5.2-7.7 5.2S2.3 17.2 2.3 14.3c0-.3 0-.6.1-.9-.6-.3-1-.9-1-1.6 0-1.1.9-1.9 1.9-1.9.5 0 .9.2 1.2.5 1.2-.8 2.8-1.3 4.6-1.4l.8-3.7c.1-.2.3-.4.5-.3l2.6.5c.2-.5.7-.8 1.3-.8.8 0 1.4.6 1.4 1.4s-.6 1.4-1.4 1.4-1.4-.6-1.4-1.4l-2.4-.5-.7 3.3c1.8.1 3.3.6 4.5 1.4.3-.3.8-.5 1.3-.5 1.1 0 1.9.9 1.9 1.9.1.7-.3 1.3-.9 1.6zM8.5 14c-.6 0-1.1.5-1.1 1.1s.5 1.1 1.1 1.1 1.1-.5 1.1-1.1S9.1 14 8.5 14zm7 0c-.6 0-1.1.5-1.1 1.1s.5 1.1 1.1 1.1 1.1-.5 1.1-1.1S16.1 14 15.5 14zm-1.2 3.4c-.6.6-1.4.9-2.3.9s-1.7-.3-2.3-.9c-.2-.2-.2-.5 0-.7.2-.2.5-.2.7 0 .4.4 1 .6 1.6.6s1.2-.2 1.6-.6c.2-.2.5-.2.7 0 .2.2.2.5 0 .7z" fill="white"/></svg>
           Reddit Certified Partner
         </span>
       </div>
     </div>
+
+  </div>
+</section>
+
+<!-- ============================
+     SECTION 6b: FIT + ROUTING
+     ============================ -->
+<section class="fit-section">
+  <div class="container">
+    <p class="section-label" data-anim>Is this a fit</p>
+    <div data-anim data-delay="1">
+      <span class="heading-bold" style="color:#0d0d0d;">We're not for everyone.</span>
+      <span class="heading-italic" style="color:#0d0d0d;">Here's the honest version.</span>
+    </div>
+
+    <div class="fit-grid">
+      <div class="fit-card yes" data-anim data-delay="2">
+        <h3>You're a good fit if</h3>
+        <ul class="fit-list">
+          <li>You're already spending on paid media and creative volume is what's holding you back</li>
+          <li>You're a DTC, eComm or SaaS brand with a product that's already selling</li>
+          <li>You want senior people doing the actual work, not juniors behind an account manager</li>
+          <li>You're willing to test properly — winners get more budget, losers get cut in under two weeks</li>
+          <li>You're spending at least $10,000 a month on media</li>
+        </ul>
+      </div>
+      <div class="fit-card no" data-anim data-delay="3">
+        <h3>We're probably not your agency if</h3>
+        <ul class="fit-list">
+          <li>You're still figuring out whether your product sells</li>
+          <li>You're looking for the cheapest option — we're not it</li>
+          <li>You want a big agency with account layers. There are two of us and we're the ones doing the work</li>
+          <li>You want to run a handful of ads and leave them up. Volume and testing is the whole model</li>
+        </ul>
+      </div>
+    </div>
+
 
   </div>
 </section>
@@ -1065,7 +1118,7 @@
           What platforms do you work on?
           <span class="faq-icon">+</span>
         </button>
-        <div class="faq-a">Reddit and Meta are our core. We also run LinkedIn and TikTok. Reddit is where we have a certified edge. Most agencies don't even know how to buy there properly. We do.</div>
+        <div class="faq-a">Reddit and Meta are our core. We also run TikTok, LinkedIn and Google. Reddit is where we have a certified edge. Most agencies don't even know how to buy there properly. We do.</div>
       </div>
 
       <div class="faq-item" data-anim>
@@ -1107,85 +1160,7 @@
 <!-- ============================
      SECTION 7: CTA STRIP
      ============================ -->
-<!-- ============================
-     SECTION 6b: FIT + ROUTING
-     ============================ -->
-<section class="fit-section">
-  <div class="container">
-    <p class="section-label" data-anim>Is this a fit</p>
-    <div data-anim data-delay="1">
-      <span class="heading-bold" style="color:#0d0d0d;">We're not for everyone.</span>
-      <span class="heading-italic" style="color:#0d0d0d;">Here's the honest version.</span>
-    </div>
 
-    <div class="fit-grid">
-      <div class="fit-card yes" data-anim data-delay="2">
-        <h3>You're a good fit if</h3>
-        <ul class="fit-list">
-          <li>You're already spending on paid media and creative volume is what's holding you back</li>
-          <li>You're a DTC, eComm or SaaS brand with a product that's already selling</li>
-          <li>You want senior people doing the actual work, not juniors behind an account manager</li>
-          <li>You're willing to test properly — winners get more budget, losers get cut in under two weeks</li>
-          <li>You're spending at least $10,000 a month on media</li>
-        </ul>
-      </div>
-      <div class="fit-card no" data-anim data-delay="3">
-        <h3>We're probably not your agency if</h3>
-        <ul class="fit-list">
-          <li>You're still figuring out whether your product sells</li>
-          <li>You're looking for the cheapest option — we're not it</li>
-          <li>You want a big agency with account layers. There are two of us and we're the ones doing the work</li>
-          <li>You want to run a handful of ads and leave them up. Volume and testing is the whole model</li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- creative volume chart -->
-    <div class="vol-chart" data-anim data-delay="4">
-      <div class="vol-col">
-        <div class="vol-bar them" style="height:22%;">4</div>
-        <div class="vol-lab">Typical agency<br>creatives / month</div>
-      </div>
-      <div class="vol-col">
-        <div class="vol-bar them" style="height:44%;">8</div>
-        <div class="vol-lab">In-house team<br>creatives / month</div>
-      </div>
-      <div class="vol-col">
-        <div class="vol-bar us" style="height:100%;">Up to 40</div>
-        <div class="vol-lab">With us<br>scaled to your spend</div>
-      </div>
-    </div>
-
-    <!-- routing to specialised service pages -->
-    <p class="section-label" data-anim data-delay="5" style="margin-top:80px;">Go deeper</p>
-    <div data-anim data-delay="5">
-      <span class="heading-bold" style="color:#0d0d0d;">Built for your</span>
-      <span class="heading-italic" style="color:#0d0d0d;">channel and market.</span>
-    </div>
-    <div class="route-grid">
-      <a class="route-card" href="/reddit-ads-agency" data-anim data-delay="6">
-        <div class="rt">Reddit Ads</div>
-        <div class="rd">Reddit Certified Partner. $157 cost per lead for B2B SaaS, 74 qualified leads in 3 months.</div>
-        <span class="rl">See Reddit ads &rarr;</span>
-      </a>
-      <a class="route-card" href="/saas-ads-agency" data-anim data-delay="6">
-        <div class="rt">SaaS Ads</div>
-        <div class="rd">B2B and B2C SaaS pipeline. Real benchmarks from accounts we run, not category averages.</div>
-        <span class="rl">See SaaS ads &rarr;</span>
-      </a>
-      <a class="route-card" href="/b2c-saas-ads" data-anim data-delay="7">
-        <div class="rt">B2C SaaS Ads</div>
-        <div class="rd">Signup-driven growth. $15 per signup and a 19% CAC reduction on a streaming platform.</div>
-        <span class="rl">See B2C SaaS &rarr;</span>
-      </a>
-      <a class="route-card" href="/reddit-organic-marketing" data-anim data-delay="7">
-        <div class="rt">Reddit Organic</div>
-        <div class="rd">Community participation and seeding that gets you cited in AI search and ranks threads in Google.</div>
-        <span class="rl">See Reddit organic &rarr;</span>
-      </a>
-    </div>
-  </div>
-</section>
 
 <section class="cta-strip">
   <div class="cta-strip-content">
@@ -1195,8 +1170,8 @@
     </div>
     <p data-anim data-delay="1" style="font-size:clamp(15px,1.1vw,18px); color:rgba(255,255,255,0.6); max-width:560px; margin:16px auto 0; line-height:1.7;">We'll build 3 ads for your brand. Free. Run them, keep them, use them however you want. If you want more, we'll talk. If not, no hard feelings.</p>
     <div data-anim data-delay="2">
-      <a href="https://cal.com/skipthenoise/30min" class="cta-strip-btn">Book a strategy call &rarr;</a>
-      <p class="cta-strip-email">Or email us at <a href="mailto:hello@tryskipthenoisemedia.com">hello@tryskipthenoisemedia.com</a></p>
+      <a href="https://cal.com/skipthenoise/30min" class="cta-strip-btn">Get 3 free ads &rarr;</a>
+      <p class="cta-strip-email">Or email us at <a href="mailto:sales@skipthenoisemedia.com">sales@skipthenoisemedia.com</a></p>
     </div>
   </div>
 </section>
