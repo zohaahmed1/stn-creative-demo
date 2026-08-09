@@ -386,6 +386,51 @@
     .article-hero .deck, .article-hero p.deck { color: #4b5563 !important; }
     @keyframes noise-glitch { 0%{transform:none;filter:none;} 8%{transform:translate(-3px,1px) skewX(-4deg);filter:hue-rotate(80deg) brightness(1.3);opacity:.75;} 12%{transform:translate(3px,-1px) skewX(2deg);} 16%{transform:none;filter:none;opacity:1;} 48%{transform:none;} 52%{transform:translate(2px,-2px);filter:hue-rotate(200deg) brightness(1.2);opacity:.8;} 56%{transform:translate(-2px,1px);} 60%{transform:none;filter:none;opacity:1;} 100%{transform:none;filter:none;} }
     .nav-logo:hover .logo-noise { animation: noise-glitch 0.65s ease-in-out; cursor: pointer; }
+
+    /* ---------- visual layer ---------- */
+    .sa-strip { margin: 44px 0 0; width: 100vw; margin-left: calc(50% - 50vw); overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+      mask-image: linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); }
+    .sa-strip-track { display:flex; gap:14px; width:max-content; animation: saScroll 56s linear infinite; }
+    .sa-strip img { height:200px; width:auto; border-radius:13px; display:block; object-fit:cover; }
+    @keyframes saScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    @media (prefers-reduced-motion:reduce){ .sa-strip-track{animation:none} }
+
+    .cpc-sec { width:100vw; margin-left:calc(50% - 50vw); background:#0a0a0c; padding:72px 24px; margin-top:56px; margin-bottom:48px; }
+    .cpc-in { max-width:900px; margin:0 auto; }
+    .article-body .cpc-sec h2.cpc-h { font-size:clamp(22px,2.4vw,30px); color:#ffffff; letter-spacing:-.025em;
+      margin:0 0 8px; border:none; padding:0; }
+    .cpc-sub { font-size:15px; color:rgba(255,255,255,.55); margin:0 0 36px; line-height:1.6; }
+    .cpc-row { display:grid; grid-template-columns:132px 1fr 104px; align-items:center; gap:18px; margin-bottom:18px; }
+    .cpc-name { font-size:14.5px; color:rgba(255,255,255,.85); font-weight:600; }
+    .cpc-track { height:34px; background:rgba(255,255,255,.07); border-radius:7px; overflow:hidden; }
+    .cpc-fill { height:100%; border-radius:7px; }
+    .cpc-val { font-size:15px; color:#ffffff; text-align:right; font-weight:800; letter-spacing:-.01em; }
+    .cpc-tag { display:inline-block; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase;
+      color:#a78bfa; margin-left:7px; font-weight:700; }
+    .article-body .cpc-sec p.cpc-note { font-size:13px; color:rgba(255,255,255,.4); line-height:1.6; margin:26px 0 0; }
+
+    .sa-gal { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:34px 0 10px; }
+    .sa-gal a { display:block; overflow:hidden; border-radius:14px; }
+    .sa-gal img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; transition:transform .3s cubic-bezier(.2,.7,.2,1); }
+    .sa-gal a:hover img { transform:scale(1.05); }
+
+    .sa-cases { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin:34px 0 10px; }
+    .sa-case { background:#fff; border:1px solid #e5e7eb; border-radius:18px; overflow:hidden; text-decoration:none;
+      color:inherit; display:flex; flex-direction:column; transition:transform .25s, box-shadow .25s; }
+    .sa-case:hover { transform:translateY(-5px); box-shadow:0 20px 42px -24px rgba(20,10,60,.35); }
+    .sa-case img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; }
+    .sa-case-b { padding:18px 20px 22px; }
+    .sa-case-n { font-size:27px; color:#5500dd; font-weight:900; letter-spacing:-.03em; }
+    .sa-case-t { font-size:14.5px; color:#0d0d0d; font-weight:700; margin-top:5px; }
+    .sa-case-d { font-size:13px; color:#6b7280; margin-top:7px; line-height:1.55; }
+
+    @media (max-width:900px){
+      .sa-gal{grid-template-columns:repeat(2,1fr);}
+      .sa-cases{grid-template-columns:1fr;}
+      .cpc-row{grid-template-columns:96px 1fr 84px; gap:12px;}
+      .sa-strip img{height:140px;}
+    }
 </style>
 
   <!-- Meta Pixel Code -->
@@ -515,13 +560,29 @@
       <svg width="12" height="12" viewBox="0 0 20 20" fill="none"><rect width="20" height="20" rx="10" fill="#5500DD"/><path d="M6 10.5L9 13.5L14 7.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       SaaS Performance
     </div>
-    <h1>SaaS Ads Agency<br>for <em>B2B and B2C Brands</em></h1>
+    <h1>SaaS Ads Agency<br>for teams whose <em>CAC keeps climbing.</em></h1>
     <div class="article-meta">
       <span>By Skip the Noise Media</span>
       <span>&middot;</span>
       <span>Reddit Certified Partner</span>
       <span>&middot;</span>
       <span>April 2026</span>
+    </div>
+  </div>
+  <div class="sa-strip">
+    <div class="sa-strip-track">
+      <img loading="eager" src="/assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.webp" alt="B2B SaaS ad creative">
+      <img loading="eager" src="/assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.webp" alt="SaaS ad creative">
+      <img loading="eager" src="/assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.webp" alt="SaaS ad creative">
+      <img loading="eager" src="/assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.webp" alt="SaaS testimonial ad creative">
+      <img loading="eager" src="/assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.webp" alt="SaaS ad creative">
+      <img loading="eager" src="/assets/B2B_SaaS_Ads_In_a_modern_graphic_design_style_this_image_eS0eGv3q.webp" alt="SaaS ad creative">
+      <img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_modern_graphic_design_style_this_image_eS0eGv3q.webp" alt="" aria-hidden="true">
     </div>
   </div>
 </section>
@@ -551,6 +612,36 @@
     <a href="/tools/reddit-ads-cost-calculator" style="background:#5500DD; color:#fff; font-weight:800; font-size:13.5px; padding:9px 18px; border-radius:100px; text-decoration:none;">Cost Calculator &rarr;</a>
     <a href="/tools/subreddit-finder" style="border:1.5px solid #5500DD; color:#5500DD; font-weight:800; font-size:13.5px; padding:8px 18px; border-radius:100px; text-decoration:none;">Subreddit Finder &rarr;</a>
     <a href="/case-studies" style="border:1.5px solid #e5e7eb; color:#374151; font-weight:700; font-size:13.5px; padding:8px 18px; border-radius:100px; text-decoration:none;">Case studies &rarr;</a>
+  </div>
+
+  <div class="cpc-sec">
+    <div class="cpc-in">
+      <h2 class="cpc-h">What a B2B click actually costs</h2>
+      <p class="cpc-sub">Lower is better. The Reddit figure is our own B2B SaaS account; the rest are the ranges these platforms typically run at for B2B targeting.</p>
+
+      <div class="cpc-row">
+        <div class="cpc-name">Reddit<span class="cpc-tag">ours</span></div>
+        <div class="cpc-track"><div class="cpc-fill" style="width:8%;background:linear-gradient(90deg,#5500dd,#8b5cf6);"></div></div>
+        <div class="cpc-val">$0.92</div>
+      </div>
+      <div class="cpc-row">
+        <div class="cpc-name">Meta (B2B)</div>
+        <div class="cpc-track"><div class="cpc-fill" style="width:28%;background:rgba(255,255,255,.22);"></div></div>
+        <div class="cpc-val">$1.50&ndash;5</div>
+      </div>
+      <div class="cpc-row">
+        <div class="cpc-name">Google Search</div>
+        <div class="cpc-track"><div class="cpc-fill" style="width:65%;background:rgba(255,255,255,.22);"></div></div>
+        <div class="cpc-val">$3&ndash;12</div>
+      </div>
+      <div class="cpc-row">
+        <div class="cpc-name">LinkedIn</div>
+        <div class="cpc-track"><div class="cpc-fill" style="width:100%;background:rgba(255,255,255,.22);"></div></div>
+        <div class="cpc-val">$8&ndash;15</div>
+      </div>
+
+      <p class="cpc-note">Cheap clicks alone do not build pipeline &mdash; a $0.92 click that never converts is still wasted. It matters because it buys you far more testing for the same budget, which is how you find the creative that actually works. Full figures in the <a href="/blog/reddit-ads-benchmarks" style="color:#a78bfa;">2026 benchmarks</a>.</p>
+    </div>
   </div>
 
   <h2>Why SaaS companies need a specialized ads agency</h2>
@@ -677,6 +768,47 @@
     <li>Product demo clips with motion graphics</li>
     <li>Comparison and social proof ads</li>
   </ul>
+
+  <h2>The creative we make for SaaS</h2>
+  <p>Static, video and UGC &mdash; produced in-house and built for the feed each one runs in. This is a sample; the full portfolio has more.</p>
+  <div class="sa-gal">
+    <a href="/gallery"><img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.webp" alt="B2B SaaS ad creative"></a>
+    <a href="/gallery"><img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.webp" alt="SaaS ad creative"></a>
+    <a href="/gallery"><img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.webp" alt="SaaS ad creative"></a>
+    <a href="/gallery"><img loading="lazy" src="/assets/B2B_SaaS_Ads_A_testimonial_card_in_a_minimalist_style_displays_e53AjJKF.webp" alt="SaaS testimonial ad"></a>
+    <a href="/gallery"><img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.webp" alt="SaaS ad creative"></a>
+    <a href="/gallery"><img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_modern_graphic_design_style_this_image_eS0eGv3q.webp" alt="SaaS ad creative"></a>
+    <a href="/gallery"><img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_flat_design_style_this_graphic_showcases_0SxggUa-.webp" alt="SaaS ad creative"></a>
+    <a href="/gallery"><img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_minimalist_advertising_style_the_central_XW-qffG.webp" alt="SaaS ad creative"></a>
+  </div>
+
+  <h2>SaaS results we have driven</h2>
+  <div class="sa-cases">
+    <a class="sa-case" href="/work/flare">
+      <img loading="lazy" src="/assets/Flare Case Study V2.webp" alt="Cybersecurity SaaS case study">
+      <div class="sa-case-b">
+        <div class="sa-case-n">74</div>
+        <div class="sa-case-t">Qualified leads in 3 months</div>
+        <div class="sa-case-d">Cybersecurity SaaS, $157 blended CPL across r/netsec and r/sysadmin.</div>
+      </div>
+    </a>
+    <a class="sa-case" href="/work/restream">
+      <img loading="lazy" src="/assets/Restream Case Study V2.webp" alt="Streaming platform case study">
+      <div class="sa-case-b">
+        <div class="sa-case-n">$15</div>
+        <div class="sa-case-t">Per signup, CAC down 19%</div>
+        <div class="sa-case-d">A streaming platform, after we found $600+ CAC hiding in branded search.</div>
+      </div>
+    </a>
+    <a class="sa-case" href="/work/3d-ai-studio">
+      <img loading="lazy" src="/assets/3d-ai-studio-hero.png" alt="AI SaaS case study">
+      <div class="sa-case-b">
+        <div class="sa-case-n">&euro;30</div>
+        <div class="sa-case-t">CPA after 90 days</div>
+        <div class="sa-case-d">Seven creative angles tested; the winner beat the weakest by 2.4x.</div>
+      </div>
+    </a>
+  </div>
 
   <h2>Our process</h2>
 
