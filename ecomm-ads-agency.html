@@ -9,18 +9,18 @@
   <!-- End Microsoft Clarity -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Services — Ad Creative Production &amp; Paid Media Buying | Skip the Noise Media</title>
-  <meta name="description" content="Ad creative production and cross-channel media buying for DTC and SaaS brands. Creative volume scaled to your spend, first ads live in 1 week. Reddit Certified Partner.">
+  <title>eCommerce &amp; DTC Ads Agency — Creative Volume That Finds Winners | Skip the Noise Media</title>
+  <meta name="description" content="eCommerce and DTC ads agency. We produce the creative volume DTC brands need and run the media across Meta, TikTok, Pinterest, Snapchat and Google. 6.8x ROAS on Pinterest, 4.3x on TikTok.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://skipthenoisemedia.com/services">
-  <meta property="og:title" content="Services — AI Creative Production + Performance Marketing | Skip the Noise Media">
+  <meta property="og:url" content="https://skipthenoisemedia.com/ecomm-ads-agency">
+  <meta property="og:title" content="eCommerce &amp; DTC Ads Agency — Creative Volume That Finds Winners">
   <meta property="og:description" content="Ad creative production and cross-channel media buying for DTC and SaaS brands. Creative volume scaled to your spend, first ads live in 1 week.">
   <meta property="og:image" content="https://skipthenoisemedia.com/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Services — AI Creative Production + Performance Marketing | Skip the Noise Media">
   <meta name="twitter:description" content="Ad creative production and cross-channel media buying for DTC and SaaS brands. First ads live in 1 week.">
   <meta name="twitter:image" content="https://skipthenoisemedia.com/assets/og-image.png">
-  <link rel="canonical" href="https://skipthenoisemedia.com/services">
+  <link rel="canonical" href="https://skipthenoisemedia.com/ecomm-ads-agency">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
@@ -787,6 +787,70 @@
     .cal-modal-content { background: white; border-radius: 12px; width: 90%; max-width: 600px; max-height: 90vh; overflow: auto; position: relative; }
     .cal-modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; z-index: 1000; }
   </style>
+<style>
+  /* ---------- eComm page components ---------- */
+  .ec-hero { background:#fff; padding:110px 24px 0; position:relative; overflow:hidden; }
+  .ec-hero::before{content:'';position:absolute;top:-140px;left:50%;transform:translateX(-50%);width:1100px;height:620px;
+    background:radial-gradient(ellipse at center, rgba(238,0,51,.10) 0%, rgba(255,138,0,.07) 45%, transparent 72%);pointer-events:none;}
+  .ec-kicker{display:inline-block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#c2183a;
+    background:rgba(238,0,51,.07);border:1px solid rgba(238,0,51,.2);border-radius:100px;padding:6px 16px;margin-bottom:26px;
+    font-variation-settings:"wdth" var(--wdth),"wght" 700;}
+  .ec-proof{display:flex;justify-content:center;flex-wrap:wrap;margin:38px auto 0;max-width:760px;}
+  .ec-proof .p{padding:0 30px;text-align:center;}
+  .ec-proof .p + .p{border-left:1px solid rgba(0,0,0,.12);}
+  .ec-proof .n{display:block;font-size:34px;color:#0d0d0d;letter-spacing:-.03em;font-variation-settings:"wdth" var(--wdth),"wght" 800;}
+  .ec-proof .l{display:block;font-size:12px;margin-top:5px;color:#6b7280;text-transform:uppercase;letter-spacing:.06em;
+    font-variation-settings:"wdth" var(--wdth),"wght" 600;}
+  .ec-strip{margin-top:58px;width:100%;overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+    mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);}
+  .ec-strip-track{display:flex;gap:16px;width:max-content;animation:ecScroll 52s linear infinite;}
+  .ec-strip img{height:230px;width:auto;border-radius:14px;display:block;object-fit:cover;}
+  @keyframes ecScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @media (prefers-reduced-motion:reduce){.ec-strip-track{animation:none}}
+
+  /* ROAS bar chart */
+  .roas-sec{background:#0a0a0c;padding:100px 24px;}
+  .roas-wrap{max-width:900px;margin:52px auto 0;display:flex;flex-direction:column;gap:22px;}
+  .roas-row{display:grid;grid-template-columns:150px 1fr 74px;align-items:center;gap:20px;}
+  .roas-name{font-size:15px;color:rgba(255,255,255,.85);font-variation-settings:"wdth" var(--wdth),"wght" 600;}
+  .roas-track{height:38px;background:rgba(255,255,255,.07);border-radius:8px;overflow:hidden;}
+  .roas-fill{height:100%;border-radius:8px;}
+  .roas-val{font-size:20px;color:#fff;text-align:right;font-variation-settings:"wdth" var(--wdth),"wght" 800;letter-spacing:-.02em;}
+  .roas-note{max-width:900px;margin:30px auto 0;font-size:13.5px;color:rgba(255,255,255,.4);line-height:1.6;}
+
+  /* creative gallery */
+  .gal-sec{background:#fff;padding:100px 24px;}
+  .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:52px;}
+  .gal-grid img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:16px;display:block;
+    transition:transform .3s cubic-bezier(.2,.7,.2,1);}
+  .gal-grid a{display:block;overflow:hidden;border-radius:16px;}
+  .gal-grid a:hover img{transform:scale(1.05);}
+  .gal-grid .wide{grid-column:span 2;aspect-ratio:2/1;}
+  .gal-cta{text-align:center;margin-top:40px;}
+
+  /* case cards */
+  .ecase-sec{background:var(--gray-50);padding:100px 24px;}
+  .ecase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px;}
+  .ecase{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:20px;overflow:hidden;text-decoration:none;color:inherit;
+    display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s;}
+  .ecase:hover{transform:translateY(-5px);box-shadow:0 20px 44px -24px rgba(20,10,60,.35);}
+  .ecase img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;}
+  .ecase-b{padding:22px 24px 26px;}
+  .ecase-n{font-size:30px;color:#ee0033;letter-spacing:-.03em;font-variation-settings:"wdth" var(--wdth),"wght" 800;}
+  .ecase-t{font-size:15px;color:#0d0d0d;margin-top:6px;font-variation-settings:"wdth" var(--wdth),"wght" 700;}
+  .ecase-d{font-size:13.5px;color:#6b7280;margin-top:8px;line-height:1.55;}
+
+  @media (max-width:900px){
+    .gal-grid{grid-template-columns:repeat(2,1fr);}
+    .ecase-grid{grid-template-columns:1fr;}
+    .roas-row{grid-template-columns:110px 1fr 60px;gap:12px;}
+    .ec-proof .p{padding:8px 18px;}
+    .ec-proof .p + .p{border-left:none;}
+    .ec-strip img{height:150px;}
+  }
+</style>
+
   <!-- Meta Pixel -->
   <script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -815,32 +879,13 @@
   </script>
 </head>
 <body>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4JR5P3B" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-
-<!-- Cal.com Booking Modal -->
-<div class="cal-modal" id="cal-modal">
-  <button class="cal-modal-close" onclick="document.getElementById('cal-modal').classList.remove('open')">&times;</button>
-  <div class="cal-modal-content">
-    <div style="width:100%;height:100%;overflow:scroll" id="my-cal-inline-30min"></div>
-    <script type="text/javascript">
-      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
-      Cal("init", "30min", {origin:"https://app.cal.com"});
-      Cal.ns["30min"]("inline", {elementOrSelector:"#my-cal-inline-30min",config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"},calLink: "skipthenoise/30min"});
-      Cal.ns["30min"]("ui", {"theme":"light","hideEventTypeDetails":false,"layout":"month_view"});
-    </script>
-  </div>
-</div>
-
-<!-- NAV -->
 <nav class="nav">
   <div class="container nav-inner">
     <a href="index.html" class="nav-logo">
       <span class="logo-skip">Skip the </span><span class="logo-noise">Noise</span>
     </a>
     <div class="nav-links">
-      <a href="services.html" class="nav-link active">Services</a>
+      <a href="services.html" class="nav-link">Services</a>
       <a href="process.html" class="nav-link">Process</a>
       <a href="gallery.html" class="nav-link">Creative</a>
       <a href="/case-studies" class="nav-link">Case Studies</a>
@@ -861,326 +906,150 @@
   <a href="#" class="cta-booking-btn mobile-menu-cta">3 free ads. Keep them.</a>
 </div>
 
-<!-- ============================
-     SECTION 1: HERO
-     ============================ -->
-<section class="hero">
-  <div class="container hero-content">
-    <div data-anim>
-      <span class="partner-badge">Reddit Certified Partner ✓</span>
-    </div>
+
+<!-- ============================ HERO ============================ -->
+<section class="ec-hero">
+  <div class="container hero-content" style="text-align:center;">
+    <div data-anim><span class="ec-kicker">eComm &amp; DTC Ads</span></div>
     <h1 class="hero-h1" data-anim data-delay="1">
-      <span class="heading-bold" style="color:#0a0a0a;">We make the ads.</span>
-      <span class="heading-italic" style="color:#0a0a0a;">We run the media.</span>
+      <span class="heading-bold" style="color:#0a0a0a;">Your ROAS problem</span>
+      <span class="heading-italic" style="color:#0a0a0a;">is a creative problem.</span>
     </h1>
-    <p data-anim data-delay="2" style="font-size:clamp(16px,1.2vw,19px); color:#444; max-width:640px; margin:0 auto; line-height:1.7;">Creative production and cross-channel media buying for DTC and SaaS brands. Most agencies take 6 weeks to get your first ad live. We do it in one.</p>
-
-    <div class="hero-proof" data-anim data-delay="3">
-      <div class="hp"><span class="hp-n">74</span><span class="hp-l">Qualified B2B leads &middot; 3 months</span></div>
-      <div class="hp"><span class="hp-n">$15</span><span class="hp-l">Per signup &middot; B2C SaaS</span></div>
-      <div class="hp"><span class="hp-n">3-4x</span><span class="hp-l">ROAS across DTC accounts</span></div>
+    <p data-anim data-delay="2" style="font-size:clamp(16px,1.2vw,19px);color:#4b5563;max-width:660px;margin:0 auto;line-height:1.7;">
+      Same creatives, same audiences, same results. We produce the ad volume DTC brands need to keep finding winners &mdash; and run the media behind them across Meta, TikTok, Pinterest, Snapchat and Google.
+    </p>
+    <div class="ec-proof" data-anim data-delay="3">
+      <div class="p"><span class="n">6.8x</span><span class="l">ROAS on Pinterest</span></div>
+      <div class="p"><span class="n">4.3x</span><span class="l">ROAS on TikTok</span></div>
+      <div class="p"><span class="n">3-4x</span><span class="l">Across DTC accounts</span></div>
     </div>
-
-    <div data-anim data-delay="4">
+    <div data-anim data-delay="4" style="margin-top:34px;">
       <a href="/#book" class="hero-cta-btn">Get 3 free ads &rarr;</a>
       <a href="https://cal.com/skipthenoise/30min" class="hero-secondary">Book a strategy call</a>
-      <p class="hero-micro">Built for your brand. Yours to keep. First ads live in 1 week.</p>
+      <p class="hero-micro" style="color:#8b90a0;">Built for your brand. Yours to keep. First ads live in 1 week.</p>
     </div>
   </div>
-
-  <!-- Creative proof strip -->
-  <div class="hero-strip" data-anim data-delay="5">
-    <div class="hero-strip-track">
-      <img loading="eager" src="/assets/Cpg_l5evv8k1.webp" alt="Ad creative example">
-      <img loading="eager" src="/assets/B2B_SaaS_Ads_V5F-kd5P.webp" alt="B2B SaaS ad creative">
-      <img loading="eager" src="/assets/handbag-fashion.webp" alt="Fashion ad creative">
-      <img loading="eager" src="/assets/Protein_Bar_Advertisement_CDLIA58W.webp" alt="CPG ad creative">
-      <img loading="eager" src="/assets/B2B_SaaS_Ads_wRW96YqI.webp" alt="SaaS ad creative">
+  <div class="ec-strip" data-anim data-delay="5">
+    <div class="ec-strip-track">
       <img loading="eager" src="/assets/Lipstick_Campaign_dSJmLIvg.webp" alt="Beauty ad creative">
+      <img loading="eager" src="/assets/Protein_Bar_Advertisement_CDLIA58W.webp" alt="CPG protein bar ad creative">
+      <img loading="eager" src="/assets/handbag-fashion.webp" alt="Fashion handbag ad creative">
+      <img loading="eager" src="/assets/Cpg_l5evv8k1.webp" alt="CPG ad creative">
+      <img loading="eager" src="/assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.webp" alt="Beauty swatch ad creative">
+      <img loading="eager" src="/assets/Protein_Bar_Advertisement_cTVg3CZh.webp" alt="CPG ad creative">
+      <img loading="eager" src="/assets/handbag-walk.webp" alt="Fashion ad creative">
       <img loading="eager" src="/assets/Cpg_nO2xZZjv.webp" alt="CPG ad creative">
-      <img loading="eager" src="/assets/B2B_SaaS_Ads_laAgn1rH.webp" alt="SaaS ad creative">
-      <img loading="lazy" src="/assets/Cpg_l5evv8k1.webp" alt="" aria-hidden="true">
-      <img loading="lazy" src="/assets/B2B_SaaS_Ads_V5F-kd5P.webp" alt="" aria-hidden="true">
-      <img loading="lazy" src="/assets/handbag-fashion.webp" alt="" aria-hidden="true">
-      <img loading="lazy" src="/assets/Protein_Bar_Advertisement_CDLIA58W.webp" alt="" aria-hidden="true">
-      <img loading="lazy" src="/assets/B2B_SaaS_Ads_wRW96YqI.webp" alt="" aria-hidden="true">
       <img loading="lazy" src="/assets/Lipstick_Campaign_dSJmLIvg.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/Protein_Bar_Advertisement_CDLIA58W.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/handbag-fashion.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/Cpg_l5evv8k1.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/Protein_Bar_Advertisement_cTVg3CZh.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/handbag-walk.webp" alt="" aria-hidden="true">
       <img loading="lazy" src="/assets/Cpg_nO2xZZjv.webp" alt="" aria-hidden="true">
-      <img loading="lazy" src="/assets/B2B_SaaS_Ads_laAgn1rH.webp" alt="" aria-hidden="true">
     </div>
   </div>
 </section>
 
-<!-- ============================
-     SECTION 2: WHICH ONE ARE YOU
-     ============================ -->
-<section class="split-section">
+<!-- ============================ ROAS CHART ============================ -->
+<section class="roas-sec">
   <div class="container">
-    <p class="section-label" data-anim>Who we work with</p>
+    <p class="section-label section-label-white" data-anim>Where DTC money works</p>
     <div data-anim data-delay="1">
-      <span class="heading-bold" style="color:#0d0d0d;">Which one</span>
-      <span class="heading-italic" style="color:#0d0d0d;">are you?</span>
+      <span class="heading-bold" style="color:#fff;">Real ROAS,</span>
+      <span class="heading-italic" style="color:#fff;">by platform.</span>
     </div>
-  </div>
-
-  <div class="split-wrap">
-    <div class="split-half dtc" data-anim data-delay="2">
-      <span class="split-kicker">eComm &amp; DTC</span>
-      <h3>Your ROAS is slipping and you know why.</h3>
-      <p>Same creatives. Same audiences. Same results. You're not short on budget — you're short on fresh angles and creative volume. And your current agency takes weeks to fix that.</p>
-      <div class="split-stat"><strong>4.3x</strong><span>ROAS on TikTok &middot; fashion eComm</span></div>
-      <a class="split-go" href="/ecomm-ads-agency">See how we run it &rarr;</a>
-      <span class="split-alt">Also: <a href="/gallery">See the creative &rarr;</a></span>
+    <div class="roas-wrap">
+      <div class="roas-row" data-anim data-delay="2">
+        <div class="roas-name">Pinterest</div>
+        <div class="roas-track"><div class="roas-fill" style="width:100%;background:linear-gradient(90deg,#ee0033,#ff5c7a);"></div></div>
+        <div class="roas-val">6.8x</div>
+      </div>
+      <div class="roas-row" data-anim data-delay="3">
+        <div class="roas-name">Meta</div>
+        <div class="roas-track"><div class="roas-fill" style="width:66%;background:linear-gradient(90deg,#5500dd,#8b5cf6);"></div></div>
+        <div class="roas-val">4.5x</div>
+      </div>
+      <div class="roas-row" data-anim data-delay="4">
+        <div class="roas-name">TikTok</div>
+        <div class="roas-track"><div class="roas-fill" style="width:63%;background:linear-gradient(90deg,#5500dd,#8b5cf6);"></div></div>
+        <div class="roas-val">4.3x</div>
+      </div>
+      <div class="roas-row" data-anim data-delay="5">
+        <div class="roas-name">Snapchat</div>
+        <div class="roas-track"><div class="roas-fill" style="width:44%;background:linear-gradient(90deg,#5500dd,#8b5cf6);"></div></div>
+        <div class="roas-val">3.0x</div>
+      </div>
     </div>
-
-    <div class="split-half saas" data-anim data-delay="3">
-      <span class="split-kicker">B2B &amp; B2C SaaS</span>
-      <h3>Your CAC climbs every quarter and every channel costs more than last year.</h3>
-      <p>Your buyers are on Reddit right now — asking which tool to switch to, venting about your competitor, looking for exactly what you offer. Almost nobody in your space is advertising there. We're Reddit Certified. They're not.</p>
-      <div class="split-stat"><strong>$157</strong><span>Cost per lead &middot; cybersecurity SaaS</span></div>
-      <a class="split-go" href="/saas-ads-agency">See how we run it &rarr;</a>
-      <span class="split-alt">Also: <a href="/b2c-saas-ads">B2C SaaS ads &rarr;</a></span>
-    </div>
+    <p class="roas-note" data-anim data-delay="6">
+      Peak platform-reported ROAS from live DTC accounts we have run &mdash; a US lifestyle and accessories brand on Pinterest and Meta, and a European fashion brand on TikTok and Snapchat. Your numbers will differ with margin, AOV and creative. We would rather show you real figures than category averages.
+    </p>
   </div>
 </section>
 
-<!-- ============================
-     SECTION 4: HOW IT WORKS
-     ============================ -->
-<section class="process-section">
+<!-- ============================ CREATIVE GALLERY ============================ -->
+<section class="gal-sec">
   <div class="container">
-    <p class="section-label" data-anim>How it works</p>
+    <p class="section-label" data-anim>The work</p>
     <div data-anim data-delay="1">
-      <span class="heading-bold" style="color:#0d0d0d;">The Signal Method.</span>
-      <span class="heading-italic" style="color:#0d0d0d;">Volume in, signal out.</span>
+      <span class="heading-bold" style="color:#0d0d0d;">Creative that earns</span>
+      <span class="heading-italic" style="color:#0d0d0d;">the click.</span>
     </div>
-    <p data-anim data-delay="2" style="font-size:17px; color:#5b6070; max-width:640px; margin:18px auto 0; line-height:1.7; text-align:center;">You cannot find the signal without volume. So we produce a lot, isolate what actually works, then put your budget behind that. Baseline, Volume, Isolate, Amplify &mdash; live in a week.</p>
-
-    <div class="timeline">
-
-      <div class="timeline-step" data-anim data-delay="1">
-        <div class="step-circle">1</div>
-        <p class="step-week">Day 1–2</p>
-        <p class="step-title">Baseline</p><p class="step-sub">Audit + brief</p>
-        <p class="step-body">We dig into your account history, competitor creative, and positioning. Strategy locked before we write a single word.</p>
-      </div>
-
-      <div class="timeline-step" data-anim data-delay="2">
-        <div class="step-circle">2</div>
-        <p class="step-week">Day 3–5</p>
-        <p class="step-title">Volume</p><p class="step-sub">First creative batch</p>
-        <p class="step-body">Up to 40 AI-produced assets across formats and hooks. Static, video, UGC. All platform-native, all tested against your brand.</p>
-      </div>
-
-      <div class="timeline-step" data-anim data-delay="3">
-        <div class="step-circle">3</div>
-        <p class="step-week">Day 6–7</p>
-        <p class="step-title">Isolate</p><p class="step-sub">Launch + test</p>
-        <p class="step-body">Ads go live with a proper A/B framework. Baseline established in the first 72 hours. Nothing runs blind.</p>
-      </div>
-
-      <div class="timeline-step" data-anim data-delay="4">
-        <div class="step-circle">4</div>
-        <p class="step-week">Week 2+</p>
-        <p class="step-title">Amplify</p><p class="step-sub">Scale winners, cut losers</p>
-        <p class="step-body">Double down on winners. Kill losers fast. New hooks every cycle based on real data, not gut feel.</p>
-      </div>
-
+    <p data-anim data-delay="2" style="font-size:17px;color:#4b5563;max-width:620px;margin:18px auto 0;text-align:center;line-height:1.7;">
+      Beauty, CPG, fashion, home. Static, video and UGC &mdash; produced in-house, built for the feed it runs in.
+    </p>
+    <div class="gal-grid">
+      <a href="/gallery" data-anim data-delay="2"><img loading="lazy" src="/assets/Lipstick_Campaign_dSJmLIvg.webp" alt="Beauty campaign ad creative"></a>
+      <a href="/gallery" data-anim data-delay="2"><img loading="lazy" src="/assets/Protein_Bar_Advertisement_CDLIA58W.webp" alt="Protein bar CPG ad creative"></a>
+      <a href="/gallery" data-anim data-delay="3"><img loading="lazy" src="/assets/handbag-fashion.webp" alt="Fashion handbag ad creative"></a>
+      <a href="/gallery" data-anim data-delay="3"><img loading="lazy" src="/assets/Cpg_l5evv8k1.webp" alt="CPG ad creative"></a>
+      <a href="/gallery" data-anim data-delay="4"><img loading="lazy" src="/assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.webp" alt="Beauty swatch ad creative"></a>
+      <a href="/gallery" data-anim data-delay="4"><img loading="lazy" src="/assets/Protein_Bar_Advertisement_y5ER32ip2.webp" alt="CPG ad creative"></a>
+      <a href="/gallery" data-anim data-delay="5"><img loading="lazy" src="/assets/handbag-walk.webp" alt="Fashion ad creative"></a>
+      <a href="/gallery" data-anim data-delay="5"><img loading="lazy" src="/assets/Cpg_nO2xZZjv.webp" alt="CPG ad creative"></a>
     </div>
-    <div class="vol-row" data-anim data-delay="5">
-      <div class="vol-copy">
-        <h4>Volume is the unlock.</h4>
-        <p>You cannot find a winning ad by making four of them. We produce enough creative to actually find the outliers, then put your budget behind the ones that work. That is the whole difference.</p>
-      </div>
-      <div class="vol-chart" data-anim data-delay="4">
-      <div class="vol-col">
-        <div class="vol-bar them" style="height:22%;">4</div>
-        <div class="vol-lab">Typical agency<br>creatives / month</div>
-      </div>
-      <div class="vol-col">
-        <div class="vol-bar them" style="height:44%;">8</div>
-        <div class="vol-lab">In-house team<br>creatives / month</div>
-      </div>
-      <div class="vol-col">
-        <div class="vol-bar us" style="height:100%;">Up to 40</div>
-        <div class="vol-lab">With us<br>scaled to your spend</div>
-      </div>
+    <div class="gal-cta" data-anim data-delay="6">
+      <a href="/gallery" class="hero-cta-btn" style="background:#0d0d0d;">See the full creative portfolio &rarr;</a>
     </div>
-    </div>
-
   </div>
 </section>
 
-<!-- ============================
-     SECTION 5: PROOF
-     ============================ -->
-<section class="proof-section">
+<!-- ============================ CASE STUDIES ============================ -->
+<section class="ecase-sec">
   <div class="container">
-    <div style="text-align:center;">
-      <p class="section-label" data-anim>The numbers</p>
-      <div data-anim data-delay="1">
-        <span class="heading-bold" style="color:#0d0d0d;">Numbers</span>
-        <span class="heading-italic" style="color:#0d0d0d;">from real accounts.</span>
-      </div>
-    </div>
-
-    <div class="stats-row">
-      <div class="stat-block" data-anim data-delay="1">
-        <div class="stat-number">19%</div>
-        <div class="stat-desc">CAC reduction &middot; streaming platform</div>
-      </div>
-      <div class="stat-block" data-anim data-delay="2">
-        <div class="stat-number">&euro;30</div>
-        <div class="stat-desc">Cost per acquisition &middot; AI SaaS on Reddit</div>
-      </div>
-      <div class="stat-block" data-anim data-delay="3">
-        <div class="stat-number">+114%</div>
-        <div class="stat-desc">Store revenue YoY &middot; gifting brand</div>
-      </div>
-      <div class="stat-block" data-anim data-delay="4">
-        <div class="stat-number">$50M+</div>
-        <div class="stat-desc">Paid media managed by the team</div>
-      </div>
-    </div>
-
-    <div class="testimonial-card" data-anim>
-      <p class="testimonial-quote">"Skip the Noise built our Reddit channel from scratch and made it a real source of qualified pipeline. The creative was native to the platform in a way our other agencies never managed."</p>
-      <div class="testimonial-footer">
-        <span class="testimonial-attr">— Faustine Foliard, Head of Marketing at Flare</span>
-        <span class="reddit-badge">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5.6 11.4c.1.3.1.6.1.9 0 2.9-3.4 5.2-7.7 5.2S2.3 17.2 2.3 14.3c0-.3 0-.6.1-.9-.6-.3-1-.9-1-1.6 0-1.1.9-1.9 1.9-1.9.5 0 .9.2 1.2.5 1.2-.8 2.8-1.3 4.6-1.4l.8-3.7c.1-.2.3-.4.5-.3l2.6.5c.2-.5.7-.8 1.3-.8.8 0 1.4.6 1.4 1.4s-.6 1.4-1.4 1.4-1.4-.6-1.4-1.4l-2.4-.5-.7 3.3c1.8.1 3.3.6 4.5 1.4.3-.3.8-.5 1.3-.5 1.1 0 1.9.9 1.9 1.9.1.7-.3 1.3-.9 1.6zM8.5 14c-.6 0-1.1.5-1.1 1.1s.5 1.1 1.1 1.1 1.1-.5 1.1-1.1S9.1 14 8.5 14zm7 0c-.6 0-1.1.5-1.1 1.1s.5 1.1 1.1 1.1 1.1-.5 1.1-1.1S16.1 14 15.5 14zm-1.2 3.4c-.6.6-1.4.9-2.3.9s-1.7-.3-2.3-.9c-.2-.2-.2-.5 0-.7.2-.2.5-.2.7 0 .4.4 1 .6 1.6.6s1.2-.2 1.6-.6c.2-.2.5-.2.7 0 .2.2.2.5 0 .7z" fill="white"/></svg>
-          Reddit Certified Partner
-        </span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============================
-     SECTION 6b: FIT + ROUTING
-     ============================ -->
-<section class="fit-section">
-  <div class="container">
-    <p class="section-label" data-anim>Is this a fit</p>
+    <p class="section-label" data-anim>Proof</p>
     <div data-anim data-delay="1">
-      <span class="heading-bold" style="color:#0d0d0d;">We're not for everyone.</span>
-      <span class="heading-italic" style="color:#0d0d0d;">Here's the honest version.</span>
+      <span class="heading-bold" style="color:#0d0d0d;">DTC brands</span>
+      <span class="heading-italic" style="color:#0d0d0d;">we have scaled.</span>
     </div>
-
-    <div class="fit-grid">
-      <div class="fit-card yes" data-anim data-delay="2">
-        <h3>You're a good fit if</h3>
-        <ul class="fit-list">
-          <li>You're already spending on paid media and creative volume is what's holding you back</li>
-          <li>You're a DTC, eComm or SaaS brand with a product that's already selling</li>
-          <li>You want senior people doing the actual work, not juniors behind an account manager</li>
-          <li>You're willing to test properly — winners get more budget, losers get cut in under two weeks</li>
-          <li>You're spending at least $10,000 a month on media</li>
-        </ul>
-      </div>
-      <div class="fit-card no" data-anim data-delay="3">
-        <h3>We're probably not your agency if</h3>
-        <ul class="fit-list">
-          <li>You're still figuring out whether your product sells</li>
-          <li>You're looking for the cheapest option — we're not it</li>
-          <li>You want a big agency with account layers. There are two of us and we're the ones doing the work</li>
-          <li>You want to run a handful of ads and leave them up. Volume and testing is the whole model</li>
-        </ul>
-      </div>
-    </div>
-
-
-  </div>
-</section>
-
-<!-- ============================
-     SECTION 6: FAQ
-     ============================ -->
-<section class="faq-section">
-  <div class="container">
-    <div style="text-align:center; margin-bottom:0;">
-      <p class="section-label" data-anim>FAQ</p>
-      <div data-anim data-delay="1">
-        <span class="heading-bold" style="color:#0d0d0d;">Questions</span>
-        <span class="heading-italic" style="color:#0d0d0d;">worth asking.</span>
-      </div>
-    </div>
-
-    <div class="faq-list">
-
-      <div class="faq-item" data-anim>
-        <button class="faq-q" onclick="toggleFaq(this)">
-          How fast can we actually get started?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">First creative brief within 48 hours. First ads live within 1 week of signing. We don't do 3-month onboarding. You'll have real creative in market faster than most agencies have finished their kickoff deck.</div>
-      </div>
-
-      <div class="faq-item" data-anim>
-        <button class="faq-q" onclick="toggleFaq(this)">
-          What platforms do you work on?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">Reddit and Meta are our core. We also run TikTok, LinkedIn and Google. Reddit is where we have a certified edge. Most agencies don't even know how to buy there properly. We do.</div>
-      </div>
-
-      <div class="faq-item" data-anim>
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Do you need access to our ad accounts?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">Yes, but you keep full ownership. We work directly in your existing accounts. No black boxes, no locked dashboards, no proprietary platforms. Your data stays yours.</div>
-      </div>
-
-      <div class="faq-item" data-anim>
-        <button class="faq-q" onclick="toggleFaq(this)">
-          What if the creatives don't perform?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">That's what the A/B framework is for. No creative runs unoptimized for more than 2 weeks. We kill losers fast and brief new hooks based on what we learned. Performance is a process, not a one-shot bet.</div>
-      </div>
-
-      <div class="faq-item" data-anim>
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Are you actually Reddit Certified?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">Yes. We're one of a small number of agencies officially certified by Reddit in North America. That means direct support, beta access to new ad products, and better targeting tools than non-certified buyers have access to.</div>
-      </div>
-
-      <div class="faq-item" data-anim>
-        <button class="faq-q" onclick="toggleFaq(this)">
-          Is there a minimum commitment?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-a">We work on monthly retainers. No lock-in contracts. If we're not delivering, you can leave. We'd rather earn the relationship every month than trap you in a 12-month agreement.</div>
-      </div>
-
+    <div class="ecase-grid">
+      <a class="ecase" href="/work/noirver" data-anim data-delay="2">
+        <img loading="lazy" src="/assets/Noirver V2.webp" alt="European fashion brand case study">
+        <div class="ecase-b">
+          <div class="ecase-n">4.3x</div>
+          <div class="ecase-t">ROAS on TikTok, 3x on Snap</div>
+          <div class="ecase-d">A European handbag brand expanded past Meta and hit target in the first month.</div>
+        </div>
+      </a>
+      <a class="ecase" href="/work/lifestyle-brand" data-anim data-delay="3">
+        <img loading="lazy" src="/assets/TP Case Study v2.webp" alt="US lifestyle and accessories brand case study">
+        <div class="ecase-b">
+          <div class="ecase-n">6.8x</div>
+          <div class="ecase-t">ROAS on Pinterest, 4.5x on Meta</div>
+          <div class="ecase-d">A US lifestyle and accessories brand that scaled by competing on quality, not price.</div>
+        </div>
+      </a>
+      <a class="ecase" href="/work/cozybeds" data-anim data-delay="4">
+        <img loading="lazy" src="/assets/CozyBeds Case Study V2.webp" alt="High-ticket furniture brand case study">
+        <div class="ecase-b">
+          <div class="ecase-n">4x</div>
+          <div class="ecase-t">ROI on high-ticket furniture</div>
+          <div class="ecase-d">Performance creative for a brand where every sale takes real buyer intent.</div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
-
-<!-- ============================
-     SECTION 7: CTA STRIP
-     ============================ -->
-
-
-<section class="cta-strip">
-  <div class="cta-strip-content">
-    <div data-anim>
-      <span class="heading-bold" style="color:#ffffff;">Ready to stop guessing</span>
-      <span class="heading-italic" style="color:#ffffff;">which ads work?</span>
-    </div>
-    <p data-anim data-delay="1" style="font-size:clamp(15px,1.1vw,18px); color:rgba(255,255,255,0.6); max-width:560px; margin:16px auto 0; line-height:1.7;">We'll build 3 ads for your brand. Free. Run them, keep them, use them however you want. If you want more, we'll talk. If not, no hard feelings.</p>
-    <div data-anim data-delay="2">
-      <a href="https://cal.com/skipthenoise/30min" class="cta-strip-btn">Get 3 free ads &rarr;</a>
-      <p class="cta-strip-email">Or email us at <a href="mailto:sales@skipthenoisemedia.com">sales@skipthenoisemedia.com</a></p>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer class="footer">
   <div class="container">
     <div class="footer-top">
