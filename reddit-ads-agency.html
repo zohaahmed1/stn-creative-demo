@@ -59,7 +59,7 @@
       {
         "@type": "Question",
         "name": "How much does a Reddit advertising agency cost?",
-        "acceptedAnswer": {"@type": "Answer", "text": "Reddit advertising agency retainers typically range from $2,500 to $8,000 per month depending on ad spend, creative volume, and scope. Most agencies charge either a flat monthly retainer or a percentage of ad spend (typically 15–20%). Skip the Noise Media offers fixed retainers starting at $3,000/month including creative production."}
+        "acceptedAnswer": {"@type": "Answer", "text": "Reddit advertising agency retainers typically range from $2,500 to $8,000 per month depending on ad spend, creative volume, and scope. Most agencies charge either a flat monthly retainer or a percentage of ad spend (typically 15–20%). Skip the Noise Media offers fixed retainers starting at $3,500/month including creative production."}
       },
       {
         "@type": "Question",
@@ -396,6 +396,37 @@
     .article-hero .deck, .article-hero p.deck { color: #4b5563 !important; }
     @keyframes noise-glitch { 0%{transform:none;filter:none;} 8%{transform:translate(-3px,1px) skewX(-4deg);filter:hue-rotate(80deg) brightness(1.3);opacity:.75;} 12%{transform:translate(3px,-1px) skewX(2deg);} 16%{transform:none;filter:none;opacity:1;} 48%{transform:none;} 52%{transform:translate(2px,-2px);filter:hue-rotate(200deg) brightness(1.2);opacity:.8;} 56%{transform:translate(-2px,1px);} 60%{transform:none;filter:none;opacity:1;} 100%{transform:none;filter:none;} }
     .nav-logo:hover .logo-noise { animation: noise-glitch 0.65s ease-in-out; cursor: pointer; }
+
+    /* ---------- visual layer ---------- */
+    .ra-strip { margin:44px 0 0; width:100vw; margin-left:calc(50% - 50vw); overflow:hidden;
+      -webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);
+      mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent); }
+    .ra-strip-track { display:flex; gap:14px; width:max-content; animation:raScroll 58s linear infinite; }
+    .ra-strip img { height:200px; width:auto; border-radius:13px; display:block; object-fit:cover; }
+    @keyframes raScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    @media (prefers-reduced-motion:reduce){ .ra-strip-track{animation:none} }
+
+    .ra-ads { display:grid; grid-template-columns:1fr 1fr; gap:22px; margin:30px 0 12px; }
+    .ra-ad figure { margin:0; }
+    .ra-ad img { width:100%; border-radius:14px; display:block; border:1px solid #e5e7eb; }
+    .ra-ad figcaption { font-size:13.5px; color:#6b7280; margin-top:10px; line-height:1.5; }
+    .ra-ad figcaption strong { color:#0d0d0d; }
+
+    .ra-cases { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin:30px 0 12px; }
+    .ra-case { background:#fff; border:1px solid #e5e7eb; border-radius:18px; overflow:hidden;
+      text-decoration:none; color:inherit; display:flex; flex-direction:column; transition:transform .25s, box-shadow .25s; }
+    .ra-case:hover { transform:translateY(-5px); box-shadow:0 20px 42px -24px rgba(255,69,0,.3); }
+    .ra-case img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; }
+    .ra-case-b { padding:18px 20px 22px; }
+    .ra-case-n { font-size:27px; color:#FF4500; font-weight:900; letter-spacing:-.03em; }
+    .ra-case-t { font-size:14.5px; color:#0d0d0d; font-weight:700; margin-top:5px; }
+    .ra-case-d { font-size:13px; color:#6b7280; margin-top:7px; line-height:1.55; }
+
+    @media (max-width:820px){
+      .ra-ads{grid-template-columns:1fr;}
+      .ra-cases{grid-template-columns:1fr;}
+      .ra-strip img{height:140px;}
+    }
 </style>
 
   <!-- Meta Pixel Code -->
@@ -532,6 +563,22 @@
       <span>Reddit Certified Partner</span>
       <span>&middot;</span>
       <span>April 2026</span>
+    </div>
+  </div>
+  <div class="ra-strip">
+    <div class="ra-strip-track">
+      <img loading="eager" src="/assets/flare-ad-threat.webp" alt="Reddit ad for a cybersecurity platform">
+      <img loading="eager" src="/assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.webp" alt="B2B SaaS Reddit ad creative">
+      <img loading="eager" src="/assets/flare-ad-testimonial.webp" alt="Reddit testimonial ad creative">
+      <img loading="eager" src="/assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.webp" alt="SaaS Reddit ad creative">
+      <img loading="eager" src="/assets/Cpg_l5evv8k1.webp" alt="DTC Reddit ad creative">
+      <img loading="eager" src="/assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.webp" alt="SaaS Reddit ad creative">
+      <img loading="lazy" src="/assets/flare-ad-threat.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/flare-ad-testimonial.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/Cpg_l5evv8k1.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.webp" alt="" aria-hidden="true">
     </div>
   </div>
 </section>
@@ -679,6 +726,21 @@
 
   <p>What works on Reddit is creative that looks like it could have been posted by someone in the community. For a cybersecurity product, that means using the vocabulary security engineers use, referencing threat vectors they care about, and matching the tone of the subreddit rather than the tone of your brand guidelines. For a consumer tool, it means showing the actual output — before and after, the use case, the moment of relief — not a lifestyle shot with a tagline.</p>
 
+  <div class="ra-ads">
+    <div class="ra-ad">
+      <figure>
+        <img loading="lazy" src="/assets/flare-ad-threat.webp" alt="Reddit ad quoting a cybercrime forum post">
+        <figcaption><strong>Community-language hook.</strong> This ad quotes a real cybercrime forum post back to the security community it targets &mdash; the pattern described below.</figcaption>
+      </figure>
+    </div>
+    <div class="ra-ad">
+      <figure>
+        <img loading="lazy" src="/assets/flare-ad-testimonial.webp" alt="Reddit ad using a CISO testimonial">
+        <figcaption><strong>Specific social proof.</strong> A named role rather than a logo wall. Reddit users discount vague endorsement and reward specificity.</figcaption>
+      </figure>
+    </div>
+  </div>
+
   <p>Across our client campaigns, the creative patterns that consistently outperform are:</p>
 
   <ul>
@@ -688,7 +750,7 @@
     <li><strong>Price and offer transparency.</strong> "Try for $14" or "7-day free trial" in the creative outperforms vague CTAs. Reddit users are skeptical — specificity builds trust.</li>
   </ul>
 
-  <p>We produce 40+ creatives per month for each client and test them systematically. By month three, we've usually identified the 2 to 3 angles that drive the majority of conversions and can scale those with confidence.</p>
+  <p>We produce up to 40 creatives per month for each client and test them systematically. By month three, we've usually identified the 2 to 3 angles that drive the majority of conversions and can scale those with confidence.</p>
 
   <h2>Reddit ads vs LinkedIn ads</h2>
 
@@ -756,6 +818,34 @@
     <h3>Book my free audit call</h3>
     <p>We'll show you which subreddits your competitors are advertising in, where your ICP is most active, and give you 3 free ad creatives to test. No commitment.</p>
     <a href="#" class="cta-booking-btn">Book my free audit call</a>
+  </div>
+
+  <h2>Reddit results we have driven</h2>
+  <div class="ra-cases">
+    <a class="ra-case" href="/work/flare">
+      <img loading="lazy" src="/assets/Flare Case Study V2.webp" alt="Cybersecurity SaaS Reddit case study">
+      <div class="ra-case-b">
+        <div class="ra-case-n">74</div>
+        <div class="ra-case-t">Qualified leads in 3 months</div>
+        <div class="ra-case-d">Cybersecurity SaaS at a $157 blended CPL, from r/netsec and r/sysadmin.</div>
+      </div>
+    </a>
+    <a class="ra-case" href="/work/3d-ai-studio">
+      <img loading="lazy" src="/assets/3d-ai-studio-hero.png" alt="AI SaaS Reddit case study">
+      <div class="ra-case-b">
+        <div class="ra-case-n">&euro;30</div>
+        <div class="ra-case-t">CPA after 90 days</div>
+        <div class="ra-case-d">Seven Reddit creative angles tested; the winner beat the weakest by 2.4x.</div>
+      </div>
+    </a>
+    <a class="ra-case" href="/work/restream">
+      <img loading="lazy" src="/assets/Restream Case Study V2.webp" alt="Streaming platform case study">
+      <div class="ra-case-b">
+        <div class="ra-case-n">$15</div>
+        <div class="ra-case-t">Per signup, CAC down 19%</div>
+        <div class="ra-case-d">A streaming platform running Reddit alongside its other channels.</div>
+      </div>
+    </a>
   </div>
 
   <h2>Frequently asked questions</h2>
