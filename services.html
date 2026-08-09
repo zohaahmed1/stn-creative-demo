@@ -1247,6 +1247,15 @@
   }, {threshold: 0.1});
   document.querySelectorAll('[data-anim]').forEach(function(el){ obs.observe(el); });
 
+  // Hero content must never be scroll-gated: its CTA can sit below the fold on
+  // short viewports, which would leave the primary button invisible on load.
+  document.querySelectorAll('.hero [data-anim]').forEach(function(el){ el.classList.add('visible'); });
+
+  // Safety net: if IntersectionObserver is unavailable, reveal everything.
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('[data-anim]').forEach(function(el){ el.classList.add('visible'); });
+  }
+
   // FAQ accordion
   function toggleFaq(btn) {
     var item = btn.closest('.faq-item');
