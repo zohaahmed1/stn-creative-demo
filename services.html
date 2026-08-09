@@ -664,11 +664,15 @@
     .split-half.saas .split-stat strong { color: #5500dd; }
     .split-stat span { font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; color: #6b7280; font-variation-settings: "wdth" var(--wdth), "wght" 600; }
     .split-go {
-      display: block; margin-top: 30px; font-size: 15px;
+      display: block; margin-top: 30px; font-size: 15px; text-decoration: none;
       font-variation-settings: "wdth" var(--wdth), "wght" 700; color: #0d0d0d;
+      position: relative; z-index: 1; width: fit-content;
     }
+    /* stretch the primary link across the whole block (valid: no nested <a>) */
+    .split-go::after { content: ''; position: absolute; inset: 0; z-index: 0; }
     .split-half:hover .split-go { text-decoration: underline; text-underline-offset: 4px; }
-    .split-alt { display: block; margin-top: 12px; font-size: 13.5px; color: #8b90a0; }
+    .split-half:focus-within { outline: 2px solid #5500dd; outline-offset: -3px; }
+    .split-alt { display: block; margin-top: 12px; font-size: 13.5px; color: #8b90a0; position: relative; z-index: 2; width: fit-content; }
     .split-alt a { color: #6b7280; text-decoration: underline; text-underline-offset: 3px; }
     @media (max-width: 860px) {
       .split-wrap { grid-template-columns: 1fr; }
@@ -920,23 +924,23 @@
   </div>
 
   <div class="split-wrap">
-    <a class="split-half dtc" href="/reddit-ads-agency" data-anim data-delay="2">
+    <div class="split-half dtc" data-anim data-delay="2">
       <span class="split-kicker">eComm &amp; DTC</span>
       <h3>Your ROAS is slipping and you know why.</h3>
       <p>Same creatives. Same audiences. Same results. You're not short on budget — you're short on fresh angles and creative volume. And your current agency takes weeks to fix that.</p>
       <div class="split-stat"><strong>4.3x</strong><span>ROAS on TikTok &middot; fashion eComm</span></div>
-      <span class="split-go">See how we run it &rarr;</span>
+      <a class="split-go" href="/reddit-ads-agency">See how we run it &rarr;</a>
       <span class="split-alt">Also: <a href="/reddit-organic-marketing">Reddit organic &rarr;</a></span>
-    </a>
+    </div>
 
-    <a class="split-half saas" href="/saas-ads-agency" data-anim data-delay="3">
+    <div class="split-half saas" data-anim data-delay="3">
       <span class="split-kicker">B2B &amp; B2C SaaS</span>
       <h3>You're paying Google prices while Reddit sits untapped.</h3>
       <p>Your buyers are on Reddit right now — asking which tool to switch to, venting about your competitor, looking for exactly what you offer. Almost nobody in your space is advertising there. We're Reddit Certified. They're not.</p>
       <div class="split-stat"><strong>$157</strong><span>Cost per lead &middot; cybersecurity SaaS</span></div>
-      <span class="split-go">See how we run it &rarr;</span>
+      <a class="split-go" href="/saas-ads-agency">See how we run it &rarr;</a>
       <span class="split-alt">Also: <a href="/b2c-saas-ads">B2C SaaS ads &rarr;</a></span>
-    </a>
+    </div>
   </div>
 </section>
 
