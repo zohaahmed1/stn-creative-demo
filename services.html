@@ -9,16 +9,16 @@
   <!-- End Microsoft Clarity -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Services — AI Creative Production + Performance Marketing | Skip the Noise Media</title>
-  <meta name="description" content="AI creative production and performance marketing for DTC and SaaS brands. 40+ ad creatives per month, full-funnel paid media, first ads live in 1 week. Reddit Certified Partner.">
+  <title>Services — Ad Creative Production &amp; Paid Media Buying | Skip the Noise Media</title>
+  <meta name="description" content="Ad creative production and cross-channel media buying for DTC and SaaS brands. Creative volume scaled to your spend, first ads live in 1 week. Reddit Certified Partner.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://skipthenoisemedia.com/services">
   <meta property="og:title" content="Services — AI Creative Production + Performance Marketing | Skip the Noise Media">
-  <meta property="og:description" content="AI creative production and performance marketing for DTC and SaaS brands. 40+ ad creatives per month, full-funnel paid media, first ads live in 1 week.">
+  <meta property="og:description" content="Ad creative production and cross-channel media buying for DTC and SaaS brands. Creative volume scaled to your spend, first ads live in 1 week.">
   <meta property="og:image" content="https://skipthenoisemedia.com/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Services — AI Creative Production + Performance Marketing | Skip the Noise Media">
-  <meta name="twitter:description" content="AI creative production and performance marketing for DTC and SaaS brands. 40+ ad creatives per month, first ads live in 1 week.">
+  <meta name="twitter:description" content="Ad creative production and cross-channel media buying for DTC and SaaS brands. First ads live in 1 week.">
   <meta name="twitter:image" content="https://skipthenoisemedia.com/assets/og-image.png">
   <link rel="canonical" href="https://skipthenoisemedia.com/services">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -65,7 +65,7 @@
     img { display: block; max-width: 100%; }
     a { text-decoration: none; color: inherit; }
 
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
     @media (max-width: 809px) { .container { padding: 0 16px; } }
 
     /* ============================
@@ -176,7 +176,7 @@
        ============================ */
     .hero {
       background: #080808;
-      padding: 160px 24px 120px;
+      padding: 120px 24px 0;
       text-align: center;
       position: relative;
       overflow: hidden;
@@ -220,6 +220,44 @@
       font-size: 13px;
       color: rgba(255,255,255,0.35);
       font-variation-settings: "wdth" var(--wdth), "wght" 500;
+    }
+    .hero-h1 { margin: 0 0 20px; }
+    .hero-proof {
+      display: flex; justify-content: center; align-items: center;
+      gap: 0; flex-wrap: wrap; margin: 34px auto 0; max-width: 780px;
+    }
+    .hero-proof .hp {
+      padding: 0 28px; text-align: center;
+    }
+    .hero-proof .hp + .hp { border-left: 1px solid rgba(255,255,255,0.14); }
+    .hero-proof .hp-n {
+      display: block; font-size: 30px; color: #fff;
+      font-variation-settings: "wdth" var(--wdth), "wght" 800; letter-spacing: -0.03em;
+    }
+    .hero-proof .hp-l {
+      display: block; font-size: 12px; margin-top: 4px;
+      color: rgba(255,255,255,0.45);
+      font-variation-settings: "wdth" var(--wdth), "wght" 600;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .hero-secondary {
+      display: inline-block; margin-left: 18px; font-size: 14px;
+      color: rgba(255,255,255,0.55); text-decoration: underline;
+      text-underline-offset: 3px; transition: color 0.2s;
+      font-variation-settings: "wdth" var(--wdth), "wght" 600;
+    }
+    .hero-secondary:hover { color: #fff; }
+    /* creative proof strip */
+    .hero-strip { margin-top: 56px; width: 100%; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+    .hero-strip-track { display: flex; gap: 14px; width: max-content; animation: stripScroll 46s linear infinite; }
+    .hero-strip img { height: 190px; width: auto; border-radius: 12px; display: block; object-fit: cover; }
+    @keyframes stripScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @media (prefers-reduced-motion: reduce) { .hero-strip-track { animation: none; } }
+    @media (max-width: 768px) {
+      .hero-proof .hp { padding: 8px 16px; }
+      .hero-proof .hp + .hp { border-left: none; }
+      .hero-strip img { height: 130px; }
+      .hero-secondary { display: block; margin: 14px 0 0; }
     }
 
     /* ============================
@@ -585,6 +623,44 @@
     }
 
     /* ============================
+       SECTION 6b: FIT + ROUTING + CHART
+       ============================ */
+    .fit-section { background: var(--white); padding: 100px 24px; }
+    .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+    .fit-card { border-radius: 20px; padding: 36px 34px; }
+    .fit-card.yes { background: #f2f7f3; border: 1.5px solid #cfe3d6; }
+    .fit-card.no  { background: #f8f7f7; border: 1.5px solid #e4e2e2; }
+    .fit-card h3 { font-size: 20px; margin: 0 0 22px; font-variation-settings: "wdth" var(--wdth), "wght" 800; letter-spacing: -0.02em; }
+    .fit-card.yes h3 { color: #1f7a4f; }
+    .fit-card.no h3 { color: #6b6b6b; }
+    .fit-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px; }
+    .fit-list li { position: relative; padding-left: 30px; font-size: 16px; line-height: 1.6; color: #2b2f38; }
+    .fit-list li::before { position: absolute; left: 0; top: -1px; font-size: 17px; font-weight: 700; }
+    .fit-card.yes .fit-list li::before { content: '✓'; color: #1f7a4f; }
+    .fit-card.no .fit-list li::before { content: '—'; color: #a8a8a8; }
+    /* creative-volume chart */
+    .vol-chart { display: flex; align-items: flex-end; gap: 34px; justify-content: center; margin-top: 44px; height: 210px; }
+    .vol-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+    .vol-bar { width: 92px; border-radius: 10px 10px 0 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 10px; color: #fff; font-size: 15px; font-variation-settings: "wdth" var(--wdth), "wght" 800; }
+    .vol-bar.them { background: #d8d6da; color: #4a4a4a; }
+    .vol-bar.us { background: linear-gradient(180deg,#7c3aed,#5500dd); }
+    .vol-lab { margin-top: 12px; font-size: 13px; color: #6b7280; font-variation-settings: "wdth" var(--wdth), "wght" 600; text-align: center; line-height: 1.35; }
+    /* routing to service pages */
+    .route-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
+    .route-card { display: block; padding: 26px 24px; border: 1.5px solid #e5e5ea; border-radius: 16px; text-decoration: none; color: inherit; background: #fff; transition: transform .2s, box-shadow .2s, border-color .2s; }
+    .route-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px -20px rgba(20,10,60,.3); border-color: rgba(85,0,221,.35); }
+    .route-card .rt { font-size: 17px; font-variation-settings: "wdth" var(--wdth), "wght" 800; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .route-card .rd { font-size: 14px; color: #6b7280; line-height: 1.5; }
+    .route-card .rl { font-size: 13px; color: #5500dd; font-variation-settings: "wdth" var(--wdth), "wght" 700; margin-top: 14px; display: block; }
+    @media (max-width: 900px) { .route-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 768px) {
+      .fit-grid { grid-template-columns: 1fr; }
+      .route-grid { grid-template-columns: 1fr; }
+      .vol-chart { gap: 20px; }
+      .vol-bar { width: 70px; }
+    }
+
+    /* ============================
        SECTION 7: CTA STRIP
        ============================ */
     .cta-strip {
@@ -731,14 +807,44 @@
     <div data-anim>
       <span class="partner-badge">Reddit Certified Partner ✓</span>
     </div>
-    <div data-anim data-delay="1" style="margin-bottom:20px;">
-      <span class="heading-bold" style="color:#ffffff;">Most agencies pick a lane.</span>
-      <span class="heading-italic" style="color:#ffffff;">We run both.</span>
+    <h1 class="hero-h1" data-anim data-delay="1">
+      <span class="heading-bold" style="color:#ffffff;">We make the ads.</span>
+      <span class="heading-italic" style="color:#ffffff;">We run the media.</span>
+    </h1>
+    <p data-anim data-delay="2" style="font-size:clamp(16px,1.2vw,19px); color:rgba(255,255,255,0.6); max-width:640px; margin:0 auto; line-height:1.7;">Creative production and cross-channel media buying for DTC and SaaS brands. Most agencies take 6 weeks to get your first ad live. We do it in one.</p>
+
+    <div class="hero-proof" data-anim data-delay="3">
+      <div class="hp"><span class="hp-n">74</span><span class="hp-l">Qualified B2B leads &middot; 3 months</span></div>
+      <div class="hp"><span class="hp-n">$15</span><span class="hp-l">Per signup &middot; B2C SaaS</span></div>
+      <div class="hp"><span class="hp-n">3-4x</span><span class="hp-l">ROAS across DTC accounts</span></div>
     </div>
-    <p data-anim data-delay="2" style="font-size:clamp(16px,1.2vw,19px); color:rgba(255,255,255,0.6); max-width:600px; margin:0 auto; line-height:1.7;">Most agencies take 6 weeks to get your first ad live. We do it in 1. AI creative production and full-funnel performance marketing, moving faster than anyone else in the space.</p>
-    <div data-anim data-delay="3">
-      <a href="https://cal.com/skipthenoise/30min" class="hero-cta-btn">Book a strategy call &rarr;</a>
-      <p class="hero-micro">First ads live in 1 week. No lock-in contracts.</p>
+
+    <div data-anim data-delay="4">
+      <a href="/#book" class="hero-cta-btn">Get 3 free ads &rarr;</a>
+      <a href="https://cal.com/skipthenoise/30min" class="hero-secondary">Book a strategy call</a>
+      <p class="hero-micro">Built for your brand. Yours to keep. First ads live in 1 week.</p>
+    </div>
+  </div>
+
+  <!-- Creative proof strip -->
+  <div class="hero-strip" data-anim data-delay="5">
+    <div class="hero-strip-track">
+      <img loading="eager" src="/assets/Cpg_l5evv8k1.webp" alt="Ad creative example">
+      <img loading="eager" src="/assets/B2B_SaaS_Ads_V5F-kd5P.webp" alt="B2B SaaS ad creative">
+      <img loading="eager" src="/assets/handbag-fashion.webp" alt="Fashion ad creative">
+      <img loading="eager" src="/assets/Protein_Bar_Advertisement_CDLIA58W.webp" alt="CPG ad creative">
+      <img loading="eager" src="/assets/B2B_SaaS_Ads_wRW96YqI.webp" alt="SaaS ad creative">
+      <img loading="eager" src="/assets/Lipstick_Campaign_dSJmLIvg.webp" alt="Beauty ad creative">
+      <img loading="eager" src="/assets/Cpg_nO2xZZjv.webp" alt="CPG ad creative">
+      <img loading="eager" src="/assets/B2B_SaaS_Ads_laAgn1rH.webp" alt="SaaS ad creative">
+      <img loading="lazy" src="/assets/Cpg_l5evv8k1.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/B2B_SaaS_Ads_V5F-kd5P.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/handbag-fashion.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/Protein_Bar_Advertisement_CDLIA58W.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/B2B_SaaS_Ads_wRW96YqI.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/Lipstick_Campaign_dSJmLIvg.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/Cpg_nO2xZZjv.webp" alt="" aria-hidden="true">
+      <img loading="lazy" src="/assets/B2B_SaaS_Ads_laAgn1rH.webp" alt="" aria-hidden="true">
     </div>
   </div>
 </section>
@@ -750,8 +856,8 @@
   <div class="container">
     <p class="section-label" data-anim>Who we work with</p>
     <div data-anim data-delay="1">
-      <span class="heading-bold" style="color:#0d0d0d;">Pick your</span>
-      <span class="heading-italic" style="color:#0d0d0d;">situation.</span>
+      <span class="heading-bold" style="color:#0d0d0d;">Most agencies pick a lane.</span>
+      <span class="heading-italic" style="color:#0d0d0d;">We run both.</span>
     </div>
     <div class="who-cards">
 
@@ -761,7 +867,7 @@
         <h3>Your ROAS is slipping and you know why.</h3>
         <p>Same creatives. Same audiences. Same results. You're not short on budget. You're short on fresh angles, tested hooks, and creative volume. And your current agency takes weeks to fix that.</p>
         <ul class="bullet-list">
-          <li><span class="bullet-dot dot-orange"></span>40+ new AI-produced creatives every month across Meta, TikTok and Pinterest</li>
+          <li><span class="bullet-dot dot-orange"></span>Up to 40 new AI-produced creatives a month across Meta, TikTok and Pinterest — scaled to your spend</li>
           <li><span class="bullet-dot dot-orange"></span>Media buying optimized to your ROAS target, not vanity metrics</li>
           <li><span class="bullet-dot dot-orange"></span>First batch delivered in 1 week. Not 6.</li>
         </ul>
@@ -807,7 +913,7 @@
         <div class="outcome-icon">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
         </div>
-        <h4>40+ AI creatives per month</h4>
+        <h4>Up to 40 AI creatives per month</h4>
         <p>Not 4 recycled resizes. Fresh hooks, new formats, and multiple angles tested every cycle. AI-powered production means volume without the lag. Volume is what powers the algorithm.</p>
       </a>
 
@@ -846,9 +952,10 @@
   <div class="container">
     <p class="section-label" data-anim>How it works</p>
     <div data-anim data-delay="1">
-      <span class="heading-bold" style="color:#0d0d0d;">From brief</span>
-      <span class="heading-italic" style="color:#0d0d0d;">to live in 1 week.</span>
+      <span class="heading-bold" style="color:#0d0d0d;">The Signal Method.</span>
+      <span class="heading-italic" style="color:#0d0d0d;">Volume in, signal out.</span>
     </div>
+    <p data-anim data-delay="2" style="font-size:17px; color:#5b6070; max-width:640px; margin:18px auto 0; line-height:1.7; text-align:center;">Most agencies make a few ads and hope. We make a lot, find the ones that work, and put your budget behind those. Four steps, live in a week.</p>
 
     <div class="timeline">
 
@@ -863,7 +970,7 @@
         <div class="step-circle">2</div>
         <p class="step-week">Day 3–5</p>
         <p class="step-title">First Creative Batch</p>
-        <p class="step-body">40+ AI-produced assets across formats and hooks. Static, video, UGC. All platform-native, all tested against your brand.</p>
+        <p class="step-body">Up to 40 AI-produced assets across formats and hooks. Static, video, UGC. All platform-native, all tested against your brand.</p>
       </div>
 
       <div class="timeline-step" data-anim data-delay="3">
@@ -907,8 +1014,8 @@
         <div class="stat-desc">Per signup &middot; B2C SaaS on Reddit</div>
       </div>
       <div class="stat-block" data-anim data-delay="3">
-        <div class="stat-number">40+</div>
-        <div class="stat-desc">AI creatives delivered per month</div>
+        <div class="stat-number">Up to 40</div>
+        <div class="stat-desc">AI creatives a month, scaled to your spend</div>
       </div>
       <div class="stat-block" data-anim data-delay="4">
         <div class="stat-number">100+</div>
@@ -1000,6 +1107,86 @@
 <!-- ============================
      SECTION 7: CTA STRIP
      ============================ -->
+<!-- ============================
+     SECTION 6b: FIT + ROUTING
+     ============================ -->
+<section class="fit-section">
+  <div class="container">
+    <p class="section-label" data-anim>Is this a fit</p>
+    <div data-anim data-delay="1">
+      <span class="heading-bold" style="color:#0d0d0d;">We're not for everyone.</span>
+      <span class="heading-italic" style="color:#0d0d0d;">Here's the honest version.</span>
+    </div>
+
+    <div class="fit-grid">
+      <div class="fit-card yes" data-anim data-delay="2">
+        <h3>You're a good fit if</h3>
+        <ul class="fit-list">
+          <li>You're already spending on paid media and creative volume is what's holding you back</li>
+          <li>You're a DTC, eComm or SaaS brand with a product that's already selling</li>
+          <li>You want senior people doing the actual work, not juniors behind an account manager</li>
+          <li>You're willing to test properly — winners get more budget, losers get cut in under two weeks</li>
+          <li>You're spending at least $10,000 a month on media</li>
+        </ul>
+      </div>
+      <div class="fit-card no" data-anim data-delay="3">
+        <h3>We're probably not your agency if</h3>
+        <ul class="fit-list">
+          <li>You're still figuring out whether your product sells</li>
+          <li>You're looking for the cheapest option — we're not it</li>
+          <li>You want a big agency with account layers. There are two of us and we're the ones doing the work</li>
+          <li>You want to run a handful of ads and leave them up. Volume and testing is the whole model</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- creative volume chart -->
+    <div class="vol-chart" data-anim data-delay="4">
+      <div class="vol-col">
+        <div class="vol-bar them" style="height:22%;">4</div>
+        <div class="vol-lab">Typical agency<br>creatives / month</div>
+      </div>
+      <div class="vol-col">
+        <div class="vol-bar them" style="height:44%;">8</div>
+        <div class="vol-lab">In-house team<br>creatives / month</div>
+      </div>
+      <div class="vol-col">
+        <div class="vol-bar us" style="height:100%;">Up to 40</div>
+        <div class="vol-lab">With us<br>scaled to your spend</div>
+      </div>
+    </div>
+
+    <!-- routing to specialised service pages -->
+    <p class="section-label" data-anim data-delay="5" style="margin-top:80px;">Go deeper</p>
+    <div data-anim data-delay="5">
+      <span class="heading-bold" style="color:#0d0d0d;">Built for your</span>
+      <span class="heading-italic" style="color:#0d0d0d;">channel and market.</span>
+    </div>
+    <div class="route-grid">
+      <a class="route-card" href="/reddit-ads-agency" data-anim data-delay="6">
+        <div class="rt">Reddit Ads</div>
+        <div class="rd">Reddit Certified Partner. $157 cost per lead for B2B SaaS, 74 qualified leads in 3 months.</div>
+        <span class="rl">See Reddit ads &rarr;</span>
+      </a>
+      <a class="route-card" href="/saas-ads-agency" data-anim data-delay="6">
+        <div class="rt">SaaS Ads</div>
+        <div class="rd">B2B and B2C SaaS pipeline. Real benchmarks from accounts we run, not category averages.</div>
+        <span class="rl">See SaaS ads &rarr;</span>
+      </a>
+      <a class="route-card" href="/b2c-saas-ads" data-anim data-delay="7">
+        <div class="rt">B2C SaaS Ads</div>
+        <div class="rd">Signup-driven growth. $15 per signup and a 19% CAC reduction on a streaming platform.</div>
+        <span class="rl">See B2C SaaS &rarr;</span>
+      </a>
+      <a class="route-card" href="/reddit-organic-marketing" data-anim data-delay="7">
+        <div class="rt">Reddit Organic</div>
+        <div class="rd">Community participation and seeding that gets you cited in AI search and ranks threads in Google.</div>
+        <span class="rl">See Reddit organic &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="cta-strip">
   <div class="cta-strip-content">
     <div data-anim>
