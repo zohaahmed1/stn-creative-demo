@@ -176,6 +176,20 @@
   .nav.scrolled { box-shadow: 0 2px 12px rgba(0,0,0,0.07) !important; }
   .nav-logo .logo-skip { color:#191923; }
   .nav-logo .logo-noise { background: linear-gradient(90deg,#5500dd,#cc0000); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+
+    /* ---------- inline comparison chart ---------- */
+    .vchart { border:1px solid #e5e7eb; border-radius:16px; padding:26px 28px; margin:30px 0; background:#fcfcfd; }
+    .vchart h4 { font-size:16px; font-weight:800; margin:0 0 6px; color:#0d0d0d; letter-spacing:-.02em; }
+    .vchart .vsub { font-size:13.5px; color:#6b7280; margin:0 0 22px; line-height:1.55; }
+    .vrow { display:grid; grid-template-columns:150px 1fr 92px; align-items:center; gap:16px; margin-bottom:13px; }
+    .vname { font-size:14px; font-weight:600; color:#374151; }
+    .vtrack { height:28px; background:#eef0f4; border-radius:6px; overflow:hidden; }
+    .vfill { height:100%; border-radius:6px; }
+    .vfill.hi { background:linear-gradient(90deg,#FF4500,#ff7a45); }
+    .vfill.lo { background:#c9ccd4; }
+    .vval { font-size:14px; font-weight:800; color:#0d0d0d; text-align:right; }
+    .vnote { font-size:12.5px; color:#6b7280; margin:16px 0 0; line-height:1.6; }
+    @media (max-width:720px){ .vrow{grid-template-columns:104px 1fr 74px; gap:10px;} }
 </style>
 </head>
 <body>
@@ -384,6 +398,22 @@
   <p>Lower CPM doesn't automatically mean lower CPL — what matters is the ratio of qualified impressions to total impressions. A $4 CPM audience that converts at 0.3% produces a better CPL than a $15 CPM audience that converts at 0.8% only if the qualified conversion rate accounts for lead quality. When we track Reddit-sourced leads through to closed deals, the sales cycle length and close rates tend to be stronger than Facebook-sourced leads, because the Reddit audience entered the funnel with demonstrated topical interest rather than inferred behavioral similarity.</p>
 
   <p>The honest caveat on Reddit: scale is limited. For very large SaaS companies that need to push $500K+ per month through a single channel, Reddit's addressable inventory in any given B2B vertical is a ceiling. Facebook can absorb that budget. Reddit cannot — at least not yet. This is why the two platforms are complements rather than substitutes for growth-stage SaaS companies.</p>
+
+  <div class="vchart">
+    <h4>Reddit vs Facebook, B2B cost per lead</h4>
+    <p class="vsub">Well-targeted campaigns, as stated in the comparison table below.</p>
+      <div class="vrow">
+        <div class="vname">Reddit</div>
+        <div class="vtrack"><div class="vfill hi" style="width:47%;"></div></div>
+        <div class="vval">$45&ndash;85</div>
+      </div>
+      <div class="vrow">
+        <div class="vname">Facebook</div>
+        <div class="vtrack"><div class="vfill lo" style="width:100%;"></div></div>
+        <div class="vval">$90&ndash;180</div>
+      </div>
+    <p class="vnote">Facebook wins on scale and creative formats; Reddit wins on intent and cost. Most B2B SaaS brands end up running both, in sequence.</p>
+  </div>
 
   <h2>Platform comparison: the full picture</h2>
 

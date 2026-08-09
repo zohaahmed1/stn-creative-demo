@@ -225,7 +225,21 @@
     .article-hero h1 em { background: linear-gradient(135deg,#7c3aed,#db2777); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .article-meta, .article-meta a, .article-meta span { color: #6b7280 !important; }
     .article-hero .deck, .article-hero p.deck { color: #4b5563 !important; }
-  </style>
+  
+    /* ---------- inline comparison chart ---------- */
+    .vchart { border:1px solid #e5e7eb; border-radius:16px; padding:26px 28px; margin:30px 0; background:#fcfcfd; }
+    .vchart h4 { font-size:16px; font-weight:800; margin:0 0 6px; color:#0d0d0d; letter-spacing:-.02em; }
+    .vchart .vsub { font-size:13.5px; color:#6b7280; margin:0 0 22px; line-height:1.55; }
+    .vrow { display:grid; grid-template-columns:150px 1fr 92px; align-items:center; gap:16px; margin-bottom:13px; }
+    .vname { font-size:14px; font-weight:600; color:#374151; }
+    .vtrack { height:28px; background:#eef0f4; border-radius:6px; overflow:hidden; }
+    .vfill { height:100%; border-radius:6px; }
+    .vfill.hi { background:linear-gradient(90deg,#FF4500,#ff7a45); }
+    .vfill.lo { background:#c9ccd4; }
+    .vval { font-size:14px; font-weight:800; color:#0d0d0d; text-align:right; }
+    .vnote { font-size:12.5px; color:#6b7280; margin:16px 0 0; line-height:1.6; }
+    @media (max-width:720px){ .vrow{grid-template-columns:104px 1fr 74px; gap:10px;} }
+</style>
 
   <!-- Meta Pixel Code -->
   <script>
@@ -457,6 +471,32 @@
   </table>
 
   <p>These ranges reflect campaigns that have been optimized. If you're launching cold with no prior data, expect to spend 30 to 60 days burning budget to find your winning creative and subreddit combinations before hitting mid-range performance.</p>
+
+  <div class="vchart">
+    <h4>Cost per click by platform, B2B targeting</h4>
+    <p class="vsub">Lower is better. Ranges as stated in the table above.</p>
+      <div class="vrow">
+        <div class="vname">Reddit</div>
+        <div class="vtrack"><div class="vfill hi" style="width:20%;"></div></div>
+        <div class="vval">$0.75&ndash;3</div>
+      </div>
+      <div class="vrow">
+        <div class="vname">Meta</div>
+        <div class="vtrack"><div class="vfill lo" style="width:33%;"></div></div>
+        <div class="vval">$1.50&ndash;5</div>
+      </div>
+      <div class="vrow">
+        <div class="vname">Google Search</div>
+        <div class="vtrack"><div class="vfill lo" style="width:80%;"></div></div>
+        <div class="vval">$3&ndash;12</div>
+      </div>
+      <div class="vrow">
+        <div class="vname">LinkedIn</div>
+        <div class="vtrack"><div class="vfill lo" style="width:100%;"></div></div>
+        <div class="vval">$8&ndash;15</div>
+      </div>
+    <p class="vnote">Our own B2B SaaS account averaged $0.92 a click across 12,740 clicks. Cheap clicks are not the point on their own &mdash; they buy more testing for the same budget.</p>
+  </div>
 
   <h2>What drives Reddit ad costs up</h2>
 
