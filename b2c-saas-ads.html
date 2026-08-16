@@ -105,6 +105,7 @@
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { overflow-x: clip; } /* full-bleed 100vw sections include the scrollbar; clip contains them without creating a scroll container, so position:sticky still works */
     :root {
       --purple: #5500DD;
       --reddit-orange: #FF4500;
@@ -118,7 +119,7 @@
       color: var(--dark);
       background: #fff;
       -webkit-font-smoothing: antialiased;
-    }
+     }
 
     /* ── Nav ── */
     nav {
@@ -426,7 +427,7 @@
     @keyframes bcScroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
     @media (prefers-reduced-motion:reduce){ .bc-strip-track{animation:none} }
 
-    .cpa-sec { width:100vw; margin-left:calc(50% - 50vw); background:#0a0a0c; padding:72px 24px; margin:52px 0 44px; }
+    .cpa-sec { width:100vw; background:#0a0a0c; padding:72px 24px; margin:52px 0 44px; margin-left:calc(50% - 50vw); }
     .cpa-in { max-width:880px; margin:0 auto; }
     .article-body .cpa-sec h2.cpa-h { font-size:clamp(22px,2.4vw,30px); color:#fff; margin:0 0 8px; border:none; padding:0; letter-spacing:-.025em; }
     .cpa-sub { font-size:15px; color:rgba(255,255,255,.55); margin:0 0 34px; line-height:1.6; }
@@ -446,7 +447,8 @@
     .bc-case-n { font-size:27px; color:#5500dd; font-weight:900; letter-spacing:-.03em; }
     .bc-case-t { font-size:14.5px; color:#0d0d0d; font-weight:700; margin-top:5px; }
     .bc-case-d { font-size:13px; color:#6b7280; margin-top:7px; line-height:1.55; }
-    @media (max-width:900px){ .bc-cases{grid-template-columns:1fr;} .cpa-row{grid-template-columns:130px 1fr 66px;gap:12px;} .bc-strip img{height:140px;} }
+    @media (max-width:900px){ .bc-cases{grid-template-columns:1fr;} .cpa-row{grid-template-columns:112px 1fr 62px;gap:10px;} .bc-strip img{height:140px;} }
+    @media (max-width:420px){ .cpa-sec{padding:56px 18px;} .cpa-row{grid-template-columns:96px 1fr 56px;gap:8px;} .cpa-name{font-size:13px;} .cpa-val{font-size:14px;} }
 </style>
 
   <!-- Meta Pixel Code -->

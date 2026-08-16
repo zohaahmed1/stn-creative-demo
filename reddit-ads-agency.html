@@ -100,6 +100,7 @@
 
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { overflow-x: clip; } /* full-bleed 100vw sections include the scrollbar; clip contains them without creating a scroll container, so position:sticky still works */
     :root {
       --purple: #5500DD;
       --reddit-orange: #FF4500;
@@ -113,7 +114,7 @@
       color: var(--dark);
       background: #fff;
       -webkit-font-smoothing: antialiased;
-    }
+     }
 
     /* ── Nav ── */
     nav {
