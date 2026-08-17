@@ -127,6 +127,12 @@
     .meta-pill.result{background:#dcfce7;border-color:#bbf7d0;color:#166534}
     .example-card p{font-size:15px;line-height:1.65;color:#1a1a1a;margin-bottom:12px}
     .example-card p:last-child{margin-bottom:0}
+    .ad-shots{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 6px}
+    .ad-shots.one{grid-template-columns:minmax(0,320px)}
+    .ad-shot{border-radius:14px;overflow:hidden;border:1px solid var(--g200);background:#fff}
+    .ad-shot img{width:100%;display:block;aspect-ratio:1/1;object-fit:cover}
+    .ad-cap{font-size:12.5px;color:var(--g500);font-weight:600;margin-top:7px;line-height:1.45}
+    @media(max-width:600px){.ad-shots{grid-template-columns:1fr}}
     footer{background:#0d0d14;padding:40px 24px;text-align:center}
     footer p{font-size:14px;color:rgba(255,255,255,0.35);margin-bottom:8px}
     footer a{color:rgba(255,255,255,0.35);text-decoration:none}
@@ -326,6 +332,16 @@
       <span class="meta-pill">Subreddit: r/netsec (500K members)</span>
       <span class="meta-pill result">Result: $157 CPL · 74 leads in 3 months</span>
     </div>
+    <div class="ad-shots">
+      <div>
+        <div class="ad-shot"><img loading="lazy" src="/assets/flare-ad-threat.jpg" alt="Flare Reddit ad — dark web forum monitoring"></div>
+        <div class="ad-cap">Ran on Reddit — the dark-web angle, quoting a cybercrime forum</div>
+      </div>
+      <div>
+        <div class="ad-shot"><img loading="lazy" src="/assets/flare-ad-testimonial.jpg" alt="Flare Reddit ad — CISO testimonial"></div>
+        <div class="ad-cap">Ran on Reddit — social proof from a major-bank CISO</div>
+      </div>
+    </div>
     <p><strong>Why it works:</strong> The hook leads with data, not product. r/netsec users respond to technical specificity — 50,000 is a real number that signals real methodology, not a marketing estimate. The phrase "dark web mentions" is native to the community's vocabulary. And "credential exposure" names a threat category that r/netsec threads return to constantly. The hook reads like a threat intelligence report, not an ad for a threat intelligence platform.</p>
     <p><strong>What it was testing:</strong> Data-led hook vs. product-led hook. The product-led variant opened with "Flare monitors the dark web so your security team doesn't have to." It generated 40% fewer clicks at the same spend.</p>
     <p>The data-led hook works because it offers something before it asks for anything. r/netsec members clicked to see the findings, not to evaluate a vendor. Full breakdown in our <a href="../work/flare.html">Flare case study</a>.</p>
@@ -356,6 +372,12 @@
       <span class="meta-pill">Subreddits: r/femalefashionadvice · r/streetwear</span>
       <span class="meta-pill result">Result: 4.3x ROAS</span>
     </div>
+    <div class="ad-shots one">
+      <div>
+        <div class="ad-shot"><img loading="lazy" src="/assets/handbag-fashion.webp" alt="Fashion handbag ad creative"></div>
+        <div class="ad-cap">Creative we produce for DTC fashion &mdash; product in a real setting, not on white</div>
+      </div>
+    </div>
     <p><strong>Why it works:</strong> "Spotted" is a word that lives in fashion community vocabulary. Members post "spotted this in the wild" and "just spotted these on sale" all the time. Borrowing that framing makes the ad feel like a community tip rather than a product push. "Everyone's been asking about" creates FOMO without being aggressive — it implies social proof without citing a statistic. "Now in stock" adds urgency without manufacturing it.</p>
     <p><strong>What it was testing:</strong> FOMO / community-tip hook vs. product-description hook. The product-description variant opened with the bag's materials and dimensions. ROAS came in under 2x. Community-native language unlocked a 4.3x outcome on the same creative budget.</p>
   </div>
@@ -370,6 +392,12 @@
       <span class="meta-pill">Subreddits: r/malefashionadvice · r/streetwear</span>
       <span class="meta-pill result">Result: 6.8x ROAS</span>
     </div>
+    <div class="ad-shots one">
+      <div>
+        <div class="ad-shot"><img loading="lazy" src="/assets/handbag-walk.webp" alt="Lifestyle apparel ad creative"></div>
+        <div class="ad-cap">Creative we produce for DTC lifestyle &mdash; lifestyle context over studio product shots</div>
+      </div>
+    </div>
     <p><strong>Why it works:</strong> This hook leads with a contrarian supply chain claim that instantly differentiates without naming a competitor. r/malefashionadvice and r/streetwear are communities dominated by quality-conscious buyers who are actively skeptical of fast fashion and brand markup. The claim speaks directly to that skepticism. "The same 3 factories" implies an industry truth the reader suspects but has never seen said plainly. The brand never appears until the body copy.</p>
     <p><strong>What it was testing:</strong> Differentiation / origin hook vs. lifestyle hook. The lifestyle variant showed a clean editorial image with no copy beyond the brand name. ROAS was 2.1x — strong on paper, but the origin hook more than tripled it by giving the audience a reason to care that went beyond aesthetics.</p>
   </div>
@@ -383,6 +411,12 @@
       <span class="meta-pill">Format: Text post with minimal image</span>
       <span class="meta-pill">Subreddit: r/recruiting</span>
     </div>
+    <div class="ad-shots one">
+      <div>
+        <div class="ad-shot"><img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.webp" alt="AI hiring tool ad creative"></div>
+        <div class="ad-cap">Creative we produce for this category &mdash; flat, plain-language, no stock photography</div>
+      </div>
+    </div>
     <p><strong>Why it works:</strong> Three mechanisms in one hook. The specific number ("twice") makes the claim feel diagnostic rather than dramatic. The timeframe ("this quarter") grounds it in the reader's current reality. And "here's why" shifts the blame to a systemic problem — not the recruiter's judgment. r/recruiting is a community full of people who have had exactly this experience and are actively looking for frameworks to explain it. This hook doesn't insult the reader; it validates a frustration and promises an explanation.</p>
     <p><strong>What it was testing:</strong> Problem-specific hook vs. ROI hook. The ROI variant opened with "Reduce cost-per-hire by 30% with AI-assisted screening." The problem-specific hook generated 2.7x the click-through rate. Recruiters on Reddit aren't optimizing for a board metric in that moment — they're processing a frustrating week. The hook that meets them there wins.</p>
   </div>
@@ -395,6 +429,12 @@
     <div class="meta-row">
       <span class="meta-pill">Format: Text-forward — long-form body copy</span>
       <span class="meta-pill">Subreddits: r/devops · r/sre</span>
+    </div>
+    <div class="ad-shots one">
+      <div>
+        <div class="ad-shot"><img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_minimalist_3D_style_three_abstract_shapes_LlqzK8tf.webp" alt="DevOps SaaS ad creative"></div>
+        <div class="ad-cap">Creative we produce for dev-tool categories &mdash; abstract over stock photography</div>
+      </div>
     </div>
     <p><strong>Why it works:</strong> "Used to" signals a before-and-after transformation without saying "before and after." "One thing" creates extreme curiosity — it implies a specific, learnable insight, not a generic "we improved our process" claim. And "ruin weekends" is hyper-specific pain that r/devops and r/sre communities live and breathe. This isn't metaphorical for those communities — it's a recurring thread topic. Members have posted about ruined anniversaries, kids' birthdays, and sleep deprivation from on-call rotations. The hook lands because it names a real and recurring wound.</p>
     <p><strong>What it was testing:</strong> Personal narrative hook vs. technical spec hook. The technical spec hook opened with the product's alerting logic and SLA performance. It read like documentation. The narrative hook read like a post. CTR was 3.1x higher on the narrative version in the first 72 hours.</p>
@@ -419,6 +459,12 @@
       <span class="meta-pill">Format: Text-forward promoted post</span>
       <span class="meta-pill">Subreddit: r/netsec</span>
     </div>
+    <div class="ad-shots one">
+      <div>
+        <div class="ad-shot"><img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.webp" alt="Security operations SaaS ad creative"></div>
+        <div class="ad-cap">Creative we produce for security categories &mdash; bold type, one idea per frame</div>
+      </div>
+    </div>
     <p><strong>Why it works:</strong> This hook reframes a problem the audience thinks they understand. r/netsec practitioners know alert fatigue well — it's a constant thread topic. "Not a volume problem, a signal quality problem" is the kind of reframe that generates engagement because it challenges a widely held assumption while using precise technical language. It sounds like a hypothesis a senior security engineer would post, not an ad.</p>
     <p><strong>What it was testing:</strong> Reframe hook vs. pain-acknowledgement hook. The pain-acknowledgement variant opened with "Drowning in alerts? You're not alone." Relatable, but weak — it confirms a problem without offering new thinking. The reframe hook generated 2.4x the qualified click-through because it attracted the senior practitioners most likely to evaluate and purchase security tooling.</p>
   </div>
@@ -431,6 +477,12 @@
     <div class="meta-row">
       <span class="meta-pill">Format: Text post with architecture diagram</span>
       <span class="meta-pill">Subreddit: r/dataengineering</span>
+    </div>
+    <div class="ad-shots one">
+      <div>
+        <div class="ad-shot"><img loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_modern_graphic_design_style_this_image_eS0eGv3q.webp" alt="Data platform SaaS ad creative"></div>
+        <div class="ad-cap">Creative we produce for data-infrastructure categories</div>
+      </div>
     </div>
     <p><strong>Why it works:</strong> Specificity again — "third production incident" and "60 days" make this feel like a real incident retrospective, not marketing copy. r/dataengineering is a community that reads post-mortems for fun. The hook promises exactly what that community values: technical honesty about what went wrong and what the fix looked like. Including an architecture diagram in the body confirms that the post will deliver technical substance, not a sales pitch.</p>
     <p><strong>What it was testing:</strong> Incident-narrative hook vs. performance-claim hook. The performance-claim variant opened with "10x faster query processing — here's how." The incident-narrative hook generated 89% more comments and 3.2x the click-through, because r/dataengineering audiences trust people who admit failure more than people who claim victory.</p>
