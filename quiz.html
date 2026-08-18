@@ -6,16 +6,16 @@
   <meta charset="utf-8">
   <meta name="robots" content="noindex, follow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Is Reddit Right for Your SaaS? 60-Second Check | Skip the Noise Media</title>
-  <meta name="description" content="Four questions, sixty seconds. Find out whether Reddit ads are a fit for your SaaS — and what it would take to run them properly. From a Reddit Certified Partner.">
+  <title>Three Free Reddit Ads for Your SaaS | Skip the Noise Media</title>
+  <meta name="description" content="Answer four questions and we will write and design three Reddit ads for your category, free and yours to keep. You also get an honest read on whether Reddit fits you. From a Reddit Certified Partner.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://skipthenoisemedia.com/quiz">
-  <meta property="og:title" content="Is Reddit Right for Your SaaS? A 60-Second Check">
-  <meta property="og:description" content="Ad creative production and cross-channel media buying for DTC and SaaS brands. Creative volume scaled to your spend, first ads live in 1 week.">
+  <meta property="og:title" content="Three Free Reddit Ads for Your SaaS">
+  <meta property="og:description" content="Four questions, about 60 seconds. We will write and design three Reddit ads for your category, yours to keep.">
   <meta property="og:image" content="https://skipthenoisemedia.com/assets/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Services — AI Creative Production + Performance Marketing | Skip the Noise Media">
-  <meta name="twitter:description" content="Ad creative production and cross-channel media buying for DTC and SaaS brands. First ads live in 1 week.">
+  <meta name="twitter:title" content="Three Free Reddit Ads for Your SaaS">
+  <meta name="twitter:description" content="Four questions, about 60 seconds. We will write and design three Reddit ads for your category, yours to keep.">
   <meta name="twitter:image" content="https://skipthenoisemedia.com/assets/og-image.png">
   <link rel="canonical" href="https://skipthenoisemedia.com/quiz">
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
@@ -940,9 +940,9 @@
           Reddit for B2B SaaS
         </div>
         <h1>We will build you three Reddit ads. Free. Yours to keep.</h1>
-        <p class="sub">Answer five questions and we will write and design three ads for your category, using the subreddits your buyers actually post in. You also get an honest read on whether Reddit fits you at all.</p>
+        <p class="sub">Answer four questions and we will write and design three ads for your category, using the subreddits your buyers actually post in. You also get an honest read on whether Reddit fits you at all.</p>
         <button class="hook-cta" id="hook-start">Get my three ads &rarr;</button>
-        <p class="hook-micro">Five questions, about 60 seconds. You keep the ads either way.</p>
+        <p class="hook-micro">Four questions, about 60 seconds. If you are a fit, the ads are yours to keep.</p>
 
         <div class="hook-ads">
           <img loading="lazy" decoding="async" src="/assets/flare-ad-threat.webp" alt="Reddit ad run for a cybersecurity SaaS client">
@@ -971,11 +971,9 @@
 window.STN_LEAD_ENDPOINT = '/api/lead';
 (function(){
   var QS = [
-    { q:"Are you currently running paid ads?", sub:"", type:"single",
-      a:["Yes","Not right now"] },
     { q:"Which channels are you running today?", sub:"Select all that apply.", type:"multi",
       a:["LinkedIn Ads","Google Search","Meta / social","Content / SEO","Reddit already","Mostly outbound"] },
-    { q:"What would move the needle most right now?", sub:"Pick the one that matters most this quarter.", type:"single",
+    { q:"What would move the needle most this quarter?", sub:"Pick the one that matters most.", type:"single",
       a:["Lower CAC on our paid channels","Get recommended in AI answers (AEO/GEO)","Break into Reddit the right way","Add a fresh pipeline source"] },
     { q:"What is your current ARR?", sub:"This tells us whether we are the right size of partner.", type:"single",
       a:["Under $5M","$5M to $10M","$10M to $50M","$50M or more"] },
@@ -1039,15 +1037,15 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
     quiz.innerHTML = '<div style="text-align:center;padding:38px 0 34px;">' +
       '<div class="q-spin"></div>' +
       '<p id="q-analyzing" style="font-size:16px;color:#4b5563;margin:22px 0 0;font-variation-settings:\'wdth\' 125,\'wght\' 600;">Reading your answers&hellip;</p></div>';
-    var msgs=['Reading your answers&hellip;','Checking this against accounts we have run&hellip;','Putting your read together&hellip;'], i=0;
-    var t=setInterval(function(){ i++; var el=document.getElementById('q-analyzing'); if(el&&msgs[i]) el.innerHTML=msgs[i]; }, 620);
-    setTimeout(function(){ clearInterval(t); showResult(); }, 1900);
+    var msgs=['Reading your answers&hellip;','Putting your read together&hellip;'], i=0;
+    var t=setInterval(function(){ i++; var el=document.getElementById('q-analyzing'); if(el&&msgs[i]) el.innerHTML=msgs[i]; }, 520);
+    setTimeout(function(){ clearInterval(t); showResult(); }, 1100);
   }
 
   function showResult(){
     quiz.style.display='none'; dots.style.display='none'; back.style.display='none';
     res.style.display='block';
-    var running = answers[0], channels = answers[1] || [], goal = answers[2], arr = answers[3], timing = answers[4];
+    var channels = answers[0] || [], goal = answers[1], arr = answers[2], timing = answers[3];
     var onReddit = channels.indexOf(4) > -1;
     var tooSmall = (arr === 0);              // under $5M ARR
     var browsing = (timing === 3);           // just exploring
@@ -1058,27 +1056,27 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
       cls='r-no'; verdict='Probably not yet';
       head='Reddit can work at your stage. We are not the right partner for it yet.';
       body='Under $5M ARR the media budget usually is not there to make our fee worth it. That is a straight answer rather than a soft no.';
-      points=['Reddit\'s own floor is far lower &mdash; you can test it yourself for $2,000 to $3,000 a month',
-              'Our cost guide and benchmarks will get you most of the way without paying anyone',
-              'When you are past $5M and spending $10k a month on media, come back and we will talk properly'];
+      points=['Reddit\'s own floor is far lower. You can test it yourself for $2,000 to $3,000 a month.',
+              'Our cost guide and benchmarks will get you most of the way without paying anyone.',
+              'When you are past $5M and spending $10k a month on media, come back and we will talk properly.'];
     } else if(browsing){
       cls='r-maybe'; verdict='Worth a read first';
       head='You are exploring, so start with the numbers rather than a call.';
       body='No point booking time before you know whether the channel suits you. Here is what would actually help right now:';
-      points=['Our 2026 Reddit benchmarks show real CPL, CPA and ROAS by vertical &mdash; from accounts we run, not category averages',
+      points=['Our 2026 Reddit benchmarks show real CPL, CPA and ROAS by vertical, from accounts we run rather than category averages.',
               onReddit ? 'Since you are already on Reddit, the benchmarks give you something concrete to measure against.' : 'The cost guide covers what a realistic test costs before you commit to anything.',
-              'When the timeline firms up, the call will be a lot more useful'];
+              'When the timeline firms up, the call will be a lot more useful.'];
     } else {
       cls='r-fit'; verdict='Looks like a fit';
       head='You are the kind of account we can usually help.';
       var b=[];
       if(goal===0) b.push('Lowering CAC is usually a creative problem before it is a channel problem. On one account the best angle cost &euro;30 a signup and the worst cost &euro;73 &mdash; same audience, same budget.');
-      else if(goal===1) b.push('AEO is the part most agencies cannot do. We run Reddit organic specifically so you get cited in AI answers &mdash; our own share of authority on Reddit-ads queries is currently 19%.');
+      else if(goal===1) b.push('AEO is the part most agencies cannot do. We run Reddit organic specifically so you get cited in AI answers, not just ranked in search.');
       else if(goal===2) b.push('Breaking into Reddit properly is the whole practice. We are a Reddit Certified Partner and Reddit has hosted us for an official AMA to teach its own advertisers.');
-      else b.push('As a new pipeline source, Reddit tends to be the cheapest way in &mdash; roughly $1 to $3 a click against LinkedIn\'s $8 to $15.');
+      else b.push('As a new pipeline source Reddit is usually the cheapest way in. One cybersecurity SaaS client added 74 qualified leads in three months off $11.6k of spend.');
 
       if(onReddit) b.push('Since you are already running Reddit, we can start from your data instead of guesses.');
-      else if(channels.indexOf(0) > -1) b.push('You are on LinkedIn already, which is the useful comparison: our cybersecurity SaaS account averaged $0.92 a click on Reddit.');
+      else if(channels.indexOf(0) > -1) b.push('You are on LinkedIn already, which is the useful comparison. We will put your LinkedIn cost per lead next to Reddit on the call.');
 
       if(timing===0) b.push('For an ASAP timeline: first creative brief inside 48 hours, first ads live within a week.');
       else if(timing===1) b.push('A this-quarter timeline is comfortable &mdash; a proper test needs about 90 days to be conclusive.');
@@ -1103,10 +1101,10 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
           '<div style="font-size:12.5px;color:#6b7280;margin-top:3px;line-height:1.45;">Per signup, CAC down 19%</div></div></a>' +
       '</div>' : '') +
       '<div class="cap">' +
-        '<p class="cap-l">Not ready to book? Leave your email and we will send the ads over when they are done.</p>' +
+        '<p class="cap-l">'+(qualified ? 'Not ready to book? Leave your email and we will send the ads over when they are done.' : 'Want the guide and our 2026 Reddit benchmarks by email?')+'</p>' +
         '<div class="cap-row">' +
           '<input class="cap-in" id="cap-email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com">' +
-          '<button class="cap-btn" id="cap-send">Send them to me</button>' +
+          '<button class="cap-btn" id="cap-send">'+(qualified ? 'Send them to me' : 'Send it')+'</button>' +
         '</div>' +
         '<p class="cap-note" id="cap-note">We will email once and add you to nothing. Booking below works without this.</p>' +
       '</div>' +
@@ -1127,7 +1125,6 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
       var sent = '';
       var LBL = {
         arr:    ['Under $5M','$5M to $10M','$10M to $50M','$50M or more'],
-        running:['Yes','Not right now'],
         goal:   ['Lower CAC','AI answers (AEO/GEO)','Break into Reddit','New pipeline source'],
         timing: ['ASAP','This quarter','Next quarter','Just exploring'],
         ch:     ['LinkedIn Ads','Google Search','Meta / social','Content / SEO','Reddit already','Mostly outbound']
@@ -1145,7 +1142,7 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
         var domain = v.split('@')[1].toLowerCase();
         if(FREE.indexOf(domain) > -1){
           note.className='cap-err';
-          note.textContent='Please use your work email — that is how we look up your category.';
+          note.textContent='Please use your work email. That is how we look up your category. You can also just book the call below.';
           if(window.dataLayer) window.dataLayer.push({event:'quiz_email_rejected', reason:'free_domain'});
           return;
         }
@@ -1154,7 +1151,6 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
           email: v,
           status: (qualified ? 'qualified' : (tooSmall ? 'under-5m-arr' : 'exploring')),
           arr: LBL.arr[arr],
-          running: LBL.running[running],
           goal: LBL.goal[goal],
           timing: LBL.timing[timing],
           channels: (channels||[]).map(function(i){ return LBL.ch[i]; }).join(', '),
@@ -1164,7 +1160,7 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
           fetch(ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'},
             body: JSON.stringify(payload)})
             .then(function(r){ if(!r.ok && r.status===422){ note.className='cap-err';
-              note.textContent='Please use your work email — that is how we look up your category.'; sent=''; } })
+              note.textContent='Please use your work email. That is how we look up your category. You can also just book the call below.'; sent=''; } })
             .catch(function(){});
         }
         if(window.dataLayer) window.dataLayer.push({event:'quiz_email_captured', quiz_status:payload.status});
