@@ -849,6 +849,7 @@
   .cap-btn{background:#0d0d0d;color:#fff;border:none;border-radius:11px;padding:13px 24px;font-family:var(--font);
     font-size:15px;cursor:pointer;font-variation-settings:"wdth" var(--wdth),"wght" 700;}
   .cap-note{font-size:12.5px;color:#8b90a0;margin:11px 0 0;line-height:1.5;}
+  .cap-err{font-size:13px;color:#c2183a;margin:9px 0 0;}
   .cap-ok{font-size:14px;color:#1f7a4f;margin:11px 0 0;font-variation-settings:"wdth" var(--wdth),"wght" 700;}
   /* result */
   .r-verdict{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-variation-settings:"wdth" var(--wdth),"wght" 800;margin-bottom:14px;}
@@ -1131,16 +1132,32 @@ window.STN_LEAD_ENDPOINT = '';
         timing: ['ASAP','This quarter','Next quarter','Just exploring'],
         ch:     ['LinkedIn Ads','Google Search','Meta / social','Content / SEO','Reddit already','Mostly outbound']
       };
+      // consumer inboxes are where quiz spam comes from — B2B buyers have work email
+      var FREE = ['gmail.com','yahoo.com','hotmail.com','outlook.com','live.com','aol.com','icloud.com',
+                  'me.com','msn.com','proton.me','protonmail.com','gmx.com','mail.com','yandex.com',
+                  'ymail.com','rocketmail.com','inbox.com','zoho.com','tutanota.com'];
       function save(){
         var v = (input.value||'').trim();
         if(!v || v === sent) return;
-        if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) return;   // only save a real address
+        if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){
+          note.className='cap-err'; note.textContent='That does not look like a valid email.'; return;
+        }
+        var domain = v.split('@')[1].toLowerCase();
+        if(FREE.indexOf(domain) > -1){
+          note.className='cap-err';
+          note.textContent='Please use your work email — that is how we look up your category.';
+          if(window.dataLayer) window.dataLayer.push({event:'quiz_email_rejected', reason:'free_domain'});
+          return;
+        }
         sent = v;
         var payload = {
           email: v,
           status: (qualified ? 'qualified' : (tooSmall ? 'under-5m-arr' : 'exploring')),
-          budget: LBL.budget[budget], running: LBL.running[running],
-          waste: LBL.waste[waste],    reddit: LBL.reddit[reddit],
+          arr: LBL.arr[arr],
+          running: LBL.running[running],
+          goal: LBL.goal[goal],
+          timing: LBL.timing[timing],
+          channels: (channels||[]).map(function(i){ return LBL.ch[i]; }).join(', '),
           source:'quiz', page: location.pathname
         };
         if(ENDPOINT){
