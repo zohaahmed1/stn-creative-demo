@@ -64,16 +64,28 @@ export async function onRequestPost({ request, env }) {
     catch (e) { console.error('KV write failed', e); }
   }
 
-  // 2. webhook (Google Sheet / Zapier / Make / Slack)
-  if (env.LEAD_WEBHOOK) {
-    try {
-      await fetch(env.LEAD_WEBHOOK, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(lead)
-      });
-    } catch (e) { console.error('Webhook failed', e); }
-  }
+  // 2. webhook — defaults to the existing Formspree form, override with LEAD_WEBHOOK
+  const webhook = env.LEAD_WEBHOOK || 'https://formspree.io/f/xwvwrbgj';
+  try {
+    await fetch(webhook, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: `Quiz lead (${lead.status}) — ${lead.domain}`,
+        email:    lead.email,
+        Status:   lead.status,
+        ARR:      lead.arr,
+        Goal:     lead.goal,
+        Timeline: lead.timing,
+        Channels: lead.channels,
+        'Running ads': lead.running,
+        Country:  lead.country,
+        Source:   lead.source,
+        Page:     lead.page,
+        Captured: lead.ts
+      })
+    });
+  } catch (e) { console.error('Webhook failed', e); }
 
   // 3. always logged
   console.log('LEAD', JSON.stringify(lead));
