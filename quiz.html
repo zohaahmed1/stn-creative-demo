@@ -968,7 +968,7 @@
 
 <script>
 // Paste the Apps Script /exec URL here once deployed
-window.STN_LEAD_ENDPOINT = '';
+window.STN_LEAD_ENDPOINT = '/api/lead';
 (function(){
   var QS = [
     { q:"Are you currently running paid ads?", sub:"", type:"single",
@@ -1161,8 +1161,11 @@ window.STN_LEAD_ENDPOINT = '';
           source:'quiz', page: location.pathname
         };
         if(ENDPOINT){
-          fetch(ENDPOINT, {method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'},
-            body: JSON.stringify(payload)}).catch(function(){});
+          fetch(ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify(payload)})
+            .then(function(r){ if(!r.ok && r.status===422){ note.className='cap-err';
+              note.textContent='Please use your work email — that is how we look up your category.'; sent=''; } })
+            .catch(function(){});
         }
         if(window.dataLayer) window.dataLayer.push({event:'quiz_email_captured', quiz_status:payload.status});
         note.className = 'cap-ok';
