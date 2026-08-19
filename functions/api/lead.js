@@ -260,10 +260,13 @@ export async function onRequestPost({ request, env }) {
      leave one — so it is noise in an inbox while still being needed for the Meta
      Lead event. Those rows were every one of the 12 that landed in spam.
 
-     Only skipped when KV is bound, so the record still survives somewhere. With
-     no KV the webhook is the only sink and must keep receiving everything. */
+     Skipped unconditionally. This was previously gated on KV being bound so the
+     record survived somewhere, but no KV namespace is actually bound on this
+     project, so the guard never fired and every completion emailed. Contactless
+     rows still hit console.log and still fire the Meta Lead. If durable storage
+     is wanted, bind a LEADS KV namespace rather than re-enabling these emails. */
   const contactless = !lead.email;
-  const skipWebhook = contactless && !!env.LEADS;
+  const skipWebhook = contactless;
 
   if (skipWebhook) {
     console.log('Webhook skipped (contactless complete, kept in KV)', lead.checked);
