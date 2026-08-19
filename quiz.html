@@ -898,18 +898,11 @@
 })();
 
 
-    /* CTA click tracking - opens modal instead of linking out */
-    document.addEventListener('DOMContentLoaded', function() {
-      document.querySelectorAll('.cta-booking-btn').forEach(function(link) {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          window.dataLayer = window.dataLayer || [];
-          window.dataLayer.push({event: 'lead', cta_text: this.textContent.trim().slice(0,50), cta_page: 'services'});
-          fbq('track', 'Lead');
-          document.getElementById('cal-modal').classList.add('open');
-        });
-      });
-    });
+    /* Removed: a .cta-booking-btn click handler copied from the Services page
+       (its dataLayer push still said cta_page:'services'). No element on this page
+       ever carried that class, so it was dead — but it fired an unverified Lead,
+       which is exactly the signal the server-side verification exists to protect.
+       Booking here goes through the Cal popup on the results screen. */
 
     /* Cal.com modal styles now live in the main <style> block above.
        Previously injected here via JS, which is fragile if any prior line throws. */
@@ -998,6 +991,11 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
       a:["As soon as possible","This quarter","Next quarter","Just exploring for now"] }
   ];
   var answers = [], step = 0;
+  var details = { site:'', competitors:'' }, detailsDone = false;
+  /* Same rule showResult() uses. Needed before results so we only ask for the
+     website from people we are actually going to make the deliverable for. */
+  function isQualified(){ return answers[2] !== 0 && answers[3] !== 3; }
+  function readCookie(n){ var m=document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]+)'); return m?m.pop():''; }
   var lastQuizArr = null;   // ARR index, read by the booking handler (which runs in another scope)
   var quiz = document.getElementById('quiz'), res = document.getElementById('result'),
       dots = document.getElementById('dots'), back = document.getElementById('back');
@@ -1008,7 +1006,7 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
     }).join('') + '<span class="q-step">Step '+Math.min(step+1,QS.length)+' of '+QS.length+'</span>';
   }
   function render(){
-    if(step >= QS.length){ return showAnalyzing(); }
+    if(step >= QS.length){ return (isQualified() && !detailsDone) ? showDetails() : showAnalyzing(); }
     var Q = QS[step];
     var subHtml = Q.sub ? '<p class="q-sub">'+Q.sub+'</p>' : '';
     if(Q.type === 'multi'){
@@ -1049,6 +1047,31 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
     if(step>0){ step--; res.style.display='none'; quiz.style.display=''; dots.style.display='flex'; render(); }
     back.style.display = step>0 ? 'block' : 'none';
   });
+
+  /* Hormozi-style effort filter. A real operator types both of these in seconds;
+     someone farming a free deliverable cannot name competitors they lose to. The
+     site is also what the server verifies before any Lead is sent. */
+  function showDetails(){
+    quiz.style.display=''; res.style.display='none'; dots.style.display='none'; back.style.display='none';
+    quiz.innerHTML =
+      '<p class="q-q">Last thing, so we know where to look.</p>' +
+      '<p class="q-sub">We need both to find your threads and write the ads.</p>' +
+      '<div style="display:flex;flex-direction:column;gap:12px;">' +
+        '<input class="cap-in" id="d-site" type="text" inputmode="url" autocomplete="url" placeholder="yourcompany.com">' +
+        '<input class="cap-in" id="d-comp" type="text" placeholder="Two competitors you lose deals to">' +
+      '</div>' +
+      '<p class="cap-note" id="d-err" style="min-height:18px;"></p>' +
+      '<button class="hook-cta" id="d-next" style="margin-top:8px;font-size:16px;padding:14px 30px;">See my read &rarr;</button>';
+    document.getElementById('d-next').addEventListener('click', function(){
+      var site = (document.getElementById('d-site').value||'').trim();
+      var comp = (document.getElementById('d-comp').value||'').trim();
+      var err  = document.getElementById('d-err');
+      if(!site || !/\./.test(site)){ err.className='cap-err'; err.textContent='We need your website to find the threads.'; return; }
+      details.site = site; details.competitors = comp; detailsDone = true;
+      if(window.dataLayer) window.dataLayer.push({event:'quiz_details_submitted'});
+      render();
+    });
+  }
 
   function showAnalyzing(){
     quiz.style.display=''; res.style.display='none'; dots.style.display='none'; back.style.display='none';
@@ -1167,6 +1190,7 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
         }
         sent = v;
         var payload = {
+          kind: 'email',
           email: v,
           status: (qualified ? 'qualified' : (tooSmall ? 'under-5m-arr' : 'exploring')),
           arr: LBL.arr[arr],
@@ -1196,7 +1220,24 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
     });
     // Only qualified completions count as a Lead — otherwise Meta optimises toward budgets we turn away
     if(qualified){
-      if(typeof fbq!=='undefined') fbq('track','Lead',{content_name:'quiz_qualified'});
+      /* Lead is NOT fired here any more. Self-reported answers are trivially gamed
+         on broad targeting, and Meta would learn from whoever lies best. The server
+         verifies the domain first and fires Lead only if it looks like real SaaS.
+         fbp/fbc go along so the server-side event still attributes to the ad click. */
+      if(window.STN_LEAD_ENDPOINT){
+        try{
+          fetch(window.STN_LEAD_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify({
+              kind:'complete', status:'qualified',
+              site: details.site, competitors: details.competitors,
+              arr: ['Under $5M','$5M to $10M','$10M to $50M','$50M or more'][arr],
+              goal: ['Lower CAC','AI answers (AEO/GEO)','Break into Reddit','New pipeline source'][goal],
+              timing: ['ASAP','This quarter','Next quarter','Just exploring'][timing],
+              fbp: readCookie('_fbp'), fbc: readCookie('_fbc'),
+              source:'quiz', page: location.pathname
+            })}).catch(function(){});
+        }catch(_){}
+      }
       if(window.dataLayer) window.dataLayer.push({event:'quiz_qualified', arr:arr, goal:goal, timing:timing});
     } else {
       if(window.dataLayer) window.dataLayer.push({event:'quiz_disqualified', reason: tooSmall ? 'arr' : 'timeline'});
