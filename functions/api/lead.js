@@ -76,6 +76,98 @@ const FREE_INBOXES = new Set([
 const json = (obj, status = 200) =>
   new Response(JSON.stringify(obj), { status, headers: { 'Content-Type': 'application/json' } });
 
+const SITE = 'https://skipthenoisemedia.com';
+const TRACK = '?utm_source=quiz-email';
+const BENCHMARKS = `${SITE}/blog/reddit-ads-benchmarks${TRACK}`;
+const CAL = `https://cal.com/skipthenoise/30min${TRACK}`;
+
+const esc = (s) => String(s || '').replace(/[<>&"]/g, (c) =>
+  ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c]));
+
+/**
+ * Confirmation email to the lead. Without this they get a green line on the page
+ * and then five days of silence, which is the one path in the funnel where nobody
+ * hears from us — the booking path at least gets a Cal invite.
+ *
+ * NO-OP unless RESEND_API_KEY is set, so behaviour is unchanged until the key
+ * exists. Never throws and never blocks the lead from being recorded: a failed
+ * confirmation must not lose the lead itself.
+ *
+ * Skipped on `update` re-saves (someone typing their name after the email blur
+ * already fired) so nobody gets the same email twice.
+ */
+async function sendConfirmation(env, lead) {
+  if (!env.RESEND_API_KEY) return { sent: false, reason: 'no_api_key' };
+  if (lead.update)         return { sent: false, reason: 'update_resave' };
+  if (!lead.email)         return { sent: false, reason: 'no_email' };
+
+  // lead.name is whatever they typed, and it lands in an HTML body — escape it
+  const first = String(lead.name || '').trim().split(/\s+/)[0];
+  const hi = first ? `Hi ${esc(first)},` : 'Hi,';
+  const qualified = lead.status === 'qualified';
+
+  const subject = qualified
+    ? 'Your threads and three ads, in progress'
+    : 'Your 2026 Reddit ad benchmarks';
+
+  const paras = qualified ? [
+    hi,
+    'Got your details. We are pulling the threads where your category is being compared, and writing three Reddit ads off the back of what we find.',
+    'You will have all of it within five business days.',
+    `In the meantime, here are our 2026 Reddit ad benchmarks. Real numbers from campaigns we run, not vendor averages.<br><a href="${BENCHMARKS}">See the benchmarks</a>`,
+    `If you would rather walk through the threads live when they are ready, grab 30 minutes here.<br><a href="${CAL}">Book 30 minutes</a>`,
+    'Zoha<br><span style="color:#6b7280;">Skip the Noise Media</span>'
+  ] : [
+    hi,
+    `Here are our 2026 Reddit ad benchmarks. Real numbers from campaigns we run, not vendor averages.<br><a href="${BENCHMARKS}">See the benchmarks</a>`,
+    'Genuinely useful whether or not you ever work with us.',
+    'Zoha<br><span style="color:#6b7280;">Skip the Noise Media</span>'
+  ];
+
+  const html =
+    '<div style="font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#0d0d0d;max-width:520px;">' +
+    paras.map((p) => `<p style="margin:0 0 16px;">${p}</p>`).join('') +
+    '</div>';
+
+  /* Turn every anchor into "label: url" so the plain-text part keeps its links.
+     The previous version string-replaced the two qualified link labels, which
+     silently dropped the URL from the non-qualified copy entirely. */
+  const text = paras
+    .map((p) => p
+      .replace(/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/g, (_, url, label) => `${label}: ${url}`)
+      .replace(/<br\s*\/?>/g, '\n')
+      .replace(/<[^>]+>/g, '')
+      .replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&amp;/g, '&'))
+    .join('\n\n');
+
+  try {
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        from: env.LEAD_FROM || 'Zoha <zoha@skipthenoisemedia.com>',
+        reply_to: env.LEAD_REPLY_TO || 'zoha@skipthenoisemedia.com',
+        to: [lead.email],
+        subject,
+        html,
+        text
+      }),
+      signal: AbortSignal.timeout(6000)
+    });
+    if (!res.ok) {
+      console.error('Confirmation failed', res.status, await res.text());
+      return { sent: false, reason: `resend_${res.status}` };
+    }
+    return { sent: true, qualified };
+  } catch (e) {
+    console.error('Confirmation threw', e);
+    return { sent: false, reason: 'exception' };
+  }
+}
+
 export async function onRequestPost({ request, env }) {
   // only accept from our own site
   const origin = request.headers.get('Origin') || '';
@@ -182,6 +274,9 @@ export async function onRequestPost({ request, env }) {
       })
     });
   } catch (e) { console.error('Webhook failed', e); }
+
+  // 3. confirmation email to the lead — see sendConfirmation for the no-op contract
+  const confirm = await sendConfirmation(env, lead);
 
   // 4. Meta Lead — "complete" only, and only when the self-reported answers AND
   //    the domain check agree. Matched on _fbp/_fbc so it attributes to the ad
