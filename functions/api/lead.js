@@ -270,17 +270,24 @@ export async function onRequestPost({ request, env }) {
      emails, regardless of KV. That plus the once-per-load guard in quiz.html is
      what stops the duplicate-submission problem at both ends. */
   /* Formspree free is 50 submissions a month, so every send has to earn its place.
-     Two things are skipped:
-       - contactless "complete" events: no email to reply to, and they exist only
-         to trigger the verified Meta/LinkedIn conversion
+     What gets through:
+       - anything carrying an email: contactable, already past the free-inbox
+         filter, always worth a notification
+       - a contactless "complete" ONLY if the domain passed verification. The
+         company is identifiable from the site they typed even without an email,
+         so it is a real notification — but a junk or test submission types a
+         domain that fails MX and the SaaS signal checks, and those must not eat
+         the quota.
+     What is skipped:
        - `update` re-saves: the first send already carried the email, domain and
-         every quiz answer. A second one just to add a name doubled the burn rate
-         for no follow-up value. */
+         every quiz answer, so a second one just to add a name doubled the burn
+         rate for no follow-up value. */
   const contactless = !lead.email;
-  const skipWebhook = contactless || lead.update;
+  const unverifiedComplete = contactless && !verification.verified;
+  const skipWebhook = unverifiedComplete || lead.update;
 
   if (skipWebhook) {
-    console.log('Webhook skipped', lead.update ? 'update re-save' : 'contactless complete', lead.checked);
+    console.log('Webhook skipped', lead.update ? 'update re-save' : 'unverified complete (' + verification.reason + ')', lead.checked);
   } else try {
     await fetch(webhook, {
       method: 'POST',
