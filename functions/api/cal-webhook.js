@@ -32,7 +32,9 @@ export async function onRequestPost(context) {
 
   const { triggerEvent, payload } = body || {};
   if (triggerEvent !== 'BOOKING_CREATED') {
-    return json({ received: true, skipped: triggerEvent || 'none' });
+    // Reports only whether the secret exists, never its value — lets us confirm
+    // the env var is wired without sending a fabricated Schedule to the pixel.
+    return json({ received: true, skipped: triggerEvent || 'none', tokenConfigured: !!env.META_CONVERSION_TOKEN });
   }
 
   try {
