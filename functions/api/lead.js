@@ -265,8 +265,12 @@ export async function onRequestPost({ request, env }) {
      project, so the guard never fired and every completion emailed. Contactless
      rows still hit console.log and still fire the Meta Lead. If durable storage
      is wanted, bind a LEADS KV namespace rather than re-enabling these emails. */
+  /* HARD OFF. Formspree notifications are disabled outright until someone opts
+     back in by setting LEAD_WEBHOOK_ON=1 in the Pages environment. Leads are
+     still recorded (console, KV if bound) and the Meta Lead still fires — the
+     only thing switched off is the email. */
   const contactless = !lead.email;
-  const skipWebhook = contactless;
+  const skipWebhook = env.LEAD_WEBHOOK_ON !== '1' || contactless;
 
   if (skipWebhook) {
     console.log('Webhook skipped (contactless complete, kept in KV)', lead.checked);
