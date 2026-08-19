@@ -1235,7 +1235,18 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
               timing: ['ASAP','This quarter','Next quarter','Just exploring'][timing],
               fbp: readCookie('_fbp'), fbc: readCookie('_fbc'),
               source:'quiz', page: location.pathname
-            })}).catch(function(){});
+            })})
+            .then(function(r){ return r.json(); })
+            /* LinkedIn has no server-side equivalent here, so its conversion fires
+               client-side — but only after the server confirms the domain passed.
+               Same gate as Meta, so both platforms count the same population. */
+            .then(function(d){
+              if(d && d.verified && typeof window.lintrk === 'function'){
+                window.lintrk('track', { conversion_id: 30102225 });
+                if(window.dataLayer) window.dataLayer.push({event:'li_qualified_lead'});
+              }
+            })
+            .catch(function(){});
         }catch(_){}
       }
       if(window.dataLayer) window.dataLayer.push({event:'quiz_qualified', arr:arr, goal:goal, timing:timing});
