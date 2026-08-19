@@ -269,11 +269,18 @@ export async function onRequestPost({ request, env }) {
      — it exists to trigger the verified Meta/LinkedIn conversion — so it never
      emails, regardless of KV. That plus the once-per-load guard in quiz.html is
      what stops the duplicate-submission problem at both ends. */
+  /* Formspree free is 50 submissions a month, so every send has to earn its place.
+     Two things are skipped:
+       - contactless "complete" events: no email to reply to, and they exist only
+         to trigger the verified Meta/LinkedIn conversion
+       - `update` re-saves: the first send already carried the email, domain and
+         every quiz answer. A second one just to add a name doubled the burn rate
+         for no follow-up value. */
   const contactless = !lead.email;
-  const skipWebhook = contactless;
+  const skipWebhook = contactless || lead.update;
 
   if (skipWebhook) {
-    console.log('Webhook skipped (contactless complete, kept in KV)', lead.checked);
+    console.log('Webhook skipped', lead.update ? 'update re-save' : 'contactless complete', lead.checked);
   } else try {
     await fetch(webhook, {
       method: 'POST',
