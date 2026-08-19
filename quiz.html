@@ -1031,6 +1031,10 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
   ];
   var answers = [], step = 0;
   var details = { site:'', competitors:'' }, detailsDone = false;
+  /* The complete POST lives inside showResult(), which re-runs on Start over and
+     on any repeat render. Without this it re-fired every time, which is what
+     filled the Formspree inbox with duplicates. One per page load, full stop. */
+  var completePosted = false;
   /* Same rule showResult() uses. Needed before results so we only ask for the
      website from people we are actually going to make the deliverable for. */
   function isQualified(){ return answers[2] !== 0 && answers[3] !== 3; }
@@ -1397,7 +1401,8 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
          on broad targeting, and Meta would learn from whoever lies best. The server
          verifies the domain first and fires Lead only if it looks like real SaaS.
          fbp/fbc go along so the server-side event still attributes to the ad click. */
-      if(window.STN_LEAD_ENDPOINT){
+      if(window.STN_LEAD_ENDPOINT && !completePosted){
+        completePosted = true;
         try{
           fetch(window.STN_LEAD_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'},
             body: JSON.stringify({

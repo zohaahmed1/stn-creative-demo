@@ -265,12 +265,12 @@ export async function onRequestPost({ request, env }) {
      project, so the guard never fired and every completion emailed. Contactless
      rows still hit console.log and still fire the Meta Lead. If durable storage
      is wanted, bind a LEADS KV namespace rather than re-enabling these emails. */
-  /* HARD OFF. Formspree notifications are disabled outright until someone opts
-     back in by setting LEAD_WEBHOOK_ON=1 in the Pages environment. Leads are
-     still recorded (console, KV if bound) and the Meta Lead still fires — the
-     only thing switched off is the email. */
+  /* Notifications fire for contactable leads only. A "complete" carries no email
+     — it exists to trigger the verified Meta/LinkedIn conversion — so it never
+     emails, regardless of KV. That plus the once-per-load guard in quiz.html is
+     what stops the duplicate-submission problem at both ends. */
   const contactless = !lead.email;
-  const skipWebhook = env.LEAD_WEBHOOK_ON !== '1' || contactless;
+  const skipWebhook = contactless;
 
   if (skipWebhook) {
     console.log('Webhook skipped (contactless complete, kept in KV)', lead.checked);
