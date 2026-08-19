@@ -799,6 +799,16 @@
 
     /* CTA click tracking - opens modal instead of linking out */
     document.addEventListener('DOMContentLoaded', function() {
+      /* In-page CTAs that used to navigate off to cal.com. Keep the href as a
+         fallback, but open the on-page modal so the booking stays on our domain
+         and the Schedule handler can fire. Deliberately no Lead — these are
+         booking intents, not leads. */
+      document.querySelectorAll('.cta-open-cal').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.getElementById('cal-modal').classList.add('open');
+        });
+      });
       document.querySelectorAll('.cta-booking-btn').forEach(function(link) {
         link.addEventListener('click', function(e) {
           e.preventDefault();
@@ -889,7 +899,7 @@
 
     <div data-anim data-delay="4">
       <a href="/#book" class="hero-cta-btn">Get 3 free ads &rarr;</a>
-      <a href="https://cal.com/skipthenoise/30min" class="hero-secondary">Book a strategy call</a>
+      <a href="https://cal.com/skipthenoise/30min" class="hero-secondary cta-open-cal">Book a strategy call</a>
       <p class="hero-micro">Built for your brand. Yours to keep. First ads live in 1 week.</p>
     </div>
   </div>
@@ -1177,7 +1187,7 @@
     </div>
     <p data-anim data-delay="1" style="font-size:clamp(15px,1.1vw,18px); color:rgba(255,255,255,0.6); max-width:560px; margin:16px auto 0; line-height:1.7;">We'll build 3 ads for your brand. Free. Run them, keep them, use them however you want. If you want more, we'll talk. If not, no hard feelings.</p>
     <div data-anim data-delay="2">
-      <a href="https://cal.com/skipthenoise/30min" class="cta-strip-btn">Get 3 free ads &rarr;</a>
+      <a href="https://cal.com/skipthenoise/30min" class="cta-strip-btn cta-open-cal">Get 3 free ads &rarr;</a>
       <p class="cta-strip-email">Or email us at <a href="mailto:sales@skipthenoisemedia.com">sales@skipthenoisemedia.com</a></p>
     </div>
   </div>
