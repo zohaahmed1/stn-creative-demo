@@ -51,6 +51,18 @@
       @keyframes noise-glitch { 0%{transform:none;filter:none;} 8%{transform:translate(-3px,1px) skewX(-4deg);filter:hue-rotate(80deg) brightness(1.3);opacity:.75;} 12%{transform:translate(3px,-1px) skewX(2deg);} 16%{transform:none;filter:none;opacity:1;} 48%{transform:none;} 52%{transform:translate(2px,-2px);filter:hue-rotate(200deg) brightness(1.2);opacity:.8;} 56%{transform:translate(-2px,1px);} 60%{transform:none;filter:none;opacity:1;} 100%{transform:none;filter:none;} }
     .nav-logo:hover .logo-noise { animation: noise-glitch 0.65s ease-in-out; cursor: pointer; }
 </style>
+  <!-- Meta Pixel — hardcoded so PageView fires immediately and does not depend on
+       GTM loading. The GTM "Meta_Page View" tag is paused; keeping both sent two
+       PageViews per visit and inflated landing page views. -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+    n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+    document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1906222660310524');
+    fbq('track', 'PageView');
+  </script>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4JR5P3B" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
