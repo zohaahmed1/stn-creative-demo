@@ -246,11 +246,11 @@ export async function onRequestPost({ request, env }) {
     catch (e) { console.error('KV write failed', e); }
   }
 
-  /* 2. webhook — this Formspree form is SHARED with the playbook download form in
-        playbook.html. Two funnels at very different intent levels in one inbox.
-        Set LEAD_WEBHOOK in Cloudflare (Settings → Environment variables) to a new
-        Formspree form to split them properly; until then `Funnel` is the filter. */
-  const webhook = env.LEAD_WEBHOOK || 'https://formspree.io/f/xwvwrbgj';
+  /* 2. webhook — "Quiz Leads" (xyeglebv). Separate from the playbook download form
+        (xwvwrbgj, "Reddit Playbook - Apr 3") which playbook.html still posts to.
+        These are different funnels at very different intent levels, so they get
+        different inboxes. Override with LEAD_WEBHOOK if that ever needs to move. */
+  const webhook = env.LEAD_WEBHOOK || 'https://formspree.io/f/xyeglebv';
   try {
     await fetch(webhook, {
       method: 'POST',
