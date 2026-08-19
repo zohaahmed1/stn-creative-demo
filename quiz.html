@@ -1090,8 +1090,24 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
       var site = (document.getElementById('d-site').value||'').trim();
       var comp = (document.getElementById('d-comp').value||'').trim();
       var err  = document.getElementById('d-err');
-      if(!site || !/\./.test(site)){ err.className='cap-err'; err.textContent='We need your website to find the threads.'; return; }
-      details.site = site; details.competitors = comp; detailsDone = true;
+      /* The server re-checks all of this, but catching it here saves the round trip
+         and a wasted DNS lookup. Previously this only tested for a dot, so
+         "asdf.asdf" passed straight through. */
+      var clean = site.toLowerCase().replace(/^https?:\/\//,'').replace(/^www\./,'').split(/[\/?#]/)[0].split('@').pop();
+      var FREEMAIL = ['gmail.com','yahoo.com','hotmail.com','outlook.com','icloud.com','aol.com','live.com','proton.me','protonmail.com'];
+      var PLACEHOLDER = ['example.com','test.com','domain.com','yourcompany.com','company.com','localhost'];
+      function fail(msg){ err.className='cap-err'; err.textContent=msg; }
+      if(!clean){ fail('We need your website to find the threads.'); return; }
+      if(!/^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*\.[a-z]{2,}$/.test(clean)){
+        fail('That does not look like a website. Try yourcompany.com'); return;
+      }
+      if(FREEMAIL.indexOf(clean) > -1){ fail('That is an email provider. We need your company website.'); return; }
+      if(PLACEHOLDER.indexOf(clean) > -1){ fail('We need your real website to find your threads.'); return; }
+      // Competitors is the effort filter, so it has to be required — someone farming
+      // a free deliverable cannot name rivals they lose deals to.
+      if(comp.replace(/[^a-z0-9]/gi,'').length < 3){ fail('Name at least one competitor so we know what to search for.'); return; }
+      err.className='cap-note'; err.textContent='';
+      details.site = clean; details.competitors = comp; detailsDone = true;
       if(window.dataLayer) window.dataLayer.push({event:'quiz_details_submitted'});
       render();
     });
