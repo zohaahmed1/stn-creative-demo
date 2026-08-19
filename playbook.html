@@ -622,6 +622,9 @@
       <!-- Formspree: replace YOUR_FORM_ID at formspree.io/forms/new -->
       <form id="pb-form" action="https://formspree.io/f/xwvwrbgj" method="POST">
         <input type="hidden" name="_subject" value="New Reddit Playbook Download">
+        <!-- Quiz leads land in this same Formspree form (xwvwrbgj). Until they get
+             their own form, Funnel is what makes the two filterable. -->
+        <input type="hidden" name="Funnel" value="playbook-download">
         <input type="hidden" name="_next" value="https://skipthenoisemedia.com/playbook-thanks.html">
         <div style="position:absolute;left:-9999px;" aria-hidden="true">
           <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
@@ -648,6 +651,7 @@
           <label for="pb-url">Website URL</label>
           <input type="url" id="pb-url" name="website-url" placeholder="e.g. https://acme.com" required>
         </div>
+        <p id="pb-err" style="display:none;font-family:'Satoshi',system-ui,sans-serif;font-size:13px;color:#c2183a;margin:0 0 12px;line-height:1.5;"></p>
         <div class="pb-form-submit">
           <button type="submit" class="pb-submit-btn">
             Get the Official AMA Playbook
@@ -743,28 +747,63 @@
     pbForm.addEventListener('submit', function(e) {
       e.preventDefault();
       var btn = pbForm.querySelector('.pb-submit-btn');
+      var err = document.getElementById('pb-err');
+      var label = btn.innerHTML;
       btn.disabled = true;
-      btn.textContent = 'Sending…';
+      btn.textContent = 'Checking…';
+      if (err) { err.style.display = 'none'; err.textContent = ''; }
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({event: 'playbook_form_submit', email_domain: pbForm.querySelector('#pb-email').value.split('@')[1]});
 
-      fetch(pbForm.action, {
-        method: 'POST',
-        body: new FormData(pbForm),
-        headers: { 'Accept': 'application/json' }
-      })
-      .then(function(res) {
-        if (res.ok) {
-          window.location.href = 'playbook-thanks.html';
-        } else {
+      function send() {
+        btn.textContent = 'Sending…';
+        fetch(pbForm.action, {
+          method: 'POST',
+          body: new FormData(pbForm),
+          headers: { 'Accept': 'application/json' }
+        })
+        .then(function(res) {
+          if (res.ok) {
+            window.location.href = 'playbook-thanks.html';
+          } else {
+            btn.disabled = false;
+            btn.textContent = 'Something went wrong — try again';
+          }
+        })
+        .catch(function() {
           btn.disabled = false;
           btn.textContent = 'Something went wrong — try again';
-        }
+        });
+      }
+
+      /* type="url" only proves the string is well formed — "https://acmeanalytics.com"
+         passes and does not exist. Same MX check the quiz gate uses. Fails open, so a
+         slow resolver never costs us a real download. */
+      var site = (pbForm.querySelector('#pb-url').value || '').trim();
+      var MSG = {
+        no_such_domain: 'We cannot find that domain. Check the spelling?',
+        malformed:      'That does not look like a website. Try acme.com',
+        freemail:       'That is an email provider. We need your company website.',
+        placeholder:    'We need your real website.'
+      };
+      var settled = false;
+      var giveUp = setTimeout(function(){ if(!settled){ settled = true; send(); } }, 3000);
+      fetch('/api/verify', {
+        method: 'POST', headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({site: site})
       })
-      .catch(function() {
-        btn.disabled = false;
-        btn.textContent = 'Something went wrong — try again';
-      });
+      .then(function(r){ return r.ok ? r.json() : {ok: true}; })
+      .then(function(d){
+        if (settled) return; settled = true; clearTimeout(giveUp);
+        if (d && d.ok === false) {
+          window.dataLayer.push({event: 'playbook_domain_rejected', reason: d.reason});
+          btn.disabled = false;
+          btn.innerHTML = label;
+          if (err) { err.textContent = MSG[d.reason] || MSG.no_such_domain; err.style.display = 'block'; }
+          pbForm.querySelector('#pb-url').focus();
+        } else { send(); }
+      })
+      .catch(function(){ if(!settled){ settled = true; clearTimeout(giveUp); send(); } });
     });
   }
 </script>

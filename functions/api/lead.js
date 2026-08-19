@@ -126,7 +126,9 @@ export async function onRequestPost({ request, env }) {
 
   const lead = {
     email,
-    name:        String(body.name || '').slice(0, 60),
+    name:        String(body.name      || '').slice(0, 60),
+    last_name:   String(body.last_name || '').slice(0, 60),
+    company:     String(body.company   || '').slice(0, 80),
     update:      body.update === true,
     domain,
     site:        typedDomain,
@@ -152,7 +154,10 @@ export async function onRequestPost({ request, env }) {
     catch (e) { console.error('KV write failed', e); }
   }
 
-  // 2. webhook — defaults to the existing Formspree form, override with LEAD_WEBHOOK
+  /* 2. webhook — this Formspree form is SHARED with the playbook download form in
+        playbook.html. Two funnels at very different intent levels in one inbox.
+        Set LEAD_WEBHOOK in Cloudflare (Settings → Environment variables) to a new
+        Formspree form to split them properly; until then `Funnel` is the filter. */
   const webhook = env.LEAD_WEBHOOK || 'https://formspree.io/f/xwvwrbgj';
   try {
     await fetch(webhook, {
@@ -160,8 +165,10 @@ export async function onRequestPost({ request, env }) {
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
         _subject: `${lead.update ? 'Quiz lead updated' : 'Quiz lead'} (${lead.status}) — ${lead.domain}`,
+        Funnel:   'quiz',
         email:    lead.email,
-        Name:     lead.name,
+        Name:     [lead.name, lead.last_name].filter(Boolean).join(' '),
+        Company:  lead.company,
         Status:   lead.status,
         ARR:      lead.arr,
         Goal:     lead.goal,

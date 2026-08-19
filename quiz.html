@@ -864,17 +864,32 @@
   .cap-in{flex:1;min-width:230px;font-family:var(--font);font-size:15.5px;padding:13px 16px;border:1.5px solid rgba(0,0,0,.14);
     border-radius:11px;outline:none;transition:border-color .16s;}
   .cap-in:focus{border-color:#5500dd;}
-  .cap-nm{flex:0 1 160px;min-width:140px;}
+  .cap-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+  .cap-grid .cap-in{min-width:0;}
+  .cap-full{width:100%;margin-bottom:10px;}
   .cap-btn{background:#0d0d0d;color:#fff;border:none;border-radius:11px;padding:13px 24px;font-family:var(--font);
     font-size:15px;cursor:pointer;font-variation-settings:"wdth" var(--wdth),"wght" 700;}
   @media(max-width:560px){
+    .cap-grid{grid-template-columns:1fr;gap:9px;margin-bottom:9px;}
+    .cap-full{margin-bottom:9px;}
     .cap-row{flex-direction:column;gap:9px;}
-    .cap-in,.cap-nm{min-width:0;width:100%;flex:none;}
+    .cap-in{min-width:0;width:100%;flex:none;}
     .cap-btn{width:100%;padding:14px 24px;}
   }
   .cap-note{font-size:12.5px;color:#8b90a0;margin:11px 0 0;line-height:1.5;}
   .cap-err{font-size:13px;color:#c2183a;margin:9px 0 0;}
   .cap-ok{font-size:14px;color:#1f7a4f;margin:11px 0 0;font-variation-settings:"wdth" var(--wdth),"wght" 700;}
+  /* who actually does the work — the five-day promise is a human one, so put
+     the humans next to it rather than letting an anonymous page make it */
+  .r-team{margin:26px 0 0;padding:20px 22px;background:#f7f7fa;border:1px solid rgba(0,0,0,.08);border-radius:14px;}
+  .r-team-l{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8b90a0;margin:0 0 16px;
+    font-variation-settings:"wdth" var(--wdth),"wght" 800;}
+  .r-team-row{display:flex;gap:26px;}
+  .r-team-p{display:flex;align-items:center;gap:12px;}
+  .r-team-p img{width:48px;height:48px;border-radius:50%;object-fit:cover;flex:none;background:#e9e9ef;}
+  .r-team-n{font-size:15px;color:#0d0d0d;font-variation-settings:"wdth" var(--wdth),"wght" 800;letter-spacing:-.01em;}
+  .r-team-r{font-size:12.5px;color:#6b7280;line-height:1.4;margin-top:2px;}
+  @media(max-width:560px){.r-team-row{flex-direction:column;gap:14px;}}
   /* result */
   .r-verdict{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-variation-settings:"wdth" var(--wdth),"wght" 800;margin-bottom:14px;}
   .r-fit{color:#1f7a4f;} .r-maybe{color:#b45309;} .r-no{color:#6b7280;}
@@ -1072,6 +1087,17 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
     back.style.display = step>0 ? 'block' : 'none';
   });
 
+  /* "acmeanalytics.com" -> "Acmeanalytics". Only ever fed a domain that already
+     passed validation (a-z0-9.-), so there is nothing to escape, but quotes are
+     stripped anyway because this lands in an HTML value attribute. */
+  function companyGuess(domain){
+    if(!domain) return '';
+    return String(domain).split('.')[0].replace(/["'<>&]/g,'')
+      .split(/[-_]/).filter(Boolean)
+      .map(function(w){ return w.charAt(0).toUpperCase() + w.slice(1); })
+      .join(' ');
+  }
+
   /* Hormozi-style effort filter. A real operator types both of these in seconds;
      someone farming a free deliverable cannot name competitors they lose to. The
      site is also what the server verifies before any Lead is sent. */
@@ -1106,10 +1132,56 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
       // Competitors is the effort filter, so it has to be required — someone farming
       // a free deliverable cannot name rivals they lose deals to.
       if(comp.replace(/[^a-z0-9]/gi,'').length < 3){ fail('Name at least one competitor so we know what to search for.'); return; }
+      // Junk that clears the length test. A blocklist of what people actually type
+      // beats a cleverer regex, which would reject real company names.
+      var compKey = comp.toLowerCase().replace(/[^a-z0-9]/g,'');
+      var COMP_JUNK = ['none','na','nan','nil','idk','dontknow','donotknow','nobody','noone',
+                       'nocompetitors','test','testing','asdf','asdfasdf','qwerty','abc','abcd',
+                       'xxx','xyz','aaa','blah','blahblah','sample','example','whatever','stuff'];
+      if(COMP_JUNK.indexOf(compKey) > -1 || /^(.)\1+$/.test(compKey)){
+        fail('We need real competitor names to search for. Two is ideal.'); return;
+      }
+      if(compKey === clean.replace(/[^a-z0-9]/g,'')){
+        fail('That is your own company. Name competitors you lose deals to.'); return;
+      }
+
+      /* Everything above only proves the domain is well FORMED. "acmeanalytics.com"
+         is perfectly valid and does not exist. One MX lookup settles it, and it is
+         fast enough to block on. Fails open: if the check cannot run, let them
+         through and let the server-side SaaS check gate the Lead event instead. */
+      var btn = this;
+      btn.disabled = true; btn.style.opacity = '.65';
+      btn.innerHTML = 'Checking&hellip;';
       err.className='cap-note'; err.textContent='';
-      details.site = clean; details.competitors = comp; detailsDone = true;
-      if(window.dataLayer) window.dataLayer.push({event:'quiz_details_submitted'});
-      render();
+      function proceed(){
+        details.site = clean; details.competitors = comp; detailsDone = true;
+        if(window.dataLayer) window.dataLayer.push({event:'quiz_details_submitted'});
+        render();
+      }
+      function reset(msg){
+        btn.disabled = false; btn.style.opacity = '';
+        btn.innerHTML = 'See my read &rarr;';
+        fail(msg);
+      }
+      var MSG = {
+        no_such_domain: 'We cannot find that domain. Check the spelling?',
+        malformed:      'That does not look like a website. Try yourcompany.com',
+        freemail:       'That is an email provider. We need your company website.',
+        placeholder:    'We need your real website to find your threads.'
+      };
+      var settled = false;
+      var giveUp = setTimeout(function(){ if(!settled){ settled = true; proceed(); } }, 3000);
+      fetch('/api/verify', {method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({site: clean})})
+        .then(function(r){ return r.ok ? r.json() : {ok:true}; })
+        .then(function(d){
+          if(settled) return; settled = true; clearTimeout(giveUp);
+          if(d && d.ok === false){
+            if(window.dataLayer) window.dataLayer.push({event:'quiz_domain_rejected', reason:d.reason});
+            reset(MSG[d.reason] || MSG.no_such_domain);
+          } else { proceed(); }
+        })
+        .catch(function(){ if(!settled){ settled = true; clearTimeout(giveUp); proceed(); } });
     });
   }
 
@@ -1184,13 +1256,34 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
       '</div>' : '') +
       '<div class="cap">' +
         '<p class="cap-l">'+(qualified ? 'Not ready to book? Leave your email and we will send the threads and ads over when they are done.' : 'Want the guide and our 2026 Reddit benchmarks by email?')+'</p>' +
+        '<div class="cap-grid">' +
+          '<input class="cap-in" id="cap-name" type="text" autocomplete="given-name" placeholder="First name" required>' +
+          '<input class="cap-in" id="cap-last" type="text" autocomplete="family-name" placeholder="Last name" required>' +
+        '</div>' +
+        /* Prefilled from the domain they already typed at the gate. Asking someone to
+           retype their company two screens after they gave us the website is exactly
+           the kind of friction that loses the ones who did not book. */
+        '<input class="cap-in cap-full" id="cap-co" type="text" autocomplete="organization" placeholder="Company" required value="'+companyGuess(details.site)+'">' +
         '<div class="cap-row">' +
-          '<input class="cap-in cap-nm" id="cap-name" type="text" autocomplete="given-name" placeholder="First name">' +
-          '<input class="cap-in" id="cap-email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com">' +
+          /* Same pattern and title as the Reddit playbook form, so both funnels
+             reject freemail identically and show the same native message. */
+          '<input class="cap-in" id="cap-email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" required' +
+            ' pattern="^[^@]+@(?!gmail\\.com|yahoo\\.com|hotmail\\.com|outlook\\.com|aol\\.com|icloud\\.com|mail\\.com|protonmail\\.com)[^@]+\\.[^@]+$"' +
+            ' title="Please use your work email address">' +
           '<button class="cap-btn" id="cap-send">'+(qualified ? 'Send them to me' : 'Send it')+'</button>' +
         '</div>' +
         '<p class="cap-note" id="cap-note">We will email once and add you to nothing. Booking below works without this.</p>' +
       '</div>' +
+      (qualified ?
+        '<div class="r-team">' +
+          '<p class="r-team-l">Who does the work</p>' +
+          '<div class="r-team-row">' +
+            '<div class="r-team-p"><img src="/team/zoha.webp" alt="Zoha Ahmed" loading="lazy" width="48" height="48">' +
+              '<div><div class="r-team-n">Zoha</div><div class="r-team-r">Ex-GroupM, Director Social</div></div></div>' +
+            '<div class="r-team-p"><img src="/team/sonia.webp" alt="Sonia Mohapatra" loading="lazy" width="48" height="48">' +
+              '<div><div class="r-team-n">Sonia</div><div class="r-team-r">Ex-GroupM, Supervisor Social</div></div></div>' +
+          '</div>' +
+        '</div>' : '') +
       '<div class="r-cta">' +
         (!qualified
           ? '<a class="r-btn" href="' + (browsing ? '/blog/reddit-ads-benchmarks' : '/blog/reddit-ads-cost') + '" style="background:#0d0d0d;">' + (browsing ? 'See the 2026 benchmarks' : 'Read the cost guide') + ' &rarr;</a><span class="r-micro">No pitch. Genuinely useful whether or not you ever hire us.</span>'
@@ -1203,6 +1296,8 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
       var ENDPOINT = window.STN_LEAD_ENDPOINT || '';
       var input = res.querySelector('#cap-email');
       var nameEl= res.querySelector('#cap-name');
+      var lastEl= res.querySelector('#cap-last');
+      var coEl  = res.querySelector('#cap-co');
       var btn   = res.querySelector('#cap-send');
       var note  = res.querySelector('#cap-note');
       if(!input) return;
@@ -1217,12 +1312,33 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
       var FREE = ['gmail.com','yahoo.com','hotmail.com','outlook.com','live.com','aol.com','icloud.com',
                   'me.com','msn.com','proton.me','protonmail.com','gmx.com','mail.com','yandex.com',
                   'ymail.com','rocketmail.com','inbox.com','zoho.com','tutanota.com'];
-      function save(){
+      /* strict=true only on the button. Running reportValidity on every blur would
+         throw a native popup at someone who is still tabbing through the fields. */
+      /* A bare pattern mismatch shows Chrome's "Please match the requested format",
+         which tells someone nothing about why their gmail was refused. */
+      function emailMsg(){
+        input.setCustomValidity('');
+        if(input.validity.patternMismatch){
+          input.setCustomValidity('Please use your work email, not a personal one. That is how we look up your category.');
+        }
+      }
+      input.addEventListener('input', emailMsg);
+
+      function save(strict){
+        if(strict){
+          emailMsg();
+          var fields = [nameEl, lastEl, coEl, input];
+          for(var i=0;i<fields.length;i++){
+            if(fields[i] && !fields[i].checkValidity()){ fields[i].reportValidity(); return; }
+          }
+        }
         var v  = (input.value||'').trim();
         var nm = (nameEl && nameEl.value || '').trim().slice(0,60);
-        // name is optional and often typed after the email blur already fired,
-        // so key the dedupe on both and re-send once if it shows up late
-        var key = nm + '|' + v;
+        var ln = (lastEl && lastEl.value || '').trim().slice(0,60);
+        var co = (coEl   && coEl.value   || '').trim().slice(0,80);
+        // these are often filled after the email blur already fired, so key the
+        // dedupe on all of them and re-send once if any show up late
+        var key = [nm,ln,co,v].join('|');
         if(!v || key === sent) return;
         if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){
           note.className='cap-err'; note.textContent='That does not look like a valid email.'; return;
@@ -1240,6 +1356,8 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
           kind: 'email',
           email: v,
           name: nm,
+          last_name: ln,
+          company: co,
           update: isUpdate,
           status: (qualified ? 'qualified' : (tooSmall ? 'under-5m-arr' : 'exploring')),
           arr: LBL.arr[arr],
@@ -1259,13 +1377,15 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
         note.className = 'cap-ok';
         note.textContent = 'Got it — sending that over shortly.';
       }
-      input.addEventListener('blur', save);
-      btn.addEventListener('click', save);
-      input.addEventListener('keydown', function(ev){ if(ev.key === 'Enter'){ ev.preventDefault(); save(); } });
-      if(nameEl){
-        nameEl.addEventListener('blur', save);
-        nameEl.addEventListener('keydown', function(ev){ if(ev.key === 'Enter'){ ev.preventDefault(); input.focus(); } });
-      }
+      // NB: wrap every listener — a bare `save` would receive the Event as `strict`
+      input.addEventListener('blur', function(){ save(false); });
+      btn.addEventListener('click', function(){ save(true); });
+      input.addEventListener('keydown', function(ev){ if(ev.key === 'Enter'){ ev.preventDefault(); save(true); } });
+      [nameEl, lastEl, coEl].forEach(function(el){
+        if(!el) return;
+        el.addEventListener('blur', function(){ save(false); });
+        el.addEventListener('keydown', function(ev){ if(ev.key === 'Enter'){ ev.preventDefault(); input.focus(); } });
+      });
     })();
 
     res.querySelector('.r-restart').addEventListener('click', function(){
