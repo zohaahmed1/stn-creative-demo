@@ -36,19 +36,47 @@
     .page-hero h1 em { font-family: 'Playfair Display', Georgia, serif; font-style: italic; }
     .page-hero p { font-size: 17px; color: rgba(255,255,255,0.6); max-width: 540px; margin: 0 auto; line-height: 1.6; }
 
+    .hero-stats { position: relative; z-index: 1; display: flex; justify-content: center; flex-wrap: wrap;
+      gap: 0; margin: 34px auto 0; max-width: 720px; }
+    .hero-stats .hs { flex: 1 1 0; min-width: 108px; padding: 0 18px; text-align: center;
+      border-right: 1px solid rgba(0,0,0,.09); }
+    .hero-stats .hs:last-child { border-right: none; }
+    .hero-stats .hs-n { display: block; font-size: 30px; font-weight: 900; letter-spacing: -0.04em; color: #0a0a0a; line-height: 1.05; }
+    .hero-stats .hs-n-sm { font-size: 21px; white-space: nowrap; line-height: 1.5; }
+    .hero-stats .hs-plus { opacity: .35; margin: 0 3px; font-weight: 700; }
+    .hero-stats .hs-l { display: block; font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.07em; color: #6b7280; margin-top: 6px; line-height: 1.35; }
+    @media (max-width: 560px) {
+      .hero-stats { max-width: 340px; gap: 20px 0; }
+      .hero-stats .hs { flex: 0 0 50%; min-width: 0; padding: 0 10px; }
+      .hero-stats .hs:nth-child(2n) { border-right: none; }
+      .hero-stats .hs-n { font-size: 25px; }
+    }
     .filter-bar { display: flex; gap: 8px; justify-content: center; padding: 32px 24px 0; flex-wrap: wrap; }
     .filter-btn { font-size: 13px; font-weight: 700; padding: 6px 16px; border-radius: 100px; border: 1.5px solid var(--gray-200); background: #fff; color: var(--gray-500); cursor: pointer; transition: all 0.15s; }
+    .filter-btn { display: inline-flex; align-items: center; gap: 7px; }
+    .filter-n { font-size: 11px; font-weight: 800; opacity: .55; font-variant-numeric: tabular-nums; }
     .filter-btn:hover, .filter-btn.active { background: var(--purple); color: #fff; border-color: var(--purple); }
 
     .cs-grid { max-width: 1100px; margin: 0 auto; padding: 40px 24px 80px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 
     .cs-card { border-radius: 16px; overflow: hidden; border: 1.5px solid var(--gray-200); background: #fff; text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: box-shadow 0.2s, transform 0.2s; }
     .cs-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.1); transform: translateY(-2px); }
-    .cs-card-img { aspect-ratio: 16/9; overflow: hidden; background: #0a0520; position: relative; display: flex; align-items: center; justify-content: center; }
-    .cs-card-img img { width: 100%; height: 100%; object-fit: contain; display: block; }
-    .cs-card-stat { position: absolute; bottom: 12px; left: 12px; background: rgba(10,5,32,0.85); backdrop-filter: blur(8px); border-radius: 8px; padding: 6px 12px; }
-    .cs-card-stat .num { font-size: 20px; font-weight: 900; color: #fff; letter-spacing: -0.03em; display: block; line-height: 1.1; }
-    .cs-card-stat .lbl { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.55); text-transform: uppercase; letter-spacing: 0.06em; }
+    /* The covers are designed square posters (10 of 11 are 1:1). The old 16/9 slot
+       with object-fit:contain letterboxed every one of them — 44% of each card was
+       dark dead space, and the single 16/9 file was the only card that filled its
+       slot. A 1:1 slot with cover fills exactly, with no crop on the squares. */
+    .cs-card-img { aspect-ratio: 1/1; overflow: hidden; background: #0a0520; position: relative; }
+    .cs-card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s cubic-bezier(.2,.7,.3,1); }
+    .cs-card:hover .cs-card-img img { transform: scale(1.045); }
+    /* scrim so the stat stays legible over a light cover */
+    /* scrim only where a stat is actually painted over the art (2 covers carry no
+       number of their own; the other 9 have it baked into the artwork) */
+    .cs-card-img:has(.cs-card-stat)::after { content:''; position:absolute; inset:auto 0 0 0; height:44%;
+      pointer-events:none; background: linear-gradient(to top, rgba(10,5,32,.72), transparent); }
+    .cs-card-stat { position: absolute; bottom: 12px; left: 12px; right: 12px; z-index: 1; display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+    .cs-card-stat .num { font-size: 30px; font-weight: 900; color: #fff; letter-spacing: -0.04em; line-height: 1; text-shadow: 0 1px 12px rgba(0,0,0,.4); }
+    .cs-card-stat .lbl { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.82); text-transform: uppercase; letter-spacing: 0.06em; line-height: 1.3; }
     .cs-card-body { padding: 16px 18px 20px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
     .cs-card-tag { display: inline-flex; gap: 6px; }
     .cs-card-tag span { font-size: 10px; font-weight: 700; padding: 2px 10px; border-radius: 100px; }
@@ -197,6 +225,14 @@
 <section class="page-hero">
   <h1>Client <em>Case Studies</em></h1>
   <p>Real campaigns, real numbers. From Reddit-first B2B pipeline generation to cross-channel measurement that uncovered where budget was actually going.</p>
+  <!-- Counts only. Every figure here is countable off this page, so it cannot drift
+       away from the cards or claim a result we have not published. -->
+  <div class="hero-stats">
+    <div class="hs"><span class="hs-n" id="hs-count">11</span><span class="hs-l">Case studies</span></div>
+    <div class="hs"><span class="hs-n">4</span><span class="hs-l">Verticals</span></div>
+    <div class="hs"><span class="hs-n">7</span><span class="hs-l">Ad platforms</span></div>
+    <div class="hs"><span class="hs-n hs-n-sm">B2B<span class="hs-plus">+</span>B2C</span><span class="hs-l">Both sides</span></div>
+  </div>
 </section>
 
 <div class="filter-bar" role="tablist" aria-label="Filter case studies by category">
@@ -213,7 +249,6 @@
   <a href="/work/flare" class="cs-card" data-cat="saas">
     <div class="cs-card-img">
       <img src="/assets/Flare Case Study V2.jpg" alt="Flare cybersecurity Reddit ads case study" loading="lazy">
-      <div class="cs-card-stat"><span class="num">74</span><span class="lbl">Qualified leads / 3 months</span></div>
     </div>
     <div class="cs-card-body">
       <div class="cs-card-tag"><span class="tag-saas">B2B SaaS</span><span class="tag-saas" style="background:rgba(85,0,221,0.04);">Reddit + LinkedIn</span></div>
@@ -227,7 +262,6 @@
   <a href="/work/restream" class="cs-card" data-cat="b2csaas">
     <div class="cs-card-img">
       <img src="/assets/Restream Case Study V2.jpg" alt="Streaming platform paid media case study" loading="lazy">
-      <div class="cs-card-stat"><span class="num">19%</span><span class="lbl">CAC reduction</span></div>
     </div>
     <div class="cs-card-body">
       <div class="cs-card-tag"><span class="tag-saas">Streaming SaaS</span><span class="tag-saas" style="background:rgba(85,0,221,0.04);">Cross-Channel</span></div>
@@ -241,7 +275,6 @@
   <a href="/work/simple-booth" class="cs-card" data-cat="saas b2csaas">
     <div class="cs-card-img">
       <img src="/assets/Simple Booth Case Study.jpg" alt="Simple Booth HALO photo booth DTC and B2B case study" loading="lazy">
-      <div class="cs-card-stat"><span class="num">11x</span><span class="lbl">Platform ROAS on retargeting</span></div>
     </div>
     <div class="cs-card-body">
       <div class="cs-card-tag"><span class="tag-saas">B2B + B2C SaaS</span><span class="tag-saas" style="background:rgba(85,0,221,0.04);">Meta + LinkedIn</span></div>
@@ -255,7 +288,6 @@
   <a href="/work/gifting-brand" class="cs-card" data-cat="dtc">
     <div class="cs-card-img">
       <img src="/assets/StoryKeeper Case Study.jpg" alt="Personalized gifting brand Mother's Day case study" loading="lazy">
-      <div class="cs-card-stat"><span class="num">+114%</span><span class="lbl">Store revenue YoY</span></div>
     </div>
     <div class="cs-card-body">
       <div class="cs-card-tag"><span class="tag-dtc">eComm / DTC</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">Meta · TikTok · Reddit</span></div>
@@ -268,7 +300,7 @@
   <!-- Apolone -->
   <a href="/work/apolone" class="cs-card" data-cat="b2csaas">
     <div class="cs-card-img">
-      <img src="/assets/apolone-hero.png" alt="Apolone music SaaS TikTok ads case study — $70 CPA" loading="lazy">
+      <img src="/assets/apolone-hero-square.png" alt="Apolone music SaaS TikTok ads case study — $70 CPA" loading="lazy">
       <div class="cs-card-stat"><span class="num">$70</span><span class="lbl">CPA on TikTok</span></div>
     </div>
     <div class="cs-card-body">
@@ -297,7 +329,6 @@
   <a href="/work/noirver" class="cs-card" data-cat="dtc">
     <div class="cs-card-img">
       <img src="/assets/Noirver V2.png" alt="Noirver European handbag brand TikTok Snapchat case study" loading="lazy">
-      <div class="cs-card-stat"><span class="num">4.3x</span><span class="lbl">ROAS on TikTok</span></div>
     </div>
     <div class="cs-card-body">
       <div class="cs-card-tag"><span class="tag-dtc">eComm Fashion</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">TikTok · Snapchat</span></div>
@@ -311,7 +342,6 @@
   <a href="/work/cozybeds" class="cs-card" data-cat="dtc">
     <div class="cs-card-img">
       <img src="/assets/CozyBeds Case Study V2.jpg" alt="CozyBeds high-ticket furniture case study" loading="lazy">
-      <div class="cs-card-stat"><span class="num">4x</span><span class="lbl">ROI</span></div>
     </div>
     <div class="cs-card-body">
       <div class="cs-card-tag"><span class="tag-dtc">DTC</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">Meta · Google</span></div>
@@ -325,7 +355,6 @@
   <a href="/work/lifestyle-brand" class="cs-card" data-cat="dtc">
     <div class="cs-card-img">
       <img src="/assets/TP Case Study v2.png" alt="Women's lifestyle accessories brand Meta Pinterest case study" loading="lazy">
-      <div class="cs-card-stat"><span class="num">6.8x</span><span class="lbl">ROAS on Pinterest</span></div>
     </div>
     <div class="cs-card-body">
       <div class="cs-card-tag"><span class="tag-dtc">DTC Lifestyle</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">Meta · Pinterest</span></div>
@@ -339,7 +368,6 @@
   <a href="/work/education-nonprofit" class="cs-card" data-cat="nonprofit">
     <div class="cs-card-img" style="background:#0a1f16;">
       <img src="/assets/education-nonprofit-cover.jpg" alt="International education nonprofit Ramadan Reddit strategy case study" loading="lazy">
-      <div class="cs-card-stat" style="background:rgba(10,31,22,0.85);"><span class="num">Ramadan</span><span class="lbl">Reddit donation strategy</span></div>
     </div>
     <div class="cs-card-body">
       <div class="cs-card-tag"><span class="tag-nonprofit">Nonprofit</span><span class="tag-nonprofit" style="background:rgba(16,185,129,0.05);">Reddit-Native</span></div>
@@ -353,7 +381,6 @@
   <a href="/work/lottery" class="cs-card" data-cat="nonprofit">
     <div class="cs-card-img">
       <img src="/assets/Lottery Case Study V2.jpg" alt="Non-profit lottery case study" loading="lazy">
-      <div class="cs-card-stat"><span class="num">3x</span><span class="lbl">ROAS in 4 weeks</span></div>
     </div>
     <div class="cs-card-body">
       <div class="cs-card-tag"><span class="tag-nonprofit">Non-Profit</span><span class="tag-nonprofit" style="background:rgba(16,185,129,0.05);">Time-Sensitive</span></div>
@@ -364,6 +391,8 @@
   </a>
 
 </div>
+
+<p id="cs-empty" style="display:none; text-align:center; color:#6b7280; font-size:15px; padding:0 24px 72px;">No case studies in that category yet.</p>
 
 <section class="cta-section">
   <h2>Want results like these?</h2>
@@ -378,13 +407,38 @@
 </footer>
 
 <script>
-function filterCaseStudies(cat, btn){
-  document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.toggle('active', b===btn); });
-  document.querySelectorAll('.cs-card').forEach(function(card){
-    var cats=(card.dataset.cat||'').split(' ');
-    card.style.display=(cat==='all'||cats.indexOf(cat)>-1)?'':'none';
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.cs-card'));
+
+  /* Counts are derived from the cards themselves rather than typed into the
+     markup, so adding or removing a case study can never leave a stale number. */
+  document.querySelectorAll('.filter-btn').forEach(function(btn){
+    var cat = btn.dataset.cat;
+    var n = cat === 'all' ? cards.length : cards.filter(function(c){
+      return (c.dataset.cat || '').split(' ').indexOf(cat) > -1;
+    }).length;
+    var s = document.createElement('span');
+    s.className = 'filter-n';
+    s.textContent = n;
+    btn.appendChild(s);
+    if (!n) { btn.disabled = true; btn.style.opacity = '.4'; btn.style.cursor = 'default'; }
   });
-}
+  var total = document.getElementById('hs-count');
+  if (total) total.textContent = cards.length;
+
+  window.filterCaseStudies = function(cat, btn){
+    document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.toggle('active', b===btn); });
+    var shown = 0;
+    cards.forEach(function(card){
+      var cats = (card.dataset.cat || '').split(' ');
+      var on = (cat === 'all' || cats.indexOf(cat) > -1);
+      card.style.display = on ? '' : 'none';
+      if (on) shown++;
+    });
+    var empty = document.getElementById('cs-empty');
+    if (empty) empty.style.display = shown ? 'none' : 'block';
+  };
+})();
 </script>
 <!-- LinkedIn Insight Tag (partner 8129252) -->
 <script type="text/javascript">
