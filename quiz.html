@@ -1229,6 +1229,7 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
   // Nav scroll
   (function(){
     var nav = document.querySelector('.nav');
+    if(!nav) return;   // this page has no nav bar — without the guard the handler threw on every scroll
     window.addEventListener('scroll', function(){
       nav.classList.toggle('scrolled', window.scrollY > 40);
     }, {passive: true});
@@ -1262,11 +1263,13 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
   // Mobile menu
   var hamburger = document.getElementById('hamburger');
   var mobileMenu = document.getElementById('mobile-menu');
-  hamburger.addEventListener('click', function() {
-    var open = mobileMenu.classList.toggle('open');
-    hamburger.classList.toggle('open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
-  });
+  if(hamburger && mobileMenu){   // neither exists on this page — the unguarded call threw on load
+    hamburger.addEventListener('click', function() {
+      var open = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  }
 </script>
 </body>
 </html>

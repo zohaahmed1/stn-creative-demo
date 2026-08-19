@@ -1668,6 +1668,11 @@
           calLoaded = true;
           (function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document; C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);return;} p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
           Cal("init", "30min", {origin:"https://cal.com"});
+          /* booking conversion tracking — fires on confirmed Cal booking */
+          Cal.ns["30min"]("on", { action:"bookingSuccessfulV2", callback:function(e){
+            if(typeof fbq!=='undefined'){ fbq('track','Schedule',{content_name:'homepage_booking'}); }
+            if(window.dataLayer) window.dataLayer.push({event:'booking_confirmed', source:'homepage'});
+          }});
           Cal.ns["30min"]("inline", {
             elementOrSelector: "#cal-embed",
             calLink: "skipthenoise/30min",
