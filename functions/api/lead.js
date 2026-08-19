@@ -126,6 +126,8 @@ export async function onRequestPost({ request, env }) {
 
   const lead = {
     email,
+    name:        String(body.name || '').slice(0, 60),
+    update:      body.update === true,
     domain,
     site:        typedDomain,
     checked:     checkDomain,
@@ -157,8 +159,9 @@ export async function onRequestPost({ request, env }) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
-        _subject: `Quiz lead (${lead.status}) — ${lead.domain}`,
+        _subject: `${lead.update ? 'Quiz lead updated' : 'Quiz lead'} (${lead.status}) — ${lead.domain}`,
         email:    lead.email,
+        Name:     lead.name,
         Status:   lead.status,
         ARR:      lead.arr,
         Goal:     lead.goal,

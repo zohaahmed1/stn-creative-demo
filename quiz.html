@@ -18,6 +18,10 @@
   <meta name="twitter:description" content="Four questions, about 60 seconds. Real threads where your buyers compare you, plus three ads built to show up in them.">
   <meta name="twitter:image" content="https://skipthenoisemedia.com/assets/og-image.png">
   <link rel="canonical" href="https://skipthenoisemedia.com/quiz">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap"></noscript>
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link rel="preconnect" href="https://cdn.simpleicons.org" crossorigin>
   <link rel="preconnect" href="https://www.google.com" crossorigin>
@@ -814,10 +818,12 @@
   .hook-k{display:inline-flex;align-items:center;gap:7px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
     color:#cc3300;font-variation-settings:"wdth" var(--wdth),"wght" 800;margin-bottom:20px;}
   .hook-k svg{display:block;}
-  .hook h1{font-size:clamp(30px,5.2vw,44px);line-height:1.08;letter-spacing:-.035em;color:#0d0d0d;margin:0 0 20px;
-    font-variation-settings:"wdth" var(--wdth),"wght" 900;}
-  .hook p.sub{font-size:17px;line-height:1.65;color:#4b5563;margin:0 0 28px;}
-  .hook-cta{display:inline-block;background:#5500DD;color:#fff;font-size:17px;padding:16px 34px;border:none;border-radius:100px;
+  .hook h1{font-size:clamp(27px,5.2vw,44px);line-height:1.08;letter-spacing:-.035em;color:#0d0d0d;margin:0 0 18px;
+    font-variation-settings:"wdth" var(--wdth),"wght" 900;text-wrap:balance;}
+  .hook h1 em{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:700;font-variation-settings:normal;
+    background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .hook p.sub{font-size:18px;line-height:1.6;color:#444;margin:0 0 26px;}
+  .hook-cta{display:inline-block;background:#5500DD;color:#fff;font-size:15px;padding:15px 30px;border:none;border-radius:100px;
     cursor:pointer;font-family:var(--font);font-variation-settings:"wdth" var(--wdth),"wght" 700;transition:opacity .2s,transform .2s;}
   .hook-cta:hover{opacity:.9;transform:translateY(-2px);}
   .hook-micro{font-size:13.5px;color:#8b90a0;margin:13px 0 0;line-height:1.5;}
@@ -830,7 +836,19 @@
   .hook-ads{display:flex;gap:10px;margin:30px 0 0;}
   .hook-ads img{width:calc(50% - 5px);aspect-ratio:1/1;object-fit:cover;border-radius:11px;display:block;}
   .hook-ads-cap{font-size:12.5px;color:#8b90a0;margin:10px 0 0;}
-  @media(max-width:520px){ .hook-proof .hp{padding-right:16px;margin-right:16px;} .hook-proof .n{font-size:21px;} }
+  @media(max-width:560px){
+    .q-wrap{padding:18px 16px 56px;}
+    .q-card{padding:24px 20px 26px;}
+    .hook p.sub{font-size:16.5px;}
+    .hook-cta{width:100%;text-align:center;}
+  }
+  @media(max-width:560px){
+    .hook-proof{display:grid;grid-template-columns:repeat(3,1fr);gap:0;text-align:center;}
+    .hook-proof .hp{padding:0 6px;margin:0;border-right:1px solid rgba(0,0,0,.1);}
+    .hook-proof .hp:last-child{border-right:none;}
+    .hook-proof .n{font-size:19px;}
+    .hook-proof .l{font-size:10px;letter-spacing:.03em;line-height:1.3;}
+  }
   .q-sub{font-size:14.5px;color:#8b90a0;margin:-18px 0 26px;line-height:1.5;}
   .q-step{font-size:12.5px;color:#8b90a0;margin-left:12px;font-variation-settings:"wdth" var(--wdth),"wght" 600;}
   .q-multi{flex-direction:row;flex-wrap:wrap;gap:10px;}
@@ -846,8 +864,14 @@
   .cap-in{flex:1;min-width:230px;font-family:var(--font);font-size:15.5px;padding:13px 16px;border:1.5px solid rgba(0,0,0,.14);
     border-radius:11px;outline:none;transition:border-color .16s;}
   .cap-in:focus{border-color:#5500dd;}
+  .cap-nm{flex:0 1 160px;min-width:140px;}
   .cap-btn{background:#0d0d0d;color:#fff;border:none;border-radius:11px;padding:13px 24px;font-family:var(--font);
     font-size:15px;cursor:pointer;font-variation-settings:"wdth" var(--wdth),"wght" 700;}
+  @media(max-width:560px){
+    .cap-row{flex-direction:column;gap:9px;}
+    .cap-in,.cap-nm{min-width:0;width:100%;flex:none;}
+    .cap-btn{width:100%;padding:14px 24px;}
+  }
   .cap-note{font-size:12.5px;color:#8b90a0;margin:11px 0 0;line-height:1.5;}
   .cap-err{font-size:13px;color:#c2183a;margin:9px 0 0;}
   .cap-ok{font-size:14px;color:#1f7a4f;margin:11px 0 0;font-variation-settings:"wdth" var(--wdth),"wght" 700;}
@@ -949,7 +973,7 @@
           <svg width="15" height="15" viewBox="0 0 20 20" fill="#FF4500"><circle cx="10" cy="10" r="10"/><path fill="#fff" d="M16.7 10a1.5 1.5 0 0 0-2.5-1 7.1 7.1 0 0 0-3.9-1.2l.7-3.1 2.1.5a1 1 0 1 0 1.1-1 1 1 0 0 0-1 .7l-2.4-.5a.16.16 0 0 0-.2.1l-.7 3.4a7.1 7.1 0 0 0-3.9 1.2 1.5 1.5 0 1 0-1.6 2.4 2.9 2.9 0 0 0 0 .4c0 2.2 2.6 4.1 5.8 4.1s5.8-1.8 5.8-4.1a2.9 2.9 0 0 0 0-.4 1.5 1.5 0 0 0 .5-1zM7.3 11a1 1 0 1 1 1 1 1 1 0 0 1-1-1zm5.6 2.7a3.6 3.6 0 0 1-2.9.8 3.6 3.6 0 0 1-2.9-.8.19.19 0 0 1 .3-.3 3.2 3.2 0 0 0 2.6.6 3.2 3.2 0 0 0 2.6-.6.19.19 0 0 1 .3.3zm-.1-1.7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"/></svg>
           Reddit for B2B SaaS
         </div>
-        <h1>Your buyers are comparing you on Reddit. We will show you the threads.</h1>
+        <h1>Your buyers compare you on&nbsp;Reddit.<br><em>We'll show you where.</em></h1>
         <p class="sub">Answer four questions and we will find real threads where your category is being compared, then write three Reddit ads built to show up in them. Free, and yours to keep.</p>
         <button class="hook-cta" id="hook-start">Show me the threads &rarr;</button>
         <p class="hook-micro">Four questions, about 60 seconds. If you are a fit, the threads and ads are yours.</p>
@@ -1145,6 +1169,7 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
       '<div class="cap">' +
         '<p class="cap-l">'+(qualified ? 'Not ready to book? Leave your email and we will send the threads and ads over when they are done.' : 'Want the guide and our 2026 Reddit benchmarks by email?')+'</p>' +
         '<div class="cap-row">' +
+          '<input class="cap-in cap-nm" id="cap-name" type="text" autocomplete="given-name" placeholder="First name">' +
           '<input class="cap-in" id="cap-email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com">' +
           '<button class="cap-btn" id="cap-send">'+(qualified ? 'Send them to me' : 'Send it')+'</button>' +
         '</div>' +
@@ -1161,6 +1186,7 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
     (function(){
       var ENDPOINT = window.STN_LEAD_ENDPOINT || '';
       var input = res.querySelector('#cap-email');
+      var nameEl= res.querySelector('#cap-name');
       var btn   = res.querySelector('#cap-send');
       var note  = res.querySelector('#cap-note');
       if(!input) return;
@@ -1176,8 +1202,12 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
                   'me.com','msn.com','proton.me','protonmail.com','gmx.com','mail.com','yandex.com',
                   'ymail.com','rocketmail.com','inbox.com','zoho.com','tutanota.com'];
       function save(){
-        var v = (input.value||'').trim();
-        if(!v || v === sent) return;
+        var v  = (input.value||'').trim();
+        var nm = (nameEl && nameEl.value || '').trim().slice(0,60);
+        // name is optional and often typed after the email blur already fired,
+        // so key the dedupe on both and re-send once if it shows up late
+        var key = nm + '|' + v;
+        if(!v || key === sent) return;
         if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){
           note.className='cap-err'; note.textContent='That does not look like a valid email.'; return;
         }
@@ -1188,10 +1218,13 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
           if(window.dataLayer) window.dataLayer.push({event:'quiz_email_rejected', reason:'free_domain'});
           return;
         }
-        sent = v;
+        var isUpdate = sent !== '';
+        sent = key;
         var payload = {
           kind: 'email',
           email: v,
+          name: nm,
+          update: isUpdate,
           status: (qualified ? 'qualified' : (tooSmall ? 'under-5m-arr' : 'exploring')),
           arr: LBL.arr[arr],
           goal: LBL.goal[goal],
@@ -1213,6 +1246,10 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
       input.addEventListener('blur', save);
       btn.addEventListener('click', save);
       input.addEventListener('keydown', function(ev){ if(ev.key === 'Enter'){ ev.preventDefault(); save(); } });
+      if(nameEl){
+        nameEl.addEventListener('blur', save);
+        nameEl.addEventListener('keydown', function(ev){ if(ev.key === 'Enter'){ ev.preventDefault(); input.focus(); } });
+      }
     })();
 
     res.querySelector('.r-restart').addEventListener('click', function(){
