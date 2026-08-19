@@ -803,7 +803,7 @@
       btn.addEventListener('click', function() {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({event: 'cta_click', cta_text: this.textContent.trim().slice(0,50), cta_page: 'process'});
-        fbq('track', 'Lead');
+        fbq('trackCustom', 'CTAClick', {cta_text: this.textContent.trim().slice(0,50), cta_page: 'process'});
       });
     });
 
@@ -812,7 +812,7 @@
       if (e.data && e.data.event && e.data.event.startsWith('booking.')) {
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({event: 'cal_booking', booking_page: 'process', event_type: e.data.event});
-        fbq('track', 'Lead');
+        fbq('trackCustom', 'CalBookingMessage', {booking_page: 'process'});
       }
     });
   });

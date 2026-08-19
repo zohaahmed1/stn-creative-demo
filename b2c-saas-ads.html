@@ -463,7 +463,7 @@
           e.preventDefault();
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({event: 'lead', cta_text: this.textContent.trim().slice(0,50), cta_page: 'b2c-saas-ads'});
-          fbq('track', 'Lead');
+          fbq('trackCustom', 'CTAClick', {cta_text: this.textContent.trim().slice(0,50), cta_page: 'b2c-saas-ads'});
           document.getElementById('cal-modal').classList.add('open');
         });
       });

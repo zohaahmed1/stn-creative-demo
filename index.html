@@ -2281,7 +2281,7 @@ document.querySelectorAll('a[href="#book"]').forEach(function(btn) {
   btn.addEventListener('click', function() {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({event: 'lead', cta_text: this.textContent.trim().slice(0,50), cta_page: 'homepage'});
-    fbq('track', 'Lead');
+    fbq('trackCustom', 'CTAClick', {cta_text: this.textContent.trim().slice(0,50), cta_page: 'homepage'});
   });
 });
 
@@ -2290,7 +2290,7 @@ window.addEventListener('message', function(e) {
   if (e.data && e.data.event && e.data.event.startsWith('booking.')) {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({event: 'cal_booking', booking_page: 'homepage', event_type: e.data.event});
-    fbq('track', 'Lead');
+    fbq('trackCustom', 'CalBookingMessage', {booking_page: 'homepage'});
   }
 });
 </script>
