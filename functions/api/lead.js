@@ -241,9 +241,12 @@ export async function onRequestPost({ request, env }) {
   };
 
   // 1. KV
+  let stored = false;
   if (env.LEADS) {
-    try { await env.LEADS.put(`lead:${lead.ts}:${email}`, JSON.stringify(lead)); }
-    catch (e) { console.error('KV write failed', e); }
+    try {
+      await env.LEADS.put(`lead:${lead.ts}:${email}`, JSON.stringify(lead));
+      stored = true;
+    } catch (e) { console.error('KV write failed', e); }
   }
 
   /* 2. webhook — "Quiz Leads" (xyeglebv). Separate from the playbook download form
@@ -251,7 +254,20 @@ export async function onRequestPost({ request, env }) {
         These are different funnels at very different intent levels, so they get
         different inboxes. Override with LEAD_WEBHOOK if that ever needs to move. */
   const webhook = env.LEAD_WEBHOOK || 'https://formspree.io/f/xyeglebv';
-  try {
+
+  /* The inbox is for people who can be contacted. A "complete" event carries no
+     email — it fires when someone finishes the quiz, whether or not they ever
+     leave one — so it is noise in an inbox while still being needed for the Meta
+     Lead event. Those rows were every one of the 12 that landed in spam.
+
+     Only skipped when KV is bound, so the record still survives somewhere. With
+     no KV the webhook is the only sink and must keep receiving everything. */
+  const contactless = !lead.email;
+  const skipWebhook = contactless && !!env.LEADS;
+
+  if (skipWebhook) {
+    console.log('Webhook skipped (contactless complete, kept in KV)', lead.checked);
+  } else try {
     await fetch(webhook, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -298,10 +314,20 @@ export async function onRequestPost({ request, env }) {
     meta = { sent: false, reason: `unverified:${verification.reason}` };
   }
 
-  // 3. always logged
+  // 5. always logged
   console.log('LEAD', JSON.stringify({ ...lead, meta_lead: meta }));
 
-  return json({ ok: true, verified: verification.verified, lead_sent: meta.sent });
+  /* `stored` and `emailed` are diagnostics — they are the only way to tell from
+     outside whether the KV namespace is bound and whether RESEND_API_KEY is set,
+     without opening the Cloudflare dashboard. No lead data is echoed back. */
+  return json({
+    ok: true,
+    verified: verification.verified,
+    lead_sent: meta.sent,
+    stored,
+    emailed: confirm.sent,
+    email_why: confirm.reason || null
+  });
 }
 
 // anything other than POST
