@@ -879,6 +879,25 @@
     fbq('init', '1906222660310524');
     fbq('track', 'PageView');
 
+/* Engaged dwell time. Fires once at 45s of VISIBLE time — pauses while the tab is
+   hidden so background tabs cannot inflate it. This is a retargeting signal only.
+   Do not optimise campaigns toward it: it measures lingering, not intent. */
+(function(){
+  var ms=0, last=Date.now(), fired=false, iv;
+  function tick(){
+    if(document.visibilityState==='visible'){ ms += Date.now()-last; }
+    last = Date.now();
+    if(!fired && ms>=45000){
+      fired = true; clearInterval(iv);
+      if(typeof fbq!=='undefined') fbq('trackCustom','DwellTime45',{content_name:'quiz'});
+      if(window.dataLayer) window.dataLayer.push({event:'dwell_45s', page:'quiz'});
+    }
+  }
+  iv = setInterval(tick,1000);
+  document.addEventListener('visibilitychange', function(){ last = Date.now(); });
+})();
+
+
     /* CTA click tracking - opens modal instead of linking out */
     document.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('.cta-booking-btn').forEach(function(link) {
