@@ -836,8 +836,9 @@
       Cal("init", "30min", {origin:"https://app.cal.com"});
       /* booking conversion tracking — fires on confirmed Cal booking */
       Cal.ns["30min"]("on", { action:"bookingSuccessfulV2", callback:function(e){
-        if(typeof fbq!=='undefined'){ fbq('track','Schedule',{content_name:'b2c_saas_ads_booking'}); }
-        if(window.dataLayer) window.dataLayer.push({event:'booking_confirmed', source:'b2c_saas_ads'});
+        var d=(e&&e.detail&&e.detail.data)||{}, uid=(d.booking&&d.booking.uid)||d.uid||(d.confirmedBooking&&d.confirmedBooking.uid); var eid=uid?'cal_'+uid:undefined;
+        if(typeof fbq!=='undefined'){ fbq('track','Schedule',{content_name:'b2c_saas_ads_booking'}, eid?{eventID:eid}:undefined); }
+        if(window.dataLayer) window.dataLayer.push({event:'booking_confirmed', source:'b2c_saas_ads', event_id:eid});
       }});
       Cal.ns["30min"]("inline", {elementOrSelector:"#my-cal-inline-30min",config: {"layout":"month_view","useSlotsViewOnSmallScreen":"true","theme":"light"},calLink: "skipthenoise/30min"});
       Cal.ns["30min"]("ui", {"theme":"light","hideEventTypeDetails":false,"layout":"month_view"});

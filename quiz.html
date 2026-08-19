@@ -981,6 +981,7 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
       a:["As soon as possible","This quarter","Next quarter","Just exploring for now"] }
   ];
   var answers = [], step = 0;
+  var lastQuizArr = null;   // ARR index, read by the booking handler (which runs in another scope)
   var quiz = document.getElementById('quiz'), res = document.getElementById('result'),
       dots = document.getElementById('dots'), back = document.getElementById('back');
 
@@ -1046,6 +1047,7 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
     quiz.style.display='none'; dots.style.display='none'; back.style.display='none';
     res.style.display='block';
     var channels = answers[0] || [], goal = answers[1], arr = answers[2], timing = answers[3];
+    lastQuizArr = arr;
     var onReddit = channels.indexOf(4) > -1;
     var tooSmall = (arr === 0);              // under $5M ARR
     var browsing = (timing === 3);           // just exploring
@@ -1195,8 +1197,9 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
       Cal.ns.quiz("ui", { hideEventTypeDetails:true, layout:"column_view", theme:"light" });
       // fire OUR pixel on OUR domain when the booking completes
       Cal.ns.quiz("on", { action:"bookingSuccessfulV2", callback:function(e){
-        if(typeof fbq!=='undefined'){ fbq('track','Schedule',{content_name:'quiz_booking'}); }
-        if(window.dataLayer) window.dataLayer.push({event:'booking_confirmed', source:'quiz', quiz_budget:budget});
+        var d=(e&&e.detail&&e.detail.data)||{}, uid=(d.booking&&d.booking.uid)||d.uid||(d.confirmedBooking&&d.confirmedBooking.uid); var eid=uid?'cal_'+uid:undefined;
+        if(typeof fbq!=='undefined'){ fbq('track','Schedule',{content_name:'quiz_booking'}, eid?{eventID:eid}:undefined); }
+        if(window.dataLayer) window.dataLayer.push({event:'booking_confirmed', source:'quiz', quiz_arr:lastQuizArr, event_id:eid});
       }});
     }
   }
