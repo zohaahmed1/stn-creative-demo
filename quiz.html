@@ -1035,6 +1035,12 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
      on any repeat render. Without this it re-fired every time, which is what
      filled the Formspree inbox with duplicates. One per page load, full stop. */
   var completePosted = false;
+  /* Exactly one Formspree notification per person. The completion POST must fire
+     immediately because it triggers the Meta and LinkedIn conversions, but it asks
+     the server NOT to notify. The notification is then sent once, by whichever
+     comes first: an email submission (richer — carries contact details) or the
+     visitor leaving (beacon, carries the quiz answers). */
+  var notified = false, lastQuizPayload = null;
   /* Same rule showResult() uses. Needed before results so we only ask for the
      website from people we are actually going to make the deliverable for. */
   function isQualified(){ return answers[2] !== 0 && answers[3] !== 3; }
@@ -1358,6 +1364,11 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
         sent = key;
         var payload = {
           kind: 'email',
+          /* Defers if the leave-beacon already sent one. Hard ceiling of ONE
+             Formspree submission per person, never two. */
+          notify: !notified,
+          site: details.site,
+          competitors: details.competitors,
           email: v,
           name: nm,
           last_name: ln,
@@ -1371,6 +1382,10 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
           source:'quiz', page: location.pathname
         };
         if(ENDPOINT){
+          /* This send carries the notification, so the leave-beacon must not add a
+             second one. Set before the request: a slow network must not open a
+             window where pagehide also fires. */
+          if(payload.notify) notified = true;
           fetch(ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'},
             body: JSON.stringify(payload)})
             .then(function(r){ if(!r.ok && r.status===422){ note.className='cap-err';
@@ -1404,16 +1419,17 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
       if(window.STN_LEAD_ENDPOINT && !completePosted){
         completePosted = true;
         try{
-          fetch(window.STN_LEAD_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'},
-            body: JSON.stringify({
-              kind:'complete', status:'qualified',
+          lastQuizPayload = {
+              kind:'complete', status:'qualified', notify:false,
               site: details.site, competitors: details.competitors,
               arr: ['Under $5M','$5M to $10M','$10M to $50M','$50M or more'][arr],
               goal: ['Lower CAC','AI answers (AEO/GEO)','Break into Reddit','New pipeline source'][goal],
               timing: ['ASAP','This quarter','Next quarter','Just exploring'][timing],
               fbp: readCookie('_fbp'), fbc: readCookie('_fbc'),
               source:'quiz', page: location.pathname
-            })})
+          };
+          fetch(window.STN_LEAD_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'},
+            body: JSON.stringify(lastQuizPayload)})
             .then(function(r){ return r.json(); })
             /* LinkedIn has no server-side equivalent here, so its conversion fires
                client-side — but only after the server confirms the domain passed.
@@ -1450,6 +1466,33 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
       }});
     }
   }
+  /* Someone who finishes the quiz but never types an email would otherwise be
+     invisible, because the completion POST deliberately suppressed its own
+     notification. sendBeacon survives the page being closed, which a fetch does
+     not. Fires at most once, and never if the email path already notified. */
+  (function(){
+    function flush(){
+      if(notified || !completePosted || !window.STN_LEAD_ENDPOINT) return;
+      if(!lastQuizPayload) return;
+      notified = true;
+      try{
+        var body = JSON.stringify(Object.assign({}, lastQuizPayload, { notify:true }));
+        if(navigator.sendBeacon){
+          navigator.sendBeacon(window.STN_LEAD_ENDPOINT, new Blob([body], {type:'application/json'}));
+        } else {
+          fetch(window.STN_LEAD_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'},
+            body: body, keepalive:true}).catch(function(){});
+        }
+      }catch(_){}
+    }
+    /* pagehide only. visibilitychange fires on a mere tab switch, which would burn
+       the one available notification before someone came back and typed an email —
+       and the email is the more valuable of the two. The trade-off is that a mobile
+       visitor whose tab is silently discarded may produce no notification at all.
+       A missed one is cheaper than a duplicate on a 50/month quota. */
+    window.addEventListener('pagehide', flush);
+  })();
+
   document.getElementById('hook-start').addEventListener('click', function(){
     document.getElementById('hook-card').style.display='none';
     document.getElementById('quiz-card').style.display='';

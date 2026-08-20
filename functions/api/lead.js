@@ -284,10 +284,17 @@ export async function onRequestPost({ request, env }) {
          rate for no follow-up value. */
   const contactless = !lead.email;
   const unverifiedComplete = contactless && !verification.verified;
-  const skipWebhook = unverifiedComplete || lead.update;
+  /* The client decides WHICH of its posts carries the notification, so one person
+     produces one email instead of two. The completion post sets notify:false — it
+     exists to fire the Meta/LinkedIn conversions — and the notification is sent
+     either by the email capture (richer, has contact details) or by a sendBeacon
+     when the visitor leaves without one. Absent flag means notify, so any other
+     caller behaves as before. */
+  const wantsNotify = body.notify !== false;
+  const skipWebhook = !wantsNotify || unverifiedComplete || lead.update;
 
   if (skipWebhook) {
-    console.log('Webhook skipped', lead.update ? 'update re-save' : 'unverified complete (' + verification.reason + ')', lead.checked);
+    console.log('Webhook skipped', !wantsNotify ? 'notify:false (client defers)' : lead.update ? 'update re-save' : 'unverified complete (' + verification.reason + ')', lead.checked);
   } else try {
     await fetch(webhook, {
       method: 'POST',
