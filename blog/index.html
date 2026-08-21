@@ -60,11 +60,38 @@
     @media (max-width: 768px) { }
 
     /* Hero */
-    .blog-hero { padding: 64px 24px 48px; text-align: center; border-bottom: 1px solid var(--gray-200); }
-    .blog-hero-inner { max-width: 640px; margin: 0 auto; }
-    .blog-label { display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--purple); margin-bottom: 16px; }
-    .blog-hero h1 { font-size: clamp(28px, 4vw, 40px); font-weight: 900; letter-spacing: -0.03em; color: var(--dark); line-height: 1.1; margin-bottom: 16px; }
-    .blog-hero p { font-size: 17px; color: var(--gray-500); line-height: 1.6; }
+    /* ── Resources hero: matches the homepage (dot grid, pills, Playfair accent) ── */
+    .blog-hero { position: relative; padding: 72px 24px 44px; text-align: center; border-bottom: none; overflow: hidden; }
+    .blog-hero > * { position: relative; z-index: 1; }
+    .res-bg { position:absolute; inset:0; z-index:0;
+      background-image: radial-gradient(circle, rgba(0,0,0,0.09) 1px, transparent 1px);
+      background-size: 20px 20px;
+      -webkit-mask-image: radial-gradient(120% 90% at 50% 0%, #000 35%, transparent 78%);
+              mask-image: radial-gradient(120% 90% at 50% 0%, #000 35%, transparent 78%); }
+    .res-glow { position:absolute; inset:0; z-index:0; pointer-events:none;
+      background:
+        radial-gradient(58% 42% at 22% 4%, rgba(85,0,221,0.10), transparent 62%),
+        radial-gradient(52% 40% at 82% 8%, rgba(238,0,51,0.07), transparent 62%); }
+    .blog-hero-inner { max-width: 720px; margin: 0 auto; }
+    .res-pills { display:flex; align-items:center; gap:10px; justify-content:center; flex-wrap:wrap; margin-bottom:20px; }
+    .res-pill { display:inline-flex; align-items:center; gap:6px; border-radius:100px; padding:5px 13px; font-size:12px; font-weight:700; }
+    .blog-hero h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 900; letter-spacing: -0.035em; color: var(--dark); line-height: 1.06; margin-bottom: 18px; }
+    .blog-hero h1 em { font-family:'Playfair Display', Georgia, serif; font-style: italic; font-weight: 700; letter-spacing: -0.02em;
+      background: linear-gradient(135deg,#7c3aed,#db2777); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .blog-hero p { font-size: 17px; color: var(--gray-500); line-height: 1.6; max-width: 600px; margin: 0 auto; }
+
+    /* ── Topic filters (same pattern as /case-studies) ── */
+    .res-filters { display:flex; gap:8px; justify-content:center; padding: 30px 24px 0; flex-wrap:wrap; }
+    .res-filter { display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:700; padding:6px 16px; border-radius:100px;
+      border:1.5px solid var(--gray-200); background:#fff; color:var(--gray-500); cursor:pointer; transition:all .15s; font-family:inherit; }
+    .res-filter .n { font-size:11px; font-weight:800; opacity:.55; font-variant-numeric:tabular-nums; }
+    .res-filter:hover, .res-filter.active { background:var(--purple); color:#fff; border-color:var(--purple); }
+    #res-empty { display:none; text-align:center; color:var(--gray-500); font-size:15px; padding:48px 24px 0; }
+
+    /* card motion to match the case-study cards */
+    .post-card:hover { box-shadow: 0 14px 40px rgba(0,0,0,0.10); transform: translateY(-4px); }
+    .post-card-img > * { transition: transform .45s cubic-bezier(.16,1,.3,1); }
+    .post-card:hover .post-card-img > * { transform: scale(1.05); }
 
     /* Post grid */
     .blog-grid { max-width: 1100px; margin: 0 auto; padding: 56px 24px 96px; }
@@ -204,17 +231,41 @@
 </div>
 
 <section class="blog-hero">
+  <div class="res-bg"></div>
+  <div class="res-glow"></div>
   <div class="blog-hero-inner">
-    <div class="blog-label">Resources</div>
-    <h1>Playbooks, Guides &amp; Benchmarks</h1>
-    <p>The Reddit Ads Playbook, performance creative guides, and everything we've learned running paid media for DTC and SaaS brands. Free. No fluff.</p>
+    <div class="res-pills">
+      <span class="res-pill" style="background:rgba(85,0,221,0.07);border:1px solid rgba(85,0,221,0.22);color:#5500dd;">
+        <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#5500dd"/></svg>
+        <span id="res-n-guides">37</span> free guides
+      </span>
+      <span class="res-pill" style="background:rgba(238,0,51,0.07);border:1px solid rgba(238,0,51,0.22);color:#cc0033;">
+        <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#ee0033"/></svg>
+        2 free tools
+      </span>
+      <span class="res-pill" style="background:rgba(13,13,13,0.05);border:1px solid rgba(0,0,0,0.16);color:#191923;">
+        <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#191923"/></svg>
+        Reddit Certified Partner
+      </span>
+    </div>
+    <h1>Everything we know.<br><em>Given away.</em></h1>
+    <p>The Reddit Ads Playbook, real benchmarks from campaigns we run, and the performance creative guides behind them. No email wall on the guides. No fluff.</p>
   </div>
 </section>
+
+<div class="res-filters">
+  <button class="res-filter active" data-cat="all"   onclick="filterResources('all',this)">All</button>
+  <button class="res-filter"        data-cat="reddit" onclick="filterResources('reddit',this)">Reddit Ads</button>
+  <button class="res-filter"        data-cat="creative" onclick="filterResources('creative',this)">AI &amp; Creative</button>
+  <button class="res-filter"        data-cat="compare" onclick="filterResources('compare',this)">Comparisons</button>
+  <button class="res-filter"        data-cat="agency" onclick="filterResources('agency',this)">Hiring an Agency</button>
+  <button class="res-filter"        data-cat="tools"  onclick="filterResources('tools',this)">Free Tools</button>
+</div>
 
 <div class="blog-grid">
   <div class="blog-grid-inner">
 
-    <a href="../playbook.html" class="post-card">
+    <a href="../playbook.html" class="post-card" data-cat="reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <rect width="640" height="360" fill="#FF4500"/>
@@ -231,7 +282,55 @@
       </div>
     </a>
 
-    <a href="best-reddit-marketing-agencies.html" class="post-card">
+    <a href="reddit-ads-benchmarks.html" class="post-card" data-cat="reddit">
+      <div class="post-card-img">
+        <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="360" fill="#0a0520"/>
+          <text x="320" y="168" text-anchor="middle" font-family="Satoshi,system-ui,sans-serif" font-size="42" font-weight="900" fill="#00d47e">Benchmarks</text>
+          <text x="320" y="212" text-anchor="middle" font-family="Satoshi,system-ui,sans-serif" font-size="17" font-weight="600" fill="rgba(255,255,255,0.55)">Benchmarks &middot; Data</text>
+        </svg>
+      </div>
+      <div class="post-card-body">
+        <div class="post-tag">Benchmarks &middot; Data</div>
+        <h2>Reddit Ads Benchmarks 2026: Real CPL, CPA &amp; ROAS by Vertical</h2>
+        <p>Actual cost-per-lead, cost-per-acquisition and ROAS figures from campaigns we run, broken out by vertical. Not vendor averages.</p>
+        <div class="post-card-meta">August 2026 &middot; Updated quarterly</div>
+        <div class="post-card-cta">Read benchmarks <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+    </a>
+    <a href="/tools/reddit-ads-cost-calculator" class="post-card" data-cat="tools">
+      <div class="post-card-img">
+        <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="360" fill="#0a0520"/>
+          <text x="320" y="168" text-anchor="middle" font-family="Satoshi,system-ui,sans-serif" font-size="42" font-weight="900" fill="#5b8cff">Cost Calculator</text>
+          <text x="320" y="212" text-anchor="middle" font-family="Satoshi,system-ui,sans-serif" font-size="17" font-weight="600" fill="rgba(255,255,255,0.55)">Free Tool &middot; Calculator</text>
+        </svg>
+      </div>
+      <div class="post-card-body">
+        <div class="post-tag">Free Tool &middot; Calculator</div>
+        <h2>Reddit Ads Cost Calculator</h2>
+        <p>Estimate what a Reddit campaign will cost at your budget, audience size and target CPA before you spend anything.</p>
+        <div class="post-card-meta">Free &middot; No signup</div>
+        <div class="post-card-cta">Open the calculator <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+    </a>
+    <a href="/tools/subreddit-finder" class="post-card" data-cat="tools">
+      <div class="post-card-img">
+        <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
+          <rect width="640" height="360" fill="#0a0520"/>
+          <text x="320" y="168" text-anchor="middle" font-family="Satoshi,system-ui,sans-serif" font-size="42" font-weight="900" fill="#ffb020">Subreddit Finder</text>
+          <text x="320" y="212" text-anchor="middle" font-family="Satoshi,system-ui,sans-serif" font-size="17" font-weight="600" fill="rgba(255,255,255,0.55)">Free Tool &middot; Targeting</text>
+        </svg>
+      </div>
+      <div class="post-card-body">
+        <div class="post-tag">Free Tool &middot; Targeting</div>
+        <h2>Subreddit Finder</h2>
+        <p>Find the subreddits where your buyers actually are, with size and relevance, so you are not guessing at targeting.</p>
+        <div class="post-card-meta">Free &middot; No signup</div>
+        <div class="post-card-cta">Find subreddits <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      </div>
+    </a>
+    <a href="best-reddit-marketing-agencies.html" class="post-card" data-cat="agency">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -255,7 +354,7 @@
       </div>
     </a>
 
-    <a href="reddit-b2b-demand-generation.html" class="post-card">
+    <a href="reddit-b2b-demand-generation.html" class="post-card" data-cat="reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -279,7 +378,7 @@
       </div>
     </a>
 
-    <a href="ai-creative-production-agency.html" class="post-card">
+    <a href="ai-creative-production-agency.html" class="post-card" data-cat="creative agency">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -302,7 +401,7 @@
       </div>
     </a>
 
-    <a href="reddit-ads-b2b-saas.html" class="post-card">
+    <a href="reddit-ads-b2b-saas.html" class="post-card" data-cat="reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <rect width="640" height="360" fill="#0a0520"/>
@@ -319,7 +418,7 @@
       </div>
     </a>
 
-    <a href="reddit-vs-linkedin-ads-saas.html" class="post-card">
+    <a href="reddit-vs-linkedin-ads-saas.html" class="post-card" data-cat="compare">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -342,7 +441,7 @@
       </div>
     </a>
 
-    <a href="how-to-choose-reddit-ads-agency.html" class="post-card">
+    <a href="how-to-choose-reddit-ads-agency.html" class="post-card" data-cat="agency">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <rect width="640" height="360" fill="#0a0520"/>
@@ -360,7 +459,7 @@
       </div>
     </a>
 
-    <a href="reddit-ads-cost.html" class="post-card">
+    <a href="reddit-ads-cost.html" class="post-card" data-cat="reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -384,7 +483,7 @@
       </div>
     </a>
 
-    <a href="reddit-ads-dtc-brands.html" class="post-card">
+    <a href="reddit-ads-dtc-brands.html" class="post-card" data-cat="reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <rect width="640" height="360" fill="#0a0520"/>
@@ -402,7 +501,7 @@
       </div>
     </a>
 
-    <a href="reddit-ad-creative-strategy.html" class="post-card">
+    <a href="reddit-ad-creative-strategy.html" class="post-card" data-cat="reddit creative">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -426,7 +525,7 @@
       </div>
     </a>
 
-    <a href="reddit-ads-cybersecurity-saas.html" class="post-card">
+    <a href="reddit-ads-cybersecurity-saas.html" class="post-card" data-cat="reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <rect width="640" height="360" fill="#0a0520"/>
@@ -444,7 +543,7 @@
       </div>
     </a>
 
-    <a href="reddit-ads-dev-tools.html" class="post-card">
+    <a href="reddit-ads-dev-tools.html" class="post-card" data-cat="reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -468,7 +567,7 @@
       </div>
     </a>
 
-    <a href="best-subreddits-b2b-saas.html" class="post-card">
+    <a href="best-subreddits-b2b-saas.html" class="post-card" data-cat="reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -492,7 +591,7 @@
       </div>
     </a>
 
-    <a href="reddit-ads-roi-attribution.html" class="post-card">
+    <a href="reddit-ads-roi-attribution.html" class="post-card" data-cat="reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -516,7 +615,7 @@
       </div>
     </a>
 
-    <a href="reddit-ads-hr-tech.html" class="post-card">
+    <a href="reddit-ads-hr-tech.html" class="post-card" data-cat="reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -540,7 +639,7 @@
       </div>
     </a>
 
-    <a href="reddit-vs-facebook-ads.html" class="post-card">
+    <a href="reddit-vs-facebook-ads.html" class="post-card" data-cat="compare">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -564,7 +663,7 @@
       </div>
     </a>
 
-    <a href="reddit-ads-retargeting.html" class="post-card">
+    <a href="reddit-ads-retargeting.html" class="post-card" data-cat="reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -588,7 +687,7 @@
       </div>
     </a>
 
-    <a href="reddit-ads-fintech.html" class="post-card">
+    <a href="reddit-ads-fintech.html" class="post-card" data-cat="reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -612,7 +711,7 @@
       </div>
     </a>
 
-    <a href="how-to-advertise-on-reddit.html" class="post-card">
+    <a href="how-to-advertise-on-reddit.html" class="post-card" data-cat="reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -637,7 +736,7 @@
       </div>
     </a>
 
-    <a href="reddit-ads-martech.html" class="post-card">
+    <a href="reddit-ads-martech.html" class="post-card" data-cat="reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -661,7 +760,7 @@
       </div>
     </a>
 
-    <a href="reddit-vs-google-ads.html" class="post-card">
+    <a href="reddit-vs-google-ads.html" class="post-card" data-cat="compare">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -685,7 +784,7 @@
       </div>
     </a>
 
-    <a href="reddit-ads-saas-startups.html" class="post-card">
+    <a href="reddit-ads-saas-startups.html" class="post-card" data-cat="reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -709,7 +808,7 @@
       </div>
     </a>
 
-    <a href="reddit-ads-agency-vs-in-house.html" class="post-card">
+    <a href="reddit-ads-agency-vs-in-house.html" class="post-card" data-cat="agency">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -726,13 +825,13 @@
       </div>
       <div class="post-card-body">
         <div class="post-tag">Agency Guide · Pricing</div>
-        <h2>Reddit Ads Agency Pricing: What to Expect in 2026</h2>
+        <h2>Reddit Ads Agency vs In-House: Which Actually Costs Less?</h2>
         <p>Real retainer ranges, pricing model breakdowns (flat vs % of spend vs performance), red flags to avoid, and the 5 questions to ask any agency before signing.</p>
         <div class="post-card-meta">May 2026 · 10 min read</div>
         <div class="post-card-cta">Read article <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       </div>
     </a>
-    <a href="reddit-ads-agency-pricing.html" class="post-card">
+    <a href="reddit-ads-agency-pricing.html" class="post-card" data-cat="agency">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -756,7 +855,7 @@
       </div>
     </a>
 
-    <a href="reddit-ads-edtech.html" class="post-card">
+    <a href="reddit-ads-edtech.html" class="post-card" data-cat="reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -780,7 +879,7 @@
       </div>
     </a>
 
-    <a href="reddit-ads-b2c-saas.html" class="post-card">
+    <a href="reddit-ads-b2c-saas.html" class="post-card" data-cat="reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -804,7 +903,7 @@
       </div>
     </a>
 
-    <a href="ai-creative-production-guide.html" class="post-card">
+    <a href="ai-creative-production-guide.html" class="post-card" data-cat="creative">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -828,7 +927,7 @@
       </div>
     </a>
 
-    <a href="ai-ugc-ads.html" class="post-card">
+    <a href="ai-ugc-ads.html" class="post-card" data-cat="creative">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -852,7 +951,7 @@
       </div>
     </a>
 
-    <a href="ad-creative-testing-framework.html" class="post-card">
+    <a href="ad-creative-testing-framework.html" class="post-card" data-cat="creative">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -877,7 +976,7 @@
       </div>
     </a>
 
-    <a href="ai-video-ads-saas.html" class="post-card">
+    <a href="ai-video-ads-saas.html" class="post-card" data-cat="creative">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -901,7 +1000,7 @@
       </div>
     </a>
 
-    <a href="performance-creative-agency.html" class="post-card">
+    <a href="performance-creative-agency.html" class="post-card" data-cat="creative agency">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -925,7 +1024,7 @@
       </div>
     </a>
 
-    <a href="creative-fatigue-ads.html" class="post-card">
+    <a href="creative-fatigue-ads.html" class="post-card" data-cat="creative">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -949,7 +1048,7 @@
       </div>
     </a>
 
-    <a href="ai-ad-creative-examples.html" class="post-card">
+    <a href="ai-ad-creative-examples.html" class="post-card" data-cat="creative">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -973,7 +1072,7 @@
       </div>
     </a>
 
-    <a href="ai-creative-reddit-ads.html" class="post-card">
+    <a href="ai-creative-reddit-ads.html" class="post-card" data-cat="creative reddit">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -997,7 +1096,7 @@
       </div>
     </a>
 
-    <a href="reddit-ads-examples.html" class="post-card">
+    <a href="reddit-ads-examples.html" class="post-card" data-cat="reddit creative">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -1021,7 +1120,7 @@
       </div>
     </a>
 
-    <a href="reddit-marketing-agency.html" class="post-card">
+    <a href="reddit-marketing-agency.html" class="post-card" data-cat="agency">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -1045,7 +1144,7 @@
       </div>
     </a>
 
-    <a href="ugc-ad-agency.html" class="post-card">
+    <a href="ugc-ad-agency.html" class="post-card" data-cat="agency creative">
       <div class="post-card-img">
         <svg class="post-card-img-fallback" viewBox="0 0 640 360" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -1070,8 +1169,43 @@
     </a>
 
   </div>
+  <div id="res-empty">No guides in that topic yet.</div>
 </div>
 
+<script>
+(function(){
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.post-card'));
+
+  /* Counts come from the cards themselves, so adding a guide can never leave a
+     stale number in the markup (same approach as /case-studies). */
+  document.querySelectorAll('.res-filter').forEach(function(btn){
+    var cat = btn.dataset.cat;
+    var n = cat === 'all' ? cards.length : cards.filter(function(c){
+      return (c.dataset.cat || '').split(' ').indexOf(cat) > -1;
+    }).length;
+    var sp = document.createElement('span');
+    sp.className = 'n'; sp.textContent = n;
+    btn.appendChild(sp);
+    if (!n) { btn.disabled = true; btn.style.opacity = '.4'; btn.style.cursor = 'default'; }
+  });
+  var g = document.getElementById('res-n-guides');
+  if (g) g.textContent = cards.filter(function(c){
+    return (c.dataset.cat || '').split(' ').indexOf('tools') === -1;
+  }).length;
+
+  window.filterResources = function(cat, btn){
+    document.querySelectorAll('.res-filter').forEach(function(b){ b.classList.toggle('active', b === btn); });
+    var shown = 0;
+    cards.forEach(function(c){
+      var on = (cat === 'all' || (c.dataset.cat || '').split(' ').indexOf(cat) > -1);
+      c.style.display = on ? '' : 'none';
+      if (on) shown++;
+    });
+    var e = document.getElementById('res-empty');
+    if (e) e.style.display = shown ? 'none' : 'block';
+  };
+})();
+</script>
 <footer>
   <p>&copy; 2026 Skip the Noise Media &middot; Reddit Certified Partner</p>
   <p><a href="mailto:sales@skipthenoisemedia.com">sales@skipthenoisemedia.com</a></p>
