@@ -35,7 +35,7 @@
 </script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --purple: #5500DD; --dark: #0d0d0d; --gray-500: #6b7280; --gray-200: #e5e7eb; --gray-100: #f3f4f6; --tcf-green: #1F7A4F; }
+    :root { --purple: #5500DD; --dark: #0d0d0d; --gray-500: #6b7280; --gray-200: #e5e7eb; --gray-100: #f3f4f6; --nonprofit-green: #1F7A4F; }
     body { font-family: 'Satoshi', system-ui, sans-serif; color: var(--dark); background: #fff; -webkit-font-smoothing: antialiased; }
     nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--gray-200); padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { font-size: 15px; font-variation-settings: "wdth" 125, "wght" 800; color: var(--dark); text-decoration: none; letter-spacing: -0.02em; }
@@ -51,9 +51,9 @@
     .cs-hero { position: relative; overflow: hidden; background: #ffffff; padding: 40px 24px 56px; }
     .cs-hero::before { content:''; position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:1200px; height:560px; background: radial-gradient(ellipse 520px 360px at 28% 45%, rgba(31,122,79,0.16) 0%, transparent 60%), radial-gradient(ellipse 420px 320px at 72% 58%, rgba(85,0,221,0.10) 0%, transparent 62%); pointer-events:none; z-index:0; }
     .cs-hero-inner { position: relative; z-index: 1; max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-    .cs-tag { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.02em; color: var(--tcf-green); background: rgba(31,122,79,0.08); border: 1px solid rgba(31,122,79,0.25); border-radius: 100px; padding: 5px 14px; margin-bottom: 18px; }
+    .cs-tag { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 0.02em; color: var(--nonprofit-green); background: rgba(31,122,79,0.08); border: 1px solid rgba(31,122,79,0.25); border-radius: 100px; padding: 5px 14px; margin-bottom: 18px; }
     .cs-hero h1 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 900; color: #0a0a0a; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 16px; }
-    .cs-hero h1 em { font-family: 'Playfair Display', Georgia, serif; font-style: italic; color: var(--tcf-green); -webkit-text-fill-color: var(--tcf-green); }
+    .cs-hero h1 em { font-family: 'Playfair Display', Georgia, serif; font-style: italic; color: var(--nonprofit-green); -webkit-text-fill-color: var(--nonprofit-green); }
     .cs-hero-desc { font-size: 17px; color: #444; line-height: 1.6; }
     .cs-hero-img { border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px -20px rgba(0,0,0,0.25); }
     .cs-hero-img img { width: 100%; display: block; }
@@ -63,7 +63,7 @@
     .cs-stat { padding: 30px 24px; background: var(--gray-100); }
     .cs-stat:first-child { border-radius: 16px 0 0 16px; }
     .cs-stat:last-child { border-radius: 0 16px 16px 0; }
-    .cs-stat .num { font-size: clamp(22px, 2.4vw, 30px); font-weight: 900; letter-spacing: -0.02em; color: var(--tcf-green); display: block; margin-bottom: 6px; }
+    .cs-stat .num { font-size: clamp(22px, 2.4vw, 30px); font-weight: 900; letter-spacing: -0.02em; color: var(--nonprofit-green); display: block; margin-bottom: 6px; }
     .cs-stat .lbl { font-size: 14px; font-weight: 600; color: var(--gray-500); line-height: 1.4; }
 
     .cs-body { max-width: 800px; margin: 0 auto; padding: 40px 24px 80px; }
@@ -73,9 +73,9 @@
     .cs-section h3 { font-size: 17px; font-weight: 800; color: var(--dark); margin: 24px 0 10px; letter-spacing: -0.01em; }
     .cs-section ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .cs-section ul li { font-size: 16px; line-height: 1.6; color: #333; padding-left: 22px; position: relative; }
-    .cs-section ul li::before { content: ''; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--tcf-green); }
+    .cs-section ul li::before { content: ''; position: absolute; left: 0; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--nonprofit-green); }
 
-    .cs-note { max-width: 800px; margin: 0 auto 40px; padding: 16px 20px; background: #f6faf7; border: 1px solid rgba(31,122,79,0.25); border-left: 4px solid var(--tcf-green); border-radius: 8px; }
+    .cs-note { max-width: 800px; margin: 0 auto 40px; padding: 16px 20px; background: #f6faf7; border: 1px solid rgba(31,122,79,0.25); border-left: 4px solid var(--nonprofit-green); border-radius: 8px; }
     .cs-note p { font-size: 14.5px; line-height: 1.6; color: #34433c; margin: 0; }
 
     .cs-insight { max-width: 800px; margin: 0 auto 48px; padding: 28px 32px; background: #0a1f16; border-radius: 16px; }
@@ -85,14 +85,14 @@
     /* Ashra timeline */
     .timeline { margin-top: 18px; display: flex; flex-direction: column; gap: 12px; }
     .tl-row { display: grid; grid-template-columns: 150px 1fr; gap: 18px; align-items: start; border: 1.5px solid var(--gray-200); border-radius: 14px; padding: 16px 18px; }
-    .tl-phase { font-size: 14px; font-weight: 800; color: var(--tcf-green); }
+    .tl-phase { font-size: 14px; font-weight: 800; color: var(--nonprofit-green); }
     .tl-phase span { display: block; font-size: 12px; font-weight: 600; color: var(--gray-500); margin-top: 3px; }
     .tl-body { font-size: 14.5px; line-height: 1.55; color: #333; }
     .tl-body strong { color: var(--dark); }
 
     .pillar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
     .pillar-card { border: 1.5px solid var(--gray-200); border-radius: 16px; padding: 22px 24px; }
-    .pillar-card .m-tag { font-size: 12px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--tcf-green); margin-bottom: 8px; }
+    .pillar-card .m-tag { font-size: 12px; font-weight: 800; letter-spacing: 0.04em; text-transform: uppercase; color: var(--nonprofit-green); margin-bottom: 8px; }
     .pillar-card h3 { margin: 0 0 8px; font-size: 16px; }
     .pillar-card p { font-size: 14.5px; line-height: 1.6; color: #444; margin: 0; }
 
@@ -111,14 +111,14 @@
     .cs-related { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .cs-related a { display: block; padding: 20px 22px; border: 1.5px solid var(--gray-200); border-radius: 16px; text-decoration: none; color: inherit; transition: box-shadow 0.2s, transform 0.2s; }
     .cs-related a:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.08); transform: translateY(-2px); }
-    .rel-label { font-size: 12px; font-weight: 700; color: var(--tcf-green); margin-bottom: 6px; }
+    .rel-label { font-size: 12px; font-weight: 700; color: var(--nonprofit-green); margin-bottom: 6px; }
     .rel-title { font-size: 16px; font-weight: 800; margin-bottom: 8px; }
     .rel-stat { font-size: 14px; color: var(--gray-500); font-weight: 600; }
 
     .cs-cta { max-width: 800px; margin: 0 auto; text-align: center; padding: 8px 24px; }
     .cs-cta h3 { font-size: 24px; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 10px; }
     .cs-cta p { font-size: 16px; color: var(--gray-500); margin-bottom: 22px; }
-    .cs-cta a { display: inline-block; background: var(--tcf-green); color: #fff; font-weight: 700; padding: 14px 30px; border-radius: 100px; text-decoration: none; }
+    .cs-cta a { display: inline-block; background: var(--nonprofit-green); color: #fff; font-weight: 700; padding: 14px 30px; border-radius: 100px; text-decoration: none; }
 
     footer { text-align: center; padding: 40px 24px; border-top: 1px solid var(--gray-200); color: var(--gray-500); font-size: 14px; }
     footer a { color: var(--gray-500); }
@@ -236,7 +236,7 @@
       <p class="cs-hero-desc">An international education nonprofit runs schools for children overseas, and raises much of its year inside a single month. We built the strategy for its Ramadan program on Reddit — a platform that punishes hard sells and rewards proof. This is the approach: how we sequenced the creative, the offer and the audiences to the rhythm of the month itself.</p>
     </div>
     <div class="cs-hero-img">
-      <img src="/assets/education-nonprofit-cover.jpg" alt="International education nonprofit — Reddit Ramadan giving strategy" loading="eager">
+      <img src="/assets/education-nonprofit-cover.jpg?v=33d1922c" alt="International education nonprofit — Reddit Ramadan giving strategy" loading="eager">
     </div>
   </div>
 </section>
@@ -244,16 +244,16 @@
 <section class="cs-stats">
   <div class="cs-stats-inner">
     <div class="cs-stat">
-      <span class="num">Ashra-timed</span>
-      <span class="lbl">Messaging sequenced to Ramadan's three ten-day phases</span>
+      <span class="num">9.46x</span>
+      <span class="lbl">ROAS on Reddit across the Ramadan campaign</span>
     </div>
     <div class="cs-stat">
-      <span class="num">Trust-first</span>
-      <span class="lbl">US-nonprofit credibility and transparency before any ask</span>
+      <span class="num">$799</span>
+      <span class="lbl">Average donation, across 202 gifts</span>
     </div>
     <div class="cs-stat">
-      <span class="num">4 lanes</span>
-      <span class="lbl">Retargeting · lookalikes · diaspora · Islamic communities</span>
+      <span class="num">35 days</span>
+      <span class="lbl">Sequenced to Ramadan's three Ashras</span>
     </div>
   </div>
 </section>
@@ -261,12 +261,12 @@
 <div class="cs-body">
 
   <div class="cs-note">
-    <p><strong>A note on this one.</strong> This is the strategy and creative system we built for this nonprofit's Ramadan program — the approach, not a results report. Donation totals from a Ramadan appeal are the foundation's to publish, not ours, so you won't find performance figures here.</p>
+    <p><strong>A note on this one.</strong> The nonprofit is not named here, at its own preference. The figures on this page are from the campaign we ran: the spend we managed and the return it produced.</p>
   </div>
 
   <div class="cs-section">
     <h2>The challenge</h2>
-    <p>an international education nonprofit raises for a cause that lives on the other side of the world: schools educating children overseas. For a US audience — and the diaspora giving from abroad — the first question is never "how much," it's "can I trust where this goes." Ramadan compounds that. It's the most important giving month of the year, and donation intent doesn't sit flat across it; it climbs, dips, then spikes hard in the final ten nights.</p>
+    <p>The nonprofit raises for a cause that lives on the other side of the world: schools educating children overseas. For a US audience — and the diaspora giving from abroad — the first question is never "how much," it's "can I trust where this goes." Ramadan compounds that. It's the most important giving month of the year, and donation intent doesn't sit flat across it; it climbs, dips, then spikes hard in the final ten nights.</p>
     <p>Reddit adds one more constraint. It's a skeptical platform. The hard-sell donation ad that works on Facebook gets ignored, or worse, called out. To raise here you have to earn the click before you ask for the gift.</p>
   </div>
 
@@ -329,8 +329,30 @@
   </div>
 
   <div class="cs-section">
-    <h2>How we planned to measure it</h2>
-    <p>Because donation results belong to the foundation, here's how the program was built to be judged rather than the outcome. Budget split between broad prospecting and retargeting, weighted toward the warm audiences that convert. Intent read against the Ashra calendar, so a quiet Second Ashra was expected, not a red flag. And a running test between the "give once" and "give nightly" asks to learn which framing each audience responded to for the next season.</p>
+    <h2>Results</h2>
+    <p>The campaign ran 35 days across Reddit and TikTok, February 16 to March 22, 2026.</p>
+    <div class="cs-results-grid">
+      <div class="cs-result-card">
+        <div class="platform">Reddit</div>
+        <div class="metric">9.46x</div>
+        <div class="metric-label">Return on ad spend</div>
+        <div class="detail">$17,060 spend &middot; 202 donations &middot; $161,440 raised &middot; $799 average gift</div>
+      </div>
+      <div class="cs-result-card">
+        <div class="platform">TikTok</div>
+        <div class="metric">2.56x</div>
+        <div class="metric-label">Return on ad spend</div>
+        <div class="detail">$7,057 spend &middot; 26 donations &middot; $18,089 raised &middot; 4.33x on retargeting</div>
+      </div>
+    </div>
+    <p style="margin-top:20px;">Across both platforms, <strong>$24,117 in spend returned $179,529 in donations &mdash; a blended 7.44x</strong>. Reddit carried the campaign, at nearly four times TikTok's return.</p>
+    <p>The Ashra sequencing showed up in the daily numbers. Budget scaled $200 a day at launch, to $500 mid-campaign, to $1,000 a night across the final ten nights, and the peak ROAS days landed exactly where the calendar said they would &mdash; Laylatul Qadr, with the donation match running.</p>
+    <p>Retargeting was the strongest ad group on both platforms. On TikTok it produced 58% of donations and 74% of donation value on a minority of the spend.</p>
+  </div>
+
+  <div class="cs-section">
+    <h2>What we would change</h2>
+    <p>Every TikTok ad was a Reddit static repurposed. That is the whole explanation for the gap between 9.46x and 2.56x. The audience converts and the funnel works, but the format was wrong for the platform. Native vertical video is the obvious next move, and it is what we would build first for the next Ramadan.</p>
   </div>
 
   <div class="cs-section">
