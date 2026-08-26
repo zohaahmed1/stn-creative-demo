@@ -1,0 +1,14 @@
+# Orphaned drafts, backups and test pages. Kept for rollback, but they are
+# near-duplicates of the live homepage and must not be indexed.
+# NOTE: deliberately NOT robots.txt Disallow — a blocked URL can still be
+# indexed from an external link, and blocking the crawl means it never sees
+# this noindex. Allow the fetch, refuse the index.
+
+/index-*
+  X-Robots-Tag: noindex, nofollow
+
+/test*
+  X-Robots-Tag: noindex, nofollow
+
+/gallery-draft*
+  X-Robots-Tag: noindex, nofollow
