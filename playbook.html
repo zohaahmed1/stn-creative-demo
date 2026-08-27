@@ -793,7 +793,11 @@
         mailbox_disposable: 'Please use your work email, not a temporary one.'
       };
       var settled = false;
-      var giveUp = setTimeout(function(){ if(!settled){ settled = true; send(); } }, 3000);
+      /* 6s, not 3s. The chain is two DNS lookups plus an SMTP mailbox probe, and
+         the dead-mailbox case is the SLOWEST (2.1s measured) — so a 3s budget
+         failed open on precisely the submissions this is meant to catch. The
+         button reads "Checking..." throughout, so the wait is visible. */
+      var giveUp = setTimeout(function(){ if(!settled){ settled = true; send(); } }, 6000);
       fetch('/api/verify', {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({site: site, email: email})
