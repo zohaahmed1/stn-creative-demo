@@ -62,7 +62,7 @@ async function hasMx(domain) {
  */
 async function mailboxVerdict(env, email) {
   const key = env.MILLIONVERIFIER_API_KEY;
-  if (!key) return null;
+  if (!key) { console.log('MV skipped: MILLIONVERIFIER_API_KEY not bound'); return null; }
   try {
     const res = await fetch(
       `https://api.millionverifier.com/api/v3/?api=${encodeURIComponent(key)}&email=${encodeURIComponent(email)}&timeout=8`,
