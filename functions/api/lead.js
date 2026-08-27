@@ -168,6 +168,21 @@ async function sendConfirmation(env, lead) {
   }
 }
 
+/** MX lookup for a mailbox domain. null = unknown (never treated as a failure). */
+async function hasMxRecord(domain) {
+  try {
+    const res = await fetch(
+      `https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(domain)}&type=MX`,
+      { headers: { Accept: 'application/dns-json' }, signal: AbortSignal.timeout(2500) }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    return Array.isArray(data.Answer) && data.Answer.length > 0;
+  } catch (_) {
+    return null;
+  }
+}
+
 export async function onRequestPost({ request, env }) {
   // only accept from our own site
   const origin = request.headers.get('Origin') || '';
@@ -201,6 +216,15 @@ export async function onRequestPost({ request, env }) {
     domain = email.split('@')[1];
     if (FREE_INBOXES.has(domain)) {
       return json({ ok: false, error: 'free_inbox' }, 422);
+    }
+    /* The freemail list only knows Gmail and friends, so a made-up mailbox
+       domain sails through it. A real playbook submission paired the genuine
+       site "intellect-partners.com" with "AESAE@SFSDF.COM" — sfsdf.com has no
+       MX at all. The site check never saw it, because the site was real.
+       Fails OPEN: a DNS timeout must not cost us a real lead. */
+    const emailMx = await hasMxRecord(domain);
+    if (emailMx === false) {
+      return json({ ok: false, error: 'email_domain_dead' }, 422);
     }
   }
 

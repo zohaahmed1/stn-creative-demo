@@ -64,6 +64,21 @@ export async function onRequestPost({ request }) {
   const mx = await hasMx(domain);
   if (mx === false) return json({ ok: false, reason: 'no_such_domain' });
 
+  /* Also verify the address they will be contacted on. A form can pass every
+     check above by pairing a real company website with a junk mailbox domain —
+     "intellect-partners.com" plus "AESAE@SFSDF.COM" — because the freemail
+     pattern only knows about Gmail and friends. sfsdf.com has no MX at all. */
+  const email = String(body.email || '').trim().toLowerCase();
+  if (email) {
+    const at = email.split('@');
+    if (at.length !== 2) return json({ ok: false, reason: 'bad_email' });
+    const emailDomain = normaliseDomain(at[1]);
+    if (!emailDomain)                     return json({ ok: false, reason: 'bad_email' });
+    if (PLACEHOLDER.includes(emailDomain)) return json({ ok: false, reason: 'placeholder_email' });
+    const emx = await hasMx(emailDomain);
+    if (emx === false) return json({ ok: false, reason: 'email_domain_dead' });
+  }
+
   // true or null (unknown) both pass
   return json({ ok: true, reason: mx ? 'mx' : 'unknown' });
 }
