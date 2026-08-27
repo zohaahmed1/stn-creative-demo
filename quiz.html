@@ -1312,6 +1312,7 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
       var note  = res.querySelector('#cap-note');
       if(!input) return;
       var sent = '';
+      var MSG_FALLBACK = 'Please use your work email. You can also just book the call below.';
       var LBL = {
         arr:    ['Under $5M','$5M to $10M','$10M to $50M','$50M or more'],
         goal:   ['Lower CAC','AI answers (AEO/GEO)','Break into Reddit','New pipeline source'],
@@ -1388,8 +1389,26 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
           if(payload.notify) notified = true;
           fetch(ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'},
             body: JSON.stringify(payload)})
-            .then(function(r){ if(!r.ok && r.status===422){ note.className='cap-err';
-              note.textContent='Please use your work email. That is how we look up your category. You can also just book the call below.'; sent=''; } })
+            .then(function(r){
+              if(r.ok) return;
+              if(r.status !== 422) return;
+              /* 422 now covers three different problems. Telling someone with a
+                 typo'd work address to "use your work email" sends them in circles. */
+              return r.json().then(function(d){
+                var MSG = {
+                  free_inbox:         'Please use your work email. That is how we look up your category. You can also just book the call below.',
+                  email_domain_dead:  'We cannot find that email domain. Check the spelling?',
+                  mailbox_invalid:    'That mailbox does not exist. Check the spelling?',
+                  mailbox_disposable: 'Please use your work email, not a temporary one.'
+                };
+                note.className = 'cap-err';
+                note.textContent = MSG[d && d.error] || MSG.free_inbox;
+                sent = '';
+              }).catch(function(){
+                note.className='cap-err';
+                note.textContent=MSG_FALLBACK; sent='';
+              });
+            })
             .catch(function(){});
         }
         if(window.dataLayer) window.dataLayer.push({event:'quiz_email_captured', quiz_status:payload.status});

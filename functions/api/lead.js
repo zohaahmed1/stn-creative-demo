@@ -183,6 +183,28 @@ async function hasMxRecord(domain) {
   }
 }
 
+/**
+ * SMTP-level mailbox check, same contract and policy as /api/verify:
+ * NO-OP without the key, fails open on any error, and blocks only `invalid`
+ * and `disposable`. catch_all is allowed on purpose — most enterprise B2B
+ * domains return it, including our own.
+ */
+async function mailboxVerdict(env, email) {
+  const key = env.MILLIONVERIFIER_API_KEY;
+  if (!key) return null;
+  try {
+    const res = await fetch(
+      `https://api.millionverifier.com/api/v3/?api=${encodeURIComponent(key)}&email=${encodeURIComponent(email)}&timeout=8`,
+      { headers: { 'User-Agent': 'STNLead/1.0' }, signal: AbortSignal.timeout(9000) }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    return typeof data?.result === 'string' ? data.result : null;
+  } catch (_) {
+    return null;
+  }
+}
+
 export async function onRequestPost({ request, env }) {
   // only accept from our own site
   const origin = request.headers.get('Origin') || '';
@@ -226,6 +248,12 @@ export async function onRequestPost({ request, env }) {
     if (emailMx === false) {
       return json({ ok: false, error: 'email_domain_dead' }, 422);
     }
+    /* Only after DNS confirms the domain, so junk never costs a credit.
+       Without this the quiz accepted test@mailinator.com: mailinator has MX
+       and is not in FREE_INBOXES, so nothing here was looking at the mailbox. */
+    const verdict = await mailboxVerdict(env, email);
+    if (verdict === 'invalid')    return json({ ok: false, error: 'mailbox_invalid' }, 422);
+    if (verdict === 'disposable') return json({ ok: false, error: 'mailbox_disposable' }, 422);
   }
 
   // Prefer the site they typed in the quiz; fall back to the email domain.
