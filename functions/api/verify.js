@@ -45,7 +45,38 @@ async function hasMx(domain) {
   }
 }
 
-export async function onRequestPost({ request }) {
+/**
+ * SMTP-level mailbox check via MillionVerifier. MX only proves the domain
+ * accepts mail; this proves the mailbox exists.
+ *
+ * NO-OP unless MILLIONVERIFIER_API_KEY is set, so behaviour is unchanged until
+ * the key exists. Returns null on any failure — a verifier outage must never
+ * cost a real lead.
+ *
+ * Blocks ONLY `invalid` and `disposable`. Deliberately allows `catch_all`:
+ * most enterprise B2B domains are catch_all (mixpanel.com, stripe.com and
+ * skipthenoisemedia.com itself all return it), so blocking it would reject
+ * exactly the prospects this form exists to capture. That differs from our
+ * COLD-OUTBOUND rule, where catch_all is dropped because a bounce costs
+ * sender reputation. Inbound, a false rejection costs a lead — far worse.
+ */
+async function mailboxVerdict(env, email) {
+  const key = env.MILLIONVERIFIER_API_KEY;
+  if (!key) return null;
+  try {
+    const res = await fetch(
+      `https://api.millionverifier.com/api/v3/?api=${encodeURIComponent(key)}&email=${encodeURIComponent(email)}&timeout=8`,
+      { headers: { 'User-Agent': 'STNVerify/1.0' }, signal: AbortSignal.timeout(9000) }
+    );
+    if (!res.ok) return null;
+    const data = await res.json();
+    return typeof data?.result === 'string' ? data.result : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+export async function onRequestPost({ request, env }) {
   const origin = request.headers.get('Origin') || '';
   const host = new URL(request.url).host;
   if (origin && !origin.includes(host) && !origin.includes('localhost')) {
@@ -77,6 +108,12 @@ export async function onRequestPost({ request }) {
     if (PLACEHOLDER.includes(emailDomain)) return json({ ok: false, reason: 'placeholder_email' });
     const emx = await hasMx(emailDomain);
     if (emx === false) return json({ ok: false, reason: 'email_domain_dead' });
+
+    /* Only reached once DNS says the domain is real, so junk never costs a
+       verification credit. */
+    const verdict = await mailboxVerdict(env, email);
+    if (verdict === 'invalid')    return json({ ok: false, reason: 'mailbox_invalid' });
+    if (verdict === 'disposable') return json({ ok: false, reason: 'mailbox_disposable' });
   }
 
   // true or null (unknown) both pass
