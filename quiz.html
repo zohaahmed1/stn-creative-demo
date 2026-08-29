@@ -208,7 +208,7 @@ input:focus{border-color:var(--rd)}
   <!-- 1 · INPUT ------------------------------------------------------------ -->
   <section id="s1"><div class="split">
     <h1>What would Reddit cost you per lead?</h1>
-    <p class="sub">One tap, about ten seconds. You get the cost per lead from our own accounts, the communities your buyers are in, and what a 90-day test would run &mdash; before we ask you for anything.</p>
+    <p class="sub">You get the cost per lead from our own accounts, the communities your buyers are in, and when you would know if it is working. All of it before we ask for your email.</p>
     <aside class="proof">
       <figure>
         <img src="/reddit-ama/ZohaAhmedAMA.webp" alt="Official Reddit AMA in r/redditforbusiness, hosted by Zoha Ahmed, co-founder" loading="eager" decoding="async" width="540" height="540">
@@ -273,7 +273,7 @@ input:focus{border-color:var(--rd)}
       <div class="f">
         <input id="g-site" type="text" inputmode="url" autocomplete="url" placeholder="yourcompany.com">
         <input id="g-email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com">
-        <button class="btn" id="g-send">Send it &rarr;</button>
+        <button class="btn" id="g-send">Send me my plan &rarr;</button>
       </div>
       <p class="err" id="g-err"></p>
       <p class="fine">Work email so we can look up your category. We email once and add you to nothing.</p>
@@ -404,11 +404,14 @@ function renderQ(){
     $('q-opts').innerHTML=q.a.map((a,i)=>`<button class="opt" data-i="${i}">${a}</button>`).join('');
   }
 }
+let SEND_LABEL = 'Send me my plan \u2192';
 function next(){
   if(++qi<QS.length){renderQ();window.scrollTo(0,0);}
   else{
     const big=answers.size!=='Under $5M ARR';
     $('g-head').textContent = big ? 'Where should we send it?' : 'Where should we send the list?';
+    SEND_LABEL = big ? 'Send me my plan \u2192' : 'Send me the list \u2192';
+    $('g-send').textContent = SEND_LABEL;
     $('g-sub').textContent  = big
       ? 'The costed 90-day plan for your category, plus three Reddit ads written for those communities.'
       : 'The full subreddit list for your category, plus our 2026 benchmarks.';
@@ -440,7 +443,7 @@ $('g-send').onclick=async function(){
       body:JSON.stringify({site:clean,email})});
     if(r.ok){const d=await r.json(); ok=d.ok!==false; reason=d.reason;}
   }catch(_){}
-  if(!ok){this.disabled=false;this.textContent='Send it \u2192';err.textContent=MSG[reason]||MSG.no_such_domain;
+  if(!ok){this.disabled=false;this.textContent=SEND_LABEL;err.textContent=MSG[reason]||MSG.no_such_domain;
     dl({event:'v3_rejected',reason});return;}
   fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({kind:'email',email,site:clean,status:answers.size==='Under $5M ARR'?'under-5m-arr':'qualified',
@@ -449,7 +452,7 @@ $('g-send').onclick=async function(){
   const big=answers.size!=='Under $5M ARR';
   $('d-head').textContent = big ? 'Sent. Now let\u2019s look at it together.' : 'Sent \u2014 check your inbox.';
   $('d-sub').textContent  = big
-    ? 'Your plan is on its way. The three ads follow within five business days. Book 20 minutes and we will walk through what the test costs, what it should return, and how you would know by day 45 whether to kill it.'
+    ? 'Your plan is on its way. The three ads follow within five business days. Book 20 minutes and we will walk through what the test costs, what it should return, and how you would know by day 45 whether to kill it. If we do not think Reddit is a fit for you, we will say so.'
     : 'Your subreddit list and our 2026 benchmarks are on their way.';
   $('d-cta').innerHTML = big
     ? '<button class="btn" data-cal-namespace="quiz" data-cal-link="skipthenoise/30min">Book 20 minutes &rarr;</button>'
