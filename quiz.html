@@ -1,967 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  
-  
-  <meta charset="utf-8">
-  <meta name="robots" content="noindex, follow">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>See the Reddit Threads Comparing Your SaaS | Skip the Noise Media</title>
-  <meta name="description" content="Answer four questions. We will find real Reddit threads where your category is being compared, then write three ads built to show up in them. Free and yours to keep. From a Reddit Certified Partner.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://skipthenoisemedia.com/quiz">
-  <meta property="og:title" content="See the Reddit Threads Comparing Your SaaS">
-  <meta property="og:description" content="Four questions, about 60 seconds. Real threads where your buyers compare you, plus three ads built to show up in them.">
-  <meta property="og:image" content="https://skipthenoisemedia.com/assets/og-image.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="See the Reddit Threads Comparing Your SaaS">
-  <meta name="twitter:description" content="Four questions, about 60 seconds. Real threads where your buyers compare you, plus three ads built to show up in them.">
-  <meta name="twitter:image" content="https://skipthenoisemedia.com/assets/og-image.png">
+<!-- quiz-v3 · instrument, not brochure -->
+<title>What Would Reddit Ads Cost You Per Lead? | Skip the Noise Media</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Pick your category and see the subreddits your buyers are in, the cost per lead from our own Reddit accounts, and what a 90-day test would run. No email to see it.">
   <link rel="canonical" href="https://skipthenoisemedia.com/quiz">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700&display=swap"></noscript>
-  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.simpleicons.org" crossorigin>
-  <link rel="preconnect" href="https://www.google.com" crossorigin>
-  <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet">
-  </noscript>
-  <style>
-    :root {
-      --dark: #080808;
-      --dark-alt: #0c0c0c;
-      --blue: #5500dd;
-      --orange: #ee0033;
-      --yellow: #ff6b35;
-      --white: #fff;
-      --bg: #faf9f7;
-      --gray-50: #f7f7f7;
-      --gray-100: #ececec;
-      --gray-200: #dcdcdc;
-      --gray-300: #a8a8a8;
-      --gray-400: #444;
-      --navy: #19213d;
-      --font: "Satoshi", system-ui, sans-serif;
-      --wdth: 125;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 18px; -webkit-font-smoothing: antialiased; scroll-behavior: smooth; scroll-padding-top: 100px; scrollbar-width: none; }
-    html::-webkit-scrollbar { display: none; }
-    body {
-      font-family: var(--font);
-      font-variation-settings: "wdth" var(--wdth);
-      color: var(--navy);
-      background: var(--bg);
-      line-height: 1.5;
-      overflow-x: hidden;
-    }
-    img { display: block; max-width: 100%; }
-    a { text-decoration: none; color: inherit; }
-
-    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    @media (max-width: 809px) { .container { padding: 0 16px; } }
-
-    /* ============================
-       NAV
-       ============================ */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(250, 249, 247, 0.85);
-      backdrop-filter: blur(20px) saturate(1.3);
-      -webkit-backdrop-filter: blur(20px) saturate(1.3);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .nav.scrolled {
-      top: 12px; left: 24px; right: 24px;
-      background: rgba(255,255,255,0.82);
-      backdrop-filter: blur(24px) saturate(1.5);
-      -webkit-backdrop-filter: blur(24px) saturate(1.5);
-      border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
-      border: 1px solid rgba(0,0,0,0.06);
-    }
-    .nav-inner {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 14px 24px;
-      transition: padding 0.4s ease;
-    }
-    .nav.scrolled .nav-inner { padding: 8px 24px; }
-    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 20px; font-variation-settings: "wdth" 125, "wght" 800; text-decoration: none; }
-    .nav-logo .logo-skip { color: #191923; }
-    .nav-logo .logo-noise { background: linear-gradient(90deg, #5500dd, #cc0000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-    .nav-links { display: flex; align-items: center; gap: 2px; }
-    .nav-link {
-      font-size: 14px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 500;
-      padding: 7px 14px;
-      border-radius: 100px;
-      transition: background 0.2s, color 0.2s;
-      color: #555;
-    }
-    .nav-link:hover { background: rgba(0,0,0,0.05); color: var(--navy); }
-    .nav-link.active { color: var(--navy); font-variation-settings: "wdth" var(--wdth), "wght" 600; }
-    .nav-right { display: flex; align-items: center; gap: 8px; }
-    .hamburger { display: none; width: 40px; height: 40px; background: rgba(0,0,0,0.06); border: none; border-radius: 8px; flex-direction: column; justify-content: center; align-items: center; gap: 5px; cursor: pointer; transition: background 0.2s; }
-    .hamburger:hover { background: rgba(0,0,0,0.1); }
-    .hamburger span { display: block; width: 18px; height: 2px; background: #191923; border-radius: 2px; transition: all 0.25s; }
-    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { transform: translateY(-7px) rotate(-45deg); }
-    @media (max-width: 1199px) { .nav-links, .nav-right { display: none; } .hamburger { display: flex; } }
-    .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99; background: rgba(255,255,255,0.97); backdrop-filter: blur(20px); flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu-link { font-size: 28px; font-variation-settings: "wdth" 125, "wght" 800; color: #0a0a0a; text-decoration: none; padding: 10px 24px; border-radius: 12px; transition: background 0.15s; letter-spacing: -0.02em; }
-    .mobile-menu-link:hover { background: rgba(0,0,0,0.05); }
-    .mobile-menu-cta { margin-top: 24px; display: inline-block; background: #5500DD; color: white; font-size: 16px; font-variation-settings: "wdth" 125, "wght" 700; padding: 14px 32px; border-radius: 100px; text-decoration: none; }
-
-    /* ============================
-       SCROLL ANIMATIONS
-       ============================ */
-    [data-anim] {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    [data-anim].visible { opacity: 1; transform: none; }
-    [data-delay="1"] { transition-delay: 0.1s; }
-    [data-delay="2"] { transition-delay: 0.2s; }
-    [data-delay="3"] { transition-delay: 0.3s; }
-    [data-delay="4"] { transition-delay: 0.4s; }
-    [data-delay="5"] { transition-delay: 0.5s; }
-
-    /* ============================
-       SECTION LABELS
-       ============================ */
-    .section-label {
-      display: inline-block;
-      font-size: 11px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gray-300);
-      margin-bottom: 16px;
-    }
-    .section-label-white { color: rgba(255,255,255,0.5); }
-
-    /* ============================
-       SHARED HEADING STYLES
-       ============================ */
-    .heading-bold {
-      display: block;
-      font-family: "Satoshi", system-ui, sans-serif;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      font-size: clamp(36px, 4.5vw, 62px);
-      line-height: 1.05;
-    }
-    .heading-italic {
-      display: block;
-      font-family: "Playfair Display", Georgia, serif;
-      font-style: italic;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      font-size: clamp(34px, 4.2vw, 58px);
-      line-height: 1.1;
-    }
-
-    /* ============================
-       SECTION 1: HERO
-       ============================ */
-    .hero {
-      background: #ffffff;
-      padding: 120px 24px 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 50%;
-      transform: translateX(-50%);
-      width: 1200px; height: 560px;
-      background: radial-gradient(ellipse 520px 360px at 28% 45%, rgba(85,0,221,0.16) 0%, transparent 60%), radial-gradient(ellipse 420px 320px at 72% 58%, rgba(238,0,51,0.12) 0%, transparent 62%);
-      pointer-events: none;
-    }
-    .hero-content { position: relative; z-index: 1; }
-    .partner-badge {
-      display: inline-block;
-      background: #5500dd;
-      color: #fff;
-      font-size: 13px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 600;
-      padding: 8px 20px;
-      border-radius: 100px;
-      margin-bottom: 28px;
-    }
-    .hero-cta-btn {
-      display: inline-block;
-      background: #5500DD;
-      color: white;
-      font-family: var(--font);
-      font-size: 16px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 700;
-      padding: 14px 32px;
-      border-radius: 100px;
-      text-decoration: none;
-      transition: opacity 0.2s, transform 0.2s;
-      margin-top: 32px;
-    }
-    .hero-cta-btn:hover { opacity: 0.88; transform: translateY(-2px); }
-    .hero-micro {
-      margin-top: 12px;
-      font-size: 13px;
-      color: #9ca3af;
-      font-variation-settings: "wdth" var(--wdth), "wght" 500;
-    }
-    .hero-h1 { margin: 0 0 20px; }
-    .hero-proof {
-      display: flex; justify-content: center; align-items: center;
-      gap: 0; flex-wrap: wrap; margin: 34px auto 0; max-width: 780px;
-    }
-    .hero-proof .hp {
-      padding: 0 28px; text-align: center;
-    }
-    .hero-proof .hp + .hp { border-left: 1px solid rgba(0,0,0,0.12); }
-    .hero-proof .hp-n {
-      display: block; font-size: 30px; color: #0a0a0a;
-      font-variation-settings: "wdth" var(--wdth), "wght" 800; letter-spacing: -0.03em;
-    }
-    .hero-proof .hp-l {
-      display: block; font-size: 12px; margin-top: 4px;
-      color: #6b7280;
-      font-variation-settings: "wdth" var(--wdth), "wght" 600;
-      text-transform: uppercase; letter-spacing: 0.06em;
-    }
-    .hero-secondary {
-      display: inline-block; margin-left: 18px; font-size: 14px;
-      color: #6b7280; text-decoration: underline;
-      text-underline-offset: 3px; transition: color 0.2s;
-      font-variation-settings: "wdth" var(--wdth), "wght" 600;
-    }
-    .hero-secondary:hover { color: #0a0a0a; }
-    /* creative proof strip */
-    .hero-strip { margin-top: 56px; width: calc(100% + 48px); margin-left: -24px; margin-right: -24px; overflow: hidden; background: #080808; padding: 40px 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
-    .hero-strip-track { display: flex; gap: 14px; width: max-content; animation: stripScroll 46s linear infinite; }
-    .hero-strip img { height: 190px; width: auto; border-radius: 12px; display: block; object-fit: cover; }
-    @keyframes stripScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    @media (prefers-reduced-motion: reduce) { .hero-strip-track { animation: none; } }
-    @media (max-width: 768px) {
-      .hero-proof .hp { padding: 8px 16px; }
-      .hero-proof .hp + .hp { border-left: none; }
-      .hero-strip img { height: 130px; }
-      .hero-secondary { display: block; margin: 14px 0 0; }
-    }
-
-    /* ============================
-       SECTION 2: WHO IT'S FOR
-       ============================ */
-    .who-section {
-      background: var(--white);
-      padding: 100px 24px;
-    }
-    .who-cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-top: 48px;
-    }
-    .who-card {
-      border-radius: 24px;
-      padding: 40px 36px;
-      background: var(--gray-50);
-      border: 1px solid var(--gray-100);
-      position: relative;
-      overflow: hidden;
-    }
-    .who-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-    }
-    .who-card-dtc::before { background: #ee0033; }
-    .who-card-saas::before { background: #5500dd; }
-
-    .who-tag {
-      display: inline-block;
-      font-size: 12px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 700;
-      padding: 5px 14px;
-      border-radius: 100px;
-      margin-bottom: 20px;
-    }
-    .tag-orange { background: rgba(238,0,51,0.1); color: #ee0033; }
-    .tag-purple { background: rgba(85,0,221,0.1); color: #5500dd; }
-
-    .who-card h3 {
-      font-size: clamp(20px, 1.8vw, 26px);
-      font-variation-settings: "wdth" var(--wdth), "wght" 800;
-      line-height: 1.2;
-      color: #0d0d0d;
-      margin-bottom: 14px;
-    }
-    .who-card p {
-      font-size: 15px;
-      color: var(--gray-400);
-      line-height: 1.65;
-      margin-bottom: 28px;
-    }
-    .bullet-list {
-      list-style: none;
-      display: flex; flex-direction: column; gap: 10px;
-      margin-bottom: 36px;
-    }
-    .bullet-list li {
-      display: flex; align-items: flex-start; gap: 10px;
-      font-size: 14px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 500;
-      color: #333;
-      line-height: 1.5;
-    }
-    .bullet-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      flex-shrink: 0; margin-top: 5px;
-    }
-    .dot-orange { background: #ee0033; }
-    .dot-purple { background: #5500dd; }
-
-    .proof-stat-row {
-      padding-top: 28px;
-      border-top: 1px solid var(--gray-100);
-      display: flex; align-items: baseline; gap: 8px;
-    }
-    .proof-num {
-      font-size: 48px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 900;
-      letter-spacing: -0.03em;
-      line-height: 1;
-    }
-    .proof-num-orange { color: #ee0033; }
-    .proof-num-purple { color: #5500dd; }
-    .proof-label {
-      font-size: 13px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 600;
-      color: var(--gray-300);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    @media (max-width: 768px) {
-      .who-cards { grid-template-columns: 1fr; }
-    }
-
-    /* ============================
-       SECTION 3: OUTCOMES
-       ============================ */
-    .outcomes-section {
-      background: #0f0525;
-      padding: 100px 24px;
-      position: relative;
-      overflow: hidden;
-    }
-    .outcomes-section::before {
-      content: '';
-      position: absolute;
-      bottom: -100px; right: -100px;
-      width: 500px; height: 500px;
-      background: radial-gradient(ellipse at center, rgba(85,0,221,0.2) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .outcomes-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-top: 56px;
-      position: relative; z-index: 1;
-    }
-    .outcome-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 20px;
-      padding: 36px 32px;
-      transition: background 0.3s, border-color 0.3s;
-    }
-    .outcome-card:hover {
-      background: rgba(255,255,255,0.09);
-      border-color: rgba(85,0,221,0.4);
-    }
-    .outcome-icon {
-      width: 48px; height: 48px;
-      background: rgba(85,0,221,0.2);
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 20px;
-      font-size: 22px;
-    }
-    .outcome-card h4 {
-      font-size: clamp(18px, 1.5vw, 22px);
-      font-variation-settings: "wdth" var(--wdth), "wght" 800;
-      color: #fff;
-      margin-bottom: 10px;
-      line-height: 1.25;
-    }
-    .outcome-card p {
-      font-size: 15px;
-      color: rgba(255,255,255,0.55);
-      line-height: 1.65;
-    }
-
-    @media (max-width: 768px) {
-      .outcomes-grid { grid-template-columns: 1fr; }
-    }
-
-    /* ============================
-       SECTION 4: HOW IT WORKS
-       ============================ */
-    .process-section {
-      background: var(--white);
-      padding: 100px 24px;
-    }
-    .timeline {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      margin-top: 64px;
-      position: relative;
-    }
-    .timeline-step {
-      display: flex; flex-direction: column; align-items: center; text-align: center;
-      position: relative;
-      padding: 0 16px;
-    }
-    /* Connecting dashed line between circles */
-    .timeline-step:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      top: 28px; left: calc(50% + 28px); right: calc(-50% + 28px);
-      height: 2px;
-      border-top: 2px dashed var(--gray-200);
-    }
-    .step-circle {
-      width: 56px; height: 56px;
-      background: var(--blue);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 800;
-      color: #fff;
-      flex-shrink: 0;
-      margin-bottom: 20px;
-      position: relative; z-index: 1;
-    }
-    .step-week {
-      font-size: 10px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gray-300);
-      margin-bottom: 6px;
-    }
-    .step-sub {
-      font-size: 13px; color: #8b90a0; margin-top: 3px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 500;
-    }
-    .step-title {
-      font-size: 17px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 800;
-      color: #0d0d0d;
-      margin-bottom: 8px;
-      line-height: 1.25;
-    }
-    .step-body {
-      font-size: 14px;
-      color: var(--gray-400);
-      line-height: 1.6;
-    }
-
-    @media (max-width: 768px) {
-      .timeline { grid-template-columns: 1fr; gap: 40px; }
-      .timeline-step:not(:last-child)::after { display: none; }
-    }
-
-    /* ============================
-       SECTION 5: PROOF
-       ============================ */
-    .proof-section {
-      background: #f7f6f4;
-      padding: 100px 24px;
-    }
-    .stats-row {
-      display: flex;
-      justify-content: center;
-      gap: 64px;
-      flex-wrap: wrap;
-      margin-top: 56px;
-      margin-bottom: 64px;
-    }
-    .stat-block { text-align: center; }
-    .stat-number {
-      font-size: clamp(44px, 4vw, 64px);
-      font-variation-settings: "wdth" var(--wdth), "wght" 900;
-      letter-spacing: -0.04em;
-      line-height: 1;
-      background: linear-gradient(135deg, #5500dd, #cc0022);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 6px;
-    }
-    .stat-desc {
-      font-size: 13px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 600;
-      color: var(--gray-300);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    .testimonial-card {
-      max-width: 720px; margin: 0 auto;
-      background: #fff;
-      border-radius: 24px;
-      padding: 44px 48px;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
-      border: 1px solid var(--gray-100);
-    }
-    .testimonial-quote {
-      font-family: "Playfair Display", Georgia, serif;
-      font-style: italic;
-      font-size: clamp(18px, 1.6vw, 22px);
-      color: #0d0d0d;
-      line-height: 1.6;
-      margin-bottom: 28px;
-    }
-    .testimonial-footer {
-      display: flex; align-items: center; gap: 16px;
-    }
-    .testimonial-attr {
-      font-size: 14px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 600;
-      color: var(--gray-400);
-    }
-    .reddit-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(85,0,221,0.08);
-      border: 1px solid rgba(85,0,221,0.2);
-      color: var(--blue);
-      font-size: 11px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 5px 12px;
-      border-radius: 100px;
-    }
-
-    @media (max-width: 768px) {
-      .stats-row { gap: 32px; }
-      .testimonial-card { padding: 28px 24px; }
-      .testimonial-footer { flex-direction: column; align-items: flex-start; gap: 8px; }
-    }
-
-    /* ============================
-       SECTION 6: FAQ
-       ============================ */
-    .faq-section {
-      background: var(--white);
-      padding: 100px 24px;
-    }
-    .faq-list {
-      max-width: 760px;
-      margin: 56px auto 0;
-    }
-    .faq-item {
-      border-bottom: 1px solid var(--gray-100);
-      padding-left: 20px;
-      overflow: hidden;
-    }
-    .faq-item:nth-child(odd)  { border-left: 3px solid var(--blue); }
-    .faq-item:nth-child(even) { border-left: 3px solid var(--orange); }
-    .faq-q {
-      width: 100%;
-      background: none;
-      border: none;
-      text-align: left;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      padding: 24px 0;
-      font-family: var(--font);
-      font-size: 16px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 700;
-      color: #0d0d0d;
-      line-height: 1.3;
-    }
-    .faq-icon {
-      width: 32px; height: 32px; flex-shrink: 0;
-      border: 2px solid var(--blue);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 20px; font-weight: 300; color: var(--blue);
-      transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
-    }
-    .faq-item.open .faq-icon {
-      background: var(--blue);
-      color: #fff;
-      transform: rotate(45deg);
-    }
-    .faq-a {
-      max-height: 0; overflow: hidden;
-      transition: max-height 0.35s ease, padding 0.35s ease;
-      font-size: 15px;
-      color: var(--gray-400);
-      line-height: 1.65;
-      padding: 0 0 0;
-    }
-    .faq-item.open .faq-a {
-      max-height: 200px;
-      padding: 0 0 24px;
-    }
-
-    /* ============================
-       SECTION 2: WHICH ONE ARE YOU (editorial split)
-       ============================ */
-    .split-section { background: var(--white); padding: 100px 0 0; }
-    .split-section .container { padding-bottom: 8px; }
-    .split-wrap { display: grid; grid-template-columns: 1fr 1fr; margin-top: 48px; }
-    .split-half {
-      display: block; text-decoration: none; color: inherit;
-      padding: 64px clamp(28px, 4vw, 72px) 68px;
-      border-top: 1px solid rgba(0,0,0,0.08);
-      transition: background 0.25s;
-      position: relative;
-    }
-    .split-half.dtc  { background: #fdf7f8; }
-    .split-half.saas { background: #f8f7fd; border-left: 1px solid rgba(0,0,0,0.06); }
-    .split-half.dtc:hover  { background: #fbeef1; }
-    .split-half.saas:hover { background: #f2effc; }
-    .split-kicker {
-      display: block; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
-      font-variation-settings: "wdth" var(--wdth), "wght" 700; margin-bottom: 22px;
-    }
-    .split-half.dtc  .split-kicker { color: #c2183a; }
-    .split-half.saas .split-kicker { color: #5500dd; }
-    .split-half h3 {
-      font-size: clamp(24px, 2.4vw, 34px); line-height: 1.18; letter-spacing: -0.03em;
-      color: #0d0d0d; margin: 0 0 18px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 800;
-    }
-    .split-half > p { font-size: 16.5px; line-height: 1.7; color: #4b5563; margin: 0 0 32px; max-width: 46ch; }
-    .split-stat { display: flex; align-items: baseline; gap: 12px; padding-top: 26px; border-top: 1px solid rgba(0,0,0,0.09); }
-    .split-stat strong {
-      font-size: clamp(38px, 4vw, 54px); line-height: 1; letter-spacing: -0.04em;
-      font-variation-settings: "wdth" var(--wdth), "wght" 800;
-    }
-    .split-half.dtc  .split-stat strong { color: #ee0033; }
-    .split-half.saas .split-stat strong { color: #5500dd; }
-    .split-stat span { font-size: 12.5px; letter-spacing: 0.06em; text-transform: uppercase; color: #6b7280; font-variation-settings: "wdth" var(--wdth), "wght" 600; }
-    .split-go {
-      display: block; margin-top: 30px; font-size: 15px; text-decoration: none;
-      font-variation-settings: "wdth" var(--wdth), "wght" 700; color: #0d0d0d;
-      position: relative; z-index: 1; width: fit-content;
-    }
-    /* stretch the primary link across the whole block (valid: no nested <a>) */
-    .split-go::after { content: ''; position: absolute; inset: 0; z-index: 0; }
-    .split-half:hover .split-go { text-decoration: underline; text-underline-offset: 4px; }
-    .split-half:focus-within { outline: 2px solid #5500dd; outline-offset: -3px; }
-    .split-alt { display: block; margin-top: 12px; font-size: 13.5px; color: #8b90a0; position: relative; z-index: 2; width: fit-content; }
-    .split-alt a { color: #6b7280; text-decoration: underline; text-underline-offset: 3px; }
-    @media (max-width: 860px) {
-      .split-wrap { grid-template-columns: 1fr; }
-      .split-half.saas { border-left: none; }
-      .split-half { padding: 48px 24px 54px; }
-    }
-
-    /* ============================
-       SECTION 6b: FIT + ROUTING + CHART
-       ============================ */
-    .fit-section { background: var(--white); padding: 100px 24px; }
-    .fit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
-    .fit-card { border-radius: 20px; padding: 36px 34px; }
-    .fit-card.yes { background: #f2f7f3; border: 1.5px solid #cfe3d6; }
-    .fit-card.no  { background: #f8f7f7; border: 1.5px solid #e4e2e2; }
-    .fit-card h3 { font-size: 20px; margin: 0 0 22px; font-variation-settings: "wdth" var(--wdth), "wght" 800; letter-spacing: -0.02em; }
-    .fit-card.yes h3 { color: #1f7a4f; }
-    .fit-card.no h3 { color: #6b6b6b; }
-    .fit-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px; }
-    .fit-list li { position: relative; padding-left: 30px; font-size: 16px; line-height: 1.6; color: #2b2f38; }
-    .fit-list li::before { position: absolute; left: 0; top: -1px; font-size: 17px; font-weight: 700; }
-    .fit-card.yes .fit-list li::before { content: '✓'; color: #1f7a4f; }
-    .fit-card.no .fit-list li::before { content: '—'; color: #a8a8a8; }
-    /* creative-volume chart */
-    .vol-row { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin-top: 72px; padding-top: 56px; border-top: 1px solid rgba(0,0,0,0.1); }
-    .vol-copy h4 { font-size: clamp(22px,2vw,30px); color: #0d0d0d; margin: 0 0 14px; font-variation-settings: "wdth" var(--wdth), "wght" 800; letter-spacing: -0.025em; line-height: 1.2; }
-    .vol-copy p { font-size: 16px; line-height: 1.7; color: #4b5563; margin: 0; }
-    .vol-chart { display: flex; align-items: flex-end; gap: 26px; justify-content: center; height: 210px; }
-    .vol-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
-    .vol-bar { width: 120px; border-radius: 10px 10px 0 0; display: flex; align-items: flex-start; justify-content: center; padding-top: 10px; color: #fff; font-size: 15px; font-variation-settings: "wdth" var(--wdth), "wght" 800; }
-    .vol-bar.them { background: #e7e5ea; color: #5b6070; }
-    .vol-bar.us { background: linear-gradient(180deg,#7c3aed,#5500dd); }
-    .vol-lab { margin-top: 12px; font-size: 13px; color: #6b7280; font-variation-settings: "wdth" var(--wdth), "wght" 600; text-align: center; line-height: 1.35; }
-    /* routing to service pages */
-    .route-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 48px; }
-    .route-card { display: block; padding: 26px 24px; border: 1.5px solid #e5e5ea; border-radius: 16px; text-decoration: none; color: inherit; background: #fff; transition: transform .2s, box-shadow .2s, border-color .2s; }
-    .route-card:hover { transform: translateY(-4px); box-shadow: 0 16px 36px -20px rgba(20,10,60,.3); border-color: rgba(85,0,221,.35); }
-    .route-card .rt { font-size: 17px; font-variation-settings: "wdth" var(--wdth), "wght" 800; letter-spacing: -0.02em; margin-bottom: 8px; }
-    .route-card .rd { font-size: 14px; color: #6b7280; line-height: 1.5; }
-    .route-card .rl { font-size: 13px; color: #5500dd; font-variation-settings: "wdth" var(--wdth), "wght" 700; margin-top: 14px; display: block; }
-    @media (max-width: 900px) { .route-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 768px) {
-      .fit-grid { grid-template-columns: 1fr; }
-      .route-grid { grid-template-columns: 1fr; }
-      .vol-row { grid-template-columns: 1fr; gap: 32px; }
-      .vol-chart { gap: 20px; }
-      .vol-bar { width: 70px; }
-    }
-
-    /* ============================
-       SECTION 7: CTA STRIP
-       ============================ */
-    .cta-strip {
-      background: #080808;
-      padding: 120px 24px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .cta-strip::before {
-      content: '';
-      position: absolute;
-      top: -50px; left: 50%;
-      transform: translateX(-50%);
-      width: 600px; height: 400px;
-      background: radial-gradient(ellipse at center, rgba(85,0,221,0.18) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .cta-strip-content { position: relative; z-index: 1; }
-    .cta-strip-btn {
-      display: inline-block;
-      background: #5500DD;
-      color: white;
-      font-family: var(--font);
-      font-size: 16px;
-      font-variation-settings: "wdth" var(--wdth), "wght" 700;
-      padding: 16px 36px;
-      border-radius: 100px;
-      text-decoration: none;
-      margin-top: 36px;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-    .cta-strip-btn:hover { opacity: 0.88; transform: translateY(-2px); }
-    .cta-strip-email {
-      margin-top: 16px;
-      font-size: 14px;
-      color: rgba(255,255,255,0.35);
-    }
-    .cta-strip-email a {
-      color: rgba(255,255,255,0.5);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    .cta-strip-email a:hover { color: rgba(255,255,255,0.8); }
-
-    /* ============================
-       FOOTER
-       ============================ */
-    .footer {
-      background: var(--dark);
-      padding: 80px 0 48px;
-    }
-    .footer-top {
-      display: flex; flex-direction: column; align-items: center; gap: 16px;
-      padding-bottom: 64px; text-align: center;
-    }
-    .footer a { text-decoration: none; }
-
-    /* Cal.com booking modal — hidden until .open class added */
-    .cal-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; }
-    .cal-modal.open { display: flex; }
-    .cal-modal-content { background: white; border-radius: 12px; width: 90%; max-width: 600px; max-height: 90vh; overflow: auto; position: relative; }
-    .cal-modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; z-index: 1000; }
-  </style>
-<style>
-  .q-wrap{min-height:100vh;background:#fff;display:flex;align-items:center;justify-content:center;padding:80px 24px 60px;position:relative;overflow:hidden;}
-  .q-wrap::before{content:'';position:absolute;top:-160px;left:50%;transform:translateX(-50%);width:1100px;height:620px;
-    background:radial-gradient(ellipse at center,rgba(85,0,221,.13) 0%,rgba(238,0,51,.06) 48%,transparent 74%);pointer-events:none;}
-  .q-inner{position:relative;width:100%;max-width:760px;}
-  .q-kicker{display:inline-block;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:#5500dd;
-    background:rgba(85,0,221,.07);border:1px solid rgba(85,0,221,.2);border-radius:100px;padding:6px 15px;margin-bottom:22px;
-    font-variation-settings:"wdth" var(--wdth),"wght" 700;}
-  .q-card{background:#fff;border:1px solid rgba(0,0,0,.09);border-radius:22px;padding:44px 46px 40px;
-    box-shadow:0 30px 70px -40px rgba(20,10,60,.3);}
-  .q-q{font-size:clamp(21px,2.3vw,28px);letter-spacing:-.025em;line-height:1.28;color:#0d0d0d;margin:0 0 30px;
-    font-variation-settings:"wdth" var(--wdth),"wght" 800;}
-  .q-opts{display:flex;flex-direction:column;gap:12px;}
-  .q-opt{display:flex;align-items:center;gap:16px;width:100%;text-align:left;background:#fff;
-    border:1.5px solid rgba(0,0,0,.1);border-radius:14px;padding:17px 20px;cursor:pointer;
-    font-family:var(--font);font-size:16.5px;color:#1a1d24;transition:border-color .16s,background .16s,transform .16s;}
-  .q-opt:hover{border-color:#5500dd;background:rgba(85,0,221,.03);transform:translateX(3px);}
-  .q-letter{flex-shrink:0;width:34px;height:34px;border-radius:9px;background:#f2f2f5;color:#5b6070;
-    display:flex;align-items:center;justify-content:center;font-size:14px;
-    font-variation-settings:"wdth" var(--wdth),"wght" 700;transition:background .16s,color .16s;}
-  .q-opt:hover .q-letter{background:#5500dd;color:#fff;}
-  .q-dots{display:flex;gap:7px;justify-content:center;margin-top:30px;}
-  .q-dot{width:9px;height:9px;border-radius:100px;background:#dcdce2;transition:all .25s;}
-  .q-dot.on{background:#0d0d0d;width:26px;}
-  .q-dot.done{background:#5500dd;}
-  .q-back{display:block;margin:20px auto 0;background:none;border:none;color:#8b90a0;font-size:13.5px;
-    cursor:pointer;font-family:var(--font);font-weight:600;}
-  .q-back:hover{color:#0d0d0d;}
-  /* hook screen */
-  .hook{max-width:560px;margin:0 auto;text-align:center;}
-  .hook-k{display:inline-flex;align-items:center;gap:7px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;
-    color:#cc3300;font-variation-settings:"wdth" var(--wdth),"wght" 800;margin-bottom:20px;}
-  .hook-k svg{display:block;}
-  .hook h1{font-size:clamp(27px,5.2vw,44px);line-height:1.08;letter-spacing:-.035em;color:#0d0d0d;margin:0 0 18px;
-    font-variation-settings:"wdth" var(--wdth),"wght" 900;text-wrap:balance;}
-  .hook h1 em{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:700;font-variation-settings:normal;
-    background:linear-gradient(135deg,#7c3aed,#db2777);-webkit-background-clip:text;background-clip:text;color:transparent;}
-  .hook p.sub{font-size:18px;line-height:1.6;color:#444;margin:0 0 26px;}
-  .hook-cta{display:inline-block;background:#5500DD;color:#fff;font-size:15px;padding:15px 30px;border:none;border-radius:100px;
-    cursor:pointer;font-family:var(--font);font-variation-settings:"wdth" var(--wdth),"wght" 700;transition:opacity .2s,transform .2s;}
-  .hook-cta:hover{opacity:.9;transform:translateY(-2px);}
-  .hook-micro{font-size:13.5px;color:#8b90a0;margin:13px 0 0;line-height:1.5;}
-  /* 1.07 pages/session: someone not ready for a 60-second commitment had
-     nowhere to go, so 93% left with nothing captured. A text link, never a
-     second button — a competing button costs more starts than it saves. */
-  .hook-alt{font-size:13.5px;color:#8b90a0;margin:16px 0 0;line-height:1.55;
-    padding-top:15px;border-top:1px solid rgba(0,0,0,.07);}
-  .hook-alt a{color:#5500dd;text-decoration:underline;text-underline-offset:2px;
-    font-variation-settings:"wdth" var(--wdth),"wght" 700;}
-  .hook-alt a:hover{opacity:.8;}
-  /* Every piece of proof used to sit BELOW the CTA, so the decision was made
-     before any evidence arrived. This is the one third-party credential we
-     have — Reddit's own subreddit — so it goes above the ask. Kept to a strip
-     rather than the full card because the mobile fold is ~550px. */
-  .hook-ama{display:flex;align-items:center;gap:13px;margin:0 0 22px;padding:13px 18px;
-    background:rgba(255,69,0,.07);border:1.5px solid rgba(255,69,0,.28);border-radius:16px;}
-  .hook-ama{width:100%;cursor:pointer;font-family:var(--font);-webkit-tap-highlight-color:transparent;}
-  .hook-ama:hover,.hook-ama:focus-visible{background:rgba(255,69,0,.1);}
-  .hook-ama .mark{width:38px;height:38px;flex:none;display:block;}
-  .hook-ama .mark svg{width:100%;height:100%;display:block;}
-  .hook-ama .t{font-size:15px;line-height:1.4;color:#2b2f38;text-align:left;}
-  .hook-ama .t b{font-variation-settings:"wdth" var(--wdth),"wght" 800;}
-  .hook-ama .t span{color:#8b90a0;font-size:13.5px;}
-  .hook-ama .t u{text-decoration:none;color:#FF4500;font-variation-settings:"wdth" var(--wdth),"wght" 700;}
-  @media(max-width:560px){
-    .hook-ama{gap:11px;padding:12px 14px;}
-    .hook-ama .mark{width:34px;height:34px;}
-    .hook-ama .t{font-size:14px;}
-    .hook-ama .t span{font-size:12.5px;}
-  }
-  .hook-proof{display:flex;gap:0;flex-wrap:wrap;margin:32px 0 0;padding-top:26px;border-top:1px solid rgba(0,0,0,.1);}
-  .hook-proof .hp{padding-right:26px;margin-right:26px;border-right:1px solid rgba(0,0,0,.1);}
-  .hook-proof .hp:last-child{border-right:none;padding-right:0;margin-right:0;}
-  .hook-proof .n{display:block;font-size:24px;color:#0d0d0d;letter-spacing:-.03em;font-variation-settings:"wdth" var(--wdth),"wght" 800;}
-  .hook-proof .l{display:block;font-size:11.5px;color:#6b7280;margin-top:3px;text-transform:uppercase;letter-spacing:.05em;
-    font-variation-settings:"wdth" var(--wdth),"wght" 600;}
-  .hook-ads{display:flex;gap:10px;margin:30px 0 0;}
-  .hook-ads img{width:calc(50% - 5px);aspect-ratio:1/1;object-fit:cover;border-radius:11px;display:block;}
-  .hook-ads-cap{font-size:12.5px;color:#8b90a0;margin:10px 0 0;}
-  /* Clarity, 5 days mobile: 4 of 30 taps hit the thumbnails and the kicker,
-     both of which did nothing. Tapping an example ad is a high-intent gesture
-     — the page was dead-ending exactly the people worth capturing. */
-  .hook-ads button{width:calc(50% - 5px);padding:0;border:0;background:none;position:relative;
-    cursor:zoom-in;border-radius:11px;display:block;-webkit-tap-highlight-color:transparent;}
-  .hook-ads button img{width:100%;}
-  .hook-ads button::after{content:'';position:absolute;inset:0;border-radius:11px;
-    box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);transition:box-shadow .16s;}
-  .hook-ads button:hover::after,.hook-ads button:focus-visible::after{box-shadow:inset 0 0 0 2px #5500dd;}
-  .hook-ads .zoom{position:absolute;right:8px;bottom:8px;width:26px;height:26px;border-radius:50%;
-    background:rgba(13,13,13,.62);display:flex;align-items:center;justify-content:center;pointer-events:none;}
-  .hook-ads .zoom svg{width:13px;height:13px;stroke:#fff;stroke-width:2.2;fill:none;}
-  .lb{position:fixed;inset:0;background:rgba(10,8,20,.9);z-index:9999;display:none;
-    align-items:center;justify-content:center;padding:20px;}
-  .lb.on{display:flex;}
-  .lb-inner{max-width:460px;width:100%;text-align:center;}
-  .lb-inner img{width:100%;border-radius:14px;display:block;}
-  .lb-cap{color:rgba(255,255,255,.72);font-size:13.5px;margin:12px 0 16px;line-height:1.5;}
-  .lb-cta{background:#5500DD;color:#fff;border:0;border-radius:100px;padding:14px 28px;font-size:15px;
-    font-family:var(--font);cursor:pointer;font-variation-settings:"wdth" var(--wdth),"wght" 700;}
-  .lb-x{position:absolute;top:16px;right:18px;background:none;border:0;color:#fff;font-size:30px;
-    line-height:1;cursor:pointer;padding:6px 10px;}
-  .q-kicker{cursor:pointer;border:0;font-family:var(--font);min-height:44px;padding-top:12px;padding-bottom:12px;-webkit-tap-highlight-color:transparent;}
-  .q-kicker:hover,.q-kicker:focus-visible{background:rgba(85,0,221,.14);}
-  @media(max-width:560px){
-    .q-wrap{padding:18px 16px 56px;}
-    .q-card{padding:24px 20px 26px;}
-    .hook p.sub{font-size:16.5px;}
-    .hook-cta{width:100%;text-align:center;}
-  }
-  @media(max-width:560px){
-    .hook-proof{display:grid;grid-template-columns:repeat(3,1fr);gap:0;text-align:center;}
-    .hook-proof .hp{padding:0 6px;margin:0;border-right:1px solid rgba(0,0,0,.1);}
-    .hook-proof .hp:last-child{border-right:none;}
-    .hook-proof .n{font-size:19px;}
-    .hook-proof .l{font-size:10px;letter-spacing:.03em;line-height:1.3;}
-  }
-  .q-sub{font-size:14.5px;color:#8b90a0;margin:-18px 0 26px;line-height:1.5;}
-  .q-step{font-size:12.5px;color:#8b90a0;margin-left:12px;font-variation-settings:"wdth" var(--wdth),"wght" 600;}
-  .q-multi{flex-direction:row;flex-wrap:wrap;gap:10px;}
-  .q-chip{flex:1 1 calc(50% - 5px);justify-content:center;text-align:center;padding:15px 14px;font-size:15px;}
-  .q-chip.on{border-color:#5500dd;background:rgba(85,0,221,.07);font-variation-settings:"wdth" var(--wdth),"wght" 700;}
-  .q-chip:hover{transform:none;}
-  .q-spin{width:42px;height:42px;margin:0 auto;border:3px solid rgba(85,0,221,.15);border-top-color:#5500dd;border-radius:50%;animation:qspin .8s linear infinite;}
-  @keyframes qspin{to{transform:rotate(360deg)}}
-  @media (prefers-reduced-motion:reduce){.q-spin{animation-duration:2s}}
-  .cap{margin:26px 0 0;padding:22px 24px;background:#f7f7fa;border:1px solid rgba(0,0,0,.08);border-radius:14px;}
-  .cap-l{font-size:14.5px;color:#2b2f38;margin:0 0 12px;font-variation-settings:"wdth" var(--wdth),"wght" 700;}
-  .cap-row{display:flex;gap:10px;flex-wrap:wrap;}
-  .cap-in{flex:1;min-width:230px;font-family:var(--font);font-size:15.5px;padding:13px 16px;border:1.5px solid rgba(0,0,0,.14);
-    border-radius:11px;outline:none;transition:border-color .16s;}
-  .cap-in:focus{border-color:#5500dd;}
-  .cap-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
-  .cap-grid .cap-in{min-width:0;}
-  .cap-full{width:100%;margin-bottom:10px;}
-  .cap-btn{background:#0d0d0d;color:#fff;border:none;border-radius:11px;padding:13px 24px;font-family:var(--font);
-    font-size:15px;cursor:pointer;font-variation-settings:"wdth" var(--wdth),"wght" 700;}
-  @media(max-width:560px){
-    .cap-grid{grid-template-columns:1fr;gap:9px;margin-bottom:9px;}
-    .cap-full{margin-bottom:9px;}
-    .cap-row{flex-direction:column;gap:9px;}
-    .cap-in{min-width:0;width:100%;flex:none;}
-    .cap-btn{width:100%;padding:14px 24px;}
-  }
-  .cap-note{font-size:12.5px;color:#8b90a0;margin:11px 0 0;line-height:1.5;}
-  .cap-err{font-size:13px;color:#c2183a;margin:9px 0 0;}
-  .cap-ok{font-size:14px;color:#1f7a4f;margin:11px 0 0;font-variation-settings:"wdth" var(--wdth),"wght" 700;}
-  /* who actually does the work — the five-day promise is a human one, so put
-     the humans next to it rather than letting an anonymous page make it */
-  .r-team{margin:26px 0 0;padding:20px 22px;background:#f7f7fa;border:1px solid rgba(0,0,0,.08);border-radius:14px;}
-  .r-team-l{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#8b90a0;margin:0 0 16px;
-    font-variation-settings:"wdth" var(--wdth),"wght" 800;}
-  .r-team-row{display:flex;gap:26px;}
-  .r-team-p{display:flex;align-items:center;gap:12px;}
-  .r-team-p img{width:48px;height:48px;border-radius:50%;object-fit:cover;flex:none;background:#e9e9ef;}
-  .r-team-n{font-size:15px;color:#0d0d0d;font-variation-settings:"wdth" var(--wdth),"wght" 800;letter-spacing:-.01em;}
-  .r-team-r{font-size:12.5px;color:#6b7280;line-height:1.4;margin-top:2px;}
-  @media(max-width:560px){.r-team-row{flex-direction:column;gap:14px;}}
-  /* result */
-  .r-verdict{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-variation-settings:"wdth" var(--wdth),"wght" 800;margin-bottom:14px;}
-  .r-fit{color:#1f7a4f;} .r-maybe{color:#b45309;} .r-no{color:#6b7280;}
-  .r-h{font-size:clamp(24px,2.6vw,34px);letter-spacing:-.03em;line-height:1.2;color:#0d0d0d;margin:0 0 16px;
-    font-variation-settings:"wdth" var(--wdth),"wght" 900;}
-  .r-body{font-size:16.5px;line-height:1.7;color:#4b5563;margin:0 0 22px;}
-  .r-points{list-style:none;padding:0;margin:0 0 30px;display:flex;flex-direction:column;gap:13px;}
-  .r-points li{position:relative;padding-left:28px;font-size:15.5px;line-height:1.6;color:#2b2f38;}
-  .r-points li::before{content:'';position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;background:#5500dd;}
-  .r-cta{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding-top:26px;border-top:1px solid rgba(0,0,0,.09);}
-  .r-btn{display:inline-block;background:#5500DD;color:#fff;font-size:16px;padding:15px 32px;border-radius:100px;
-    text-decoration:none;font-variation-settings:"wdth" var(--wdth),"wght" 700;transition:opacity .2s,transform .2s;}
-  .r-btn:hover{opacity:.88;transform:translateY(-2px);}
-  .r-micro{font-size:13.5px;color:#8b90a0;}
-  .r-restart{background:none;border:none;color:#8b90a0;font-size:13.5px;cursor:pointer;font-family:var(--font);font-weight:600;text-decoration:underline;}
-  @media(max-width:640px){.q-card{padding:30px 24px 28px;}.q-opt{font-size:15.5px;padding:15px 16px;gap:12px;}}
-</style>
-
-  <!-- Meta Pixel -->
-  <script>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://skipthenoisemedia.com/quiz">
+    <meta property="og:title" content="See the Reddit Threads Comparing Your SaaS">
+    <meta property="og:image" content="https://skipthenoisemedia.com/assets/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="See the Reddit Threads Comparing Your SaaS">
+    <meta name="twitter:image" content="https://skipthenoisemedia.com/assets/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Schibsted+Grotesk:wght@400;500;600;700;800&display=swap">
+<script>
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
     n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -998,7 +49,8 @@
     /* Cal.com modal styles now live in the main <style> block above.
        Previously injected here via JS, which is fragile if any prior line throws. */
   </script>
-  <script>
+
+<script>
   /* LP speed: analytics load on first interaction or after idle, never blocking the first question.
      The quiz takes ~60s, so the pixel is always live well before any conversion fires. */
   (function(){
@@ -1020,621 +72,224 @@
     if('requestIdleCallback' in window) requestIdleCallback(boot,{timeout:3500}); else setTimeout(boot,3000);
   })();
   </script>
-</head>
-<body>
-<!-- Minimal LP header: logo only, no nav. Paid traffic has one job here. -->
-<div style="padding:22px 24px;text-align:center;">
-  <a href="/" style="font-size:19px;text-decoration:none;font-variation-settings:'wdth' 125,'wght' 800;letter-spacing:-.02em;">
-    <span style="color:#191923;">Skip the </span><span style="background:linear-gradient(90deg,#5500dd,#cc0000);-webkit-background-clip:text;background-clip:text;color:transparent;">Noise</span>
-  </a>
-</div>
 
-<div class="q-wrap">
-  <div class="q-inner">
-    <div style="text-align:center;">
-      <button type="button" class="q-kicker" id="kicker-start">60-second check</button>
-    </div>
-    <div class="q-card" id="hook-card">
-      <div class="hook">
-        <div class="hook-k">
-          <svg width="15" height="15" viewBox="0 0 20 20" fill="#FF4500"><circle cx="10" cy="10" r="10"/><path fill="#fff" d="M16.7 10a1.5 1.5 0 0 0-2.5-1 7.1 7.1 0 0 0-3.9-1.2l.7-3.1 2.1.5a1 1 0 1 0 1.1-1 1 1 0 0 0-1 .7l-2.4-.5a.16.16 0 0 0-.2.1l-.7 3.4a7.1 7.1 0 0 0-3.9 1.2 1.5 1.5 0 1 0-1.6 2.4 2.9 2.9 0 0 0 0 .4c0 2.2 2.6 4.1 5.8 4.1s5.8-1.8 5.8-4.1a2.9 2.9 0 0 0 0-.4 1.5 1.5 0 0 0 .5-1zM7.3 11a1 1 0 1 1 1 1 1 1 0 0 1-1-1zm5.6 2.7a3.6 3.6 0 0 1-2.9.8 3.6 3.6 0 0 1-2.9-.8.19.19 0 0 1 .3-.3 3.2 3.2 0 0 0 2.6.6 3.2 3.2 0 0 0 2.6-.6.19.19 0 0 1 .3.3zm-.1-1.7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"/></svg>
-          Reddit for B2B SaaS
-        </div>
-        <h1>Your buyers compare you on&nbsp;Reddit.<br><em>We'll show you where.</em></h1>
-        <button type="button" class="hook-ama" id="ama-proof" data-cap="Our co-founder hosted the official Ask Me Anything in r/redditforbusiness, Reddit's own community for advertisers.">
-          <span class="mark"><svg viewBox="0 0 20 20" fill="#FF4500" aria-hidden="true"><circle cx="10" cy="10" r="10"/><path fill="#fff" d="M16.7 10a1.5 1.5 0 0 0-2.5-1 7.1 7.1 0 0 0-3.9-1.2l.7-3.1 2.1.5a1 1 0 1 0 1.1-1 1 1 0 0 0-1 .7l-2.4-.5a.16.16 0 0 0-.2.1l-.7 3.4a7.1 7.1 0 0 0-3.9 1.2 1.5 1.5 0 1 0-1.6 2.4 2.9 2.9 0 0 0 0 .4c0 2.2 2.6 4.1 5.8 4.1s5.8-1.8 5.8-4.1a2.9 2.9 0 0 0 0-.4 1.5 1.5 0 0 0 .5-1zM7.3 11a1 1 0 1 1 1 1 1 1 0 0 1-1-1zm5.6 2.7a3.6 3.6 0 0 1-2.9.8 3.6 3.6 0 0 1-2.9-.8.19.19 0 0 1 .3-.3 3.2 3.2 0 0 0 2.6.6 3.2 3.2 0 0 0 2.6-.6.19.19 0 0 1 .3.3zm-.1-1.7a1 1 0 1 1 1-1 1 1 0 0 1-1 1z"/></svg></span>
-          <span class="t"><b>We hosted the official AMA</b><br><span>in r/redditforbusiness &middot; <u>see proof</u></span></span>
-        </button>
-        <p class="sub">Four questions. We find the threads where your category is being compared, then write three Reddit ads built to show up in them.</p>
-        <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Ad creative">
-          <button class="lb-x" id="lb-x" aria-label="Close">&times;</button>
-          <div class="lb-inner">
-            <img id="lb-img" alt="">
-            <p class="lb-cap" id="lb-cap"></p>
-            <button class="lb-cta" id="lb-cta">Show me my threads &rarr;</button>
-          </div>
-        </div>
-        <button class="hook-cta" id="hook-start">Show me the threads &rarr;</button>
-        <p class="hook-micro">About 60 seconds. We do this for a few SaaS companies a month. Some become clients. Either way the ads are yours.</p>
-        <p class="hook-alt">Not ready? See our <a href="/blog/reddit-ads-benchmarks" id="alt-bench">2026 Reddit ad benchmarks</a> &mdash; real cost per lead by vertical, no form.</p>
+<style>
+:root{
+  --bg:#FCFCFB; --panel:#FFFFFF; --ink:#111317; --body:#3A4048; --dim:#666C75;
+  --line:#E4E4E0; --line2:#EFEFEC;
+  --rd-text:#D83A00;  /* 4.52:1 on the page ground */
+  --rd-btn:#DB3B00;   /* white on it = 4.53:1 */ --rd:#FF4500; --ok:#1F7A4F; --wash:#FFF4F0;
+  --s:'Schibsted Grotesk',system-ui,sans-serif; --m:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--body);font-family:var(--s);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.shell{max-width:900px;margin:0 auto;padding:0 20px 80px}
+/* only screen 1 uses the full width; everything after it is read, not scanned */
+#s2,#s3,#s4,#s5{max-width:620px}
+/* ── bar ── */
+.bar{display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line)}
+.logo{font-weight:800;font-size:16px;letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.logo i{color:var(--rd-text);font-style:normal}
+.step{font-family:var(--m);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+/* ── type ── */
+h1{font-size:clamp(27px,5.4vw,38px);font-weight:800;letter-spacing:-.035em;line-height:1.08;color:var(--ink);margin:26px 0 12px;text-wrap:balance}
+.sub{font-size:16.5px;color:var(--body);margin:0 0 26px;max-width:52ch}
+.eyebrow{font-family:var(--m);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--rd-text);margin:26px 0 0}
+/* ── chips ── */
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
+.chip{font-family:var(--s);font-size:14.5px;font-weight:500;color:var(--ink);background:var(--panel);
+  border:1px solid var(--line);border-radius:4px;padding:11px 14px;cursor:pointer;text-align:left;
+  transition:border-color .12s,background .12s;-webkit-tap-highlight-color:transparent}
+.chip:hover{border-color:var(--rd)}
+.chip:focus-visible{outline:2px solid var(--rd);outline-offset:2px}
+.hint{font-family:var(--m);font-size:12px;color:var(--dim);margin:0 0 30px}
+/* ── proof strip ── */
+.cred{display:flex;align-items:center;gap:10px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0 0 26px}
+.cred svg{width:26px;height:26px;flex:none}
+.cred b{color:var(--ink);font-weight:600;font-size:14px}
+.cred span{color:var(--dim);font-size:13px}
+.econ{border:1px solid var(--line);background:var(--panel);padding:20px;margin:0 0 26px}
+.econ-g{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.econ-n{font-family:var(--s);font-size:26px;font-weight:800;letter-spacing:-.03em;color:var(--ink);
+  line-height:1;font-variant-numeric:tabular-nums}
+.econ-l{font-family:var(--m);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--dim);margin-top:7px;line-height:1.4}
+.econ-src{font-size:13px;color:var(--dim);margin:16px 0 0;padding-top:14px;
+  border-top:1px solid var(--line2);line-height:1.5}
+.econ-src b{color:var(--ok);font-weight:600}
+@media(max-width:520px){ .econ{padding:16px} .econ-g{gap:12px} .econ-n{font-size:21px} .econ-l{font-size:9.5px} }
+/* ── results ── */
+.found{font-family:var(--m);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);
+  padding-bottom:10px;border-bottom:1px solid var(--line);margin:30px 0 2px}
+.found b{color:var(--rd-text)}
+.row{padding:14px 0;border-bottom:1px solid var(--line2)}
+.row .nm{font-family:var(--m);font-size:15px;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+.row .nt{font-size:14px;color:var(--body);margin-top:4px;line-height:1.45}
+.row .nt b{color:var(--ink);font-weight:600}
+.sz{font-family:var(--m);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);
+  border:1px solid var(--line);border-radius:3px;padding:2px 6px;white-space:nowrap;margin-left:7px;
+  vertical-align:middle;display:inline-block}
+.sz.Large{color:var(--ok);border-color:rgba(31,122,79,.3)}
+/* ── q ── */
+.q{font-size:20px;font-weight:700;color:var(--ink);letter-spacing:-.02em;margin:0 0 4px}
+.qs{font-size:14.5px;color:var(--dim);margin:0 0 18px}
+.opt{display:block;width:100%;text-align:left;font-family:var(--s);font-size:15.5px;color:var(--ink);
+  background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:15px 16px;margin-bottom:8px;cursor:pointer;
+  transition:border-color .12s;-webkit-tap-highlight-color:transparent}
+.opt:hover{border-color:var(--rd)}
+.opt:focus-visible{outline:2px solid var(--rd);outline-offset:2px}
+/* ── gate ── */
+.gate{border:1px solid var(--line);background:var(--panel);padding:22px;margin:22px 0 0}
+.gate h2{font-size:18.5px;font-weight:700;color:var(--ink);letter-spacing:-.02em;margin:0 0 6px}
+.gate p{font-size:14.5px;color:var(--dim);margin:0 0 16px}
+/* Show the thing being promised, at the moment it is promised. */
+.sample{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:0 0 8px}
+.sample img{width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;display:block;
+  border:1px solid var(--line);border-radius:3px}
+.samplecap{font-family:var(--m);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--dim);margin:0 0 18px}
+.f{display:flex;flex-direction:column;gap:8px}
+input{font-family:var(--s);font-size:16px;padding:13px 14px;border:1px solid var(--line);border-radius:4px;
+  background:var(--bg);color:var(--ink);outline:none;width:100%}
+input:focus{border-color:var(--rd)}
+.btn{font-family:var(--s);font-size:15.5px;font-weight:600;color:#fff;background:var(--rd-btn);border:0;border-radius:4px;
+  padding:15px 22px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.btn:hover{background:#B93200}
+.btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
+.err{font-size:13.5px;color:#C8412A;margin:8px 0 0;min-height:18px}
+.fine{font-family:var(--m);font-size:11.5px;color:var(--dim);margin:12px 0 0;line-height:1.6}
+.alt{font-size:14px;color:var(--dim);margin:22px 0 0;padding-top:16px;border-top:1px solid var(--line2)}
+.alt a{color:var(--rd-text);font-weight:600}
+.back{font-family:var(--m);font-size:12px;color:var(--dim);background:none;border:0;cursor:pointer;padding:14px 0 0}
+.hide{display:none}
+/* Screen 1 only: interaction left, proof right. Fixes the empty lower half
+   on desktop and puts the work on a page that sells the work. */
+.split{display:grid;grid-template-columns:1fr 268px;column-gap:52px;align-items:start}
+.split > *{grid-column:1;min-width:0}
+.split > .proof{grid-column:2;grid-row:1 / span 8;align-self:start}
+.proof{display:flex;flex-direction:column;gap:12px}
+.proof figure{margin:0}
+.proof img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:4px}
+.proof figcaption{font-family:var(--m);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--dim);margin-top:7px;line-height:1.5}
+/* teaser row: proves the format before the tap */
+.peek{border-top:1px solid var(--line);margin:22px 0 0;padding:14px 0 0;position:relative}
+@media(max-width:820px){ .peek{display:none} }
+.peek .row{border-bottom:0;padding:0;opacity:.42;filter:blur(.25px)}
+.peek .cap{font-family:var(--m);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--dim);margin:10px 0 0}
+.chip .ct{font-family:var(--m);font-size:11.5px;color:var(--dim);margin-left:7px}
+.more{font-family:var(--m);font-size:12.5px;color:var(--rd-text);background:none;border:0;
+  padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.chip:hover .ct{color:var(--rd-text)}
+/* Mobile: single column, natural document order — headline, then proof, then
+   the chips. Two earlier attempts got this wrong: first the proof sat ~880px
+   down (below the fold for the 82% on phones), then it jumped above the
+   headline so the page opened with a picture and no explanation. Cropped to a
+   banner so it informs without eating the fold. */
+@media(max-width:820px){
+  .split{grid-template-columns:1fr}
+  .split > *,.split > .proof{grid-column:1;grid-row:auto}
+  .proof{margin:0 0 20px}
+  .proof img{aspect-ratio:2/1;object-fit:cover;object-position:center 34%}
+  .proof figcaption{margin-top:6px}
+}
+@media(max-width:520px){ .proof{flex-direction:column} }
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
 
-        <div class="hook-ads">
-          <button type="button" class="hook-ad" data-cap="Reddit ad run for a cybersecurity SaaS client. 74 qualified leads in 3 months at $157 per lead." aria-label="Enlarge this Reddit ad">
-            <img loading="lazy" decoding="async" src="/assets/flare-ad-threat.webp" alt="Reddit ad run for a cybersecurity SaaS client"><span class="zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5M11 8v6M8 11h6"/></svg></span>
-          </button>
-          <button type="button" class="hook-ad" data-cap="Testimonial ad creative for a B2B SaaS client." aria-label="Enlarge this Reddit ad">
-            <img loading="lazy" decoding="async" src="/assets/b2b-saas-ad-testimonial.webp" alt="B2B SaaS testimonial ad creative"><span class="zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5M11 8v6M8 11h6"/></svg></span>
-          </button>
-        </div>
-        <p class="hook-ads-cap">Reddit ad creative for B2B SaaS. The first ran for a cybersecurity client.</p>
-
-        <div class="hook-proof">
-          <div class="hp"><span class="n">$50M+</span><span class="l">Media managed</span></div>
-          <div class="hp"><span class="n">74</span><span class="l">B2B leads / 3 months</span></div>
-          <div class="hp"><span class="n">$157</span><span class="l">Blended cost per lead</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="q-card" id="quiz-card" style="display:none;">
-      <div id="quiz"></div>
-      <div id="result" style="display:none;"></div>
-    </div>
-    <div class="q-dots" id="dots" style="display:none;"></div>
-    <button class="q-back" id="back" style="display:none;">&larr; Back</button>
+<div class="shell">
+  <div class="bar">
+    <a class="logo" href="/">Skip the <i>Noise</i></a>
+    <div class="step" id="step"></div>
   </div>
+
+  <!-- 1 · INPUT ------------------------------------------------------------ -->
+  <section id="s1"><div class="split">
+    <h1>What would Reddit cost you per lead?</h1>
+    <p class="sub">One tap, about ten seconds. You get the cost per lead from our own accounts, the communities your buyers are in, and what a 90-day test would run &mdash; before we ask you for anything.</p>
+    <aside class="proof">
+      <figure>
+        <img src="/reddit-ama/ZohaAhmedAMA.webp" alt="Official Reddit AMA in r/redditforbusiness, hosted by Zoha Ahmed, co-founder" loading="eager" decoding="async" width="540" height="540">
+        <figcaption>We hosted the official AMA in r/redditforbusiness</figcaption>
+      </figure>
+    </aside>
+    <div class="chips" id="chips"></div>
+    <button type="button" class="more" id="more">+ 5 more categories</button>
+    <p class="hint">Want the costed 90-day plan and three Reddit ads for those communities? That part needs an email. Yours to keep either way.</p>
+    <div class="peek">
+      <div class="row">
+        <div><div class="nm">r/devops <span class="sz">510K</span></div><div class="nt">Tool-aware and pragmatic &mdash; works for ads if genuinely useful; they spot fluff instantly.</div></div>
+      </div>
+      <p class="cap">One of 59 &middot; pick a category to see yours</p>
+    </div>
+    </div>
+  </section>
+
+  <!-- 2 · REVEAL ----------------------------------------------------------- -->
+  <section id="s2" class="hide">
+    <p class="eyebrow" id="r-cat"></p>
+    <h1 id="r-head"></h1>
+    <div class="econ">
+      <div class="econ-g">
+        <div><div class="econ-n" id="e-1"></div><div class="econ-l" id="e-1l"></div></div>
+        <div><div class="econ-n" id="e-2"></div><div class="econ-l" id="e-2l"></div></div>
+        <div><div class="econ-n">Day 45</div><div class="econ-l">When you would know</div></div>
+      </div>
+      <p class="econ-src" id="e-src"></p>
+    </div>
+    <div><button class="btn" id="go-q">Get the costed test plan &rarr;</button></div>
+    <p class="fine">Three questions so the plan matches your budget and timeline. About 30 seconds.</p>
+    <p class="found" id="r-found"></p>
+    <div id="r-list"></div>
+    <p class="alt" id="r-more"></p>
+    <button class="back" id="b1">&larr; Different category</button>
+  </section>
+
+  <!-- 3 · QUESTIONS -------------------------------------------------------- -->
+  <section id="s3" class="hide">
+    <p class="eyebrow">Your brief</p>
+    <p class="q" id="q-q"></p>
+    <p class="qs" id="q-s"></p>
+    <div id="q-opts"></div>
+    <button class="back" id="b2">&larr; Back</button>
+  </section>
+
+  <!-- 4 · GATE ------------------------------------------------------------- -->
+  <section id="s4" class="hide">
+    <p class="eyebrow">Last step</p>
+    <h1 id="g-head">Where should we send it?</h1>
+    <p class="sub" id="g-sub"></p>
+    <div class="gate">
+      <h2>The 90-day plan, plus three Reddit ads</h2>
+      <p>What the test costs, the subreddits it runs in, and the number that tells you by day 45 whether to kill it. Plus three ads written for those communities, yours to keep whether or not we ever work together.</p>
+      <div class="sample">
+        <img src="/assets/B2B_SaaS_Ads_HMTIB0O.webp" alt="B2B SaaS Reddit ad creative — lead routing" loading="lazy" decoding="async">
+        <img src="/assets/B2B_SaaS_Ads_nnRo2A9l.webp" alt="B2B SaaS Reddit ad creative — data entry automation" loading="lazy" decoding="async">
+        <img src="/assets/B2B_SaaS_Ads_lwoj9xr3.webp" alt="B2B SaaS Reddit ad creative — lead tracking" loading="lazy" decoding="async">
+      </div>
+      <p class="samplecap">Recent B2B SaaS ad creative from our studio</p>
+      <div class="f">
+        <input id="g-site" type="text" inputmode="url" autocomplete="url" placeholder="yourcompany.com">
+        <input id="g-email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com">
+        <button class="btn" id="g-send">Send it &rarr;</button>
+      </div>
+      <p class="err" id="g-err"></p>
+      <p class="fine">Work email so we can look up your category. We email once and add you to nothing.</p>
+    </div>
+    <button class="back" id="b3">&larr; Back</button>
+  </section>
+
+  <!-- 5 · DONE ------------------------------------------------------------- -->
+  <section id="s5" class="hide">
+    <p class="eyebrow" id="d-eye">On its way</p>
+    <h1 id="d-head"></h1>
+    <p class="sub" id="d-sub"></p>
+    <div id="d-cta"></div>
+    <p class="alt">Not ready? <a href="/blog/reddit-ads-benchmarks">See our 2026 Reddit ad benchmarks</a> &mdash; real cost per lead by vertical, no form.</p>
+  </section>
 </div>
-
-<script>
-// Paste the Apps Script /exec URL here once deployed
-window.STN_LEAD_ENDPOINT = '/api/lead';
-(function(){
-  var QS = [
-    { q:"Which channels are you running today?", sub:"Select all that apply.", type:"multi",
-      a:["LinkedIn Ads","Google Search","Meta / social","Content / SEO","Reddit already","Mostly outbound"] },
-    { q:"What would move the needle most this quarter?", sub:"Pick the one that matters most.", type:"single",
-      a:["Lower CAC on our paid channels","Get recommended in AI answers (AEO/GEO)","Break into Reddit the right way","Add a fresh pipeline source"] },
-    { q:"What is your current ARR?", sub:"This tells us whether we are the right size of partner.", type:"single",
-      a:["Under $5M","$5M to $10M","$10M to $50M","$50M or more"] },
-    { q:"When are you looking to launch?", sub:"", type:"single",
-      a:["As soon as possible","This quarter","Next quarter","Just exploring for now"] }
-  ];
-  var answers = [], step = 0;
-  var details = { site:'', competitors:'' }, detailsDone = false;
-  /* The complete POST lives inside showResult(), which re-runs on Start over and
-     on any repeat render. Without this it re-fired every time, which is what
-     filled the Formspree inbox with duplicates. One per page load, full stop. */
-  var completePosted = false;
-  /* Exactly one Formspree notification per person. The completion POST must fire
-     immediately because it triggers the Meta and LinkedIn conversions, but it asks
-     the server NOT to notify. The notification is then sent once, by whichever
-     comes first: an email submission (richer — carries contact details) or the
-     visitor leaving (beacon, carries the quiz answers). */
-  var notified = false, lastQuizPayload = null;
-  /* Same rule showResult() uses. Needed before results so we only ask for the
-     website from people we are actually going to make the deliverable for. */
-  function isQualified(){ return answers[2] !== 0 && answers[3] !== 3; }
-  function readCookie(n){ var m=document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]+)'); return m?m.pop():''; }
-  var lastQuizArr = null;   // ARR index, read by the booking handler (which runs in another scope)
-  var quiz = document.getElementById('quiz'), res = document.getElementById('result'),
-      dots = document.getElementById('dots'), back = document.getElementById('back');
-
-  function renderDots(){
-    dots.innerHTML = QS.map(function(_,i){
-      return '<div class="q-dot'+(i===step?' on':(i<step?' done':''))+'"></div>';
-    }).join('') + '<span class="q-step">Step '+Math.min(step+1,QS.length)+' of '+QS.length+'</span>';
-  }
-  function render(){
-    if(step >= QS.length){ return (isQualified() && !detailsDone) ? showDetails() : showAnalyzing(); }
-    var Q = QS[step];
-    var subHtml = Q.sub ? '<p class="q-sub">'+Q.sub+'</p>' : '';
-    if(Q.type === 'multi'){
-      var picked = answers[step] || [];
-      quiz.innerHTML = '<p class="q-q">'+Q.q+'</p>'+subHtml+'<div class="q-opts q-multi">' +
-        Q.a.map(function(t,i){
-          return '<button class="q-opt q-chip'+(picked.indexOf(i)>-1?' on':'')+'" data-i="'+i+'">'+t+'</button>';
-        }).join('') + '</div>' +
-        '<button class="hook-cta q-continue" id="q-next" style="margin-top:22px;font-size:16px;padding:14px 30px;">Continue &rarr;</button>';
-      quiz.querySelectorAll('.q-chip').forEach(function(b){
-        b.addEventListener('click', function(){
-          var i = parseInt(b.dataset.i,10);
-          var arr = answers[step] || [];
-          var at = arr.indexOf(i);
-          if(at>-1) arr.splice(at,1); else arr.push(i);
-          answers[step] = arr; b.classList.toggle('on');
-        });
-      });
-      document.getElementById('q-next').addEventListener('click', function(){
-        if(!answers[step]) answers[step] = [];
-        step++; renderDots(); render(); back.style.display = step>0 ? 'block' : 'none';
-      });
-    } else {
-      quiz.innerHTML = '<p class="q-q">'+Q.q+'</p>'+subHtml+'<div class="q-opts">' +
-        Q.a.map(function(t,i){
-          return '<button class="q-opt" data-i="'+i+'"><span class="q-letter">'+'ABCD'[i]+'</span>'+t+'</button>';
-        }).join('') + '</div>';
-      quiz.querySelectorAll('.q-opt').forEach(function(b){
-        b.addEventListener('click', function(){
-          answers[step] = parseInt(b.dataset.i,10);
-          step++; renderDots(); render(); back.style.display = step>0 ? 'block' : 'none';
-        });
-      });
-    }
-    renderDots();
-  }
-  back.addEventListener('click', function(){
-    if(step>0){ step--; res.style.display='none'; quiz.style.display=''; dots.style.display='flex'; render(); }
-    back.style.display = step>0 ? 'block' : 'none';
-  });
-
-  /* "acmeanalytics.com" -> "Acmeanalytics". Only ever fed a domain that already
-     passed validation (a-z0-9.-), so there is nothing to escape, but quotes are
-     stripped anyway because this lands in an HTML value attribute. */
-  function companyGuess(domain){
-    if(!domain) return '';
-    return String(domain).split('.')[0].replace(/["'<>&]/g,'')
-      .split(/[-_]/).filter(Boolean)
-      .map(function(w){ return w.charAt(0).toUpperCase() + w.slice(1); })
-      .join(' ');
-  }
-
-  /* Hormozi-style effort filter. A real operator types both of these in seconds;
-     someone farming a free deliverable cannot name competitors they lose to. The
-     site is also what the server verifies before any Lead is sent. */
-  function showDetails(){
-    quiz.style.display=''; res.style.display='none'; dots.style.display='none'; back.style.display='none';
-    quiz.innerHTML =
-      '<p class="q-q">Last thing, so we know where to look.</p>' +
-      '<p class="q-sub">We need both to find your threads and write the ads.</p>' +
-      '<div style="display:flex;flex-direction:column;gap:12px;">' +
-        '<input class="cap-in" id="d-site" type="text" inputmode="url" autocomplete="url" placeholder="yourcompany.com">' +
-        '<input class="cap-in" id="d-comp" type="text" placeholder="Two competitors you lose deals to">' +
-      '</div>' +
-      '<p class="cap-note" id="d-err" style="min-height:18px;"></p>' +
-      '<button class="hook-cta" id="d-next" style="margin-top:8px;font-size:16px;padding:14px 30px;">See my read &rarr;</button>';
-    document.getElementById('d-next').addEventListener('click', function(){
-      var site = (document.getElementById('d-site').value||'').trim();
-      var comp = (document.getElementById('d-comp').value||'').trim();
-      var err  = document.getElementById('d-err');
-      /* The server re-checks all of this, but catching it here saves the round trip
-         and a wasted DNS lookup. Previously this only tested for a dot, so
-         "asdf.asdf" passed straight through. */
-      var clean = site.toLowerCase().replace(/^https?:\/\//,'').replace(/^www\./,'').split(/[\/?#]/)[0].split('@').pop();
-      var FREEMAIL = ['gmail.com','yahoo.com','hotmail.com','outlook.com','icloud.com','aol.com','live.com','proton.me','protonmail.com'];
-      var PLACEHOLDER = ['example.com','test.com','domain.com','yourcompany.com','company.com','localhost'];
-      function fail(msg){ err.className='cap-err'; err.textContent=msg; }
-      if(!clean){ fail('We need your website to find the threads.'); return; }
-      if(!/^[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*\.[a-z]{2,}$/.test(clean)){
-        fail('That does not look like a website. Try yourcompany.com'); return;
-      }
-      if(FREEMAIL.indexOf(clean) > -1){ fail('That is an email provider. We need your company website.'); return; }
-      if(PLACEHOLDER.indexOf(clean) > -1){ fail('We need your real website to find your threads.'); return; }
-      // Competitors is the effort filter, so it has to be required — someone farming
-      // a free deliverable cannot name rivals they lose deals to.
-      if(comp.replace(/[^a-z0-9]/gi,'').length < 3){ fail('Name at least one competitor so we know what to search for.'); return; }
-      // Junk that clears the length test. A blocklist of what people actually type
-      // beats a cleverer regex, which would reject real company names.
-      var compKey = comp.toLowerCase().replace(/[^a-z0-9]/g,'');
-      var COMP_JUNK = ['none','na','nan','nil','idk','dontknow','donotknow','nobody','noone',
-                       'nocompetitors','test','testing','asdf','asdfasdf','qwerty','abc','abcd',
-                       'xxx','xyz','aaa','blah','blahblah','sample','example','whatever','stuff'];
-      if(COMP_JUNK.indexOf(compKey) > -1 || /^(.)\1+$/.test(compKey)){
-        fail('We need real competitor names to search for. Two is ideal.'); return;
-      }
-      if(compKey === clean.replace(/[^a-z0-9]/g,'')){
-        fail('That is your own company. Name competitors you lose deals to.'); return;
-      }
-
-      /* Everything above only proves the domain is well FORMED. "acmeanalytics.com"
-         is perfectly valid and does not exist. One MX lookup settles it, and it is
-         fast enough to block on. Fails open: if the check cannot run, let them
-         through and let the server-side SaaS check gate the Lead event instead. */
-      var btn = this;
-      btn.disabled = true; btn.style.opacity = '.65';
-      btn.innerHTML = 'Checking&hellip;';
-      err.className='cap-note'; err.textContent='';
-      function proceed(){
-        details.site = clean; details.competitors = comp; detailsDone = true;
-        if(window.dataLayer) window.dataLayer.push({event:'quiz_details_submitted'});
-        render();
-      }
-      function reset(msg){
-        btn.disabled = false; btn.style.opacity = '';
-        btn.innerHTML = 'See my read &rarr;';
-        fail(msg);
-      }
-      var MSG = {
-        no_such_domain: 'We cannot find that domain. Check the spelling?',
-        malformed:      'That does not look like a website. Try yourcompany.com',
-        freemail:       'That is an email provider. We need your company website.',
-        placeholder:    'We need your real website to find your threads.'
-      };
-      var settled = false;
-      var giveUp = setTimeout(function(){ if(!settled){ settled = true; proceed(); } }, 3000);
-      fetch('/api/verify', {method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({site: clean})})
-        .then(function(r){ return r.ok ? r.json() : {ok:true}; })
-        .then(function(d){
-          if(settled) return; settled = true; clearTimeout(giveUp);
-          if(d && d.ok === false){
-            if(window.dataLayer) window.dataLayer.push({event:'quiz_domain_rejected', reason:d.reason});
-            reset(MSG[d.reason] || MSG.no_such_domain);
-          } else { proceed(); }
-        })
-        .catch(function(){ if(!settled){ settled = true; clearTimeout(giveUp); proceed(); } });
-    });
-  }
-
-  function showAnalyzing(){
-    quiz.style.display=''; res.style.display='none'; dots.style.display='none'; back.style.display='none';
-    quiz.innerHTML = '<div style="text-align:center;padding:38px 0 34px;">' +
-      '<div class="q-spin"></div>' +
-      '<p id="q-analyzing" style="font-size:16px;color:#4b5563;margin:22px 0 0;font-variation-settings:\'wdth\' 125,\'wght\' 600;">Reading your answers&hellip;</p></div>';
-    var msgs=['Reading your answers&hellip;','Putting your read together&hellip;'], i=0;
-    var t=setInterval(function(){ i++; var el=document.getElementById('q-analyzing'); if(el&&msgs[i]) el.innerHTML=msgs[i]; }, 520);
-    setTimeout(function(){ clearInterval(t); showResult(); }, 1100);
-  }
-
-  function showResult(){
-    quiz.style.display='none'; dots.style.display='none'; back.style.display='none';
-    res.style.display='block';
-    var channels = answers[0] || [], goal = answers[1], arr = answers[2], timing = answers[3];
-    lastQuizArr = arr;
-    var onReddit = channels.indexOf(4) > -1;
-    var tooSmall = (arr === 0);              // under $5M ARR
-    var browsing = (timing === 3);           // just exploring
-    var cls, verdict, head, body, points;
-    var qualified = !tooSmall && !browsing;
-
-    if(tooSmall){
-      cls='r-no'; verdict='Probably not yet';
-      head='Reddit can work at your stage. We are not the right partner for it yet.';
-      body='Under $5M ARR the media budget usually is not there to make our fee worth it. That is a straight answer rather than a soft no.';
-      points=['Reddit\'s own floor is far lower. You can test it yourself for $2,000 to $3,000 a month.',
-              'Our cost guide and benchmarks will get you most of the way without paying anyone.',
-              'When you are past $5M and spending $10k a month on media, come back and we will talk properly.'];
-    } else if(browsing){
-      cls='r-maybe'; verdict='Worth a read first';
-      head='You are exploring, so start with the numbers rather than a call.';
-      body='No point booking time before you know whether the channel suits you. Here is what would actually help right now:';
-      points=['Our 2026 Reddit benchmarks show real CPL, CPA and ROAS by vertical, from accounts we run rather than category averages.',
-              onReddit ? 'Since you are already on Reddit, the benchmarks give you something concrete to measure against.' : 'The cost guide covers what a realistic test costs before you commit to anything.',
-              'When the timeline firms up, the call will be a lot more useful.'];
-    } else {
-      cls='r-fit'; verdict='Looks like a fit';
-      head='You are the kind of account we can usually help.';
-      var b=[];
-      if(goal===0) b.push('Lowering CAC is usually a creative problem before it is a channel problem. On one account the best angle cost &euro;30 a signup and the worst cost &euro;73 &mdash; same audience, same budget.');
-      else if(goal===1) b.push('AEO is the part most agencies cannot do. We run Reddit organic specifically so you get cited in AI answers, not just ranked in search.');
-      else if(goal===2) b.push('Breaking into Reddit properly is the whole practice. We are a Reddit Certified Partner and Reddit has hosted us for an official AMA to teach its own advertisers.');
-      else b.push('As a new pipeline source Reddit is usually the cheapest way in. One cybersecurity SaaS client added 74 qualified leads in three months off $11.6k of spend.');
-
-      if(onReddit) b.push('Since you are already running Reddit, we can start from your data instead of guesses.');
-      else if(channels.indexOf(0) > -1) b.push('You are on LinkedIn already, which is the useful comparison. We will put your LinkedIn cost per lead next to Reddit on the call.');
-
-      if(timing===0) b.push('For an ASAP timeline: first creative brief inside 48 hours, first ads live within a week.');
-      else if(timing===1) b.push('A this-quarter timeline is comfortable &mdash; a proper test needs about 90 days to be conclusive.');
-
-      body='Based on your answers, here is what stands out:';
-      points=b;
-    }
-
-    res.innerHTML =
-      '<div class="r-verdict '+cls+'">'+verdict+'</div>' +
-      '<h1 class="r-h">'+head+'</h1>' +
-      '<p class="r-body">'+body+'</p>' +
-      '<ul class="r-points">'+points.map(function(p){return '<li>'+p+'</li>';}).join('')+'</ul>' +
-      (qualified ? '<div style="display:flex;gap:12px;margin:26px 0 0;padding-top:24px;border-top:1px solid rgba(0,0,0,.09);">' +
-        '<a href="/work/flare" style="flex:1;text-decoration:none;color:inherit;border:1px solid rgba(0,0,0,.09);border-radius:14px;overflow:hidden;display:block;">' +
-          '<img src="/assets/Flare Case Study V2.webp" alt="Cybersecurity SaaS case study" style="width:100%;aspect-ratio:1/1;object-fit:cover;display:block;">' +
-          '<div style="padding:12px 14px 14px;"><div style="font-size:20px;color:#5500dd;font-variation-settings:\'wdth\' 125,\'wght\' 800;letter-spacing:-.02em;">74 leads</div>' +
-          '<div style="font-size:12.5px;color:#6b7280;margin-top:3px;line-height:1.45;">Cybersecurity SaaS, $157 blended CPL</div></div></a>' +
-        '<a href="/work/restream" style="flex:1;text-decoration:none;color:inherit;border:1px solid rgba(0,0,0,.09);border-radius:14px;overflow:hidden;display:block;">' +
-          '<img src="/assets/Restream Case Study V2.webp" alt="Streaming platform case study" style="width:100%;aspect-ratio:1/1;object-fit:cover;display:block;">' +
-          '<div style="padding:12px 14px 14px;"><div style="font-size:20px;color:#5500dd;font-variation-settings:\'wdth\' 125,\'wght\' 800;letter-spacing:-.02em;">$15</div>' +
-          '<div style="font-size:12.5px;color:#6b7280;margin-top:3px;line-height:1.45;">Per signup, CAC down 19%</div></div></a>' +
-      '</div>' : '') +
-      '<div class="cap">' +
-        '<p class="cap-l">'+(qualified ? 'Not ready to book? Leave your email and we will send the threads and ads over when they are done.' : 'Want the guide and our 2026 Reddit benchmarks by email?')+'</p>' +
-        '<div class="cap-grid">' +
-          '<input class="cap-in" id="cap-name" type="text" autocomplete="given-name" placeholder="First name" required>' +
-          '<input class="cap-in" id="cap-last" type="text" autocomplete="family-name" placeholder="Last name" required>' +
-        '</div>' +
-        /* Prefilled from the domain they already typed at the gate. Asking someone to
-           retype their company two screens after they gave us the website is exactly
-           the kind of friction that loses the ones who did not book. */
-        '<input class="cap-in cap-full" id="cap-co" type="text" autocomplete="organization" placeholder="Company" required value="'+companyGuess(details.site)+'">' +
-        '<div class="cap-row">' +
-          /* Same pattern and title as the Reddit playbook form, so both funnels
-             reject freemail identically and show the same native message. */
-          '<input class="cap-in" id="cap-email" type="email" inputmode="email" autocomplete="email" placeholder="you@company.com" required' +
-            ' pattern="^[^@]+@(?!gmail\\.com|yahoo\\.com|hotmail\\.com|outlook\\.com|aol\\.com|icloud\\.com|mail\\.com|protonmail\\.com)[^@]+\\.[^@]+$"' +
-            ' title="Please use your work email address">' +
-          '<button class="cap-btn" id="cap-send">'+(qualified ? 'Send them to me' : 'Send it')+'</button>' +
-        '</div>' +
-        '<p class="cap-note" id="cap-note">We will email once and add you to nothing. Booking below works without this.</p>' +
-      '</div>' +
-      (qualified ?
-        '<div class="r-team">' +
-          '<p class="r-team-l">Who does the work</p>' +
-          '<div class="r-team-row">' +
-            '<div class="r-team-p"><img src="/team/zoha.webp" alt="Zoha Ahmed" loading="lazy" width="48" height="48">' +
-              '<div><div class="r-team-n">Zoha</div><div class="r-team-r">Ex-GroupM, Director Social</div></div></div>' +
-            '<div class="r-team-p"><img src="/team/sonia.webp" alt="Sonia Mohapatra" loading="lazy" width="48" height="48">' +
-              '<div><div class="r-team-n">Sonia</div><div class="r-team-r">Ex-GroupM, Supervisor Social</div></div></div>' +
-          '</div>' +
-        '</div>' : '') +
-      '<div class="r-cta">' +
-        (!qualified
-          ? '<a class="r-btn" href="' + (browsing ? '/blog/reddit-ads-benchmarks' : '/blog/reddit-ads-cost') + '" style="background:#0d0d0d;">' + (browsing ? 'See the 2026 benchmarks' : 'Read the cost guide') + ' &rarr;</a><span class="r-micro">No pitch. Genuinely useful whether or not you ever hire us.</span>'
-          : '<div style="width:100%"><p style="font-size:19px;color:#0d0d0d;margin:0 0 12px;font-weight:800;letter-spacing:-.02em;">Your threads, and three ads</p><p style="font-size:15px;color:#4b5563;margin:0 0 14px;line-height:1.6;">We will find real threads where your category is being compared and your competitors named. Then we will write and design three Reddit ads built to show up in those conversations. You keep the files whether or not we ever work together.</p><p style="font-size:15px;color:#4b5563;margin:0 0 18px;line-height:1.6;">You will have them within five business days.</p><button class="r-btn" id="cal-open" data-cal-namespace="quiz" data-cal-link="skipthenoise/30min" data-cal-config=\'{"layout":"column_view"}\' style="border:0;cursor:pointer;">Book 30 minutes &rarr;</button><span class="r-micro" style="display:block;margin-top:14px;line-height:1.55;">We will walk you through the threads and the ads live, and show you what those subreddits cost. If Reddit is not a fit we will say so on the call and send everything anyway.</span></div>') +
-      '</div>' +
-      '<div style="margin-top:22px;"><button class="r-restart">Start over</button></div>';
-
-    // ---- lead capture: saves on blur (deliberate entry) or on click. Never blocks booking. ----
-    (function(){
-      var ENDPOINT = window.STN_LEAD_ENDPOINT || '';
-      var input = res.querySelector('#cap-email');
-      var nameEl= res.querySelector('#cap-name');
-      var lastEl= res.querySelector('#cap-last');
-      var coEl  = res.querySelector('#cap-co');
-      var btn   = res.querySelector('#cap-send');
-      var note  = res.querySelector('#cap-note');
-      if(!input) return;
-      var sent = '';
-      var MSG_FALLBACK = 'Please use your work email. You can also just book the call below.';
-      var LBL = {
-        arr:    ['Under $5M','$5M to $10M','$10M to $50M','$50M or more'],
-        goal:   ['Lower CAC','AI answers (AEO/GEO)','Break into Reddit','New pipeline source'],
-        timing: ['ASAP','This quarter','Next quarter','Just exploring'],
-        ch:     ['LinkedIn Ads','Google Search','Meta / social','Content / SEO','Reddit already','Mostly outbound']
-      };
-      // consumer inboxes are where quiz spam comes from — B2B buyers have work email
-      var FREE = ['gmail.com','yahoo.com','hotmail.com','outlook.com','live.com','aol.com','icloud.com',
-                  'me.com','msn.com','proton.me','protonmail.com','gmx.com','mail.com','yandex.com',
-                  'ymail.com','rocketmail.com','inbox.com','zoho.com','tutanota.com'];
-      /* strict=true only on the button. Running reportValidity on every blur would
-         throw a native popup at someone who is still tabbing through the fields. */
-      /* A bare pattern mismatch shows Chrome's "Please match the requested format",
-         which tells someone nothing about why their gmail was refused. */
-      function emailMsg(){
-        input.setCustomValidity('');
-        if(input.validity.patternMismatch){
-          input.setCustomValidity('Please use your work email, not a personal one. That is how we look up your category.');
-        }
-      }
-      input.addEventListener('input', emailMsg);
-
-      function save(strict){
-        if(strict){
-          emailMsg();
-          var fields = [nameEl, lastEl, coEl, input];
-          for(var i=0;i<fields.length;i++){
-            if(fields[i] && !fields[i].checkValidity()){ fields[i].reportValidity(); return; }
-          }
-        }
-        var v  = (input.value||'').trim();
-        var nm = (nameEl && nameEl.value || '').trim().slice(0,60);
-        var ln = (lastEl && lastEl.value || '').trim().slice(0,60);
-        var co = (coEl   && coEl.value   || '').trim().slice(0,80);
-        // these are often filled after the email blur already fired, so key the
-        // dedupe on all of them and re-send once if any show up late
-        var key = [nm,ln,co,v].join('|');
-        if(!v || key === sent) return;
-        if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){
-          note.className='cap-err'; note.textContent='That does not look like a valid email.'; return;
-        }
-        var domain = v.split('@')[1].toLowerCase();
-        if(FREE.indexOf(domain) > -1){
-          note.className='cap-err';
-          note.textContent='Please use your work email. That is how we look up your category. You can also just book the call below.';
-          if(window.dataLayer) window.dataLayer.push({event:'quiz_email_rejected', reason:'free_domain'});
-          return;
-        }
-        var isUpdate = sent !== '';
-        sent = key;
-        var payload = {
-          kind: 'email',
-          /* Defers if the leave-beacon already sent one. Hard ceiling of ONE
-             Formspree submission per person, never two. */
-          notify: !notified,
-          site: details.site,
-          competitors: details.competitors,
-          email: v,
-          name: nm,
-          last_name: ln,
-          company: co,
-          update: isUpdate,
-          status: (qualified ? 'qualified' : (tooSmall ? 'under-5m-arr' : 'exploring')),
-          arr: LBL.arr[arr],
-          goal: LBL.goal[goal],
-          timing: LBL.timing[timing],
-          channels: (channels||[]).map(function(i){ return LBL.ch[i]; }).join(', '),
-          source:'quiz', page: location.pathname
-        };
-        if(ENDPOINT){
-          /* This send carries the notification, so the leave-beacon must not add a
-             second one. Set before the request: a slow network must not open a
-             window where pagehide also fires. */
-          if(payload.notify) notified = true;
-          fetch(ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'},
-            body: JSON.stringify(payload)})
-            .then(function(r){
-              if(r.ok) return;
-              if(r.status !== 422) return;
-              /* 422 now covers three different problems. Telling someone with a
-                 typo'd work address to "use your work email" sends them in circles. */
-              return r.json().then(function(d){
-                var MSG = {
-                  free_inbox:         'Please use your work email. That is how we look up your category. You can also just book the call below.',
-                  email_domain_dead:  'We cannot find that email domain. Check the spelling?',
-                  mailbox_invalid:    'That mailbox does not exist. Check the spelling?',
-                  mailbox_disposable: 'Please use your work email, not a temporary one.'
-                };
-                note.className = 'cap-err';
-                note.textContent = MSG[d && d.error] || MSG.free_inbox;
-                sent = '';
-              }).catch(function(){
-                note.className='cap-err';
-                note.textContent=MSG_FALLBACK; sent='';
-              });
-            })
-            .catch(function(){});
-        }
-        if(window.dataLayer) window.dataLayer.push({event:'quiz_email_captured', quiz_status:payload.status});
-        note.className = 'cap-ok';
-        note.textContent = 'Got it — sending that over shortly.';
-      }
-      // NB: wrap every listener — a bare `save` would receive the Event as `strict`
-      input.addEventListener('blur', function(){ save(false); });
-      btn.addEventListener('click', function(){ save(true); });
-      input.addEventListener('keydown', function(ev){ if(ev.key === 'Enter'){ ev.preventDefault(); save(true); } });
-      [nameEl, lastEl, coEl].forEach(function(el){
-        if(!el) return;
-        el.addEventListener('blur', function(){ save(false); });
-        el.addEventListener('keydown', function(ev){ if(ev.key === 'Enter'){ ev.preventDefault(); input.focus(); } });
-      });
-    })();
-
-    res.querySelector('.r-restart').addEventListener('click', function(){
-      step=0; answers=[]; res.style.display='none'; quiz.style.display=''; dots.style.display='flex'; render();
-    });
-    // Only qualified completions count as a Lead — otherwise Meta optimises toward budgets we turn away
-    if(qualified){
-      /* Lead is NOT fired here any more. Self-reported answers are trivially gamed
-         on broad targeting, and Meta would learn from whoever lies best. The server
-         verifies the domain first and fires Lead only if it looks like real SaaS.
-         fbp/fbc go along so the server-side event still attributes to the ad click. */
-      if(window.STN_LEAD_ENDPOINT && !completePosted){
-        completePosted = true;
-        try{
-          lastQuizPayload = {
-              kind:'complete', status:'qualified', notify:false,
-              site: details.site, competitors: details.competitors,
-              arr: ['Under $5M','$5M to $10M','$10M to $50M','$50M or more'][arr],
-              goal: ['Lower CAC','AI answers (AEO/GEO)','Break into Reddit','New pipeline source'][goal],
-              timing: ['ASAP','This quarter','Next quarter','Just exploring'][timing],
-              fbp: readCookie('_fbp'), fbc: readCookie('_fbc'),
-              source:'quiz', page: location.pathname
-          };
-          fetch(window.STN_LEAD_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'},
-            body: JSON.stringify(lastQuizPayload)})
-            .then(function(r){ return r.json(); })
-            /* LinkedIn has no server-side equivalent here, so its conversion fires
-               client-side — but only after the server confirms the domain passed.
-               Same gate as Meta, so both platforms count the same population. */
-            .then(function(d){
-              if(d && d.verified && typeof window.lintrk === 'function'){
-                window.lintrk('track', { conversion_id: 30102225 });
-                if(window.dataLayer) window.dataLayer.push({event:'li_qualified_lead'});
-              }
-            })
-            .catch(function(){});
-        }catch(_){}
-      }
-      if(window.dataLayer) window.dataLayer.push({event:'quiz_qualified', arr:arr, goal:goal, timing:timing});
-    } else {
-      if(window.dataLayer) window.dataLayer.push({event:'quiz_disqualified', reason: tooSmall ? 'arr' : 'timeline'});
-    }
-
-    if(qualified){
-      (function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document;
-        C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments;
-          if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
-          if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1];
-            api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = cal.ns[namespace] || api) && p(cal.ns[namespace], ar) && p(cal, ["initNamespace", namespace]) : p(cal, ar);
-            return; } p(cal, ar); };
-      })(window, "https://app.cal.com/embed/embed.js", "init");
-      Cal("init", "quiz", {origin:"https://app.cal.com"});
-      Cal.ns.quiz("ui", { hideEventTypeDetails:true, layout:"column_view", theme:"light" });
-      // fire OUR pixel on OUR domain when the booking completes
-      Cal.ns.quiz("on", { action:"bookingSuccessfulV2", callback:function(e){
-        var d=(e&&e.detail&&e.detail.data)||{}, uid=(d.booking&&d.booking.uid)||d.uid||(d.confirmedBooking&&d.confirmedBooking.uid); var eid=uid?'cal_'+uid:undefined;
-        if(typeof fbq!=='undefined'){ fbq('track','Schedule',{content_name:'quiz_booking'}, eid?{eventID:eid}:undefined); }
-        if(window.dataLayer) window.dataLayer.push({event:'booking_confirmed', source:'quiz', quiz_arr:lastQuizArr, event_id:eid});
-      }});
-    }
-  }
-  /* Someone who finishes the quiz but never types an email would otherwise be
-     invisible, because the completion POST deliberately suppressed its own
-     notification. sendBeacon survives the page being closed, which a fetch does
-     not. Fires at most once, and never if the email path already notified. */
-  (function(){
-    function flush(){
-      if(notified || !completePosted || !window.STN_LEAD_ENDPOINT) return;
-      if(!lastQuizPayload) return;
-      notified = true;
-      try{
-        var body = JSON.stringify(Object.assign({}, lastQuizPayload, { notify:true }));
-        if(navigator.sendBeacon){
-          navigator.sendBeacon(window.STN_LEAD_ENDPOINT, new Blob([body], {type:'application/json'}));
-        } else {
-          fetch(window.STN_LEAD_ENDPOINT, {method:'POST', headers:{'Content-Type':'application/json'},
-            body: body, keepalive:true}).catch(function(){});
-        }
-      }catch(_){}
-    }
-    /* pagehide only. visibilitychange fires on a mere tab switch, which would burn
-       the one available notification before someone came back and typed an email —
-       and the email is the more valuable of the two. The trade-off is that a mobile
-       visitor whose tab is silently discarded may produce no notification at all.
-       A missed one is cheaper than a duplicate on a 50/month quota. */
-    window.addEventListener('pagehide', flush);
-  })();
-
-  /* Start the quiz from anywhere that reads as a start affordance. */
-  function startQuiz(src){
-    document.getElementById('hook-card').style.display='none';
-    document.getElementById('quiz-card').style.display='';
-    document.getElementById('dots').style.display='flex';
-    if(window.dataLayer) window.dataLayer.push({event:'quiz_started', start_source:src||'cta'});
-    render();
-  }
-
-  /* Lightbox for the example ads. */
-  (function(){
-    var lb=document.getElementById('lb'), img=document.getElementById('lb-img'),
-        cap=document.getElementById('lb-cap'), lastFocus=null;
-    function open(btn){
-      lastFocus=btn;
-      var i=btn.querySelector('img');
-      img.src=i.src; img.alt=i.alt; cap.textContent=btn.getAttribute('data-cap')||'';
-      lb.classList.add('on'); document.body.style.overflow='hidden';
-      document.getElementById('lb-cta').focus();
-      if(window.dataLayer) window.dataLayer.push({event:'quiz_ad_opened'});
-    }
-    function close(){
-      lb.classList.remove('on'); document.body.style.overflow='';
-      if(lastFocus) lastFocus.focus();
-    }
-    [].forEach.call(document.querySelectorAll('.hook-ad'), function(b){
-      b.addEventListener('click', function(){ open(b); });
-    });
-    document.getElementById('lb-x').addEventListener('click', close);
-    lb.addEventListener('click', function(e){ if(e.target===lb) close(); });
-    document.addEventListener('keydown', function(e){ if(e.key==='Escape' && lb.classList.contains('on')) close(); });
-    document.getElementById('lb-cta').addEventListener('click', function(){ close(); startQuiz('ad_lightbox'); });
-    /* The strip states the credential; tapping it shows the artifact. */
-    document.getElementById('ama-proof').addEventListener('click', function(){
-      lastFocus=this;
-      img.src='/reddit-ama/ZohaAhmedAMA.webp';
-      img.alt='Official Reddit AMA announcement in r/redditforbusiness';
-      cap.textContent=this.getAttribute('data-cap');
-      lb.classList.add('on'); document.body.style.overflow='hidden';
-      document.getElementById('lb-cta').focus();
-      if(window.dataLayer) window.dataLayer.push({event:'quiz_ama_opened'});
-    });
-  })();
-
-  document.getElementById('kicker-start').addEventListener('click', function(){ startQuiz('kicker'); });
-  document.getElementById('alt-bench').addEventListener('click', function(){
-    if(window.dataLayer) window.dataLayer.push({event:'quiz_fallback_taken', destination:'benchmarks'});
-  });
-
-  document.getElementById('hook-start').addEventListener('click', function(){
-    startQuiz('cta');
-  });
-})();
-</script>
 <footer style="padding:34px 24px 44px;text-align:center;border-top:1px solid rgba(0,0,0,.07);">
   <p style="font-size:13px;color:#8b90a0;margin:0;">&copy; 2026 Skip the Noise Media &middot; Reddit Certified Partner</p>
   <p style="font-size:12.5px;color:#a8adb8;margin:8px 0 0;">
@@ -1644,76 +299,161 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
 </footer>
 
 <script>
-  // Lazy-load all below-fold images
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('img:not([loading])').forEach(function(img) {
-      img.setAttribute('loading', 'lazy');
-      img.setAttribute('decoding', 'async');
-    });
-  });
-
-  // Nav scroll
-  (function(){
-    var nav = document.querySelector('.nav');
-    if(!nav) return;   // this page has no nav bar — without the guard the handler threw on every scroll
-    window.addEventListener('scroll', function(){
-      nav.classList.toggle('scrolled', window.scrollY > 40);
-    }, {passive: true});
-  })();
-
-  // Scroll animations
-  var obs = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('visible'); }
-    });
-  }, {threshold: 0.1});
-  document.querySelectorAll('[data-anim]').forEach(function(el){ obs.observe(el); });
-
-  // Hero content must never be scroll-gated: its CTA can sit below the fold on
-  // short viewports, which would leave the primary button invisible on load.
-  document.querySelectorAll('.hero [data-anim]').forEach(function(el){ el.classList.add('visible'); });
-
-  // Safety net: if IntersectionObserver is unavailable, reveal everything.
-  if (!('IntersectionObserver' in window)) {
-    document.querySelectorAll('[data-anim]').forEach(function(el){ el.classList.add('visible'); });
-  }
-
-  // FAQ accordion
-  function toggleFaq(btn) {
-    var item = btn.closest('.faq-item');
-    var isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
-    if (!isOpen) item.classList.add('open');
-  }
-
-  // Mobile menu
-  var hamburger = document.getElementById('hamburger');
-  var mobileMenu = document.getElementById('mobile-menu');
-  if(hamburger && mobileMenu){   // neither exists on this page — the unguarded call threw on load
-    hamburger.addEventListener('click', function() {
-      var open = mobileMenu.classList.toggle('open');
-      hamburger.classList.toggle('open', open);
-      document.body.style.overflow = open ? 'hidden' : '';
-    });
-  }
+/* Cal embed, lifted from the page this replaces. The booking button is inert
+   without it, and the bookingSuccessfulV2 hook is what fires Schedule on our
+   own domain rather than inside cal.com's iframe. */
+(function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document;
+  C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments;
+    if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; }
+    if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1];
+      api.q = api.q || []; typeof namespace === "string" ? (cal.ns[namespace] = cal.ns[namespace] || api) && p(cal.ns[namespace], ar) && p(cal, ["initNamespace", namespace]) : p(cal, ar);
+      return; } p(cal, ar); };
+})(window, "https://app.cal.com/embed/embed.js", "init");
+Cal("init", "quiz", {origin:"https://app.cal.com"});
+Cal.ns.quiz("ui", { hideEventTypeDetails:true, layout:"column_view", theme:"light" });
+Cal.ns.quiz("on", { action:"bookingSuccessfulV2", callback:function(e){
+  var d=(e&&e.detail&&e.detail.data)||{},
+      uid=(d.booking&&d.booking.uid)||d.uid||(d.confirmedBooking&&d.confirmedBooking.uid),
+      eid=uid?'cal_'+uid:undefined;
+  if(typeof fbq!=='undefined'){ fbq('track','Schedule',{content_name:'quiz_booking'}, eid?{eventID:eid}:undefined); }
+  if(window.dataLayer) window.dataLayer.push({event:'booking_confirmed',source:'quiz',
+    quiz_arr:(window.__answers&&window.__answers.size)||'', event_id:eid});
+}});
 </script>
-<!-- LinkedIn Insight Tag (partner 8129252) -->
-<script type="text/javascript">
-_linkedin_partner_id = "8129252";
-window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
-window._linkedin_data_partner_ids.push(_linkedin_partner_id);
-</script><script type="text/javascript">
-(function(l) {
-if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
-window.lintrk.q=[]}
-var s = document.getElementsByTagName("script")[0];
-var b = document.createElement("script");
-b.type = "text/javascript";b.async = true;
-b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
-s.parentNode.insertBefore(b, s);})(window.lintrk);
+
+<script>
+const BENCH={"security":{"m":"$157","ml":"Blended cost per lead","c":"$0.92","cl":"Cost per click","src":"Our own cybersecurity SaaS account: 74 qualified leads on $11,663 over three months.","d":1},"saas-dev":{"m":"$157","ml":"Blended cost per lead","c":"$0.92","cl":"Cost per click","src":"Cybersecurity SaaS: 74 qualified leads on $11,663 over three months.","d":0},"marketing":{"m":"$157","ml":"Blended cost per lead","c":"$0.92","cl":"Cost per click","src":"B2B SaaS. We have not run a martech account on Reddit yet.","d":0},"sales":{"m":"$157","ml":"Blended cost per lead","c":"$0.92","cl":"Cost per click","src":"B2B SaaS. We have not run a sales-tool account on Reddit yet.","d":0},"hr":{"m":"$157","ml":"Blended cost per lead","c":"$0.92","cl":"Cost per click","src":"B2B SaaS. We have not run an HR-tech account on Reddit yet.","d":0},"founders":{"m":"$157","ml":"Blended cost per lead","c":"$0.92","cl":"Cost per click","src":"B2B SaaS, selling to technical buyers.","d":0},"fintech":{"m":"$157","ml":"Blended cost per lead","c":"$0.92","cl":"Cost per click","src":"B2B SaaS. Finance subreddits are strict, so treat this as optimistic.","d":0},"edtech":{"m":"$157","ml":"Blended cost per lead","c":"$0.92","cl":"Cost per click","src":"B2B SaaS. We have not run an edtech account on Reddit yet.","d":0},"productivity":{"m":"\u20ac30","ml":"Cost per subscriber","c":"$0.92","cl":"Cost per click","src":"Our own B2C AI SaaS account, reached after 90 days of creative testing.","d":1},"ecomm":{"m":"1.41x","ml":"Blended return on ad spend","c":"$0.92","cl":"Cost per click","src":"Our own DTC gifting account. Up to 2.36x on a US sub-segment.","d":1}};
+const SUBS=[{"n":"r/devops","b":"saas-dev","cat":"Dev & Infra","sz":"Mid","best":"both","note":"Tool-aware and pragmatic \u2014 works for ads if genuinely useful; they spot fluff instantly.","s":510197},{"n":"r/sysadmin","b":"saas-dev","cat":"Dev & Infra","sz":"Mid","best":"both","note":"Lead with the problem you solve, not a feature list.","s":1315330},{"n":"r/sre","b":"saas-dev","cat":"Dev & Infra","sz":"Niche","best":"both","note":"Small but senior \u2014 high-value technical buyers.","s":56534},{"n":"r/kubernetes","b":"saas-dev","cat":"Dev & Infra","sz":"Mid","best":"both","note":"Strong fit for cloud-native and platform tooling.","s":210750},{"n":"r/aws","b":"saas-dev","cat":"Dev & Infra","sz":"Mid","best":"both","note":"Cost-saving and reliability angles resonate.","s":393177},{"n":"r/terraform","b":"saas-dev","cat":"Dev & Infra","sz":"Niche","best":"both","note":"Narrow but high-intent for IaC and platform tools.","s":84398},{"n":"r/docker","b":"saas-dev","cat":"Dev & Infra","sz":"Niche","best":"both","note":"Fits dev tooling and platform products.","s":320240},{"n":"r/dataengineering","b":"saas-dev","cat":"Dev & Infra","sz":"Mid","best":"both","note":"Great for data, ETL and analytics tooling.","s":474841},{"n":"r/apachekafka","b":"saas-dev","cat":"Dev & Infra","sz":"Niche","best":"organic","note":"<b>Very niche & technical</b> \u2014 better for genuine participation than ads.","s":21463},{"n":"r/programming","b":"saas-dev","cat":"Dev & Infra","sz":"Large","best":"organic","note":"<b>Huge but ad-resistant</b> and broad \u2014 better for organic thought leadership.","s":6915209},{"n":"r/webdev","b":"saas-dev","cat":"Dev & Infra","sz":"Large","best":"both","note":"Broad dev reach; works for dev tools with clear value.","s":3302971},{"n":"r/netsec","b":"security","cat":"Cybersecurity","sz":"Mid","best":"organic","note":"<b>Notoriously promo-hostile</b> \u2014 value-first participation only, never blunt ads.","s":571043},{"n":"r/cybersecurity","b":"security","cat":"Cybersecurity","sz":"Mid","best":"both","note":"More ad-tolerant than r/netsec; still needs credible, non-salesy creative.","s":1514582},{"n":"r/blueteamsec","b":"security","cat":"Cybersecurity","sz":"Niche","best":"organic","note":"Niche and expert \u2014 earn trust through useful content.","s":71387},{"n":"r/cloudsecurity","b":"security","cat":"Cybersecurity","sz":"Niche","best":"both","note":"Good fit for cloud-security SaaS."},{"n":"r/AskNetsec","b":"security","cat":"Cybersecurity","sz":"Niche","best":"organic","note":"Answer-driven \u2014 participate by genuinely helping.","s":262577},{"n":"r/marketing","b":"marketing","cat":"Marketing","sz":"Mid","best":"both","note":"Martech and agency offers work with a real point of view.","s":1965391},{"n":"r/PPC","b":"marketing","cat":"Marketing","sz":"Niche","best":"both","note":"High-intent for ad tools and agencies.","s":281158},{"n":"r/digital_marketing","b":"marketing","cat":"Marketing","sz":"Mid","best":"both","note":"Mixed quality \u2014 target with specific, proof-backed creative.","s":372377},{"n":"r/SEO","b":"marketing","cat":"Marketing","sz":"Mid","best":"both","note":"Strong for SEO/content tools; skeptical of hype.","s":508313},{"n":"r/analytics","b":"marketing","cat":"Marketing","sz":"Mid","best":"both","note":"Fits attribution and analytics products.","s":280439},{"n":"r/humanresources","b":"hr","cat":"HR & Recruiting","sz":"Mid","best":"both","note":"Lead with day-to-day pain; avoid HR buzzwords.","s":237881},{"n":"r/recruiting","b":"hr","cat":"HR & Recruiting","sz":"Mid","best":"both","note":"Strong for ATS and sourcing tools.","s":213994},{"n":"r/managers","b":"hr","cat":"HR & Recruiting","sz":"Niche","best":"both","note":"Fits performance, engagement and management tools.","s":278040},{"n":"r/cscareerquestions","b":"hr","cat":"HR & Recruiting","sz":"Large","best":"organic","note":"<b>Candidate-heavy & ad-sensitive</b> \u2014 useful for employer brand via organic.","s":2380983},{"n":"r/sales","b":"sales","cat":"Sales","sz":"Mid","best":"both","note":"Good for CRM/sales tools \u2014 speak like a rep, not a vendor.","s":600244},{"n":"r/salesforce","b":"sales","cat":"Sales","sz":"Niche","best":"both","note":"High-intent for Salesforce-adjacent apps and services.","s":114756},{"n":"r/SaaS","b":"founders","cat":"Founders & SMB","sz":"Mid","best":"both","note":"Great for SaaS tools and B2B services \u2014 founders here buy.","s":792148},{"n":"r/startups","b":"founders","cat":"Founders & SMB","sz":"Large","best":"both","note":"Broad; works for founder-facing products with a clear hook.","s":2119681},{"n":"r/Entrepreneur","b":"founders","cat":"Founders & SMB","sz":"Large","best":"organic","note":"<b>Very broad & promo-saturated</b> \u2014 better for organic credibility.","s":5266597},{"n":"r/smallbusiness","b":"founders","cat":"Founders & SMB","sz":"Large","best":"both","note":"Good for SMB tools \u2014 practical, ROI-led creative.","s":2529865},{"n":"r/ProductManagement","b":"founders","cat":"Founders & SMB","sz":"Mid","best":"both","note":"Fits PM, analytics and roadmap tools.","s":279343},{"n":"r/personalfinance","b":"fintech","cat":"Fintech","sz":"Large","best":"organic","note":"<b>Strict rules, ad-hostile</b> \u2014 participate with genuine value only.","s":21820837},{"n":"r/investing","b":"fintech","cat":"Fintech","sz":"Large","best":"organic","note":"<b>Rule-heavy & skeptical</b> \u2014 organic-first.","s":3451221},{"n":"r/financialindependence","b":"fintech","cat":"Fintech","sz":"Mid","best":"organic","note":"Engaged but promo-sensitive.","s":2455685},{"n":"r/CreditCards","b":"fintech","cat":"Fintech","sz":"Mid","best":"both","note":"High purchase intent for fintech and card offers.","s":1554058},{"n":"r/ynab","b":"fintech","cat":"Fintech","sz":"Niche","best":"both","note":"Niche, high-intent for budgeting and fintech apps.","s":222278},{"n":"r/Teachers","b":"edtech","cat":"EdTech","sz":"Mid","best":"both","note":"Fits classroom tools \u2014 respect their time and budget.","s":2378917},{"n":"r/GetStudying","b":"edtech","cat":"EdTech","sz":"Niche","best":"both","note":"Good for study and productivity edtech.","s":3312430},{"n":"r/college","b":"edtech","cat":"EdTech","sz":"Large","best":"both","note":"Broad student reach for edtech and B2C tools.","s":2932242},{"n":"r/highereducation","b":"edtech","cat":"EdTech","sz":"Niche","best":"both","note":"Fits institutional edtech.","s":67804},{"n":"r/k12sysadmin","b":"edtech","cat":"EdTech","sz":"Niche","best":"both","note":"Niche buyer for school IT and edtech.","s":55371},{"n":"r/languagelearning","b":"edtech","cat":"EdTech","sz":"Mid","best":"both","note":"Strong for language-learning apps.","s":3397074},{"n":"r/learnprogramming","b":"edtech","cat":"EdTech","sz":"Large","best":"both","note":"Huge for coding-education products.","s":4404824},{"n":"r/SkincareAddiction","b":"ecomm","cat":"eComm \u2014 Beauty","sz":"Large","best":"organic","note":"<b>Knowledgeable & ad-skeptical</b> \u2014 organic/UGC-led works best.","s":5013732},{"n":"r/tretinoin","b":"ecomm","cat":"eComm \u2014 Beauty","sz":"Niche","best":"both","note":"Niche, high-intent for specific skincare actives.","s":291597},{"n":"r/streetwear","b":"ecomm","cat":"eComm \u2014 Fashion","sz":"Mid","best":"both","note":"Trend-driven \u2014 creative must look native, not corporate.","s":5125081},{"n":"r/femalefashionadvice","b":"ecomm","cat":"eComm \u2014 Fashion","sz":"Mid","best":"both","note":"Good for women\u2019s apparel/accessories with strong visuals.","s":5828140},{"n":"r/malefashionadvice","b":"ecomm","cat":"eComm \u2014 Fashion","sz":"Mid","best":"both","note":"Strong for menswear \u2014 show fit and quality.","s":6465203},{"n":"r/fitness","b":"ecomm","cat":"eComm \u2014 Fitness","sz":"Large","best":"both","note":"Broad; works for equipment, apparel and supplements with proof.","s":12570289},{"n":"r/loseit","b":"ecomm","cat":"eComm \u2014 Fitness","sz":"Large","best":"both","note":"Engaged but hype-sensitive \u2014 keep claims honest.","s":4201169},{"n":"r/xxfitness","b":"ecomm","cat":"eComm \u2014 Fitness","sz":"Niche","best":"both","note":"Good for women\u2019s fitness products.","s":3093974},{"n":"r/BuyItForLife","b":"ecomm","cat":"eComm \u2014 Home/Lifestyle","sz":"Large","best":"organic","note":"<b>Quality-obsessed & anti-marketing</b> \u2014 organic credibility wins, ads risky.","s":3902135},{"n":"r/homeautomation","b":"ecomm","cat":"eComm \u2014 Home/Lifestyle","sz":"Mid","best":"both","note":"Fits smart-home and connected products.","s":4589331},{"n":"r/productivity","b":"productivity","cat":"Productivity & Creative","sz":"Large","best":"both","note":"Lead with workflow, not features.","s":4242046},{"n":"r/notion","b":"productivity","cat":"Productivity & Creative","sz":"Niche","best":"both","note":"High-intent for Notion-adjacent and productivity tools.","s":469358},{"n":"r/VideoEditing","b":"productivity","cat":"Productivity & Creative","sz":"Mid","best":"both","note":"Fits creative and video SaaS.","s":525319},{"n":"r/graphic_design","b":"productivity","cat":"Productivity & Creative","sz":"Mid","best":"both","note":"Designers spot bad creative instantly \u2014 keep it sharp.","s":2922967},{"n":"r/streaming","b":"productivity","cat":"Productivity & Creative","sz":"Niche","best":"both","note":"Good for creator and streaming products.","s":104942}], BUCKETS=[["saas-dev","Developer tools & infrastructure"],["security","Cybersecurity"],["marketing","Marketing & martech"],["sales","Sales & CRM"],["hr","HR & recruiting"],["fintech","Fintech & finance"],["edtech","Education"],["productivity","Productivity & creative"],["founders","SMB & founder tools"],["ecomm","eCommerce & DTC"]];
+const $=id=>document.getElementById(id);
+const fmt=n=>n>=1e6?(n/1e6).toFixed(n>=1e7?0:1).replace(/\.0$/,'')+'M':Math.round(n/1e3)+'K';
+const dl=(o)=>{window.dataLayer=window.dataLayer||[];window.dataLayer.push(o);};
+let bucket=null,answers={},qi=0;
+window.__answers=answers;
+function readCookie(n){var m=document.cookie.match('(^|;)\\s*'+n+'\\s*=\\s*([^;]+)');return m?m.pop():'';}
+
+const QS=[
+ {k:'goal',q:'What would move the needle most this quarter?',s:'Pick the one that matters most.',
+  a:['Lower CAC on our paid channels','Get recommended in AI answers','Break into Reddit properly','Add a new pipeline source']},
+ {k:'size',q:'How big is the company?',s:'So we size the plan to the budget, not the other way round.',
+  a:['Under $5M ARR','$5M to $10M','$10M to $50M','$50M or more']},
+ {k:'when',q:'When would you want this live?',s:'',
+  a:['As soon as possible','This quarter','Next quarter','Just exploring']},
+];
+
+// 1 ─ chips
+const N=SUBS.reduce((m,x)=>(m[x.b]=(m[x.b]||0)+1,m),{});
+/* Ten options is a menu, not a decision. Five cover most of the ICP; the rest
+   stay one tap away rather than adding six more rows to scan. */
+const PRIMARY=['saas-dev','security','marketing','ecomm','founders'];
+const chipHtml=([b,l])=>`<button class="chip" data-b="${b}">${l}<span class="ct">${N[b]}</span></button>`;
+$('chips').innerHTML=BUCKETS.filter(x=>PRIMARY.includes(x[0])).map(chipHtml).join('');
+$('more').onclick=function(){
+  $('chips').innerHTML+=BUCKETS.filter(x=>!PRIMARY.includes(x[0])).map(chipHtml).join('');
+  this.remove(); dl({event:'v3_more_categories'});
+};
+$('chips').addEventListener('click',e=>{const b=e.target.closest('.chip'); if(b) reveal(b.dataset.b, b.firstChild.textContent.trim());});
+
+function show(n){['s1','s2','s3','s4','s5'].forEach((id,i)=>$(id).classList.toggle('hide',i!==n-1));
+  $('step').textContent = n>1 ? 'Step '+Math.min(n-1,3)+' of 3' : ''; window.scrollTo(0,0);}
+
+// 2 ─ the payoff, immediately, with no email asked
+function reveal(b,label){
+  bucket=b; answers.category=label;
+  const hits=SUBS.filter(s=>s.b===b), e=BENCH[b];
+  $('r-cat').textContent=label;
+  $('r-head').textContent=`${hits.length} subreddits, and what a test would cost.`;
+  $('e-1').textContent=e.m; $('e-1l').textContent=e.ml;
+  $('e-2').textContent=e.c; $('e-2l').textContent=e.cl;
+  /* Say plainly whether the figure is from this exact vertical or the nearest
+     one we have run. A VP will ask; better to answer before they do. */
+  $('e-src').innerHTML = (e.d ? '<b>From our own account.</b> ' : '<b>Nearest account we have run.</b> ') + e.src;
+  $('r-found').innerHTML=`${hits.filter(h=>h.best==='both').length} take ads &middot; ${hits.filter(h=>h.best==='organic').length} organic only &middot; subscribers via Reddit`;
+  $('r-list').innerHTML=hits.slice(0,3).map(h=>`
+    <div class="row">
+      <div><div class="nm">${h.n} ${h.s?`<span class="sz">${fmt(h.s)}</span>`:''}</div><div class="nt">${h.note}</div></div>
+    </div>`).join('');
+  $('r-more').innerHTML = hits.length>3
+    ? `Three of ${hits.length}. The full list, and the 90-day plan, come next.`
+    : '';
+  dl({event:'v3_category_revealed',category:b});
+  show(2);
+}
+$('b1').onclick=()=>show(1);
+$('go-q').onclick=()=>{qi=0;renderQ();show(3);dl({event:'v3_brief_started'});};
+
+// 3 ─ qualify AFTER they have had the payoff
+function renderQ(){
+  const q=QS[qi];
+  $('q-q').textContent=q.q; $('q-s').textContent=q.s;
+  if(q.type==='text'){
+    $('q-opts').innerHTML=`<input id="q-txt" type="text" placeholder="${q.ph}" autocomplete="off">
+      <p class="err" id="q-err"></p>
+      <button class="btn" id="q-go">Continue &rarr;</button>`;
+    const go=$('q-go'), txt=$('q-txt');
+    txt.focus();
+    const submit=()=>{
+      const v=txt.value.trim(), key=v.toLowerCase().replace(/[^a-z0-9]/g,'');
+      const JUNK=['none','na','nan','idk','dontknow','nobody','noone','test','asdf','qwerty','abc','xyz','aaa','blah','whatever','nocompetitors'];
+      if(key.length<3||JUNK.includes(key)||/^(.)\1+$/.test(key)){
+        $('q-err').textContent='Real names, please — this is what we search for.'; return; }
+      answers.rivals=v.slice(0,120); next();
+    };
+    go.onclick=submit;
+    txt.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();submit();}});
+  } else {
+    $('q-opts').innerHTML=q.a.map((a,i)=>`<button class="opt" data-i="${i}">${a}</button>`).join('');
+  }
+}
+function next(){
+  if(++qi<QS.length){renderQ();window.scrollTo(0,0);}
+  else{
+    const big=answers.size!=='Under $5M ARR';
+    $('g-head').textContent = big ? 'Where should we send it?' : 'Where should we send the list?';
+    $('g-sub').textContent  = big
+      ? 'The costed 90-day plan for your category, plus three Reddit ads written for those communities.'
+      : 'The full subreddit list for your category, plus our 2026 benchmarks.';
+    show(4);
+  }
+}
+$('q-opts').addEventListener('click',e=>{
+  const b=e.target.closest('.opt'); if(!b) return;
+  answers[QS[qi].k]=QS[qi].a[+b.dataset.i];
+  next();
+});
+$('b2').onclick=()=>{ if(qi>0){qi--;renderQ();} else show(2); };
+$('b3').onclick=()=>{qi=QS.length-1;renderQ();show(3);};
+
+// 4 ─ gate at peak curiosity, not after the result
+$('g-send').onclick=async function(){
+  const site=$('g-site').value.trim(), email=$('g-email').value.trim(), err=$('g-err');
+  const clean=site.toLowerCase().replace(/^https?:\/\//,'').replace(/^www\./,'').split(/[\/?#]/)[0];
+  if(!/^[a-z0-9][a-z0-9-]*(\.[a-z0-9-]+)*\.[a-z]{2,}$/.test(clean)){err.textContent='That does not look like a website. Try yourcompany.com';return;}
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){err.textContent='That does not look like a valid email.';return;}
+  this.disabled=true; this.textContent='Checking\u2026'; err.textContent='';
+  const MSG={no_such_domain:'We cannot find that domain. Check the spelling?',freemail:'Please use your work email.',
+    placeholder:'We need your real website.',malformed:'That does not look like a website.',
+    email_domain_dead:'We cannot find that email domain.',mailbox_invalid:'That mailbox does not exist. Check the spelling?',
+    mailbox_disposable:'Please use your work email, not a temporary one.',bad_email:'That does not look like a valid email.'};
+  let ok=true,reason=null;
+  try{
+    const r=await fetch('/api/verify',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({site:clean,email})});
+    if(r.ok){const d=await r.json(); ok=d.ok!==false; reason=d.reason;}
+  }catch(_){}
+  if(!ok){this.disabled=false;this.textContent='Send it \u2192';err.textContent=MSG[reason]||MSG.no_such_domain;
+    dl({event:'v3_rejected',reason});return;}
+  fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({kind:'email',email,site:clean,status:answers.size==='Under $5M ARR'?'under-5m-arr':'qualified',
+      arr:answers.size,goal:answers.goal,timing:answers.when,channels:answers.category,fbp:readCookie('_fbp'),fbc:readCookie('_fbc'),source:'quiz',page:location.pathname})}).catch(()=>{});
+  dl({event:'v3_lead',qualified:answers.size!=='Under $5M ARR'});
+  const big=answers.size!=='Under $5M ARR';
+  $('d-head').textContent = big ? 'Sent. Now let\u2019s look at it together.' : 'Sent \u2014 check your inbox.';
+  $('d-sub').textContent  = big
+    ? 'Your plan is on its way. The three ads follow within five business days. Book 20 minutes and we will walk through what the test costs, what it should return, and how you would know by day 45 whether to kill it.'
+    : 'Your subreddit list and our 2026 benchmarks are on their way.';
+  $('d-cta').innerHTML = big
+    ? '<button class="btn" data-cal-namespace="quiz" data-cal-link="skipthenoise/30min">Book 20 minutes &rarr;</button>'
+    : '<a class="btn ghost" href="/blog/reddit-ads-benchmarks" style="display:inline-block;text-decoration:none">Read the benchmarks &rarr;</a>';
+  show(5);
+};
 </script>
-<noscript>
-<img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=8129252&fmt=gif" />
-</noscript>
-</body>
-</html>
