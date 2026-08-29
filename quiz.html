@@ -827,6 +827,14 @@
     cursor:pointer;font-family:var(--font);font-variation-settings:"wdth" var(--wdth),"wght" 700;transition:opacity .2s,transform .2s;}
   .hook-cta:hover{opacity:.9;transform:translateY(-2px);}
   .hook-micro{font-size:13.5px;color:#8b90a0;margin:13px 0 0;line-height:1.5;}
+  /* 1.07 pages/session: someone not ready for a 60-second commitment had
+     nowhere to go, so 93% left with nothing captured. A text link, never a
+     second button — a competing button costs more starts than it saves. */
+  .hook-alt{font-size:13.5px;color:#8b90a0;margin:16px 0 0;line-height:1.55;
+    padding-top:15px;border-top:1px solid rgba(0,0,0,.07);}
+  .hook-alt a{color:#5500dd;text-decoration:underline;text-underline-offset:2px;
+    font-variation-settings:"wdth" var(--wdth),"wght" 700;}
+  .hook-alt a:hover{opacity:.8;}
   /* Every piece of proof used to sit BELOW the CTA, so the decision was made
      before any evidence arrived. This is the one third-party credential we
      have — Reddit's own subreddit — so it goes above the ask. Kept to a strip
@@ -1048,6 +1056,7 @@
         </div>
         <button class="hook-cta" id="hook-start">Show me the threads &rarr;</button>
         <p class="hook-micro">About 60 seconds. We do this for a few SaaS companies a month. Some become clients. Either way the ads are yours.</p>
+        <p class="hook-alt">Not ready? See our <a href="/blog/reddit-ads-benchmarks" id="alt-bench">2026 Reddit ad benchmarks</a> &mdash; real cost per lead by vertical, no form.</p>
 
         <div class="hook-ads">
           <button type="button" class="hook-ad" data-cap="Reddit ad run for a cybersecurity SaaS client. 74 qualified leads in 3 months at $157 per lead." aria-label="Enlarge this Reddit ad">
@@ -1617,6 +1626,9 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
   })();
 
   document.getElementById('kicker-start').addEventListener('click', function(){ startQuiz('kicker'); });
+  document.getElementById('alt-bench').addEventListener('click', function(){
+    if(window.dataLayer) window.dataLayer.push({event:'quiz_fallback_taken', destination:'benchmarks'});
+  });
 
   document.getElementById('hook-start').addEventListener('click', function(){
     startQuiz('cta');
