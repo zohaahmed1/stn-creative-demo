@@ -836,6 +836,30 @@
   .hook-ads{display:flex;gap:10px;margin:30px 0 0;}
   .hook-ads img{width:calc(50% - 5px);aspect-ratio:1/1;object-fit:cover;border-radius:11px;display:block;}
   .hook-ads-cap{font-size:12.5px;color:#8b90a0;margin:10px 0 0;}
+  /* Clarity, 5 days mobile: 4 of 30 taps hit the thumbnails and the kicker,
+     both of which did nothing. Tapping an example ad is a high-intent gesture
+     — the page was dead-ending exactly the people worth capturing. */
+  .hook-ads button{width:calc(50% - 5px);padding:0;border:0;background:none;position:relative;
+    cursor:zoom-in;border-radius:11px;display:block;-webkit-tap-highlight-color:transparent;}
+  .hook-ads button img{width:100%;}
+  .hook-ads button::after{content:'';position:absolute;inset:0;border-radius:11px;
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);transition:box-shadow .16s;}
+  .hook-ads button:hover::after,.hook-ads button:focus-visible::after{box-shadow:inset 0 0 0 2px #5500dd;}
+  .hook-ads .zoom{position:absolute;right:8px;bottom:8px;width:26px;height:26px;border-radius:50%;
+    background:rgba(13,13,13,.62);display:flex;align-items:center;justify-content:center;pointer-events:none;}
+  .hook-ads .zoom svg{width:13px;height:13px;stroke:#fff;stroke-width:2.2;fill:none;}
+  .lb{position:fixed;inset:0;background:rgba(10,8,20,.9);z-index:9999;display:none;
+    align-items:center;justify-content:center;padding:20px;}
+  .lb.on{display:flex;}
+  .lb-inner{max-width:460px;width:100%;text-align:center;}
+  .lb-inner img{width:100%;border-radius:14px;display:block;}
+  .lb-cap{color:rgba(255,255,255,.72);font-size:13.5px;margin:12px 0 16px;line-height:1.5;}
+  .lb-cta{background:#5500DD;color:#fff;border:0;border-radius:100px;padding:14px 28px;font-size:15px;
+    font-family:var(--font);cursor:pointer;font-variation-settings:"wdth" var(--wdth),"wght" 700;}
+  .lb-x{position:absolute;top:16px;right:18px;background:none;border:0;color:#fff;font-size:30px;
+    line-height:1;cursor:pointer;padding:6px 10px;}
+  .q-kicker{cursor:pointer;border:0;font-family:var(--font);min-height:44px;padding-top:12px;padding-bottom:12px;-webkit-tap-highlight-color:transparent;}
+  .q-kicker:hover,.q-kicker:focus-visible{background:rgba(85,0,221,.14);}
   @media(max-width:560px){
     .q-wrap{padding:18px 16px 56px;}
     .q-card{padding:24px 20px 26px;}
@@ -980,7 +1004,7 @@
 <div class="q-wrap">
   <div class="q-inner">
     <div style="text-align:center;">
-      <span class="q-kicker">60-second check</span>
+      <button type="button" class="q-kicker" id="kicker-start">60-second check</button>
     </div>
     <div class="q-card" id="hook-card">
       <div class="hook">
@@ -990,12 +1014,24 @@
         </div>
         <h1>Your buyers compare you on&nbsp;Reddit.<br><em>We'll show you where.</em></h1>
         <p class="sub">Answer four questions and we will find real threads where your category is being compared, then write three Reddit ads built to show up in them. Free, and yours to keep.</p>
+        <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Ad creative">
+          <button class="lb-x" id="lb-x" aria-label="Close">&times;</button>
+          <div class="lb-inner">
+            <img id="lb-img" alt="">
+            <p class="lb-cap" id="lb-cap"></p>
+            <button class="lb-cta" id="lb-cta">Show me my threads &rarr;</button>
+          </div>
+        </div>
         <button class="hook-cta" id="hook-start">Show me the threads &rarr;</button>
         <p class="hook-micro">Four questions, about 60 seconds. If you are a fit, the threads and ads are yours.</p>
 
         <div class="hook-ads">
-          <img loading="lazy" decoding="async" src="/assets/flare-ad-threat.webp" alt="Reddit ad run for a cybersecurity SaaS client">
-          <img loading="lazy" decoding="async" src="/assets/b2b-saas-ad-testimonial.webp" alt="B2B SaaS testimonial ad creative">
+          <button type="button" class="hook-ad" data-cap="Reddit ad run for a cybersecurity SaaS client. 74 qualified leads in 3 months at $157 per lead." aria-label="Enlarge this Reddit ad">
+            <img loading="lazy" decoding="async" src="/assets/flare-ad-threat.webp" alt="Reddit ad run for a cybersecurity SaaS client"><span class="zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5M11 8v6M8 11h6"/></svg></span>
+          </button>
+          <button type="button" class="hook-ad" data-cap="Testimonial ad creative for a B2B SaaS client." aria-label="Enlarge this Reddit ad">
+            <img loading="lazy" decoding="async" src="/assets/b2b-saas-ad-testimonial.webp" alt="B2B SaaS testimonial ad creative"><span class="zoom"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5M11 8v6M8 11h6"/></svg></span>
+          </button>
         </div>
         <p class="hook-ads-cap">Reddit ad creative for B2B SaaS. The first ran for a cybersecurity client.</p>
 
@@ -1512,12 +1548,44 @@ window.STN_LEAD_ENDPOINT = '/api/lead';
     window.addEventListener('pagehide', flush);
   })();
 
-  document.getElementById('hook-start').addEventListener('click', function(){
+  /* Start the quiz from anywhere that reads as a start affordance. */
+  function startQuiz(src){
     document.getElementById('hook-card').style.display='none';
     document.getElementById('quiz-card').style.display='';
     document.getElementById('dots').style.display='flex';
-    if(window.dataLayer) window.dataLayer.push({event:'quiz_started'});
+    if(window.dataLayer) window.dataLayer.push({event:'quiz_started', start_source:src||'cta'});
     render();
+  }
+
+  /* Lightbox for the example ads. */
+  (function(){
+    var lb=document.getElementById('lb'), img=document.getElementById('lb-img'),
+        cap=document.getElementById('lb-cap'), lastFocus=null;
+    function open(btn){
+      lastFocus=btn;
+      var i=btn.querySelector('img');
+      img.src=i.src; img.alt=i.alt; cap.textContent=btn.getAttribute('data-cap')||'';
+      lb.classList.add('on'); document.body.style.overflow='hidden';
+      document.getElementById('lb-cta').focus();
+      if(window.dataLayer) window.dataLayer.push({event:'quiz_ad_opened'});
+    }
+    function close(){
+      lb.classList.remove('on'); document.body.style.overflow='';
+      if(lastFocus) lastFocus.focus();
+    }
+    [].forEach.call(document.querySelectorAll('.hook-ad'), function(b){
+      b.addEventListener('click', function(){ open(b); });
+    });
+    document.getElementById('lb-x').addEventListener('click', close);
+    lb.addEventListener('click', function(e){ if(e.target===lb) close(); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape' && lb.classList.contains('on')) close(); });
+    document.getElementById('lb-cta').addEventListener('click', function(){ close(); startQuiz('ad_lightbox'); });
+  })();
+
+  document.getElementById('kicker-start').addEventListener('click', function(){ startQuiz('kicker'); });
+
+  document.getElementById('hook-start').addEventListener('click', function(){
+    startQuiz('cta');
   });
 })();
 </script>
