@@ -172,13 +172,14 @@ input:focus{border-color:var(--rd)}
 .proof figure{margin:0}
 .proof img{width:100%;max-width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:4px}
 /* Desktop: screen 1 widens past the 900px shell so the AMA has real presence.
-   The cap is 50vw+400px, which is exactly the space to the right of the centred
-   shell minus 30px of slack, so the page never scrolls sideways. Growth is
-   rightward only, so the left edge stays where screens 2-5 put it and nothing
-   jumps when you tap a category. */
+   Width is 50vw+280px, which leaves a settled ~150px right margin instead of
+   running the image to within 30px of the window edge, where it read as an
+   overflow bug rather than a layout. Floored at 860px so it never narrows the
+   shell, capped at 1200px. Growth is rightward only, so the left edge stays
+   where screens 2-5 put it and nothing jumps when you tap a category. */
 @media(min-width:1024px){
   .split{
-    width:min(1200px,calc(50vw + 400px));
+    width:clamp(860px,calc(50vw + 280px),1200px);
     grid-template-columns:minmax(0,1fr) clamp(330px,42%,500px);
     column-gap:clamp(44px,4vw,64px);
   }
