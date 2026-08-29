@@ -404,6 +404,7 @@ export async function onRequestPost({ request, env }) {
     ok: true,
     verified: verification.verified,
     lead_sent: meta.sent,
+    lead_why: meta.reason || null,
     stored,
     emailed: confirm.sent,
     email_why: confirm.reason || null

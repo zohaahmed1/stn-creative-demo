@@ -431,6 +431,7 @@ function renderQ(){
   }
 }
 let SEND_LABEL = 'Send me my plan \u2192';
+let completePosted = false;
 function next(){
   if(++qi<QS.length){renderQ();window.scrollTo(0,0);}
   else{
@@ -476,6 +477,20 @@ $('g-send').onclick=async function(){
       arr:answers.size,goal:answers.goal,timing:answers.when,channels:answers.category,fbp:readCookie('_fbp'),fbc:readCookie('_fbc'),source:'quiz',page:location.pathname})}).catch(()=>{});
   dl({event:'v3_lead',qualified:answers.size!=='Under $5M ARR'});
   const big=answers.size!=='Under $5M ARR';
+  /* The server-side CAPI Lead in functions/api/lead.js fires ONLY for
+     kind:'complete' + status:'qualified' + a domain it can verify, and that is
+     what Meta custom conversion 1356753099863243 (Lead, content_name contains
+     "quiz_qualified") optimises against. The Aug 29 rebuild of this page
+     dropped the complete POST, so that conversion stopped firing entirely.
+     notify:false because the kind:'email' POST above already sends the
+     Formspree notification - two per lead is what burned the 50/month quota. */
+  if(big && !completePosted){
+    completePosted = true;
+    fetch('/api/lead',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({kind:'complete',status:'qualified',notify:false,
+        site:clean,email,arr:answers.size,goal:answers.goal,timing:answers.when,
+        fbp:readCookie('_fbp'),fbc:readCookie('_fbc'),source:'quiz',page:location.pathname})}).catch(()=>{});
+  }
   $('d-head').textContent = big ? 'Sent. Now let\u2019s look at it together.' : 'Sent \u2014 check your inbox.';
   $('d-sub').textContent  = big
     ? 'Your plan is on its way. The three ads follow within five business days. Book 20 minutes and we will walk through what the test costs, what it should return, and how you would know by day 45 whether to kill it. If we do not think Reddit is a fit for you, we will say so.'
