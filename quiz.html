@@ -827,6 +827,21 @@
     cursor:pointer;font-family:var(--font);font-variation-settings:"wdth" var(--wdth),"wght" 700;transition:opacity .2s,transform .2s;}
   .hook-cta:hover{opacity:.9;transform:translateY(-2px);}
   .hook-micro{font-size:13.5px;color:#8b90a0;margin:13px 0 0;line-height:1.5;}
+  /* Every piece of proof used to sit BELOW the CTA, so the decision was made
+     before any evidence arrived. This is the one third-party credential we
+     have — Reddit's own subreddit — so it goes above the ask. Kept to a strip
+     rather than the full card because the mobile fold is ~550px. */
+  .hook-ama{display:flex;align-items:center;gap:11px;margin:0 0 20px;padding:9px 14px 9px 9px;
+    background:rgba(255,69,0,.055);border:1px solid rgba(255,69,0,.2);border-radius:100px;}
+  .hook-ama img{width:38px;height:38px;border-radius:50%;flex:none;display:block;}
+  .hook-ama .t{font-size:13.5px;line-height:1.35;color:#2b2f38;text-align:left;}
+  .hook-ama .t b{font-variation-settings:"wdth" var(--wdth),"wght" 800;}
+  .hook-ama .t span{color:#8b90a0;}
+  @media(max-width:560px){
+    .hook-ama{gap:9px;padding:8px 12px 8px 8px;}
+    .hook-ama img{width:34px;height:34px;}
+    .hook-ama .t{font-size:12.5px;}
+  }
   .hook-proof{display:flex;gap:0;flex-wrap:wrap;margin:32px 0 0;padding-top:26px;border-top:1px solid rgba(0,0,0,.1);}
   .hook-proof .hp{padding-right:26px;margin-right:26px;border-right:1px solid rgba(0,0,0,.1);}
   .hook-proof .hp:last-child{border-right:none;padding-right:0;margin-right:0;}
@@ -1013,7 +1028,11 @@
           Reddit for B2B SaaS
         </div>
         <h1>Your buyers compare you on&nbsp;Reddit.<br><em>We'll show you where.</em></h1>
-        <p class="sub">Answer four questions and we will find real threads where your category is being compared, then write three Reddit ads built to show up in them. Free, and yours to keep.</p>
+        <div class="hook-ama">
+          <img src="/assets/ama-zoha.jpg" alt="Zoha Ahmed, co-founder" width="38" height="38" loading="eager" decoding="async">
+          <span class="t"><b>We hosted the official AMA</b><br><span>in r/redditforbusiness</span></span>
+        </div>
+        <p class="sub">Four questions. We find the threads where your category is being compared, then write three Reddit ads built to show up in them.</p>
         <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Ad creative">
           <button class="lb-x" id="lb-x" aria-label="Close">&times;</button>
           <div class="lb-inner">
@@ -1023,7 +1042,7 @@
           </div>
         </div>
         <button class="hook-cta" id="hook-start">Show me the threads &rarr;</button>
-        <p class="hook-micro">Four questions, about 60 seconds. If you are a fit, the threads and ads are yours.</p>
+        <p class="hook-micro">About 60 seconds. We do this for a few SaaS companies a month. Some become clients. Either way the ads are yours.</p>
 
         <div class="hook-ads">
           <button type="button" class="hook-ad" data-cap="Reddit ad run for a cybersecurity SaaS client. 74 qualified leads in 3 months at $157 per lead." aria-label="Enlarge this Reddit ad">
