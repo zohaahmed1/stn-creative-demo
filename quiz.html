@@ -170,7 +170,20 @@ input:focus{border-color:var(--rd)}
 .split > .proof{grid-column:2;grid-row:1 / span 8;align-self:start}
 .proof{display:flex;flex-direction:column;gap:12px}
 .proof figure{margin:0}
-.proof img{width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:4px}
+.proof img{width:100%;max-width:100%;height:auto;display:block;border:1px solid var(--line);border-radius:4px}
+/* Desktop: screen 1 widens past the 900px shell so the AMA has real presence.
+   The cap is 50vw+400px, which is exactly the space to the right of the centred
+   shell minus 30px of slack, so the page never scrolls sideways. Growth is
+   rightward only, so the left edge stays where screens 2-5 put it and nothing
+   jumps when you tap a category. */
+@media(min-width:1024px){
+  .split{
+    width:min(1200px,calc(50vw + 400px));
+    grid-template-columns:minmax(0,1fr) clamp(330px,42%,500px);
+    column-gap:clamp(44px,4vw,64px);
+  }
+  .proof figcaption{font-size:11.5px}
+}
 .proof figcaption{font-family:var(--m);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;
   color:var(--dim);margin-top:7px;line-height:1.5}
 /* teaser row: proves the format before the tap */
@@ -211,7 +224,7 @@ input:focus{border-color:var(--rd)}
     <p class="sub">You get the cost per lead from our own accounts, the communities your buyers are in, and when you would know if it is working. All of it before we ask for your email.</p>
     <aside class="proof">
       <figure>
-        <img src="/reddit-ama/ZohaAhmedAMA.webp" alt="Official Reddit AMA in r/redditforbusiness, hosted by Zoha Ahmed, co-founder" loading="eager" decoding="async" width="540" height="540">
+        <img src="/reddit-ama/ZohaAhmedAMA.webp" alt="Official Reddit AMA in r/redditforbusiness, hosted by Zoha Ahmed, co-founder" loading="eager" decoding="async" width="720" height="720">
         <figcaption>We hosted the official AMA in r/redditforbusiness</figcaption>
       </figure>
     </aside>
