@@ -237,6 +237,7 @@
 
 <div class="filter-bar" role="tablist" aria-label="Filter case studies by category">
   <button class="filter-btn active" data-cat="all" onclick="filterCaseStudies('all', this)">All</button>
+  <button class="filter-btn" data-cat="reddit" onclick="filterCaseStudies('reddit', this)">Reddit</button>
   <button class="filter-btn" data-cat="saas" onclick="filterCaseStudies('saas', this)">B2B SaaS</button>
   <button class="filter-btn" data-cat="b2csaas" onclick="filterCaseStudies('b2csaas', this)">B2C SaaS</button>
   <button class="filter-btn" data-cat="dtc" onclick="filterCaseStudies('dtc', this)">eComm / DTC</button>
@@ -246,7 +247,7 @@
 <div class="cs-grid">
 
   <!-- Wellness brands (KF + AA) -->
-  <a href="/work/flare" class="cs-card" data-cat="saas">
+  <a href="/work/flare" class="cs-card" data-cat="saas reddit">
     <div class="cs-card-img">
       <img src="/assets/Flare Case Study V2.jpg" alt="Flare cybersecurity Reddit ads case study" loading="lazy">
     </div>
@@ -282,7 +283,7 @@
     </div>
   </a>
 
-  <a href="/work/3d-ai-studio" class="cs-card" data-cat="b2csaas">
+  <a href="/work/3d-ai-studio" class="cs-card" data-cat="b2csaas reddit">
     <div class="cs-card-img">
       <img src="/assets/3d-ai-studio-hero.png" alt="3D AI Studio Reddit ads case study — €30 CPA after 90 days" loading="lazy">
       <div class="cs-card-stat"><span class="num">€30</span><span class="lbl">CPA after 90 days</span></div>
@@ -305,54 +306,6 @@
       <div class="cs-card-title">Apolone: $70 CPA on TikTok, Cut 30% With One Line of Copy</div>
       <div class="cs-card-desc">Scaling AI playlist promotion for musicians on TikTok — pixel-event foundation, manual lookalikes to Smart+, and a copy test that dropped CPA 30%.</div>
       <div class="cs-card-link">Read case study →</div>
-    </div>
-  </a>
-
-  <a href="/work/dtc-gifting-reddit-ads" class="cs-card" data-cat="dtc">
-    <div class="cs-card-img">
-      <img src="/assets/Gifting Reddit Case Study.webp?v=d28a824f" alt="DTC personalized gifting brand Reddit Ads case study, 2.36x ROAS" loading="lazy">
-    </div>
-    <div class="cs-card-body">
-      <div class="cs-card-tag"><span class="tag-dtc">eComm / DTC</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">Reddit Ads</span></div>
-      <div class="cs-card-title">Personalized Gifting: 2.36x ROAS on Reddit Between the Peaks</div>
-      <div class="cs-card-desc">Their revenue landed in two gifting windows and Meta went quiet in between. Reddit reached buyers while they were still deciding, at 2.36x ROAS on the US segment.</div>
-      <div class="cs-card-link">Read case study &rarr;</div>
-    </div>
-  </a>
-
-  <a href="/work/personal-safety-reddit-ads" class="cs-card" data-cat="dtc">
-    <div class="cs-card-img">
-      <img src="/assets/Personal Safety Reddit Case Study.webp?v=d28a824f" alt="Personal safety DTC brand Reddit Ads case study, 3x ROAS in a restricted category" loading="lazy">
-    </div>
-    <div class="cs-card-body">
-      <div class="cs-card-tag"><span class="tag-dtc">eComm / DTC</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">Reddit Ads &middot; Restricted</span></div>
-      <div class="cs-card-title">Personal Safety: 3x ROAS in a Category Most Platforms Restrict</div>
-      <div class="cs-card-desc">Weapons-policy filters made half the catalogue unsellable in paid. We built the plan around what was actually servable and hit 3x ROAS at test scale.</div>
-      <div class="cs-card-link">Read case study &rarr;</div>
-    </div>
-  </a>
-
-  <a href="/work/skincare-reddit-q4" class="cs-card" data-cat="dtc">
-    <div class="cs-card-img">
-      <img src="/assets/Skincare Reddit Case Study.webp?v=d28a824f" alt="Beauty and skincare brand Reddit organic and paid Q4 case study, 2.1x ROAS" loading="lazy">
-    </div>
-    <div class="cs-card-body">
-      <div class="cs-card-tag"><span class="tag-dtc">eComm / DTC</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">Reddit Organic + Paid</span></div>
-      <div class="cs-card-title">Beauty &amp; Skincare: 2.1x ROAS Through Q4 on Reddit</div>
-      <div class="cs-card-desc">Q4 CPMs climb everywhere skincare brands compete. Running organic comments and paid together in r/SkincareAddiction matched their Meta return.</div>
-      <div class="cs-card-link">Read case study &rarr;</div>
-    </div>
-  </a>
-
-  <a href="/work/coffee-reddit-organic" class="cs-card" data-cat="dtc">
-    <div class="cs-card-img">
-      <img src="/assets/Coffee Reddit Case Study.webp?v=d28a824f" alt="Specialty coffee roaster Reddit organic marketing case study, branded search lift" loading="lazy">
-    </div>
-    <div class="cs-card-body">
-      <div class="cs-card-tag"><span class="tag-dtc">eComm / DTC</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">Reddit Organic</span></div>
-      <div class="cs-card-title">Specialty Coffee: +25% Branded Search With No Ad Spend</div>
-      <div class="cs-card-desc">They could not outspend the bigger roasters, so we earned the recommendations instead. Branded search up 25%, AI referral traffic up 20%.</div>
-      <div class="cs-card-link">Read case study &rarr;</div>
     </div>
   </a>
 
@@ -380,38 +333,14 @@
     </div>
   </a>
 
-  <a href="/work/gifting-brand" class="cs-card" data-cat="dtc">
+  <a href="/work/skincare-reddit-q4" class="cs-card" data-cat="dtc reddit">
     <div class="cs-card-img">
-      <img src="/assets/StoryKeeper Case Study.jpg" alt="Personalized gifting brand Mother's Day case study" loading="lazy">
+      <img src="/assets/Skincare Reddit Case Study.webp?v=d28a824f" alt="Beauty and skincare brand Reddit organic and paid Q4 case study, 2.1x ROAS" loading="lazy">
     </div>
     <div class="cs-card-body">
-      <div class="cs-card-tag"><span class="tag-dtc">eComm / DTC</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">Meta · TikTok · Reddit</span></div>
-      <div class="cs-card-title">Personalized Gifting Brand: Store Revenue Up 114% YoY</div>
-      <div class="cs-card-desc">Scaling an AI-memoir gifting brand through its biggest window across the US, Canada and Australia — with US revenue up 250% YoY and cost held in check.</div>
-      <div class="cs-card-link">Read case study →</div>
-    </div>
-  </a>
-
-  <a href="/work/noirver" class="cs-card" data-cat="dtc">
-    <div class="cs-card-img">
-      <img src="/assets/Noirver V2.png" alt="Noirver European handbag brand TikTok Snapchat case study" loading="lazy">
-    </div>
-    <div class="cs-card-body">
-      <div class="cs-card-tag"><span class="tag-dtc">eComm Fashion</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">TikTok · Snapchat</span></div>
-      <div class="cs-card-title">Noirvere: 3x ROAS on Snap, 4.3x on TikTok in Under 4 Weeks</div>
-      <div class="cs-card-desc">How a European handbag brand with 100K+ customers expanded from Meta to TikTok and Snapchat — and hit ROAS targets in the first month.</div>
-      <div class="cs-card-link">Read case study →</div>
-    </div>
-  </a>
-
-  <a href="/work/wellness-brands" class="cs-card" data-cat="dtc">
-    <div class="cs-card-img">
-      <img src="/assets/wellness-brands-cover.jpg?v=40b04951" alt="Premium wellness brands Meta placement audit case study" loading="lazy">
-    </div>
-    <div class="cs-card-body">
-      <div class="cs-card-tag"><span class="tag-dtc">eComm / Wellness</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">Meta</span></div>
-      <div class="cs-card-title">Two Premium Wellness Brands: A Quarter of Spend Buying Nothing</div>
-      <div class="cs-card-desc">A placement split across two accounts found the best click-through rate, the cheapest clicks and the most add-to-carts all coming from inventory that had produced zero purchases.</div>
+      <div class="cs-card-tag"><span class="tag-dtc">eComm / DTC</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">Reddit Organic + Paid</span></div>
+      <div class="cs-card-title">Beauty &amp; Skincare: 2.1x ROAS Through Q4 on Reddit</div>
+      <div class="cs-card-desc">Q4 CPMs climb everywhere skincare brands compete. Running organic comments and paid together in r/SkincareAddiction matched their Meta return.</div>
       <div class="cs-card-link">Read case study &rarr;</div>
     </div>
   </a>
@@ -428,7 +357,79 @@
     </div>
   </a>
 
-  <a href="/work/education-nonprofit" class="cs-card" data-cat="nonprofit">
+  <a href="/work/noirver" class="cs-card" data-cat="dtc">
+    <div class="cs-card-img">
+      <img src="/assets/Noirver V2.png" alt="Noirver European handbag brand TikTok Snapchat case study" loading="lazy">
+    </div>
+    <div class="cs-card-body">
+      <div class="cs-card-tag"><span class="tag-dtc">eComm Fashion</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">TikTok · Snapchat</span></div>
+      <div class="cs-card-title">Noirvere: 3x ROAS on Snap, 4.3x on TikTok in Under 4 Weeks</div>
+      <div class="cs-card-desc">How a European handbag brand with 100K+ customers expanded from Meta to TikTok and Snapchat — and hit ROAS targets in the first month.</div>
+      <div class="cs-card-link">Read case study →</div>
+    </div>
+  </a>
+
+  <a href="/work/personal-safety-reddit-ads" class="cs-card" data-cat="dtc reddit">
+    <div class="cs-card-img">
+      <img src="/assets/Personal Safety Reddit Case Study.webp?v=d28a824f" alt="Personal safety DTC brand Reddit Ads case study, 3x ROAS in a restricted category" loading="lazy">
+    </div>
+    <div class="cs-card-body">
+      <div class="cs-card-tag"><span class="tag-dtc">eComm / DTC</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">Reddit Ads &middot; Restricted</span></div>
+      <div class="cs-card-title">Personal Safety: 3x ROAS in a Category Most Platforms Restrict</div>
+      <div class="cs-card-desc">Weapons-policy filters made half the catalogue unsellable in paid. We built the plan around what was actually servable and hit 3x ROAS at test scale.</div>
+      <div class="cs-card-link">Read case study &rarr;</div>
+    </div>
+  </a>
+
+  <a href="/work/gifting-brand" class="cs-card" data-cat="dtc reddit">
+    <div class="cs-card-img">
+      <img src="/assets/StoryKeeper Case Study.jpg" alt="Personalized gifting brand Mother's Day case study" loading="lazy">
+    </div>
+    <div class="cs-card-body">
+      <div class="cs-card-tag"><span class="tag-dtc">eComm / DTC</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">Meta · TikTok · Reddit</span></div>
+      <div class="cs-card-title">Personalized Gifting Brand: Store Revenue Up 114% YoY</div>
+      <div class="cs-card-desc">Scaling an AI-memoir gifting brand through its biggest window across the US, Canada and Australia — with US revenue up 250% YoY and cost held in check.</div>
+      <div class="cs-card-link">Read case study →</div>
+    </div>
+  </a>
+
+  <a href="/work/dtc-gifting-reddit-ads" class="cs-card" data-cat="dtc reddit">
+    <div class="cs-card-img">
+      <img src="/assets/Gifting Reddit Case Study.webp?v=d28a824f" alt="DTC personalized gifting brand Reddit Ads case study, 2.36x ROAS" loading="lazy">
+    </div>
+    <div class="cs-card-body">
+      <div class="cs-card-tag"><span class="tag-dtc">eComm / DTC</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">Reddit Ads</span></div>
+      <div class="cs-card-title">Personalized Gifting: 2.36x ROAS on Reddit Between the Peaks</div>
+      <div class="cs-card-desc">Their revenue landed in two gifting windows and Meta went quiet in between. Reddit reached buyers while they were still deciding, at 2.36x ROAS on the US segment.</div>
+      <div class="cs-card-link">Read case study &rarr;</div>
+    </div>
+  </a>
+
+  <a href="/work/wellness-brands" class="cs-card" data-cat="dtc">
+    <div class="cs-card-img">
+      <img src="/assets/wellness-brands-cover.jpg?v=40b04951" alt="Premium wellness brands Meta placement audit case study" loading="lazy">
+    </div>
+    <div class="cs-card-body">
+      <div class="cs-card-tag"><span class="tag-dtc">eComm / Wellness</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">Meta</span></div>
+      <div class="cs-card-title">Two Premium Wellness Brands: A Quarter of Spend Buying Nothing</div>
+      <div class="cs-card-desc">A placement split across two accounts found the best click-through rate, the cheapest clicks and the most add-to-carts all coming from inventory that had produced zero purchases.</div>
+      <div class="cs-card-link">Read case study &rarr;</div>
+    </div>
+  </a>
+
+  <a href="/work/coffee-reddit-organic" class="cs-card" data-cat="dtc reddit">
+    <div class="cs-card-img">
+      <img src="/assets/Coffee Reddit Case Study.webp?v=d28a824f" alt="Specialty coffee roaster Reddit organic marketing case study, branded search lift" loading="lazy">
+    </div>
+    <div class="cs-card-body">
+      <div class="cs-card-tag"><span class="tag-dtc">eComm / DTC</span><span class="tag-dtc" style="background:rgba(234,88,12,0.05);">Reddit Organic</span></div>
+      <div class="cs-card-title">Specialty Coffee: +25% Branded Search With No Ad Spend</div>
+      <div class="cs-card-desc">They could not outspend the bigger roasters, so we earned the recommendations instead. Branded search up 25%, AI referral traffic up 20%.</div>
+      <div class="cs-card-link">Read case study &rarr;</div>
+    </div>
+  </a>
+
+  <a href="/work/education-nonprofit" class="cs-card" data-cat="nonprofit reddit">
     <div class="cs-card-img" style="background:#0a1f16;">
       <img src="/assets/education-nonprofit-cover.jpg?v=33d1922c" alt="International education nonprofit Ramadan Reddit strategy case study" loading="lazy">
     </div>
