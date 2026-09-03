@@ -1,7 +1,7 @@
 <!-- quiz-v3 · instrument, not brochure -->
-<title>What Would Reddit Ads Cost You Per Lead? | Skip the Noise Media</title>
+<title>Is Your Tool in the Reddit Thread, or Missing? | Skip the Noise Media</title>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Pick your category and see the subreddits your buyers are in, the cost per lead from our own Reddit accounts, and what a 90-day test would run. No email to see it.">
+  <meta name="description" content="Pick your category and see the communities where your buyers compare vendors, what a Reddit test costs from our own accounts, and when you would know if it works. No email to see it.">
   <link rel="canonical" href="https://skipthenoisemedia.com/quiz">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://skipthenoisemedia.com/quiz">
@@ -240,8 +240,8 @@ input:focus{border-color:var(--rd)}
 
   <!-- 1 · INPUT ------------------------------------------------------------ -->
   <section id="s1"><div class="split">
-    <h1>What would Reddit cost you per lead?</h1>
-    <p class="sub">You get the cost per lead from our own accounts, the communities your buyers are in, and when you would know if it is working. All of it before we ask for your email.</p>
+    <h1>Is your tool in the thread, or missing from it?</h1>
+    <p class="sub">Pick your category. You get the communities where your buyers compare vendors, what a test there costs from our own accounts, and when you would know if it is working. All of it before we ask for your email.</p>
     <aside class="proof">
       <figure>
         <img src="/reddit-ama/ZohaAhmedAMA-nodate.webp" alt="Official Reddit AMA in r/redditforbusiness, hosted by Zoha Ahmed, co-founder" loading="eager" decoding="async" width="720" height="720">
@@ -249,7 +249,7 @@ input:focus{border-color:var(--rd)}
       </figure>
     </aside>
     <div class="chips" id="chips"></div>
-    <p class="hint">Want the costed 90-day plan and three Reddit ads for those communities? That part needs an email. Yours to keep either way.</p>
+    <p class="hint">Want the actual threads where your category comes up, plus three Reddit ads written to show up in them? That part needs an email. Yours to keep either way.</p>
     <div class="peek">
       <div class="row">
         <div><div class="nm">r/devops <span class="sz">510K</span></div><div class="nt">Tool-aware and pragmatic &mdash; works for ads if genuinely useful; they spot fluff instantly.</div></div>
@@ -271,8 +271,8 @@ input:focus{border-color:var(--rd)}
       </div>
       <p class="econ-src" id="e-src"></p>
     </div>
-    <div><button class="btn" id="go-q">Get the costed test plan &rarr;</button></div>
-    <p class="fine">Three questions so the plan matches your budget and timeline. About 30 seconds.</p>
+    <div><button class="btn" id="go-q">Show me the threads &rarr;</button></div>
+    <p class="fine">Three questions, then we send the threads and the costed plan. About 30 seconds.</p>
     <p class="found" id="r-found"></p>
     <div id="r-list"></div>
     <p class="alt" id="r-more"></p>
@@ -308,7 +308,7 @@ input:focus{border-color:var(--rd)}
         <button class="btn" id="g-send">Send me my plan &rarr;</button>
       </div>
       <p class="err" id="g-err"></p>
-      <p class="fine">Work email so we can look up your category. We email once and add you to nothing.</p>
+      <p class="fine">Work email so we can look up your category. We email once and add you to nothing. If your category turns out to be quiet on Reddit, we will say so rather than invent threads.</p>
     </div>
     <button class="back" id="b3">&larr; Back</button>
   </section>
@@ -390,7 +390,7 @@ function reveal(b,label){
   bucket=b; answers.category=label;
   const hits=SUBS.filter(s=>s.b===b), e=BENCH[b];
   $('r-cat').textContent=label;
-  $('r-head').textContent=`${hits.length} subreddits, and what a test would cost.`;
+  $('r-head').textContent=`${hits.length} communities where your buyers compare vendors.`;
   $('e-1').textContent=e.m; $('e-1l').textContent=e.ml;
   $('e-2').textContent=e.c; $('e-2l').textContent=e.cl;
   /* Say plainly whether the figure is from this exact vertical or the nearest
@@ -443,7 +443,7 @@ function next(){
     SEND_LABEL = big ? 'Send me my plan \u2192' : 'Send me the list \u2192';
     $('g-send').textContent = SEND_LABEL;
     $('g-sub').textContent  = big
-      ? 'The costed 90-day plan for your category, plus three Reddit ads written for those communities.'
+      ? 'The threads where your category comes up, the costed 90-day plan, and three Reddit ads written to show up in them.'
       : 'The full subreddit list for your category, plus our 2026 benchmarks.';
     show(4);
   }
@@ -496,7 +496,7 @@ $('g-send').onclick=async function(){
   }
   $('d-head').textContent = big ? 'Sent. Now let\u2019s look at it together.' : 'Sent \u2014 check your inbox.';
   $('d-sub').textContent  = big
-    ? 'Your plan is on its way. The three ads follow within five business days. Book 20 minutes and we will walk through what the test costs, what it should return, and how you would know by day 45 whether to kill it. If we do not think Reddit is a fit for you, we will say so.'
+    ? 'The threads and your plan are on the way. The three ads follow within five business days. Book 20 minutes and we will walk through what the test costs, what it should return, and how you would know by day 45 whether to kill it. If we do not think Reddit is a fit for you, we will say so.'
     : 'Your subreddit list and our 2026 benchmarks are on their way.';
   $('d-cta').innerHTML = big
     ? '<button class="btn" data-cal-namespace="quiz" data-cal-link="skipthenoise/30min">Book 20 minutes &rarr;</button>'
