@@ -124,9 +124,6 @@ h1{font-size:clamp(27px,5.4vw,38px);font-weight:900;letter-spacing:-.035em;line-
 .econ-src b{color:var(--ok);font-weight:700}
 @media(max-width:520px){ .econ{padding:16px} .econ-g{gap:12px} .econ-n{font-size:21px} .econ-l{font-size:9.5px} }
 /* ── results ── */
-.found{font-family:var(--m);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);
-  padding-bottom:10px;border-bottom:1px solid var(--line);margin:30px 0 2px}
-.found b{color:var(--rd-text)}
 .row{padding:14px 0;border-bottom:1px solid var(--line2)}
 .row .nm{font-size:15.5px;font-weight:700;color:var(--ink);letter-spacing:-.01em}
 .row .nt{font-size:14px;color:var(--body);margin-top:4px;line-height:1.45}
@@ -282,7 +279,6 @@ input:focus{border-color:var(--rd)}
     </div>
     <div><button class="btn" id="go-q">Show me the threads &rarr;</button></div>
     <p class="fine">Three questions, then we send the threads and the costed plan. About 30 seconds.</p>
-    <p class="found" id="r-found"></p>
     <div id="r-list"></div>
     <p class="alt" id="r-more"></p>
     <button class="back" id="b1">&larr; Different category</button>
@@ -420,9 +416,6 @@ function reveal(b,label){
   /* Say plainly whether the figure is from this exact vertical or the nearest
      one we have run. A VP will ask; better to answer before they do. */
   $('e-src').innerHTML = (e.d ? '<b>From our own account.</b> ' : '<b>Nearest account we have run.</b> ') + e.src;
-  $('r-found').innerHTML = mapped
-    ? `${hits.filter(h=>h.best==='both').length} take ads &middot; ${hits.filter(h=>h.best==='organic').length} organic only &middot; subscribers via Reddit`
-    : 'Built from your site, not a template';
   $('r-list').innerHTML = !mapped
    ? `<div class="row"><div><div class="nt">Your category is not one of the eight we have pre-mapped, which is common and not a problem. We read your site, find the communities where your buyers actually compare vendors, and send that list with the plan. If it turns out Reddit is quiet for what you sell, we will tell you that instead.</div></div></div>`
    : hits.slice(0,3).map(h=>`
