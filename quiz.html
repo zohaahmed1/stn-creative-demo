@@ -114,7 +114,7 @@ h1{font-size:clamp(27px,5.4vw,38px);font-weight:900;letter-spacing:-.035em;line-
 .cred b{color:var(--ink);font-weight:700;font-size:14px}
 .cred span{color:var(--dim);font-size:13px}
 .econ{border:1px solid var(--line);background:var(--panel);padding:20px;margin:0 0 26px}
-.econ-g{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.econ-g{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 .econ-n{font-family:var(--s);font-size:26px;font-weight:900;letter-spacing:-.03em;color:var(--ink);
   line-height:1;font-variant-numeric:tabular-nums}
 .econ-l{font-family:var(--m);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
@@ -171,8 +171,8 @@ input:focus{border-color:var(--rd)}
 .foot p{margin:0}
 .foot .legal{font-size:12.5px;color:var(--dim);margin-top:8px}
 .foot a{color:var(--dim);text-underline-offset:2px}
-/* Mobile: .peek is hidden below 820px, so screen 1 ends at the hint and left
-   80px of shell padding plus 34px of footer padding as dead space. */
+/* Mobile: screen 1 ends at the hint, which left 80px of shell padding plus
+   34px of footer padding as dead space. */
 @media(max-width:820px){
   .shell{padding-bottom:24px}
   .foot{padding:24px 20px 30px}
@@ -202,11 +202,6 @@ input:focus{border-color:var(--rd)}
 .proof figcaption{font-family:var(--m);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;
   color:var(--dim);margin-top:7px;line-height:1.5}
 /* teaser row: proves the format before the tap */
-.peek{border-top:1px solid var(--line);margin:22px 0 0;padding:14px 0 0;position:relative}
-@media(max-width:820px){ .peek{display:none} }
-.peek .row{border-bottom:0;padding:0;opacity:.42;filter:blur(.25px)}
-.peek .cap{font-family:var(--m);font-size:11px;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--dim);margin:10px 0 0}
 .chip .ct{font-family:var(--m);font-size:11.5px;color:var(--dim);margin-left:7px}
 .more{font-family:var(--m);font-size:12.5px;color:var(--rd-text);background:none;border:0;
   padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
@@ -222,8 +217,7 @@ input:focus{border-color:var(--rd)}
      category", tapping it, then never reaching the chips because a 250px
      image sat in between. */
   .split > .proof{order:6}
-  #picklabel{order:3} .chips{order:4} .hint{order:7} .peek{order:8}
-  .split > *,.split > .proof{grid-column:1;grid-row:auto}
+  #picklabel{order:3} .chips{order:4} .hint{order:7}   .split > *,.split > .proof{grid-column:1;grid-row:auto}
   .proof{margin:0 0 20px}
   /* Was aspect-ratio:2/1 with object-fit:cover. On a 1:1 source that shows only
      the middle 50% of the image, rows 17%-67%, which cut the "reddit for business"
@@ -256,12 +250,6 @@ input:focus{border-color:var(--rd)}
     <p class="picklabel" id="picklabel">Pick your category</p>
     <div class="chips" id="chips"></div>
     <p class="hint">Want the actual threads where your category comes up, plus three Reddit ads written to show up in them? That part needs an email. Yours to keep either way.</p>
-    <div class="peek">
-      <div class="row">
-        <div><div class="nm">r/devops <span class="sz">510K</span></div><div class="nt">Tool-aware and pragmatic &mdash; works for ads if genuinely useful; they spot fluff instantly.</div></div>
-      </div>
-      <p class="cap" id="peekcap">pick a category to see yours</p>
-    </div>
     </div>
   </section>
 
@@ -272,8 +260,7 @@ input:focus{border-color:var(--rd)}
     <div class="econ">
       <div class="econ-g">
         <div><div class="econ-n" id="e-1"></div><div class="econ-l" id="e-1l"></div></div>
-        <div><div class="econ-n" id="e-2"></div><div class="econ-l" id="e-2l"></div></div>
-        <div><div class="econ-n">Day 45</div><div class="econ-l">When you would know</div></div>
+          <div><div class="econ-n">Day 45</div><div class="econ-l">When you would know</div></div>
       </div>
       <p class="econ-src" id="e-src"></p>
     </div>
@@ -385,7 +372,6 @@ const N=SUBS.reduce((m,x)=>(m[x.b]=(m[x.b]||0)+1,m),{});
    it saved. Chips go two-up on mobile so ten still fit above the fold. */
 const chipHtml=([b,l])=>`<button class="chip" data-b="${b}">${l}${N[b]?`<span class="ct">${N[b]}</span>`:''}</button>`;
 $('chips').innerHTML=BUCKETS.map(chipHtml).join('');
-const pc=$('peekcap'); if(pc) pc.textContent=`One of ${SUBS.length} \u00b7 pick a category to see yours`;
 /* People tap the AMA image expecting it to do something. Rather than leave it
    a dead click, jump them to the categories and flash the label. */
 const pimg=document.querySelector('.proof img');
@@ -412,7 +398,6 @@ function reveal(b,label){
     ? `${hits.length} communities where your buyers compare vendors.`
     : 'We map your communities by hand.';
   $('e-1').textContent=e.m; $('e-1l').textContent=e.ml;
-  $('e-2').textContent=e.c; $('e-2l').textContent=e.cl;
   /* Say plainly whether the figure is from this exact vertical or the nearest
      one we have run. A VP will ask; better to answer before they do. */
   $('e-src').innerHTML = (e.d ? '<b>From our own account.</b> ' : '<b>Nearest account we have run.</b> ') + e.src;
@@ -423,7 +408,7 @@ function reveal(b,label){
       <div><div class="nm">${h.n} ${h.s?`<span class="sz">${fmt(h.s)}</span>`:''}</div><div class="nt">${h.note}</div></div>
     </div>`).join('');
   $('r-more').innerHTML = hits.length>3
-    ? `Three of ${hits.length}. The full list, and the 90-day plan, come next.`
+    ? 'The full list and the costed 90-day plan come next.'
     : '';
   dl({event:'v3_category_revealed',category:b});
   show(2);
