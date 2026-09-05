@@ -372,9 +372,11 @@ const N=SUBS.reduce((m,x)=>(m[x.b]=(m[x.b]||0)+1,m),{});
    it saved. Chips go two-up on mobile so ten still fit above the fold. */
 const chipHtml=([b,l])=>`<button class="chip" data-b="${b}">${l}${N[b]?`<span class="ct">${N[b]}</span>`:''}</button>`;
 $('chips').innerHTML=BUCKETS.map(chipHtml).join('');
-/* People tap the AMA image expecting it to do something. Rather than leave it
-   a dead click, jump them to the categories and flash the label. */
-const pimg=document.querySelector('.proof img');
+/* The AMA block is the most-clicked thing on the page and it did nothing.
+   Three of four clicked sessions in the Sep 3-5 window dead-clicked either the
+   image or its caption, so the handler sits on the whole <figure>, not the img.
+   Sends them to the categories and flashes the label. */
+const pimg=document.querySelector('.proof figure');
 if(pimg){ pimg.style.cursor='pointer';
   pimg.addEventListener('click',()=>{
     const lab=$('picklabel'), ch=$('chips');
