@@ -9,8 +9,8 @@
   <!-- End Microsoft Clarity -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Reddit Subreddit Finder for Advertising (2026) — by Vertical | Skip the Noise Media</title>
-  <meta name="description" content="Free subreddit finder. Discover the best subreddits to advertise on or engage in, by vertical — B2B SaaS, cybersecurity, fintech, eComm and more — with ad-vs-organic suitability notes from a Reddit Certified Partner.">
+  <title>59 Subreddits for B2B Advertising, With Member Counts (2026) | Skip the Noise Media</title>
+  <meta name="description" content="59 subreddits mapped by vertical with live member counts and a paid-vs-organic rating for each. 141.7M combined members. Pulled from Reddit directly in September 2026, not scraped from aggregators.">>
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://skipthenoisemedia.com/tools/subreddit-finder">
   <meta property="og:title" content="Reddit Subreddit Finder for Advertising (2026) — by Vertical">
@@ -118,6 +118,7 @@
     .sub-name { font-size:16px; font-weight:800; color:var(--dark); text-decoration:none; }
     .sub-name:hover { color:var(--purple); }
     .sub-badges { display:flex; gap:6px; flex-wrap:wrap; margin:8px 0 10px; }
+    .badge.b-count { background:#111317; color:#fff; border-color:#111317; font-variant-numeric:tabular-nums; }
     .badge { font-size:11px; font-weight:700; padding:3px 9px; border-radius:100px; letter-spacing:0.02em; }
     .b-size { background:var(--gray-100); color:var(--gray-500); }
     .b-both { background:rgba(85,0,221,0.1); color:var(--purple); }
@@ -344,65 +345,65 @@ function closeMobileMenu() { var mm = document.getElementById('mobile-menu'); va
   ];
   // best: both | ads | organic
   var DATA = [
-    {n:'r/devops',b:'saas-dev',cat:'Dev & Infra',sz:'Mid',best:'both',blurb:'DevOps engineers on CI/CD, infrastructure, automation and tooling.',note:'Tool-aware and pragmatic — works for ads if genuinely useful; they spot fluff instantly.'},
-    {n:'r/sysadmin',b:'saas-dev',cat:'Dev & Infra',sz:'Mid',best:'both',blurb:'System administrators running IT infrastructure and operations.',note:'Lead with the problem you solve, not a feature list.'},
-    {n:'r/sre',b:'saas-dev',cat:'Dev & Infra',sz:'Niche',best:'both',blurb:'Site reliability engineers focused on uptime, observability and scale.',note:'Small but senior — high-value technical buyers.'},
-    {n:'r/kubernetes',b:'saas-dev',cat:'Dev & Infra',sz:'Mid',best:'both',blurb:'Practitioners running Kubernetes in production.',note:'Strong fit for cloud-native and platform tooling.'},
-    {n:'r/aws',b:'saas-dev',cat:'Dev & Infra',sz:'Mid',best:'both',blurb:'AWS users on architecture, cost and services.',note:'Cost-saving and reliability angles resonate.'},
-    {n:'r/terraform',b:'saas-dev',cat:'Dev & Infra',sz:'Niche',best:'both',blurb:'Infrastructure-as-code practitioners using Terraform.',note:'Narrow but high-intent for IaC and platform tools.'},
-    {n:'r/docker',b:'saas-dev',cat:'Dev & Infra',sz:'Niche',best:'both',blurb:'Containerization community.',note:'Fits dev tooling and platform products.'},
-    {n:'r/dataengineering',b:'saas-dev',cat:'Dev & Infra',sz:'Mid',best:'both',blurb:'Data engineers building pipelines and warehouses.',note:'Great for data, ETL and analytics tooling.'},
-    {n:'r/apachekafka',b:'saas-dev',cat:'Dev & Infra',sz:'Niche',best:'organic',blurb:'Event-streaming and Kafka practitioners.',note:'<b>Very niche & technical</b> — better for genuine participation than ads.'},
-    {n:'r/programming',b:'saas-dev',cat:'Dev & Infra',sz:'Large',best:'organic',blurb:'General programming news and discussion.',note:'<b>Huge but ad-resistant</b> and broad — better for organic thought leadership.'},
-    {n:'r/webdev',b:'saas-dev',cat:'Dev & Infra',sz:'Large',best:'both',blurb:'Web developers across the stack.',note:'Broad dev reach; works for dev tools with clear value.'},
-    {n:'r/netsec',b:'security',cat:'Cybersecurity',sz:'Mid',best:'organic',blurb:'Technical network-security community for professionals.',note:'<b>Notoriously promo-hostile</b> — value-first participation only, never blunt ads.'},
-    {n:'r/cybersecurity',b:'security',cat:'Cybersecurity',sz:'Mid',best:'both',blurb:'Broad security professionals and discussion.',note:'More ad-tolerant than r/netsec; still needs credible, non-salesy creative.'},
-    {n:'r/blueteamsec',b:'security',cat:'Cybersecurity',sz:'Niche',best:'organic',blurb:'Defensive (blue team) security practitioners.',note:'Niche and expert — earn trust through useful content.'},
+    {n:'r/devops',s:510197,b:'saas-dev',cat:'Dev & Infra',sz:'Mid',best:'both',blurb:'DevOps engineers on CI/CD, infrastructure, automation and tooling.',note:'Tool-aware and pragmatic — works for ads if genuinely useful; they spot fluff instantly.'},
+    {n:'r/sysadmin',s:1315330,b:'saas-dev',cat:'Dev & Infra',sz:'Mid',best:'both',blurb:'System administrators running IT infrastructure and operations.',note:'Lead with the problem you solve, not a feature list.'},
+    {n:'r/sre',s:56534,b:'saas-dev',cat:'Dev & Infra',sz:'Niche',best:'both',blurb:'Site reliability engineers focused on uptime, observability and scale.',note:'Small but senior — high-value technical buyers.'},
+    {n:'r/kubernetes',s:210750,b:'saas-dev',cat:'Dev & Infra',sz:'Mid',best:'both',blurb:'Practitioners running Kubernetes in production.',note:'Strong fit for cloud-native and platform tooling.'},
+    {n:'r/aws',s:393177,b:'saas-dev',cat:'Dev & Infra',sz:'Mid',best:'both',blurb:'AWS users on architecture, cost and services.',note:'Cost-saving and reliability angles resonate.'},
+    {n:'r/terraform',s:84398,b:'saas-dev',cat:'Dev & Infra',sz:'Niche',best:'both',blurb:'Infrastructure-as-code practitioners using Terraform.',note:'Narrow but high-intent for IaC and platform tools.'},
+    {n:'r/docker',s:320240,b:'saas-dev',cat:'Dev & Infra',sz:'Niche',best:'both',blurb:'Containerization community.',note:'Fits dev tooling and platform products.'},
+    {n:'r/dataengineering',s:474841,b:'saas-dev',cat:'Dev & Infra',sz:'Mid',best:'both',blurb:'Data engineers building pipelines and warehouses.',note:'Great for data, ETL and analytics tooling.'},
+    {n:'r/apachekafka',s:21463,b:'saas-dev',cat:'Dev & Infra',sz:'Niche',best:'organic',blurb:'Event-streaming and Kafka practitioners.',note:'<b>Very niche & technical</b> — better for genuine participation than ads.'},
+    {n:'r/programming',s:6915209,b:'saas-dev',cat:'Dev & Infra',sz:'Large',best:'organic',blurb:'General programming news and discussion.',note:'<b>Huge but ad-resistant</b> and broad — better for organic thought leadership.'},
+    {n:'r/webdev',s:3302971,b:'saas-dev',cat:'Dev & Infra',sz:'Large',best:'both',blurb:'Web developers across the stack.',note:'Broad dev reach; works for dev tools with clear value.'},
+    {n:'r/netsec',s:571043,b:'security',cat:'Cybersecurity',sz:'Mid',best:'organic',blurb:'Technical network-security community for professionals.',note:'<b>Notoriously promo-hostile</b> — value-first participation only, never blunt ads.'},
+    {n:'r/cybersecurity',s:1514582,b:'security',cat:'Cybersecurity',sz:'Mid',best:'both',blurb:'Broad security professionals and discussion.',note:'More ad-tolerant than r/netsec; still needs credible, non-salesy creative.'},
+    {n:'r/blueteamsec',s:71387,b:'security',cat:'Cybersecurity',sz:'Niche',best:'organic',blurb:'Defensive (blue team) security practitioners.',note:'Niche and expert — earn trust through useful content.'},
     {n:'r/cloudsecurity',b:'security',cat:'Cybersecurity',sz:'Niche',best:'both',blurb:'Cloud security posture, CSPM and practices.',note:'Good fit for cloud-security SaaS.'},
-    {n:'r/AskNetsec',b:'security',cat:'Cybersecurity',sz:'Niche',best:'organic',blurb:'Q&A for security questions.',note:'Answer-driven — participate by genuinely helping.'},
-    {n:'r/marketing',b:'marketing',cat:'Marketing',sz:'Mid',best:'both',blurb:'General marketing strategy and discussion.',note:'Martech and agency offers work with a real point of view.'},
-    {n:'r/PPC',b:'marketing',cat:'Marketing',sz:'Niche',best:'both',blurb:'Paid-search and paid-ads practitioners.',note:'High-intent for ad tools and agencies.'},
-    {n:'r/digital_marketing',b:'marketing',cat:'Marketing',sz:'Mid',best:'both',blurb:'Digital marketing tactics and tools.',note:'Mixed quality — target with specific, proof-backed creative.'},
-    {n:'r/SEO',b:'marketing',cat:'Marketing',sz:'Mid',best:'both',blurb:'Search marketers and SEO practitioners.',note:'Strong for SEO/content tools; skeptical of hype.'},
-    {n:'r/analytics',b:'marketing',cat:'Marketing',sz:'Mid',best:'both',blurb:'Data and marketing analytics discussion.',note:'Fits attribution and analytics products.'},
-    {n:'r/humanresources',b:'hr',cat:'HR & Recruiting',sz:'Mid',best:'both',blurb:'HR practitioners on policy, operations and tools.',note:'Lead with day-to-day pain; avoid HR buzzwords.'},
-    {n:'r/recruiting',b:'hr',cat:'HR & Recruiting',sz:'Mid',best:'both',blurb:'Recruiters and talent-acquisition pros.',note:'Strong for ATS and sourcing tools.'},
-    {n:'r/managers',b:'hr',cat:'HR & Recruiting',sz:'Niche',best:'both',blurb:'People managers on teams and performance.',note:'Fits performance, engagement and management tools.'},
-    {n:'r/cscareerquestions',b:'hr',cat:'HR & Recruiting',sz:'Large',best:'organic',blurb:'Tech career advice — huge candidate side.',note:'<b>Candidate-heavy & ad-sensitive</b> — useful for employer brand via organic.'},
-    {n:'r/sales',b:'sales',cat:'Sales',sz:'Mid',best:'both',blurb:'Salespeople on process, tools and tactics.',note:'Good for CRM/sales tools — speak like a rep, not a vendor.'},
-    {n:'r/salesforce',b:'sales',cat:'Sales',sz:'Niche',best:'both',blurb:'Salesforce admins and users.',note:'High-intent for Salesforce-adjacent apps and services.'},
-    {n:'r/SaaS',b:'founders',cat:'Founders & SMB',sz:'Mid',best:'both',blurb:'Founders and operators building SaaS.',note:'Great for SaaS tools and B2B services — founders here buy.'},
-    {n:'r/startups',b:'founders',cat:'Founders & SMB',sz:'Large',best:'both',blurb:'Startup founders and early teams.',note:'Broad; works for founder-facing products with a clear hook.'},
-    {n:'r/Entrepreneur',b:'founders',cat:'Founders & SMB',sz:'Large',best:'organic',blurb:'General entrepreneurship community.',note:'<b>Very broad & promo-saturated</b> — better for organic credibility.'},
-    {n:'r/smallbusiness',b:'founders',cat:'Founders & SMB',sz:'Large',best:'both',blurb:'SMB owners on operations and growth.',note:'Good for SMB tools — practical, ROI-led creative.'},
-    {n:'r/ProductManagement',b:'founders',cat:'Founders & SMB',sz:'Mid',best:'both',blurb:'Product managers on craft and tools.',note:'Fits PM, analytics and roadmap tools.'},
-    {n:'r/personalfinance',b:'fintech',cat:'Fintech',sz:'Large',best:'organic',blurb:'Massive personal-finance advice community.',note:'<b>Strict rules, ad-hostile</b> — participate with genuine value only.'},
-    {n:'r/investing',b:'fintech',cat:'Fintech',sz:'Large',best:'organic',blurb:'Investing discussion and strategy.',note:'<b>Rule-heavy & skeptical</b> — organic-first.'},
-    {n:'r/financialindependence',b:'fintech',cat:'Fintech',sz:'Mid',best:'organic',blurb:'FIRE (financial independence) community.',note:'Engaged but promo-sensitive.'},
-    {n:'r/CreditCards',b:'fintech',cat:'Fintech',sz:'Mid',best:'both',blurb:'Credit-card optimization and rewards.',note:'High purchase intent for fintech and card offers.'},
-    {n:'r/ynab',b:'fintech',cat:'Fintech',sz:'Niche',best:'both',blurb:'You Need A Budget users.',note:'Niche, high-intent for budgeting and fintech apps.'},
-    {n:'r/Teachers',b:'edtech',cat:'EdTech',sz:'Mid',best:'both',blurb:'K-12 teachers on classroom realities.',note:'Fits classroom tools — respect their time and budget.'},
-    {n:'r/GetStudying',b:'edtech',cat:'EdTech',sz:'Niche',best:'both',blurb:'Students sharing study methods.',note:'Good for study and productivity edtech.'},
-    {n:'r/college',b:'edtech',cat:'EdTech',sz:'Large',best:'both',blurb:'College students community.',note:'Broad student reach for edtech and B2C tools.'},
-    {n:'r/highereducation',b:'edtech',cat:'EdTech',sz:'Niche',best:'both',blurb:'Higher-ed faculty and administration.',note:'Fits institutional edtech.'},
-    {n:'r/k12sysadmin',b:'edtech',cat:'EdTech',sz:'Niche',best:'both',blurb:'K-12 IT administrators.',note:'Niche buyer for school IT and edtech.'},
-    {n:'r/languagelearning',b:'edtech',cat:'EdTech',sz:'Mid',best:'both',blurb:'Language learners and methods.',note:'Strong for language-learning apps.'},
-    {n:'r/learnprogramming',b:'edtech',cat:'EdTech',sz:'Large',best:'both',blurb:'Beginners learning to code.',note:'Huge for coding-education products.'},
-    {n:'r/SkincareAddiction',b:'ecomm',cat:'eComm — Beauty',sz:'Large',best:'organic',blurb:'Deep skincare community (ingredients, routines).',note:'<b>Knowledgeable & ad-skeptical</b> — organic/UGC-led works best.'},
-    {n:'r/tretinoin',b:'ecomm',cat:'eComm — Beauty',sz:'Niche',best:'both',blurb:'Tretinoin users.',note:'Niche, high-intent for specific skincare actives.'},
-    {n:'r/streetwear',b:'ecomm',cat:'eComm — Fashion',sz:'Mid',best:'both',blurb:'Streetwear enthusiasts and drops.',note:'Trend-driven — creative must look native, not corporate.'},
-    {n:'r/femalefashionadvice',b:'ecomm',cat:'eComm — Fashion',sz:'Mid',best:'both',blurb:'Women’s fashion advice and finds.',note:'Good for women’s apparel/accessories with strong visuals.'},
-    {n:'r/malefashionadvice',b:'ecomm',cat:'eComm — Fashion',sz:'Mid',best:'both',blurb:'Men’s fashion guidance.',note:'Strong for menswear — show fit and quality.'},
-    {n:'r/fitness',b:'ecomm',cat:'eComm — Fitness',sz:'Large',best:'both',blurb:'General fitness and training.',note:'Broad; works for equipment, apparel and supplements with proof.'},
-    {n:'r/loseit',b:'ecomm',cat:'eComm — Fitness',sz:'Large',best:'both',blurb:'Weight-loss community.',note:'Engaged but hype-sensitive — keep claims honest.'},
-    {n:'r/xxfitness',b:'ecomm',cat:'eComm — Fitness',sz:'Niche',best:'both',blurb:'Women’s fitness community.',note:'Good for women’s fitness products.'},
-    {n:'r/BuyItForLife',b:'ecomm',cat:'eComm — Home/Lifestyle',sz:'Large',best:'organic',blurb:'Durable, high-quality products.',note:'<b>Quality-obsessed & anti-marketing</b> — organic credibility wins, ads risky.'},
-    {n:'r/homeautomation',b:'ecomm',cat:'eComm — Home/Lifestyle',sz:'Mid',best:'both',blurb:'Smart-home enthusiasts.',note:'Fits smart-home and connected products.'},
-    {n:'r/productivity',b:'productivity',cat:'Productivity & Creative',sz:'Large',best:'both',blurb:'Productivity systems and tools.',note:'Lead with workflow, not features.'},
-    {n:'r/notion',b:'productivity',cat:'Productivity & Creative',sz:'Niche',best:'both',blurb:'Notion users and templates.',note:'High-intent for Notion-adjacent and productivity tools.'},
-    {n:'r/VideoEditing',b:'productivity',cat:'Productivity & Creative',sz:'Mid',best:'both',blurb:'Video editors and tooling.',note:'Fits creative and video SaaS.'},
-    {n:'r/graphic_design',b:'productivity',cat:'Productivity & Creative',sz:'Mid',best:'both',blurb:'Designers on craft and tools.',note:'Designers spot bad creative instantly — keep it sharp.'},
-    {n:'r/streaming',b:'productivity',cat:'Productivity & Creative',sz:'Niche',best:'both',blurb:'Streaming and creator tooling.',note:'Good for creator and streaming products.'}
+    {n:'r/AskNetsec',s:262577,b:'security',cat:'Cybersecurity',sz:'Niche',best:'organic',blurb:'Q&A for security questions.',note:'Answer-driven — participate by genuinely helping.'},
+    {n:'r/marketing',s:1965391,b:'marketing',cat:'Marketing',sz:'Mid',best:'both',blurb:'General marketing strategy and discussion.',note:'Martech and agency offers work with a real point of view.'},
+    {n:'r/PPC',s:281158,b:'marketing',cat:'Marketing',sz:'Niche',best:'both',blurb:'Paid-search and paid-ads practitioners.',note:'High-intent for ad tools and agencies.'},
+    {n:'r/digital_marketing',s:372377,b:'marketing',cat:'Marketing',sz:'Mid',best:'both',blurb:'Digital marketing tactics and tools.',note:'Mixed quality — target with specific, proof-backed creative.'},
+    {n:'r/SEO',s:508313,b:'marketing',cat:'Marketing',sz:'Mid',best:'both',blurb:'Search marketers and SEO practitioners.',note:'Strong for SEO/content tools; skeptical of hype.'},
+    {n:'r/analytics',s:280439,b:'marketing',cat:'Marketing',sz:'Mid',best:'both',blurb:'Data and marketing analytics discussion.',note:'Fits attribution and analytics products.'},
+    {n:'r/humanresources',s:237881,b:'hr',cat:'HR & Recruiting',sz:'Mid',best:'both',blurb:'HR practitioners on policy, operations and tools.',note:'Lead with day-to-day pain; avoid HR buzzwords.'},
+    {n:'r/recruiting',s:213994,b:'hr',cat:'HR & Recruiting',sz:'Mid',best:'both',blurb:'Recruiters and talent-acquisition pros.',note:'Strong for ATS and sourcing tools.'},
+    {n:'r/managers',s:278040,b:'hr',cat:'HR & Recruiting',sz:'Niche',best:'both',blurb:'People managers on teams and performance.',note:'Fits performance, engagement and management tools.'},
+    {n:'r/cscareerquestions',s:2380983,b:'hr',cat:'HR & Recruiting',sz:'Large',best:'organic',blurb:'Tech career advice — huge candidate side.',note:'<b>Candidate-heavy & ad-sensitive</b> — useful for employer brand via organic.'},
+    {n:'r/sales',s:600244,b:'sales',cat:'Sales',sz:'Mid',best:'both',blurb:'Salespeople on process, tools and tactics.',note:'Good for CRM/sales tools — speak like a rep, not a vendor.'},
+    {n:'r/salesforce',s:114756,b:'sales',cat:'Sales',sz:'Niche',best:'both',blurb:'Salesforce admins and users.',note:'High-intent for Salesforce-adjacent apps and services.'},
+    {n:'r/SaaS',s:792148,b:'founders',cat:'Founders & SMB',sz:'Mid',best:'both',blurb:'Founders and operators building SaaS.',note:'Great for SaaS tools and B2B services — founders here buy.'},
+    {n:'r/startups',s:2119681,b:'founders',cat:'Founders & SMB',sz:'Large',best:'both',blurb:'Startup founders and early teams.',note:'Broad; works for founder-facing products with a clear hook.'},
+    {n:'r/Entrepreneur',s:5266597,b:'founders',cat:'Founders & SMB',sz:'Large',best:'organic',blurb:'General entrepreneurship community.',note:'<b>Very broad & promo-saturated</b> — better for organic credibility.'},
+    {n:'r/smallbusiness',s:2529865,b:'founders',cat:'Founders & SMB',sz:'Large',best:'both',blurb:'SMB owners on operations and growth.',note:'Good for SMB tools — practical, ROI-led creative.'},
+    {n:'r/ProductManagement',s:279343,b:'founders',cat:'Founders & SMB',sz:'Mid',best:'both',blurb:'Product managers on craft and tools.',note:'Fits PM, analytics and roadmap tools.'},
+    {n:'r/personalfinance',s:21829534,b:'fintech',cat:'Fintech',sz:'Large',best:'organic',blurb:'Massive personal-finance advice community.',note:'<b>Strict rules, ad-hostile</b> — participate with genuine value only.'},
+    {n:'r/investing',s:3455506,b:'fintech',cat:'Fintech',sz:'Large',best:'organic',blurb:'Investing discussion and strategy.',note:'<b>Rule-heavy & skeptical</b> — organic-first.'},
+    {n:'r/financialindependence',s:2457118,b:'fintech',cat:'Fintech',sz:'Mid',best:'organic',blurb:'FIRE (financial independence) community.',note:'Engaged but promo-sensitive.'},
+    {n:'r/CreditCards',s:1555582,b:'fintech',cat:'Fintech',sz:'Mid',best:'both',blurb:'Credit-card optimization and rewards.',note:'High purchase intent for fintech and card offers.'},
+    {n:'r/ynab',s:222556,b:'fintech',cat:'Fintech',sz:'Niche',best:'both',blurb:'You Need A Budget users.',note:'Niche, high-intent for budgeting and fintech apps.'},
+    {n:'r/Teachers',s:2382186,b:'edtech',cat:'EdTech',sz:'Mid',best:'both',blurb:'K-12 teachers on classroom realities.',note:'Fits classroom tools — respect their time and budget.'},
+    {n:'r/GetStudying',s:3314621,b:'edtech',cat:'EdTech',sz:'Niche',best:'both',blurb:'Students sharing study methods.',note:'Good for study and productivity edtech.'},
+    {n:'r/college',s:2933066,b:'edtech',cat:'EdTech',sz:'Large',best:'both',blurb:'College students community.',note:'Broad student reach for edtech and B2C tools.'},
+    {n:'r/highereducation',s:67862,b:'edtech',cat:'EdTech',sz:'Niche',best:'both',blurb:'Higher-ed faculty and administration.',note:'Fits institutional edtech.'},
+    {n:'r/k12sysadmin',s:55448,b:'edtech',cat:'EdTech',sz:'Niche',best:'both',blurb:'K-12 IT administrators.',note:'Niche buyer for school IT and edtech.'},
+    {n:'r/languagelearning',s:3399579,b:'edtech',cat:'EdTech',sz:'Mid',best:'both',blurb:'Language learners and methods.',note:'Strong for language-learning apps.'},
+    {n:'r/learnprogramming',s:4408068,b:'edtech',cat:'EdTech',sz:'Large',best:'both',blurb:'Beginners learning to code.',note:'Huge for coding-education products.'},
+    {n:'r/SkincareAddiction',s:5017249,b:'ecomm',cat:'eComm — Beauty',sz:'Large',best:'organic',blurb:'Deep skincare community (ingredients, routines).',note:'<b>Knowledgeable & ad-skeptical</b> — organic/UGC-led works best.'},
+    {n:'r/tretinoin',s:292765,b:'ecomm',cat:'eComm — Beauty',sz:'Niche',best:'both',blurb:'Tretinoin users.',note:'Niche, high-intent for specific skincare actives.'},
+    {n:'r/streetwear',s:5125805,b:'ecomm',cat:'eComm — Fashion',sz:'Mid',best:'both',blurb:'Streetwear enthusiasts and drops.',note:'Trend-driven — creative must look native, not corporate.'},
+    {n:'r/femalefashionadvice',s:5829455,b:'ecomm',cat:'eComm — Fashion',sz:'Mid',best:'both',blurb:'Women’s fashion advice and finds.',note:'Good for women’s apparel/accessories with strong visuals.'},
+    {n:'r/malefashionadvice',s:6472127,b:'ecomm',cat:'eComm — Fashion',sz:'Mid',best:'both',blurb:'Men’s fashion guidance.',note:'Strong for menswear — show fit and quality.'},
+    {n:'r/fitness',s:12574179,b:'ecomm',cat:'eComm — Fitness',sz:'Large',best:'both',blurb:'General fitness and training.',note:'Broad; works for equipment, apparel and supplements with proof.'},
+    {n:'r/loseit',s:4203799,b:'ecomm',cat:'eComm — Fitness',sz:'Large',best:'both',blurb:'Weight-loss community.',note:'Engaged but hype-sensitive — keep claims honest.'},
+    {n:'r/xxfitness',s:3095249,b:'ecomm',cat:'eComm — Fitness',sz:'Niche',best:'both',blurb:'Women’s fitness community.',note:'Good for women’s fitness products.'},
+    {n:'r/BuyItForLife',s:3921156,b:'ecomm',cat:'eComm — Home/Lifestyle',sz:'Large',best:'organic',blurb:'Durable, high-quality products.',note:'<b>Quality-obsessed & anti-marketing</b> — organic credibility wins, ads risky.'},
+    {n:'r/homeautomation',s:4590640,b:'ecomm',cat:'eComm — Home/Lifestyle',sz:'Mid',best:'both',blurb:'Smart-home enthusiasts.',note:'Fits smart-home and connected products.'},
+    {n:'r/productivity',s:4245482,b:'productivity',cat:'Productivity & Creative',sz:'Large',best:'both',blurb:'Productivity systems and tools.',note:'Lead with workflow, not features.'},
+    {n:'r/notion',s:470288,b:'productivity',cat:'Productivity & Creative',sz:'Niche',best:'both',blurb:'Notion users and templates.',note:'High-intent for Notion-adjacent and productivity tools.'},
+    {n:'r/VideoEditing',s:526441,b:'productivity',cat:'Productivity & Creative',sz:'Mid',best:'both',blurb:'Video editors and tooling.',note:'Fits creative and video SaaS.'},
+    {n:'r/graphic_design',s:2925721,b:'productivity',cat:'Productivity & Creative',sz:'Mid',best:'both',blurb:'Designers on craft and tools.',note:'Designers spot bad creative instantly — keep it sharp.'},
+    {n:'r/streaming',s:105336,b:'productivity',cat:'Productivity & Creative',sz:'Niche',best:'both',blurb:'Streaming and creator tooling.',note:'Good for creator and streaming products.'}
   ];
 
   var bucket = 'all', q = '';
@@ -425,6 +426,10 @@ function closeMobileMenu() { var mm = document.getElementById('mobile-menu'); va
     chipsEl.appendChild(btn);
   });
 
+  function fmtSubs(v){
+    return v>=1e6 ? (v/1e6).toFixed(v>=1e7?0:1).replace(/\.0$/,'')+'M members'
+         : Math.round(v/1e3)+'K members';
+  }
   var bestLabel = { both:'Both', ads:'Ads', organic:'Organic-first' };
 
   function render() {
@@ -441,7 +446,7 @@ function closeMobileMenu() { var mm = document.getElementById('mobile-menu'); va
       var slug = d.n.slice(2);
       return '<div class="sub">' +
         '<div class="sub-top"><a class="sub-name" href="https://www.reddit.com/'+d.n+'/" target="_blank" rel="noopener nofollow">'+d.n+'</a><span class="sub-cat">'+d.cat+'</span></div>' +
-        '<div class="sub-badges"><span class="badge b-size">'+d.sz+'</span><span class="badge b-'+d.best+'">'+bestLabel[d.best]+'</span></div>' +
+        '<div class="sub-badges">'+(d.s?'<span class="badge b-count">'+fmtSubs(d.s)+'</span>':'')+'<span class="badge b-size">'+d.sz+'</span><span class="badge b-'+d.best+'">'+bestLabel[d.best]+'</span></div>' +
         '<div class="sub-blurb">'+d.blurb+'</div>' +
         '<div class="sub-note">'+d.note+'</div>' +
       '</div>';
