@@ -12,3 +12,6 @@
 
 /gallery-draft*
   X-Robots-Tag: noindex, nofollow
+
+/old-site-backup*
+  X-Robots-Tag: noindex, nofollow

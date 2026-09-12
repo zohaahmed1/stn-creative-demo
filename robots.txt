@@ -2,16 +2,18 @@ User-agent: *
 Allow: /
 
 Disallow: /progress/
-Disallow: /playbook-thanks
-Disallow: /book-thanks
-Allow: /creative-audit-saas
-Disallow: /creative-audit
+
+# NOTE: thank-you and audit pages are NOT Disallowed here on purpose. They carry
+# meta robots noindex, and a Disallow would stop Google crawling them, so it
+# would never read that noindex — leaving the URL indexable from any stray link.
+# Allow the fetch, refuse the index. Same reasoning as _headers.
 
 # ── AI assistant / answer-engine crawlers ──────────────────────────
-# Cloudflare prepends a managed block that disallows several AI bots.
-# The explicit Allow groups below override it for spec-compliant
-# parsers (on an equal-length rule tie, Allow wins — Google REP).
-# Being cited by AI assistants is a business goal for this site.
+# Cloudflare's AI Crawl Control was turned off on 2026-09-11, so the managed
+# block that used to Disallow these bots is no longer prepended. The groups
+# below are now the whole policy, not an override. Being cited by AI
+# assistants is a business goal for this site — if these bots ever go missing
+# from server logs, re-check AI Crawl Control before editing this file.
 
 # Anthropic (Claude)
 User-agent: ClaudeBot
