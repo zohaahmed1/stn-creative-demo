@@ -1,3 +1,5 @@
+<!doctype html>
+<html lang="en">
 <!-- quiz-v3 · instrument, not brochure -->
 <title>Is Your Tool in the Reddit Thread, or Missing? | Skip the Noise Media</title>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -92,7 +94,7 @@ body{margin:0;background:var(--bg);color:var(--body);font-family:var(--s);font-s
 .logo i{color:var(--rd-text);font-style:normal}
 .step{font-family:var(--m);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
 /* ── type ── */
-h1{font-size:clamp(27px,5.4vw,38px);font-weight:900;letter-spacing:-.035em;line-height:1.08;color:var(--ink);margin:26px 0 12px;text-wrap:balance}
+h1,.q-head{font-size:clamp(27px,5.4vw,38px);font-weight:900;letter-spacing:-.035em;line-height:1.08;color:var(--ink);margin:26px 0 12px;text-wrap:balance}
 .sub{font-size:16.5px;color:var(--body);margin:0 0 26px;max-width:52ch}
 .eyebrow{font-family:var(--m);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--rd-text);margin:26px 0 0}
 /* ── chips ── */
@@ -256,7 +258,7 @@ input:focus{border-color:var(--rd)}
   <!-- 2 · REVEAL ----------------------------------------------------------- -->
   <section id="s2" class="hide">
     <p class="eyebrow" id="r-cat"></p>
-    <h1 id="r-head"></h1>
+    <h2 class="q-head" id="r-head"></h2>
     <div class="econ">
       <div class="econ-g">
         <div><div class="econ-n" id="e-1"></div><div class="econ-l" id="e-1l"></div></div>
@@ -283,7 +285,7 @@ input:focus{border-color:var(--rd)}
   <!-- 4 · GATE ------------------------------------------------------------- -->
   <section id="s4" class="hide">
     <p class="eyebrow">Last step</p>
-    <h1 id="g-head">Where should we send it?</h1>
+    <h2 class="q-head" id="g-head">Where should we send it?</h2>
     <p class="sub" id="g-sub"></p>
     <div class="gate">
       <h2>The 90-day plan, plus three Reddit ads</h2>
@@ -308,7 +310,7 @@ input:focus{border-color:var(--rd)}
   <!-- 5 · DONE ------------------------------------------------------------- -->
   <section id="s5" class="hide">
     <p class="eyebrow" id="d-eye">On its way</p>
-    <h1 id="d-head"></h1>
+    <h2 class="q-head" id="d-head"></h2>
     <p class="sub" id="d-sub"></p>
     <div id="d-cta"></div>
     <p class="alt">Not ready? <a href="/blog/reddit-ads-benchmarks">See our 2026 Reddit ad benchmarks</a> &mdash; real cost per lead by vertical, no form.</p>
@@ -512,3 +514,4 @@ $('g-send').onclick=async function(){
   show(5);
 };
 </script>
+</html>
