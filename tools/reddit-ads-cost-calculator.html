@@ -67,7 +67,7 @@
       {
         "@type": "Question",
         "name": "How much do Reddit ads cost in 2026?",
-        "acceptedAnswer": {"@type": "Answer", "text": "Reddit ad CPCs typically run $0.75 to $3.00 depending on vertical — DTC and eComm sit at the lower end ($0.75–$1.50) because they target interest-based communities, while B2B SaaS runs higher ($1.50–$3.00) due to advertiser competition in professional subreddits. CPMs run $3 to $8. A meaningful test budget is $2,000–$3,000 in month one."}
+        "acceptedAnswer": {"@type": "Answer", "text": "Reddit ad CPCs typically run $0.75 to $3.00 depending on vertical — DTC and eComm sit at the lower end ($0.75–$1.50) because they target interest-based communities, while B2B SaaS runs higher ($1.50–$3.00) due to advertiser competition in professional subreddits. CPMs run $3 to $17 depending mostly on campaign objective and audience size. A meaningful test budget is $2,000–$3,000 in month one."}
       },
       {
         "@type": "Question",
@@ -343,7 +343,7 @@
     <thead><tr><th>Metric</th><th>Typical range</th><th>Notes</th></tr></thead>
     <tbody>
       <tr><td>CPC (cost per click)</td><td>$0.75 – $3.00</td><td>5–10× cheaper than LinkedIn</td></tr>
-      <tr><td>CPM (per 1,000 impressions)</td><td>$3 – $8</td><td>Varies by subreddit competition</td></tr>
+      <tr><td>CPM (per 1,000 impressions)</td><td>$3 – $17</td><td>Varies by subreddit competition</td></tr>
       <tr><td>CPC — eComm / DTC</td><td>$0.75 – $1.50</td><td>Interest-based communities</td></tr>
       <tr><td>CPC — B2B SaaS</td><td>$1.50 – $3.00</td><td>Professional subreddits</td></tr>
       <tr><td>CPL — B2B SaaS</td><td>~$50 – $150</td><td>Real campaign: $157 (blended)</td></tr>
@@ -362,7 +362,7 @@
   <h2 class="faq">Frequently asked questions</h2>
   <div class="faq">
     <h3>How much do Reddit ads cost in 2026?</h3>
-    <p>CPCs run $0.75–$3.00 depending on vertical — eComm/DTC at the low end ($0.75–$1.50), B2B SaaS higher ($1.50–$3.00). CPMs run $3–$8. Budget $2,000–$3,000 for a meaningful first month.</p>
+    <p>CPCs run $0.75–$3.00 depending on vertical — eComm/DTC at the low end ($0.75–$1.50), B2B SaaS higher ($1.50–$3.00). CPMs run $3–$17, driven mostly by objective and audience size. Budget $2,000–$3,000 for a meaningful first month.</p>
     <h3>What's a good cost per lead on Reddit?</h3>
     <p>B2B SaaS lands around $50–$150 CPL — one Reddit Certified Partner campaign came in at a $157 blended CPL. B2C SaaS runs lower, ~$20–$65.</p>
     <h3>What's the minimum budget to start?</h3>
@@ -433,7 +433,7 @@
         document.getElementById('r-cpl-label').textContent = 'Est. cost per lead';
         document.getElementById('r-cpl').textContent = (leadsLo>0) ? rng(cplLo, cplHi, money) : '—';
         document.getElementById('assumptions').innerHTML =
-          'Based on <strong>'+cpcFmt(v.cpc[0])+'–'+cpcFmt(v.cpc[1])+' CPC</strong> and a <strong>'+(v.conv[0]*100)+'–'+(v.conv[1]*100)+'% landing-page conversion rate</strong> for '+v.label+'. CPM assumed $3–$8.';
+          'Based on <strong>'+cpcFmt(v.cpc[0])+'–'+cpcFmt(v.cpc[1])+' CPC</strong> and a <strong>'+(v.conv[0]*100)+'–'+(v.conv[1]*100)+'% landing-page conversion rate</strong> for '+v.label+'. CPM assumed $3–$17.';
       }
 
       var warn = document.getElementById('budget-warn');
