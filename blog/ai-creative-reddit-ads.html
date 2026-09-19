@@ -125,6 +125,12 @@
     .comparison-table tr:nth-child(even) td{background:var(--g100)}
     .tag-high{display:inline-block;background:#dcfce7;color:#166534;font-size:12px;font-weight:700;padding:2px 10px;border-radius:100px}
     .tag-medium{display:inline-block;background:#fef9c3;color:#854d0e;font-size:12px;font-weight:700;padding:2px 10px;border-radius:100px}
+    .ad-shots{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0 6px}
+    .ad-shots.one{grid-template-columns:minmax(0,320px)}
+    .ad-shot{border-radius:14px;overflow:hidden;border:1px solid var(--g200);background:#fff}
+    .ad-shot img{width:100%;display:block;aspect-ratio:1/1;object-fit:cover}
+    .ad-cap{font-size:12.5px;color:var(--g500);font-weight:600;margin-top:7px;line-height:1.45}
+    @media(max-width:600px){.ad-shots{grid-template-columns:1fr}}
     footer{background:#0d0d14;padding:40px 24px;text-align:center}
     footer p{font-size:14px;color:rgba(255,255,255,0.35);margin-bottom:8px}
     footer a{color:rgba(255,255,255,0.35);text-decoration:none}
@@ -384,6 +390,18 @@
 
   <p>One of the biggest practical advantages of this approach is how cheaply you can adapt creative across communities. Here's what that looks like for the same product across three different subreddits:</p>
 
+
+  <div class="ad-shots">
+      <div>
+        <div class="ad-shot"><img loading="lazy" src="/assets/3d-ai-studio-ad.webp" alt="3D AI Studio Reddit ad aimed at 3D artists"></div>
+        <div class="ad-cap">3D AI Studio &mdash; written for r/blender, where the audience knows the workflow</div>
+      </div>
+      <div>
+        <div class="ad-shot"><img loading="lazy" src="/assets/storykeeper-ad-1.webp" alt="StoryKeeper Reddit ad, first variant"></div>
+        <div class="ad-cap">StoryKeeper &mdash; consumer angle, same product</div>
+      </div>
+  </div>
+
   <div class="subreddit-grid">
     <div class="subreddit-card">
       <div class="sub-name">r/devops</div>
@@ -445,10 +463,32 @@
   <h3>Flare — cybersecurity SaaS</h3>
 
   <p>Flare monitors the dark web for exposed credentials and leaked data. Their ICP lives in r/netsec and r/cybersecurity — senior security engineers and threat intelligence analysts who are deeply skeptical of vendor marketing. We used organic community research to extract the exact language security teams use to describe credential exposure risk, then generated 8 hook variants with AI, each tuned to r/netsec's technical register. Over 3 months: a $157 CPL and 74 qualified leads. The key insight was that the winning hook used the specific phrase "dark web exposure window" — language we pulled directly from organic r/netsec posts, not from Flare's own marketing copy.</p>
+  <div class="ad-shots">
+      <div>
+        <div class="ad-shot"><img loading="lazy" src="/assets/flare-ad-threat.jpg" alt="Flare Reddit ad about dark web credential exposure"></div>
+        <div class="ad-cap">Threat angle &mdash; built on the phrase r/netsec already uses</div>
+      </div>
+      <div>
+        <div class="ad-shot"><img loading="lazy" src="/assets/flare-ad-testimonial.jpg" alt="Flare Reddit ad using a customer quote"></div>
+        <div class="ad-cap">Testimonial angle &mdash; same offer, proof instead of threat</div>
+      </div>
+  </div>
+
 
   <h3>Restream — streaming platform</h3>
 
   <p>Restream helps creators and marketers stream to multiple platforms simultaneously. The Reddit angle was streaming communities — r/livebroadcasting, r/twitch, r/streaming — where the ICP talks about multi-platform workflows in specific technical terms. AI-generated variants tested three different angles: the time-savings hook, the reach-multiplication hook, and the technical setup hook. The reach-multiplication variant won. Result: $15 cost per signup with a 19% reduction in customer acquisition cost. CAC dropped because the winning creative was filtering in highly qualified users who already understood the multi-platform streaming use case — they didn't need as much post-click education.</p>
+  <div class="ad-shots">
+      <div>
+        <div class="ad-shot"><img loading="lazy" src="/assets/restream-ad-streamyard.webp" alt="Restream Reddit ad naming a competitor price increase"></div>
+        <div class="ad-cap">Named variant &mdash; the competitor does the arguing</div>
+      </div>
+      <div>
+        <div class="ad-shot"><img loading="lazy" src="/assets/restream-ad-competitors.webp" alt="Restream Reddit ad referring to competitors generically"></div>
+        <div class="ad-cap">Unnamed variant &mdash; same claim, no brand named</div>
+      </div>
+  </div>
+
 
   <h2>The content loop that makes this compound over time</h2>
 
