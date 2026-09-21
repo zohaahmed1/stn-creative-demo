@@ -501,13 +501,11 @@
       padding: 100px 24px;
     }
     .stats-row {
-      display: flex;
-      justify-content: center;
-      gap: 64px;
-      flex-wrap: wrap;
-      margin-top: 56px;
-      margin-bottom: 64px;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px 24px;
+      margin-top: 48px; align-items: start; text-align: center;
     }
+    @media (max-width: 900px) { .stats-row { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 520px) { .stats-row { grid-template-columns: 1fr; } }
     .stat-block { text-align: center; }
     .stat-number {
       font-size: clamp(44px, 4vw, 64px);
@@ -801,7 +799,6 @@
     .svc-body { font-size: 16px; line-height: 1.65; color: var(--gray-400); margin-bottom: 18px; }
     .svc-proof { font-size: 14.5px; line-height: 1.6; color: var(--navy); font-weight: 600;
                  border-left: 2px solid var(--orange); padding-left: 14px; margin-bottom: 20px; }
-    .svc-proof.offer { border-left-color: var(--blue); color: var(--blue); }
     .svc-link { margin-top: auto; font-size: 15px; font-weight: 700; color: var(--blue); }
     .svc-link:hover { text-decoration: underline; text-underline-offset: 3px; }
     @media (max-width: 760px) { .svc-grid { grid-template-columns: 1fr; } .svc-section { padding: 64px 0; } }
@@ -842,6 +839,41 @@
     .thr-foot a { color:#fff; text-decoration:underline; text-underline-offset:3px; }
     @media (max-width:820px){ .threads{grid-template-columns:1fr;} .thr-section{padding:60px 0;} }
 
+    /* ---- colour pass: grounds, accents, and the variants that were never used ---- */
+    .tint-warm  { background: #fdf6f2; }
+    .tint-cool  { background: #f6f4fd; }
+    .tint-paper { background: #faf9f7; }
+
+    .section-label.lab-orange { color: #ee0033; }
+    .section-label.lab-purple { color: #5500dd; }
+
+    /* one accent per service, instead of four identical bars */
+    .svc-card:nth-child(1) .svc-proof { border-left-color: #ff4500; color: #c33300; }
+    .svc-card:nth-child(2) .svc-proof { border-left-color: #5500dd; color: #4400b0; }
+    .svc-card:nth-child(3) .svc-proof { border-left-color: #0a9396; color: #0a7275; }
+    .svc-card:nth-child(4) .svc-proof { border-left-color: #ee0033; color: #c40029; }
+    .svc-card:nth-child(1) .svc-name::after,
+    .svc-card:nth-child(2) .svc-name::after,
+    .svc-card:nth-child(3) .svc-name::after,
+    .svc-card:nth-child(4) .svc-name::after {
+      content:''; display:block; width:26px; height:3px; border-radius:2px; margin-top:9px; }
+    .svc-card:nth-child(1) .svc-name::after { background:#ff4500; }
+    .svc-card:nth-child(2) .svc-name::after { background:#5500dd; }
+    .svc-card:nth-child(3) .svc-name::after { background:#0a9396; }
+    .svc-card:nth-child(4) .svc-name::after { background:#ee0033; }
+
+    /* timeline: four steps, four colours instead of four identical purple circles */
+    .timeline-step:nth-child(1) .step-circle { background:#ff4500; }
+    .timeline-step:nth-child(2) .step-circle { background:#5500dd; }
+    .timeline-step:nth-child(3) .step-circle { background:#0a9396; }
+    .timeline-step:nth-child(4) .step-circle { background:#ee0033; }
+
+    /* stat numbers alternate, using the variants already defined */
+    .stat-block:nth-child(odd)  .stat-number { color:#5500dd; }
+    .stat-block:nth-child(even) .stat-number { color:#ee0033; }
+
+    .chan-item:hover .chan-name { color:#5500dd; }
+
   </style>
   <!-- Meta Pixel -->
   <script>
@@ -879,6 +911,7 @@
     /* Cal.com modal styles now live in the main <style> block above.
        Previously injected here via JS, which is fragile if any prior line throws. */
   </script>
+  <link rel="stylesheet" href="/assets/nav.css">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -912,7 +945,36 @@
       <span class="logo-skip">Skip the </span><span class="logo-noise">Noise</span>
     </a>
     <div class="nav-links">
-      <a href="/services" class="nav-link active">Services</a>
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          Services
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="margin-left:3px;transition:transform 0.2s;"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu" role="menu">
+          <div class="nav-mega-col">
+            <div class="nav-mega-label">What we do</div>
+            <a href="/services" class="nav-dropdown-item" role="menuitem">All services</a>
+            <a href="/reddit-ads-agency" class="nav-dropdown-item" role="menuitem">Reddit Ads</a>
+            <a href="/reddit-organic-marketing" class="nav-dropdown-item" role="menuitem">Reddit Organic</a>
+            <a href="/google-ads-agency" class="nav-dropdown-item" role="menuitem">Paid Search</a>
+            <a href="/gallery" class="nav-dropdown-item" role="menuitem">AI Creative Production</a>
+            <div class="nav-mega-label is-spaced">By audience</div>
+            <a href="/saas-ads-agency" class="nav-dropdown-item" role="menuitem">SaaS Ads Agency</a>
+            <a href="/b2c-saas-ads" class="nav-dropdown-item" role="menuitem">B2C SaaS Ads</a>
+            <a href="/ecomm-ads-agency" class="nav-dropdown-item" role="menuitem">eComm &amp; DTC Ads</a>
+          </div>
+          <div class="nav-mega-divider"></div>
+          <div class="nav-mega-col">
+            <div class="nav-mega-label">Paid social channels</div>
+            <a href="/meta-ads-agency" class="nav-dropdown-item" role="menuitem">Meta Ads</a>
+            <a href="/tiktok-ads-agency" class="nav-dropdown-item" role="menuitem">TikTok Ads</a>
+            <a href="/linkedin-ads-agency" class="nav-dropdown-item" role="menuitem">LinkedIn Ads</a>
+            <a href="/pinterest-ads-agency" class="nav-dropdown-item" role="menuitem">Pinterest Ads</a>
+            <a href="/snapchat-ads-agency" class="nav-dropdown-item" role="menuitem">Snapchat Ads</a>
+            <a href="/services" class="nav-dropdown-all" role="menuitem">See how we work &rarr;</a>
+          </div>
+        </div>
+      </div>
       <a href="/process" class="nav-link">Process</a>
       <a href="/gallery" class="nav-link">Creative</a>
       <a href="/case-studies" class="nav-link">Case Studies</a>
@@ -986,7 +1048,7 @@
 <!-- ============================
      SECTION 2: WHICH ONE ARE YOU
      ============================ -->
-<section class="split-section">
+<section class="split-section tint-paper">
   <div class="container">
     <p class="section-label" data-anim>Who we work with</p>
     <div data-anim data-delay="1">
@@ -1061,9 +1123,9 @@
 <!-- ============================
      SECTION 3B: WHAT WE DO
      ============================ -->
-<section class="svc-section">
+<section class="svc-section tint-warm">
   <div class="container">
-    <p class="section-label" data-anim>What we do</p>
+    <p class="section-label lab-orange" data-anim>What we do</p>
     <div data-anim data-delay="1" style="text-align:center;">
       <span class="heading-bold" style="color:#0d0d0d;">Creative and media buying.</span>
       <span class="heading-italic" style="color:#0d0d0d;">Same team, same week.</span>
@@ -1072,25 +1134,25 @@
       <div class="svc-card">
         <div class="svc-name">Reddit</div>
         <p class="svc-body">Paid campaigns in the subreddits where your buyers research, and <a href="/reddit-organic-marketing" style="color:#5500DD;">disclosed organic participation</a> in the threads they read first. We are a Reddit Certified Partner, so we get direct support and beta access. Most agencies cannot buy here properly.</p>
-        <div class="svc-proof">$15 per signup and CAC down 19% for a streaming platform</div>
+        <div class="svc-proof">$157 cost per lead across 74 qualified leads for a cybersecurity SaaS. $32 cost per acquisition for a B2C AI SaaS.</div>
         <a class="svc-link" href="/reddit-ads-agency">Reddit Ads Agency &rarr;</a>
       </div>
       <div class="svc-card">
         <div class="svc-name">Paid Social</div>
         <p class="svc-body">Where most of your budget goes, and where creative decides everything. We recommend the mix rather than running whatever you already have open, and we say when a channel is wrong for you.</p>
-        <div class="svc-proof">+114% store revenue year on year for a gifting brand</div>
+        <div class="svc-proof">+114% store revenue year on year for a gifting brand. $15 per signup for a B2C SaaS platform.</div>
         <a class="svc-link" href="/meta-ads-agency">See the channels &rarr;</a>
       </div>
       <div class="svc-card">
         <div class="svc-name">Paid Search</div>
         <p class="svc-body">Google Search, Shopping and Performance Max. We read the search terms every week and split branded spend out from the start, so you can see what new demand actually costs rather than an average that hides it.</p>
-        <div class="svc-proof offer">Send us access and we will read your search terms free</div>
+        <div class="svc-proof">CAC down 19% for a streaming platform after we rebuilt attribution across its paid channels</div>
         <a class="svc-link" href="/google-ads-agency">Google Ads Agency &rarr;</a>
       </div>
       <div class="svc-card">
         <div class="svc-name">AI Creative, in house</div>
         <p class="svc-body">Up to 40 assets a batch across static, video and UGC. We make them ourselves, so the people choosing the angle are the people buying the media, and a new batch takes days instead of a procurement cycle.</p>
-        <div class="svc-proof">$32 a signup on the best angle against $79 on the worst, same audience and budget</div>
+        <div class="svc-proof">2.4x gap between the best and worst angle, on identical audience and budget</div>
         <a class="svc-link" href="/gallery">See the creative &rarr;</a>
       </div>
     </div>
@@ -1100,9 +1162,9 @@
 <!-- ============================
      SECTION 3C: CHANNELS
      ============================ -->
-<section class="chan-section">
+<section class="chan-section tint-cool">
   <div class="container">
-    <p class="section-label" data-anim>Where we run it</p>
+    <p class="section-label lab-purple" data-anim>Where we run it</p>
     <div data-anim data-delay="1" style="text-align:center;">
       <span class="heading-bold" style="color:#0d0d0d;">Six channels.</span>
       <span class="heading-italic" style="color:#0d0d0d;">You probably need two.</span>
@@ -1148,7 +1210,7 @@
      ============================ -->
 <section class="process-section">
   <div class="container">
-    <p class="section-label" data-anim>How it works</p>
+    <p class="section-label lab-orange" data-anim>How it works</p>
     <div data-anim data-delay="1">
       <span class="heading-bold" style="color:#0d0d0d;">The Signal Method.</span>
       <span class="heading-italic" style="color:#0d0d0d;">Volume in, signal out.</span>
@@ -1213,7 +1275,7 @@
 <section class="proof-section">
   <div class="container">
     <div style="text-align:center;">
-      <p class="section-label" data-anim>The numbers</p>
+      <p class="section-label lab-purple" data-anim>The numbers</p>
       <div data-anim data-delay="1">
         <span class="heading-bold" style="color:#0d0d0d;">Most agencies publish none of this.</span>
         <span class="heading-italic" style="color:#0d0d0d;">We publish all of it.</span>
@@ -1227,7 +1289,7 @@
       </div>
       <div class="stat-block" data-anim data-delay="2">
         <div class="stat-number">19</div>
-        <div class="stat-desc">Case studies published with real numbers</div>
+        <div class="stat-desc">Case studies with real numbers</div>
       </div>
       <div class="stat-block" data-anim data-delay="3">
         <div class="stat-number">6</div>
@@ -1235,7 +1297,7 @@
       </div>
       <div class="stat-block" data-anim data-delay="4">
         <div class="stat-number">40</div>
-        <div class="stat-desc">Assets in a single creative batch</div>
+        <div class="stat-desc">Assets in one creative batch</div>
       </div>
     </div>
 
@@ -1258,7 +1320,7 @@
      ============================ -->
 <section class="fit-section">
   <div class="container">
-    <p class="section-label" data-anim>Is this a fit</p>
+    <p class="section-label lab-orange" data-anim>Is this a fit</p>
     <div data-anim data-delay="1">
       <span class="heading-bold" style="color:#0d0d0d;">We're not for everyone.</span>
       <span class="heading-italic" style="color:#0d0d0d;">Here's the honest version.</span>
@@ -1296,7 +1358,7 @@
 <section class="faq-section">
   <div class="container">
     <div style="text-align:center; margin-bottom:0;">
-      <p class="section-label" data-anim>FAQ</p>
+      <p class="section-label lab-purple" data-anim>FAQ</p>
       <div data-anim data-delay="1">
         <span class="heading-bold" style="color:#0d0d0d;">Questions</span>
         <span class="heading-italic" style="color:#0d0d0d;">worth asking.</span>

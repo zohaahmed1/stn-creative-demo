@@ -70,6 +70,7 @@
   <noscript><link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet"></noscript>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" as="style" onload="this.rel='stylesheet'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet"></noscript>
+  <link rel="stylesheet" href="/assets/nav.css">
   <link rel="stylesheet" href="../assets/main.css">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -198,7 +199,36 @@
       <span class="logo-skip">Skip the</span><span class="logo-noise">Noise</span>
     </a>
     <div class="nav-links">
-      <a href="/services" class="nav-link">Services</a>
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          Services
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="margin-left:3px;transition:transform 0.2s;"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu" role="menu">
+          <div class="nav-mega-col">
+            <div class="nav-mega-label">What we do</div>
+            <a href="/services" class="nav-dropdown-item" role="menuitem">All services</a>
+            <a href="/reddit-ads-agency" class="nav-dropdown-item" role="menuitem">Reddit Ads</a>
+            <a href="/reddit-organic-marketing" class="nav-dropdown-item" role="menuitem">Reddit Organic</a>
+            <a href="/google-ads-agency" class="nav-dropdown-item" role="menuitem">Paid Search</a>
+            <a href="/gallery" class="nav-dropdown-item" role="menuitem">AI Creative Production</a>
+            <div class="nav-mega-label is-spaced">By audience</div>
+            <a href="/saas-ads-agency" class="nav-dropdown-item" role="menuitem">SaaS Ads Agency</a>
+            <a href="/b2c-saas-ads" class="nav-dropdown-item" role="menuitem">B2C SaaS Ads</a>
+            <a href="/ecomm-ads-agency" class="nav-dropdown-item" role="menuitem">eComm &amp; DTC Ads</a>
+          </div>
+          <div class="nav-mega-divider"></div>
+          <div class="nav-mega-col">
+            <div class="nav-mega-label">Paid social channels</div>
+            <a href="/meta-ads-agency" class="nav-dropdown-item" role="menuitem">Meta Ads</a>
+            <a href="/tiktok-ads-agency" class="nav-dropdown-item" role="menuitem">TikTok Ads</a>
+            <a href="/linkedin-ads-agency" class="nav-dropdown-item" role="menuitem">LinkedIn Ads</a>
+            <a href="/pinterest-ads-agency" class="nav-dropdown-item" role="menuitem">Pinterest Ads</a>
+            <a href="/snapchat-ads-agency" class="nav-dropdown-item" role="menuitem">Snapchat Ads</a>
+            <a href="/services" class="nav-dropdown-all" role="menuitem">See how we work &rarr;</a>
+          </div>
+        </div>
+      </div>
       <a href="/process" class="nav-link">Process</a>
       <a href="/gallery" class="nav-link">Creative</a>
       <a href="/case-studies" class="nav-link">Case Studies</a>
@@ -238,12 +268,6 @@
             <a href="/work/noirver" class="nav-dropdown-item" role="menuitem">Noirvere: 4.3x ROAS</a>
             <a href="/work/lifestyle-brand" class="nav-dropdown-item" role="menuitem">Lifestyle Brand: 6.8x ROAS</a>
             <a href="/case-studies" class="nav-dropdown-all" role="menuitem">View all case studies &rarr;</a>
-            <div class="nav-mega-label is-spaced">Services</div>
-            <a href="/reddit-ads-agency" class="nav-dropdown-item" role="menuitem">Reddit Ads Agency</a>
-            <a href="/reddit-organic-marketing" class="nav-dropdown-item" role="menuitem">Reddit Organic Marketing</a>
-            <a href="/saas-ads-agency" class="nav-dropdown-item" role="menuitem">SaaS Ads Agency</a>
-            <a href="/b2c-saas-ads" class="nav-dropdown-item" role="menuitem">B2C SaaS Ads</a>
-            <a href="/ecomm-ads-agency" class="nav-dropdown-item" role="menuitem">eComm &amp; DTC Ads</a>
             <div class="nav-mega-label is-spaced">By Channel</div>
             <a href="/meta-ads-agency" class="nav-dropdown-item" role="menuitem">Meta Ads</a>
             <a href="/tiktok-ads-agency" class="nav-dropdown-item" role="menuitem">TikTok Ads</a>
