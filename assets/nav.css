@@ -69,3 +69,12 @@ nav.nav { display: block; height: auto; min-height: 0; padding: 0; backdrop-filt
 @media (max-width: 1100px) {
   .nav-dropdown.align-left > .nav-dropdown-menu { left: 50%; right: auto; transform: translateX(-50%); }
 }
+
+/* the overview link sits above the individual services — give it weight */
+.nav-dropdown-item.is-primary {
+  background: rgba(85,0,221,0.06);
+  color: #5500dd;
+  font-weight: 700;
+  border-radius: 8px;
+}
+.nav-dropdown-item.is-primary:hover { background: rgba(85,0,221,0.12); color: #4400b0; }
