@@ -805,6 +805,40 @@
     .svc-link:hover { text-decoration: underline; text-underline-offset: 3px; }
     @media (max-width: 760px) { .svc-grid { grid-template-columns: 1fr; } .svc-section { padding: 64px 0; } }
 
+    /* ---- colour pass: meta ---- */
+    .tint-a { background: #f0f5ff; }
+    .tint-b { background: #faf9f7; }
+    .hero   { background: linear-gradient(180deg, #eef4ff 0%, #ffffff 68%) !important; }
+
+    .section-label.lab-1 { color: #0552CC; }
+    .section-label.lab-2 { color: #5500dd; }
+
+    .partner-badge { background: #0866FF !important; color: #fff !important; }
+
+    /* four cards, four accents — the platform hue leads */
+    .svc-card:nth-child(1) .svc-proof { border-left-color: #0866FF; color: #0552CC; }
+    .svc-card:nth-child(2) .svc-proof { border-left-color: #5500dd; color: #4400b0; }
+    .svc-card:nth-child(3) .svc-proof { border-left-color: #0a9396; color: #0a7275; }
+    .svc-card:nth-child(4) .svc-proof { border-left-color: #ee0033; color: #c40029; }
+    .svc-card .svc-name::after { content:''; display:block; width:26px; height:3px; border-radius:2px; margin-top:9px; }
+    .svc-card:nth-child(1) .svc-name::after { background:#0866FF; }
+    .svc-card:nth-child(2) .svc-name::after { background:#5500dd; }
+    .svc-card:nth-child(3) .svc-name::after { background:#0a9396; }
+    .svc-card:nth-child(4) .svc-name::after { background:#ee0033; }
+
+    .timeline-step:nth-child(1) .step-circle { background:#0866FF; }
+    .timeline-step:nth-child(2) .step-circle { background:#5500dd; }
+    .timeline-step:nth-child(3) .step-circle { background:#0a9396; }
+    .timeline-step:nth-child(4) .step-circle { background:#ee0033; }
+
+    .stat-block:nth-child(odd)  .stat-number { color:#0552CC; }
+    .stat-block:nth-child(even) .stat-number { color:#5500dd; }
+
+    .split-half .split-stat strong { color:#0552CC; }
+    .stats-row { display:grid; grid-template-columns:repeat(4,1fr); gap:20px 24px; align-items:start; text-align:center; }
+    @media (max-width:900px){ .stats-row{grid-template-columns:repeat(2,1fr);} }
+    @media (max-width:520px){ .stats-row{grid-template-columns:1fr;} }
+
   </style>
   <!-- Meta Pixel -->
   <script>
@@ -953,9 +987,9 @@
   </div>
 </section>
 
-<section class="split-section">
+<section class="split-section tint-b">
   <div class="container">
-    <p class="section-label" data-anim>Why Meta stopped responding</p>
+    <p class="section-label lab-1" data-anim>Why Meta stopped responding</p>
     <div data-anim data-delay="1" style="text-align:center;">
       <span class="heading-bold" style="color:#0d0d0d;">The lever moved.</span>
       <span class="heading-italic" style="color:#0d0d0d;">Creative is the variable now.</span>
@@ -979,9 +1013,9 @@
   </div>
 </section>
 
-<section class="svc-section">
+<section class="svc-section tint-a">
   <div class="container">
-    <p class="section-label" data-anim>What we fix first</p>
+    <p class="section-label lab-2" data-anim>What we fix first</p>
     <div data-anim data-delay="1" style="text-align:center;">
       <span class="heading-bold" style="color:#0d0d0d;">Four leaks,</span>
       <span class="heading-italic" style="color:#0d0d0d;">in almost every account we inherit.</span>
@@ -1010,7 +1044,7 @@
 
 <section class="process-section">
   <div class="container">
-    <p class="section-label" data-anim>How it works</p>
+    <p class="section-label lab-1" data-anim>How it works</p>
     <div data-anim data-delay="1" style="text-align:center;">
       <span class="heading-bold" style="color:#0d0d0d;">The Signal Method.</span>
       <span class="heading-italic" style="color:#0d0d0d;">Volume in, signal out.</span>
@@ -1048,7 +1082,7 @@
 <section class="proof-section">
   <div class="container">
     <div style="text-align:center;">
-      <p class="section-label" data-anim>The numbers</p>
+      <p class="section-label lab-2" data-anim>The numbers</p>
       <div data-anim data-delay="1">
         <span class="heading-bold" style="color:#0d0d0d;">Numbers</span>
         <span class="heading-italic" style="color:#0d0d0d;">from real accounts.</span>
@@ -1075,9 +1109,9 @@
   </div>
 </section>
 
-<section class="fit-section">
+<section class="fit-section tint-b">
   <div class="container">
-    <p class="section-label" data-anim>Is this a fit</p>
+    <p class="section-label lab-1" data-anim>Is this a fit</p>
     <div data-anim data-delay="1" style="text-align:center;">
       <span class="heading-bold" style="color:#0d0d0d;">We're not for everyone.</span>
       <span class="heading-italic" style="color:#0d0d0d;">Here's the honest version.</span>
@@ -1109,7 +1143,7 @@
 <section class="faq-section">
   <div class="container">
     <div style="text-align:center; margin-bottom:0;">
-      <p class="section-label" data-anim>FAQ</p>
+      <p class="section-label lab-2" data-anim>FAQ</p>
       <div data-anim data-delay="1">
         <span class="heading-bold" style="color:#0d0d0d;">Questions</span>
         <span class="heading-italic" style="color:#0d0d0d;">worth asking.</span>
