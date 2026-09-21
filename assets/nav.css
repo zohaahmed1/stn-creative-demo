@@ -62,3 +62,10 @@ nav.nav { display: block; height: auto; min-height: 0; padding: 0; backdrop-filt
 .mobile-menu-all { font-size: 14px; font-weight: 600; color: #5500DD; text-decoration: none; padding: 6px 12px; border-radius: 10px; display: block; text-align: center; }
 .mobile-menu-all:hover { text-decoration: underline; }
 .mobile-menu-playbook { font-size: 16px; font-weight: 700; color: #FF4500; text-decoration: none; padding: 14px; text-align: center; display: block; margin-top: 10px; border: 1.5px solid rgba(255,69,0,0.3); border-radius: 12px; }
+
+/* Services sits at the left of the nav, so its menu must open rightward.
+   The default right:0 above is for Resources, which is the last item. */
+.nav-dropdown.align-left > .nav-dropdown-menu { left: 0; right: auto; }
+@media (max-width: 1100px) {
+  .nav-dropdown.align-left > .nav-dropdown-menu { left: 50%; right: auto; transform: translateX(-50%); }
+}
