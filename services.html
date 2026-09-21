@@ -792,6 +792,19 @@
     .cal-modal.open { display: flex; }
     .cal-modal-content { background: white; border-radius: 12px; width: 90%; max-width: 600px; max-height: 90vh; overflow: auto; position: relative; }
     .cal-modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; z-index: 1000; }
+    /* ---- services block ---- */
+    .svc-section { padding: 96px 0; background: var(--white); }
+    .svc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--gray-200);
+                border: 1px solid var(--gray-200); border-radius: 16px; overflow: hidden; margin-top: 44px; }
+    .svc-card { background: var(--white); padding: 34px 32px 30px; display: flex; flex-direction: column; }
+    .svc-name { font-size: 21px; font-weight: 700; color: var(--navy); letter-spacing: -0.01em; margin-bottom: 12px; }
+    .svc-body { font-size: 16px; line-height: 1.65; color: var(--gray-400); margin-bottom: 18px; }
+    .svc-proof { font-size: 14.5px; line-height: 1.6; color: var(--navy); font-weight: 600;
+                 border-left: 2px solid var(--orange); padding-left: 14px; margin-bottom: 20px; }
+    .svc-link { margin-top: auto; font-size: 15px; font-weight: 700; color: var(--blue); }
+    .svc-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+    @media (max-width: 760px) { .svc-grid { grid-template-columns: 1fr; } .svc-section { padding: 64px 0; } }
+
   </style>
   <!-- Meta Pixel -->
   <script>
@@ -962,6 +975,49 @@
       <div class="split-stat"><strong>$157</strong><span>Cost per lead &middot; cybersecurity SaaS</span></div>
       <a class="split-go" href="/saas-ads-agency">See how we run it &rarr;</a>
       <span class="split-alt">Also: <a href="/b2c-saas-ads">B2C SaaS ads &rarr;</a></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================
+     SECTION 3B: WHAT WE DO
+     ============================ -->
+<section class="svc-section">
+  <div class="container">
+    <p class="section-label" data-anim>What we do</p>
+    <div data-anim data-delay="1" style="text-align:center;">
+      <span class="heading-bold" style="color:#0d0d0d;">Four services.</span>
+      <span class="heading-italic" style="color:#0d0d0d;">One method behind them.</span>
+    </div>
+
+    <div class="svc-grid" data-anim data-delay="2">
+
+      <div class="svc-card">
+        <div class="svc-name">Reddit Ads</div>
+        <p class="svc-body">Paid campaigns in the subreddits where your buyers already are. Subreddit research, creative written for the community rather than adapted from your brand deck, and attribution that survives a long sales cycle. We are a Reddit Certified Partner.</p>
+        <div class="svc-proof">$157 cost per lead across 74 qualified leads, cybersecurity SaaS. $15 per signup and CAC down 19% for a streaming platform.</div>
+        <a class="svc-link" href="/reddit-ads-agency">Reddit Ads Agency &rarr;</a>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-name">Reddit Organic</div>
+        <p class="svc-body">Disclosed participation in the threads your buyers read before they shortlist anyone. We find the threads, write the posts and comments, publish them, and log every one so you can see what landed and what got removed. Currently running in four languages.</p>
+        <a class="svc-link" href="/reddit-organic-marketing">Reddit Organic Marketing &rarr;</a>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-name">AI Creative Production</div>
+        <p class="svc-body">Up to 40 assets per batch across static, video and UGC, so you test angles instead of polishing one ad and hoping. On one B2C SaaS account the best angle came in at &euro;30 a signup and the worst at &euro;73, same audience and same budget. There was no way to know which was which until we ran them.</p>
+        <a class="svc-link" href="/gallery">See the creative &rarr;</a>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-name">Meta, TikTok, LinkedIn and Google</div>
+        <p class="svc-body">The same method on the channels your buyers also use. Meta and TikTok for DTC, LinkedIn and Google where the deal size carries the higher cost per lead.</p>
+        <div class="svc-proof">4.3x ROAS on TikTok for a fashion eComm brand. Store revenue up 114% year on year for a gifting brand.</div>
+        <a class="svc-link" href="/saas-ads-agency">How we run paid media &rarr;</a>
+      </div>
+
     </div>
   </div>
 </section>
