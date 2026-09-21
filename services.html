@@ -805,6 +805,42 @@
     .svc-link:hover { text-decoration: underline; text-underline-offset: 3px; }
     @media (max-width: 760px) { .svc-grid { grid-template-columns: 1fr; } .svc-section { padding: 64px 0; } }
 
+    /* ---- services: 3-up, even anatomy ---- */
+    .svc-grid.three { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 900px) { .svc-grid.three { grid-template-columns: 1fr; } }
+
+    /* ---- channels: light row, deliberately not cards ---- */
+    .chan-section { padding: 88px 0 76px; background: var(--white); }
+    .chan-row { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 0 44px;
+      margin-top: 38px; border-bottom: 1px solid var(--gray-200); }
+    .chan-item { padding: 26px 0 26px; border-top: 1px solid var(--gray-200);
+      display: flex; flex-direction: column; }
+    .chan-name { font-size: 17px; font-weight: 700; color: var(--navy); letter-spacing: -0.01em; margin-bottom: 7px; }
+    .chan-line { font-size: 15px; line-height: 1.6; color: var(--gray-400); margin-bottom: 12px; }
+    .chan-go { font-size: 14px; font-weight: 700; color: var(--blue); margin-top: auto; }
+    .chan-go:hover { text-decoration: underline; text-underline-offset: 3px; }
+    @media (max-width: 900px) { .chan-row { grid-template-columns: 1fr 1fr; gap: 0 28px; } }
+    @media (max-width: 600px) { .chan-row { grid-template-columns: 1fr; } .chan-section { padding: 60px 0; } }
+
+    /* ---- reddit thread cards (from the Reddit deck) ---- */
+    .thr-section { padding: 84px 0 88px; background: var(--navy); }
+    .thr-head { text-align:center; }
+    .thr-section .section-label { color: rgba(255,255,255,0.38); }
+    .threads { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:38px; }
+    .th { display:flex; background:#fff; border-radius:12px; overflow:hidden; }
+    .th .vote { flex:0 0 52px; background:#faf8fc; border-right:1px solid var(--gray-200);
+      display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:14px 0; }
+    .th .arw { width:0; height:0; border-left:7px solid transparent; border-right:7px solid transparent;
+      border-bottom:9px solid #ff4500; }
+    .th .n { font-size:13px; font-weight:900; color:var(--navy); }
+    .th .bd { padding:15px 17px 14px; flex:1; min-width:0; }
+    .th .meta { font-size:11.5px; font-weight:700; color:#ff4500; letter-spacing:.2px; margin-bottom:7px; }
+    .th .ttl { font-size:15.5px; font-weight:800; color:var(--navy); line-height:1.35; letter-spacing:-0.01em; }
+    .th .tag { font-size:12px; font-weight:700; color:var(--gray-300); margin-top:10px; }
+    .thr-foot { text-align:center; margin-top:30px; font-size:15px; color:rgba(255,255,255,0.55); }
+    .thr-foot a { color:#fff; text-decoration:underline; text-underline-offset:3px; }
+    @media (max-width:820px){ .threads{grid-template-columns:1fr;} .thr-section{padding:60px 0;} }
+
   </style>
   <!-- Meta Pixel -->
   <script>
@@ -986,24 +1022,32 @@
   <div class="container">
     <p class="section-label" data-anim>What we do</p>
     <div data-anim data-delay="1" style="text-align:center;">
-      <span class="heading-bold" style="color:#0d0d0d;">Three services.</span>
-      <span class="heading-italic" style="color:#0d0d0d;">One method behind them.</span>
+      <span class="heading-bold" style="color:#0d0d0d;">Most agencies do one of these.</span>
+      <span class="heading-italic" style="color:#0d0d0d;">We do all four.</span>
     </div>
     <div class="svc-grid" data-anim data-delay="2">
       <div class="svc-card">
-        <div class="svc-name">Reddit Ads</div>
-        <p class="svc-body">Paid campaigns in the subreddits where your buyers already are. Subreddit research, creative written for the community rather than adapted from your brand deck, and attribution that survives a long sales cycle. We are a Reddit Certified Partner.</p>
-        <div class="svc-proof">$157 cost per lead across 74 qualified leads, cybersecurity SaaS. $15 per signup and CAC down 19% for a streaming platform.</div>
+        <div class="svc-name">Reddit</div>
+        <p class="svc-body">Paid campaigns in the subreddits where your buyers already are, and <a href="/reddit-organic-marketing" style="color:#5500DD;">disclosed organic participation</a> in the threads they read before they shortlist anyone. We are a Reddit Certified Partner, which most agencies are not.</p>
+        <div class="svc-proof">$157 cost per lead across 74 qualified leads, cybersecurity SaaS</div>
         <a class="svc-link" href="/reddit-ads-agency">Reddit Ads Agency &rarr;</a>
       </div>
       <div class="svc-card">
-        <div class="svc-name">Reddit Organic</div>
-        <p class="svc-body">Disclosed participation in the threads your buyers read before they shortlist anyone. We find the threads, write the posts and comments, publish them, and log every one so you can see what landed and what got removed. Currently running in four languages.</p>
-        <a class="svc-link" href="/reddit-organic-marketing">Reddit Organic Marketing &rarr;</a>
+        <div class="svc-name">Paid Social</div>
+        <p class="svc-body">Meta, TikTok, LinkedIn, Pinterest and Snapchat, run as one system rather than five separate line items. Channel choice is part of the work, and we will say when one of them is wrong for you.</p>
+        <div class="svc-proof">4.3x ROAS on TikTok and Snapchat for a fashion eComm brand</div>
+        <a class="svc-link" href="/meta-ads-agency">See the channels &rarr;</a>
       </div>
       <div class="svc-card">
-        <div class="svc-name">AI Creative Production</div>
-        <p class="svc-body">Up to 40 assets per batch across static, video and UGC, so you test angles instead of polishing one ad and hoping. On one B2C SaaS account the best angle came in at $32 a signup and the worst at $79, same audience and same budget.</p>
+        <div class="svc-name">Paid Search</div>
+        <p class="svc-body">Google Search, Shopping and Performance Max, with the search terms actually read and branded spend split out so you can see what new demand really costs you.</p>
+        <div class="svc-proof">Weekly search term reviews. Negatives cost nothing and almost nobody does them</div>
+        <a class="svc-link" href="/google-ads-agency">Google Ads Agency &rarr;</a>
+      </div>
+      <div class="svc-card">
+        <div class="svc-name">AI Creative, in house</div>
+        <p class="svc-body">Up to 40 assets per batch across static, video and UGC. Produced by us rather than briefed out, so the creative and the media buying sit in the same hands.</p>
+        <div class="svc-proof">$32 a signup on the best angle against $79 on the worst, same audience and budget</div>
         <a class="svc-link" href="/gallery">See the creative &rarr;</a>
       </div>
     </div>
@@ -1011,50 +1055,88 @@
 </section>
 
 <!-- ============================
+     SECTION 3D: REDDIT THREADS
+     ============================ -->
+<section class="thr-section">
+  <div class="container">
+    <div class="thr-head">
+      <p class="section-label" data-anim>Why Reddit</p>
+      <div data-anim data-delay="1">
+        <span class="heading-bold" style="color:#ffffff;">Your buyers are asking</span>
+        <span class="heading-italic" style="color:#ffffff;">right now. Out loud.</span>
+      </div>
+    </div>
+    <div class="threads" data-anim data-delay="2">
+      <div class="th">
+        <div class="vote"><span class="arw"></span><span class="n">55</span></div>
+        <div class="bd">
+          <div class="meta">r/digital_marketing</div>
+          <div class="ttl">Looking for a reddit marketing agency</div>
+          <div class="tag">165 comments</div>
+        </div>
+      </div>
+      <div class="th">
+        <div class="vote"><span class="arw"></span><span class="n">62</span></div>
+        <div class="bd">
+          <div class="meta">r/startups</div>
+          <div class="ttl">Spent $190 on Reddit ads for a B2B SaaS. 111,927 impressions</div>
+          <div class="tag">76 comments</div>
+        </div>
+      </div>
+      <div class="th">
+        <div class="vote"><span class="arw"></span><span class="n">43</span></div>
+        <div class="bd">
+          <div class="meta">r/PPC</div>
+          <div class="ttl">Has anyone actually gotten good results from Reddit Ads?</div>
+          <div class="tag">63 comments</div>
+        </div>
+      </div>
+    </div>
+    <p class="thr-foot" data-anim data-delay="3">Real threads, ranking on Google page one today. Someone is answering them. <a href="/reddit-ads-agency">Make it you &rarr;</a></p>
+  </div>
+</section>
+
+<!-- ============================
      SECTION 3C: CHANNELS
      ============================ -->
-<section class="svc-section" style="background:var(--gray-50);">
+<section class="chan-section">
   <div class="container">
     <p class="section-label" data-anim>Where we run it</p>
     <div data-anim data-delay="1" style="text-align:center;">
-      <span class="heading-bold" style="color:#0d0d0d;">Every channel that matters,</span>
-      <span class="heading-italic" style="color:#0d0d0d;">run as one system.</span>
+      <span class="heading-bold" style="color:#0d0d0d;">Six channels.</span>
+      <span class="heading-italic" style="color:#0d0d0d;">You probably need two.</span>
     </div>
-    <p data-anim data-delay="2" style="font-size:17px; color:#5b6070; max-width:660px; margin:18px auto 0; line-height:1.7; text-align:center;">Channel choice is part of the work, not a menu you pick from. We recommend and run the mix that matches your buyer and your budget, and we say so when a channel is wrong for you.</p>
-    <div class="svc-grid" data-anim data-delay="3">
-      <div class="svc-card">
-        <div class="svc-name">Meta</div>
-        <p class="svc-body">The volume channel and the best creative testing environment of any platform. Where most accounts are held back by producing four creatives a quarter rather than by targeting.</p>
-        <div class="svc-proof">+114% store revenue YoY, gifting brand</div>
-        <a class="svc-link" href="/meta-ads-agency">Meta Ads &rarr;</a>
+    <p data-anim data-delay="2" style="font-size:17px; color:#5b6070; max-width:600px; margin:18px auto 0; line-height:1.7; text-align:center;">Channel choice is part of the work, not a menu you pick from. We will tell you when one is wrong for you.</p>
+    <div class="chan-row" data-anim data-delay="3">
+      <div class="chan-item">
+        <div class="chan-name">Meta</div>
+        <p class="chan-line">Deepest targeting pool and the best place to test creative.</p>
+        <a class="chan-go" href="/meta-ads-agency">Meta ads &rarr;</a>
       </div>
-      <div class="svc-card">
-        <div class="svc-name">TikTok</div>
-        <p class="svc-body">Cheapest attention of any major channel and the shortest creative lifespan. Rewards brands who can produce constantly, punishes brands who cannot.</p>
-        <div class="svc-proof">4.3x ROAS, fashion eComm</div>
-        <a class="svc-link" href="/tiktok-ads-agency">TikTok Ads &rarr;</a>
+      <div class="chan-item">
+        <div class="chan-name">TikTok</div>
+        <p class="chan-line">Cheapest attention, shortest creative lifespan.</p>
+        <a class="chan-go" href="/tiktok-ads-agency">TikTok ads &rarr;</a>
       </div>
-      <div class="svc-card">
-        <div class="svc-name">LinkedIn</div>
-        <p class="svc-body">The most precise professional targeting and the highest cost per lead of the six. Earns its place when the deal size carries it, and we will tell you when it does not.</p>
-        <div class="svc-proof">2.5x the cost per lead of the same campaign on Meta</div>
-        <a class="svc-link" href="/linkedin-ads-agency">LinkedIn Ads &rarr;</a>
+      <div class="chan-item">
+        <div class="chan-name">LinkedIn</div>
+        <p class="chan-line">Precise, expensive, worth it when the deal size carries it.</p>
+        <a class="chan-go" href="/linkedin-ads-agency">LinkedIn ads &rarr;</a>
       </div>
-      <div class="svc-card">
-        <div class="svc-name">Google</div>
-        <p class="svc-body">Demand capture, not demand creation. The most reliable line in a mix and the easiest one to quietly waste money on, because bad spend looks like good spend until you read the search terms.</p>
-        <a class="svc-link" href="/google-ads-agency">Google Ads &rarr;</a>
+      <div class="chan-item">
+        <div class="chan-name">Google</div>
+        <p class="chan-line">Captures demand that already exists. It does not create it.</p>
+        <a class="chan-go" href="/google-ads-agency">Google ads &rarr;</a>
       </div>
-      <div class="svc-card">
-        <div class="svc-name">Pinterest</div>
-        <p class="svc-body">Shopping intent months before the purchase. Planning windows run six to twelve weeks ahead of your Meta calendar, which is why most brands arrive too late.</p>
-        <a class="svc-link" href="/pinterest-ads-agency">Pinterest Ads &rarr;</a>
+      <div class="chan-item">
+        <div class="chan-name">Pinterest</div>
+        <p class="chan-line">Shopping intent, months before the purchase.</p>
+        <a class="chan-go" href="/pinterest-ads-agency">Pinterest ads &rarr;</a>
       </div>
-      <div class="svc-card">
-        <div class="svc-name">Snapchat</div>
-        <p class="svc-body">The channel most DTC brands skip, which is why the auction stays thin. If your buyer is under 30 and you are only on Meta, you are paying premium prices to reach a fraction of them.</p>
-        <div class="svc-proof">4.3x ROAS inside 4 weeks, fashion eComm</div>
-        <a class="svc-link" href="/snapchat-ads-agency">Snapchat Ads &rarr;</a>
+      <div class="chan-item">
+        <div class="chan-name">Snapchat</div>
+        <p class="chan-line">Thin auction, young buyer, and most brands skip it.</p>
+        <a class="chan-go" href="/snapchat-ads-agency">Snapchat ads &rarr;</a>
       </div>
     </div>
   </div>
