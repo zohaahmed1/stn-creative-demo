@@ -167,7 +167,7 @@
     .bf-q{border:0;margin:0;padding:0;min-width:0}
     .bf-q legend{font-family:'Satoshi',system-ui,sans-serif;font-weight:900;font-size:clamp(21px,2.6vw,26px);letter-spacing:-0.02em;color:#0d0d0d;line-height:1.25;margin-bottom:18px;padding:0}
     .bf-q legend span{display:block;font-family:inherit;font-weight:500;font-size:14px;color:rgba(0,0,0,0.45);letter-spacing:0;margin-top:6px}
-    .bf-app input[type=text],.bf-app input[type=email]{width:100%;box-sizing:border-box;font:inherit;font-size:17px;padding:14px 16px;border:1.5px solid rgba(0,0,0,0.14);border-radius:12px;background:#fff;color:#0d0d0d}
+    .bf-app input[type=text],.bf-app input[type=email],.bf-app input[type=tel]{width:100%;box-sizing:border-box;font:inherit;font-size:17px;padding:14px 16px;border:1.5px solid rgba(0,0,0,0.14);border-radius:12px;background:#fff;color:#0d0d0d}
     .bf-app input:focus{outline:none;border-color:#5500dd;box-shadow:0 0 0 3px rgba(85,0,221,0.14)}
     .bf-field{display:block;font-size:14px;font-weight:700;color:rgba(0,0,0,0.6);margin-bottom:14px}
     .bf-field input{margin-top:7px}
@@ -556,32 +556,29 @@
 <section id="book" class="bf-sec" style="background:#fafafa;" aria-labelledby="book-h">
   <div class="bf-wrap" style="max-width:720px;">
     <h2 class="bf-h2" id="book-h" data-anim="up"><span class="b">Book your </span><span class="i">Black Friday call.</span></h2>
-    <p class="bf-lede" style="margin-bottom:28px;">A few quick questions first, then pick a time. 30 minutes, and we'll come with the first angles to test.</p>
+    <p class="bf-lede" style="margin-bottom:28px;">A few quick questions, then pick a time. 30 minutes, and we'll come with the first angles to test.</p>
 
     <form class="bf-app" id="bfApp" novalidate>
       <div class="bf-app-bar" aria-hidden="true"><span id="bfBar"></span></div>
-      <p class="bf-app-count" id="bfCount" aria-live="polite">Question 1 of 7</p>
+      <p class="bf-app-count" id="bfCount" aria-live="polite">Step 1 of 7</p>
 
       <!-- honeypot: real visitors never see or fill this -->
       <label class="bf-hp" aria-hidden="true">Company URL<input type="text" name="company_url" tabindex="-1" autocomplete="off"></label>
 
       <fieldset class="bf-q" data-step="1">
-        <legend>What's your store's website?</legend>
-        <input type="text" name="website" inputmode="url" autocomplete="url" placeholder="yourstore.com" required>
-        <p class="bf-err" hidden>Add your website so we can look at your store before the call.</p>
+        <legend>First, where can we reach you?</legend>
+        <label class="bf-field">Your name<input type="text" name="name" autocomplete="name" required></label>
+        <label class="bf-field">Email<input type="email" name="email" autocomplete="email" inputmode="email" required></label>
+        <label class="bf-field">Phone<input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="+1 416 555 0199" required></label>
+        <p class="bf-err" hidden>Add your name, a valid email and a phone number with the area code.</p>
+        <button type="button" class="bf-next" id="bfContactNext">Next</button>
       </fieldset>
 
       <fieldset class="bf-q" data-step="2" hidden>
-        <legend>What do you sell?</legend>
-        <div class="bf-opts" data-name="category" data-type="single">
-          <button type="button" data-v="Fashion and accessories">Fashion and accessories</button>
-          <button type="button" data-v="Beauty and skincare">Beauty and skincare</button>
-          <button type="button" data-v="Gifts and personalised">Gifts and personalised</button>
-          <button type="button" data-v="Home and lifestyle">Home and lifestyle</button>
-          <button type="button" data-v="Health and wellness">Health and wellness</button>
-          <button type="button" data-v="Food and drink">Food and drink</button>
-          <button type="button" data-v="Something else">Something else</button>
-        </div>
+        <legend>What's your store's website?</legend>
+        <input type="text" name="website" inputmode="url" autocomplete="url" placeholder="yourstore.com">
+        <p class="bf-err" hidden>Add your website so we can look at your store before the call.</p>
+        <button type="button" class="bf-next" id="bfSiteNext">Next</button>
       </fieldset>
 
       <fieldset class="bf-q" data-step="3" hidden>
@@ -595,6 +592,19 @@
       </fieldset>
 
       <fieldset class="bf-q" data-step="4" hidden>
+        <legend>What do you sell?</legend>
+        <div class="bf-opts" data-name="category" data-type="single">
+          <button type="button" data-v="Fashion and accessories">Fashion and accessories</button>
+          <button type="button" data-v="Beauty and skincare">Beauty and skincare</button>
+          <button type="button" data-v="Gifts and personalised">Gifts and personalised</button>
+          <button type="button" data-v="Home and lifestyle">Home and lifestyle</button>
+          <button type="button" data-v="Health and wellness">Health and wellness</button>
+          <button type="button" data-v="Food and drink">Food and drink</button>
+          <button type="button" data-v="Something else">Something else</button>
+        </div>
+      </fieldset>
+
+      <fieldset class="bf-q" data-step="5" hidden>
         <legend>Where do you run ads? <span>Pick all that apply.</span></legend>
         <div class="bf-opts" data-name="channels" data-type="multi">
           <button type="button" data-v="Meta">Meta</button>
@@ -606,7 +616,7 @@
         <button type="button" class="bf-next" data-next>Next</button>
       </fieldset>
 
-      <fieldset class="bf-q" data-step="5" hidden>
+      <fieldset class="bf-q" data-step="6" hidden>
         <legend>Who makes your ads right now?</legend>
         <div class="bf-opts" data-name="makers" data-type="single">
           <button type="button" data-v="Our own team">Our own team</button>
@@ -616,28 +626,18 @@
         </div>
       </fieldset>
 
-      <fieldset class="bf-q" data-step="6" hidden>
+      <fieldset class="bf-q" data-step="7" hidden>
         <legend>When do you want to start?</legend>
-        <div class="bf-opts" data-name="timing" data-type="single">
+        <div class="bf-opts" data-name="timing" data-type="single" data-last>
           <button type="button" data-v="This week">This week</button>
           <button type="button" data-v="Before Black Friday">Before Black Friday</button>
           <button type="button" data-v="After the holidays">After the holidays</button>
           <button type="button" data-v="Just looking">Just looking</button>
         </div>
+        <button type="submit" class="bf-next" id="bfSubmit" disabled>See available times</button>
       </fieldset>
 
-      <fieldset class="bf-q" data-step="7" hidden>
-        <legend>Where should we send the invite?</legend>
-        <label class="bf-field">Your name<input type="text" name="name" autocomplete="name" required></label>
-        <label class="bf-field">Email<input type="email" name="email" autocomplete="email" required></label>
-        <p class="bf-err" hidden>Add your name and a valid email so the invite reaches you.</p>
-        <button type="submit" class="bf-next" id="bfSubmit">See available times</button>
-      </fieldset>
-
-      <div class="bf-app-nav">
-        <button type="button" class="bf-back" id="bfBack" hidden>&larr; Back</button>
-        <button type="button" class="bf-next bf-next--inline" id="bfNext1">Next</button>
-      </div>
+      <div class="bf-app-nav"><button type="button" class="bf-back" id="bfBack" hidden>&larr; Back</button></div>
       <p class="bf-note">We save your answers as you go, so nothing's lost if you step away. <a href="/privacy">Privacy policy</a></p>
     </form>
   </div>
@@ -647,13 +647,17 @@
 (function () {
   var form = document.getElementById('bfApp'); if (!form) return;
   var steps = [].slice.call(form.querySelectorAll('.bf-q'));
-  var TOTAL = steps.length, step = 1, submitted = false, started = false, timer = null;
+  var TOTAL = steps.length, step = 1, submitted = false, timer = null;
+  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  function phoneOk(p) { var d = String(p || '').replace(/\D/g, ''); return d.length >= 7 && d.length <= 15; }
+  function siteOk(w) { return /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(\/.*)?$/i.test(String(w || '').trim()); }
   var store = { get: function (k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
                 set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
   var sid = store.get('bf_sid');
   if (!sid) { sid = (window.crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(36).slice(2); store.set('bf_sid', sid); }
   var answers = store.get('bf_answers') || {};
   var utm = location.search.slice(1, 300);
+  var flag = function (k) { return store.get('bf_' + k + '_' + sid); }, setFlag = function (k) { store.set('bf_' + k + '_' + sid, true); };
 
   function track(ev, extra) { if (window.dataLayer) window.dataLayer.push(Object.assign({ event: ev, source: 'black_friday_page', step: step }, extra || {})); }
   function payload(kind) { return JSON.stringify({ kind: kind, sid: sid, step: String(step), answers: answers, page: location.pathname, utm: utm }); }
@@ -663,74 +667,88 @@
   }
   function save() {
     store.set('bf_answers', answers);
-    if (!started) { started = true; track('bf_apply_start'); loadCal(); }
-    clearTimeout(timer); timer = setTimeout(function () { send('partial'); }, 1200);
+    clearTimeout(timer); timer = setTimeout(function () { if (flag('potential')) send('partial'); }, 1200);
   }
-  // Left without finishing: one beacon per session, carrying whatever they typed.
-  function abandon() {
-    if (!started || submitted) return;
-    try { if (sessionStorage.getItem('bf_abandon_sent') === sid) return; sessionStorage.setItem('bf_abandon_sent', sid); } catch (e) {}
-    var blob = new Blob([payload('abandoned')], { type: 'text/plain' });
-    if (!(navigator.sendBeacon && navigator.sendBeacon('/api/bf-apply', blob))) send('abandoned');
-  }
-  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') abandon(); });
-  window.addEventListener('pagehide', abandon);
 
-  function show(n) {
+  // Left partway after giving contact details and at least one more answer: one update, ever, per visitor.
+  function leftPartway() {
+    if (submitted || !flag('potential') || flag('update') || step < 3) return;
+    setFlag('update');
+    var blob = new Blob([payload('update')], { type: 'text/plain' });
+    if (!(navigator.sendBeacon && navigator.sendBeacon('/api/bf-apply', blob))) send('update');
+  }
+  document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'hidden') leftPartway(); });
+  window.addEventListener('pagehide', leftPartway);
+
+  function show(n, focus) {
     step = Math.max(1, Math.min(TOTAL, n));
     steps.forEach(function (el) { el.hidden = Number(el.dataset.step) !== step; });
     document.getElementById('bfBar').style.width = (step / TOTAL * 100) + '%';
-    document.getElementById('bfCount').textContent = 'Question ' + step + ' of ' + TOTAL;
+    document.getElementById('bfCount').textContent = 'Step ' + step + ' of ' + TOTAL;
     document.getElementById('bfBack').hidden = step === 1;
-    document.getElementById('bfNext1').hidden = step !== 1;
-    var focusable = steps[step - 1].querySelector('input, .bf-opts button');
-    if (focusable && started) focusable.focus({ preventScroll: true });
+    var f = steps[step - 1].querySelector('input, .bf-opts button');
+    if (f && focus) f.focus({ preventScroll: true });
     track('bf_apply_step');
   }
-  function next() { show(step + 1); }
+  function next() { show(step + 1, true); }
 
-  // text inputs
-  form.querySelectorAll('input[name="website"], input[name="name"], input[name="email"]').forEach(function (inp) {
+  form.querySelectorAll('input[name=name], input[name=email], input[name=phone], input[name=website]').forEach(function (inp) {
     if (answers[inp.name]) inp.value = answers[inp.name];
     inp.addEventListener('input', function () { answers[inp.name] = inp.value.trim(); save(); });
+    inp.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter') return; e.preventDefault();
+      var btn = steps[step - 1].querySelector('#bfContactNext, #bfSiteNext'); if (btn) btn.click();
+    });
   });
-  // option buttons
+
+  // Step 1: the lead is captured the moment they hand over real contact details.
+  document.getElementById('bfContactNext').addEventListener('click', function () {
+    var err = steps[0].querySelector('.bf-err');
+    if (!(answers.name || '').trim() || !EMAIL.test(answers.email || '') || !phoneOk(answers.phone)) {
+      err.hidden = false; return;
+    }
+    err.hidden = true;
+    if (!flag('potential')) {
+      setFlag('potential'); send('potential'); track('bf_apply_start');
+      loadCal();
+    }
+    next();
+  });
+  document.getElementById('bfSiteNext').addEventListener('click', function () {
+    var err = steps[1].querySelector('.bf-err');
+    if (!siteOk(answers.website)) { err.hidden = false; return; }
+    err.hidden = true; next();
+  });
+
   form.querySelectorAll('.bf-opts').forEach(function (group) {
-    var name = group.dataset.name, multi = group.dataset.type === 'multi';
+    var name = group.dataset.name, multi = group.dataset.type === 'multi', last = group.hasAttribute('data-last');
     var btns = [].slice.call(group.querySelectorAll('button'));
     function paint() {
       var cur = answers[name] || (multi ? [] : '');
-      btns.forEach(function (b) { var on = multi ? cur.indexOf(b.dataset.v) > -1 : cur === b.dataset.v; b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      btns.forEach(function (b) { b.setAttribute('aria-pressed', (multi ? cur.indexOf(b.dataset.v) > -1 : cur === b.dataset.v) ? 'true' : 'false'); });
+      if (last) document.getElementById('bfSubmit').disabled = !answers[name];
     }
     btns.forEach(function (b) {
       b.addEventListener('click', function () {
         if (multi) {
-          var cur = (answers[name] || []).slice(), i = cur.indexOf(b.dataset.v);
-          if (b.dataset.v === 'Not running ads yet') cur = i > -1 ? [] : [b.dataset.v];
+          var cur = (answers[name] || []).slice(), i;
+          if (b.dataset.v === 'Not running ads yet') cur = cur.indexOf(b.dataset.v) > -1 ? [] : [b.dataset.v];
           else { cur = cur.filter(function (x) { return x !== 'Not running ads yet'; }); i = cur.indexOf(b.dataset.v); if (i > -1) cur.splice(i, 1); else cur.push(b.dataset.v); }
           answers[name] = cur;
         } else { answers[name] = b.dataset.v; }
         paint(); save();
-        if (!multi) setTimeout(next, 220);
+        if (!multi && !last) setTimeout(next, 220);
       });
     });
     paint();
   });
-
-  document.getElementById('bfNext1').addEventListener('click', function () {
-    var v = (answers.website || '').trim(), err = steps[0].querySelector('.bf-err');
-    if (!/\.[a-z]{2,}/i.test(v)) { err.hidden = false; steps[0].querySelector('input').focus(); return; }
-    err.hidden = true; next();
-  });
-  form.querySelector('input[name="website"]').addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); document.getElementById('bfNext1').click(); } });
   form.querySelector('[data-next]').addEventListener('click', function () { if ((answers.channels || []).length) next(); });
-  document.getElementById('bfBack').addEventListener('click', function () { show(step - 1); });
+  document.getElementById('bfBack').addEventListener('click', function () { show(step - 1, true); });
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    var err = steps[TOTAL - 1].querySelector('.bf-err');
-    if (!(answers.name || '').trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(answers.email || '')) { err.hidden = false; return; }
-    err.hidden = true; submitted = true;
+    if (!answers.timing) return;
+    submitted = true; setFlag('submitted');
     var qualified = ['5-20k', '20-50k', '50k+'].indexOf(answers.spend) > -1;
     send('submit');
     track('bf_apply_submit', { qualified: qualified });
@@ -738,7 +756,7 @@
     openCal();
   });
 
-  /* ---- Cal: popup, prefilled. Loads once they start the form so it's ready by the last step. ---- */
+  /* ---- Cal: popup, prefilled. Loads once they give contact details, so it's ready by the end. ---- */
   var calReady = false;
   function loadCal() {
     if (calReady) return; calReady = true;
@@ -756,16 +774,20 @@
   }
   function openCal() {
     loadCal();
-    var notes = [answers.website, answers.category, 'Spend ' + (answers.spend || '?'), (answers.channels || []).join('/'), 'Ads by ' + (answers.makers || '?'), 'Start: ' + (answers.timing || '?')].filter(Boolean).join(' | ');
-    Cal.ns["30min"]("modal", { calLink: "skipthenoise/30min", config: { name: answers.name, email: answers.email, notes: 'Black Friday application: ' + notes, layout: "column_view" } });
+    var sp = { 'under-5k': 'Under $5K', '5-20k': '$5K-$20K', '20-50k': '$20K-$50K', '50k+': '$50K+' }[answers.spend] || '?';
+    var notes = [answers.website, answers.category, 'Spend ' + sp, (answers.channels || []).join('/'), 'Ads by ' + (answers.makers || '?'), 'Start: ' + (answers.timing || '?'), 'Phone ' + (answers.phone || '?')].filter(Boolean).join(' | ');
+    Cal.ns["30min"]("modal", { calLink: "skipthenoise/30min", config: { name: answers.name, email: answers.email, attendeePhoneNumber: answers.phone, notes: 'Black Friday application: ' + notes, layout: "column_view" } });
   }
 
   // Resume where they left off if they come back.
   var resume = 1;
-  if (answers.website) resume = 2;
-  ['category', 'spend', 'channels', 'makers', 'timing'].forEach(function (k, i) { var v = answers[k]; if (v && (!Array.isArray(v) || v.length) && resume === i + 2) resume = i + 3; });
-  started = resume > 1;
-  show(resume);
+  if (flag('potential')) {
+    resume = 2;
+    if (siteOk(answers.website)) resume = 3;
+    ['spend', 'category', 'channels', 'makers'].forEach(function (k, i) { var v = answers[k]; if (v && (!Array.isArray(v) || v.length) && resume === i + 3) resume = i + 4; });
+    loadCal();
+  }
+  show(resume, false);
 })();
 </script>
 
