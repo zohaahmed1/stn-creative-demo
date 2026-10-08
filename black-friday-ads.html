@@ -44,7 +44,7 @@
     "description": "10 new ads a week for ecommerce and gifting brands, each testing a different angle, delivered weekly before Black Friday.",
     "provider": { "@type": "Organization", "name": "Skip the Noise Media", "url": "https://skipthenoisemedia.com" },
     "areaServed": ["United States", "Canada"],
-    "offers": { "@type": "Offer", "url": "https://skipthenoisemedia.com/black-friday-ads#pricing", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "4000", "priceCurrency": "USD", "unitText": "MONTH" } }
+    "offers": { "@type": "Offer", "url": "https://skipthenoisemedia.com/black-friday-ads#pricing", "priceSpecification": { "@type": "UnitPriceSpecification", "price": "1500", "priceCurrency": "USD", "unitText": "MONTH" } }
   }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -155,7 +155,9 @@
     .bf-price a:hover{opacity:.9}
     .bf-price a:focus-visible{outline:2px solid #c4a3ff;outline-offset:3px}
     @media (max-width:640px){.bf-price{padding:32px 22px}}
-    .bf-tiers{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:900px;margin:40px auto 0;align-items:stretch}
+    .bf-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1180px;margin:40px auto 0;align-items:stretch}
+    .bf-price .amt sup{font-size:.45em;vertical-align:top;position:relative;top:.15em;margin-left:2px;letter-spacing:0}
+    .bf-tiers-note{text-align:center;font-size:15px;font-weight:700;color:#5500dd;margin:22px auto 0}
     .bf-tiers .bf-price{margin:0;max-width:none;display:flex;flex-direction:column}
     .bf-tiers .bf-price ul{flex:1}
     .bf-price .qty span{display:block;font-size:14px;font-weight:500;color:rgba(255,255,255,0.55);margin-top:4px}
@@ -165,7 +167,7 @@
     .bf-price--light .from,.bf-price--light .amt small,.bf-price--light .qty span{color:rgba(0,0,0,0.5)}
     .bf-price--light li{color:rgba(0,0,0,0.62)}
     .bf-price--light li::before{border-color:#5500dd}
-    @media (max-width:760px){.bf-tiers{grid-template-columns:1fr}}
+    @media (max-width:960px){.bf-tiers{grid-template-columns:1fr;max-width:560px}}
 
     /* faq */
     .bf-faq{max-width:760px;margin:40px auto 0}
@@ -186,6 +188,31 @@
 
     /* application form */
     #book .bf-app{max-width:720px;margin-left:auto;margin-right:auto;box-sizing:border-box}
+    /* booking: form left, calendar right; calendar unlocks when the form is done */
+    #book .bf-book{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:stretch;max-width:1140px;margin:0 auto}
+    #book .bf-book .bf-app{max-width:none;margin:0}
+    .bf-cal{background:#fff;border:1.5px solid rgba(0,0,0,0.08);border-radius:22px;position:relative;overflow:hidden;min-height:520px}
+    .bf-cal-lock{position:relative;padding:28px 28px 24px;height:100%;box-sizing:border-box}
+    .bf-cal-mock{filter:blur(3px);opacity:.6;pointer-events:none;user-select:none}
+    .bf-cal-head{display:flex;justify-content:space-between;align-items:baseline;font-size:15px;color:#0d0d0d;margin:0 0 20px}
+    .bf-cal-head span{color:rgba(0,0,0,.5);font-weight:700}
+    .bf-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+    .bf-cal-grid span{aspect-ratio:1;border-radius:10px;display:grid;place-items:center;font-size:14px;font-weight:700;color:rgba(0,0,0,.3)}
+    .bf-cal-grid span.wd{aspect-ratio:auto;padding-bottom:4px;font-size:11px;color:rgba(0,0,0,.45)}
+    .bf-cal-grid span.on{background:rgba(85,0,221,.1);color:#5500dd}
+    .bf-cal-msg{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:14px;padding:24px;background:linear-gradient(180deg,rgba(255,255,255,.35),rgba(255,255,255,.75))}
+    .bf-cal-msg .lk{width:52px;height:52px;border-radius:50%;background:#191923;display:grid;place-items:center;box-shadow:0 10px 24px -10px rgba(25,25,35,.6)}
+    .bf-cal-msg p{margin:0;font-size:15px;color:rgba(0,0,0,.58);max-width:270px;line-height:1.5}
+    .bf-cal-msg strong{display:block;color:#0d0d0d;font-family:'Satoshi',system-ui,sans-serif;font-weight:900;font-size:19px;letter-spacing:-0.01em;margin-bottom:6px}
+    .bf-cal-live{min-height:560px;padding:6px}
+    #book .bf-book.is-dq{grid-template-columns:minmax(0,720px);justify-content:center}
+    #book .bf-book.is-dq .bf-cal{display:none}
+    @media (max-width:959px){
+      #book .bf-book{grid-template-columns:1fr;max-width:720px}
+      #book .bf-cal{display:none}
+      #book .bf-book.is-open .bf-app{display:none}
+      #book .bf-book.is-open .bf-cal{display:block;min-height:0}
+    }
     .bf-app{background:#fff;border:1.5px solid rgba(0,0,0,0.08);border-radius:22px;padding:30px 30px 22px;position:relative}
     .bf-app-bar{height:4px;background:rgba(0,0,0,0.07);border-radius:4px;overflow:hidden;margin-bottom:12px}
     .bf-app-bar span{display:block;height:100%;width:14%;background:linear-gradient(90deg,#5500dd,#ee0033);transition:width .35s ease}
@@ -591,9 +618,21 @@
     <h2 class="bf-h2" id="price-h" data-anim="up"><span class="b">What it </span><span class="i">costs.</span></h2>
     <div class="bf-tiers">
       <div class="bf-price bf-price--light" data-anim="up">
+        <span class="tag">Test pack</span>
+        <p class="from">&nbsp;</p>
+        <div class="amt">$1,500<sup>*</sup><small>/ month</small></div>
+        <p class="qty">5 AI UGC videos a month<span>To try us before you scale</span></p>
+        <ul>
+          <li>Five different angles, one per video</li>
+          <li>Sized for Meta, TikTok and Pinterest</li>
+          <li>First videos within a week of kickoff</li>
+        </ul>
+        <a href="#book">See if you qualify</a>
+      </div>
+      <div class="bf-price bf-price--light" data-anim="up">
         <span class="tag">Starter</span>
         <p class="from">Starting at</p>
-        <div class="amt">$4,000<small>/ month</small></div>
+        <div class="amt">$4,000<sup>*</sup><small>/ month</small></div>
         <p class="qty">16 new ads a month<span>About 4 a week</span></p>
         <ul>
           <li>Statics, short video and UGC-style ads</li>
@@ -617,6 +656,7 @@
         <a href="#book">See if you qualify</a>
       </div>
     </div>
+    <p class="bf-tiers-note">*Get on a call with us and get 20% off your package.</p>
   </div>
 </section>
 
@@ -641,6 +681,7 @@
     <h2 class="bf-h2" id="book-h" data-anim="up"><span class="b">See if </span><span class="i">you qualify.</span></h2>
     <p class="bf-lede" style="margin-bottom:28px; max-width:880px;">A few quick questions, then pick a time. 30 minutes, and we'll come with the first angles to test.</p>
 
+    <div class="bf-book" id="bfBook">
     <form class="bf-app" id="bfApp" novalidate>
       <div class="bf-app-bar" aria-hidden="true"><span id="bfBar"></span></div>
       <p class="bf-app-count" id="bfCount" aria-live="polite">Step 1 of 7</p>
@@ -722,13 +763,28 @@
 
       <div class="bf-dq" id="bfDq" hidden>
         <h3>We're probably not the right fit yet.</h3>
-        <p>Our creative package starts at $4,000 a month. That usually makes sense once a brand spends $5K or more a month on ads, so we'd rather tell you now than book a call that doesn't help you.</p>
+        <p>Our packages work best once a brand spends $5K or more a month on ads, so we'd rather tell you now than book a call that doesn't help you.</p>
         <p>In the meantime, here's the framework we use to find winning ads faster.</p>
         <a class="bf-next" href="/blog/ad-creative-testing-framework">Read the creative testing framework</a>
       </div>
       <div class="bf-app-nav"><button type="button" class="bf-back" id="bfBack" hidden>&larr; Back</button></div>
       <p class="bf-note">We save your answers as you go, so nothing's lost if you step away. <a href="/privacy">Privacy policy</a></p>
     </form>
+    <!-- Calendar: locked until the form is done (iClosed style). On phones it takes the form's place at the end. -->
+    <aside class="bf-cal" id="bfCalBox" aria-label="Available times">
+      <div class="bf-cal-lock" id="bfCalLock">
+        <div class="bf-cal-mock" aria-hidden="true">
+          <p class="bf-cal-head"><strong>30 minute call</strong><span id="bfCalMonth"></span></p>
+          <div class="bf-cal-grid" id="bfCalGrid"></div>
+        </div>
+        <div class="bf-cal-msg">
+          <span class="lk"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+          <p><strong>Answer the questions to see times.</strong>Your calendar opens here as soon as you're done.</p>
+        </div>
+      </div>
+      <div class="bf-cal-live" id="bfCal" hidden></div>
+    </aside>
+    </div>
   </div>
 </section>
 
@@ -788,6 +844,7 @@
     document.getElementById('bfBack').hidden = true;
     form.querySelector('.bf-note').hidden = true;
     document.getElementById('bfDq').hidden = false;
+    document.getElementById('bfBook').classList.add('is-dq');
   }
   function disqualify() {
     if (!flag('dq')) { setFlag('dq'); send('disqualified'); track('bf_apply_disqualified'); }
@@ -856,16 +913,16 @@
     send('submit');
     track('bf_apply_submit', { qualified: qualified });
     if (qualified && typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'bf_application_qualified' });
-    openCal();
+    unlockCal();
   });
 
-  /* ---- Cal: popup, prefilled. Loads once they give contact details, so it's ready by the end. ---- */
+  /* ---- Cal: inline beside the form, prefilled. Script loads once they give contact details, so it's ready by the end. ---- */
   var calReady = false;
   function loadCal() {
     if (calReady) return; calReady = true;
     (function (C, A, L) { var p = function (a, ar) { a.q.push(ar); }; var d = C.document; C.Cal = C.Cal || function () { var cal = C.Cal; var ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { var api = function () { p(api, arguments); }; var namespace = ar[1]; api.q = []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); return; } p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
     Cal("init", "30min", { origin: "https://cal.com" });
-    Cal.ns["30min"]("ui", { theme: "light", hideEventTypeDetails: false, layout: "column_view" });
+    Cal.ns["30min"]("ui", { theme: "light", hideEventTypeDetails: false });
     Cal.ns["30min"]("on", { action: "bookingSuccessfulV2", callback: function (ev) {
       var d = (ev && ev.detail && ev.detail.data) || {}, uid = (d.booking && d.booking.uid) || d.uid || (d.confirmedBooking && d.confirmedBooking.uid), eid = uid ? 'cal_' + uid : undefined;
       if (typeof fbq !== 'undefined') fbq('track', 'Schedule', { content_name: 'black_friday_booking' }, eid ? { eventID: eid } : undefined);
@@ -875,12 +932,32 @@
       setTimeout(function () { window.location.href = '/black-friday-booked'; }, 800);
     } });
   }
-  function openCal() {
+  function unlockCal() {
     loadCal();
     var sp = { 'under-5k': 'Under $5K', '5-20k': '$5K-$20K', '20-50k': '$20K-$50K', '50k+': '$50K+' }[answers.spend] || '?';
     var notes = [answers.website, answers.category, 'Spend ' + sp, (answers.channels || []).join('/'), 'Ads by ' + (answers.makers || '?'), 'Start: ' + (answers.timing || '?'), 'Phone ' + (answers.phone || '?')].filter(Boolean).join(' | ');
-    Cal.ns["30min"]("modal", { calLink: "skipthenoise/30min", config: { name: answers.name, email: answers.email, attendeePhoneNumber: answers.phone, notes: 'Black Friday application: ' + notes, layout: "column_view" } });
+    var live = document.getElementById('bfCal');
+    document.getElementById('bfCalLock').hidden = true;
+    live.hidden = false;
+    if (!live.dataset.mounted) {
+      live.dataset.mounted = '1';
+      Cal.ns["30min"]("inline", { elementOrSelector: "#bfCal", calLink: "skipthenoise/30min", config: { name: answers.name, email: answers.email, attendeePhoneNumber: answers.phone, notes: 'Black Friday application: ' + notes, layout: "month_view" } });
+    }
+    document.getElementById('bfBook').classList.add('is-open');
+    track('bf_calendar_unlocked');
+    if (window.matchMedia('(max-width:959px)').matches) document.getElementById('bfCalBox').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
+
+  // Locked calendar preview: this month, weekdays from tomorrow look open. Purely visual.
+  (function () {
+    var g = document.getElementById('bfCalGrid'), m = document.getElementById('bfCalMonth'); if (!g) return;
+    var now = new Date(), y = now.getFullYear(), mo = now.getMonth(), first = new Date(y, mo, 1).getDay(), days = new Date(y, mo + 1, 0).getDate();
+    m.textContent = now.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+    var h = ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(function (d) { return '<span class="wd">' + d + '</span>'; }).join('');
+    for (var i = 0; i < first; i++) h += '<span></span>';
+    for (var d = 1; d <= days; d++) { var wd = new Date(y, mo, d).getDay(); h += '<span' + (d > now.getDate() && wd > 0 && wd < 6 ? ' class="on"' : '') + '>' + d + '</span>'; }
+    g.innerHTML = h;
+  })();
 
   // Resume where they left off if they come back.
   var resume = 1;
