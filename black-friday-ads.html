@@ -60,11 +60,6 @@
     img{max-width:100%;height:auto}
     .hero-marquee-wrap{cursor:grab;user-select:none;-webkit-user-select:none}
     .hero-marquee-wrap.is-dragging{cursor:grabbing}
-    @media (max-width:560px){
-      .hero-proof-row{flex-wrap:nowrap!important;justify-content:flex-start!important;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:2px 0;scroll-snap-type:x proximity}
-      .hero-proof-row::-webkit-scrollbar{display:none}
-      .hero-proof-row>span{flex:0 0 auto;scroll-snap-align:start}
-    }
 
     /* ---- Black Friday page sections. Same type, palette and card language as the homepage ---- */
     .bf-sec{padding:76px 20px}
@@ -75,6 +70,10 @@
     .bf-lede{font-size:17px;color:rgba(0,0,0,0.55);line-height:1.65;max-width:640px;margin:0 auto;text-align:center}
     .bf-countdown{font-size:15px;color:#191923;text-align:center;max-width:560px;line-height:1.55;margin:4px auto 0}
     .bf-countdown strong{font-weight:900;color:#5500dd}
+    /* longer two-part headline on this page: let line 1 wrap, keep it balanced */
+    .hero .hero-headline{font-size:clamp(34px,4.4vw,64px);max-width:1000px;margin-left:auto;margin-right:auto;text-wrap:balance}
+    .hero .hero-headline-bold{white-space:normal;text-wrap:balance}
+    .bf-source{font-size:12px;color:#9ca3af;text-align:center;max-width:520px;line-height:1.5;margin:-4px auto 0;padding:0 20px}
 
     /* why now */
     .bf-why{background:#191923;color:#fff;border-radius:40px;margin:0 16px;padding:80px 24px}
@@ -334,27 +333,12 @@
   <div class="hero-content">
     <div class="container hero-center">
 
-      <div class="hero-proof-row" data-anim="up" data-hero data-delay="1" style="display:flex; align-items:center; gap:12px; justify-content:center; flex-wrap:wrap;">
-        <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(238,0,51,0.07);border:1px solid rgba(238,0,51,0.22);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:700;color:#cc0033;">
-          <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#ee0033"/></svg>
-          Gifting brand +114% revenue YoY
-        </span>
-        <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(85,0,221,0.07);border:1px solid rgba(85,0,221,0.22);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:700;color:#5500dd;">
-          <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#5500dd"/></svg>
-          Lifestyle brand 4x ROAS
-        </span>
-        <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(13,13,13,0.05);border:1px solid rgba(0,0,0,0.16);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:700;color:#191923;">
-          <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#191923"/></svg>
-          10 new ads every week
-        </span>
-      </div>
-
       <h1 class="hero-headline">
-        <span class="hero-headline-bold" data-hero data-delay="2">10 new ads a week.</span>
-        <span class="hero-headline-italic" data-hero data-delay="4"><em style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700;">Ready before Black Friday.</em></span>
+        <span class="hero-headline-bold" data-hero data-delay="2">AI UGC ads that build your retargeting pool before Black Friday.</span>
+        <span class="hero-headline-italic" data-hero data-delay="4"><em style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700;">Warm buyers cost about 40% less.</em></span>
       </h1>
 
-      <p data-anim="up" data-hero data-delay="5" style="max-width:760px; padding:0 20px; font-size:18px; color:var(--gray-400); line-height:1.6; text-align:center;">Ads for ecommerce and gifting brands, built on what's already selling and ready to upload. From the team that led cross-channel media at GroupM.</p>
+      <p data-anim="up" data-hero data-delay="5" style="max-width:760px; padding:0 20px; font-size:18px; color:var(--gray-400); line-height:1.6; text-align:center;">16 new videos a month for ecommerce and gifting brands, from the team that led cross-channel media at GroupM. <span id="bfHeroCount">Start this week and you'll have tested 24 videos by Black Friday.</span></p>
 
       <div data-anim="up" data-hero data-delay="6" style="display:flex; align-items:center; gap:20px; flex-wrap:wrap; justify-content:center;">
         <a href="#book" style="display:inline-block; background:#5500DD; color:white; font-size:14px; font-weight:700; padding:12px 28px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Book a call</a>
@@ -362,6 +346,7 @@
       </div>
 
       <p class="bf-countdown" id="bfCountdown" data-anim="up" data-hero data-delay="7"></p>
+      <p class="bf-source" data-anim="up" data-hero data-delay="7">The 40% comes from the median Meta ROAS for retargeting (3.6x) against cold ads (2.1x), Mako Metrics 2026 benchmarks.</p>
     </div>
 
     <div class="hero-marquee-wrap">
@@ -832,9 +817,12 @@
   var batches = lastUseful >= firstBatch ? Math.floor((lastUseful - firstBatch) / (7 * day)) + 1 : 0;
   var weeks = Math.floor(daysLeft / 7);
   var whenTxt = weeks >= 2 ? '<strong>' + weeks + ' weeks</strong> until Black Friday.' : (daysLeft > 1 ? '<strong>' + daysLeft + ' days</strong> until Black Friday.' : '<strong>Black Friday is tomorrow.</strong>');
-  if (el) el.innerHTML = batches > 0
-    ? whenTxt + ' Start this week and you\'ll have about <strong>' + (batches * 10) + ' ads tested</strong> before sale week.'
-    : whenTxt + ' Your first 10 ads can still be ready within a week.';
+  // Starter = 16 videos a month, delivered about 4 a week
+  if (el) el.innerHTML = whenTxt + ' Your first videos are ready within a week.';
+  var hc = document.getElementById('bfHeroCount');
+  if (hc) hc.textContent = batches > 0
+    ? 'Start this week and you\'ll have tested ' + (batches * 4) + ' videos by Black Friday.'
+    : 'Your first videos can still be ready within a week.';
   var tb = document.getElementById('bfTierBatch');
   if (tb && batches > 0) tb.textContent = 'About ' + (batches * 10) + ' ads tested before Black Friday if you start this week';
   if (late && batches <= 0) late.textContent = 'It\'s tight, but not too late. Your first 10 ads can still be ready within a week, in time for Cyber Monday and the December gifting rush.';
