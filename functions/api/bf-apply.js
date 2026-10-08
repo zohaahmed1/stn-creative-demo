@@ -14,6 +14,8 @@
  *   - "update":    sent once by the page if they leave partway after answering
  *                  more questions, so you see how far they got. Notifies.
  *   - "submit":    the finished application, sent right before Cal opens. Notifies.
+ *   - "disqualified": picked Under $5K spend. The page stops them before Cal, so
+ *                  they never book or touch the pixel. Notifies so you don't chase them.
  *   ("abandoned" is still accepted as an alias of "update" for cached pages.)
  *
  * Storage:
@@ -54,7 +56,7 @@ export async function onRequestPost({ request, env }) {
   if (body.company_url) return json({ ok: true }); // honeypot. Real field is `website`.
 
   let kind = body.kind === 'abandoned' ? 'update' : body.kind;
-  if (!['potential', 'partial', 'update', 'submit'].includes(kind)) kind = 'partial';
+  if (!['potential', 'partial', 'update', 'submit', 'disqualified'].includes(kind)) kind = 'partial';
   const sid = clip(body.sid, 64).replace(/[^a-zA-Z0-9_-]/g, '');
   if (!sid) return json({ ok: false, error: 'no_sid' }, 400);
 
@@ -92,6 +94,7 @@ export async function onRequestPost({ request, env }) {
       potential: `New Black Friday lead: ${who}`,
       update: `Black Friday lead stopped at question ${record.step} (${fit}): ${who}`,
       submit: `Black Friday application submitted (${fit}): ${who}`,
+      disqualified: `Black Friday lead disqualified (under $5K spend): ${who}`,
     }[kind];
     try {
       const r = await fetch(env.LEAD_WEBHOOK || 'https://formspree.io/f/xyeglebv', {
@@ -100,7 +103,7 @@ export async function onRequestPost({ request, env }) {
         body: JSON.stringify({
           _subject: subject,
           source: 'black-friday-ads',
-          status: { potential: 'potential', update: 'stopped partway', submit: 'submitted' }[kind],
+          status: { potential: 'potential', update: 'stopped partway', submit: 'submitted', disqualified: 'disqualified' }[kind],
           last_question: record.step,
           name: answers.name || '',
           email: answers.email || '',

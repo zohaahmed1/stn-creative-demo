@@ -184,6 +184,10 @@
     .bf-err{color:#cc0033;font-size:14px;margin:10px 0 0}
     .bf-note{font-size:12.5px;color:rgba(0,0,0,0.42);margin:18px 0 0;line-height:1.5}
     .bf-note a{color:inherit}
+
+    .bf-dq h3{font-family:'Satoshi',system-ui,sans-serif;font-weight:900;font-size:clamp(21px,2.6vw,26px);letter-spacing:-0.02em;color:#0d0d0d;line-height:1.25;margin:4px 0 14px}
+    .bf-dq p{font-size:16px;color:rgba(0,0,0,0.62);line-height:1.6;margin:0 0 12px}
+    .bf-dq .bf-next{display:inline-block;text-decoration:none;margin-top:8px}
     .bf-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
     @media (max-width:640px){.bf-app{padding:22px 18px 18px;border-radius:18px}.bf-opts{grid-template-columns:1fr}}
     @media (prefers-reduced-motion:reduce){.hero-marquee-track{animation:none!important}}
@@ -637,6 +641,13 @@
         <button type="submit" class="bf-next" id="bfSubmit" disabled>See available times</button>
       </fieldset>
 
+
+      <div class="bf-dq" id="bfDq" hidden>
+        <h3>We're probably not the right fit yet.</h3>
+        <p>Our creative package starts at $4,000 a month. That usually makes sense once a brand spends $5K or more a month on ads, so we'd rather tell you now than book a call that doesn't help you.</p>
+        <p>In the meantime, here's the framework we use to find winning ads faster.</p>
+        <a class="bf-next" href="/blog/ad-creative-testing-framework">Read the creative testing framework</a>
+      </div>
       <div class="bf-app-nav"><button type="button" class="bf-back" id="bfBack" hidden>&larr; Back</button></div>
       <p class="bf-note">We save your answers as you go, so nothing's lost if you step away. <a href="/privacy">Privacy policy</a></p>
     </form>
@@ -672,7 +683,7 @@
 
   // Left partway after giving contact details and at least one more answer: one update, ever, per visitor.
   function leftPartway() {
-    if (submitted || !flag('potential') || flag('update') || step < 3) return;
+    if (submitted || flag('dq') || !flag('potential') || flag('update') || step < 3) return;
     setFlag('update');
     var blob = new Blob([payload('update')], { type: 'text/plain' });
     if (!(navigator.sendBeacon && navigator.sendBeacon('/api/bf-apply', blob))) send('update');
@@ -691,6 +702,19 @@
     track('bf_apply_step');
   }
   function next() { show(step + 1, true); }
+
+  // Under $5K spend: stop here, like iClosed. No booking, nothing sent to the Meta pixel.
+  function showDq() {
+    steps.forEach(function (el) { el.hidden = true; });
+    ['bfBar', 'bfCount'].forEach(function (id) { var el = document.getElementById(id); (id === 'bfBar' ? el.parentNode : el).hidden = true; });
+    document.getElementById('bfBack').hidden = true;
+    form.querySelector('.bf-note').hidden = true;
+    document.getElementById('bfDq').hidden = false;
+  }
+  function disqualify() {
+    if (!flag('dq')) { setFlag('dq'); send('disqualified'); track('bf_apply_disqualified'); }
+    showDq();
+  }
 
   form.querySelectorAll('input[name=name], input[name=email], input[name=phone], input[name=website]').forEach(function (inp) {
     if (answers[inp.name]) inp.value = answers[inp.name];
@@ -737,6 +761,7 @@
           answers[name] = cur;
         } else { answers[name] = b.dataset.v; }
         paint(); save();
+        if (name === 'spend' && b.dataset.v === 'under-5k') { setTimeout(disqualify, 220); return; }
         if (!multi && !last) setTimeout(next, 220);
       });
     });
@@ -747,7 +772,7 @@
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (!answers.timing) return;
+    if (!answers.timing || flag('dq') || answers.spend === 'under-5k') return;
     submitted = true; setFlag('submitted');
     var qualified = ['5-20k', '20-50k', '50k+'].indexOf(answers.spend) > -1;
     send('submit');
@@ -787,7 +812,7 @@
     ['spend', 'category', 'channels', 'makers'].forEach(function (k, i) { var v = answers[k]; if (v && (!Array.isArray(v) || v.length) && resume === i + 3) resume = i + 4; });
     loadCal();
   }
-  show(resume, false);
+  if (flag('dq')) showDq(); else show(resume, false);
 })();
 </script>
 
