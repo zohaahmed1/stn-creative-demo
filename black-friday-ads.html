@@ -68,9 +68,13 @@
     .bf-h2 .b{font-family:'Satoshi',system-ui,sans-serif;font-weight:900}
     .bf-h2 .i{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:700}
     .bf-lede{font-size:17px;color:rgba(0,0,0,0.55);line-height:1.65;max-width:640px;margin:0 auto;text-align:center}
-    /* longer two-part headline on this page: let line 1 wrap, keep it balanced */
-    .hero .hero-headline{font-size:clamp(30px,3.7vw,56px);line-height:1.12;max-width:1060px;margin-left:auto;margin-right:auto;text-wrap:balance}
+    /* funnel header: logo + CTA only, on every screen size */
+    .nav .nav-right{display:flex!important;align-items:center}
+    @media (max-width:640px){.nav .nav-right a{font-size:13px!important;padding:9px 16px!important}}
+    /* short headline + smaller italic subheadline; both may wrap, kept balanced */
+    .hero .hero-headline{font-size:clamp(36px,4.6vw,68px);line-height:1.08;max-width:1200px;margin-left:auto;margin-right:auto;text-wrap:balance}
     .hero .hero-headline-bold{white-space:normal;text-wrap:balance}
+    .hero .bf-subhead{font-size:max(21px,.5em);line-height:1.25;letter-spacing:-0.01em;margin-top:14px;text-wrap:balance}
 
     /* why now */
     .bf-why{background:#191923;color:#fff;border-radius:40px;margin:0 16px;padding:80px 24px}
@@ -87,10 +91,43 @@
     .bf-get .num{font-family:'Satoshi',system-ui,sans-serif;font-weight:900;font-size:13px;color:#5500dd;margin-bottom:10px;display:block}
 
     /* angles */
-    .bf-angles{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:rgba(0,0,0,0.08);border:1px solid rgba(0,0,0,0.08);border-radius:18px;overflow:hidden;margin-top:44px}
-    .bf-angle{background:#fff;padding:26px 24px}
+    /* holiday angles as gift tags: chamfered top, punched hole, slight tilt that straightens on hover */
+    .bf-angles{display:grid;grid-template-columns:repeat(4,1fr);gap:26px 22px;margin-top:48px}
+    .bf-tagwrap{display:flex}
+    .bf-angle{--tag:#fdf0f2;--ink:#c8102e;flex:1;position:relative;background:var(--tag);padding:52px 24px 28px;border-radius:0 0 18px 18px;
+      clip-path:polygon(26px 0,calc(100% - 26px) 0,100% 26px,100% 100%,0 100%,0 26px);
+      transform:rotate(-1.2deg);transition:transform .25s ease}
+    .bf-tagwrap:nth-child(even) .bf-angle{transform:rotate(1deg)}
+    .bf-tagwrap:hover .bf-angle{transform:rotate(0) translateY(-4px)}
+    .bf-angle::before{content:'';position:absolute;top:16px;left:50%;width:13px;height:13px;margin-left:-6.5px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 2px var(--ink);opacity:.55}
+    .bf-angle.t-cran{--tag:#fdf0f2;--ink:#c8102e}
+    .bf-angle.t-pine{--tag:#ecf5ef;--ink:#1f6f4a}
+    .bf-angle.t-gold{--tag:#fbf4e4;--ink:#a8701a}
+    .bf-angle.t-plum{--tag:#f2edfd;--ink:#5500dd}
+    .bf-ico{width:32px;height:32px;color:var(--ink);display:block;margin:0 0 16px}
     .bf-angle h3{font-family:'Satoshi',system-ui,sans-serif;font-weight:900;font-size:18px;letter-spacing:-0.02em;color:#0d0d0d;margin:0 0 8px}
-    .bf-angle p{font-size:15px;color:rgba(0,0,0,0.58);line-height:1.6;margin:0}
+    .bf-angle p{font-size:15px;color:rgba(0,0,0,0.6);line-height:1.6;margin:0}
+    @media (max-width:1000px){.bf-angles{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){
+      .bf-angles{gap:16px 12px;margin-top:36px}
+      .bf-angle{padding:44px 15px 20px;clip-path:polygon(18px 0,calc(100% - 18px) 0,100% 18px,100% 100%,0 100%,0 18px)}
+      .bf-angle::before{top:13px}
+      .bf-ico{width:27px;height:27px;margin-bottom:12px}
+      .bf-angle h3{font-size:16px}
+      .bf-angle p{font-size:14px;line-height:1.5}
+    }
+    @media (prefers-reduced-motion:reduce){.bf-angle,.bf-tagwrap:nth-child(even) .bf-angle,.bf-tagwrap:hover .bf-angle{transform:none;transition:none}}
+
+    /* VSL */
+    .bf-vsl{max-width:920px;margin:36px auto 0;aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:#191923;position:relative;box-shadow:0 28px 60px -28px rgba(25,25,35,.5)}
+    .bf-vsl iframe,.bf-vsl video{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000}
+    .bf-vsl-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+    .bf-vsl-poster{position:absolute;inset:0;z-index:0;display:grid;grid-template-columns:repeat(3,1fr)}
+    .bf-vsl-poster img{width:100%;height:100%;object-fit:cover;display:block;filter:blur(3px) saturate(.75);transform:scale(1.08)}
+    .bf-vsl-ph::before{content:'';position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 50% 50%,rgba(25,25,35,.62),rgba(25,25,35,.9))}
+    .bf-vsl-play{position:relative;z-index:2;width:86px;height:86px;border-radius:50%;background:#5500dd;display:grid;place-items:center;padding-left:4px;box-sizing:border-box;box-shadow:0 12px 34px rgba(85,0,221,.5)}
+    .bf-vsl-note{position:relative;z-index:2;color:rgba(255,255,255,.85);font-size:15px;font-weight:700;margin:0}
+    @media (max-width:640px){.bf-vsl{border-radius:18px;margin-top:26px}.bf-vsl-play{width:62px;height:62px}.bf-vsl-play svg{width:24px;height:24px}}
 
     /* real ads, shown whole at their native ratio */
     .bf-gallery{columns:4 230px;column-gap:16px;margin-top:44px}
@@ -156,6 +193,7 @@
     }
 
     /* application form */
+    #book .bf-app{max-width:720px;margin-left:auto;margin-right:auto;box-sizing:border-box}
     .bf-app{background:#fff;border:1.5px solid rgba(0,0,0,0.08);border-radius:22px;padding:30px 30px 22px;position:relative}
     .bf-app-bar{height:4px;background:rgba(0,0,0,0.07);border-radius:4px;overflow:hidden;margin-bottom:12px}
     .bf-app-bar span{display:block;height:100%;width:14%;background:linear-gradient(90deg,#5500dd,#ee0033);transition:width .35s ease}
@@ -199,128 +237,11 @@
     <a href="#" class="nav-logo">
       <span class="logo-skip">Skip the</span><span class="logo-noise">Noise</span>
     </a>
-    <div class="nav-links">
-      <div class="nav-dropdown align-left">
-        <button class="nav-link nav-dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
-          Services
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="margin-left:3px;transition:transform 0.2s;"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="nav-dropdown-menu" role="menu">
-          <div class="nav-mega-col">
-            <div class="nav-mega-label">What we do</div>
-            <a href="/services" class="nav-dropdown-item is-primary" role="menuitem">All services</a>
-            <a href="/reddit-ads-agency" class="nav-dropdown-item" role="menuitem">Reddit Ads</a>
-            <a href="/reddit-organic-marketing" class="nav-dropdown-item" role="menuitem">Reddit Organic</a>
-            <a href="/google-ads-agency" class="nav-dropdown-item" role="menuitem">Paid Search</a>
-            <a href="/gallery" class="nav-dropdown-item" role="menuitem">AI Creative Production</a>
-            <div class="nav-mega-label is-spaced">By audience</div>
-            <a href="/saas-ads-agency" class="nav-dropdown-item" role="menuitem">SaaS Ads Agency</a>
-            <a href="/b2c-saas-ads" class="nav-dropdown-item" role="menuitem">B2C SaaS Ads</a>
-            <a href="/ecomm-ads-agency" class="nav-dropdown-item" role="menuitem">eComm &amp; DTC Ads</a>
-          </div>
-          <div class="nav-mega-divider"></div>
-          <div class="nav-mega-col">
-            <div class="nav-mega-label">Paid social channels</div>
-            <a href="/meta-ads-agency" class="nav-dropdown-item" role="menuitem">Meta Ads</a>
-            <a href="/tiktok-ads-agency" class="nav-dropdown-item" role="menuitem">TikTok Ads</a>
-            <a href="/linkedin-ads-agency" class="nav-dropdown-item" role="menuitem">LinkedIn Ads</a>
-            <a href="/pinterest-ads-agency" class="nav-dropdown-item" role="menuitem">Pinterest Ads</a>
-            <a href="/snapchat-ads-agency" class="nav-dropdown-item" role="menuitem">Snapchat Ads</a>
-            <a href="/services" class="nav-dropdown-all" role="menuitem">See how we work &rarr;</a>
-          </div>
-        </div>
-      </div>
-      <a href="/process" class="nav-link">Process</a>
-      <a href="/gallery" class="nav-link">Creative</a>
-      <a href="/case-studies" class="nav-link">Case Studies</a>
-      <div class="nav-dropdown">
-        <button class="nav-link nav-dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
-          Resources
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="margin-left:3px;transition:transform 0.2s;"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="nav-dropdown-menu" role="menu">
-
-          <!-- Left col: Reddit Ads + AI Creative -->
-          <div class="nav-mega-col">
-            <div class="nav-mega-label">Reddit Ads</div>
-            <a href="/blog/reddit-ads-b2b-saas" class="nav-dropdown-item" role="menuitem">Reddit Ads for B2B SaaS</a>
-            <a href="/blog/reddit-ads-cost" class="nav-dropdown-item" role="menuitem">How Much Reddit Ads Cost</a>
-            <a href="blog" class="nav-dropdown-all" role="menuitem">View all guides &rarr;</a>
-
-            <div class="nav-mega-label is-spaced">Free Tools</div>
-            <a href="/tools/reddit-ads-cost-calculator" class="nav-dropdown-item" role="menuitem">Reddit Ads Cost Calculator</a>
-            <a href="/tools/subreddit-finder" class="nav-dropdown-item" role="menuitem">Subreddit Finder</a>
-            <div class="nav-mega-label is-spaced">AI Creative</div>
-            <a href="blog" class="nav-dropdown-all" role="menuitem">View all guides &rarr;</a>
-          </div>
-
-          <!-- Vertical divider -->
-          <div class="nav-mega-divider"></div>
-
-          <!-- Right col: Playbook + Case Studies + Services -->
-          <div class="nav-mega-col">
-            <a href="/playbook" class="nav-playbook-promo" role="menuitem">
-              <span class="nav-playbook-eyebrow">Free Download</span>
-              <span class="nav-playbook-title">Reddit Ads Playbook</span>
-              <span class="nav-playbook-sub">Campaign structure, targeting &amp; copy frameworks</span>
-            </a>
-
-            <div class="nav-mega-label is-spaced">Case Studies</div>
-            <a href="/work/flare" class="nav-dropdown-item" role="menuitem">Cybersecurity SaaS: 74 Leads</a>
-            <a href="/work/restream" class="nav-dropdown-item" role="menuitem">Streaming Platform: CAC −19%</a>
-            <a href="/work/noirver" class="nav-dropdown-item" role="menuitem">Noirvere: 4.3x ROAS</a>
-            <a href="/work/lifestyle-brand" class="nav-dropdown-item" role="menuitem">Lifestyle Brand: 6.8x ROAS</a>
-            <a href="/case-studies" class="nav-dropdown-all" role="menuitem">View all case studies &rarr;</a>
-            </div>
-
-        </div>
-      </div>
-    </div>
     <div class="nav-right">
-      <a href="#book" style="display:inline-block; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:10px 22px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">Book a call</a>
+      <a href="#book" style="display:inline-block; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:10px 22px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">See if you qualify</a>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
   </div>
 </nav>
-<div class="mobile-menu" id="mobile-menu">
-  <a href="#book" class="mobile-menu-cta" onclick="closeMobileMenu()">Book a call</a>
-
-  <a href="/services" class="mobile-menu-link">Services</a>
-  <a href="/process" class="mobile-menu-link">Process</a>
-  <a href="/gallery" class="mobile-menu-link">Creative</a>
-  <a href="/case-studies" class="mobile-menu-link">Case Studies</a>
-
-  <span class="mobile-menu-section">Reddit Ads</span>
-  <a href="/blog/reddit-ads-b2b-saas" class="mobile-menu-sublink">Reddit Ads for B2B SaaS</a>
-  <a href="/blog/reddit-ads-cost" class="mobile-menu-sublink">How Much Reddit Ads Cost</a>
-  <a href="blog" class="mobile-menu-all">View all guides &rarr;</a>
-
-  <span class="mobile-menu-section">Free Tools</span>
-  <a href="/tools/reddit-ads-cost-calculator" class="mobile-menu-sublink">Reddit Ads Cost Calculator</a>
-  <a href="/tools/subreddit-finder" class="mobile-menu-sublink">Subreddit Finder</a>
-  <span class="mobile-menu-section">AI Creative</span>
-  <a href="blog" class="mobile-menu-all">View all guides &rarr;</a>
-
-  <span class="mobile-menu-section">Case Studies</span>
-  <a href="/work/flare" class="mobile-menu-sublink">Cybersecurity SaaS: 74 Leads</a>
-  <a href="/work/restream" class="mobile-menu-sublink">Streaming: CAC −19%</a>
-  <a href="/work/noirver" class="mobile-menu-sublink">Noirvere: 4.3x ROAS</a>
-  <a href="/case-studies" class="mobile-menu-all">View all case studies &rarr;</a>
-
-  <span class="mobile-menu-section">Services</span>
-  <a href="/reddit-ads-agency" class="mobile-menu-sublink">Reddit Ads Agency</a>
-  <a href="/saas-ads-agency" class="mobile-menu-sublink">SaaS Ads Agency</a>
-  <a href="/b2c-saas-ads" class="mobile-menu-sublink">B2C SaaS Ads</a>
-  <a href="/ecomm-ads-agency" class="mobile-menu-sublink">eComm &amp; DTC Ads</a>
-  <a href="/meta-ads-agency" class="mobile-menu-sublink">Meta Ads</a>
-  <a href="/tiktok-ads-agency" class="mobile-menu-sublink">TikTok Ads</a>
-  <a href="/linkedin-ads-agency" class="mobile-menu-sublink">LinkedIn Ads</a>
-  <a href="/google-ads-agency" class="mobile-menu-sublink">Google Ads</a>
-  <a href="/pinterest-ads-agency" class="mobile-menu-sublink">Pinterest Ads</a>
-  <a href="/snapchat-ads-agency" class="mobile-menu-sublink">Snapchat Ads</a>
-
-  <a href="/playbook" class="mobile-menu-playbook">📥 Free: Reddit Ads Playbook</a>
-</div>
 
 <!-- HERO -->
 
@@ -331,14 +252,14 @@
     <div class="container hero-center">
 
       <h1 class="hero-headline">
-        <span class="hero-headline-bold" data-hero data-delay="2">AI UGC ads that build your retargeting pool before Black Friday.</span>
-        <span class="hero-headline-italic" data-hero data-delay="4"><em style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700;">Warm buyers cost about 40% less.</em></span>
+        <span class="hero-headline-bold" data-hero data-delay="2">Warm buyers cost about 40% less.</span>
+        <span class="hero-headline-italic bf-subhead" data-hero data-delay="4"><em style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700;">Build your retargeting pool before Black Friday with AI UGC ads.</em></span>
       </h1>
 
 
       <div data-anim="up" data-hero data-delay="6" style="display:flex; align-items:center; gap:20px; flex-wrap:wrap; justify-content:center;">
-        <a href="#book" style="display:inline-block; background:#5500DD; color:white; font-size:14px; font-weight:700; padding:12px 28px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">Book a call</a>
-        <a href="#ads" style="font-size:14px; font-weight:600; color:#6b7280; text-decoration:underline; text-underline-offset:3px; white-space:nowrap;">See the ads &rarr;</a>
+        <a href="#book" style="display:inline-block; background:#5500DD; color:white; font-size:17px; font-weight:700; padding:17px 40px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s; box-shadow:0 10px 28px -10px rgba(85,0,221,0.55);" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">See if you qualify</a>
+        <a href="#ads" style="font-size:16px; font-weight:600; color:#6b7280; text-decoration:underline; text-underline-offset:3px; white-space:nowrap;">See the ads &rarr;</a>
       </div>
 
     </div>
@@ -374,6 +295,36 @@
   </div>
 </section>
 
+<!-- VSL: placeholder until VSL_SRC (script below) is set -->
+<section class="bf-sec" id="watch" aria-labelledby="vsl-h">
+  <div class="bf-wrap">
+    <h2 class="bf-h2" id="vsl-h" data-anim="up"><span class="b">Watch this </span><span class="i">before you apply.</span></h2>
+    <div class="bf-vsl" id="bfVsl" data-anim="up">
+      <div class="bf-vsl-ph">
+        <div class="bf-vsl-poster" aria-hidden="true">
+          <img src="/assets/ad-storykeeper-moms-memoir.webp" alt="" loading="lazy">
+          <img src="/assets/ad-noirvere-citytote.webp" alt="" loading="lazy">
+          <img src="/assets/ad-kf-bestsellers.webp" alt="" loading="lazy">
+        </div>
+        <span class="bf-vsl-play" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg></span>
+        <p class="bf-vsl-note">Video coming soon</p>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function () {
+  var VSL_SRC = '';   // paste the VSL link: YouTube / Vimeo / Loom / Wistia embed link, or an .mp4
+  var box = document.getElementById('bfVsl');
+  if (!box || !VSL_SRC) return;
+  box.innerHTML = /\.mp4(\?|$)/i.test(VSL_SRC)
+    ? '<video src="' + VSL_SRC + '" controls playsinline preload="metadata"></video>'
+    : '<iframe src="' + VSL_SRC + '" title="Watch before you apply" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: 'bf_vsl_shown', source: 'black_friday_page' });
+})();
+</script>
+
 <!-- WHY NOW -->
 <section class="bf-why" aria-labelledby="why-h">
   <div class="bf-wrap">
@@ -401,14 +352,14 @@
     <h2 class="bf-h2" id="angles-h" data-anim="up"><span class="b">Holiday angles </span><span class="i">we test for gifting brands.</span></h2>
     <p class="bf-lede" data-anim="up">This is the kind of thing a few weeks of ads covers. We pick the mix around your products and your margins.</p>
     <div class="bf-angles">
-      <div class="bf-angle" data-anim="up"><h3>Gift for her, him or them</h3><p>The same product, shown as the answer to who it's for.</p></div>
-      <div class="bf-angle" data-anim="up"><h3>Gift guide</h3><p>Your product as the pick in a short guide, under a price like $50 or $100.</p></div>
-      <div class="bf-angle" data-anim="up"><h3>Last day to ship</h3><p>Real shipping cutoffs, so the deadline does the selling.</p></div>
-      <div class="bf-angle" data-anim="up"><h3>Bundles and gift sets</h3><p>A bigger order without a deeper discount.</p></div>
-      <div class="bf-angle" data-anim="up"><h3>Early access</h3><p>For your list and past buyers, before the sale opens to everyone.</p></div>
-      <div class="bf-angle" data-anim="up"><h3>The story behind it</h3><p>Why it makes a meaningful gift, told by a customer or the founder.</p></div>
-      <div class="bf-angle" data-anim="up"><h3>Stocking stuffers</h3><p>Smaller items as easy add-ons to a bigger order.</p></div>
-      <div class="bf-angle" data-anim="up"><h3>Treat yourself</h3><p>Self-gifting, which picks back up right after Christmas.</p></div>
+      <div class="bf-tagwrap" data-anim="up"><div class="bf-angle t-cran"><svg class="bf-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C9.5 3 11 5.5 12 8c1-2.5 2.5-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg><h3>Gift for her, him or them</h3><p>The same product, shown as the answer to who it's for.</p></div></div>
+      <div class="bf-tagwrap" data-anim="up"><div class="bf-angle t-pine"><svg class="bf-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.6 2.6A2 2 0 0 0 11.2 2H4a2 2 0 0 0-2 2v7.2a2 2 0 0 0 .6 1.4l8.7 8.7a2.4 2.4 0 0 0 3.4 0l6.6-6.6a2.4 2.4 0 0 0 0-3.4z"/><circle cx="7.5" cy="7.5" r="1.2" fill="currentColor" stroke="none"/></svg><h3>Gift guide</h3><p>Your product as the pick in a short guide, under a price like $50 or $100.</p></div></div>
+      <div class="bf-tagwrap" data-anim="up"><div class="bf-angle t-gold"><svg class="bf-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.6a1 1 0 0 0-.2-.6l-3.5-4.4a1 1 0 0 0-.8-.4H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg><h3>Last day to ship</h3><p>Real shipping cutoffs, so the deadline does the selling.</p></div></div>
+      <div class="bf-tagwrap" data-anim="up"><div class="bf-angle t-plum"><svg class="bf-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 21.7a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.7V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7z"/><path d="M12 22V12"/><path d="m3.3 7 7.7 4.7a2 2 0 0 0 2 0L20.7 7"/><path d="m7.5 4.3 9 5.1"/></svg><h3>Bundles and gift sets</h3><p>A bigger order without a deeper discount.</p></div></div>
+      <div class="bf-tagwrap" data-anim="up"><div class="bf-angle t-pine"><svg class="bf-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg><h3>Early access</h3><p>For your list and past buyers, before the sale opens to everyone.</p></div></div>
+      <div class="bf-tagwrap" data-anim="up"><div class="bf-angle t-cran"><svg class="bf-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/><path d="M15.4 9.3a2.2 2.2 0 0 0-3.1 0L12 9.6l-.3-.3a2.2 2.2 0 1 0-3.1 3.1L12 15.8l3.4-3.4a2.2 2.2 0 0 0 0-3.1z"/></svg><h3>The story behind it</h3><p>Why it makes a meaningful gift, told by a customer or the founder.</p></div></div>
+      <div class="bf-tagwrap" data-anim="up"><div class="bf-angle t-plum"><svg class="bf-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6v8.5l3.4 3.4a3.4 3.4 0 0 1-4.8 4.8l-5.1-5.1A3 3 0 0 1 8 12.4V4a1 1 0 0 1 1-1z"/><path d="M8 7h7"/></svg><h3>Stocking stuffers</h3><p>Smaller items as easy add-ons to a bigger order.</p></div></div>
+      <div class="bf-tagwrap" data-anim="up"><div class="bf-angle t-gold"><svg class="bf-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.9 15.5a2 2 0 0 0-1.4-1.4l-6.1-1.6a.5.5 0 0 1 0-1l6.1-1.6a2 2 0 0 0 1.4-1.4l1.6-6.1a.5.5 0 0 1 1 0l1.6 6.1a2 2 0 0 0 1.4 1.4l6.1 1.6a.5.5 0 0 1 0 1l-6.1 1.6a2 2 0 0 0-1.4 1.4l-1.6 6.1a.5.5 0 0 1-1 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg><h3>Treat yourself</h3><p>Self-gifting, which picks back up right after Christmas.</p></div></div>
     </div>
   </div>
 </section>
@@ -417,7 +368,6 @@
 <section class="bf-sec" id="ads" style="background:#fafafa;" aria-labelledby="ads-h">
   <div class="bf-wrap">
     <h2 class="bf-h2" id="ads-h" data-anim="up"><span class="b">Ads we've made </span><span class="i">for ecommerce brands.</span></h2>
-    <p class="bf-lede" data-anim="up">Real ads from StoryKeeper, Noirvere, Kerstin Florian and Tiny Protectors, each labelled with the angle it uses.</p>
     <div class="bf-gallery">
       <figure class="bf-ad"><img src="/assets/ad-storykeeper-moms-memoir.webp" alt="StoryKeeper ad, Mother's Day, order 1 get 2" loading="lazy"><figcaption><strong>StoryKeeper</strong> <span>Mother's Day, order 1 get 2</span></figcaption></figure>
       <figure class="bf-ad"><img src="/assets/ad-noirvere-valentines.webp" alt="Noirvere ad, Valentine's sale" loading="lazy"><figcaption><strong>Noirvere</strong> <span>Valentine's sale</span></figcaption></figure>
@@ -502,7 +452,7 @@
           <li>First batch within a week of kickoff</li>
           <li>A weekly look at what's winning and what competitors run</li>
         </ul>
-        <a href="#book">Book a call</a>
+        <a href="#book">See if you qualify</a>
       </div>
       <div class="bf-price" data-anim="up">
         <span class="tag">Black Friday pace</span>
@@ -514,7 +464,7 @@
           <li>Two and a half times the volume</li>
           <li id="bfTierBatch">Enough to go into sale week with your winning angles already picked</li>
         </ul>
-        <a href="#book">Book a call</a>
+        <a href="#book">See if you qualify</a>
       </div>
     </div>
   </div>
@@ -537,9 +487,9 @@
 
 <!-- BOOK: application first, then Cal opens prefilled -->
 <section id="book" class="bf-sec" style="background:#fafafa;" aria-labelledby="book-h">
-  <div class="bf-wrap" style="max-width:720px;">
-    <h2 class="bf-h2" id="book-h" data-anim="up"><span class="b">Book your </span><span class="i">Black Friday call.</span></h2>
-    <p class="bf-lede" style="margin-bottom:28px;">A few quick questions, then pick a time. 30 minutes, and we'll come with the first angles to test.</p>
+  <div class="bf-wrap">
+    <h2 class="bf-h2" id="book-h" data-anim="up"><span class="b">See if </span><span class="i">you qualify.</span></h2>
+    <p class="bf-lede" style="margin-bottom:28px; max-width:880px;">A few quick questions, then pick a time. 30 minutes, and we'll come with the first angles to test.</p>
 
     <form class="bf-app" id="bfApp" novalidate>
       <div class="bf-app-bar" aria-hidden="true"><span id="bfBar"></span></div>
@@ -816,47 +766,11 @@
 
 <footer class="footer">
   <div class="container">
-    <div class="footer-top">
-      <a href="#" style="font-size:28px; font-weight:800; font-variation-settings:'wdth' 125,'wght' 800; text-decoration:none; display:block; margin-bottom:16px;">
+    <div class="footer-bottom" style="display:flex; flex-direction:column; align-items:center; gap:14px; border-top:0; padding-top:8px;">
+      <a href="#" style="font-size:24px; font-weight:800; font-variation-settings:'wdth' 125,'wght' 800; text-decoration:none;">
         <span style="color:#8888aa;">Skip</span> <span style="color:#cc4444;">the</span> <span style="color:#9966ff;">Noise</span>
       </a>
-      <div class="footer-cols-row" style="display:flex; gap:80px; flex-wrap:wrap; justify-content:center; text-align:left;">
-        <div>
-          <p style="color:var(--white); font-weight:700; margin-bottom:16px;">Services</p>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <a href="/services" style="color:var(--gray-300); font-size:15px;">Performance Creative</a>
-            <a href="/services" style="color:var(--gray-300); font-size:15px;">Media Buying</a>
-          </div>
-        </div>
-        <div>
-          <p style="color:var(--white); font-weight:700; margin-bottom:16px;">Company</p>
-          <div style="display:flex; flex-direction:column; gap:8px;">
-            <a href="/case-studies" style="color:var(--gray-300); font-size:15px;">Results</a>
-            <a href="/gallery" style="color:var(--gray-300); font-size:15px;">Creative</a>
-            <a href="/process" style="color:var(--gray-300); font-size:15px;">Process</a>
-            <a href="#book" style="color:var(--gray-300); font-size:15px;">Contact</a>
-          </div>
-        </div>
-        <div>
-          <p style="color:var(--white); font-weight:700; margin-bottom:16px;">Get started</p>
-          <a href="#book" class="btn btn-light" style="margin-top:8px;">
-            <span class="btn-inner">Book a call</span>
-            <span class="btn-bg" style="background:var(--blue);"></span>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom" style="display:flex; flex-direction:column; align-items:center; gap:20px;">
-      <div style="display:flex; align-items:center; gap:16px;">
-        <a href="https://www.linkedin.com/company/skip-the-noise-media-agency" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" style="color:var(--gray-300); transition:color 0.2s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        </a>
-        <a href="https://www.instagram.com/skipthenoisemedia/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" style="color:var(--gray-300); transition:color 0.2s;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-        </a>
-      </div>
-      <p class="footer-copy">&copy; 2026 Skip the Noise Media &middot; Reddit Certified Partner</p>
-      <p class="footer-copy"><a href="mailto:sales@skipthenoisemedia.com" style="color:var(--gray-300); text-decoration:none;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">sales@skipthenoisemedia.com</a></p>
+      <p class="footer-copy">&copy; 2026 Skip the Noise Media</p>
       <p class="footer-copy" style="font-size:13px;"><a href="/privacy" style="color:var(--gray-300); text-decoration:none;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">Privacy Policy</a> &middot; <a href="/cookies" style="color:var(--gray-300); text-decoration:none;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">Cookie Policy</a> &middot; <a href="/terms" style="color:var(--gray-300); text-decoration:none;" onmouseenter="this.style.color='#fff'" onmouseleave="this.style.color='var(--gray-300)'">Terms of Service</a></p>
     </div>
   </div>
@@ -1024,46 +938,6 @@
   });
 })();
 
-// Mobile menu
-var hamburger = document.getElementById('hamburger');
-var mobileMenu = document.getElementById('mobile-menu');
-hamburger.addEventListener('click', function() {
-  var open = mobileMenu.classList.toggle('open');
-  hamburger.classList.toggle('open', open);
-  document.body.style.overflow = open ? 'hidden' : '';
-});
-function closeMobileMenu() {
-  mobileMenu.classList.remove('open');
-  hamburger.classList.remove('open');
-  document.body.style.overflow = '';
-}
-// Resources dropdown
-var dropdownTrigger = document.querySelector('.nav-dropdown-trigger');
-var navDropdown = document.querySelector('.nav-dropdown');
-if (dropdownTrigger && navDropdown) {
-  dropdownTrigger.addEventListener('click', function(e) {
-    e.stopPropagation();
-    var isOpen = navDropdown.classList.toggle('open');
-    dropdownTrigger.setAttribute('aria-expanded', isOpen);
-  });
-  document.addEventListener('click', function() {
-    navDropdown.classList.remove('open');
-    dropdownTrigger.setAttribute('aria-expanded', 'false');
-  });
-  navDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
-}
-// Active nav state
-(function() {
-  var path = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.nav-link[href]').forEach(function(link) {
-    var href = link.getAttribute('href').split('/').pop();
-    if (href && href === path) link.classList.add('active');
-  });
-  // Highlight Resources trigger when on playbook page
-  if (path === 'playbook.html' && navDropdown) {
-    dropdownTrigger && dropdownTrigger.classList.add('active');
-  }
-})();
 </script>
 
 <script>
