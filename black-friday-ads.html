@@ -157,6 +157,7 @@
     @media (max-width:640px){.bf-price{padding:32px 22px}}
     .bf-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1180px;margin:40px auto 0;align-items:stretch}
     .bf-price .amt sup{font-size:.45em;vertical-align:top;position:relative;top:.15em;margin-left:2px;letter-spacing:0}
+    .bf-fit{text-align:center;font-family:'Satoshi',system-ui,sans-serif;font-weight:800;font-size:16px;color:#5500dd;margin:0 auto 28px}
     .bf-tiers-note{text-align:center;font-size:15px;font-weight:700;color:#5500dd;margin:22px auto 0}
     .bf-tiers .bf-price{margin:0;max-width:none;display:flex;flex-direction:column}
     .bf-tiers .bf-price ul{flex:1}
@@ -660,26 +661,12 @@
   </div>
 </section>
 
-<!-- FAQ -->
-<section class="bf-sec" style="padding-top:20px;" aria-labelledby="faq-h">
-  <div class="bf-wrap">
-    <h2 class="bf-h2" id="faq-h" data-anim="up"><span class="b">Questions </span><span class="i">we get asked.</span></h2>
-    <div class="bf-faq">
-      <details><summary>What counts as one ad?</summary><p>One finished creative, sized for where it runs. That can be a static, a short video or a UGC-style ad.</p></details>
-      <details><summary>Which platforms do you make them for?</summary><p>Meta, TikTok and Pinterest. Snapchat too if you're running there.</p></details>
-      <details><summary>What do you need from us?</summary><p>Product photos or links, your brand guidelines, and any past ads that did well. We take it from there.</p></details>
-      <details><summary>How do you make 10 a week?</summary><p>We use AI for the heavy lifting, and our team directs every ad. That's how the volume stays up without the quality dropping.</p></details>
-      <details><summary>Do you run the ads too?</summary><p>We can. Media buying is something we do as well, so we can talk about it on the call.</p></details>
-      <details><summary>Is it too late to start?</summary><p id="bfFaqLate">Not yet. Every week you start earlier is 10 more ads tested before sale week.</p></details>
-    </div>
-  </div>
-</section>
-
 <!-- BOOK: application first, then Cal opens prefilled -->
 <section id="book" class="bf-sec" style="background:#fafafa;" aria-labelledby="book-h">
   <div class="bf-wrap">
     <h2 class="bf-h2" id="book-h" data-anim="up"><span class="b">See if </span><span class="i">you qualify.</span></h2>
-    <p class="bf-lede" style="margin-bottom:28px; max-width:880px;">A few quick questions, then pick a time. 30 minutes, and we'll come with the first angles to test.</p>
+    <p class="bf-lede" style="margin-bottom:14px; max-width:880px;">A few quick questions, then pick a time. 30 minutes, and we'll come with the first angles to test.</p>
+    <p class="bf-fit">This offer is for brands spending $10K or more a month on ads.</p>
 
     <div class="bf-book" id="bfBook">
     <form class="bf-app" id="bfApp" novalidate>
@@ -708,8 +695,8 @@
       <fieldset class="bf-q" data-step="3" hidden>
         <legend>Roughly how much do you spend on ads a month?</legend>
         <div class="bf-opts" data-name="spend" data-type="single">
-          <button type="button" data-v="under-5k">Under $5K</button>
-          <button type="button" data-v="5-20k">$5K to $20K</button>
+          <button type="button" data-v="under-10k">Under $10K</button>
+          <button type="button" data-v="10-20k">$10K to $20K</button>
           <button type="button" data-v="20-50k">$20K to $50K</button>
           <button type="button" data-v="50k+">$50K or more</button>
         </div>
@@ -763,7 +750,7 @@
 
       <div class="bf-dq" id="bfDq" hidden>
         <h3>We're probably not the right fit yet.</h3>
-        <p>Our packages work best once a brand spends $5K or more a month on ads, so we'd rather tell you now than book a call that doesn't help you.</p>
+        <p>Our packages work best once a brand spends $10K or more a month on ads, so we'd rather tell you now than book a call that doesn't help you.</p>
         <p>In the meantime, here's the framework we use to find winning ads faster.</p>
         <a class="bf-next" href="/blog/ad-creative-testing-framework">Read the creative testing framework</a>
       </div>
@@ -784,6 +771,21 @@
       </div>
       <div class="bf-cal-live" id="bfCal" hidden></div>
     </aside>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="bf-sec" style="padding-top:20px;" aria-labelledby="faq-h">
+  <div class="bf-wrap">
+    <h2 class="bf-h2" id="faq-h" data-anim="up"><span class="b">Questions </span><span class="i">we get asked.</span></h2>
+    <div class="bf-faq">
+      <details><summary>What counts as one ad?</summary><p>One finished creative, sized for where it runs. That can be a static, a short video or a UGC-style ad.</p></details>
+      <details><summary>Which platforms do you make them for?</summary><p>Meta, TikTok and Pinterest. Snapchat too if you're running there.</p></details>
+      <details><summary>What do you need from us?</summary><p>Product photos or links, your brand guidelines, and any past ads that did well. We take it from there.</p></details>
+      <details><summary>How do you make 10 a week?</summary><p>We use AI for the heavy lifting, and our team directs every ad. That's how the volume stays up without the quality dropping.</p></details>
+      <details><summary>Do you run the ads too?</summary><p>We can. Media buying is something we do as well, so we can talk about it on the call.</p></details>
+      <details><summary>Is it too late to start?</summary><p id="bfFaqLate">Not yet. Every week you start earlier is 10 more ads tested before sale week.</p></details>
     </div>
   </div>
 </section>
@@ -837,7 +839,7 @@
   }
   function next() { show(step + 1, true); }
 
-  // Under $5K spend: stop here, like iClosed. No booking, nothing sent to the Meta pixel.
+  // Under $10K spend: stop here, like iClosed. No booking, nothing sent to the Meta pixel.
   function showDq() {
     steps.forEach(function (el) { el.hidden = true; });
     ['bfBar', 'bfCount'].forEach(function (id) { var el = document.getElementById(id); (id === 'bfBar' ? el.parentNode : el).hidden = true; });
@@ -896,7 +898,7 @@
           answers[name] = cur;
         } else { answers[name] = b.dataset.v; }
         paint(); save();
-        if (name === 'spend' && b.dataset.v === 'under-5k') { setTimeout(disqualify, 220); return; }
+        if (name === 'spend' && (b.dataset.v === 'under-10k' || b.dataset.v === 'under-5k')) { setTimeout(disqualify, 220); return; }
         if (!multi && !last) setTimeout(next, 220);
       });
     });
@@ -907,9 +909,9 @@
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
-    if (!answers.timing || flag('dq') || answers.spend === 'under-5k') return;
+    if (!answers.timing || flag('dq') || answers.spend === 'under-10k' || answers.spend === 'under-5k') return;
     submitted = true; setFlag('submitted');
-    var qualified = ['5-20k', '20-50k', '50k+'].indexOf(answers.spend) > -1;
+    var qualified = ['10-20k', '20-50k', '50k+'].indexOf(answers.spend) > -1;
     send('submit');
     track('bf_apply_submit', { qualified: qualified });
     if (qualified && typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'bf_application_qualified' });
@@ -934,7 +936,7 @@
   }
   function unlockCal() {
     loadCal();
-    var sp = { 'under-5k': 'Under $5K', '5-20k': '$5K-$20K', '20-50k': '$20K-$50K', '50k+': '$50K+' }[answers.spend] || '?';
+    var sp = { 'under-10k': 'Under $10K', '10-20k': '$10K-$20K', '20-50k': '$20K-$50K', '50k+': '$50K+', 'under-5k': 'Under $5K', '5-20k': '$5K-$20K' }[answers.spend] || '?';
     var notes = [answers.website, answers.category, 'Spend ' + sp, (answers.channels || []).join('/'), 'Ads by ' + (answers.makers || '?'), 'Start: ' + (answers.timing || '?'), 'Phone ' + (answers.phone || '?')].filter(Boolean).join(' | ');
     var live = document.getElementById('bfCal');
     document.getElementById('bfCalLock').hidden = true;

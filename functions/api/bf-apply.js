@@ -14,7 +14,7 @@
  *   - "update":    sent once by the page if they leave partway after answering
  *                  more questions, so you see how far they got. Notifies.
  *   - "submit":    the finished application, sent right before Cal opens. Notifies.
- *   - "disqualified": picked Under $5K spend. The page stops them before Cal, so
+ *   - "disqualified": picked Under $10K spend. The page stops them before Cal, so
  *                  they never book or touch the pixel. Notifies so you don't chase them.
  *   ("abandoned" is still accepted as an alias of "update" for cached pages.)
  *
@@ -38,9 +38,10 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const DOMAIN_RE = /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(\/.*)?$/i;
 const phoneOk = (p) => { const d = String(p || '').replace(/\D/g, ''); return d.length >= 7 && d.length <= 15; };
 
-// Spend bands that can carry a $4,000/month creative package.
-const QUALIFIED_SPEND = new Set(['5-20k', '20-50k', '50k+']);
-const SPEND_LABEL = { 'under-5k': 'Under $5K', '5-20k': '$5K-$20K', '20-50k': '$20K-$50K', '50k+': '$50K+' };
+// Spend bands we take calls from: $10K+/month. ($10-20K fits the $1,500 Test pack, $20K+ the $4,000 Starter.)
+// Old band values (under-5k, 5-20k) are still labelled for returning visitors but no longer qualify.
+const QUALIFIED_SPEND = new Set(['10-20k', '20-50k', '50k+']);
+const SPEND_LABEL = { 'under-10k': 'Under $10K', '10-20k': '$10K-$20K', '20-50k': '$20K-$50K', '50k+': '$50K+', 'under-5k': 'Under $5K', '5-20k': '$5K-$20K' };
 
 export async function onRequestPost({ request, env }) {
   const url = new URL(request.url);
@@ -94,7 +95,7 @@ export async function onRequestPost({ request, env }) {
       potential: `New Black Friday lead: ${who}`,
       update: `Black Friday lead stopped at question ${record.step} (${fit}): ${who}`,
       submit: `Black Friday application submitted (${fit}): ${who}`,
-      disqualified: `Black Friday lead disqualified (under $5K spend): ${who}`,
+      disqualified: `Black Friday lead disqualified (under $10K spend): ${who}`,
     }[kind];
     try {
       const r = await fetch(env.LEAD_WEBHOOK || 'https://formspree.io/f/xyeglebv', {
