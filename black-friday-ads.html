@@ -81,6 +81,7 @@
     .bf-why{background:#191923;color:#fff;border-radius:40px;margin:0 16px;padding:80px 24px}
     .bf-why .bf-h2{color:#fff}
     .bf-why .bf-lede{color:rgba(255,255,255,0.68);font-size:19px;max-width:700px}
+    .bf-why .bf-lede + .bf-lede{margin-top:16px}
 
     /* what you get */
 
@@ -124,7 +125,7 @@
     @media (max-width:640px){.bf-vsl{border-radius:18px;margin-top:26px}.bf-vsl-play{width:62px;height:62px}.bf-vsl-play svg{width:24px;height:24px}}
 
     /* real ads, shown whole at their native ratio */
-    .bf-gallery{columns:4 230px;column-gap:16px;margin-top:44px}
+    .bf-gallery{columns:3 230px;column-gap:16px;margin:44px auto 0;max-width:960px}
     .bf-ad{break-inside:avoid;margin:0 0 16px;border-radius:14px;overflow:hidden;background:#f5f5f7;border:1px solid rgba(0,0,0,0.06)}
     .bf-ad img{display:block;width:100%;height:auto}
     .bf-ad figcaption{padding:11px 14px;font-size:13px;color:rgba(0,0,0,0.5);background:#fff;border-top:1px solid rgba(0,0,0,0.06)}
@@ -159,10 +160,28 @@
     .bf-price .amt sup{font-size:.45em;vertical-align:top;position:relative;top:.15em;margin-left:2px;letter-spacing:0}
     .bf-fit{text-align:center;font-family:'Satoshi',system-ui,sans-serif;font-weight:800;font-size:16px;color:#5500dd;margin:0 auto 28px}
     .bf-tiers-note{text-align:center;font-size:15px;font-weight:700;color:#5500dd;margin:22px auto 0}
+    .bf-quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:1000px;margin:0 auto;align-items:start}
+    .bf-quote{margin:0;background:#fff;border-radius:22px;padding:30px 30px 26px;border:1px solid rgba(0,0,0,0.06)}
+    .bf-quote .stars{color:#f59e0b;font-size:17px;letter-spacing:2px;margin-bottom:14px}
+    .bf-quote blockquote{margin:0;font-size:17px;line-height:1.6;font-style:italic;color:#191923}
+    .bf-quote figcaption{display:flex;align-items:center;gap:12px;margin-top:20px;font-size:13px;color:rgba(0,0,0,0.55)}
+    .bf-quote figcaption strong{display:block;font-size:15px;color:#0d0d0d;font-weight:700}
+    .bf-quote figcaption img,.bf-quote-av{width:44px;height:44px;border-radius:50%;flex:none;object-fit:cover}
+    .bf-quote-av{background:#191923;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px}
+    .bf-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:1000px;margin:20px auto 0}
+    .bf-result{background:#191923;color:#fff;border-radius:22px;padding:28px 30px}
+    .bf-result .n{display:block;font-family:'Satoshi',system-ui,sans-serif;font-weight:900;font-size:clamp(40px,5vw,54px);letter-spacing:-0.04em;line-height:1;background:linear-gradient(90deg,#a78bfa,#f87171);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .bf-result p{margin:10px 0 12px;font-size:15.5px;line-height:1.5;color:rgba(255,255,255,0.8)}
+    .bf-result .who{font-size:13px;font-weight:700;color:#c4a3ff}
+    @media (max-width:760px){.bf-quotes,.bf-results{grid-template-columns:1fr}}
     .bf-tiers--one{grid-template-columns:minmax(0,560px);justify-content:center}
     .bf-price .bf-off{font-family:'Satoshi',system-ui,sans-serif;font-size:19px;font-weight:800;color:#c4a3ff;margin:10px 0 0}
-    .bf-guarantee{max-width:620px;margin:14px auto 0;text-align:center;font-size:15px;line-height:1.55;color:#4b5563}
-    .bf-guarantee a{color:#5500dd;font-weight:700;text-underline-offset:3px}
+    .bf-guar{position:relative;display:flex;gap:12px;align-items:flex-start;margin-top:24px;padding-top:22px}
+    .bf-guar::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,#a78bfa,#f87171)}
+    .bf-guar svg{flex:none;margin-top:1px}
+    .bf-guar p{margin:0;font-size:14px;line-height:1.55;color:rgba(255,255,255,0.7)}
+    .bf-guar strong{display:block;font-family:'Satoshi',system-ui,sans-serif;font-size:17px;font-weight:800;color:#fff;margin-bottom:4px}
+    .bf-price .bf-guar a{display:inline;background:none;padding:0;border-radius:0;font-size:inherit;color:#c4a3ff;font-weight:700;text-decoration:underline;text-underline-offset:3px}
     .bf-tiers .bf-price{margin:0;max-width:none;display:flex;flex-direction:column}
     .bf-tiers .bf-price ul{flex:1}
     .bf-price .qty span{display:block;font-size:14px;font-weight:500;color:rgba(255,255,255,0.55);margin-top:4px}
@@ -187,8 +206,9 @@
     @media (max-width:640px){
       .bf-sec{padding:56px 16px}
       .bf-why{margin:0 8px;border-radius:28px;padding:56px 18px}
-      .bf-gallery{columns:2 150px;column-gap:10px}
-      .bf-ad{margin-bottom:10px}
+      .bf-gallery{columns:auto;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:32px -16px 0;padding:0 16px 6px;scrollbar-width:none;align-items:flex-start}
+      .bf-gallery::-webkit-scrollbar{display:none}
+      .bf-ad{flex:0 0 74%;margin:0;scroll-snap-align:center}
     }
 
     /* application form */
@@ -276,8 +296,8 @@
     <div class="container hero-center">
 
       <h1 class="hero-headline">
-        <span class="hero-headline-bold" data-hero data-delay="2">Lower Your Cost Per Purchase by 20% in 30 Days With AI UGC Ads</span>
-        <span class="hero-headline-italic bf-subhead" data-hero data-delay="4"><em style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700;">If we don’t beat your current top-performing ads, get 50% of your money back.</em></span>
+        <span class="hero-headline-bold" data-hero data-delay="2">Lower your cost per purchase by 20% in 30 days with AI UGC ads</span>
+        <span class="hero-headline-italic bf-subhead" data-hero data-delay="4"><em style="font-family:'Playfair Display',serif; font-style:italic; font-weight:700;">Get 6 new video ads in 7 days. Test them against your current winners before Black Friday. If they don’t deliver at least 20% lower cost per purchase, get 50% of your money back.</em></span>
       </h1>
 
       <div data-anim="up" data-hero data-delay="6" style="display:flex; align-items:center; gap:20px; flex-wrap:wrap; justify-content:center;">
@@ -357,14 +377,8 @@
       <figure class="bf-ad"><img src="/assets/ad-noirvere-valentines.webp" alt="Noirvere ad, Valentine's sale" loading="lazy"><figcaption><strong>Noirvere</strong> <span>Valentine's sale</span></figcaption></figure>
       <figure class="bf-ad"><img src="/assets/ad-kf-bestsellers.webp" alt="Kerstin Florian ad, Bestsellers, limited time" loading="lazy"><figcaption><strong>Kerstin Florian</strong> <span>Bestsellers, limited time</span></figcaption></figure>
       <figure class="bf-ad"><img src="/assets/ad-tinyprotectors-yoga-mat-1.webp" alt="Tiny Protectors ad, Product features" loading="lazy"><figcaption><strong>Tiny Protectors</strong> <span>Product features</span></figcaption></figure>
-      <figure class="bf-ad"><img src="/assets/ad-storykeeper-momoir-steps.webp" alt="StoryKeeper ad, How it works" loading="lazy"><figcaption><strong>StoryKeeper</strong> <span>How it works</span></figcaption></figure>
       <figure class="bf-ad"><img src="/assets/ad-noirvere-citytote.webp" alt="Noirvere ad, Last day of the sale" loading="lazy"><figcaption><strong>Noirvere</strong> <span>Last day of the sale</span></figcaption></figure>
-      <figure class="bf-ad"><img src="/assets/ad-kf-retinol-serum.webp" alt="Kerstin Florian ad, The full collection" loading="lazy"><figcaption><strong>Kerstin Florian</strong> <span>The full collection</span></figcaption></figure>
       <figure class="bf-ad"><img src="/assets/ad-storykeeper-hardcover.webp" alt="StoryKeeper ad, The finished gift" loading="lazy"><figcaption><strong>StoryKeeper</strong> <span>The finished gift</span></figcaption></figure>
-      <figure class="bf-ad"><img src="/assets/ad-kf-neroli-mist.webp" alt="Kerstin Florian ad, Sitewide offer" loading="lazy"><figcaption><strong>Kerstin Florian</strong> <span>Sitewide offer</span></figcaption></figure>
-      <figure class="bf-ad"><img src="/assets/ad-noirvere-poster.webp" alt="Noirvere ad, New colours, low stock" loading="lazy"><figcaption><strong>Noirvere</strong> <span>New colours, low stock</span></figcaption></figure>
-      <figure class="bf-ad"><img src="/assets/ad-storykeeper-canada.webp" alt="StoryKeeper ad, Bundle price" loading="lazy"><figcaption><strong>StoryKeeper</strong> <span>Bundle price</span></figcaption></figure>
-      <figure class="bf-ad"><img src="/assets/ad-kf-eye-creme.webp" alt="Kerstin Florian ad, Benefit-led" loading="lazy"><figcaption><strong>Kerstin Florian</strong> <span>Benefit-led</span></figcaption></figure>
     </div>
   </div>
 </section>
@@ -372,8 +386,10 @@
 <!-- WHY NOW -->
 <section class="bf-why" aria-labelledby="why-h">
   <div class="bf-wrap">
-    <h2 class="bf-h2" id="why-h" data-anim="up"><span class="b">Test before </span><span class="i">ad prices peak.</span></h2>
-    <p class="bf-lede" data-anim="up">Ad prices peak in Black Friday week. That's a bad time to find out which of your ads work. So we test through October and November, and you go into sale week with the winners already picked.</p>
+    <h2 class="bf-h2" id="why-h" data-anim="up"><span class="b">Don't wait until Black Friday </span><span class="i">to find your winning ads.</span></h2>
+    <p class="bf-lede" data-anim="up">By the time Black Friday week arrives, you should know which creative angles are worth putting more budget behind.</p>
+    <p class="bf-lede" data-anim="up">But if you're testing new ads for the first time during sale week, you're trying to figure out what works when every day of your promotion matters.</p>
+    <p class="bf-lede" data-anim="up">We help you test six new AI UGC ads before the rush, so you can identify potential winners while there's still time to act on what you learn.</p>
   </div>
 </section>
 
@@ -381,7 +397,7 @@
 <section class="bf-sec" style="padding-top:20px;" aria-labelledby="angles-h">
   <div class="bf-wrap">
     <h2 class="bf-h2" id="angles-h" data-anim="up"><span class="b">UGC angles </span><span class="i">we test for the holidays.</span></h2>
-    <p class="bf-lede" data-anim="up">This is the kind of thing a few weeks of ads covers. We pick the mix around your products and your margins.</p>
+    <p class="bf-lede" data-anim="up">We pick six of these for your pack, based on your products and your margins.</p>
     <div class="bf-angles">
       <div class="bf-tagwrap" data-anim="up"><div class="bf-angle t-cran"><svg class="bf-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22v-9"/><path d="M15.2 2.2a1.7 1.7 0 0 1 1.6 0L21 4.6a1.9 1.9 0 0 1 0 3.4L8.8 14.8a1.7 1.7 0 0 1-1.6 0L3 12.4a1.9 1.9 0 0 1 0-3.4z"/><path d="M20 13v3.9a2.1 2.1 0 0 1-1.1 1.8l-6 3.1a1.9 1.9 0 0 1-1.8 0l-6-3.1A2.1 2.1 0 0 1 4 16.9V13"/><path d="M21 12.4a1.9 1.9 0 0 0 0-3.4L8.8 2.2a1.6 1.6 0 0 0-1.6 0L3 4.6a1.9 1.9 0 0 0 0 3.4l12.2 6.9a1.6 1.6 0 0 0 1.6 0z"/></svg><h3>Unboxing</h3><p>Someone opens the box on camera and shows what's inside, wrapping and all.</p></div></div>
       <div class="bf-tagwrap" data-anim="up"><div class="bf-angle t-pine"><svg class="bf-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C9.5 3 11 5.5 12 8c1-2.5 2.5-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg><h3>Gift reaction</h3><p>The gift gets opened on camera, and you see the face of the person who got it.</p></div></div>
@@ -396,7 +412,7 @@
 </section>
 
 <!-- REVIEWS: same slider as the homepage -->
-<section style="background:#EEE8FF; padding:60px 24px 80px;">
+<section id="bfReviews" style="background:#EEE8FF; padding:60px 24px 80px;">
   <div style="max-width:1400px; margin:0 auto;">
     <div style="margin-bottom:48px; text-align:center;">
       <div class="h2 testi-headline" style="text-align:center; line-height:1.15;">
@@ -404,203 +420,25 @@
           <span class="testi-line" style="display:block; transform:translateY(110%); transition:transform 1s cubic-bezier(0.16,1,0.3,1) 0s; font-family:'Satoshi', system-ui, sans-serif; font-weight:900; letter-spacing:-0.04em;">Don't take our word <em style="font-family:'Playfair Display', Georgia, serif; font-style:italic; font-weight:700;">for it.</em></span>
         </span>
       </div>
-      <p class="testi-sub body" style="margin-top:16px; opacity:0; transform:translateY(20px); transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1) 1s, transform 0.8s cubic-bezier(0.16,1,0.3,1) 1s; color:rgba(0,0,0,0.6);">5-star reviews. Verified on Design Rush.</p>
+      <p class="testi-sub body" style="margin-top:16px; opacity:0; transform:translateY(20px); transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1) 1s, transform 0.8s cubic-bezier(0.16,1,0.3,1) 1s; color:rgba(0,0,0,0.6);">What clients say about our ads, and what they got.</p>
     </div>
-      <div class="testimonials-scroll">
-        <div class="testimonials-track">
-          <!-- Card 0: Publicis -->
-          <div class="testimonial-card">
-            <div>
-              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-              <p style="font-size:17px;line-height:1.6;font-style:italic;">"Great news - our creative team was thoroughly impressed with your work. Looking forward to a long-term partnership."</p>
-            </div>
-            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-              <div style="width:44px;height:44px;border-radius:50%;background:#191923;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">P</div>
-              <div>
-                <p class="author-name" style="font-size:15px;">Head of Partnerships</p>
-                <p class="author-loc" style="font-size:13px;">Publicis</p>
-              </div>
-            </div>
-          </div>
-          <!-- Card 1: Head of Marketing · Flare -->
-          <div class="testimonial-card">
-            <div>
-              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-              <p style="font-size:17px;line-height:1.6;font-style:italic;">"Great collaboration. Very satisfied with the Reddit Ads work. They generated 60+ leads in just 3 months."</p>
-            </div>
-            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-              <img alt="Faustine Foliard, Head of Marketing at Flare" loading="lazy" src="/assets/faustin.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-              <div>
-                <p class="author-name" style="font-size:15px;">Faustine Foliard</p>
-                <p class="author-loc" style="font-size:13px;">Head of Marketing · Flare</p>
-              </div>
-            </div>
-          </div>
-          <!-- Card 2: CEO · 3D AI Studio -->
-          <div class="testimonial-card">
-            <div>
-              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-              <p style="font-size:17px;line-height:1.6;font-style:italic;">"Skip the Noise was great to work with and did a really strong job on our ads. They helped us with Reddit ads management, creatives, testing different angles, and running a lot of A/B tests. They were very active, communicative, and always easy to reach, which made the whole process very smooth. Skip the Noise made the whole setup and testing process a breeze. We would definitely recommend them to anyone looking for help with ads, creatives, and campaign testing."</p>
-            </div>
-            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-              <img alt="Jan H., CEO at 3D AI Studio" loading="lazy" src="/assets/janh.webp" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-              <div>
-                <p class="author-name" style="font-size:15px;">Jan H.</p>
-                <p class="author-loc" style="font-size:13px;">CEO · 3D AI Studio</p>
-              </div>
-            </div>
-          </div>
-          <!-- Card 3: CEO · Codesmith.io -->
-          <div class="testimonial-card">
-            <div>
-              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-              <p style="font-size:17px;line-height:1.6;font-style:italic;">"It was a pleasure working with Skip the Noise team for cross-channel paid ads."</p>
-            </div>
-            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-              <img alt="Will Sentance, CEO at Codesmith.io" loading="lazy" src="/assets/willsentance.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-              <div>
-                <p class="author-name" style="font-size:15px;">Will Sentance</p>
-                <p class="author-loc" style="font-size:13px;">CEO · Codesmith.io</p>
-              </div>
-            </div>
-          </div>
-          <!-- Card 4: COO · Astronomic -->
-          <div class="testimonial-card">
-            <div>
-              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-              <p style="font-size:17px;line-height:1.6;font-style:italic;">"He grasped our objectives fast and made meaningful contributions from day one. Adds value way beyond his defined scope. We consider ourselves fortunate to have him on board."</p>
-            </div>
-            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-              <img alt="Adam Acheson, COO at Astronomic" loading="lazy" src="/assets/adamacheson.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-              <div>
-                <p class="author-name" style="font-size:15px;">Adam Acheson</p>
-                <p class="author-loc" style="font-size:13px;">COO · Astronomic</p>
-              </div>
-            </div>
-          </div>
-          <!-- Card 5: Co-founder · Cozybeds -->
-          <div class="testimonial-card">
-            <div>
-              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-              <p style="font-size:17px;line-height:1.6;font-style:italic;">"The Reddit opportunity was real. They showed up with data on exactly what our competitors were doing in the community and made it easy to say yes."</p>
-            </div>
-            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-              <div style="width:44px;height:44px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">EC</div>
-              <div>
-                <p class="author-name" style="font-size:15px;">Eric C.</p>
-                <p class="author-loc" style="font-size:13px;">Co-founder · Cozybeds</p>
-              </div>
-            </div>
-          </div>
-          <!-- Card 6: CEO · Monkey Athletics -->
-          <div class="testimonial-card">
-            <div>
-              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-              <p style="font-size:17px;line-height:1.6;font-style:italic;">"The audit was incredibly detailed and comprehensive. Zoha went above and beyond and was very easy to work with. Highly recommend."</p>
-            </div>
-            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-              <div style="width:44px;height:44px;border-radius:50%;background:#5500dd;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">LS</div>
-              <div>
-                <p class="author-name" style="font-size:15px;">Lisa Shepard</p>
-                <p class="author-loc" style="font-size:13px;">CEO · Monkey Athletics</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="testimonial-card">
-            <div>
-              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-              <p style="font-size:17px;line-height:1.6;font-style:italic;">"Great news - our creative team was thoroughly impressed with your work. Looking forward to a long-term partnership."</p>
-            </div>
-            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-              <div style="width:44px;height:44px;border-radius:50%;background:#191923;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">P</div>
-              <div>
-                <p class="author-name" style="font-size:15px;">Head of Partnerships</p>
-                <p class="author-loc" style="font-size:13px;">Publicis</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <div>
-              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-              <p style="font-size:17px;line-height:1.6;font-style:italic;">"Great collaboration. Very satisfied with the Reddit Ads work. They generated 60+ leads in just 3 months."</p>
-            </div>
-            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-              <img alt="Faustine Foliard, Head of Marketing at Flare" loading="lazy" src="/assets/faustin.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-              <div>
-                <p class="author-name" style="font-size:15px;">Faustine Foliard</p>
-                <p class="author-loc" style="font-size:13px;">Head of Marketing · Flare</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <div>
-              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-              <p style="font-size:17px;line-height:1.6;font-style:italic;">"Skip the Noise was great to work with and did a really strong job on our ads. They helped us with Reddit ads management, creatives, testing different angles, and running a lot of A/B tests. They were very active, communicative, and always easy to reach, which made the whole process very smooth. Skip the Noise made the whole setup and testing process a breeze. We would definitely recommend them to anyone looking for help with ads, creatives, and campaign testing."</p>
-            </div>
-            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-              <img alt="Jan H., CEO at 3D AI Studio" loading="lazy" src="/assets/janh.webp" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-              <div>
-                <p class="author-name" style="font-size:15px;">Jan H.</p>
-                <p class="author-loc" style="font-size:13px;">CEO · 3D AI Studio</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <div>
-              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-              <p style="font-size:17px;line-height:1.6;font-style:italic;">"It was a pleasure working with Skip the Noise team for cross-channel paid ads."</p>
-            </div>
-            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-              <img alt="Will Sentance, CEO at Codesmith.io" loading="lazy" src="/assets/willsentance.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-              <div>
-                <p class="author-name" style="font-size:15px;">Will Sentance</p>
-                <p class="author-loc" style="font-size:13px;">CEO · Codesmith.io</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <div>
-              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-              <p style="font-size:17px;line-height:1.6;font-style:italic;">"He grasped our objectives fast and made meaningful contributions from day one. Adds value way beyond his defined scope. We consider ourselves fortunate to have him on board."</p>
-            </div>
-            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-              <img alt="Adam Acheson, COO at Astronomic" loading="lazy" src="/assets/adamacheson.jpeg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-              <div>
-                <p class="author-name" style="font-size:15px;">Adam Acheson</p>
-                <p class="author-loc" style="font-size:13px;">COO · Astronomic</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <div>
-              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-              <p style="font-size:17px;line-height:1.6;font-style:italic;">"The Reddit opportunity was real. They showed up with data on exactly what our competitors were doing in the community and made it easy to say yes."</p>
-            </div>
-            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-              <div style="width:44px;height:44px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">EC</div>
-              <div>
-                <p class="author-name" style="font-size:15px;">Eric C.</p>
-                <p class="author-loc" style="font-size:13px;">Co-founder · Cozybeds</p>
-              </div>
-            </div>
-          </div>
-          <div class="testimonial-card">
-            <div>
-              <div class="stars" style="margin-bottom:20px;">★★★★★</div>
-              <p style="font-size:17px;line-height:1.6;font-style:italic;">"The audit was incredibly detailed and comprehensive. Zoha went above and beyond and was very easy to work with. Highly recommend."</p>
-            </div>
-            <div class="testimonial-author" style="padding-top:0; justify-content:flex-start;">
-              <div style="width:44px;height:44px;border-radius:50%;background:#5500dd;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:15px;flex-shrink:0;">LS</div>
-              <div>
-                <p class="author-name" style="font-size:15px;">Lisa Shepard</p>
-                <p class="author-loc" style="font-size:13px;">CEO · Monkey Athletics</p>
-              </div>
-            </div>
-          </div>
-
-        </div><!-- /.testimonials-track -->
-      </div><!-- /.testimonials-scroll -->
+      <!-- Only reviews about our ad and creative work, quoted word for word (3D AI Studio is an excerpt, marked with an ellipsis). -->
+      <div class="bf-quotes">
+        <figure class="bf-quote">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Great news - our creative team was thoroughly impressed with your work. Looking forward to a long-term partnership."</blockquote>
+          <figcaption><span class="bf-quote-av" aria-hidden="true">P</span><span><strong>Head of Partnerships</strong>Publicis</span></figcaption>
+        </figure>
+        <figure class="bf-quote">
+          <div class="stars">★★★★★</div>
+          <blockquote>"Skip the Noise was great to work with and did a really strong job on our ads. … We would definitely recommend them to anyone looking for help with ads, creatives, and campaign testing."</blockquote>
+          <figcaption><img src="/assets/janh.webp" alt="" width="44" height="44" loading="lazy"><span><strong>Jan H.</strong>CEO · 3D AI Studio</span></figcaption>
+        </figure>
+      </div>
+      <div class="bf-results">
+        <div class="bf-result"><span class="n">114%</span><p>Store revenue growth, year over year, in a gifting brand's Mother's Day week</p><span class="who">StoryKeeper</span></div>
+        <div class="bf-result"><span class="n">4.3x</span><p>Return on ad spend for a handbag brand</p><span class="who">Noirvere</span></div>
+      </div>
   </div>
 </section>
 
@@ -611,7 +449,7 @@
     <div class="bf-steps">
       <div class="bf-step" data-anim="up"><span class="when">Day 1</span><h3>Send us your products</h3><p>Share your product links and a few past ads that did well. We pick six angles to test.</p></div>
       <div class="bf-step" data-anim="up"><span class="when">Within 7 days</span><h3>Get 6 UGC video ads</h3><p>Six AI UGC video ads, each testing a different angle, ready to upload.</p></div>
-      <div class="bf-step bf-step--peak" data-anim="up"><span class="when">The next 30 days</span><h3>Test them against your top ads</h3><p>Run them against the six ads you spend the most on. Same weeks, same budget, in your own Ads Manager. If ours aren't 20% cheaper per purchase, you get 50% back.</p></div>
+      <div class="bf-step bf-step--peak" data-anim="up"><span class="when">The next 30 days</span><h3>Test them against your top ads</h3><p>Run them against the six ads you spend the most on. Same weeks, same budget, in your own Ads Manager.</p></div>
       <div class="bf-step" data-anim="up"><span class="when">After</span><h3>Scale the winners</h3><p>Put budget behind what wins for Black Friday and Cyber Monday. If you want more, we keep new ones coming every month.</p></div>
     </div>
   </div>
@@ -632,12 +470,14 @@
           <li>Six different angles, one per ad</li>
           <li>Sized for Meta and TikTok vertical format</li>
           <li>You keep the ads</li>
-          <li>20% cheaper per purchase than your current ads within 30 days, or 50% of your money back</li>
         </ul>
         <a href="#book">See if you qualify</a>
+        <div class="bf-guar">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c4a3ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          <p><strong>50% money-back guarantee</strong>If our ads aren't at least 20% cheaper per purchase than your current winners within 30 days, you get half your money back. <a href="/black-friday-guarantee">See terms</a></p>
+        </div>
       </div>
     </div>
-    <p class="bf-guarantee">If our 6 ads aren't at least 20% cheaper per purchase than your current ads over the same 30 days, we'll refund 50% of what you paid. You keep the ads. <a href="/black-friday-guarantee">See the full terms</a></p>
   </div>
 </section>
 
