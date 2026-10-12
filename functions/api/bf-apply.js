@@ -31,14 +31,15 @@
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
 
-const FIELDS = ['name', 'email', 'phone', 'website', 'spend', 'category', 'channels', 'makers', 'timing'];
+// `category` stays for returning visitors who answered the old form. New form: formats + recurring.
+const FIELDS = ['name', 'email', 'phone', 'website', 'spend', 'category', 'channels', 'makers', 'formats', 'recurring', 'timing'];
 const clip = (v, n = 300) => String(v == null ? '' : v).slice(0, n).trim();
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 const DOMAIN_RE = /^(https?:\/\/)?([a-z0-9-]+\.)+[a-z]{2,}(\/.*)?$/i;
 const phoneOk = (p) => { const d = String(p || '').replace(/\D/g, ''); return d.length >= 7 && d.length <= 15; };
 
-// Spend bands we take calls from: $10K+/month. ($10-20K fits the $1,500 Test pack, $20K+ the $4,000 Starter.)
+// Spend bands we take calls from: $10K+/month. One offer for all of them: the 6-ad Black Friday pack.
 // Old band values (under-5k, 5-20k) are still labelled for returning visitors but no longer qualify.
 const QUALIFIED_SPEND = new Set(['10-20k', '20-50k', '50k+']);
 const SPEND_LABEL = { 'under-10k': 'Under $10K', '10-20k': '$10K-$20K', '20-50k': '$20K-$50K', '50k+': '$50K+', 'under-5k': 'Under $5K', '5-20k': '$5K-$20K' };
@@ -90,11 +91,13 @@ export async function onRequestPost({ request, env }) {
   let notified = false;
   if (kind !== 'partial' && reachable) {
     const who = answers.name || answers.email || answers.phone;
+    // Leads who want ongoing ads get called first, so flag them in the subject line.
+    const ongoing = answers.recurring === 'Yes, ongoing' ? ', wants ongoing' : '';
     const fit = qualified ? 'fits' : (answers.spend ? 'below budget' : 'budget unknown');
     const subject = {
       potential: `New Black Friday lead: ${who}`,
       update: `Black Friday lead stopped at question ${record.step} (${fit}): ${who}`,
-      submit: `Black Friday application submitted (${fit}): ${who}`,
+      submit: `Black Friday application submitted (${fit}${ongoing}): ${who}`,
       disqualified: `Black Friday lead disqualified (under $10K spend): ${who}`,
     }[kind];
     try {
@@ -114,6 +117,8 @@ export async function onRequestPost({ request, env }) {
           category: answers.category || '',
           channels: answers.channels || '',
           makers: answers.makers || '',
+          formats: answers.formats || '',
+          recurring: answers.recurring || '',
           timing: answers.timing || '',
           utm: record.utm, country: record.country, sid,
         }),
