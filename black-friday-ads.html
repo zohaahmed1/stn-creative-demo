@@ -92,9 +92,9 @@
     .hero .bf-subhead--plain{font-family:'Satoshi',system-ui,sans-serif;font-style:normal;font-weight:500;color:#26262f;letter-spacing:-0.02em;margin-top:14px}
 
     /* why now */
-    .bf-why{background:#191923;color:#fff;border-radius:40px;margin:0 16px;padding:80px 24px}
+    .bf-why{background:linear-gradient(120deg,#4600b8 0%,#5500dd 45%,#8a2be2 100%);color:#fff;border-radius:40px;margin:0 16px;padding:80px 24px}
     .bf-why .bf-h2{color:#fff}
-    .bf-why .bf-lede{color:rgba(255,255,255,0.68);font-size:19px;max-width:700px}
+    .bf-why .bf-lede{color:rgba(255,255,255,0.88);font-size:19px;max-width:700px}
     .bf-why .bf-lede + .bf-lede{margin-top:16px}
 
     /* what you get */
@@ -174,11 +174,11 @@
     .bf-price .amt sup{font-size:.45em;vertical-align:top;position:relative;top:.15em;margin-left:2px;letter-spacing:0}
     .bf-fit{text-align:center;font-family:'Satoshi',system-ui,sans-serif;font-weight:800;font-size:16px;color:#5500dd;margin:0 auto 28px}
     .bf-tiers-note{text-align:center;font-size:15px;font-weight:700;color:#5500dd;margin:22px auto 0}
-    .bf-quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:1000px;margin:0 auto;align-items:start}
-    .bf-quote{margin:0;background:#fff;border-radius:22px;padding:30px 30px 26px;border:1px solid rgba(0,0,0,0.06)}
+    .bf-quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;max-width:1000px;margin:0 auto;align-items:stretch}
+    .bf-quote{margin:0;background:#fff;border-radius:22px;padding:30px 30px 26px;border:1px solid rgba(0,0,0,0.06);display:flex;flex-direction:column}
     .bf-quote .stars{color:#f59e0b;font-size:17px;letter-spacing:2px;margin-bottom:14px}
     .bf-quote blockquote{margin:0;font-size:17px;line-height:1.6;font-style:italic;color:#191923}
-    .bf-quote figcaption{display:flex;align-items:center;gap:12px;margin-top:20px;font-size:13px;color:rgba(0,0,0,0.55)}
+    .bf-quote figcaption{display:flex;align-items:center;gap:12px;margin-top:auto;padding-top:20px;font-size:13px;color:rgba(0,0,0,0.55)}
     .bf-quote figcaption strong{display:block;font-size:15px;color:#0d0d0d;font-weight:700}
     .bf-quote figcaption img,.bf-quote-av{width:44px;height:44px;border-radius:50%;flex:none;object-fit:cover}
     .bf-quote-av{background:#191923;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px}
@@ -465,16 +465,16 @@
       </div>
       <p class="testi-sub body" style="margin-top:16px; opacity:0; transform:translateY(20px); transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1) 1s, transform 0.8s cubic-bezier(0.16,1,0.3,1) 1s; color:rgba(0,0,0,0.6);">What clients say about our ads, and what they got.</p>
     </div>
-      <!-- Only reviews about our ad and creative work, quoted word for word (3D AI Studio is an excerpt, marked with an ellipsis). -->
+      <!-- Only reviews about our ad and creative work, quoted word for word (3D AI Studio is two sentences from Jan's review; the Reddit sentence between them is left out). -->
       <div class="bf-quotes">
         <figure class="bf-quote">
           <div class="stars">★★★★★</div>
           <blockquote>"Great news - our creative team was thoroughly impressed with your work. Looking forward to a long-term partnership."</blockquote>
-          <figcaption><span class="bf-quote-av" aria-hidden="true">P</span><span><strong>Head of Partnerships</strong>Publicis</span></figcaption>
+          <figcaption><span class="bf-quote-av" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span><span><strong>Head of Partnerships</strong>Global ad agency, name kept confidential</span></figcaption>
         </figure>
         <figure class="bf-quote">
           <div class="stars">★★★★★</div>
-          <blockquote>"Skip the Noise was great to work with and did a really strong job on our ads. … We would definitely recommend them to anyone looking for help with ads, creatives, and campaign testing."</blockquote>
+          <blockquote>"Skip the Noise was great to work with and did a really strong job on our ads. We would definitely recommend them to anyone looking for help with ads, creatives, and campaign testing."</blockquote>
           <figcaption><img src="/assets/janh.webp" alt="" width="44" height="44" loading="lazy"><span><strong>Jan H.</strong>CEO · 3D AI Studio</span></figcaption>
         </figure>
       </div>
@@ -801,7 +801,10 @@
       if (window.dataLayer) window.dataLayer.push({ event: 'booking_confirmed', source: 'black_friday_page', event_id: eid });
       try { localStorage.removeItem('bf_answers'); } catch (e) {}
       /* VSL funnel: send them to the confirmation page. Short delay so the pixel and dataLayer events go out first. */
-      setTimeout(function () { window.location.href = '/black-friday-booked'; }, 800);
+      var pick = function (k) { return d[k] || (d.booking && d.booking[k]) || (d.confirmedBooking && d.confirmedBooking[k]) || ''; };
+      var st = pick('startTime'), en = pick('endTime'), qs = '';
+      if (st && !isNaN(new Date(st))) qs = '?start=' + encodeURIComponent(st) + (en && !isNaN(new Date(en)) ? '&end=' + encodeURIComponent(en) : '');
+      setTimeout(function () { window.location.href = '/black-friday-booked' + qs; }, 800);
     } });
   }
   function unlockCal() {
