@@ -163,7 +163,7 @@ img{max-width:100%;height:auto}
 
 <script>
 (function () {
-  var VSL_SRC = '';   // e.g. 'https://player.vimeo.com/video/123456789' or 'https://www.loom.com/embed/abc' or '/assets/bf-vsl.mp4'
+  var VSL_SRC = 'https://www.tella.tv/video/vid_cmv5wca8l000406mx49f8b864/embed?b=0&title=0&a=0&loop=0&t=0&muted=0&wt=0';   // Tella post-booking video (Oct 13). Swap for any embed link or an .mp4
 
   var box = document.getElementById('bkVsl'), lede = document.getElementById('bkLede');
   if (VSL_SRC) {
@@ -175,7 +175,7 @@ img{max-width:100%;height:auto}
     box.hidden = false;
     if (window.dataLayer) window.dataLayer.push({ event: 'bf_vsl_shown', source: 'black_friday_booked' });
   } else {
-    lede.textContent = 'The calendar invite is on its way to your inbox. Here's what to have ready, so we can get straight into it.';
+    lede.textContent = 'The calendar invite is on its way to your inbox. Here’s what to have ready, so we can get straight into it.';
   }
 
   var BF = new Date(2026, 10, 27), today = new Date(); today.setHours(0, 0, 0, 0);
