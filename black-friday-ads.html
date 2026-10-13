@@ -188,6 +188,13 @@
     .bf-result p{margin:10px 0 12px;font-size:15.5px;line-height:1.5;color:rgba(255,255,255,0.8)}
     .bf-result .who{font-size:13px;font-weight:700;color:#c4a3ff}
     @media (max-width:760px){.bf-quotes,.bf-results{grid-template-columns:1fr}}
+    /* Video gallery: 9:16 AI UGC cards. Loops play silently when on screen; "Play with sound" swaps in the full ad. */
+    .bf-gallery.bf-gallery--vid{columns:auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:820px}
+    .bf-ad--vid{position:relative;margin:0}
+    .bf-ad--vid video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:#111}
+    .bf-ad-play{position:absolute;left:12px;top:12px;z-index:2;border:0;border-radius:100px;background:rgba(13,13,20,.72);color:#fff;font-family:'Satoshi',system-ui,sans-serif;font-size:13px;font-weight:700;padding:8px 13px;cursor:pointer}
+    .bf-ad-play:hover{background:#5500dd}
+    .hero .hero-marquee-img.bf-ugc-thumb{width:124px;height:220px;object-fit:cover}
     .bf-tiers--one{grid-template-columns:minmax(0,560px);justify-content:center}
     .bf-price .bf-off{font-family:'Satoshi',system-ui,sans-serif;font-size:19px;font-weight:800;color:#c4a3ff;margin:10px 0 0}
     .bf-guar{position:relative;display:flex;gap:12px;align-items:flex-start;margin-top:24px;padding-top:22px}
@@ -223,6 +230,7 @@
       .bf-gallery{columns:auto;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:32px -16px 0;padding:0 16px 6px;scrollbar-width:none;align-items:flex-start}
       .bf-gallery::-webkit-scrollbar{display:none}
       .bf-ad{flex:0 0 74%;margin:0;scroll-snap-align:center}
+      .bf-gallery.bf-gallery--vid{display:flex;max-width:none}
     }
 
     /* application form */
@@ -324,30 +332,30 @@
 
     <div class="hero-marquee-wrap">
       <div class="hero-marquee-track">
-        <img alt="" loading="eager" src="/assets/ad-storykeeper-moms-memoir.webp" class="hero-marquee-img hero-marquee-img--sq">
-        <img alt="" loading="eager" src="/assets/ad-noirvere-valentines.webp" class="hero-marquee-img">
-        <img alt="" loading="eager" src="/assets/ad-kf-bestsellers.webp" class="hero-marquee-img">
-        <img alt="" loading="eager" src="/assets/ad-tinyprotectors-yoga-mat-1.webp" class="hero-marquee-img hero-marquee-img--sq">
-        <img alt="" loading="eager" src="/assets/ad-storykeeper-momoir-steps.webp" class="hero-marquee-img hero-marquee-img--sq">
-        <img alt="" loading="eager" src="/assets/ad-noirvere-citytote.webp" class="hero-marquee-img">
-        <img alt="" loading="eager" src="/assets/ad-kf-retinol-serum.webp" class="hero-marquee-img">
-        <img alt="" loading="eager" src="/assets/ad-storykeeper-hardcover.webp" class="hero-marquee-img hero-marquee-img--sq">
-        <img alt="" loading="eager" src="/assets/ad-kf-neroli-mist.webp" class="hero-marquee-img">
-        <img alt="" loading="eager" src="/assets/ad-noirvere-poster.webp" class="hero-marquee-img">
-        <img alt="" loading="eager" src="/assets/ad-storykeeper-canada.webp" class="hero-marquee-img">
-        <img alt="" loading="eager" src="/assets/ad-kf-eye-creme.webp" class="hero-marquee-img">
-        <img alt="" loading="lazy" src="/assets/ad-storykeeper-moms-memoir.webp" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
-        <img alt="" loading="lazy" src="/assets/ad-noirvere-valentines.webp" class="hero-marquee-img" aria-hidden="true">
-        <img alt="" loading="lazy" src="/assets/ad-kf-bestsellers.webp" class="hero-marquee-img" aria-hidden="true">
-        <img alt="" loading="lazy" src="/assets/ad-tinyprotectors-yoga-mat-1.webp" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
-        <img alt="" loading="lazy" src="/assets/ad-storykeeper-momoir-steps.webp" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
-        <img alt="" loading="lazy" src="/assets/ad-noirvere-citytote.webp" class="hero-marquee-img" aria-hidden="true">
-        <img alt="" loading="lazy" src="/assets/ad-kf-retinol-serum.webp" class="hero-marquee-img" aria-hidden="true">
-        <img alt="" loading="lazy" src="/assets/ad-storykeeper-hardcover.webp" class="hero-marquee-img hero-marquee-img--sq" aria-hidden="true">
-        <img alt="" loading="lazy" src="/assets/ad-kf-neroli-mist.webp" class="hero-marquee-img" aria-hidden="true">
-        <img alt="" loading="lazy" src="/assets/ad-noirvere-poster.webp" class="hero-marquee-img" aria-hidden="true">
-        <img alt="" loading="lazy" src="/assets/ad-storykeeper-canada.webp" class="hero-marquee-img" aria-hidden="true">
-        <img alt="" loading="lazy" src="/assets/ad-kf-eye-creme.webp" class="hero-marquee-img" aria-hidden="true">
+        <img alt="" loading="eager" src="/assets/bf-ugc/larine.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" loading="eager" src="/assets/bf-ugc/jeans.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" loading="eager" src="/assets/bf-ugc/plants.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" loading="eager" src="/assets/bf-ugc/chicken.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" loading="eager" src="/assets/bf-ugc/supplement.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" loading="eager" src="/assets/bf-ugc/patch.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" loading="lazy" src="/assets/bf-ugc/larine.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" loading="lazy" src="/assets/bf-ugc/jeans.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" loading="lazy" src="/assets/bf-ugc/plants.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" loading="lazy" src="/assets/bf-ugc/chicken.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" loading="lazy" src="/assets/bf-ugc/supplement.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" loading="lazy" src="/assets/bf-ugc/patch.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" aria-hidden="true" loading="lazy" src="/assets/bf-ugc/larine.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" aria-hidden="true" loading="lazy" src="/assets/bf-ugc/jeans.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" aria-hidden="true" loading="lazy" src="/assets/bf-ugc/plants.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" aria-hidden="true" loading="lazy" src="/assets/bf-ugc/chicken.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" aria-hidden="true" loading="lazy" src="/assets/bf-ugc/supplement.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" aria-hidden="true" loading="lazy" src="/assets/bf-ugc/patch.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" aria-hidden="true" loading="lazy" src="/assets/bf-ugc/larine.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" aria-hidden="true" loading="lazy" src="/assets/bf-ugc/jeans.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" aria-hidden="true" loading="lazy" src="/assets/bf-ugc/plants.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" aria-hidden="true" loading="lazy" src="/assets/bf-ugc/chicken.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" aria-hidden="true" loading="lazy" src="/assets/bf-ugc/supplement.jpg" class="hero-marquee-img bf-ugc-thumb">
+        <img alt="" aria-hidden="true" loading="lazy" src="/assets/bf-ugc/patch.jpg" class="hero-marquee-img bf-ugc-thumb">
       </div>
     </div>
   </div>
@@ -416,17 +424,67 @@
 <!-- REAL ADS -->
 <section class="bf-sec" id="ads" style="background:#fafafa;" aria-labelledby="ads-h">
   <div class="bf-wrap">
-    <h2 class="bf-h2" id="ads-h" data-anim="up"><span class="b">Ads we've made </span><span class="i">for ecommerce brands.</span></h2>
-    <div class="bf-gallery">
-      <figure class="bf-ad"><img src="/assets/ad-storykeeper-moms-memoir.webp" alt="StoryKeeper ad, Mother's Day, order 1 get 2" loading="lazy"><figcaption><strong>StoryKeeper</strong> <span>Mother's Day, order 1 get 2</span></figcaption></figure>
-      <figure class="bf-ad"><img src="/assets/ad-noirvere-valentines.webp" alt="Noirvere ad, Valentine's sale" loading="lazy"><figcaption><strong>Noirvere</strong> <span>Valentine's sale</span></figcaption></figure>
-      <figure class="bf-ad"><img src="/assets/ad-kf-bestsellers.webp" alt="Kerstin Florian ad, Bestsellers, limited time" loading="lazy"><figcaption><strong>Kerstin Florian</strong> <span>Bestsellers, limited time</span></figcaption></figure>
-      <figure class="bf-ad"><img src="/assets/ad-tinyprotectors-yoga-mat-1.webp" alt="Tiny Protectors ad, Product features" loading="lazy"><figcaption><strong>Tiny Protectors</strong> <span>Product features</span></figcaption></figure>
-      <figure class="bf-ad"><img src="/assets/ad-noirvere-citytote.webp" alt="Noirvere ad, Last day of the sale" loading="lazy"><figcaption><strong>Noirvere</strong> <span>Last day of the sale</span></figcaption></figure>
-      <figure class="bf-ad"><img src="/assets/ad-storykeeper-hardcover.webp" alt="StoryKeeper ad, The finished gift" loading="lazy"><figcaption><strong>StoryKeeper</strong> <span>The finished gift</span></figcaption></figure>
+    <h2 class="bf-h2" id="ads-h" data-anim="up"><span class="b">AI UGC ads </span><span class="i">by our team.</span></h2>
+    <div class="bf-gallery bf-gallery--vid">
+      <figure class="bf-ad bf-ad--vid" data-full="/assets/bf-ugc/larine.mp4">
+        <video class="bf-ad-v" muted loop playsinline preload="none" poster="/assets/bf-ugc/larine.jpg" data-src="/assets/bf-ugc/larine-loop.mp4" aria-label="AI UGC ad: car-selfie ugc, oral care"></video>
+        <button class="bf-ad-play" type="button">&#9654; Play with sound</button>
+        <figcaption><strong>Car-selfie UGC</strong> <span>Oral care</span></figcaption>
+      </figure>
+      <figure class="bf-ad bf-ad--vid" data-full="/assets/bf-ugc/jeans.mp4">
+        <video class="bf-ad-v" muted loop playsinline preload="none" poster="/assets/bf-ugc/jeans.jpg" data-src="/assets/bf-ugc/jeans-loop.mp4" aria-label="AI UGC ad: split-screen demo, apparel"></video>
+        <button class="bf-ad-play" type="button">&#9654; Play with sound</button>
+        <figcaption><strong>Split-screen demo</strong> <span>Apparel</span></figcaption>
+      </figure>
+      <figure class="bf-ad bf-ad--vid" data-full="/assets/bf-ugc/plants.mp4">
+        <video class="bf-ad-v" muted loop playsinline preload="none" poster="/assets/bf-ugc/plants.jpg" data-src="/assets/bf-ugc/plants-loop.mp4" aria-label="AI UGC ad: skeptic to believer, home decor"></video>
+        <button class="bf-ad-play" type="button">&#9654; Play with sound</button>
+        <figcaption><strong>Skeptic to believer</strong> <span>Home decor</span></figcaption>
+      </figure>
+      <figure class="bf-ad bf-ad--vid" data-full="/assets/bf-ugc/chicken.mp4">
+        <video class="bf-ad-v" muted loop playsinline preload="none" poster="/assets/bf-ugc/chicken.jpg" data-src="/assets/bf-ugc/chicken-loop.mp4" aria-label="AI UGC ad: skeptic hook, food"></video>
+        <button class="bf-ad-play" type="button">&#9654; Play with sound</button>
+        <figcaption><strong>Skeptic hook</strong> <span>Food</span></figcaption>
+      </figure>
+      <figure class="bf-ad bf-ad--vid">
+        <video class="bf-ad-v" muted loop playsinline preload="none" poster="/assets/bf-ugc/supplement.jpg" data-src="/assets/bf-ugc/supplement-loop.mp4" aria-label="AI UGC ad: product ugc, supplements"></video>
+        <figcaption><strong>Product UGC</strong> <span>Supplements</span></figcaption>
+      </figure>
+      <figure class="bf-ad bf-ad--vid" data-full="/assets/bf-ugc/patch.mp4">
+        <video class="bf-ad-v" muted loop playsinline preload="none" poster="/assets/bf-ugc/patch.jpg" data-src="/assets/bf-ugc/patch-loop.mp4" aria-label="AI UGC ad: ugc with animated b-roll, supplements"></video>
+        <button class="bf-ad-play" type="button">&#9654; Play with sound</button>
+        <figcaption><strong>UGC with animated b-roll</strong> <span>Supplements</span></figcaption>
+      </figure>
     </div>
   </div>
 </section>
+
+<script>
+(function () {
+  var cards = [].slice.call(document.querySelectorAll('.bf-ad--vid'));
+  if (!cards.length) return;
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function loopOn(v) { if (!v.src) v.src = v.dataset.src; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  if ('IntersectionObserver' in window && !still) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { var v = e.target; if (v.dataset.full === '1') return; if (e.isIntersecting) loopOn(v); else v.pause(); });
+    }, { threshold: 0.35 });
+    cards.forEach(function (c) { io.observe(c.querySelector('video')); });
+  }
+  cards.forEach(function (c) {
+    var b = c.querySelector('.bf-ad-play'), v = c.querySelector('video');
+    if (!b) return;
+    b.addEventListener('click', function () {
+      cards.forEach(function (o) { var ov = o.querySelector('video'); if (o !== c && ov.dataset.full === '1') ov.pause(); });
+      v.dataset.full = '1'; v.loop = false; v.muted = false; v.controls = true; v.src = c.dataset.full;
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+      b.hidden = true;
+      if (window.dataLayer) window.dataLayer.push({ event: 'bf_ugc_ad_play', source: 'black_friday_page', ad: c.dataset.full.split('/').pop() });
+    });
+  });
+})();
+</script>
+
 
 <!-- WHY NOW -->
 <section class="bf-why" aria-labelledby="why-h">
