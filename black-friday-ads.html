@@ -76,6 +76,19 @@
     .hero .hero-headline-bold{white-space:normal;text-wrap:balance}
     .hero .bf-subhead{font-size:max(21px,.5em);line-height:1.2;letter-spacing:-0.03em;margin-top:4px;text-wrap:balance}
     .hero .bf-subhead em{font-weight:800!important}
+    /* Qualify buttons: on desktop hover the label flips to who it's for. Both labels share one grid cell, so the button never changes size. */
+    .bf-cta-swap{display:inline-grid!important;place-items:center}
+    .bf-price a.bf-cta-swap{display:grid!important}
+    .bf-cta-swap>span{grid-area:1/1;transition:opacity .22s ease,transform .22s ease}
+    .bf-cta-swap .b{opacity:0;transform:translateY(8px)}
+    @media (hover:hover) and (pointer:fine){
+      .bf-cta-swap:hover .a{opacity:0;transform:translateY(-8px)}
+      .bf-cta-swap:hover .b{opacity:1;transform:none}
+    }
+    /* Phones have no hover, so the same line shows under the hero button instead. */
+    .bf-cta-note{display:none;margin:12px 0 0;font-size:13.5px;color:#6b7280;text-align:center}
+    @media (hover:none){.bf-cta-note{display:block}.bf-cta-swap .b{display:none}}
+    .hero .bf-accent{background:linear-gradient(90deg,#5500dd,#e0245e);-webkit-background-clip:text;background-clip:text;color:transparent}
     .hero .bf-subhead--plain{font-family:'Satoshi',system-ui,sans-serif;font-style:normal;font-weight:500;color:#26262f;letter-spacing:-0.02em;margin-top:14px}
 
     /* why now */
@@ -297,14 +310,15 @@
     <div class="container hero-center">
 
       <h1 class="hero-headline">
-        <span class="hero-headline-bold" data-hero data-delay="2">Lower your cost per purchase by 20% in 30 days with AI UGC ads</span>
+        <span class="hero-headline-bold" data-hero data-delay="2">Lower your cost per purchase <span class="bf-accent">by 20% in 30 days</span> with AI UGC ads</span>
         <span class="hero-headline-italic bf-subhead bf-subhead--plain" data-hero data-delay="4">6 new video ads in 7 days. Beat your current winners, or get 50% back.</span>
       </h1>
 
       <div data-anim="up" data-hero data-delay="6" style="display:flex; align-items:center; gap:20px; flex-wrap:wrap; justify-content:center;">
-        <a href="#book" style="display:inline-block; background:#5500DD; color:white; font-size:17px; font-weight:700; padding:17px 40px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s; box-shadow:0 10px 28px -10px rgba(85,0,221,0.55);" onmouseover="this.style.opacity='0.88'" onmouseout="this.style.opacity='1'">See if you qualify</a>
+        <a href="#book" class="bf-cta-swap" style="background:#5500DD; color:white; font-size:17px; font-weight:700; padding:17px 40px; border-radius:100px; text-decoration:none; white-space:nowrap; box-shadow:0 10px 28px -10px rgba(85,0,221,0.55);"><span class="a">See if you qualify</span><span class="b" aria-hidden="true">For brands spending $10K+/mo</span></a>
         <a href="#ads" style="font-size:16px; font-weight:600; color:#6b7280; text-decoration:underline; text-underline-offset:3px; white-space:nowrap;">See the ads &rarr;</a>
       </div>
+      <p class="bf-cta-note" data-hero data-delay="6">For ecommerce brands spending $10K+ a month on ads</p>
 
     </div>
 
@@ -502,7 +516,7 @@
           <li>Sized for Meta and TikTok vertical format</li>
           <li>You keep the ads</li>
         </ul>
-        <a href="#book">See if you qualify</a>
+        <a href="#book" class="bf-cta-swap"><span class="a">See if you qualify</span><span class="b" aria-hidden="true">For brands spending $10K+/mo</span></a>
         <div class="bf-guar">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c4a3ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
           <p><strong>50% money-back guarantee</strong>If our ads aren't at least 20% cheaper per purchase than your current winners within 30 days, you get half your money back. <a href="/black-friday-guarantee">See terms</a></p>
@@ -1303,8 +1317,9 @@ fbq('track', 'PageView');
 document.querySelectorAll('a[href="#book"]').forEach(function(btn) {
   btn.addEventListener('click', function() {
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({event: 'lead', cta_text: this.textContent.trim().slice(0,50), cta_page: 'homepage'});
-    fbq('trackCustom', 'CTAClick', {cta_text: this.textContent.trim().slice(0,50), cta_page: 'homepage'});
+    var label = (this.querySelector('.a') || this).textContent.trim().slice(0,50);
+    window.dataLayer.push({event: 'lead', cta_text: label, cta_page: 'homepage'});
+    fbq('trackCustom', 'CTAClick', {cta_text: label, cta_page: 'homepage'});
   });
 });
 
