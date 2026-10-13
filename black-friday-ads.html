@@ -368,6 +368,36 @@
 })();
 </script>
 
+<!-- VSL watch tracking. Tella's iframe posts playbackState + timeUpdate messages.
+     Fires Meta custom events VSL_Play, VSL_25, VSL_50, VSL_75, VSL_95 (once each per visit) and matching
+     dataLayer events. Counts seconds actually watched, so dragging to the end doesn't count as a full watch. -->
+<script>
+(function () {
+  var MARKS = [25, 50, 75, 95], sent = {}, watched = 0, last = null, dur = 0, played = false;
+  function fire(name, extra) {
+    var data = Object.assign({ video: 'bf_vsl' }, extra || {});
+    if (typeof fbq !== 'undefined') fbq('trackCustom', name, data);
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push(Object.assign({ event: 'bf_' + name.toLowerCase(), source: 'black_friday_page' }, data));
+  }
+  window.addEventListener('message', function (e) {
+    if (!/^https:\/\/(www\.)?tella\.tv$/.test(e.origin)) return;
+    var d = e.data;
+    if (typeof d === 'string') { try { d = JSON.parse(d); } catch (_) { return; } }
+    if (!d || !d.type) return;
+    if (d.type === 'playbackState' && d.state === 'playing' && !played) { played = true; fire('VSL_Play'); }
+    if (d.type !== 'timeUpdate') return;
+    if (d.duration) dur = d.duration;
+    var t = Number(d.currentTime) || 0;
+    if (last !== null && t > last && t - last < 2) watched += t - last;
+    last = t;
+    if (!dur) return;
+    var pct = watched / dur * 100;
+    MARKS.forEach(function (m) { if (pct >= m && !sent[m]) { sent[m] = true; fire('VSL_' + m, { percent: m }); } });
+  });
+})();
+</script>
+
 <!-- REAL ADS -->
 <section class="bf-sec" id="ads" style="background:#fafafa;" aria-labelledby="ads-h">
   <div class="bf-wrap">
