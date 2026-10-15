@@ -1,15 +1,15 @@
 /* Black Friday promo: slide-in card (desktop) / slim bottom bar (phones) pointing to /black-friday-ads.
- * Include with <script src="/assets/bf-promo.js" defer></script> on pages with ecommerce visitors.
- * Shows after 6s or 30% scroll, once per visit; a close hides it for 7 days. Switches itself off after Black Friday.
+ * Include with <script src="/assets/stn-bf.js" defer></script> on pages with ecommerce visitors.
+ * (Named without "promo" so ad blockers don't hide it.)
+ * Shows 1s after every page load until closed; a close hides it for 7 days. Switches itself off after Black Friday.
  */
 (function () {
   var END = new Date(2026, 10, 28);                       // the day after Black Friday 2026
-  var KEY = 'stn_bf_promo_closed';
+  var KEY = 'stn_bf_closed';
   var path = location.pathname;
   if (new Date() >= END) return;
   if (/^\/(black-friday|quiz|thank-you)/.test(path)) return;
   try { var closed = Number(localStorage.getItem(KEY) || 0); if (closed && Date.now() - closed < 7 * 864e5) return; } catch (e) {}
-  try { if (sessionStorage.getItem(KEY + '_seen')) return; } catch (e) {}
 
   var page = path.replace(/^\/|\.html$/g, '') || 'home';
   var href = '/black-friday-ads?utm_source=site&utm_medium=promo&utm_campaign=black_friday&utm_content=' + encodeURIComponent(page);
@@ -59,7 +59,7 @@
       '<div class="bfp-body">' +
         '<p class="bfp-tag">Black Friday offer</p>' +
         '<p class="bfp-title">Lower your cost per purchase <span>by 20% in 30 days</span></p>' +
-        '<p class="bfp-sub">6 AI UGC video ads in 7 days. Beat your current winners, or get 50% back.</p>' +
+        '<p class="bfp-sub">18 AI UGC videos in 7 days (6 ads, 3 hooks each). Beat your current winners, or get 50% back.</p>' +
         '<a class="bfp-cta" href="' + href + '">See the offer &rarr;</a>' +
         '<p class="bfp-fit">For brands spending $10K+/mo</p>' +
       '</div>' +
@@ -67,7 +67,6 @@
       '<button class="bfp-x" type="button" aria-label="Close">&times;</button>';
     document.body.appendChild(el);
     requestAnimationFrame(function () { requestAnimationFrame(function () { el.classList.add('on'); }); });
-    try { sessionStorage.setItem(KEY + '_seen', '1'); } catch (e) {}
     track('bf_promo_shown');
 
     [].forEach.call(el.querySelectorAll('.bfp-cta, .bfp-bar'), function (a) { a.addEventListener('click', function () { track('bf_promo_click'); }); });
@@ -83,5 +82,5 @@
   function maybe() { if (shown) return; shown = true; window.removeEventListener('scroll', onScroll); build(); }
   function onScroll() { var h = document.documentElement; if ((h.scrollTop || document.body.scrollTop) / Math.max(1, h.scrollHeight - h.clientHeight) > 0.3) maybe(); }
   window.addEventListener('scroll', onScroll, { passive: true });
-  setTimeout(maybe, 6000);
+  setTimeout(maybe, 1000);
 })();
