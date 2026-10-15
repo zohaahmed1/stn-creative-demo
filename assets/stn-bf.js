@@ -59,7 +59,7 @@
       '<div class="bfp-body">' +
         '<p class="bfp-tag">Black Friday offer</p>' +
         '<p class="bfp-title">Lower your cost per purchase <span>by 20% in 30 days</span></p>' +
-        '<p class="bfp-sub">18 AI UGC videos in 7 days (6 ads, 3 hooks each). Beat your current winners, or get 50% back.</p>' +
+        '<p class="bfp-sub">18 AI UGC videos in 7 days. Beat your current winners, or get 50% back.</p>' +
         '<a class="bfp-cta" href="' + href + '">See the offer &rarr;</a>' +
         '<p class="bfp-fit">For brands spending $10K+/mo</p>' +
       '</div>' +
