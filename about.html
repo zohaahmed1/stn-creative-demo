@@ -346,6 +346,17 @@ img{max-width:100%;height:auto}
       .author-links { justify-content: center; }
     }
 
+    /* About page: every block shares one column (880px, 24px gutters) so all left edges line up */
+    .author-hero{padding:120px 0 64px}
+    .author-hero-inner,.author-stats,.author-section,.author-cta{max-width:880px;margin-left:auto;margin-right:auto;box-sizing:border-box}
+    .author-hero-inner{display:block;padding:0 24px}
+    .author-stats{padding:48px 24px;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
+    .author-stat-box{padding:22px 18px;text-align:left}
+    .author-stat-num{font-size:32px;margin-bottom:8px}
+    .author-stat-label{font-size:14px;line-height:1.45;display:block}
+    .author-section{padding:0 24px 56px}
+    .author-divider{max-width:832px;width:calc(100% - 48px);padding:0;margin:0 auto 48px;box-sizing:border-box}
+    .author-name{font-size:clamp(34px,5vw,52px)}
     .about-prose{max-width:720px;font-size:17px;line-height:1.7;color:#333}
     .about-prose p{margin:0 0 14px}
     .about-facts{display:grid;grid-template-columns:minmax(150px,220px) 1fr;gap:10px 24px;margin:0;font-size:16px}
@@ -353,6 +364,16 @@ img{max-width:100%;height:auto}
     .about-facts dd{margin:0;color:#444}
     .about-facts a,.about-prose a{color:#5500dd}
     @media (max-width:600px){.about-facts{grid-template-columns:1fr;gap:2px}.about-facts dd{margin-bottom:12px}}
+    @media (max-width:760px){.author-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media (max-width:600px){
+      .author-hero{padding:104px 0 48px}
+      .author-hero-inner{text-align:left}
+      .author-links{justify-content:flex-start}
+      .author-stats{padding:36px 24px;gap:12px}
+      .author-stat-box{padding:18px 14px}
+      .author-stat-num{font-size:26px}
+      .author-stat-label{font-size:13px}
+    }
   </style>
   <!-- Meta Pixel — hardcoded so PageView fires immediately and does not depend on
        GTM loading. The GTM "Meta_Page View" tag is paused; keeping both sent two
@@ -487,7 +508,6 @@ img{max-width:100%;height:auto}
 <!-- About hero -->
 <section class="author-hero">
   <div class="author-hero-inner">
-    <div class="author-avatar">STN</div>
     <div class="author-info">
       <div class="author-badge">Reddit Certified Partner</div>
       <h1 class="author-name">About Skip the Noise Media</h1>
@@ -506,19 +526,19 @@ img{max-width:100%;height:auto}
 <div class="author-stats">
   <div class="author-stat-box">
     <span class="author-stat-num">$100M+</span>
-    <span class="author-stat-label">In ad spend managed by our team</span>
+    <span class="author-stat-label">Ad spend managed by our team</span>
   </div>
   <div class="author-stat-box">
     <span class="author-stat-num">114%</span>
-    <span class="author-stat-label">Store revenue growth year over year for a gifting brand in Mother's Day week</span>
+    <span class="author-stat-label">Gifting brand revenue in Mother's Day week, year over year</span>
   </div>
   <div class="author-stat-box">
     <span class="author-stat-num">4.3x</span>
-    <span class="author-stat-label">ROAS on TikTok for a European handbag brand</span>
+    <span class="author-stat-label">ROAS on TikTok for a handbag brand</span>
   </div>
   <div class="author-stat-box">
     <span class="author-stat-num">$15</span>
-    <span class="author-stat-label">Per signup for a streaming platform, with CAC down 19%</span>
+    <span class="author-stat-label">Per signup for a streaming platform</span>
   </div>
 </div>
 
