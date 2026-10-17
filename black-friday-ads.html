@@ -272,6 +272,12 @@
     .bf-app input:focus{outline:none;border-color:#5500dd;box-shadow:0 0 0 3px rgba(85,0,221,0.14)}
     .bf-field{display:block;font-size:14px;font-weight:700;color:rgba(0,0,0,0.6);margin-bottom:14px}
     .bf-field input{margin-top:7px}
+    .bf-phone{display:flex;gap:8px;margin-top:7px}
+    .bf-phone input[type=tel]{margin-top:0;flex:1;min-width:0}
+    .bf-cc{position:relative;flex:0 0 auto;display:flex;align-items:center;gap:8px;padding:0 12px 0 14px;border:1.5px solid rgba(0,0,0,0.14);border-radius:12px;background:#fff;font-size:17px;font-weight:500;color:#0d0d0d;white-space:nowrap}
+    .bf-cc::after{content:'';width:6px;height:6px;border-right:1.5px solid rgba(0,0,0,0.45);border-bottom:1.5px solid rgba(0,0,0,0.45);transform:translateY(-2px) rotate(45deg)}
+    .bf-cc select{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer;font-size:16px}
+    .bf-cc:focus-within{border-color:#5500dd;box-shadow:0 0 0 3px rgba(85,0,221,0.14)}
     .bf-opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
     .bf-opts button{font:inherit;font-size:15.5px;font-weight:700;text-align:left;padding:15px 16px;border:1.5px solid rgba(0,0,0,0.12);border-radius:12px;background:#fff;color:#191923;cursor:pointer;transition:border-color .15s,background .15s;min-height:52px}
     .bf-opts button:hover{border-color:rgba(85,0,221,0.45)}
@@ -630,7 +636,12 @@
         <legend>First, where can we reach you?</legend>
         <label class="bf-field">Your name<input type="text" name="name" autocomplete="name" required></label>
         <label class="bf-field">Email<input type="email" name="email" autocomplete="email" inputmode="email" required></label>
-        <label class="bf-field">Phone<input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="+1 416 555 0199" required></label>
+        <div class="bf-field"><span id="bfPhoneLbl">Phone</span>
+          <div class="bf-phone">
+            <span class="bf-cc"><span id="bfCcShow" aria-hidden="true">+1</span><select id="bfCc" aria-label="Country code"></select></span>
+            <input type="tel" name="phone" aria-labelledby="bfPhoneLbl" autocomplete="tel-national" inputmode="tel" placeholder="With area code" required>
+          </div>
+        </div>
         <p class="bf-err" hidden>Add your name, a valid email and a phone number with the area code.</p>
         <button type="button" class="bf-next" id="bfContactNext">Next</button>
       </fieldset>
@@ -837,22 +848,80 @@
     mailbox_invalid: 'That mailbox doesn’t exist. Check the spelling?',
     mailbox_disposable: 'Please use your real email, not a temporary one.'
   };
-  var PHONE_MSG = 'That phone number doesn’t look right. Include the area code, or start with + and your country code.';
+  var PHONE_MSG = 'That phone number doesn’t look right. Check the country code on the left and include the area code.';
   var checked = {}, phoneLib = null;
   function withTimeout(p, ms, fallback) { return Promise.race([p, new Promise(function (r) { setTimeout(function () { r(fallback); }, ms); })]); }
   function loadPhoneLib() {
     if (!phoneLib) phoneLib = new Promise(function (res) {
-      if (window.libphonenumber) return res(window.libphonenumber);
+      if (window.libphonenumber) { useLib(window.libphonenumber); return res(window.libphonenumber); }
       var s = document.createElement('script');
       s.src = 'https://cdn.jsdelivr.net/npm/libphonenumber-js@1.13.13/bundle/libphonenumber-min.js';
       s.async = true;
-      s.onload = function () { res(window.libphonenumber || null); };
+      s.onload = function () { var lib = window.libphonenumber || null; useLib(lib); res(lib); };
       s.onerror = function () { res(null); };
       document.head.appendChild(s);
     });
     return phoneLib;
   }
   steps[0].addEventListener('focusin', loadPhoneLib); // fetch it while they type
+  if ('IntersectionObserver' in window) {
+    var near = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { loadPhoneLib(); near.disconnect(); } }, { rootMargin: '600px' });
+    near.observe(form);
+  }
+
+  /* Country code picker on the left of the phone field. Starts on the visitor's
+     country (Cloudflare's /cdn-cgi/trace, then the browser language). A number typed
+     with a leading + wins over the picker. Shows the common markets until the phone
+     library loads, then every country. */
+  var cc = document.getElementById('bfCc'), ccShow = document.getElementById('bfCcShow'), wanted = null;
+  var DIAL = { US: '1', CA: '1', GB: '44', AU: '61', NZ: '64', IE: '353', DE: '49', FR: '33', NL: '31', BE: '32', ES: '34', IT: '39',
+    SE: '46', NO: '47', DK: '45', FI: '358', CH: '41', AT: '43', PL: '48', PT: '351', AE: '971', SA: '966', IL: '972', IN: '91',
+    PK: '92', SG: '65', HK: '852', JP: '81', KR: '82', PH: '63', MY: '60', ZA: '27', MX: '52', BR: '55' };
+  var TOP = ['US', 'CA', 'GB', 'AU'];
+  var regionName = (function () {
+    try { var dn = new Intl.DisplayNames(['en'], { type: 'region' }); return function (c) { return dn.of(c) || c; }; }
+    catch (e) { return function (c) { return c; }; }
+  })();
+  function flagOf(c) { try { return c.replace(/./g, function (ch) { return String.fromCodePoint(127397 + ch.charCodeAt(0)); }); } catch (e) { return c; } }
+  function setCountry(c) {
+    if (!c || !cc.querySelector('option[value="' + c + '"]')) { if (c) wanted = c; c = cc.value || 'US'; }
+    else wanted = null;
+    cc.value = c;
+    var o = cc.options[cc.selectedIndex];
+    ccShow.textContent = flagOf(c) + ' +' + (o ? o.dataset.dial : '1');
+  }
+  function fillCountries(dial) {
+    var cur = wanted || cc.value || 'US';
+    var rest = Object.keys(dial).filter(function (c) { return TOP.indexOf(c) < 0; })
+      .sort(function (a, b) { return regionName(a).localeCompare(regionName(b)); });
+    cc.innerHTML = '';
+    TOP.concat(rest).forEach(function (c) {
+      if (!dial[c]) return;
+      var o = document.createElement('option'); o.value = c; o.dataset.dial = dial[c];
+      o.textContent = regionName(c) + ' +' + dial[c]; cc.appendChild(o);
+      if (c === TOP[TOP.length - 1]) { var sep = document.createElement('option'); sep.disabled = true; sep.textContent = '──────────'; cc.appendChild(sep); }
+    });
+    setCountry(cur);
+  }
+  fillCountries(DIAL);
+  if (answers.phone_cc) setCountry(answers.phone_cc);
+  else {
+    var langCc = /-([A-Z]{2})\b/.exec(navigator.language || ''); if (langCc) setCountry(langCc[1]);
+    fetch('/cdn-cgi/trace').then(function (r) { return r.ok ? r.text() : ''; }).then(function (t) {
+      var loc = /^loc=([A-Z]{2})$/m.exec(t || '');
+      if (loc && !answers.phone_cc) setCountry(loc[1]);
+    }).catch(function () {});
+  }
+  cc.addEventListener('change', function () { setCountry(cc.value); answers.phone_cc = cc.value; save(); });
+  function useLib(lib) {
+    if (!lib || !lib.getCountries) return;
+    var dial = {};
+    lib.getCountries().forEach(function (c) { try { dial[c] = lib.getCountryCallingCode(c); } catch (e) {} });
+    fillCountries(dial);
+    // A saved number with its country code goes back into the picker plus the local part.
+    var pi = form.querySelector('input[name=phone]');
+    if (/^\+/.test(pi.value)) { var p0 = parsePhone(lib, pi.value); if (p0 && p0.country) { setCountry(p0.country); pi.value = p0.formatNational(); } }
+  }
   function verifyEmail(email) {
     var key = email.toLowerCase();
     if (checked[key]) return Promise.resolve(checked[key]); // one check per address, not per click
@@ -866,7 +935,6 @@
     try { return lib.parsePhoneNumberFromString(raw, country); }
     catch (e) { try { return lib.parsePhoneNumberFromString(raw); } catch (e2) { return null; } }
   }
-  function localCountry() { var m = /-([A-Z]{2})\b/.exec(navigator.language || ''); return m ? m[1] : 'US'; }
 
   // Step 1: the lead is captured the moment they hand over real contact details.
   var contactBtn = document.getElementById('bfContactNext'), checking = false;
@@ -886,16 +954,21 @@
         track('bf_apply_email_rejected', { reason: v.reason });
         form.querySelector('input[name=email]').focus(); return;
       }
+      var pi = form.querySelector('input[name=phone]'), raw = (answers.phone || '').trim();
       if (lib && lib.parsePhoneNumberFromString) {
-        var ph = parsePhone(lib, answers.phone, v.country || localCountry());
+        var ph = parsePhone(lib, raw, cc.value);
         if (!ph || !ph.isValid()) {
           err.textContent = PHONE_MSG; err.hidden = false;
           track('bf_apply_phone_rejected');
-          form.querySelector('input[name=phone]').focus(); return;
+          pi.focus(); return;
         }
-        // One dialable format, with the country code, for the call and for Cal.
+        // Saved with the country code, in one dialable format, for the call and for Cal.
+        if (ph.country) { setCountry(ph.country); answers.phone_cc = ph.country; }
         answers.phone = ph.formatInternational();
-        form.querySelector('input[name=phone]').value = answers.phone; save();
+        pi.value = ph.formatNational(); save();
+      } else if (raw.charAt(0) !== '+') {
+        // No library: still send it with the picked country code.
+        answers.phone = '+' + cc.options[cc.selectedIndex].dataset.dial + ' ' + raw; save();
       }
       if (!flag('potential')) {
         setFlag('potential'); send('potential'); track('bf_apply_start');
