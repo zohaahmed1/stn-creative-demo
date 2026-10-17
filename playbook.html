@@ -802,6 +802,16 @@ img{max-width:100%;height:auto}
         })
         .then(function(res) {
           if (res.ok) {
+            /* Formspree free keeps 30 days, so keep our own copy (KV + the leads
+               sheet). A beacon survives the redirect on the next line. */
+            try {
+              var v = function(id){ return (pbForm.querySelector(id).value || '').trim(); };
+              navigator.sendBeacon('/api/playbook-lead', JSON.stringify({
+                first: v('#pb-first'), last: v('#pb-last'), email: v('#pb-email'),
+                company: v('#pb-company'), website: v('#pb-url'),
+                utm: location.search.slice(0, 300), page: location.pathname
+              }));
+            } catch (_) {}
             window.location.href = 'playbook-thanks.html';
           } else {
             btn.disabled = false;

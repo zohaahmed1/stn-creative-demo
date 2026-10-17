@@ -7,10 +7,13 @@
  * Sinks, in order of what's configured:
  *   1. LEADS        — KV namespace binding (Settings → Functions → KV bindings)
  *   2. LEAD_WEBHOOK — env var; forwards the lead as JSON (Sheets/Zapier/Make/Slack)
- *   3. console      — always; visible in Cloudflare real-time logs
+ *   3. SHEET_WEBHOOK — "STN Leads" Google Sheet (lib/sheet.js). Same
+ *                     sends as LEAD_WEBHOOK, so the sheet matches the inbox.
+ *   4. console      — always; visible in Cloudflare real-time logs
  */
 
 import { verifyDomain, normaliseDomain } from '../../lib/verify-domain.js';
+import { toSheet } from '../../lib/sheet.js';
 
 async function sha256(value) {
   const bytes = new TextEncoder().encode(String(value).toLowerCase().trim());
@@ -205,7 +208,7 @@ async function mailboxVerdict(env, email) {
   }
 }
 
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ request, env, waitUntil }) {
   // only accept from our own site
   const origin = request.headers.get('Origin') || '';
   const host = new URL(request.url).host;
@@ -370,6 +373,20 @@ export async function onRequestPost({ request, env }) {
       })
     });
   } catch (e) { console.error('Webhook failed', e); }
+
+  // Sheet row for the same sends. Not awaited, so the quiz never waits on it.
+  if (!skipWebhook) {
+    const sheet = toSheet(env, {
+      source: lead.source === 'quiz' ? 'Quiz' : `Quiz (${lead.source})`,
+      status: lead.status,
+      name: [lead.name, lead.last_name].filter(Boolean).join(' '),
+      email: lead.email, company: lead.company, website: lead.site || lead.domain,
+      channels: lead.channels, timing: lead.timing,
+      notes: [lead.arr && `ARR ${lead.arr}`, lead.goal && `Goal: ${lead.goal}`, lead.running && `Running ads: ${lead.running}`].filter(Boolean).join('; '),
+      country: lead.country, page: lead.page, id: lead.ts,
+    });
+    if (waitUntil) waitUntil(sheet); else await sheet;
+  }
 
   // 3. confirmation email to the lead — see sendConfirmation for the no-op contract
   const confirm = await sendConfirmation(env, lead);

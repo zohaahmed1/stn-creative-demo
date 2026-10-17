@@ -22,11 +22,17 @@
  *   1. KV (env.LEADS) if bound. Every kind, keyed bf:<sid>, latest snapshot wins.
  *      No quota. Bind a KV namespace as LEADS in
  *      Cloudflare -> Pages -> Settings -> Functions -> KV bindings.
+ *      Kept 2 years.
  *   2. Formspree (env.LEAD_WEBHOOK, default "Quiz Leads" xyeglebv). Free plan =
  *      50 submissions/month shared with the quiz, so "partial" never goes there,
  *      and nothing goes there without a real email or phone number.
  *      Formshield must stay OFF on that form, or server POSTs land in spam.
+ *   3. The "STN Leads" Google Sheet (env.SHEET_WEBHOOK, see lib/sheet.js).
+ *      Same events as Formspree, one row each, so a lead who stops and then
+ *      submits shows up twice with a different Status.
  */
+
+import { toSheet } from '../../lib/sheet.js';
 
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -44,7 +50,7 @@ const phoneOk = (p) => { const d = String(p || '').replace(/\D/g, ''); return d.
 const QUALIFIED_SPEND = new Set(['10-20k', '20-50k', '50k+']);
 const SPEND_LABEL = { 'under-10k': 'Under $10K', '10-20k': '$10K-$20K', '20-50k': '$20K-$50K', '50k+': '$50K+', 'under-5k': 'Under $5K', '5-20k': '$5K-$20K' };
 
-export async function onRequestPost({ request, env }) {
+export async function onRequestPost({ request, env, waitUntil }) {
   const url = new URL(request.url);
   const origin = request.headers.get('Origin') || '';
   if (origin && !origin.includes(url.host) && !origin.includes('localhost')) {
@@ -82,7 +88,7 @@ export async function onRequestPost({ request, env }) {
   // 1. KV: every event, one record per visitor.
   let stored = false;
   if (env.LEADS) {
-    try { await env.LEADS.put(`bf:${sid}`, JSON.stringify(record), { expirationTtl: 60 * 60 * 24 * 180 }); stored = true; }
+    try { await env.LEADS.put(`bf:${sid}`, JSON.stringify(record), { expirationTtl: 60 * 60 * 24 * 730 }); stored = true; }
     catch (e) { console.error('KV write failed', e); }
   }
 
@@ -125,6 +131,18 @@ export async function onRequestPost({ request, env }) {
       });
       notified = r.ok;
     } catch (e) { console.error('webhook failed', e); }
+
+    // 3. Sheet. Not awaited, so a slow sheet write never holds up the form or Cal.
+    const sheet = toSheet(env, {
+      source: 'Black Friday ads',
+      status: { potential: 'Gave contact details', update: `Stopped at question ${record.step}`, submit: 'Submitted', disqualified: 'Under $10K spend' }[kind],
+      name: answers.name, email: answers.email, phone: answers.phone, website: answers.website,
+      spend: SPEND_LABEL[answers.spend] || '', channels: answers.channels, makers: answers.makers,
+      formats: answers.formats, ongoing: answers.recurring, timing: answers.timing,
+      notes: answers.category ? `Category: ${answers.category}` : '',
+      country: record.country, utm: record.utm, page: record.page, id: sid,
+    });
+    if (waitUntil) waitUntil(sheet); else await sheet;
   }
 
   return json({ ok: true, kind, stored, notified, qualified });
