@@ -639,7 +639,7 @@
         <div class="bf-field"><span id="bfPhoneLbl">Phone</span>
           <div class="bf-phone">
             <span class="bf-cc"><span id="bfCcShow" aria-hidden="true">+1</span><select id="bfCc" aria-label="Country code"></select></span>
-            <input type="tel" name="phone" aria-labelledby="bfPhoneLbl" autocomplete="tel-national" inputmode="tel" placeholder="With area code" required>
+            <input type="tel" name="phone" aria-labelledby="bfPhoneLbl" autocomplete="tel-national" inputmode="tel" placeholder="(212) 555-0123" required>
           </div>
         </div>
         <p class="bf-err" hidden>Add your name, a valid email and a phone number with the area code.</p>
@@ -887,8 +887,10 @@
     if (!c || !cc.querySelector('option[value="' + c + '"]')) { if (c) wanted = c; c = cc.value || 'US'; }
     else wanted = null;
     cc.value = c;
-    var o = cc.options[cc.selectedIndex];
-    ccShow.textContent = flagOf(c) + ' +' + (o ? o.dataset.dial : '1');
+    var o = cc.options[cc.selectedIndex], dial = o ? o.dataset.dial : '1';
+    ccShow.textContent = flagOf(c) + ' +' + dial;
+    // A US-style example for +1 numbers only, so nobody abroad copies the wrong format.
+    form.querySelector('input[name=phone]').placeholder = dial === '1' ? '(212) 555-0123' : '';
   }
   function fillCountries(dial) {
     var cur = wanted || cc.value || 'US';
