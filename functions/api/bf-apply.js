@@ -48,6 +48,10 @@ const phoneOk = (p) => { const d = String(p || '').replace(/\D/g, ''); return d.
 // Spend bands we take calls from: $10K+/month. One offer for all of them: the 6-ad Black Friday pack.
 // Old band values (under-5k, 5-20k) are still labelled for returning visitors but no longer qualify.
 const QUALIFIED_SPEND = new Set(['10-20k', '20-50k', '50k+']);
+
+// Personal addresses are allowed (plenty of store owners use Gmail), just flagged in the email and sheet.
+const FREEMAIL = new Set(['gmail.com', 'googlemail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'live.com', 'msn.com',
+  'icloud.com', 'me.com', 'aol.com', 'proton.me', 'protonmail.com', 'gmx.com', 'mail.com', 'yandex.com', 'zoho.com']);
 const SPEND_LABEL = { 'under-10k': 'Under $10K', '10-20k': '$10K-$20K', '20-50k': '$20K-$50K', '50k+': '$50K+', 'under-5k': 'Under $5K', '5-20k': '$5K-$20K' };
 
 export async function onRequestPost({ request, env, waitUntil }) {
@@ -100,11 +104,13 @@ export async function onRequestPost({ request, env, waitUntil }) {
     // Leads who want ongoing ads get called first, so flag them in the subject line.
     const ongoing = answers.recurring === 'Yes, ongoing' ? ', wants ongoing' : '';
     const fit = qualified ? 'fits' : (answers.spend ? 'below budget' : 'budget unknown');
+    const personal = FREEMAIL.has(String(answers.email || '').split('@')[1] || '');
+    const pe = personal ? ' [personal email]' : '';
     const subject = {
-      potential: `New Black Friday lead: ${who}`,
-      update: `Black Friday lead stopped at question ${record.step} (${fit}): ${who}`,
-      submit: `Black Friday application submitted (${fit}${ongoing}): ${who}`,
-      disqualified: `Black Friday lead disqualified (under $10K spend): ${who}`,
+      potential: `New Black Friday lead: ${who}${pe}`,
+      update: `Black Friday lead stopped at question ${record.step} (${fit}): ${who}${pe}`,
+      submit: `Black Friday application submitted (${fit}${ongoing}): ${who}${pe}`,
+      disqualified: `Black Friday lead disqualified (under $10K spend): ${who}${pe}`,
     }[kind];
     try {
       const r = await fetch(env.LEAD_WEBHOOK || 'https://formspree.io/f/xyeglebv', {
@@ -139,7 +145,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
       name: answers.name, email: answers.email, phone: answers.phone, website: answers.website,
       spend: SPEND_LABEL[answers.spend] || '', channels: answers.channels, makers: answers.makers,
       formats: answers.formats, ongoing: answers.recurring, timing: answers.timing,
-      notes: answers.category ? `Category: ${answers.category}` : '',
+      notes: [personal && 'Personal email', answers.category && `Category: ${answers.category}`].filter(Boolean).join('; '),
       country: record.country, utm: record.utm, page: record.page, id: sid,
     });
     if (waitUntil) waitUntil(sheet); else await sheet;

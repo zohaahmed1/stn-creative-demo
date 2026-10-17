@@ -823,18 +823,86 @@
     });
   });
 
+  /* Step 1 checks, so the contact details are real before we count the lead.
+     Email: /api/verify, the same check as the playbook and quiz (domain takes mail,
+     mailbox exists, no throwaway inboxes). Gmail and other personal addresses pass;
+     bf-apply flags them. Phone: checked against the numbering plan of the visitor's
+     country, then saved with its country code. Both fail open, so a slow check or a
+     blocked script never costs a real lead. */
+  var ERR_DEFAULT = steps[0].querySelector('.bf-err').textContent;
+  var EMAIL_MSG = {
+    bad_email: 'That email address doesn’t look right.',
+    placeholder_email: 'Please use your real email address.',
+    email_domain_dead: 'That email domain can’t receive mail. Check the spelling?',
+    mailbox_invalid: 'That mailbox doesn’t exist. Check the spelling?',
+    mailbox_disposable: 'Please use your real email, not a temporary one.'
+  };
+  var PHONE_MSG = 'That phone number doesn’t look right. Include the area code, or start with + and your country code.';
+  var checked = {}, phoneLib = null;
+  function withTimeout(p, ms, fallback) { return Promise.race([p, new Promise(function (r) { setTimeout(function () { r(fallback); }, ms); })]); }
+  function loadPhoneLib() {
+    if (!phoneLib) phoneLib = new Promise(function (res) {
+      if (window.libphonenumber) return res(window.libphonenumber);
+      var s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/libphonenumber-js@1.13.13/bundle/libphonenumber-min.js';
+      s.async = true;
+      s.onload = function () { res(window.libphonenumber || null); };
+      s.onerror = function () { res(null); };
+      document.head.appendChild(s);
+    });
+    return phoneLib;
+  }
+  steps[0].addEventListener('focusin', loadPhoneLib); // fetch it while they type
+  function verifyEmail(email) {
+    var key = email.toLowerCase();
+    if (checked[key]) return Promise.resolve(checked[key]); // one check per address, not per click
+    var req = fetch('/api/verify', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email }) })
+      .then(function (r) { return r.ok ? r.json() : { ok: true }; })
+      .catch(function () { return { ok: true }; })
+      .then(function (d) { checked[key] = d; return d; });
+    return withTimeout(req, 6000, { ok: true });
+  }
+  function parsePhone(lib, raw, country) {
+    try { return lib.parsePhoneNumberFromString(raw, country); }
+    catch (e) { try { return lib.parsePhoneNumberFromString(raw); } catch (e2) { return null; } }
+  }
+  function localCountry() { var m = /-([A-Z]{2})\b/.exec(navigator.language || ''); return m ? m[1] : 'US'; }
+
   // Step 1: the lead is captured the moment they hand over real contact details.
-  document.getElementById('bfContactNext').addEventListener('click', function () {
+  var contactBtn = document.getElementById('bfContactNext'), checking = false;
+  contactBtn.addEventListener('click', function () {
+    if (checking) return;
     var err = steps[0].querySelector('.bf-err');
-    if (!(answers.name || '').trim() || !EMAIL.test(answers.email || '') || !phoneOk(answers.phone)) {
-      err.hidden = false; return;
+    var email = (answers.email || '').trim();
+    if (!(answers.name || '').trim() || !EMAIL.test(email) || !phoneOk(answers.phone)) {
+      err.textContent = ERR_DEFAULT; err.hidden = false; return;
     }
-    err.hidden = true;
-    if (!flag('potential')) {
-      setFlag('potential'); send('potential'); track('bf_apply_start');
-      loadCal();
-    }
-    next();
+    err.hidden = true; checking = true; contactBtn.disabled = true; contactBtn.textContent = 'Checking…';
+    Promise.all([verifyEmail(email), withTimeout(loadPhoneLib(), 4000, null)]).then(function (r) {
+      var v = r[0] || { ok: true }, lib = r[1];
+      checking = false; contactBtn.disabled = false; contactBtn.textContent = 'Next';
+      if (v.ok === false) {
+        err.textContent = EMAIL_MSG[v.reason] || EMAIL_MSG.bad_email; err.hidden = false;
+        track('bf_apply_email_rejected', { reason: v.reason });
+        form.querySelector('input[name=email]').focus(); return;
+      }
+      if (lib && lib.parsePhoneNumberFromString) {
+        var ph = parsePhone(lib, answers.phone, v.country || localCountry());
+        if (!ph || !ph.isValid()) {
+          err.textContent = PHONE_MSG; err.hidden = false;
+          track('bf_apply_phone_rejected');
+          form.querySelector('input[name=phone]').focus(); return;
+        }
+        // One dialable format, with the country code, for the call and for Cal.
+        answers.phone = ph.formatInternational();
+        form.querySelector('input[name=phone]').value = answers.phone; save();
+      }
+      if (!flag('potential')) {
+        setFlag('potential'); send('potential'); track('bf_apply_start');
+        loadCal();
+      }
+      next();
+    });
   });
   document.getElementById('bfSiteNext').addEventListener('click', function () {
     var err = steps[1].querySelector('.bf-err');

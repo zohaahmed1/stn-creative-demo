@@ -87,13 +87,20 @@ export async function onRequestPost({ request, env }) {
   try { body = await request.json(); }
   catch { return json({ ok: true, reason: 'unknown' }); }
 
-  const domain = normaliseDomain(body.site);
-  if (!domain)                             return json({ ok: false, reason: 'malformed' });
-  if (FREEMAIL.includes(domain))           return json({ ok: false, reason: 'freemail' });
-  if (PLACEHOLDER.includes(domain))        return json({ ok: false, reason: 'placeholder' });
+  /* Email-only mode: the Black Friday form checks the contact email on step 1,
+     before it has asked for a website. Personal addresses (Gmail etc.) pass
+     there on purpose; store owners use them, and bf-apply flags them instead. */
+  const emailOnly = !body.site && Boolean(body.email);
+  let mx = null;
+  if (!emailOnly) {
+    const domain = normaliseDomain(body.site);
+    if (!domain)                             return json({ ok: false, reason: 'malformed' });
+    if (FREEMAIL.includes(domain))           return json({ ok: false, reason: 'freemail' });
+    if (PLACEHOLDER.includes(domain))        return json({ ok: false, reason: 'placeholder' });
 
-  const mx = await hasMx(domain);
-  if (mx === false) return json({ ok: false, reason: 'no_such_domain' });
+    mx = await hasMx(domain);
+    if (mx === false) return json({ ok: false, reason: 'no_such_domain' });
+  }
 
   /* Also verify the address they will be contacted on. A form can pass every
      check above by pairing a real company website with a junk mailbox domain —
@@ -116,6 +123,6 @@ export async function onRequestPost({ request, env }) {
     if (verdict === 'disposable') return json({ ok: false, reason: 'mailbox_disposable' });
   }
 
-  // true or null (unknown) both pass
-  return json({ ok: true, reason: mx ? 'mx' : 'unknown' });
+  // true or null (unknown) both pass. Country lets the page read local phone numbers.
+  return json({ ok: true, reason: mx ? 'mx' : 'unknown', country: request.headers.get('CF-IPCountry') || '' });
 }
