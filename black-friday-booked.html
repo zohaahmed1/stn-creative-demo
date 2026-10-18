@@ -292,6 +292,21 @@
     .bk-end .bk-count{margin-top:14px;font-size:14px}
     .bk-end .bk-count strong{color:#5500dd}
     @media (max-width:760px){.bk-grid{grid-template-columns:1fr}}
+    /* Video testimonials: 4:5 cards with captions burned in. Poster until played, then plays with sound. */
+    .bf-testis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:980px;margin:0 auto 44px}
+    .bf-testis--one{grid-template-columns:minmax(0,340px);justify-content:center;margin-top:0;margin-bottom:8px}
+    .bf-testi{margin:0;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 18px 40px -28px rgba(25,25,35,.45);display:flex;flex-direction:column}
+    .bf-testi-v{position:relative;aspect-ratio:4/5;background:#111}
+    .bf-testi-v video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+    .bf-testi-play{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.42));cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .bf-testi-play .dot{width:64px;height:64px;border-radius:50%;background:rgba(85,0,221,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(85,0,221,.45);transition:transform .2s}
+    .bf-testi-play:hover .dot{transform:scale(1.07)}
+    .bf-testi-play .len{position:absolute;right:14px;bottom:12px;font-family:'Satoshi',system-ui,sans-serif;font-size:13px;font-weight:700;color:#fff}
+    .bf-testi figcaption{padding:16px 18px 18px;text-align:left}
+    .bf-testi figcaption strong{display:block;font-family:'Satoshi',system-ui,sans-serif;font-weight:800;font-size:16px;line-height:1.4;color:#0d0d0d}
+    .bf-testi figcaption span{display:block;margin-top:8px;font-size:13.5px;line-height:1.45;color:rgba(0,0,0,.55)}
+    .bf-testi-who{max-width:640px;margin:0 auto 26px;text-align:center;font-size:15.5px;line-height:1.6;color:rgba(0,0,0,.62)}
+    @media (max-width:760px){.bf-testis{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:min(80%,320px);overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 10px}.bf-testi{scroll-snap-align:center}.bf-testis--one{grid-auto-columns:minmax(0,340px);justify-content:center}}
   </style>
   <!-- Meta Pixel — hardcoded so PageView fires immediately and does not depend on
        GTM loading. The GTM "Meta_Page View" tag is paused; keeping both sent two
@@ -376,7 +391,17 @@
 <!-- PROOF + GUARANTEE -->
 <section class="bk-proof" aria-labelledby="proof-h">
   <div class="bf-wrap">
-    <h2 class="bf-h2" id="proof-h"><span class="b">What brands </span><span class="i">got.</span></h2>
+    <h2 class="bf-h2" id="proof-h"><span class="b">Don't take </span><span class="i">our word for it.</span></h2>
+    <p class="bf-testi-who" style="margin-top:22px">Adam Acheson was COO at Astronomic, an ad agency. We worked with him for two and a half years on brands like Restream and SimpleBooth.</p>
+    <div class="bf-testis bf-testis--one">
+      <figure class="bf-testi" data-src="/assets/bf-testimonials/adam-results.mp4">
+        <div class="bf-testi-v">
+          <video playsinline preload="none" poster="/assets/bf-testimonials/adam-results.jpg"></video>
+          <button class="bf-testi-play" type="button" aria-label="Play Adam's video about performance after bringing us on, 47 seconds"><span class="dot"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg></span><span class="len">0:47</span></button>
+        </div>
+        <figcaption><strong>&ldquo;Within weeks there was an immediate change in the performance.&rdquo;</strong><span>Adam Acheson, former COO, Astronomic</span></figcaption>
+      </figure>
+    </div>
     <div class="bf-results">
       <div class="bf-result"><span class="n">114%</span><p>Store revenue growth, year over year, in a gifting brand's Mother's Day week</p><span class="who">StoryKeeper</span></div>
       <div class="bf-result"><span class="n">4.3x</span><p>Return on ad spend for a handbag brand</p><span class="who">Noirvere</span></div>
@@ -384,6 +409,22 @@
     <p class="bk-guar">Your 18 videos come with our guarantee. If they aren't at least 20% cheaper per purchase than your current winners within 30 days, you get 50% back. <a href="/black-friday-guarantee" target="_blank" rel="noopener">See terms</a></p>
   </div>
 </section>
+
+<script>
+(function () {
+  // Video testimonials: load nothing until played, then play with sound and pause any other video with sound.
+  [].slice.call(document.querySelectorAll('.bf-testi')).forEach(function (c) {
+    var b = c.querySelector('.bf-testi-play'), v = c.querySelector('video');
+    b.addEventListener('click', function () {
+      [].slice.call(document.querySelectorAll('video')).forEach(function (o) { if (o !== v && !o.paused && !o.muted) o.pause(); });
+      if (!v.getAttribute('src')) v.src = c.dataset.src;
+      v.controls = true; b.hidden = true;
+      var p = v.play(); if (p && p.catch) p.catch(function () {});
+      if (window.dataLayer) window.dataLayer.push({ event: 'bf_testimonial_play', source: 'black_friday_booked', clip: c.dataset.src.split('/').pop() });
+    });
+  });
+})();
+</script>
 
 <!-- RESCHEDULE + COUNTDOWN -->
 <section class="bk-end">
