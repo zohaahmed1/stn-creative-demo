@@ -189,7 +189,7 @@
     .bf-result .who{font-size:13px;font-weight:700;color:#c4a3ff}
     @media (max-width:760px){.bf-quotes,.bf-results{grid-template-columns:1fr}}
     /* Video testimonials: 4:5 cards with captions burned in. Poster until played, then plays with sound. */
-    .bf-testis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:980px;margin:0 auto 44px}
+    .bf-testis{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,300px));justify-content:center;gap:18px;max-width:980px;margin:0 auto 44px}
     .bf-testis--one{grid-template-columns:minmax(0,340px);justify-content:center;margin-top:0;margin-bottom:8px}
     .bf-testi{margin:0;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 18px 40px -28px rgba(25,25,35,.45);display:flex;flex-direction:column}
     .bf-testi-v{position:relative;aspect-ratio:4/5;background:#111}
@@ -574,13 +574,6 @@
     </div>
       <p class="bf-testi-who">Adam Acheson was COO at Astronomic, an ad agency. We worked with him for two and a half years on brands like Restream and SimpleBooth.</p>
       <div class="bf-testis">
-      <figure class="bf-testi" data-src="/assets/bf-testimonials/adam-speed.mp4">
-        <div class="bf-testi-v">
-          <video playsinline preload="none" poster="/assets/bf-testimonials/adam-speed.jpg"></video>
-          <button class="bf-testi-play" type="button" aria-label="Play Adam's video about speed, quality and price, 54 seconds"><span class="dot"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg></span><span class="len">0:54</span></button>
-        </div>
-        <figcaption><strong>&ldquo;They are very, very quick to get results.&rdquo;</strong><span>Adam Acheson, former COO, Astronomic</span></figcaption>
-      </figure>
       <figure class="bf-testi" data-src="/assets/bf-testimonials/adam-results.mp4">
         <div class="bf-testi-v">
           <video playsinline preload="none" poster="/assets/bf-testimonials/adam-results.jpg"></video>
@@ -588,15 +581,15 @@
         </div>
         <figcaption><strong>&ldquo;Within weeks there was an immediate change in the performance.&rdquo;</strong><span>Adam Acheson, former COO, Astronomic</span></figcaption>
       </figure>
-      <figure class="bf-testi" data-src="/assets/bf-testimonials/adam-bf.mp4">
+      <figure class="bf-testi" data-src="/assets/bf-testimonials/adam-speed.mp4">
         <div class="bf-testi-v">
-          <video playsinline preload="none" poster="/assets/bf-testimonials/adam-bf.jpg"></video>
-          <button class="bf-testi-play" type="button" aria-label="Play Adam's video about planning ahead for Black Friday, 52 seconds"><span class="dot"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg></span><span class="len">0:52</span></button>
+          <video playsinline preload="none" poster="/assets/bf-testimonials/adam-speed.jpg"></video>
+          <button class="bf-testi-play" type="button" aria-label="Play Adam's video about speed, quality and price, 54 seconds"><span class="dot"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg></span><span class="len">0:54</span></button>
         </div>
-        <figcaption><strong>&ldquo;Okay, Black Friday sales coming up. We&rsquo;re three months out. What can we start doing?&rdquo;</strong><span>Adam Acheson, former COO, Astronomic</span></figcaption>
+        <figcaption><strong>&ldquo;They are very, very quick to get results.&rdquo;</strong><span>Adam Acheson, former COO, Astronomic</span></figcaption>
       </figure>
       </div>
-      <!-- Shannon, VP Marketing at Kerstin Florian and Aromatherapy Associates: video due Wed Oct 21. Add a fourth figure like the ones above. -->
+      <!-- Shannon, VP Marketing at Kerstin Florian and Aromatherapy Associates: video due Wed Oct 21. Add her figure FIRST, above Adam's two. -->
       <!-- Only reviews about our ad and creative work, quoted word for word (3D AI Studio is two sentences from Jan's review; the Reddit sentence between them is left out). -->
       <div class="bf-quotes">
         <figure class="bf-quote">
