@@ -200,6 +200,16 @@
     .bf-testi-play .dot{width:64px;height:64px;border-radius:50%;background:rgba(85,0,221,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(85,0,221,.45);transition:transform .2s}
     .bf-testi-play:hover .dot{transform:scale(1.07)}
     .bf-testi-play .len{position:absolute;right:14px;bottom:12px;font-family:'Satoshi',system-ui,sans-serif;font-size:13px;font-weight:700;color:#fff}
+    .bf-testi-play .dot,.bf-testi-play .len{transition:opacity .2s ease}
+    .bf-testi .ic-pause{display:none}
+    .bf-testi.is-playing .ic-play{display:none}
+    .bf-testi.is-playing .ic-pause{display:block}
+    .bf-testi.is-playing .bf-testi-play{background:none}
+    .bf-testi.is-playing .bf-testi-play .dot,.bf-testi.is-playing .bf-testi-play .len{opacity:0}
+    @media (hover:hover){.bf-testi.is-playing .bf-testi-play:hover .dot{opacity:.92}}
+    .bf-testi-bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.22);pointer-events:none;opacity:0;transition:opacity .2s ease}
+    .bf-testi-bar i{display:block;height:100%;width:0;background:#a78bfa}
+    .bf-testi.has-played .bf-testi-bar{opacity:1}
     .bf-testi figcaption{padding:16px 18px 18px;text-align:left}
     .bf-testi figcaption strong{display:block;font-family:'Satoshi',system-ui,sans-serif;font-weight:800;font-size:16px;line-height:1.4;color:#0d0d0d}
     .bf-testi figcaption span{display:block;margin-top:8px;font-size:13.5px;line-height:1.45;color:rgba(0,0,0,.55)}
@@ -597,14 +607,14 @@
       <figure class="bf-testi" data-src="/assets/bf-testimonials/adam-results.mp4">
         <div class="bf-testi-v">
           <video playsinline preload="none" poster="/assets/bf-testimonials/adam-results.jpg"></video>
-          <button class="bf-testi-play" type="button" aria-label="Play Adam's video about performance after bringing us on, 47 seconds"><span class="dot"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg></span><span class="len">0:47</span></button>
+          <button class="bf-testi-play" type="button" aria-pressed="false" aria-label="Play Adam's video about performance after bringing us on, 47 seconds"><span class="dot"><svg class="ic-play" width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg><svg class="ic-pause" width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></span><span class="len">0:47</span></button><span class="bf-testi-bar" aria-hidden="true"><i></i></span>
         </div>
         <figcaption><strong>&ldquo;Within weeks there was an immediate change in the performance.&rdquo;</strong><span>Adam Acheson, former COO, Astronomic</span></figcaption>
       </figure>
       <figure class="bf-testi" data-src="/assets/bf-testimonials/adam-speed.mp4">
         <div class="bf-testi-v">
           <video playsinline preload="none" poster="/assets/bf-testimonials/adam-speed.jpg"></video>
-          <button class="bf-testi-play" type="button" aria-label="Play Adam's video about speed, quality and price, 54 seconds"><span class="dot"><svg width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg></span><span class="len">0:54</span></button>
+          <button class="bf-testi-play" type="button" aria-pressed="false" aria-label="Play Adam's video about speed, quality and price, 54 seconds"><span class="dot"><svg class="ic-play" width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg><svg class="ic-pause" width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></span><span class="len">0:54</span></button><span class="bf-testi-bar" aria-hidden="true"><i></i></span>
         </div>
         <figcaption><strong>&ldquo;They are very, very quick to get results.&rdquo;</strong><span>Adam Acheson, former COO, Astronomic</span></figcaption>
       </figure>
@@ -629,16 +639,22 @@
 
 <script>
 (function () {
-  // Video testimonials: load nothing until played, then play with sound and pause any other video with sound.
+  // Video testimonials: tap to play with sound, tap again to pause. Nothing loads until the first play.
   [].slice.call(document.querySelectorAll('.bf-testi')).forEach(function (c) {
-    var b = c.querySelector('.bf-testi-play'), v = c.querySelector('video');
+    var b = c.querySelector('.bf-testi-play'), v = c.querySelector('video'), bar = c.querySelector('.bf-testi-bar i'), tracked = false;
+    function sync() { var on = !v.paused && !v.ended; c.classList.toggle('is-playing', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); }
     b.addEventListener('click', function () {
-      [].slice.call(document.querySelectorAll('video')).forEach(function (o) { if (o !== v && !o.paused && !o.muted) o.pause(); });
       if (!v.getAttribute('src')) v.src = c.dataset.src;
-      v.controls = true; b.hidden = true;
-      var p = v.play(); if (p && p.catch) p.catch(function () {});
-      if (window.dataLayer) window.dataLayer.push({ event: 'bf_testimonial_play', source: 'black_friday_page', clip: c.dataset.src.split('/').pop() });
+      if (v.paused || v.ended) {
+        [].slice.call(document.querySelectorAll('video')).forEach(function (o) { if (o !== v && !o.paused && !o.muted) o.pause(); });
+        v.muted = false; c.classList.add('has-played');
+        var p = v.play(); if (p && p.catch) p.catch(function () {});
+        if (!tracked && window.dataLayer) { tracked = true; window.dataLayer.push({ event: 'bf_testimonial_play', source: 'black_friday_page', clip: c.dataset.src.split('/').pop() }); }
+      } else { v.pause(); }
     });
+    ['play', 'playing', 'pause', 'ended'].forEach(function (e) { v.addEventListener(e, sync); });
+    v.addEventListener('ended', function () { v.pause(); v.currentTime = 0; if (bar) bar.style.width = '0'; sync(); });
+    v.addEventListener('timeupdate', function () { if (bar && v.duration) bar.style.width = (v.currentTime / v.duration * 100) + '%'; });
   });
 })();
 </script>
