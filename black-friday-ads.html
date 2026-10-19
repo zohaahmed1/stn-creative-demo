@@ -130,7 +130,8 @@
     /* VSL */
     .bf-vsl{max-width:920px;margin:36px auto 0;aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:#191923;position:relative;box-shadow:0 28px 60px -28px rgba(25,25,35,.5)}
     .bf-vsl iframe,.bf-vsl video{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000}
-    .hero .bf-vsl{width:100%;max-width:820px;margin:10px auto 8px}
+    .hero .bf-vsl{width:100%;max-width:clamp(520px,calc((100vh - 440px) * 1.778),820px);margin:10px auto 8px}
+    @media (max-width:640px){.hero .bf-vsl{max-width:none}}
     .bf-vsl-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
     .bf-vsl-poster{position:absolute;inset:0;z-index:0;display:grid;grid-template-columns:repeat(3,1fr)}
     .bf-vsl-poster img{width:100%;height:100%;object-fit:cover;display:block;filter:blur(3px) saturate(.75);transform:scale(1.08)}
@@ -238,9 +239,9 @@
     .bf-midcta{display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:44px;text-align:center}
     .bf-midcta-note{margin:0;font-size:14px;color:rgba(0,0,0,0.5)}
     /* Reviews: agency quote and the two results in one row */
-    .bf-proofrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:1180px;margin:0 auto}
+    .bf-proofrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;max-width:980px;margin:0 auto}
     .bf-proofrow > *{margin:0;height:100%;box-sizing:border-box}
-    @media (max-width:900px){.bf-proofrow{grid-template-columns:1fr}}
+    @media (max-width:900px){.bf-proofrow{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:min(82%,330px);overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 10px}.bf-proofrow > *{scroll-snap-align:center}}
     /* Angle cards: an example pops up above the tag on hover (tap on touch screens). It sits outside .bf-angle because the tag shape is clipped. */
     .bf-tagwrap{position:relative}
     .bf-tagwrap[data-prev]{cursor:pointer}
@@ -712,7 +713,7 @@
 </section>
 
 <!-- AI UGC VS HIRING CREATORS -->
-<section class="bf-sec" style="padding-top:20px;" aria-labelledby="vs-h">
+<section class="bf-sec" style="background:#fafafa;" aria-labelledby="vs-h">
   <div class="bf-wrap">
     <h2 class="bf-h2" id="vs-h" data-anim="up"><span class="b">AI UGC </span><span class="i">vs hiring creators.</span></h2>
     <div class="bf-vs" data-anim="up">
@@ -728,7 +729,7 @@
 </section>
 
 <!-- WHY US -->
-<section class="bf-sec" style="padding-top:20px;" aria-labelledby="whyus-h">
+<section class="bf-sec" aria-labelledby="whyus-h">
   <div class="bf-wrap">
     <h2 class="bf-h2" id="whyus-h" data-anim="up"><span class="b">Why </span><span class="i">Skip the Noise.</span></h2>
     <div class="bf-whyus">
