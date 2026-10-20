@@ -33,7 +33,7 @@
  */
 
 import { toSheet } from '../../lib/sheet.js';
-import { tgSend, leadAlert } from '../../lib/telegram.js';
+import { tgSend, leadAlert, botToken } from '../../lib/telegram.js';
 
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -155,7 +155,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
   // 4. Telegram alert to Zoha's phone (lib/telegram.js): once when a lead with a phone number
   //    picks $10K+ (call them while they're still on the form), once more when they submit.
   //    KV remembers what was sent, so the debounced "partial" posts can't repeat it.
-  if (qualified && answers.phone && env.TELEGRAM_BOT_TOKEN && env.LEADS && ['partial', 'update', 'submit'].includes(kind)) {
+  if (qualified && answers.phone && botToken(env) && env.LEADS && ['partial', 'update', 'submit'].includes(kind)) {
     const stage = kind === 'submit' ? 'submitted' : 'qualified';
     const flag = `tga:${stage}:${sid}`;
     let sent = false;

@@ -6,18 +6,21 @@
  * To move alerts to another chat, delete tg:chat in KV (or set TELEGRAM_CHAT_ID).
  */
 
+import { botToken } from '../../lib/telegram.js';
+
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
 
 export async function onRequestGet({ request, env }) {
-  if (!env.TELEGRAM_BOT_TOKEN) return json({ ok: false, error: 'no_token' }, 400);
+  const token = botToken(env);
+  if (!token) return json({ ok: false, error: env.TELEGRAM_BOT_TOKEN ? 'token_unreadable' : 'no_token' }, 400);
   if (!env.LEADS) return json({ ok: false, error: 'no_kv' }, 500);
   if (env.TELEGRAM_CHAT_ID || (await env.LEADS.get('tg:chat'))) return json({ ok: false, error: 'already_set' }, 409);
 
   const code = (new URL(request.url).searchParams.get('code') || '').trim().toUpperCase();
   if (code.length < 6) return json({ ok: false, error: 'bad_code' }, 400);
 
-  const api = `https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}`;
+  const api = `https://api.telegram.org/bot${token}`;
   const res = await fetch(`${api}/getUpdates`);
   const data = await res.json().catch(() => ({}));
   if (!data.ok) return json({ ok: false, error: 'telegram_error', telegram: { code: data.error_code, description: data.description } }, 502);
