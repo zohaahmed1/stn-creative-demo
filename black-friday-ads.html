@@ -1722,5 +1722,30 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 <noscript>
 <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=8129252&fmt=gif" />
 </noscript>
+<script>
+// Hero ad strip on phones: main.css turns the CSS animation off at mobile widths (it would fight
+// touch scrolling), so move the strip here instead. A finger takes over; it carries on 1.5s later.
+(function () {
+  document.querySelectorAll('.hero-marquee-wrap').forEach(function (wrap) {
+    var track = wrap.querySelector('.hero-marquee-track');
+    if (!track) return;
+    var touching = false, timer = null, pos = null;
+    wrap.addEventListener('touchstart', function () { touching = true; clearTimeout(timer); }, {passive: true});
+    wrap.addEventListener('touchend', function () { timer = setTimeout(function () { touching = false; pos = null; }, 1500); }, {passive: true});
+    wrap.addEventListener('touchcancel', function () { touching = false; pos = null; }, {passive: true});
+    (function tick() {
+      if (getComputedStyle(track).animationName === 'none' && wrap.scrollWidth > wrap.clientWidth && !touching) {
+        if (pos === null) pos = wrap.scrollLeft;
+        pos += 0.6; // px per frame, ~36px/s, close to the desktop speed
+        var dupe = wrap.querySelector('.hero-marquee-img[aria-hidden="true"]');
+        var loop = dupe ? dupe.offsetLeft - track.offsetLeft : wrap.scrollWidth / 2;
+        if (pos >= loop) pos -= loop; // same images repeat, so the jump back is invisible
+        wrap.scrollLeft = pos;
+      }
+      requestAnimationFrame(tick);
+    })();
+  });
+})();
+</script>
 </body>
 </html>
