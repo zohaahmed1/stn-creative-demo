@@ -20,7 +20,7 @@ export async function onRequestGet({ request, env }) {
   const api = `https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}`;
   const res = await fetch(`${api}/getUpdates`);
   const data = await res.json().catch(() => ({}));
-  if (!data.ok) return json({ ok: false, error: 'telegram_error' }, 502);
+  if (!data.ok) return json({ ok: false, error: 'telegram_error', telegram: { code: data.error_code, description: data.description } }, 502);
 
   const msg = (data.result || []).map((u) => u.message).filter(Boolean).reverse()
     .find((m) => m.chat && m.chat.type === 'private' && String(m.text || '').trim().toUpperCase() === code);
