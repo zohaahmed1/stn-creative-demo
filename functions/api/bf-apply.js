@@ -33,6 +33,7 @@
  */
 
 import { toSheet } from '../../lib/sheet.js';
+import { tgSend, leadAlert } from '../../lib/telegram.js';
 
 const json = (body, status = 200) =>
   new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
@@ -149,6 +150,24 @@ export async function onRequestPost({ request, env, waitUntil }) {
       country: record.country, utm: record.utm, page: record.page, id: sid,
     });
     if (waitUntil) waitUntil(sheet); else await sheet;
+  }
+
+  // 4. Telegram alert to Zoha's phone (lib/telegram.js): once when a lead with a phone number
+  //    picks $10K+ (call them while they're still on the form), once more when they submit.
+  //    KV remembers what was sent, so the debounced "partial" posts can't repeat it.
+  if (qualified && answers.phone && env.TELEGRAM_BOT_TOKEN && env.LEADS && ['partial', 'update', 'submit'].includes(kind)) {
+    const stage = kind === 'submit' ? 'submitted' : 'qualified';
+    const flag = `tga:${stage}:${sid}`;
+    let sent = false;
+    try { sent = Boolean(await env.LEADS.get(flag)); } catch (_) {}
+    if (!sent) {
+      try { await env.LEADS.put(flag, '1', { expirationTtl: 60 * 60 * 24 * 30 }); } catch (_) {}
+      const alert = tgSend(env, leadAlert(stage, {
+        name: answers.name, phone: answers.phone, email: answers.email, website: answers.website,
+        spend: SPEND_LABEL[answers.spend] || '', makers: answers.makers, timing: answers.timing, step: record.step,
+      }));
+      if (waitUntil) waitUntil(alert); else await alert;
+    }
   }
 
   return json({ ok: true, kind, stored, notified, qualified });
