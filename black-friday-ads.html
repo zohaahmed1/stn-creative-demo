@@ -130,6 +130,10 @@
     /* VSL */
     .bf-vsl{max-width:920px;margin:36px auto 0;aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:#191923;position:relative;box-shadow:0 28px 60px -28px rgba(25,25,35,.5)}
     .bf-vsl iframe,.bf-vsl video{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000}
+    .bf-vsl-sound{position:absolute;inset:0;z-index:3;border:0;padding:0;margin:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .bf-vsl-sound span{display:inline-flex;align-items:center;gap:10px;background:#5500dd;color:#fff;font:800 18px/1 'Satoshi',system-ui,sans-serif;padding:16px 26px;border-radius:999px;box-shadow:0 12px 34px rgba(85,0,221,.55);animation:bfSoundPulse 1.8s ease-in-out infinite}
+    @keyframes bfSoundPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
+    @media (max-width:640px){.bf-vsl-sound span{font-size:15px;padding:12px 20px}}
     .hero .bf-vsl{width:100%;max-width:clamp(520px,calc((100vh - 440px) * 1.778),820px);margin:10px auto 8px}
     @media (max-width:640px){.hero .bf-vsl{max-width:none}}
     .bf-vsl-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
@@ -474,12 +478,31 @@
 
 <script>
 (function () {
-  var VSL_SRC = 'https://www.tella.tv/video/vid_cmvfy5iuo00ag02p7b3qoamze/embed?b=0&title=0&a=0&loop=0&t=0&muted=0&wt=0';   // Tella, editor's cut v5 (Oct 19). Swap for YouTube / Vimeo / Loom / Wistia embed link, or an .mp4
+  // Plays muted as soon as the page opens (browsers only allow silent autoplay), with Tella's captions on.
+  // "Tap to hear it" restarts it from the top with sound. Visitors who ask for reduced motion get the normal player.
+  var AUTO = !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var VSL_SRC = 'https://www.tella.tv/video/vid_cmvfy5iuo00ag02p7b3qoamze/embed?b=0&title=0&loop=0&t=0&wt=0' + (AUTO ? '&autoPlay=true&muted=1' : '&a=0&muted=0');   // Tella, editor's cut v5 (Oct 19). Swap for YouTube / Vimeo / Loom / Wistia embed link, or an .mp4
   var box = document.getElementById('bfVsl');
   if (!box || !VSL_SRC) return;
   box.innerHTML = /\.mp4(\?|$)/i.test(VSL_SRC)
     ? '<video src="' + VSL_SRC + '" controls playsinline preload="metadata"></video>'
     : '<iframe src="' + VSL_SRC + '" title="Watch before you apply" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+  if (AUTO && !/\.mp4(\?|$)/i.test(VSL_SRC)) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'bf-vsl-sound';
+    btn.innerHTML = '<span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>Tap to hear it</span>';
+    btn.setAttribute('aria-label', 'Play the video with sound from the start');
+    box.appendChild(btn);
+    btn.addEventListener('click', function () {
+      var f = box.querySelector('iframe');
+      ['{"type":"seek","time":0}', '{"type":"unmute"}', '{"type":"play"}'].forEach(function (m) {
+        f.contentWindow.postMessage(JSON.parse(m), 'https://www.tella.tv');
+      });
+      btn.remove();
+      window.bfVslSoundOn && window.bfVslSoundOn();
+    });
+  }
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: 'bf_vsl_shown', source: 'black_friday_page' });
 })();
@@ -491,6 +514,10 @@
 <script>
 (function () {
   var MARKS = [25, 50, 75, 95], sent = {}, watched = 0, last = null, dur = 0, played = false;
+  // With muted autoplay, a view only starts when the sound goes on (the "Tap to hear it" button),
+  // or when someone presses play themselves in the reduced-motion version.
+  var auto = !!document.querySelector('#bfVsl .bf-vsl-sound'), soundOn = !auto;
+  window.bfVslSoundOn = function () { soundOn = true; watched = 0; last = null; if (!played) { played = true; fire('VSL_Play'); } };
   function fire(name, extra) {
     var data = Object.assign({ video: 'bf_vsl' }, extra || {});
     if (typeof fbq !== 'undefined') fbq('trackCustom', name, data);
@@ -502,8 +529,8 @@
     var d = e.data;
     if (typeof d === 'string') { try { d = JSON.parse(d); } catch (_) { return; } }
     if (!d || !d.type) return;
-    if (d.type === 'playbackState' && d.state === 'playing' && !played) { played = true; fire('VSL_Play'); }
-    if (d.type !== 'timeUpdate') return;
+    if (d.type === 'playbackState' && d.state === 'playing' && !played && soundOn) { played = true; fire('VSL_Play'); }
+    if (d.type !== 'timeUpdate' || !soundOn) return;
     if (d.duration) dur = d.duration;
     var t = Number(d.currentTime) || 0;
     if (last !== null && t > last && t - last < 2) watched += t - last;
