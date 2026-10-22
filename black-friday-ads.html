@@ -271,7 +271,7 @@
     .bf-ad--vid video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:#111}
     .bf-ad-play{position:absolute;left:12px;top:12px;z-index:2;border:0;border-radius:100px;background:rgba(13,13,20,.72);color:#fff;font-family:'Satoshi',system-ui,sans-serif;font-size:13px;font-weight:700;padding:8px 13px;cursor:pointer}
     .bf-ad-play:hover{background:#5500dd}
-    .hero .hero-marquee-img.bf-ugc-thumb{width:124px;height:220px;object-fit:cover}
+    .hero .hero-marquee-img.bf-ugc-thumb{width:124px;height:220px;object-fit:cover;cursor:pointer}
     /* Only 9 videos in the strip, so it moves slowly enough that repeats aren't obvious. */
     .hero .hero-marquee-track{animation-duration:110s}
     .bf-tiers--one{grid-template-columns:minmax(0,560px);justify-content:center}
@@ -616,6 +616,21 @@
       var p = v.play(); if (p && p.catch) p.catch(function () {});
       b.hidden = true;
       if (window.dataLayer) window.dataLayer.push({ event: 'bf_ugc_ad_play', source: 'black_friday_page', ad: c.dataset.full.split('/').pop() });
+    });
+  });
+  // The hero strip: tapping a thumbnail jumps to that ad in the gallery and plays it with sound
+  // (Clarity, Oct 22: the strip got 40% of all taps on phones and did nothing).
+  [].slice.call(document.querySelectorAll('.hero-marquee-img.bf-ugc-thumb')).forEach(function (img) {
+    var poster = img.getAttribute('src');
+    var c = cards.filter(function (o) { return o.querySelector('video').getAttribute('poster') === poster; })[0];
+    if (!c) return;
+    img.setAttribute('role', 'button');
+    img.setAttribute('aria-label', 'Watch this ad');
+    img.addEventListener('click', function () {
+      c.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      var b = c.querySelector('.bf-ad-play');
+      if (b && !b.hidden) b.click(); else loopOn(c.querySelector('video'));
+      if (window.dataLayer) window.dataLayer.push({ event: 'bf_strip_tap', source: 'black_friday_page', ad: poster.split('/').pop() });
     });
   });
 })();
@@ -1263,7 +1278,8 @@
     // ── Anchor smooth scroll ─────────────────────────────────────
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
-        const t = document.querySelector(a.getAttribute('href'));
+        const h = a.getAttribute('href');
+        const t = h.length > 1 ? document.querySelector(h) : null;
         if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
       });
     });
