@@ -509,7 +509,7 @@
 </script>
 
 <!-- VSL watch tracking. Tella's iframe posts playbackState + timeUpdate messages.
-     Fires Meta custom events VSL_Play, VSL_25, VSL_50, VSL_75, VSL_95 (once each per visit) and matching
+     Fires Meta custom events VSL_Play, VSL_25, VSL_50, VSL_75, VSL_95 (with sound), plus VSL_AutoStart and VSL_Muted_25/50 for silent autoplay (once each per visit), and matching
      dataLayer events. Counts seconds actually watched, so dragging to the end doesn't count as a full watch. -->
 <script>
 (function () {
@@ -517,6 +517,7 @@
   // With muted autoplay, a view only starts when the sound goes on (the "Tap to hear it" button),
   // or when someone presses play themselves in the reduced-motion version.
   var auto = !!document.querySelector('#bfVsl .bf-vsl-sound'), soundOn = !auto;
+  var autoStarted = false, mWatched = 0, mLast = null, mSent = {};
   window.bfVslSoundOn = function () { soundOn = true; watched = 0; last = null; if (!played) { played = true; fire('VSL_Play'); } };
   function fire(name, extra) {
     var data = Object.assign({ video: 'bf_vsl' }, extra || {});
@@ -530,7 +531,19 @@
     if (typeof d === 'string') { try { d = JSON.parse(d); } catch (_) { return; } }
     if (!d || !d.type) return;
     if (d.type === 'playbackState' && d.state === 'playing' && !played && soundOn) { played = true; fire('VSL_Play'); }
-    if (d.type !== 'timeUpdate' || !soundOn) return;
+    // Silent autoplay: did it start at all (e.g. inside the Facebook app), and how far do people watch without sound?
+    if (!soundOn) {
+      if (d.type === 'playbackState' && d.state === 'playing' && !autoStarted) { autoStarted = true; fire('VSL_AutoStart'); }
+      if (d.type === 'timeUpdate') {
+        if (d.duration) dur = d.duration;
+        var mt = Number(d.currentTime) || 0;
+        if (mLast !== null && mt > mLast && mt - mLast < 2) mWatched += mt - mLast;
+        mLast = mt;
+        if (dur) [25, 50].forEach(function (m) { if (mWatched / dur * 100 >= m && !mSent[m]) { mSent[m] = true; fire('VSL_Muted_' + m, { percent: m }); } });
+      }
+      return;
+    }
+    if (d.type !== 'timeUpdate') return;
     if (d.duration) dur = d.duration;
     var t = Number(d.currentTime) || 0;
     if (last !== null && t > last && t - last < 2) watched += t - last;
