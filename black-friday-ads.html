@@ -88,6 +88,9 @@
     /* Phones have no hover, so the same line shows under the hero button instead. */
     .bf-cta-note{display:none;margin:12px 0 0;font-size:13.5px;color:#6b7280;text-align:center}
     @media (hover:none){.bf-cta-note{display:block}.bf-cta-swap .b{display:none}}
+    /* Narrow screens that still report hover (small desktop windows, some Android browsers): the hidden
+       hover label would set the button's width and push it past the nav card. Drop it on small screens. */
+    @media (max-width:640px){.bf-cta-swap .b{display:none}}
     .hero .bf-accent{background:linear-gradient(90deg,#5500dd,#e0245e);-webkit-background-clip:text;background-clip:text;color:transparent;white-space:nowrap}
     .hero .bf-subhead--plain{font-family:'Satoshi',system-ui,sans-serif;font-style:normal;font-weight:500;color:#26262f;letter-spacing:-0.02em;margin-top:14px}
 
