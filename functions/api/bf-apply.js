@@ -120,6 +120,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
         body: JSON.stringify({
           _subject: subject,
           source: 'black-friday-ads',
+          page: record.page || '',
           status: { potential: 'potential', update: 'stopped partway', submit: 'submitted', disqualified: 'disqualified' }[kind],
           last_question: record.step,
           name: answers.name || '',
