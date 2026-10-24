@@ -657,6 +657,41 @@
 </script>
 
 
+<!-- Sticky CTA on phones (Clarity, Oct 23: only 15% of phone visitors scrolled down to the form).
+     Shows once the hero button is off screen, hides while the form is on screen. -->
+<style>
+  .bf-sticky{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:60;display:none;transform:translateY(140%);transition:transform .28s ease}
+  .bf-sticky.is-on{transform:none}
+  .bf-sticky a{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:56px;border-radius:100px;background:#5500DD;color:#fff;text-decoration:none;font-family:'Satoshi',system-ui,sans-serif;font-weight:700;font-size:17px;box-shadow:0 12px 30px -10px rgba(85,0,221,.6)}
+  .bf-sticky a small{font-weight:500;font-size:12px;opacity:.75;margin-top:1px}
+  @media (max-width:760px){.bf-sticky{display:block}}
+</style>
+<div class="bf-sticky" id="bfSticky" aria-hidden="true">
+  <a href="#book" tabindex="-1"><span class="a">See if you qualify</span><small>For brands spending $10K+/mo</small></a>
+</div>
+<script>
+// Runs after parse: the #book section sits further down the page than this script.
+document.addEventListener('DOMContentLoaded', function () {
+  var bar = document.getElementById('bfSticky'), hero = document.querySelector('.hero .bf-cta-swap'), book = document.getElementById('book');
+  if (!bar || !hero || !book) return;
+  var shown = false, ticking = false;
+  function sync() {
+    ticking = false;
+    var vh = window.innerHeight, b = book.getBoundingClientRect();
+    var on = hero.getBoundingClientRect().bottom < 0 && !(b.top < vh && b.bottom > 0);
+    bar.classList.toggle('is-on', on);
+    bar.setAttribute('aria-hidden', on ? 'false' : 'true');
+    bar.querySelector('a').tabIndex = on ? 0 : -1;
+    if (on && !shown) { shown = true; if (window.dataLayer) window.dataLayer.push({ event: 'bf_sticky_shown', source: 'black_friday_page' }); }
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(sync); } }, { passive: true });
+  sync();
+  bar.querySelector('a').addEventListener('click', function () {
+    if (window.dataLayer) window.dataLayer.push({ event: 'bf_sticky_click', source: 'black_friday_page' });
+  });
+});
+</script>
+
 <!-- REVIEWS: same slider as the homepage -->
 <section id="bfReviews" style="background:#EEE8FF; padding:60px 24px 80px;">
   <div style="max-width:1400px; margin:0 auto;">
