@@ -274,6 +274,8 @@
     .bf-ad--vid video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:#111}
     .bf-ad-play{position:absolute;left:12px;top:12px;z-index:2;border:0;border-radius:100px;background:rgba(13,13,20,.72);color:#fff;font-family:'Satoshi',system-ui,sans-serif;font-size:13px;font-weight:700;padding:8px 13px;cursor:pointer}
     .bf-ad-play:hover{background:#5500dd}
+    .bf-ad--vid[data-full] video:not([controls]){cursor:pointer}
+    .bf-ad--vid[data-full]:hover .bf-ad-play{background:#5500dd}
     .hero .hero-marquee-img.bf-ugc-thumb{width:124px;height:220px;object-fit:cover;cursor:pointer}
     /* Only 9 videos in the strip, so it moves slowly enough that repeats aren't obvious. */
     .hero .hero-marquee-track{animation-duration:110s}
@@ -633,6 +635,8 @@
       b.hidden = true;
       if (window.dataLayer) window.dataLayer.push({ event: 'bf_ugc_ad_play', source: 'black_friday_page', ad: c.dataset.full.split('/').pop() });
     });
+    // A tap anywhere on the preview does the same as the button; once the full ad is in, its own controls take over.
+    v.addEventListener('click', function () { if (v.dataset.full !== '1') b.click(); });
   });
   // The hero strip: tapping a thumbnail jumps to that ad in the gallery and plays it with sound
   // (Clarity, Oct 22: the strip got 40% of all taps on phones and did nothing).
