@@ -395,16 +395,51 @@
     .hero .hero-content{padding-bottom:8px}
     .bf-sec--b-form{padding-top:28px}
     @media (max-width:640px){.bf-sec--b-form{padding-top:18px}}
-    .bf-cal-peek{display:none}
+    /* iClosed-style form + locked calendar (page B, Oct 24) */
+    #book .bf-app,#book .bf-cal{border:1px solid #e5e7eb;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+    #book .bf-app{padding:0 22px 20px}
+    .bf-steps2{display:flex;justify-content:center;gap:22px;margin:0 -22px 20px;padding:16px 12px;border-bottom:1px solid #e5e7eb;font-size:15px;color:#9ca3af}
+    .bf-steps2 span{display:flex;align-items:center;gap:8px}
+    .bf-steps2 span::before{content:'';width:8px;height:8px;border-radius:50%;background:#d1d5db}
+    .bf-steps2 span.on{color:#111928}.bf-steps2 span.on::before{background:#111928}
+    #book .bf-book.is-open .bf-steps2 span{color:#9ca3af}
+    .bf-event{margin-bottom:18px}
+    .bf-event-t{margin:0 0 6px;font-family:'Satoshi',system-ui,sans-serif;font-weight:800;font-size:22px;color:#111928;letter-spacing:-0.01em}
+    .bf-event-m{margin:0;font-size:15px;line-height:1.5;color:#4b5563}
+    #book .bf-app-bar,#book .bf-app-count{display:none}
+    #book .bf-q legend{font-size:17px;font-weight:800;letter-spacing:0;margin-bottom:14px}
+    #book .bf-lbl{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+    #book .bf-field{margin-bottom:12px}
+    #book .bf-field input,#book .bf-phone{margin-top:0}
+    #book .bf-app input[type=text],#book .bf-app input[type=email],#book .bf-app input[type=tel]{font-size:16px;padding:13px 14px;border:1.5px solid #e5e7eb;border-radius:8px;background:#f9fafb;color:#111928}
+    #book .bf-app input::placeholder{color:#6b7280}
+    #book .bf-app input:focus{background:#fff;border-color:#111928;box-shadow:0 0 0 3px rgba(17,25,40,.08)}
+    #book .bf-cc{border:1.5px solid #e5e7eb;border-radius:8px;background:#f9fafb;font-size:16px}
+    #book .bf-cc:focus-within{border-color:#111928;box-shadow:0 0 0 3px rgba(17,25,40,.08)}
+    #book .bf-field--phone{margin-bottom:12px}
+    #book .bf-opts{grid-template-columns:1fr;gap:8px}
+    #book .bf-opts button{font-size:15px;font-weight:600;padding:13px 14px;border:1.5px solid #e5e7eb;border-radius:8px;background:#f9fafb;color:#111928;min-height:48px}
+    #book .bf-opts button:hover{border-color:#9ca3af}
+    #book .bf-opts button[aria-pressed=true]{border-color:#111928;background:#fff;color:#111928;box-shadow:inset 0 0 0 1px #111928}
+    #book .bf-next{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:14px;padding:14px 20px;border-radius:8px;background:linear-gradient(135deg,#000 0%,#031953 100%);font-size:16px;font-weight:600}
+    #book .bf-next::after{content:'';width:7px;height:7px;border-top:2px solid #fff;border-right:2px solid #fff;transform:rotate(45deg)}
+    #book .bf-next:disabled{opacity:.45}
+    #book .bf-note{font-size:13px;color:#4b5563}
+    #book .bf-cal-lock{padding:20px 22px}
+    #book .bf-cal-mock{filter:none;opacity:.32}
+    #book .bf-cal-head{align-items:center}
+    #book .bf-cal-head strong{font-size:20px;font-weight:600;color:#111928}
+    .bf-cal-arrows{display:flex;gap:8px}
+    .bf-cal-arrows i{font-style:normal;width:30px;height:30px;border:1px solid #e5e7eb;border-radius:6px;display:grid;place-items:center;font-size:18px;color:#111928}
+    #book .bf-cal-grid span.on{background:none;color:#111928}
+    #book .bf-cal-msg{background:none;justify-content:center}
+    #book .bf-cal-msg .lk{display:none}
+    #book .bf-cal-msg p{max-width:300px;padding:14px 18px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;box-shadow:0 8px 24px -8px rgba(16,24,40,.18);font-size:15px;color:#111928}
     @media (max-width:959px){
-      #book .bf-cal-peek{display:block;position:relative;margin-top:12px;background:#fff;border:1.5px solid rgba(0,0,0,.08);border-radius:18px;padding:14px 14px 12px;overflow:hidden}
-      #book .bf-book.is-open .bf-cal-peek,#book .bf-book.is-dq .bf-cal-peek{display:none}
+      #book .bf-cal{display:block;min-height:0}
+      #book .bf-book.is-dq .bf-cal{display:none}
+      #book .bf-cal-lock{height:auto}
     }
-    .bf-cal-peek-days{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;filter:blur(2px);opacity:.85}
-    .bf-cal-peek-days span{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0;border-radius:10px;background:rgba(85,0,221,.08);color:#5500dd;font-weight:800;font-size:15px}
-    .bf-cal-peek-days b{font-size:10px;font-weight:700;color:rgba(0,0,0,.45);text-transform:uppercase}
-    .bf-cal-peek p{position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Satoshi',system-ui,sans-serif;font-weight:800;font-size:14px;color:#0d0d0d;background:rgba(255,255,255,.3)}
-    .bf-cal-peek .lk{width:26px;height:26px;border-radius:50%;background:#191923;display:grid;place-items:center}
   </style>
 </head>
 <body>
@@ -451,6 +486,11 @@
 
     <div class="bf-book" id="bfBook">
     <form class="bf-app" id="bfApp" novalidate>
+      <div class="bf-steps2" aria-hidden="true"><span class="on">Fill out the form</span><span>Book your call</span></div>
+      <div class="bf-event">
+        <p class="bf-event-t">Black Friday ad pack call</p>
+        <p class="bf-event-m">30 minutes with Zoha or Sonia. We'll come with the first angles to test.</p>
+      </div>
       <div class="bf-app-bar" aria-hidden="true"><span id="bfBar"></span></div>
       <p class="bf-app-count" id="bfCount" aria-live="polite">Step 1 of 5</p>
 
@@ -459,23 +499,23 @@
 
       <fieldset class="bf-q" data-step="1">
         <legend>First, where can we reach you?</legend>
-        <label class="bf-field">Your name<input type="text" name="name" autocomplete="name" required></label>
-        <label class="bf-field">Email<input type="email" name="email" autocomplete="email" inputmode="email" placeholder="you@yourstore.com" required></label>
-        <div class="bf-field"><span id="bfPhoneLbl">Phone</span>
+        <label class="bf-field"><span class="bf-lbl">Your name</span><input type="text" name="name" autocomplete="name" placeholder="Full name *" required></label>
+        <label class="bf-field"><span class="bf-lbl">Email</span><input type="email" name="email" autocomplete="email" inputmode="email" placeholder="Work email *" required></label>
+        <div class="bf-field bf-field--phone"><span id="bfPhoneLbl" class="bf-lbl">Phone</span>
           <div class="bf-phone">
             <span class="bf-cc"><span id="bfCcShow" aria-hidden="true">+1</span><select id="bfCc" aria-label="Country code"></select></span>
-            <input type="tel" name="phone" aria-labelledby="bfPhoneLbl" autocomplete="tel-national" inputmode="tel" placeholder="(212) 555-0123" required>
+            <input type="tel" name="phone" aria-labelledby="bfPhoneLbl" autocomplete="tel-national" inputmode="tel" placeholder="Phone number *" required>
           </div>
         </div>
         <p class="bf-err" hidden>Add your name, a valid email and your phone number.</p>
-        <button type="button" class="bf-next" id="bfContactNext">Next</button>
+        <button type="button" class="bf-next" id="bfContactNext">Continue</button>
       </fieldset>
 
       <fieldset class="bf-q" data-step="2" hidden>
         <legend>What's your store's website?</legend>
         <input type="text" name="website" inputmode="url" autocomplete="url" placeholder="yourstore.com">
         <p class="bf-err" hidden>Add your website so we can look at your store before the call.</p>
-        <button type="button" class="bf-next" id="bfSiteNext">Next</button>
+        <button type="button" class="bf-next" id="bfSiteNext">Continue</button>
       </fieldset>
 
       <fieldset class="bf-q" data-step="3" hidden>
@@ -521,29 +561,16 @@
       <div class="bf-app-nav"><button type="button" class="bf-back" id="bfBack" hidden>&larr; Back</button></div>
       <p class="bf-note">We save your answers as you go, so nothing's lost if you step away. <a href="/privacy">Privacy policy</a></p>
     </form>
-    <!-- Phones only: a slim locked week under the form (like iClosed's "show calendar with the form"), so people see times are waiting. -->
-    <div class="bf-cal-peek" aria-hidden="true">
-      <div class="bf-cal-peek-days" id="bfPeekDays"></div>
-      <p><span class="lk"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>Your calendar opens after question 5</p>
-    </div>
-    <script>
-    (function () {
-      var box = document.getElementById('bfPeekDays'), d = new Date(), html = '', n = 0;
-      while (n < 6) { d.setDate(d.getDate() + 1); var w = d.getDay(); if (w === 0 || w === 6) continue; n++;
-        html += '<span><b>' + d.toLocaleDateString('en-US', { weekday: 'short' }) + '</b>' + d.getDate() + '</span>'; }
-      box.innerHTML = html;
-    })();
-    </script>
     <!-- Calendar: locked until the form is done (iClosed style). On phones it takes the form's place at the end. -->
     <aside class="bf-cal" id="bfCalBox" aria-label="Available times">
       <div class="bf-cal-lock" id="bfCalLock">
         <div class="bf-cal-mock" aria-hidden="true">
-          <p class="bf-cal-head"><strong>30 minute call</strong><span id="bfCalMonth"></span></p>
+          <p class="bf-cal-head"><strong id="bfCalMonth"></strong><span class="bf-cal-arrows"><i>&lsaquo;</i><i>&rsaquo;</i></span></p>
           <div class="bf-cal-grid" id="bfCalGrid"></div>
         </div>
         <div class="bf-cal-msg">
           <span class="lk"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
-          <p><strong>Answer the questions to see times.</strong>Your calendar opens here as soon as you're done.</p>
+          <p>Please fill out the form before choosing your time slot.</p>
         </div>
       </div>
       <div class="bf-cal-live" id="bfCal" hidden></div>
@@ -991,7 +1018,7 @@ document.addEventListener('DOMContentLoaded', function () {
     err.hidden = true; checking = true; contactBtn.disabled = true; contactBtn.textContent = 'Checking…';
     Promise.all([verifyEmail(email), withTimeout(loadPhoneLib(), 4000, null)]).then(function (r) {
       var v = r[0] || { ok: true }, lib = r[1];
-      checking = false; contactBtn.disabled = false; contactBtn.textContent = 'Next';
+      checking = false; contactBtn.disabled = false; contactBtn.textContent = 'Continue';
       if (v.ok === false) {
         err.textContent = EMAIL_MSG[v.reason] || EMAIL_MSG.bad_email; err.hidden = false;
         track('bf_apply_email_rejected', { reason: v.reason });
