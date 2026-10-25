@@ -395,6 +395,19 @@
     .hero .hero-content{padding-bottom:8px}
     .bf-sec--b-form{padding-top:28px}
     @media (max-width:640px){.bf-sec--b-form{padding-top:18px}}
+    /* Alignment pass (page B, Oct 25) */
+    .bf-proofrow{grid-template-columns:repeat(2,minmax(0,320px));justify-content:center}
+    @media (min-width:761px) and (max-width:900px){.bf-proofrow{grid-auto-flow:row;grid-auto-columns:auto;overflow:visible}}
+    @media (max-width:760px){
+      .bf-testi,.bf-proofrow > *{scroll-snap-align:start}
+      .bf-testis,.bf-proofrow{scroll-padding-left:2px;justify-content:start}
+      .bf-proofrow{grid-auto-flow:row;grid-auto-columns:auto;grid-template-columns:1fr;overflow:visible}
+      .bf-sec{padding-top:44px;padding-bottom:44px}
+      #bfReviews{padding:44px 16px 48px!important}
+      #bfReviews > div > div:first-child{margin-bottom:28px!important}
+      .bf-testis{margin-bottom:28px}
+      .bf-midcta{margin-top:28px}
+    }
     /* iClosed-style form + locked calendar (page B, Oct 24) */
     .bf-topbar{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 auto 14px;font-family:'Satoshi',system-ui,sans-serif;font-weight:700;font-size:14px;color:#191923;text-align:center}
     .bf-topbar[hidden]{display:none}
@@ -708,7 +721,8 @@ document.addEventListener('DOMContentLoaded', function () {
   function sync() {
     ticking = false;
     var vh = window.innerHeight, b = book.getBoundingClientRect();
-    var on = hero.getBoundingClientRect().bottom < 0 && !(b.top < vh && b.bottom > 0);
+    var ctaOn = [].some.call(document.querySelectorAll('.bf-midcta, .bf-price .bf-cta-swap'), function (el) { var r = el.getBoundingClientRect(); return r.top < vh && r.bottom > 0; });
+    var on = hero.getBoundingClientRect().bottom < 0 && !(b.top < vh && b.bottom > 0) && !ctaOn;
     bar.classList.toggle('is-on', on);
     bar.setAttribute('aria-hidden', on ? 'false' : 'true');
     bar.querySelector('a').tabIndex = on ? 0 : -1;
