@@ -474,13 +474,18 @@
   <div class="hero-content">
     <div class="container hero-center">
 
-<!-- Deadline bar (real dates only): start by Nov 6 so ads land by Nov 13, two weeks of testing before Black Friday Nov 27. -->
+<!-- Deadline line (real dates only): rolling start date, ads 7 days later; switches to Cyber Monday once there's under a week of testing left. -->
       <div class="bf-topbar" id="bfTopbar" hidden><span class="dot" aria-hidden="true"></span><span id="bfTopbarText"></span></div>
       <script>
       (function () {
-        var now = new Date(), y = 2026, t = document.getElementById('bfTopbarText'), b = document.getElementById('bfTopbar');
-        var startBy = new Date(y, 10, 7), bf = new Date(y, 10, 27);   // end of Fri Nov 6; Black Friday
-        if (now < startBy) t.textContent = 'Start by Nov 6, ads land by Nov 13';
+        // Rolling deadline: start = 2 business days from today, ads land 7 days later. Never shows a past date.
+        var now = new Date(), bf = new Date(2026, 10, 27), t = document.getElementById('bfTopbarText'), b = document.getElementById('bfTopbar');
+        var start = new Date(now.getFullYear(), now.getMonth(), now.getDate()), added = 0;
+        while (added < 2) { start.setDate(start.getDate() + 1); if (start.getDay() !== 0 && start.getDay() !== 6) added++; }
+        var land = new Date(start); land.setDate(land.getDate() + 7);   // setDate, not ms, so the Nov 1 clock change can't shift the day
+        var lastLand = new Date(bf); lastLand.setDate(lastLand.getDate() - 7);   // at least a week of testing before Black Friday
+        var fmt = function (d) { return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); };
+        if (land <= lastLand) t.textContent = 'Start by ' + fmt(start) + ', ads land by ' + fmt(land);
         else if (now < bf) t.textContent = 'Ads ready in 7 days, in time for Cyber Monday';
         else return;
         b.hidden = false;
