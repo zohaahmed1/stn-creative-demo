@@ -396,6 +396,14 @@
     .bf-sec--b-form{padding-top:28px}
     @media (max-width:640px){.bf-sec--b-form{padding-top:18px}}
     /* iClosed-style form + locked calendar (page B, Oct 24) */
+    .bf-topbar{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 auto 14px;font-family:'Satoshi',system-ui,sans-serif;font-weight:700;font-size:14px;color:#191923;text-align:center}
+    .bf-topbar[hidden]{display:none}
+    .bf-topbar #bfTopbarText{min-width:0}
+    @media (max-width:640px){.bf-topbar{font-size:13px;padding:0 16px}}
+    .bf-topbar .dot{flex:none;width:8px;height:8px;border-radius:50%;background:#ee0033;box-shadow:0 0 0 4px rgba(238,0,51,.15)}
+    /* Brand purple on the form, the way Acquisition.com colours its iClosed button */
+    #book .bf-next{background:#5500dd}
+    .bf-steps2 span.on::before{background:#5500dd}
     #book .bf-app,#book .bf-cal{border:1px solid #e5e7eb;border-radius:14px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
     #book .bf-app{padding:0 22px 20px}
     .bf-steps2{display:flex;justify-content:center;gap:22px;margin:0 -22px 20px;padding:16px 12px;border-bottom:1px solid #e5e7eb;font-size:15px;color:#9ca3af}
@@ -421,7 +429,7 @@
     #book .bf-opts button{font-size:15px;font-weight:600;padding:13px 14px;border:1.5px solid #e5e7eb;border-radius:8px;background:#f9fafb;color:#111928;min-height:48px}
     #book .bf-opts button:hover{border-color:#9ca3af}
     #book .bf-opts button[aria-pressed=true]{border-color:#111928;background:#fff;color:#111928;box-shadow:inset 0 0 0 1px #111928}
-    #book .bf-next{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:14px;padding:14px 20px;border-radius:8px;background:linear-gradient(135deg,#000 0%,#031953 100%);font-size:16px;font-weight:600}
+    #book .bf-next{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;margin-top:14px;padding:14px 20px;border-radius:8px;font-size:16px;font-weight:600}
     #book .bf-next::after{content:'';width:7px;height:7px;border-top:2px solid #fff;border-right:2px solid #fff;transform:rotate(45deg)}
     #book .bf-next:disabled{opacity:.45}
     #book .bf-note{font-size:13px;color:#4b5563}
@@ -466,6 +474,18 @@
   <div class="hero-content">
     <div class="container hero-center">
 
+<!-- Deadline bar (real dates only): start by Nov 6 so ads land by Nov 13, two weeks of testing before Black Friday Nov 27. -->
+      <div class="bf-topbar" id="bfTopbar" hidden><span class="dot" aria-hidden="true"></span><span id="bfTopbarText"></span></div>
+      <script>
+      (function () {
+        var now = new Date(), y = 2026, t = document.getElementById('bfTopbarText'), b = document.getElementById('bfTopbar');
+        var startBy = new Date(y, 10, 7), bf = new Date(y, 10, 27);   // end of Fri Nov 6; Black Friday
+        if (now < startBy) t.textContent = 'Start by Nov 6, ads land by Nov 13';
+        else if (now < bf) t.textContent = 'Ads ready in 7 days, in time for Cyber Monday';
+        else return;
+        b.hidden = false;
+      })();
+      </script>
       <h1 class="hero-headline">
         <span class="hero-headline-bold" data-hero data-delay="2">Lower your cost per purchase <span class="bf-accent">by 20% in 30 days</span> with AI UGC ads</span>
         <span class="hero-headline-italic bf-subhead bf-subhead--plain" data-hero data-delay="4">18 video ads, ready to upload in 7&nbsp;days. Beat your current winners, or get 50%&nbsp;back.</span>
