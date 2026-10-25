@@ -395,6 +395,16 @@
     .hero .hero-content{padding-bottom:8px}
     .bf-sec--b-form{padding-top:28px}
     @media (max-width:640px){.bf-sec--b-form{padding-top:18px}}
+    .bf-cal-peek{display:none}
+    @media (max-width:959px){
+      #book .bf-cal-peek{display:block;position:relative;margin-top:12px;background:#fff;border:1.5px solid rgba(0,0,0,.08);border-radius:18px;padding:14px 14px 12px;overflow:hidden}
+      #book .bf-book.is-open .bf-cal-peek,#book .bf-book.is-dq .bf-cal-peek{display:none}
+    }
+    .bf-cal-peek-days{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;filter:blur(2px);opacity:.85}
+    .bf-cal-peek-days span{display:flex;flex-direction:column;align-items:center;gap:2px;padding:8px 0;border-radius:10px;background:rgba(85,0,221,.08);color:#5500dd;font-weight:800;font-size:15px}
+    .bf-cal-peek-days b{font-size:10px;font-weight:700;color:rgba(0,0,0,.45);text-transform:uppercase}
+    .bf-cal-peek p{position:absolute;inset:0;margin:0;display:flex;align-items:center;justify-content:center;gap:8px;font-family:'Satoshi',system-ui,sans-serif;font-weight:800;font-size:14px;color:#0d0d0d;background:rgba(255,255,255,.3)}
+    .bf-cal-peek .lk{width:26px;height:26px;border-radius:50%;background:#191923;display:grid;place-items:center}
   </style>
 </head>
 <body>
@@ -511,6 +521,19 @@
       <div class="bf-app-nav"><button type="button" class="bf-back" id="bfBack" hidden>&larr; Back</button></div>
       <p class="bf-note">We save your answers as you go, so nothing's lost if you step away. <a href="/privacy">Privacy policy</a></p>
     </form>
+    <!-- Phones only: a slim locked week under the form (like iClosed's "show calendar with the form"), so people see times are waiting. -->
+    <div class="bf-cal-peek" aria-hidden="true">
+      <div class="bf-cal-peek-days" id="bfPeekDays"></div>
+      <p><span class="lk"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>Your calendar opens after question 5</p>
+    </div>
+    <script>
+    (function () {
+      var box = document.getElementById('bfPeekDays'), d = new Date(), html = '', n = 0;
+      while (n < 6) { d.setDate(d.getDate() + 1); var w = d.getDay(); if (w === 0 || w === 6) continue; n++;
+        html += '<span><b>' + d.toLocaleDateString('en-US', { weekday: 'short' }) + '</b>' + d.getDate() + '</span>'; }
+      box.innerHTML = html;
+    })();
+    </script>
     <!-- Calendar: locked until the form is done (iClosed style). On phones it takes the form's place at the end. -->
     <aside class="bf-cal" id="bfCalBox" aria-label="Available times">
       <div class="bf-cal-lock" id="bfCalLock">
