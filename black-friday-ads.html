@@ -388,6 +388,13 @@
     @media (max-width:640px){.bf-app{padding:22px 18px 18px;border-radius:18px}.bf-opts{grid-template-columns:1fr}}
     @media (prefers-reduced-motion:reduce){.hero-marquee-track{animation:none!important}}
   </style>
+  <style>
+    .bf-topbar{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 auto 14px;font-family:'Satoshi',system-ui,sans-serif;font-weight:700;font-size:14px;color:#191923;text-align:center}
+    .bf-topbar[hidden]{display:none}
+    .bf-topbar #bfTopbarText{min-width:0}
+    @media (max-width:640px){.bf-topbar{font-size:13px;padding:0 16px}}
+    .bf-topbar .dot{flex:none;width:8px;height:8px;border-radius:50%;background:#ee0033;box-shadow:0 0 0 4px rgba(238,0,51,.15)}
+  </style>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4JR5P3B" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -413,6 +420,23 @@
   <div class="hero-content">
     <div class="container hero-center">
 
+      <!-- Deadline line (real dates only): rolling start date, ads 7 days later; switches to Cyber Monday once there's under a week of testing left. -->
+      <div class="bf-topbar" id="bfTopbar" hidden><span class="dot" aria-hidden="true"></span><span id="bfTopbarText"></span></div>
+      <script>
+      (function () {
+        // Rolling deadline: start = 2 business days from today, ads land 7 days later. Never shows a past date.
+        var now = new Date(), bf = new Date(2026, 10, 27), t = document.getElementById('bfTopbarText'), b = document.getElementById('bfTopbar');
+        var start = new Date(now.getFullYear(), now.getMonth(), now.getDate()), added = 0;
+        while (added < 2) { start.setDate(start.getDate() + 1); if (start.getDay() !== 0 && start.getDay() !== 6) added++; }
+        var land = new Date(start); land.setDate(land.getDate() + 7);   // setDate, not ms, so the Nov 1 clock change can't shift the day
+        var lastLand = new Date(bf); lastLand.setDate(lastLand.getDate() - 7);   // at least a week of testing before Black Friday
+        var fmt = function (d) { return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); };
+        if (land <= lastLand) t.textContent = 'Start by ' + fmt(start) + ', ads land by ' + fmt(land);
+        else if (now < bf) t.textContent = 'Ads ready in 7 days, in time for Cyber Monday';
+        else return;
+        b.hidden = false;
+      })();
+      </script>
       <h1 class="hero-headline">
         <span class="hero-headline-bold" data-hero data-delay="2">Lower your cost per purchase <span class="bf-accent">by 20% in 30 days</span> with AI UGC ads</span>
         <span class="hero-headline-italic bf-subhead bf-subhead--plain" data-hero data-delay="4">18 video ads, ready to upload in 7&nbsp;days. Beat your current winners, or get 50%&nbsp;back.</span>
