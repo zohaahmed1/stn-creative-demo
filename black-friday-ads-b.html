@@ -700,6 +700,20 @@
 </script>
 
 
+<!-- Hero taps go to the form (Clarity, Oct 25: ~30 taps a day landed on the headline and deadline line, which did nothing). -->
+<style>.hero .hero-headline,#bfTopbar{cursor:pointer}</style>
+<script>
+(function () {
+  var book = document.getElementById('book');
+  [document.querySelector('.hero .hero-headline'), document.getElementById('bfTopbar')].forEach(function (el) {
+    if (!el || !book) return;
+    el.addEventListener('click', function () {
+      book.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (window.dataLayer) window.dataLayer.push({ event: 'bf_hero_tap', source: 'black_friday_page_b', el: el.id || 'headline' });
+    });
+  });
+})();
+</script>
 <!-- Sticky CTA on phones (Clarity, Oct 23: only 15% of phone visitors scrolled down to the form).
      Shows once the hero button is off screen, hides while the form is on screen. -->
 <style>
