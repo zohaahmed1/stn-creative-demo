@@ -971,6 +971,17 @@ document.addEventListener('DOMContentLoaded', function () {
   };
   var PHONE_MSG = 'That phone number doesn’t look right. Check the country code on the left and include the area code.';
   var checked = {}, phoneLib = null;
+  var NAME_MSG = 'Please add your real name.';
+  var SITE_MSG = 'We couldn’t find that website. Check the spelling?';
+  // Digits or symbols in a name ("rjngjgj5") mean a keyboard test, not a person.
+  function nameOk(n) { n = String(n || '').trim(); return n.length >= 2 && !/[\d@_#$%*=+<>\/\\]/.test(n); }
+  /* Ads only target these countries, so a qualified Lead from anywhere else is a
+     test or a bot. They still reach Formspree; Meta just doesn't learn from them.
+     Unknown country fails open. */
+  var LEAD_COUNTRIES = ['US', 'CA', 'GB', 'AU'], visitorLoc = '';
+  fetch('/cdn-cgi/trace').then(function (r) { return r.ok ? r.text() : ''; }).then(function (t) {
+    var m = /^loc=([A-Z]{2})$/m.exec(t || ''); if (m) visitorLoc = m[1];
+  }).catch(function () {});
   function withTimeout(p, ms, fallback) { return Promise.race([p, new Promise(function (r) { setTimeout(function () { r(fallback); }, ms); })]); }
   function loadPhoneLib() {
     if (!phoneLib) phoneLib = new Promise(function (res) {
@@ -1068,6 +1079,11 @@ document.addEventListener('DOMContentLoaded', function () {
     if (!(answers.name || '').trim() || !EMAIL.test(email) || !phoneOk(answers.phone)) {
       err.textContent = ERR_DEFAULT; err.hidden = false; return;
     }
+    if (!nameOk(answers.name)) {
+      err.textContent = NAME_MSG; err.hidden = false;
+      track('bf_apply_name_rejected');
+      form.querySelector('input[name=name]').focus(); return;
+    }
     err.hidden = true; checking = true; contactBtn.disabled = true; contactBtn.textContent = 'Checking…';
     Promise.all([verifyEmail(email), withTimeout(loadPhoneLib(), 4000, null)]).then(function (r) {
       var v = r[0] || { ok: true }, lib = r[1];
@@ -1100,10 +1116,25 @@ document.addEventListener('DOMContentLoaded', function () {
       next();
     });
   });
+  var SITE_DEFAULT = steps[1].querySelector('.bf-err').textContent;
   document.getElementById('bfSiteNext').addEventListener('click', function () {
     var err = steps[1].querySelector('.bf-err');
-    if (!siteOk(answers.website)) { err.hidden = false; return; }
-    err.hidden = true; next();
+    if (!siteOk(answers.website)) { err.textContent = SITE_DEFAULT; err.hidden = false; return; }
+    var btn = this; if (btn.disabled) return;
+    err.hidden = true; btn.disabled = true;
+    // Same domain check as the quiz: the site's domain must exist and take mail. Fails open.
+    var req = fetch('/api/verify', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ site: answers.website }) })
+      .then(function (r) { return r.ok ? r.json() : { ok: true }; })
+      .catch(function () { return { ok: true }; });
+    withTimeout(req, 5000, { ok: true }).then(function (v) {
+      btn.disabled = false;
+      if (v && v.ok === false && v.reason !== 'freemail') {
+        err.textContent = SITE_MSG; err.hidden = false;
+        track('bf_apply_site_rejected', { reason: v.reason });
+        form.querySelector('input[name=website]').focus(); return;
+      }
+      next();
+    });
   });
 
   form.querySelectorAll('.bf-opts').forEach(function (group) {
@@ -1138,7 +1169,8 @@ document.addEventListener('DOMContentLoaded', function () {
     var qualified = ['10-20k', '20-50k', '50k+'].indexOf(answers.spend) > -1;
     send('submit');
     track('bf_apply_submit', { qualified: qualified });
-    if (qualified && typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'bf_application_qualified' });
+    var geoOk = !visitorLoc || LEAD_COUNTRIES.indexOf(visitorLoc) > -1;
+    if (qualified && geoOk && typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: 'bf_application_qualified' });
     unlockCal();
   });
 
