@@ -85,9 +85,15 @@ export async function onRequestPost({ request, env, waitUntil }) {
   if (answers.website && !DOMAIN_RE.test(answers.website)) delete answers.website;
 
   const qualified = QUALIFIED_SPEND.has(answers.spend || '');
+  /* Junk filter, server side so an old cached page or a direct POST can't get around it.
+     A name with digits or symbols ("rjngjgj5") is a keyboard test, not a person. Judged on
+     the current name only, so a real visitor who fixes a typo is never stuck as junk. Junk
+     is still kept in KV for the record, but sends no email, sheet row or Telegram alert. */
+  const junk = Boolean(answers.name && /[\d@_#$%*=+<>\/\\]/.test(answers.name));
   const record = {
     sid, kind, ts: new Date().toISOString(), step: clip(body.step, 20), answers, qualified,
     page: clip(body.page, 200), utm: clip(body.utm, 300), country: request.headers.get('CF-IPCountry') || '',
+    junk,
   };
 
   // 1. KV: every event, one record per visitor.
@@ -100,7 +106,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
   // 2. Formspree: only for leads we can actually reach.
   const reachable = Boolean(answers.email || answers.phone);
   let notified = false;
-  if (kind !== 'partial' && reachable) {
+  if (kind !== 'partial' && reachable && !junk) {
     const who = answers.name || answers.email || answers.phone;
     // Leads who want ongoing ads get called first, so flag them in the subject line.
     const ongoing = answers.recurring === 'Yes, ongoing' ? ', wants ongoing' : '';
@@ -156,7 +162,7 @@ export async function onRequestPost({ request, env, waitUntil }) {
   // 4. Telegram alert to Zoha's phone (lib/telegram.js): once when a lead with a phone number
   //    picks $10K+ (call them while they're still on the form), once more when they submit.
   //    KV remembers what was sent, so the debounced "partial" posts can't repeat it.
-  if (qualified && answers.phone && botToken(env) && env.LEADS && ['partial', 'update', 'submit'].includes(kind)) {
+  if (qualified && !junk && answers.phone && botToken(env) && env.LEADS && ['partial', 'update', 'submit'].includes(kind)) {
     const stage = kind === 'submit' ? 'submitted' : 'qualified';
     const flag = `tga:${stage}:${sid}`;
     let sent = false;
