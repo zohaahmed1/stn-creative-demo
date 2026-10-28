@@ -49,15 +49,19 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://api.fontshare.com">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" as="style" onload="this.rel='stylesheet'">
-  <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700,900&display=swap" as="style" onload="this.rel='stylesheet'">
+  <link rel="preload" href="/assets/fonts/satoshi-900.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/satoshi-500.woff2" as="font" type="font/woff2" crossorigin>
   <noscript>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet">
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,700,900&display=swap" rel="stylesheet">
   </noscript>
   <style>
     img{max-width:100%;height:auto}
+    /* Satoshi, self-hosted (was api.fontshare.com) so the headline font arrives with the page. */
+    @font-face{font-family:'Satoshi';src:url('/assets/fonts/satoshi-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+    @font-face{font-family:'Satoshi';src:url('/assets/fonts/satoshi-500.woff2') format('woff2');font-weight:500;font-style:normal;font-display:swap}
+    @font-face{font-family:'Satoshi';src:url('/assets/fonts/satoshi-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+    @font-face{font-family:'Satoshi';src:url('/assets/fonts/satoshi-900.woff2') format('woff2');font-weight:900;font-style:normal;font-display:swap}
     .hero-marquee-wrap{cursor:grab;user-select:none;-webkit-user-select:none}
     .hero-marquee-wrap.is-dragging{cursor:grabbing}
 
@@ -133,6 +137,10 @@
     /* VSL */
     .bf-vsl{max-width:920px;margin:36px auto 0;aspect-ratio:16/9;border-radius:24px;overflow:hidden;background:#191923;position:relative;box-shadow:0 28px 60px -28px rgba(25,25,35,.5)}
     .bf-vsl iframe,.bf-vsl video{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;background:#000}
+    .bf-vsl-still{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;z-index:0}
+    .bf-vsl iframe{z-index:1}
+    /* Button sits low so it doesn't cover the headline baked into the still. */
+    .bf-vsl .bf-vsl-sound{align-items:flex-end;padding-bottom:5%}
     .bf-vsl-sound{position:absolute;inset:0;z-index:3;border:0;padding:0;margin:0;background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center}
     .bf-vsl-sound span{display:inline-flex;align-items:center;gap:10px;background:#5500dd;color:#fff;font:800 18px/1 'Satoshi',system-ui,sans-serif;padding:16px 26px;border-radius:999px;box-shadow:0 12px 34px rgba(85,0,221,.55);animation:bfSoundPulse 1.8s ease-in-out infinite}
     @keyframes bfSoundPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.06)}}
@@ -507,31 +515,32 @@
 
 <script>
 (function () {
-  // Plays muted as soon as the page opens (browsers only allow silent autoplay), with Tella's captions on.
-  // "Tap to hear it" restarts it from the top with sound. Visitors who ask for reduced motion get the normal player.
-  var AUTO = !(window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
-  var VSL_SRC = 'https://www.tella.tv/video/vid_cmvfy5iuo00ag02p7b3qoamze/embed?b=0&title=0&loop=0&t=0&wt=0' + (AUTO ? '&autoPlay=true&muted=1' : '&a=0&muted=0');   // Tella, editor's cut v5 (Oct 19). Swap for YouTube / Vimeo / Loom / Wistia embed link, or an .mp4
+  /* Loads only when tapped. Muted autoplay streamed the whole video (~30 MB) the moment the page
+     opened, which stalled the page inside the Instagram/Facebook app, and nobody turned the sound on.
+     Now the page shows the video's first frame; a tap anywhere loads Tella and plays it with sound. */
+  var VSL_SRC = 'https://www.tella.tv/video/vid_cmvfy5iuo00ag02p7b3qoamze/embed?b=0&title=0&loop=0&t=0&wt=0&autoPlay=true&muted=0';   // Tella, editor's cut v5 (Oct 19)
   var box = document.getElementById('bfVsl');
   if (!box || !VSL_SRC) return;
-  box.innerHTML = /\.mp4(\?|$)/i.test(VSL_SRC)
-    ? '<video src="' + VSL_SRC + '" controls playsinline preload="metadata"></video>'
-    : '<iframe src="' + VSL_SRC + '" title="Watch before you apply" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
-  if (AUTO && !/\.mp4(\?|$)/i.test(VSL_SRC)) {
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'bf-vsl-sound';
-    btn.innerHTML = '<span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>Tap to hear how it works</span>';
-    btn.setAttribute('aria-label', 'Play the video with sound from the start');
-    box.appendChild(btn);
-    btn.addEventListener('click', function () {
-      var f = box.querySelector('iframe');
-      ['{"type":"seek","time":0}', '{"type":"unmute"}', '{"type":"play"}'].forEach(function (m) {
-        f.contentWindow.postMessage(JSON.parse(m), 'https://www.tella.tv');
-      });
-      btn.remove();
-      window.bfVslSoundOn && window.bfVslSoundOn();
+  box.innerHTML = '<img class="bf-vsl-still" src="/assets/bf-vsl-poster-720.jpg" srcset="/assets/bf-vsl-poster-720.jpg 720w, /assets/bf-vsl-poster.jpg 1280w" sizes="(max-width:640px) 100vw, 820px" alt="Zoha Ahmed, co-founder of Skip the Noise Media: 20% cheaper per purchase or 50% of your money back" fetchpriority="high" decoding="async">';
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'bf-vsl-sound';
+  btn.innerHTML = '<span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>Tap to hear how it works</span>';
+  btn.setAttribute('aria-label', 'Play the video with sound');
+  box.appendChild(btn);
+  btn.addEventListener('click', function () {
+    var f = document.createElement('iframe');
+    f.src = VSL_SRC; f.title = 'Watch before you apply';
+    f.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture'); f.setAttribute('allowfullscreen', '');
+    box.appendChild(f);
+    // If the browser starts it muted anyway (some in-app browsers do), ask the player to unmute once it's ready.
+    f.addEventListener('load', function () {
+      ['{"type":"unmute"}', '{"type":"play"}'].forEach(function (m) { try { f.contentWindow.postMessage(JSON.parse(m), 'https://www.tella.tv'); } catch (e) {} });
     });
-  }
+    btn.remove();
+    var still = box.querySelector('.bf-vsl-still'); if (still) setTimeout(function () { still.remove(); }, 1500);
+    window.bfVslSoundOn && window.bfVslSoundOn();
+  });
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: 'bf_vsl_shown', source: 'black_friday_page' });
 })();
