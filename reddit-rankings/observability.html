@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#5500DD">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-M4JR5P3B');</script>
+  <!-- End Google Tag Manager -->
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","tkmbhjjy2n");</script>
+  <!-- End Microsoft Clarity -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Best Monitoring and Observability Tools, According to Reddit (2026) | Skip the Noise Media</title>
+  <meta name="description" content="We read 288 Reddit comments from sysadmins and engineers about monitoring, observability and logging. Here is which tools they recommend, which they complain about, and why.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://skipthenoisemedia.com/reddit-rankings/observability">
+  <meta property="og:title" content="Best Monitoring and Observability Tools, According to Reddit (2026)">
+  <meta property="og:description" content="We read 288 Reddit comments from sysadmins and engineers about monitoring, observability and logging. Here is which tools they recommend, which they complain about, and why.">
+  <meta property="og:image" content="https://skipthenoisemedia.com/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Best Monitoring and Observability Tools, According to Reddit (2026)">
+  <meta name="twitter:description" content="We read 288 Reddit comments from sysadmins and engineers about monitoring, observability and logging. Here is which tools they recommend, which they complain about, and why.">
+  <meta name="twitter:image" content="https://skipthenoisemedia.com/assets/og-image.png">
+  <link rel="canonical" href="https://skipthenoisemedia.com/reddit-rankings/observability">
+
+  <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
+  <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap" rel="stylesheet"></noscript>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" as="style" onload="this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,700;1,800&display=swap" rel="stylesheet"></noscript>
+
+  <link rel="stylesheet" href="/assets/nav.css?v=20260925">
+
+  <link rel="stylesheet" href="../assets/main.css">
+  <style>
+    /* ── Blog nav overrides: sticky white nav ── */
+    .nav { position: sticky !important; top: 0 !important; left: 0 !important; right: 0 !important; background: rgba(255,255,255,0.97) !important; border-radius: 0 !important; border-bottom: 1px solid rgba(0,0,0,0.08) !important; }
+    .nav.scrolled { position: sticky !important; top: 0 !important; left: 0 !important; right: 0 !important; border-radius: 0 !important; box-shadow: 0 2px 12px rgba(0,0,0,0.07) !important; background: rgba(255,255,255,0.97) !important; }
+    .nav-logo .logo-skip { color: #191923; }
+    .nav-logo .logo-noise { background: linear-gradient(90deg, #5500dd, #cc0000); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --purple: #5500DD;
+      --reddit-orange: #FF4500;
+      --dark: #0d0d0d;
+      --gray-500: #6b7280;
+      --gray-200: #e5e7eb;
+      --gray-100: #f3f4f6;
+    }
+    body { font-family: 'Satoshi', system-ui, -apple-system, sans-serif; color: var(--dark); background: #fff; -webkit-font-smoothing: antialiased; }
+
+    nav { position: sticky; top: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); border-bottom: 1px solid var(--gray-200); padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-size: 20px; font-weight: 400; color: var(--dark); text-decoration: none; letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { font-size: 14px; font-weight: 500; color: var(--gray-500); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--dark); }
+    .nav-cta { background: var(--purple); color: #fff !important; padding: 8px 18px; border-radius: 100px; font-weight: 700 !important; font-size: 13px !important; }
+    .nav-cta:hover { opacity: 0.88; }
+
+    .article-hero { background: #0a0520; padding: 72px 24px 64px; }
+    .article-hero-inner { max-width: 760px; margin: 0 auto; }
+    .article-tag { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,69,0,0.15); border: 1px solid rgba(255,69,0,0.35); border-radius: 100px; padding: 4px 14px; font-size: 12px; font-weight: 700; color: #FF6B35; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 20px; }
+    .article-hero h1 { font-size: clamp(28px, 4vw, 46px); font-weight: 900; color: #fff; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 20px; }
+    .article-hero h1 em { font-family: 'Playfair Display', Georgia, serif; font-style: italic; }
+    .article-meta { display: flex; align-items: center; gap: 16px; font-size: 14px; color: #666C75; flex-wrap: wrap; }
+
+    .article-body { max-width: 760px; margin: 0 auto; padding: 56px 24px 80px; }
+    .article-body p { font-size: 17px; line-height: 1.75; color: #1a1a1a; margin-bottom: 24px; }
+    .article-body h2 { font-size: clamp(22px, 3vw, 30px); font-weight: 900; letter-spacing: -0.025em; color: var(--dark); margin: 52px 0 16px; line-height: 1.2; }
+    .article-body h3 { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; color: var(--dark); margin: 36px 0 12px; }
+    .article-body ul { margin: 0 0 24px 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .article-body ul li { font-size: 17px; line-height: 1.6; color: #1a1a1a; padding-left: 24px; position: relative; }
+    .article-body ul li::before { content: ''; position: absolute; left: 0; top: 10px; width: 6px; height: 6px; border-radius: 50%; background: var(--purple); }
+    .article-body a { color: var(--purple); text-decoration: underline; }
+    .article-body a:hover { opacity: 0.8; }
+
+    .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 32px 0; }
+    .stat-box { background: var(--gray-100); border-radius: 16px; padding: 24px 20px; text-align: center; }
+    .stat-box .num { font-size: 32px; font-weight: 900; letter-spacing: -0.04em; color: var(--purple); display: block; margin-bottom: 4px; }
+    .stat-box .label { font-size: 13px; font-weight: 600; color: var(--gray-500); }
+
+    .pull-quote { border-left: 4px solid var(--reddit-orange); padding: 16px 24px; margin: 32px 0; background: #fff8f5; border-radius: 0 12px 12px 0; }
+    .pull-quote p { font-size: 18px !important; font-weight: 600; color: #1a1a1a; margin: 0 !important; line-height: 1.5; }
+
+    /* Benchmark table */
+    .benchmark-table { width: 100%; border-collapse: collapse; margin: 32px 0; border-radius: 12px; overflow: hidden; }
+    .benchmark-table th { background: #0a0520; color: #fff; font-size: 13px; font-weight: 700; letter-spacing: 0.04em; padding: 14px 18px; text-align: left; }
+    .benchmark-table td { padding: 14px 18px; font-size: 15px; color: #1a1a1a; border-bottom: 1px solid var(--gray-200); }
+    .benchmark-table tr:last-child td { border-bottom: none; }
+    .benchmark-table tr:nth-child(even) td { background: #fafafa; }
+    .benchmark-table .highlight { color: var(--purple); font-weight: 700; }
+
+    .table-note { font-size: 13px; color: var(--gray-500); margin: -16px 0 28px; line-height: 1.55; }
+
+    .case-card { background: #0a0520; border-radius: 20px; padding: 32px; margin: 32px 0; color: #fff; }
+    .case-card .case-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
+    .case-card .case-title { font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 20px; letter-spacing: -0.02em; }
+    .case-card .case-stats { display: flex; gap: 24px; flex-wrap: wrap; }
+    .case-card .case-stat .case-num { font-size: 28px; font-weight: 900; letter-spacing: -0.04em; color: #FF6B35; }
+    .case-card .case-stat .case-desc { font-size: 13px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+    .case-card a { color: #FF9B6B; }
+
+    .playbook-cta { background: var(--reddit-orange); border-radius: 20px; padding: 40px 36px; margin: 48px 0; text-align: center; }
+    .playbook-cta h3 { font-size: 24px; font-weight: 900; color: #fff; letter-spacing: -0.02em; margin: 0 0 10px !important; }
+    .playbook-cta p { font-size: 15px; color: rgba(255,255,255,0.8); margin: 0 0 24px !important; }
+    .playbook-cta a { display: inline-block; background: #fff; color: var(--reddit-orange) !important; font-weight: 800; font-size: 14px; padding: 12px 28px; border-radius: 100px; text-decoration: none !important; transition: opacity 0.2s; }
+    .playbook-cta a:hover { opacity: 0.9; }
+
+    .faq-block { margin: 48px 0 0; }
+    .faq-q { border-top: 1px solid var(--gray-200); padding: 20px 0 0; margin-top: 20px; }
+    .faq-q h3 { margin: 0 0 8px; }
+    .faq-q p { margin: 0 !important; }
+
+    footer { background: #0d0d14; padding: 40px 24px; text-align: center; }
+    footer p { font-size: 14px; color: rgba(255,255,255,0.35); margin-bottom: 8px; }
+    footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
+    footer a:hover { color: rgba(255,255,255,0.7); }
+
+    @media (max-width: 600px) {
+      .stat-row { grid-template-columns: 1fr; }
+      .case-card .case-stats { gap: 16px; }
+      .benchmark-table { font-size: 13px; }
+      .benchmark-table th, .benchmark-table td { padding: 10px 12px; }
+    }
+    .cal-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; }
+    .cal-modal.open { display: flex; }
+    .cal-modal-content { background: white; border-radius: 12px; width: 90%; max-width: 600px; max-height: 90vh; overflow: auto; position: relative; }
+    .cal-modal-close { position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; z-index: 1000; }
+      /* nav: match homepage (full-width bar + 20px logo) */
+    nav.nav { display: block; height: auto; padding: 0; }
+    .nav-logo { font-size: 20px; }
+    .nav .nav-inner { max-width: 1400px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+      /* Process-style light hero */
+    .article-hero { position: relative; overflow: hidden; background: #ffffff; }
+    .article-hero::before { content:''; position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:1200px; height:560px; background: radial-gradient(ellipse 520px 360px at 28% 45%, rgba(85,0,221,0.18) 0%, transparent 60%), radial-gradient(ellipse 420px 320px at 72% 58%, rgba(238,0,51,0.13) 0%, transparent 62%); pointer-events:none; z-index:0; }
+    .article-hero-inner { position: relative; z-index: 1; }
+    .article-tag { background: rgba(255,69,0,0.10) !important; border-color: rgba(255,69,0,0.30) !important; color: #c2410c !important; }
+    .article-hero h1 { color: #0a0a0a !important; }
+    .article-hero h1 em { background: linear-gradient(135deg,#7c3aed,#db2777); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .article-meta, .article-meta a, .article-meta span { color: #6b7280 !important; }
+    .article-hero .deck, .article-hero p.deck { color: #4b5563 !important; }
+  
+  /* CSS-only chart: no image request, nothing for LCP to wait on. The €30/€73
+     spread is the most quotable fact on this page and it was buried in prose. */
+  .cx{margin:34px 0 8px;padding:26px 24px 20px;background:#0d0b1a;border-radius:14px;}
+  .cx-h{font-size:12px;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.78);
+    margin:0 0 22px;font-weight:700;}
+  .cx-row{display:grid;grid-template-columns:118px 1fr 54px;align-items:center;gap:14px;margin:0 0 13px;}
+  .cx-lab{font-size:13.5px;color:rgba(255,255,255,.82);line-height:1.3;}
+  .cx-track{background:rgba(255,255,255,.09);border-radius:5px;height:26px;overflow:hidden;}
+  .cx-fill{height:100%;border-radius:5px;}
+  .cx-val{font-size:15px;font-weight:800;text-align:right;letter-spacing:-.01em;}
+  .cx-note{font-size:12.5px;color:rgba(255,255,255,.66);margin:16px 0 0;line-height:1.5;
+    padding-top:14px;border-top:1px solid rgba(255,255,255,.1);}
+  @media(max-width:560px){
+    .cx{padding:20px 16px 16px;}
+    .cx-row{grid-template-columns:88px 1fr 46px;gap:10px;}
+    .cx-lab{font-size:12px;}
+    .cx-val{font-size:13.5px;}
+  }
+.bench-table{width:100%;border-collapse:collapse;margin:22px 0 28px;font-size:15px}
+.bench-table th{text-align:left;font-weight:700;padding:10px 12px;border-bottom:2px solid #e4e4e0;font-size:13px;
+  letter-spacing:.04em;text-transform:uppercase;color:#666C75}
+.bench-table td{padding:10px 12px;border-bottom:1px solid #efefec;font-variant-numeric:tabular-nums}
+.bench-table tbody tr:last-child td{border-bottom:0}
+
+    :root { --ink: #131316; --mute: #616161; --rule: #e3e3e3; --g: #1f7a4d; --r: #c0392b; --acc: #5500dd; --lav: #f1ecff; --peach: #ffe7da; }
+    .rk-hero { background: #fff; padding: 128px 24px 0; text-align: center; }
+    .rk-kicker { font-size: 14px; font-weight: 700; color: var(--ink); margin: 0 0 18px; }
+    .rk-kicker a { color: var(--ink); text-decoration: none; }
+    .rk-h1 { font-family: 'Satoshi', system-ui, sans-serif; font-weight: 400; font-size: clamp(36px, 4.6vw, 60px); line-height: 1.06;
+             letter-spacing: -0.03em; margin: 0 auto 18px; max-width: 900px; color: #000; text-wrap: balance; }
+    .rk-h1 em { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-weight: 700; letter-spacing: -0.01em;
+             background: linear-gradient(100deg,#7c3aed,#e5484d); -webkit-background-clip: text; background-clip: text; color: transparent; padding-right: .06em; }
+    .rk-sub { font-size: 19px; line-height: 1.5; color: var(--mute); max-width: 620px; margin: 0 auto 40px; }
+    .rk-panel { max-width: 1192px; margin: 0 auto; background: var(--lav); border-radius: 20px; padding: 48px 64px 52px; text-align: left; }
+    .rk-panel figcaption { font-size: 20px; font-weight: 500; color: #000; letter-spacing: -0.01em; margin-bottom: 22px; }
+    .ch-row { display: grid; grid-template-columns: 290px 1fr 48px; align-items: center; gap: 20px; padding: 11px 0;
+              border-bottom: 1px solid rgba(85,0,221,.12); text-decoration: none; color: #000; }
+    .ch-row:last-child { border-bottom: 0; }
+    .ch-row:hover .ch-name span { text-decoration: underline; }
+    .ch-name { display: flex; align-items: center; gap: 12px; font-size: 17px; font-weight: 500; min-width: 0; }
+    .ch-name span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .ch-name img { background: #fff; padding: 3px; border-radius: 6px; }
+    .ch-track { height: 18px; background: rgba(255,255,255,.7); border-radius: 0 4px 4px 0; }
+    .ch-fill { display: block; height: 100%; background: #b9a3f3; border-radius: 0 4px 4px 0; }
+    .ch-fill.ch-first { background: var(--acc); }
+    .ch-num { font-size: 22px; font-weight: 500; text-align: right; font-variant-numeric: tabular-nums; }
+
+    .article-body.rk-body { max-width: 1240px; display: grid; grid-template-columns: 210px minmax(0, 1fr) 250px; gap: 56px; align-items: start; padding-top: 64px; }
+    .rk-toc, .rk-side { position: sticky; top: 100px; }
+    .rk-toc .toc-h { font-size: 17px !important; font-weight: 500; color: #000 !important; margin: 0 0 14px !important; }
+    .rk-toc nav { display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 0; height: auto; padding: 0; background: none; position: static; border-left: 1px solid var(--rule); }
+    .article-body .rk-toc a { font-size: 14px; line-height: 1.35; color: #303030; text-decoration: none; display: block; text-align: left; padding: 7px 0 7px 14px; margin-left: -1px; border-left: 2px solid transparent; }
+    .article-body .rk-toc a:hover { color: #000; }
+    .article-body .rk-toc a.on { color: #000; font-weight: 700; border-left-color: #000; }
+    .rk-main { min-width: 0; }
+    .article-body .rk-main p { font-size: 19px; line-height: 1.6; color: #303030; }
+    .article-body .rk-main a { color: #000; font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+    .article-body .rk-main h2 { font-size: clamp(30px, 3.2vw, 40px); font-weight: 400; letter-spacing: -0.025em; line-height: 1.12; color: #000; margin: 72px 0 20px; scroll-margin-top: 96px; }
+    .article-body .rk-main h3 { font-size: 23px; font-weight: 500; letter-spacing: -0.015em; color: #000; margin: 34px 0 12px; }
+    .rk-mby { display: none; }
+    .rk-tablewrap { overflow-x: auto; margin: 8px 0 0; }
+    .rk-table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+    .rk-table th { font-size: 14px; font-weight: 500; color: var(--mute); text-align: left; padding: 0 10px 12px; border-bottom: 1px solid #000; }
+    .rk-table td { padding: 15px 10px; border-bottom: 1px solid var(--rule); vertical-align: middle; }
+    .t-n { font-size: 18px; color: var(--mute); width: 28px; }
+    .article-body .t-tool a { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; color: #000; text-decoration: none; }
+    .t-tool small { display: block; font-size: 14px; color: var(--mute); margin: 3px 0 0 34px; }
+    .t-num { text-align: right; font-size: 18px; font-weight: 500; width: 96px; }
+    th.t-num { text-align: right; }
+    .g { color: var(--g) !important; } .r { color: var(--r) !important; }
+    .tlogo { border-radius: 5px; object-fit: contain; flex-shrink: 0; }
+    .article-body .rk-main p.rnote { font-size: 15px; color: var(--mute); margin-top: 14px; }
+
+    .tsec { scroll-margin-top: 96px; }
+    .ts-card { background: var(--lav); border-radius: 16px; padding: 28px 30px 30px; margin: 6px 0 24px; }
+    .tc-top { display: flex; align-items: center; gap: 14px; }
+    .tc-top img { background: #fff; padding: 6px; border-radius: 10px; }
+    .article-body .rk-main .tc-name { font-size: 22px; font-weight: 700; color: #000; margin: 0; line-height: 1.2; }
+    .article-body .rk-main .tc-best { font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 17px; color: #4b4458; margin: 2px 0 0; }
+    .tc-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 26px 0 18px; }
+    .tc-stats b { display: block; font-size: 40px; font-weight: 400; letter-spacing: -0.03em; line-height: 1; color: #000; }
+    .tc-stats span { display: block; font-size: 14px; color: #4b4458; margin-top: 6px; }
+    .sbar { display: flex; height: 8px; background: rgba(255,255,255,.75); border-radius: 4px; overflow: hidden; }
+    .sb-r { background: var(--g); } .sb-n { background: var(--r); }
+    .article-body .rk-main p.ts-line { font-size: 21px; color: #000; line-height: 1.5; }
+    .article-body .pc li { font-size: 18px; line-height: 1.55; color: #303030; padding-left: 26px; }
+    .article-body .pc li::before { width: auto; height: auto; border-radius: 0; background: none; top: 0; font-weight: 700; font-size: 18px; }
+    .article-body .pc.pro li::before { content: "+"; color: var(--g); }
+    .article-body .pc.con li::before { content: "−"; color: var(--r); }
+    .article-body .pc li.none { color: var(--mute); } .article-body .pc li.none::before { content: ""; }
+    .rc-list { display: flex; flex-direction: column; gap: 22px; margin: 6px 0 0; }
+    .article-body blockquote.rc { margin: 0; padding: 4px 0 4px 20px; border-left: 3px solid var(--g); background: none; }
+    .article-body blockquote.rc.neg { border-left-color: var(--r); }
+    .article-body .rk-main .rc p { font-family: 'Playfair Display', Georgia, serif; font-size: 21px; line-height: 1.45; color: #000; margin: 0 0 8px; }
+    .rc .rc-meta { font-size: 14px; color: var(--mute); }
+    .article-body .rc .rc-meta a { font-weight: 700; }
+    .rc.rec .rc-k { color: var(--g); font-weight: 700; } .rc.neg .rc-k { color: var(--r); font-weight: 700; }
+
+    .rk-author { display: flex; align-items: center; gap: 12px; margin-bottom: 36px; }
+    .av { width: 44px; height: 44px; border-radius: 50%; background: var(--lav); color: var(--acc); font-weight: 700; font-size: 15px; display: grid; place-items: center; flex-shrink: 0; }
+    .rk-author .an { font-size: 15px !important; font-weight: 700; color: #000; margin: 0 !important; }
+    .article-body .rk-author .an a { color: #000; text-decoration: none; }
+    .rk-author .ad { font-size: 13px !important; color: var(--mute) !important; margin: 2px 0 0 !important; }
+    .rk-cta { background: var(--peach); border-radius: 16px; padding: 26px 24px 26px; }
+    .article-body .rk-cta .cta-h { font-size: 26px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.15; color: #000; margin: 0 0 10px; }
+    .article-body .rk-cta p { font-size: 15px; line-height: 1.5; color: #303030; margin: 0 0 20px; }
+    .article-body .rk-cta a { display: inline-block; background: #000; color: #fff !important; font-weight: 700; font-size: 15px; padding: 12px 20px; border-radius: 10px; text-decoration: none !important; }
+    .article-body .rk-cta a:hover { background: #303030; }
+    .rk-cta-inline { margin: 48px 0 0; padding: 36px 36px; }
+    .article-body .rk-cta-inline .cta-h { font-size: 32px; }
+    .article-body .rk-cta-inline p { font-size: 18px; max-width: 520px; }
+    .faq-q { border-top: 1px solid var(--rule); padding: 22px 0 0; margin-top: 22px; }
+    .article-body .rk-main .faq-q h3 { margin: 0 0 8px; font-size: 21px; }
+
+    @media (max-width: 1150px) {
+      .article-body.rk-body { grid-template-columns: 200px minmax(0, 1fr); gap: 48px; }
+      .rk-side { display: none; }
+      .rk-mby { display: block; }
+      .article-body .rk-main p.rk-mby { font-size: 15px; color: var(--mute); }
+    }
+    @media (max-width: 860px) {
+      .article-body.rk-body { display: block; max-width: 720px; padding-top: 40px; }
+      .rk-toc { display: none; }
+      .rk-panel { padding: 28px 22px 30px; border-radius: 16px; }
+      .rk-panel figcaption { font-size: 17px; }
+      .ch-row { grid-template-columns: 150px 1fr 34px; gap: 12px; }
+      .ch-name { font-size: 15px; gap: 8px; }
+      .ch-name img { width: 20px; height: 20px; padding: 2px; }
+      .ch-num { font-size: 18px; }
+    }
+    @media (max-width: 600px) {
+      .rk-hero { padding-top: 104px; }
+      .rk-sub { font-size: 17px; }
+      .rk-table th.t-th, .rk-table td.t-th { display: none; }
+      .t-num { width: auto; font-size: 16px; }
+      .rk-table th, .rk-table td { padding-left: 5px; padding-right: 5px; }
+      .t-tool small { margin-left: 0; }
+      .ch-row { grid-template-columns: 1fr 34px; }
+      .ch-track { grid-column: 1 / -1; grid-row: 2; height: 12px; }
+      .ts-card { padding: 22px 20px; }
+      .tc-stats b { font-size: 32px; }
+      .article-body .rk-main p { font-size: 17px; }
+      .article-body .rk-main .rc p { font-size: 19px; }
+      .rk-cta-inline { padding: 26px 22px; }
+    }
+</style>
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1906222660310524');
+    fbq('track', 'PageView');
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.cta-booking-btn').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({event: 'lead', cta_text: this.textContent.trim().slice(0,50), cta_page: 'blog-reddit-ads-benchmarks'});
+          fbq('track', 'Lead');
+          document.getElementById('cal-modal').classList.add('open');
+        });
+      });
+    });
+  </script>
+  <!-- End Meta Pixel Code -->
+
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "Article",
+ "headline": "Best Monitoring and Observability Tools, According to Reddit (2026)",
+ "description": "We read 288 Reddit comments from sysadmins and engineers about monitoring, observability and logging. Here is which tools they recommend, which they complain about, and why.",
+ "author": {
+  "@type": "Person",
+  "name": "Zoha Ahmed",
+  "url": "https://skipthenoisemedia.com/zoha"
+ },
+ "publisher": {
+  "@id": "https://skipthenoisemedia.com/#organization",
+  "@type": "Organization",
+  "name": "Skip the Noise Media"
+ },
+ "url": "https://skipthenoisemedia.com/reddit-rankings/observability",
+ "datePublished": "2026-11-01",
+ "dateModified": "2026-11-01",
+ "mainEntityOfPage": "https://skipthenoisemedia.com/reddit-rankings/observability"
+}
+  </script>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "ItemList",
+ "name": "Best Monitoring and Observability Tools, According to Reddit (2026)",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Zabbix"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Grafana"
+  },
+  {
+   "@type": "ListItem",
+   "position": 3,
+   "name": "Checkmk"
+  },
+  {
+   "@type": "ListItem",
+   "position": 4,
+   "name": "Prometheus"
+  },
+  {
+   "@type": "ListItem",
+   "position": 5,
+   "name": "Splunk"
+  },
+  {
+   "@type": "ListItem",
+   "position": 6,
+   "name": "VictoriaMetrics"
+  },
+  {
+   "@type": "ListItem",
+   "position": 7,
+   "name": "Datadog"
+  },
+  {
+   "@type": "ListItem",
+   "position": 8,
+   "name": "Elastic"
+  },
+  {
+   "@type": "ListItem",
+   "position": 9,
+   "name": "SigNoz"
+  },
+  {
+   "@type": "ListItem",
+   "position": 10,
+   "name": "PRTG"
+  },
+  {
+   "@type": "ListItem",
+   "position": 11,
+   "name": "Better Stack"
+  },
+  {
+   "@type": "ListItem",
+   "position": 12,
+   "name": "Dynatrace"
+  }
+ ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "What is the best monitoring tool according to Reddit?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Zabbix, by a wide margin. 39 people recommended it against 25 for Grafana, its nearest rival, and its top comment is the highest-voted recommendation in any category we have measured. It is free and covers network and host monitoring out of the box. The catch is that somebody has to own it."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is Datadog worth the money?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "These threads are split. 8 people recommended it, and the ones who did said it is the only tool that earned its price. All 3 complaints are about cost, and two are about surprise rather than the sticker price: billing is metered on cardinality, so the invoice grows with what you send it. One team reported more than $100,000 a month."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What is the best free monitoring stack?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Zabbix or Checkmk for infrastructure, Prometheus with Grafana for anything on Kubernetes. Checkmk drew 17 recommendations against 2 complaints, the cleanest ratio in the table. VictoriaMetrics is what people move to when a self-hosted Prometheus runs out of room."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Zabbix or Grafana?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "They are not really competing. Zabbix collects and alerts, Grafana draws dashboards over whatever is collecting, and plenty of people here run both. The argument that does happen is Zabbix against the Prometheus and Grafana stack, and it turns on what you are watching: network gear pushes people to Zabbix, Kubernetes pushes them to Prometheus."
+   }
+  }
+ ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "BreadcrumbList",
+ "itemListElement": [
+  {
+   "@type": "ListItem",
+   "position": 1,
+   "name": "Home",
+   "item": "https://skipthenoisemedia.com/"
+  },
+  {
+   "@type": "ListItem",
+   "position": 2,
+   "name": "Best Monitoring Tools, According to Reddit",
+   "item": "https://skipthenoisemedia.com/reddit-rankings/observability"
+  }
+ ]
+}
+  </script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4JR5P3B" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- Nav -->
+<nav class="nav" id="main-nav">
+  <div class="container nav-inner">
+    <a href="/" class="nav-logo">
+      <span class="logo-skip">Skip the</span><span class="logo-noise">Noise</span>
+    </a>
+    <div class="nav-links">
+      <div class="nav-dropdown align-left">
+        <button class="nav-link nav-dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          Services
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="margin-left:3px;transition:transform 0.2s;"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu" role="menu">
+          <div class="nav-mega-col">
+            <div class="nav-mega-label">What we do</div>
+            <a href="/services" class="nav-dropdown-item is-primary" role="menuitem">All services</a>
+            <a href="/reddit-ads-agency" class="nav-dropdown-item" role="menuitem">Reddit Ads</a>
+            <a href="/reddit-organic-marketing" class="nav-dropdown-item" role="menuitem">Reddit Organic</a>
+            <a href="/google-ads-agency" class="nav-dropdown-item" role="menuitem">Paid Search</a>
+            <a href="/gallery" class="nav-dropdown-item" role="menuitem">AI Creative Production</a>
+            <div class="nav-mega-label is-spaced">By audience</div>
+            <a href="/saas-ads-agency" class="nav-dropdown-item" role="menuitem">SaaS Ads Agency</a>
+            <a href="/b2c-saas-ads" class="nav-dropdown-item" role="menuitem">B2C SaaS Ads</a>
+            <a href="/ecomm-ads-agency" class="nav-dropdown-item" role="menuitem">eComm &amp; DTC Ads</a>
+          </div>
+          <div class="nav-mega-divider"></div>
+          <div class="nav-mega-col">
+            <div class="nav-mega-label">Paid social channels</div>
+            <a href="/meta-ads-agency" class="nav-dropdown-item" role="menuitem">Meta Ads</a>
+            <a href="/tiktok-ads-agency" class="nav-dropdown-item" role="menuitem">TikTok Ads</a>
+            <a href="/linkedin-ads-agency" class="nav-dropdown-item" role="menuitem">LinkedIn Ads</a>
+            <a href="/pinterest-ads-agency" class="nav-dropdown-item" role="menuitem">Pinterest Ads</a>
+            <a href="/snapchat-ads-agency" class="nav-dropdown-item" role="menuitem">Snapchat Ads</a>
+            <a href="/services" class="nav-dropdown-all" role="menuitem">See how we work &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <a href="/process" class="nav-link">Process</a>
+      <a href="/gallery" class="nav-link">Creative</a>
+      <a href="/case-studies" class="nav-link">Case Studies</a>
+      <div class="nav-dropdown">
+        <button class="nav-link nav-dropdown-trigger" type="button" aria-haspopup="true" aria-expanded="false">
+          Resources
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="margin-left:3px;transition:transform 0.2s;"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dropdown-menu" role="menu">
+          <div class="nav-mega-col">
+            <div class="nav-mega-label">Reddit Ads</div>
+            <a href="/blog/reddit-ads-b2b-saas" class="nav-dropdown-item" role="menuitem">Reddit Ads for B2B SaaS</a>
+            <a href="/blog/reddit-ads-cost" class="nav-dropdown-item" role="menuitem">How Much Reddit Ads Cost</a>
+            <a href="/blog/reddit-ads-benchmarks" class="nav-dropdown-item" role="menuitem">Reddit Ads Benchmarks</a>
+            <a href="/blog/" class="nav-dropdown-all" role="menuitem">View all guides &rarr;</a>
+            <div class="nav-mega-label is-spaced">Free Tools</div>
+            <a href="/tools/reddit-ads-cost-calculator" class="nav-dropdown-item" role="menuitem">Reddit Ads Cost Calculator</a>
+            <a href="/tools/subreddit-finder" class="nav-dropdown-item" role="menuitem">Subreddit Finder</a>
+            </div>
+          <div class="nav-mega-divider"></div>
+          <div class="nav-mega-col">
+            <a href="/playbook" class="nav-playbook-promo" role="menuitem">
+              <span class="nav-playbook-eyebrow">Free Download</span>
+              <span class="nav-playbook-title">Reddit Ads Playbook</span>
+              <span class="nav-playbook-sub">Campaign structure, targeting &amp; copy frameworks</span>
+            </a>
+            <div class="nav-mega-label is-spaced">Case Studies</div>
+            <a href="/work/flare" class="nav-dropdown-item" role="menuitem">Cybersecurity SaaS: 74 Leads</a>
+            <a href="/work/simple-booth" class="nav-dropdown-item" role="menuitem">Simple Booth: DTC + B2B</a>
+            <a href="/work/gifting-brand" class="nav-dropdown-item" role="menuitem">Gifting Brand: +114% YoY</a>
+            <a href="/work/restream" class="nav-dropdown-item" role="menuitem">Streaming Platform: CAC &minus;19%</a>
+            <a href="/case-studies" class="nav-dropdown-all" role="menuitem">View all case studies &rarr;</a>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="nav-right">
+      <a href="/#book" style="display:inline-block; background:#5500DD; color:white; font-size:14px; font-variation-settings:'wdth' 125,'wght' 700; padding:10px 22px; border-radius:100px; text-decoration:none; white-space:nowrap; transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">3 free ads. Keep them.</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="/#book" class="mobile-menu-cta" onclick="closeMobileMenu()">3 free ads. Keep them.</a>
+  <a href="/services" class="mobile-menu-link">Services</a>
+  <a href="/process" class="mobile-menu-link">Process</a>
+  <a href="/gallery" class="mobile-menu-link">Creative</a>
+  <a href="/case-studies" class="mobile-menu-link">Case Studies</a>
+  <span class="mobile-menu-section">Reddit Ads</span>
+  <a href="/blog/reddit-ads-b2b-saas" class="mobile-menu-sublink">Reddit Ads for B2B SaaS</a>
+  <a href="/blog/reddit-ads-cost" class="mobile-menu-sublink">How Much Reddit Ads Cost</a>
+  <a href="/blog/reddit-ads-benchmarks" class="mobile-menu-sublink">Reddit Ads Benchmarks</a>
+  <a href="/blog/" class="mobile-menu-all">View all guides &rarr;</a>
+  <span class="mobile-menu-section">Free Tools</span>
+  <a href="/tools/reddit-ads-cost-calculator" class="mobile-menu-sublink">Reddit Ads Cost Calculator</a>
+  <a href="/tools/subreddit-finder" class="mobile-menu-sublink">Subreddit Finder</a>
+  <span class="mobile-menu-section">Case Studies</span>
+  <a href="/work/flare" class="mobile-menu-sublink">Cybersecurity SaaS: 74 Leads</a>
+  <a href="/work/simple-booth" class="mobile-menu-sublink">Simple Booth: DTC + B2B</a>
+  <a href="/work/gifting-brand" class="mobile-menu-sublink">Gifting Brand: +114% YoY</a>
+  <a href="/case-studies" class="mobile-menu-all">View all case studies &rarr;</a>
+  <span class="mobile-menu-section">Services</span>
+  <a href="/reddit-ads-agency" class="mobile-menu-sublink">Reddit Ads Agency</a>
+  <a href="/saas-ads-agency" class="mobile-menu-sublink">SaaS Ads Agency</a>
+  <a href="/b2c-saas-ads" class="mobile-menu-sublink">B2C SaaS Ads</a>
+  <a href="/ecomm-ads-agency" class="mobile-menu-sublink">eComm &amp; DTC Ads</a>
+  <a href="/meta-ads-agency" class="mobile-menu-sublink">Meta Ads</a>
+  <a href="/tiktok-ads-agency" class="mobile-menu-sublink">TikTok Ads</a>
+  <a href="/linkedin-ads-agency" class="mobile-menu-sublink">LinkedIn Ads</a>
+  <a href="/google-ads-agency" class="mobile-menu-sublink">Google Ads</a>
+  <a href="/pinterest-ads-agency" class="mobile-menu-sublink">Pinterest Ads</a>
+  <a href="/snapchat-ads-agency" class="mobile-menu-sublink">Snapchat Ads</a>
+  <a href="/playbook" class="mobile-menu-playbook">📥 Free: Reddit Ads Playbook</a>
+</div>
+
+<section class="rk-hero">
+  <p class="rk-kicker"><a href="#the-ranking">Reddit Rankings</a> &nbsp;•&nbsp; Monitoring and observability</p>
+  <h1 class="rk-h1">Monitoring tools <em>Reddit actually recommends</em></h1>
+  <p class="rk-sub">We read every reply in 30 threads where sysadmins and engineers asked what to use for monitoring, observability and logs, then counted who recommended what.</p>
+  <figure class="rk-panel">
+    <figcaption>How many of the 238 commenters recommended each tool</figcaption>
+    <div class="rk-chart"><a class="ch-row" href="#zabbix">
+        <span class="ch-name"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=zabbix.com&sz=64" width="26" height="26" alt="" loading="eager"><span>Zabbix</span></span>
+        <span class="ch-track"><span class="ch-fill ch-first" style="width:100.0%"></span></span>
+        <span class="ch-num">39</span></a><a class="ch-row" href="#grafana">
+        <span class="ch-name"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=grafana.com&sz=64" width="26" height="26" alt="" loading="eager"><span>Grafana</span></span>
+        <span class="ch-track"><span class="ch-fill" style="width:64.1%"></span></span>
+        <span class="ch-num">25</span></a><a class="ch-row" href="#checkmk">
+        <span class="ch-name"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=checkmk.com&sz=64" width="26" height="26" alt="" loading="eager"><span>Checkmk</span></span>
+        <span class="ch-track"><span class="ch-fill" style="width:43.6%"></span></span>
+        <span class="ch-num">17</span></a><a class="ch-row" href="#prometheus">
+        <span class="ch-name"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=prometheus.io&sz=64" width="26" height="26" alt="" loading="eager"><span>Prometheus</span></span>
+        <span class="ch-track"><span class="ch-fill" style="width:30.8%"></span></span>
+        <span class="ch-num">12</span></a><a class="ch-row" href="#splunk">
+        <span class="ch-name"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=splunk.com&sz=64" width="26" height="26" alt="" loading="eager"><span>Splunk</span></span>
+        <span class="ch-track"><span class="ch-fill" style="width:30.8%"></span></span>
+        <span class="ch-num">12</span></a><a class="ch-row" href="#victoriametrics">
+        <span class="ch-name"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=victoriametrics.com&sz=64" width="26" height="26" alt="" loading="eager"><span>VictoriaMetrics</span></span>
+        <span class="ch-track"><span class="ch-fill" style="width:23.1%"></span></span>
+        <span class="ch-num">9</span></a></div>
+  </figure>
+</section>
+
+<article class="article-body rk-body">
+  <aside class="rk-toc">
+    <p class="toc-h">On this page</p>
+    <nav><a href="#the-ranking">The ranking</a><a href="#zabbix">1. Zabbix</a><a href="#grafana">2. Grafana</a><a href="#checkmk">3. Checkmk</a><a href="#prometheus">4. Prometheus</a><a href="#splunk">5. Splunk</a><a href="#victoriametrics">6. VictoriaMetrics</a><a href="#datadog">7. Datadog</a><a href="#elastic">8. Elastic</a><a href="#signoz">9. SigNoz</a><a href="#prtg">10. PRTG</a><a href="#better-stack">11. Better Stack</a><a href="#dynatrace">12. Dynatrace</a><a href="#complaints">The ones Reddit complains about</a><a href="#how-we-built-this">How we built this ranking</a><a href="#faq">Monitoring and observability FAQ</a></nav>
+  </aside>
+
+  <div class="rk-main">
+    <p class="rk-mby">By <b>Zoha Ahmed</b> &nbsp;·&nbsp; Nov 1, 2026</p>
+    <p>Ask Reddit what to use for monitoring and the thread splits in two within a few replies. We read all 288 replies in 30 of those threads from the past year, mostly in r/sysadmin and r/devops with r/cybersecurity and r/kubernetes behind them, counted one vote per person, and removed 9 vendor posts about their own products.</p>
+    <p>This is the fewest threads of any ranking we have published. The comment count is healthy at 288, but it comes from 30 threads against the 48 and 71 behind our other categories, so a few large ones carry the result: the two biggest, both in r/sysadmin, produced about a third of every tool mention we counted. Zabbix is clear at the top, but Splunk at 12 recommendations against 10 complaints and Elastic at 7 against 6 are ties rather than verdicts, and nothing separated by two or three votes is a ranking.</p>
+    <p>The split that runs through every thread is free and self-hosted against paid and hosted, and the complaints follow it almost exactly. Every complaint about a paid tool here is about money, and almost every complaint about a free one is about the work of running it. Every quote below links to the comment it came from.</p>
+
+    <h2 id="the-ranking">The ranking</h2>
+    <div class="rk-tablewrap"><table class="rk-table">
+      <thead><tr><th></th><th>Tool</th><th class="t-num">Recommend</th><th class="t-num">Complain</th><th class="t-num t-th">Threads</th></tr></thead>
+      <tbody><tr>
+      <td class="t-n">1</td>
+      <td class="t-tool"><a href="#zabbix"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=zabbix.com&sz=64" width="24" height="24" alt="" loading="lazy"><span>Zabbix</span></a><small>Best overall</small></td>
+      <td class="t-num g">39</td><td class="t-num r">9</td><td class="t-num t-th">7</td></tr><tr>
+      <td class="t-n">2</td>
+      <td class="t-tool"><a href="#grafana"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=grafana.com&sz=64" width="24" height="24" alt="" loading="lazy"><span>Grafana</span></a><small>Best dashboards</small></td>
+      <td class="t-num g">25</td><td class="t-num r">8</td><td class="t-num t-th">17</td></tr><tr>
+      <td class="t-n">3</td>
+      <td class="t-tool"><a href="#checkmk"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=checkmk.com&sz=64" width="24" height="24" alt="" loading="lazy"><span>Checkmk</span></a><small>Best for fast setup</small></td>
+      <td class="t-num g">17</td><td class="t-num r">2</td><td class="t-num t-th">6</td></tr><tr>
+      <td class="t-n">4</td>
+      <td class="t-tool"><a href="#prometheus"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=prometheus.io&sz=64" width="24" height="24" alt="" loading="lazy"><span>Prometheus</span></a><small>Best for Kubernetes</small></td>
+      <td class="t-num g">12</td><td class="t-num r">5</td><td class="t-num t-th">11</td></tr><tr>
+      <td class="t-n">5</td>
+      <td class="t-tool"><a href="#splunk"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=splunk.com&sz=64" width="24" height="24" alt="" loading="lazy"><span>Splunk</span></a><small>Best logs, worst invoice</small></td>
+      <td class="t-num g">12</td><td class="t-num r">10</td><td class="t-num t-th">9</td></tr><tr>
+      <td class="t-n">6</td>
+      <td class="t-tool"><a href="#victoriametrics"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=victoriametrics.com&sz=64" width="24" height="24" alt="" loading="lazy"><span>VictoriaMetrics</span></a><small>Best at high cardinality</small></td>
+      <td class="t-num g">9</td><td class="t-num r">1</td><td class="t-num t-th">7</td></tr><tr>
+      <td class="t-n">7</td>
+      <td class="t-tool"><a href="#datadog"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=datadoghq.com&sz=64" width="24" height="24" alt="" loading="lazy"><span>Datadog</span></a><small>Best paid platform</small></td>
+      <td class="t-num g">8</td><td class="t-num r">3</td><td class="t-num t-th">6</td></tr><tr>
+      <td class="t-n">8</td>
+      <td class="t-tool"><a href="#elastic"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=elastic.co&sz=64" width="24" height="24" alt="" loading="lazy"><span>Elastic</span></a><small>Best for log and security search</small></td>
+      <td class="t-num g">7</td><td class="t-num r">6</td><td class="t-num t-th">7</td></tr><tr>
+      <td class="t-n">9</td>
+      <td class="t-tool"><a href="#signoz"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=signoz.io&sz=64" width="24" height="24" alt="" loading="lazy"><span>SigNoz</span></a><small>Best single binary</small></td>
+      <td class="t-num g">5</td><td class="t-num r">2</td><td class="t-num t-th">3</td></tr><tr>
+      <td class="t-n">10</td>
+      <td class="t-tool"><a href="#prtg"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=paessler.com&sz=64" width="24" height="24" alt="" loading="lazy"><span>PRTG</span></a><small>Best for small networks</small></td>
+      <td class="t-num g">5</td><td class="t-num r">4</td><td class="t-num t-th">3</td></tr><tr>
+      <td class="t-n">11</td>
+      <td class="t-tool"><a href="#better-stack"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=betterstack.com&sz=64" width="24" height="24" alt="" loading="lazy"><span>Better Stack</span></a><small>Best free uptime tier</small></td>
+      <td class="t-num g">3</td><td class="t-num r">0</td><td class="t-num t-th">3</td></tr><tr>
+      <td class="t-n">12</td>
+      <td class="t-tool"><a href="#dynatrace"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=dynatrace.com&sz=64" width="24" height="24" alt="" loading="lazy"><span>Dynatrace</span></a><small>Too few opinions to judge</small></td>
+      <td class="t-num g">2</td><td class="t-num r">0</td><td class="t-num t-th">2</td></tr></tbody>
+    </table></div>
+    <p class="rnote">"Recommend" and "Complain" count different people, not comments. With 238 commenters, a gap of two or three votes means nothing. Also named, with too few opinions to rank: Honeycomb, Coralogix, OpenObserve, LogicMonitor and Sentry, each with one or two opinions in our sample.</p>
+
+    
+  <section class="tsec" id="zabbix">
+    <h2 class="ts-h">1. Zabbix</h2>
+    <div class="ts-card">
+      <div class="tc-top"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=zabbix.com&sz=64" width="44" height="44" alt="" loading="lazy"><div><p class="tc-name">Zabbix</p><p class="tc-best">Best overall</p></div></div>
+      <div class="tc-stats">
+        <div><b class="g">39</b><span>recommend</span></div>
+        <div><b class="r">9</b><span>complain</span></div>
+        <div><b>7</b><span>threads</span></div>
+      </div>
+      <span class="sbar"><span class="sb-r" style="width:81.2%"></span><span class="sb-n" style="width:18.8%"></span></span>
+    </div>
+    <p class="ts-line">The most recommended tool here by a wide margin, and its top comment is the highest-voted recommendation in any category we have counted.</p>
+    <h3>Why people recommend it</h3>
+    <ul class="pc pro"><li>Free, with no paywalled features</li><li>Templates and auto-discovery cover SNMP, ICMP and agent checks</li><li>Veteran users say the day-to-day work is light</li></ul>
+    <h3>Common complaints</h3>
+    <ul class="pc con"><li>It needs an owner, and buries signals when nobody tunes it</li><li>Simple tasks take more steps than they should</li><li>Weak at syslog, and some proxies failed quietly</li></ul>
+    <h3>What Redditors said</h3>
+    <div class="rc-list"><blockquote class="rc rec"><p>Zabbix is one of the easier ones that fits your criteria.</p><div class="rc-meta"><a href="https://reddit.com/r/sysadmin/comments/1te0gjl/zabbix_alternative/olz32ek/" target="_blank" rel="noopener nofollow">u/RevolutionaryElk7446</a> in r/sysadmin &nbsp;·&nbsp; 83 points &nbsp;·&nbsp; <span class="rc-k">recommends</span></div></blockquote><blockquote class="rc rec"><p>once you get familiar with it the day to day is easy</p><div class="rc-meta"><a href="https://reddit.com/r/sysadmin/comments/1vuk961/free_network_monitoring_tool_recommendation/p51qpa1/" target="_blank" rel="noopener nofollow">u/40513786934</a> in r/sysadmin &nbsp;·&nbsp; 73 points &nbsp;·&nbsp; <span class="rc-k">recommends</span></div></blockquote><blockquote class="rc neg"><p>it seems geared toward a place where you have a dedicated masseuse who can spend lots of time and effort massaging it.</p><div class="rc-meta"><a href="https://reddit.com/r/sysadmin/comments/1te0gjl/zabbix_alternative/olz544z/" target="_blank" rel="noopener nofollow">u/retiredaccount</a> in r/sysadmin &nbsp;·&nbsp; 3 points &nbsp;·&nbsp; <span class="rc-k">complaint</span></div></blockquote></div>
+  </section>
+  <section class="tsec" id="grafana">
+    <h2 class="ts-h">2. Grafana</h2>
+    <div class="ts-card">
+      <div class="tc-top"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=grafana.com&sz=64" width="44" height="44" alt="" loading="lazy"><div><p class="tc-name">Grafana</p><p class="tc-best">Best dashboards</p></div></div>
+      <div class="tc-stats">
+        <div><b class="g">25</b><span>recommend</span></div>
+        <div><b class="r">8</b><span>complain</span></div>
+        <div><b>17</b><span>threads</span></div>
+      </div>
+      <span class="sbar"><span class="sb-r" style="width:52.1%"></span><span class="sb-n" style="width:16.7%"></span></span>
+    </div>
+    <p class="ts-line">Named in 17 threads, more than anything else here. People recommend the dashboards and complain about the bill for feeding them.</p>
+    <h3>Why people recommend it</h3>
+    <ul class="pc pro"><li>The dashboard layer almost everyone standardises on</li><li>Loki gives central logging without an Elasticsearch cluster to run</li><li>The Cloud free tier is generous enough that small teams stop self-hosting</li></ul>
+    <h3>Common complaints</h3>
+    <ul class="pc con"><li>Past the free tier, billing is per series and climbs faster than people expect</li><li>The full Grafana, Prometheus, Loki and Alertmanager stack is too much for a few servers</li></ul>
+    <h3>What Redditors said</h3>
+    <div class="rc-list"><blockquote class="rc rec"><p>grafana cloud is the least painful move off a self-hosted prom+grafana stack</p><div class="rc-meta"><a href="https://reddit.com/r/devops/comments/1v34gf2/good_observability_tool_recommendation_cloud_based/oz0n60j/" target="_blank" rel="noopener nofollow">u/Floss_Patrol_76</a> in r/devops &nbsp;·&nbsp; 11 points &nbsp;·&nbsp; <span class="rc-k">recommends</span></div></blockquote><blockquote class="rc neg"><p>after the free tier it&#x27;s per-1k-series and costs add up quicker than you&#x27;d expect.</p><div class="rc-meta"><a href="https://reddit.com/r/devops/comments/1v34gf2/good_observability_tool_recommendation_cloud_based/oz0tcq9/" target="_blank" rel="noopener nofollow">u/marcusbell95</a> in r/devops &nbsp;·&nbsp; 1 points &nbsp;·&nbsp; <span class="rc-k">complaint</span></div></blockquote></div>
+  </section>
+  <section class="tsec" id="checkmk">
+    <h2 class="ts-h">3. Checkmk</h2>
+    <div class="ts-card">
+      <div class="tc-top"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=checkmk.com&sz=64" width="44" height="44" alt="" loading="lazy"><div><p class="tc-name">Checkmk</p><p class="tc-best">Best for fast setup</p></div></div>
+      <div class="tc-stats">
+        <div><b class="g">17</b><span>recommend</span></div>
+        <div><b class="r">2</b><span>complain</span></div>
+        <div><b>6</b><span>threads</span></div>
+      </div>
+      <span class="sbar"><span class="sb-r" style="width:35.4%"></span><span class="sb-n" style="width:4.2%"></span></span>
+    </div>
+    <p class="ts-line">Third in the table with almost no complaints, and the pick when people want monitoring running the same afternoon.</p>
+    <h3>Why people recommend it</h3>
+    <ul class="pc pro"><li>Automatic discovery attaches checks when you add an SNMP device</li><li>Installs and upgrades called straightforward</li></ul>
+    <h3>Common complaints</h3>
+    <ul class="pc con"><li>The edition split and how it is distributed annoy some users</li><li>One person could not get its model of hosts, folders and rules to click</li></ul>
+    <h3>What Redditors said</h3>
+    <div class="rc-list"><blockquote class="rc rec"><p>Personally, CheckMK has been great</p><div class="rc-meta"><a href="https://reddit.com/r/sysadmin/comments/1te0gjl/zabbix_alternative/olyyyyf/" target="_blank" rel="noopener nofollow">u/unixuser011</a> in r/sysadmin &nbsp;·&nbsp; 27 points &nbsp;·&nbsp; <span class="rc-k">recommends</span></div></blockquote><blockquote class="rc neg"><p>I tried checkmk out and had the hardest time wrapping my head around it.</p><div class="rc-meta"><a href="https://reddit.com/r/sysadmin/comments/1te0gjl/zabbix_alternative/om0cqt8/" target="_blank" rel="noopener nofollow">u/trail-g62Bim</a> in r/sysadmin &nbsp;·&nbsp; 1 points &nbsp;·&nbsp; <span class="rc-k">complaint</span></div></blockquote></div>
+  </section>
+  <section class="tsec" id="prometheus">
+    <h2 class="ts-h">4. Prometheus</h2>
+    <div class="ts-card">
+      <div class="tc-top"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=prometheus.io&sz=64" width="44" height="44" alt="" loading="lazy"><div><p class="tc-name">Prometheus</p><p class="tc-best">Best for Kubernetes</p></div></div>
+      <div class="tc-stats">
+        <div><b class="g">12</b><span>recommend</span></div>
+        <div><b class="r">5</b><span>complain</span></div>
+        <div><b>11</b><span>threads</span></div>
+      </div>
+      <span class="sbar"><span class="sb-r" style="width:25.0%"></span><span class="sb-n" style="width:10.4%"></span></span>
+    </div>
+    <p class="ts-line">The default for anything on Kubernetes, and a poor fit for the network gear the sysadmin threads care about.</p>
+    <h3>Why people recommend it</h3>
+    <ul class="pc pro"><li>kube-prometheus-stack ships working alerts and dashboards</li><li>Managed Prometheus called the least disruptive move off self-hosting</li></ul>
+    <h3>Common complaints</h3>
+    <ul class="pc con"><li>Network monitoring turns into MIB management, which people hated</li><li>A steeper learning curve than Zabbix, from people who tried both</li></ul>
+    <h3>What Redditors said</h3>
+    <div class="rc-list"><blockquote class="rc rec"><p>I switched from the prometheus community helm chart to the kube-prometheus-stack because it has (had?) better compatibility with ready made dashboards</p><div class="rc-meta"><a href="https://reddit.com/r/kubernetes/comments/1pswrvy/kubeprometheus_stack_vs_lgtm_stack_vs_individual/nvd8h75/" target="_blank" rel="noopener nofollow">u/bmeus</a> in r/kubernetes &nbsp;·&nbsp; 7 points &nbsp;·&nbsp; <span class="rc-k">recommends</span></div></blockquote><blockquote class="rc neg"><p>Problem with using Prometheus for this is it becomes a mib management nightmare.</p><div class="rc-meta"><a href="https://reddit.com/r/sysadmin/comments/1te0gjl/zabbix_alternative/olz5lbq/" target="_blank" rel="noopener nofollow">u/placated</a> in r/sysadmin &nbsp;·&nbsp; 2 points &nbsp;·&nbsp; <span class="rc-k">complaint</span></div></blockquote></div>
+  </section>
+  <section class="tsec" id="splunk">
+    <h2 class="ts-h">5. Splunk</h2>
+    <div class="ts-card">
+      <div class="tc-top"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=splunk.com&sz=64" width="44" height="44" alt="" loading="lazy"><div><p class="tc-name">Splunk</p><p class="tc-best">Best logs, worst invoice</p></div></div>
+      <div class="tc-stats">
+        <div><b class="g">12</b><span>recommend</span></div>
+        <div><b class="r">10</b><span>complain</span></div>
+        <div><b>9</b><span>threads</span></div>
+      </div>
+      <span class="sbar"><span class="sb-r" style="width:25.0%"></span><span class="sb-n" style="width:20.8%"></span></span>
+    </div>
+    <p class="ts-line">Twelve recommendations against ten complaints, and each side argues about something different: one capability, the other the invoice.</p>
+    <h3>Why people recommend it</h3>
+    <ul class="pc pro"><li>The deepest log and SIEM feature set here</li><li>Still the skill people say to learn first</li></ul>
+    <h3>Common complaints</h3>
+    <ul class="pc con"><li>Ingestion-based licensing, raised in almost every thread it appears in</li><li>Consultants described customers moving to Sentinel</li></ul>
+    <h3>What Redditors said</h3>
+    <div class="rc-list"><blockquote class="rc rec"><p>Splunk is a more fully featured siem so you might get a bit more out of it.</p><div class="rc-meta"><a href="https://reddit.com/r/cybersecurity/comments/1wcnm2g/splunk_vs_sentinel_which_is_more_valuable_to/p8z9zzv/" target="_blank" rel="noopener nofollow">u/fragrantcrepe</a> in r/cybersecurity &nbsp;·&nbsp; 9 points &nbsp;·&nbsp; <span class="rc-k">recommends</span></div></blockquote><blockquote class="rc neg"><p>we have seen a large shift away from splunk the last couple of years.</p><div class="rc-meta"><a href="https://reddit.com/r/cybersecurity/comments/1wcnm2g/splunk_vs_sentinel_which_is_more_valuable_to/p8zdm0m/" target="_blank" rel="noopener nofollow">u/Uli-Kunkel</a> in r/cybersecurity &nbsp;·&nbsp; 9 points &nbsp;·&nbsp; <span class="rc-k">complaint</span></div></blockquote></div>
+  </section>
+  <section class="tsec" id="victoriametrics">
+    <h2 class="ts-h">6. VictoriaMetrics</h2>
+    <div class="ts-card">
+      <div class="tc-top"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=victoriametrics.com&sz=64" width="44" height="44" alt="" loading="lazy"><div><p class="tc-name">VictoriaMetrics</p><p class="tc-best">Best at high cardinality</p></div></div>
+      <div class="tc-stats">
+        <div><b class="g">9</b><span>recommend</span></div>
+        <div><b class="r">1</b><span>complain</span></div>
+        <div><b>7</b><span>threads</span></div>
+      </div>
+      <span class="sbar"><span class="sb-r" style="width:18.8%"></span><span class="sb-n" style="width:2.1%"></span></span>
+    </div>
+    <p class="ts-line">Where people go when cardinality or storage cost breaks a Prometheus setup. One complaint in our sample, about the interface.</p>
+    <h3>Why people recommend it</h3>
+    <ul class="pc pro"><li>Drops in where Prometheus was, so dashboards and queries carry over</li><li>Compression and query speed hold up as series counts climb</li></ul>
+    <h3>Common complaints</h3>
+    <ul class="pc con"><li>The interface called dated next to the commercial tools</li></ul>
+    <h3>What Redditors said</h3>
+    <div class="rc-list"><blockquote class="rc rec"><p>I would humbly recommend VictoriaMetrics, using it and it is very performant and easy to implement</p><div class="rc-meta"><a href="https://reddit.com/r/devops/comments/1qg5eni/grafana_mimir_vs_prometheus_storage_performance/o09s03e/" target="_blank" rel="noopener nofollow">u/ryebread157</a> in r/devops &nbsp;·&nbsp; 31 points &nbsp;·&nbsp; <span class="rc-k">recommends</span></div></blockquote><blockquote class="rc neg"><p>VictoriaLogs/VictoriaMetrics both have that grim outdated Material Design style</p><div class="rc-meta"><a href="https://reddit.com/r/devops/comments/1po25gk/need_grafana_alternatives/obdjpba/" target="_blank" rel="noopener nofollow">u/ReallySuperName</a> in r/devops &nbsp;·&nbsp; 0 points &nbsp;·&nbsp; <span class="rc-k">complaint</span></div></blockquote></div>
+  </section>
+  <section class="tsec" id="datadog">
+    <h2 class="ts-h">7. Datadog</h2>
+    <div class="ts-card">
+      <div class="tc-top"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=datadoghq.com&sz=64" width="44" height="44" alt="" loading="lazy"><div><p class="tc-name">Datadog</p><p class="tc-best">Best paid platform</p></div></div>
+      <div class="tc-stats">
+        <div><b class="g">8</b><span>recommend</span></div>
+        <div><b class="r">3</b><span>complain</span></div>
+        <div><b>6</b><span>threads</span></div>
+      </div>
+      <span class="sbar"><span class="sb-r" style="width:16.7%"></span><span class="sb-n" style="width:6.2%"></span></span>
+    </div>
+    <p class="ts-line">The paid platform people defend and dread. All three complaints here are about the bill, and two are about being surprised by it.</p>
+    <h3>Why people recommend it</h3>
+    <ul class="pc pro"><li>Metrics, logs and traces in one platform, with no plugins to assemble</li><li>The agent instruments applications without anyone writing tracing code</li><li>The people paying for it say it is the only tool that earned the money</li></ul>
+    <h3>Common complaints</h3>
+    <ul class="pc con"><li>Billing is metered on cardinality, which ambushes small teams after they commit</li><li>One team reported spending more than $100,000 a month</li></ul>
+    <h3>What Redditors said</h3>
+    <div class="rc-list"><blockquote class="rc rec"><p>Datadog is expensive but it&#x27;s the only tool I have felt that was worth the money.</p><div class="rc-meta"><a href="https://reddit.com/r/devops/comments/1qqvy78/splunk_vs_new_relic/o2jsn68/" target="_blank" rel="noopener nofollow">u/engineered_academic</a> in r/devops &nbsp;·&nbsp; 9 points &nbsp;·&nbsp; <span class="rc-k">recommends</span></div></blockquote><blockquote class="rc neg"><p>datadog would&#x27;ve bankrupted a 3-person team anyway</p><div class="rc-meta"><a href="https://reddit.com/r/devops/comments/1v34gf2/good_observability_tool_recommendation_cloud_based/oz0n60j/" target="_blank" rel="noopener nofollow">u/Floss_Patrol_76</a> in r/devops &nbsp;·&nbsp; 11 points &nbsp;·&nbsp; <span class="rc-k">complaint</span></div></blockquote><blockquote class="rc neg"><p>We are over $100,000 a month in Datadog subscription costs.</p><div class="rc-meta"><a href="https://reddit.com/r/devops/comments/1w4askj/datadog_bill_just_spiked_and_we_are_evaluating/p77e22b/" target="_blank" rel="noopener nofollow">u/aliendude5300</a> in r/devops &nbsp;·&nbsp; 1 points &nbsp;·&nbsp; <span class="rc-k">complaint</span></div></blockquote></div>
+  </section>
+  <section class="tsec" id="elastic">
+    <h2 class="ts-h">8. Elastic</h2>
+    <div class="ts-card">
+      <div class="tc-top"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=elastic.co&sz=64" width="44" height="44" alt="" loading="lazy"><div><p class="tc-name">Elastic</p><p class="tc-best">Best for log and security search</p></div></div>
+      <div class="tc-stats">
+        <div><b class="g">7</b><span>recommend</span></div>
+        <div><b class="r">6</b><span>complain</span></div>
+        <div><b>7</b><span>threads</span></div>
+      </div>
+      <span class="sbar"><span class="sb-r" style="width:14.6%"></span><span class="sb-n" style="width:12.5%"></span></span>
+    </div>
+    <p class="ts-line">Seven recommendations against six complaints, and the split is clean: people like what it finds and hate running it.</p>
+    <h3>Why people recommend it</h3>
+    <ul class="pc pro"><li>Log search and SIEM capability rated above the EDR vendors&#x27; own tools</li><li>Filebeat and Kibana take syslog and application logs without custom work</li></ul>
+    <h3>Common complaints</h3>
+    <ul class="pc con"><li>Self-hosted ELK needs constant attention from a small team</li><li>Shard and index management makes engineers part-time data engineers</li></ul>
+    <h3>What Redditors said</h3>
+    <div class="rc-list"><blockquote class="rc rec"><p>ELK with Filebeat for syslog.</p><div class="rc-meta"><a href="https://reddit.com/r/sysadmin/comments/1qxfyz9/zabbix_wazuh_vs_opensearchelkopenobservecheckmk/o49clvb/" target="_blank" rel="noopener nofollow">u/BladeCollectorGirl</a> in r/sysadmin &nbsp;·&nbsp; 1 points &nbsp;·&nbsp; <span class="rc-k">recommends</span></div></blockquote><blockquote class="rc neg"><p>Elastic being a pain to run with a small team is basically the default experience</p><div class="rc-meta"><a href="https://reddit.com/r/AskNetsec/comments/1wniyv8/keep_elastic_swap_edr_crowdstrike_vs_sentinelone/pbfj39f/" target="_blank" rel="noopener nofollow">u/Naive_Caregiver_5760</a> in r/AskNetsec &nbsp;·&nbsp; 2 points &nbsp;·&nbsp; <span class="rc-k">complaint</span></div></blockquote></div>
+  </section>
+  <section class="tsec" id="signoz">
+    <h2 class="ts-h">9. SigNoz</h2>
+    <div class="ts-card">
+      <div class="tc-top"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=signoz.io&sz=64" width="44" height="44" alt="" loading="lazy"><div><p class="tc-name">SigNoz</p><p class="tc-best">Best single binary</p></div></div>
+      <div class="tc-stats">
+        <div><b class="g">5</b><span>recommend</span></div>
+        <div><b class="r">2</b><span>complain</span></div>
+        <div><b>3</b><span>threads</span></div>
+      </div>
+      <span class="sbar"><span class="sb-r" style="width:10.4%"></span><span class="sb-n" style="width:4.2%"></span></span>
+    </div>
+    <p class="ts-line">The open-source all-in-one suggested when somebody wants OpenTelemetry data without running four services.</p>
+    <h3>Why people recommend it</h3>
+    <ul class="pc pro"><li>One binary for metrics, logs and traces</li><li>OpenTelemetry-native, so instrumentation is not vendor-specific</li></ul>
+    <h3>Common complaints</h3>
+    <ul class="pc con"><li>One team reported a buggy interface and slow support</li><li>It lost a head-to-head trial against the Grafana stack</li></ul>
+    <h3>What Redditors said</h3>
+    <div class="rc-list"><blockquote class="rc rec"><p>a single-binary one like signoz or openobserve cuts most of that toil</p><div class="rc-meta"><a href="https://reddit.com/r/devops/comments/1v34gf2/good_observability_tool_recommendation_cloud_based/oz2irbj/" target="_blank" rel="noopener nofollow">u/OpenSourceWalker</a> in r/devops &nbsp;·&nbsp; 4 points &nbsp;·&nbsp; <span class="rc-k">recommends</span></div></blockquote><blockquote class="rc neg"><p>Tried signoz. Very bad experience, specially with support.</p><div class="rc-meta"><a href="https://reddit.com/r/devops/comments/1v34gf2/good_observability_tool_recommendation_cloud_based/oz0l3sz/" target="_blank" rel="noopener nofollow">u/MasterOfTheWind1</a> in r/devops &nbsp;·&nbsp; 3 points &nbsp;·&nbsp; <span class="rc-k">complaint</span></div></blockquote></div>
+  </section>
+  <section class="tsec" id="prtg">
+    <h2 class="ts-h">10. PRTG</h2>
+    <div class="ts-card">
+      <div class="tc-top"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=paessler.com&sz=64" width="44" height="44" alt="" loading="lazy"><div><p class="tc-name">PRTG</p><p class="tc-best">Best for small networks</p></div></div>
+      <div class="tc-stats">
+        <div><b class="g">5</b><span>recommend</span></div>
+        <div><b class="r">4</b><span>complain</span></div>
+        <div><b>3</b><span>threads</span></div>
+      </div>
+      <span class="sbar"><span class="sb-r" style="width:10.4%"></span><span class="sb-n" style="width:8.3%"></span></span>
+    </div>
+    <p class="ts-line">The simple Windows option for a small network, and the clearest case here of a price rise changing people&#x27;s minds.</p>
+    <h3>Why people recommend it</h3>
+    <ul class="pc pro"><li>Faster to get running than Zabbix, per people who chose it over Zabbix</li><li>Handles manufacturer MIBs without the work Prometheus needs</li></ul>
+    <h3>Common complaints</h3>
+    <ul class="pc con"><li>Current pricing stopped recommendations and renewals</li><li>Agentless polling struggles once there are a lot of servers</li></ul>
+    <h3>What Redditors said</h3>
+    <div class="rc-list"><blockquote class="rc rec"><p>I went with PRTG over Zabbix due to how stupidly simple PRTG was to get up and running.</p><div class="rc-meta"><a href="https://reddit.com/r/sysadmin/comments/1te0gjl/zabbix_alternative/om1cupw/" target="_blank" rel="noopener nofollow">u/ihaxr</a> in r/sysadmin &nbsp;·&nbsp; 1 points &nbsp;·&nbsp; <span class="rc-k">recommends</span></div></blockquote><blockquote class="rc neg"><p>with their current pricing I couldn&#x27;t select it in good faith.</p><div class="rc-meta"><a href="https://reddit.com/r/sysadmin/comments/1vuk961/free_network_monitoring_tool_recommendation/p58ec5t/" target="_blank" rel="noopener nofollow">u/compu85</a> in r/sysadmin &nbsp;·&nbsp; 3 points &nbsp;·&nbsp; <span class="rc-k">complaint</span></div></blockquote></div>
+  </section>
+  <section class="tsec" id="better-stack">
+    <h2 class="ts-h">11. Better Stack</h2>
+    <div class="ts-card">
+      <div class="tc-top"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=betterstack.com&sz=64" width="44" height="44" alt="" loading="lazy"><div><p class="tc-name">Better Stack</p><p class="tc-best">Best free uptime tier</p></div></div>
+      <div class="tc-stats">
+        <div><b class="g">3</b><span>recommend</span></div>
+        <div><b class="r">0</b><span>complain</span></div>
+        <div><b>3</b><span>threads</span></div>
+      </div>
+      <span class="sbar"><span class="sb-r" style="width:6.2%"></span><span class="sb-n" style="width:0.0%"></span></span>
+    </div>
+    <p class="ts-line">A small count from the uptime threads, with no complaints in our sample.</p>
+    <h3>Why people recommend it</h3>
+    <ul class="pc pro"><li>A free plan people called unusually generous</li><li>Alert rate-limiting, SMS and calls on cheap tiers</li></ul>
+    <h3>Common complaints</h3>
+    <ul class="pc con"><li class="none">None in our sample</li></ul>
+    <h3>What Redditors said</h3>
+    <div class="rc-list"><blockquote class="rc rec"><p>Big fan of better stack</p><div class="rc-meta"><a href="https://reddit.com/r/devops/comments/1q0spin/posthog_vs_betterstack/nx2j0dq/" target="_blank" rel="noopener nofollow">u/johnnyorange</a> in r/devops &nbsp;·&nbsp; 2 points &nbsp;·&nbsp; <span class="rc-k">recommends</span></div></blockquote></div>
+  </section>
+  <section class="tsec" id="dynatrace">
+    <h2 class="ts-h">12. Dynatrace</h2>
+    <div class="ts-card">
+      <div class="tc-top"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=dynatrace.com&sz=64" width="44" height="44" alt="" loading="lazy"><div><p class="tc-name">Dynatrace</p><p class="tc-best">Too few opinions to judge</p></div></div>
+      <div class="tc-stats">
+        <div><b class="g">2</b><span>recommend</span></div>
+        <div><b class="r">0</b><span>complain</span></div>
+        <div><b>2</b><span>threads</span></div>
+      </div>
+      <span class="sbar"><span class="sb-r" style="width:4.2%"></span><span class="sb-n" style="width:0.0%"></span></span>
+    </div>
+    <p class="ts-line">Two recommendations across two threads and nothing against it, too little to rank on. The only enterprise platform here nobody complained about.</p>
+    <h3>Why people recommend it</h3>
+    <ul class="pc pro"><li>Automatic instrumentation through the agent, like Datadog&#x27;s</li><li>Named a key player, quoted slightly below Datadog</li></ul>
+    <h3>Common complaints</h3>
+    <ul class="pc con"><li class="none">None in our sample</li></ul>
+    <h3>What Redditors said</h3>
+    <div class="rc-list"><blockquote class="rc rec"><p>The only one that hasnt been mentioned and is a key player is Dynatrace.</p><div class="rc-meta"><a href="https://reddit.com/r/devops/comments/1v34gf2/good_observability_tool_recommendation_cloud_based/ozecnli/" target="_blank" rel="noopener nofollow">u/placated</a> in r/devops &nbsp;·&nbsp; 1 points &nbsp;·&nbsp; <span class="rc-k">recommends</span></div></blockquote></div>
+  </section>
+    <h2 id="complaints">The ones Reddit complains about</h2>
+
+    <p>Both drew more complaints than recommendations, and both rest on three or four opinions, so they are here for what the complaints say rather than where they would rank. Nobody attacked New Relic's product, they questioned its future. OpenSearch's problem is operating it, which is the same problem people describe about Elastic.</p>
+  <section class="tsec" id="new-relic">
+    <h2 class="ts-h">New Relic</h2>
+    <div class="ts-card">
+      <div class="tc-top"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=newrelic.com&sz=64" width="44" height="44" alt="" loading="lazy"><div><p class="tc-name">New Relic</p><p class="tc-best">The one people are leaving</p></div></div>
+      <div class="tc-stats">
+        <div><b class="g">1</b><span>recommend</span></div>
+        <div><b class="r">2</b><span>complain</span></div>
+        <div><b>6</b><span>threads</span></div>
+      </div>
+      <span class="sbar"><span class="sb-r" style="width:2.1%"></span><span class="sb-n" style="width:4.2%"></span></span>
+    </div>
+    <p class="ts-line">Named in 6 threads and recommended by one person. The complaints are not about features but about where the product is heading.</p>
+    <h3>Why people recommend it</h3>
+    <ul class="pc pro"><li>The free tier called plenty, and powerful, for a small footprint</li></ul>
+    <h3>Common complaints</h3>
+    <ul class="pc con"><li>One commenter said flatly that the product is in decline</li><li>Oversized for teams who wanted host metrics</li></ul>
+    <h3>What Redditors said</h3>
+    <div class="rc-list"><blockquote class="rc rec"><p>their free tier is plenty. Very powerful</p><div class="rc-meta"><a href="https://reddit.com/r/sysadmin/comments/1u6k5l5/best_free_monitoring_tool_and_a_traffic/orv1dgt/" target="_blank" rel="noopener nofollow">u/Quantum_Daedalus</a> in r/sysadmin &nbsp;·&nbsp; 0 points &nbsp;·&nbsp; <span class="rc-k">recommends</span></div></blockquote><blockquote class="rc neg"><p>New Relic is circling the drain.</p><div class="rc-meta"><a href="https://reddit.com/r/devops/comments/1qqvy78/splunk_vs_new_relic/o2jsn68/" target="_blank" rel="noopener nofollow">u/engineered_academic</a> in r/devops &nbsp;·&nbsp; 9 points &nbsp;·&nbsp; <span class="rc-k">complaint</span></div></blockquote></div>
+  </section>
+  <section class="tsec" id="opensearch">
+    <h2 class="ts-h">OpenSearch</h2>
+    <div class="ts-card">
+      <div class="tc-top"><img class="tlogo" src="https://www.google.com/s2/favicons?domain=opensearch.org&sz=64" width="44" height="44" alt="" loading="lazy"><div><p class="tc-name">OpenSearch</p><p class="tc-best">Complaints about running it</p></div></div>
+      <div class="tc-stats">
+        <div><b class="g">1</b><span>recommend</span></div>
+        <div><b class="r">3</b><span>complain</span></div>
+        <div><b>6</b><span>threads</span></div>
+      </div>
+      <span class="sbar"><span class="sb-r" style="width:2.1%"></span><span class="sb-n" style="width:6.2%"></span></span>
+    </div>
+    <p class="ts-line">Three complaints and one lukewarm recommendation across 6 threads. Two complaints come from comments that name Elastic in the same breath, so read this as the ELK operating story, not a verdict on the fork.</p>
+    <h3>Why people recommend it</h3>
+    <ul class="pc pro"><li>Suggested as a free interim option</li></ul>
+    <h3>Common complaints</h3>
+    <ul class="pc con"><li>Setup called painful</li><li>Self-hosted storage and compute ran higher than expected</li></ul>
+    <h3>What Redditors said</h3>
+    <div class="rc-list"><blockquote class="rc rec"><p>you can use OpenSearch for now.</p><div class="rc-meta"><a href="https://reddit.com/r/sysadmin/comments/1p5r3r6/best_log_collection_tools_for_dodaf/nql5jsj/" target="_blank" rel="noopener nofollow">u/Helpjuice</a> in r/sysadmin &nbsp;·&nbsp; 1 points &nbsp;·&nbsp; <span class="rc-k">recommends</span></div></blockquote><blockquote class="rc neg"><p>But yes, a pain to set up</p><div class="rc-meta"><a href="https://reddit.com/r/sysadmin/comments/1w60cjb/looking_for_log_aggregation_software/p7j9pvh/" target="_blank" rel="noopener nofollow">u/Nyasaki_de</a> in r/sysadmin &nbsp;·&nbsp; 2 points &nbsp;·&nbsp; <span class="rc-k">complaint</span></div></blockquote></div>
+  </section>
+
+    <h2 id="how-we-built-this">How we built this ranking</h2>
+    <p>We pulled every Reddit thread from the past 12 months in sysadmin, devops, Kubernetes and security subreddits, then kept those about infrastructure monitoring, observability platforms and log aggregation. An AI model read each comment that named a tool and labelled it as a recommendation, a complaint or a neutral mention, and we checked that every quote appears word for word in the original comment. Nine vendor posts were removed, as was any opinion copy-pasted across accounts. Two caveats. This ranking rests on 30 threads, fewer than any other we have built, so the long tail of the table is two or three opinions per brand. And we tested it for coordinated promotion, because 96% of the authors here have two or fewer comments in the whole pull, which makes posting history useless as a signal. Votes are not: Zabbix's top recommendation scored 83 points, VictoriaMetrics 31 and Checkmk 27, and every brand near the top has one the thread upvoted. Real recommendations collect votes, these did, and we found nothing to exclude. This ranking reflects the data as of November 2026.</p>
+
+    <div class="rk-cta rk-cta-inline">
+      <p class="cta-h">Sell a monitoring or observability tool?</p>
+      <p>Your buyers are in these threads right now, telling each other what their Datadog bill came in at. We run Reddit ads that put your brand in front of them.</p>
+      <a href="/reddit-ads-b2b-saas">See how Reddit ads work for SaaS</a>
+    </div>
+
+    <h2 id="faq">Monitoring and observability FAQ</h2>
+    <div class="faq-block"><div class="faq-q"><h3>What is the best monitoring tool according to Reddit?</h3><p>Zabbix, by a wide margin. 39 people recommended it against 25 for Grafana, its nearest rival, and its top comment is the highest-voted recommendation in any category we have measured. It is free and covers network and host monitoring out of the box. The catch is that somebody has to own it.</p></div><div class="faq-q"><h3>Is Datadog worth the money?</h3><p>These threads are split. 8 people recommended it, and the ones who did said it is the only tool that earned its price. All 3 complaints are about cost, and two are about surprise rather than the sticker price: billing is metered on cardinality, so the invoice grows with what you send it. One team reported more than $100,000 a month.</p></div><div class="faq-q"><h3>What is the best free monitoring stack?</h3><p>Zabbix or Checkmk for infrastructure, Prometheus with Grafana for anything on Kubernetes. Checkmk drew 17 recommendations against 2 complaints, the cleanest ratio in the table. VictoriaMetrics is what people move to when a self-hosted Prometheus runs out of room.</p></div><div class="faq-q"><h3>Zabbix or Grafana?</h3><p>They are not really competing. Zabbix collects and alerts, Grafana draws dashboards over whatever is collecting, and plenty of people here run both. The argument that does happen is Zabbix against the Prometheus and Grafana stack, and it turns on what you are watching: network gear pushes people to Zabbix, Kubernetes pushes them to Prometheus.</p></div></div>
+  </div>
+
+  <aside class="rk-side">
+    <div class="rk-author">
+      <span class="av">ZA</span>
+      <div><p class="an">by <a href="/zoha">Zoha Ahmed</a></p><p class="ad">Nov 1, 2026 &nbsp;•&nbsp; 12 min read</p></div>
+    </div>
+    <div class="rk-cta rk-cta-side">
+      <p class="cta-h">Sell a monitoring or observability tool?</p>
+      <p>Your buyers are in these threads, comparing your price with Datadog. We put your brand in front of them with Reddit ads.</p>
+      <a href="/reddit-ads-b2b-saas">See how it works</a>
+    </div>
+  </aside>
+</article>
+<script>
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.rk-toc nav a'));
+  var map = {};
+  links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+  var heads = Object.keys(map).map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  function spy() {
+    var cur = heads[0];
+    heads.forEach(function (h) { if (h.getBoundingClientRect().top < 260) cur = h; });
+    links.forEach(function (a) { a.classList.remove('on'); });
+    if (cur) map[cur.id].classList.add('on');
+  }
+  window.addEventListener('scroll', spy, { passive: true });
+  spy();
+})();
+</script>
+
+<!-- Booking modal -->
+<div class="cal-modal" id="cal-modal">
+  <div class="cal-modal-content">
+    <button class="cal-modal-close" onclick="document.getElementById('cal-modal').classList.remove('open')">&times;</button>
+    <iframe src="https://cal.com/skipthenoise/30min" style="width:100%;height:600px;border:none;" title="Book a call"></iframe>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 Skip the Noise Media &middot; Reddit Certified Partner</p>
+  <p><a href="mailto:sales@skipthenoisemedia.com">sales@skipthenoisemedia.com</a></p>
+  <p style="font-size:13px; margin-top:8px;"><a href="/privacy">Privacy Policy</a> &middot; <a href="/cookies">Cookie Policy</a> &middot; <a href="/terms">Terms of Service</a></p>
+</footer>
+<script>
+// Nav scroll + hamburger + dropdown
+(function() {
+  var nav = document.querySelector('.nav');
+  if (nav) {
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 80);
+    }, { passive: true });
+  }
+  var hamburger = document.getElementById('hamburger');
+  var mobileMenu = document.getElementById('mobile-menu');
+  if (hamburger && mobileMenu) {
+    hamburger.addEventListener('click', function() {
+      var open = mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('open', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+  }
+  var dropdownTrigger = document.querySelector('.nav-dropdown-trigger');
+  var navDropdown = document.querySelector('.nav-dropdown');
+  if (dropdownTrigger && navDropdown) {
+    dropdownTrigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = navDropdown.classList.toggle('open');
+      dropdownTrigger.setAttribute('aria-expanded', isOpen);
+    });
+    document.addEventListener('click', function() {
+      navDropdown.classList.remove('open');
+      dropdownTrigger.setAttribute('aria-expanded', 'false');
+    });
+    navDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+  }
+})();
+function closeMobileMenu() {
+  var mm = document.getElementById('mobile-menu');
+  var hb = document.getElementById('hamburger');
+  if (mm) mm.classList.remove('open');
+  if (hb) hb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+</script>
+</body>
+</html>

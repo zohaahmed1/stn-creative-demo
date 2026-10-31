@@ -36,6 +36,24 @@ Key facts:
 - [AI UGC ads](https://skipthenoisemedia.com/blog/ai-ugc-ads): how to scale UGC video creative with AI
 - [UGC ad agency](https://skipthenoisemedia.com/blog/ugc-ad-agency): what a UGC ad agency does and costs
 
+## Reddit rankings
+
+Twelve "best software, according to Reddit" rankings, built from 5,960 Reddit comments by 4,591 people across 927 threads where buyers asked what to use. One vote per person, vendor posts removed, every quote linked to the comment it came from. Brands whose recommendations trace back to a few low-activity accounts repeating one claim are excluded from the count and named on the page.
+
+- [All Reddit rankings](https://skipthenoisemedia.com/reddit-rankings): the index of every category
+- [Password managers](https://skipthenoisemedia.com/reddit-rankings/password-managers): 598 comments, Bitwarden leads
+- [Firewalls and network security](https://skipthenoisemedia.com/reddit-rankings/network-security): 740 comments, Fortinet leads
+- [Backup and recovery](https://skipthenoisemedia.com/reddit-rankings/backup-and-recovery): 710 comments, Veeam leads
+- [Endpoint security and EDR](https://skipthenoisemedia.com/reddit-rankings/endpoint-security): 397 comments, Huntress leads
+- [Cloud security](https://skipthenoisemedia.com/reddit-rankings/cloud-security): 278 comments, Orca leads
+- [Email security](https://skipthenoisemedia.com/reddit-rankings/email-security): 247 comments, Check Point Harmony leads
+- [B2B contact data](https://skipthenoisemedia.com/reddit-rankings/b2b-contact-data): 842 comments, Apollo leads
+- [Cold email tools](https://skipthenoisemedia.com/reddit-rankings/cold-email-tools): 650 comments, Instantly leads
+- [Help desk software](https://skipthenoisemedia.com/reddit-rankings/customer-support): 251 comments, Help Scout leads
+- [Analytics](https://skipthenoisemedia.com/reddit-rankings/product-analytics): 526 comments, PostHog leads
+- [HR software](https://skipthenoisemedia.com/reddit-rankings/hr-software): 433 comments, Gusto leads
+- [Monitoring and observability](https://skipthenoisemedia.com/reddit-rankings/observability): 288 comments, Zabbix leads
+
 ## Company
 
 - [About Skip the Noise Media](https://skipthenoisemedia.com/about)
