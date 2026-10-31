@@ -4,6 +4,7 @@
  * Shows 1s after every page load until closed; a close hides it for 7 days. Switches itself off after Black Friday.
  */
 (function () {
+  return;                                                 // switched off 2026-11-01; delete this line to bring the promo back
   var END = new Date(2026, 10, 28);                       // the day after Black Friday 2026
   var KEY = 'stn_bf_closed';
   var path = location.pathname;
