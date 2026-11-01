@@ -297,22 +297,30 @@
     .rki-body a.rki-card, .rki-body a.rki-card p { text-decoration: none; }
     .rki-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; text-align: left; }
     .rki-stats b { display: block; font-size: 40px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; }
-    .rki-stats span { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--acc); opacity: .85; }
-    .rki-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 10px 0 0; }
+    .rki-stats span { font-size: 15px; color: var(--mute); }
+    .rki-group { margin: 34px 0 0; }
+    .article-body .rk-main h3.rki-gh { display: flex; align-items: baseline; gap: 10px; font-size: 14px; font-weight: 700;
+                color: var(--ink); letter-spacing: 0; margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid #000; }
+    .article-body .rk-main h3.rki-gh span { font-weight: 400; color: var(--mute); }
+    .rki-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
     /* the card is a link inside .rk-main, so it inherits the article's bold links and 19px paragraphs;
        these selectors are scoped to .article-body .rk-main to outrank both */
     .article-body .rk-main a.rki-card { display: flex; flex-direction: column; border: 1px solid var(--rule); border-radius: 16px;
-                padding: 22px 24px 20px; text-decoration: none; color: inherit; font-weight: 400; background: #fff;
-                transition: border-color .15s, transform .15s; }
-    .article-body .rk-main a.rki-card:hover { border-color: #131316; transform: translateY(-2px); }
+                padding: 22px 24px 18px; text-decoration: none; color: inherit; font-weight: 400; background: #fff;
+                transition: border-color .15s; }
+    .article-body .rk-main a.rki-card:hover { border-color: var(--ink); }
+    .article-body .rk-main a.rki-card:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
     .article-body .rk-main .rki-card p { font-weight: 400; }
-    .article-body .rk-main .rki-card .rki-k { font-size: 11.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase;
-                line-height: 1.3; color: var(--acc); margin: 0 0 12px; display: flex; align-items: center; gap: 8px; }
-    .article-body .rk-main .rki-card .rki-k::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--acc); }
-    .article-body .rk-main .rki-card .rki-h { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.25; color: #000; margin: 0 0 10px; text-wrap: balance; }
+    .article-body .rk-main .rki-card .rki-h { display: flex; justify-content: space-between; gap: 12px; font-size: 21px;
+                font-weight: 500; letter-spacing: -0.01em; line-height: 1.25; color: #000; margin: 0 0 6px; }
+    .rki-go { color: var(--mute); transition: transform .15s, color .15s; }
+    .rki-card:hover .rki-go { color: var(--ink); transform: translateX(3px); }
+    .article-body .rk-main .rki-card .rki-lead { font-size: 15px; line-height: 1.45; color: var(--mute); margin: 0 0 14px; }
+    .article-body .rk-main .rki-card .rki-lead b { font-weight: 700; color: var(--ink); }
     .article-body .rk-main .rki-card .rki-b { font-size: 15px; line-height: 1.55; color: #303030; margin: 0 0 18px; flex: 1; }
-    .article-body .rk-main .rki-card .rki-m { font-size: 13px; line-height: 1.5; color: var(--mute); margin: 0; padding-top: 14px;
-                border-top: 1px solid var(--rule); font-variant-numeric: tabular-nums; }
+    .article-body .rk-main .rki-card .rki-m { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; line-height: 1.5;
+                color: var(--mute); margin: 0; padding-top: 12px; border-top: 1px solid var(--rule); font-variant-numeric: tabular-nums; }
+    @media (prefers-reduced-motion: reduce) { .rki-go { transition: none; } }
     @media (max-width: 760px) {
       .rki-grid { grid-template-columns: 1fr; }
       .article-body.rk-body.rki-body { padding: 36px 20px 0; }
@@ -372,26 +380,26 @@
    {
     "@type": "ListItem",
     "position": 3,
-    "name": "Backup and recovery",
-    "url": "https://skipthenoisemedia.com/reddit-rankings/backup-and-recovery"
-   },
-   {
-    "@type": "ListItem",
-    "position": 4,
     "name": "Endpoint security",
     "url": "https://skipthenoisemedia.com/reddit-rankings/endpoint-security"
    },
    {
     "@type": "ListItem",
-    "position": 5,
+    "position": 4,
     "name": "Cloud security",
     "url": "https://skipthenoisemedia.com/reddit-rankings/cloud-security"
    },
    {
     "@type": "ListItem",
-    "position": 6,
+    "position": 5,
     "name": "Email security",
     "url": "https://skipthenoisemedia.com/reddit-rankings/email-security"
+   },
+   {
+    "@type": "ListItem",
+    "position": 6,
+    "name": "Backup and recovery",
+    "url": "https://skipthenoisemedia.com/reddit-rankings/backup-and-recovery"
    },
    {
     "@type": "ListItem",
@@ -408,26 +416,26 @@
    {
     "@type": "ListItem",
     "position": 9,
+    "name": "Monitoring and observability",
+    "url": "https://skipthenoisemedia.com/reddit-rankings/observability"
+   },
+   {
+    "@type": "ListItem",
+    "position": 10,
     "name": "Customer support",
     "url": "https://skipthenoisemedia.com/reddit-rankings/customer-support"
    },
    {
     "@type": "ListItem",
-    "position": 10,
+    "position": 11,
     "name": "Product and web analytics",
     "url": "https://skipthenoisemedia.com/reddit-rankings/product-analytics"
    },
    {
     "@type": "ListItem",
-    "position": 11,
+    "position": 12,
     "name": "HR and payroll",
     "url": "https://skipthenoisemedia.com/reddit-rankings/hr-software"
-   },
-   {
-    "@type": "ListItem",
-    "position": 12,
-    "name": "Monitoring and observability",
-    "url": "https://skipthenoisemedia.com/reddit-rankings/observability"
    }
   ]
  }
@@ -586,80 +594,94 @@
 <article class="article-body rk-body rki-body">
   <div class="rk-main">
     <h2 id="categories">The rankings</h2>
-    <div class="rki-grid">
-      <a class="rki-card" href="/reddit-rankings/password-managers">
-        <p class="rki-k">Password managers</p>
-        <p class="rki-h">Bitwarden leads, on 131 recommendations</p>
-        <p class="rki-b">Bitwarden is the default answer and the self-hosted options are the ones with no complaints at all.</p>
-        <p class="rki-m">619 comments &nbsp;·&nbsp; 516 people &nbsp;·&nbsp; 48 threads<br>14 tools ranked</p>
-      </a>
-      <a class="rki-card" href="/reddit-rankings/network-security">
-        <p class="rki-k">Network security</p>
-        <p class="rki-h">Fortinet leads, on 73 recommendations</p>
-        <p class="rki-b">Fortinet leads on volume. The complaints are about support and licensing, not the hardware.</p>
-        <p class="rki-m">757 comments &nbsp;·&nbsp; 588 people &nbsp;·&nbsp; 98 threads<br>16 tools ranked</p>
-      </a>
-      <a class="rki-card" href="/reddit-rankings/backup-and-recovery">
-        <p class="rki-k">Backup and recovery</p>
-        <p class="rki-h">Veeam leads, on 122 recommendations</p>
-        <p class="rki-b">Veeam is the default and also carries the most complaints. The cheap and self-hosted tier is the clean one.</p>
-        <p class="rki-m">710 comments &nbsp;·&nbsp; 543 people &nbsp;·&nbsp; 74 threads<br>13 tools ranked</p>
-      </a>
-      <a class="rki-card" href="/reddit-rankings/endpoint-security">
-        <p class="rki-k">Endpoint security</p>
-        <p class="rki-h">Huntress leads, on 41 recommendations</p>
-        <p class="rki-b">Huntress beats CrowdStrike on recommendations, and CrowdStrike&#x27;s complaints are about price, not the outage.</p>
-        <p class="rki-m">397 comments &nbsp;·&nbsp; 326 people &nbsp;·&nbsp; 61 threads<br>14 tools ranked</p>
-      </a>
-      <a class="rki-card" href="/reddit-rankings/cloud-security">
-        <p class="rki-k">Cloud security</p>
-        <p class="rki-h">Orca Security leads, on 35 recommendations</p>
-        <p class="rki-b">Wiz nearly cancels itself out. Two brands are excluded from the count and the page explains why.</p>
-        <p class="rki-m">278 comments &nbsp;·&nbsp; 215 people &nbsp;·&nbsp; 71 threads<br>13 tools ranked</p>
-      </a>
-      <a class="rki-card" href="/reddit-rankings/email-security">
-        <p class="rki-k">Email security</p>
-        <p class="rki-h">Check Point Harmony Email (Avanan) leads, on 61 recommendations</p>
-        <p class="rki-b">What MSPs and sysadmins actually put in front of Microsoft 365.</p>
-        <p class="rki-m">233 comments &nbsp;·&nbsp; 183 people &nbsp;·&nbsp; 28 threads<br>9 tools ranked</p>
-      </a>
-      <a class="rki-card" href="/reddit-rankings/b2b-contact-data">
-        <p class="rki-k">B2B contact data</p>
-        <p class="rki-h">Apollo leads, on 58 recommendations</p>
-        <p class="rki-b">Apollo leads on volume in the most promotion-heavy corner of Reddit we have measured.</p>
-        <p class="rki-m">865 comments &nbsp;·&nbsp; 543 people &nbsp;·&nbsp; 95 threads<br>13 tools ranked</p>
-      </a>
-      <a class="rki-card" href="/reddit-rankings/cold-email-tools">
-        <p class="rki-k">Cold email tools</p>
-        <p class="rki-h">Instantly leads, on 88 recommendations</p>
-        <p class="rki-b">Instantly is both the most recommended and the most complained about. Two tools are excluded from the count.</p>
-        <p class="rki-m">650 comments &nbsp;·&nbsp; 433 people &nbsp;·&nbsp; 168 threads<br>12 tools ranked</p>
-      </a>
-      <a class="rki-card" href="/reddit-rankings/customer-support">
-        <p class="rki-k">Customer support</p>
-        <p class="rki-h">Help Scout leads, on 25 recommendations</p>
-        <p class="rki-b">Zendesk was named in more threads than anything else and recommended by one person.</p>
-        <p class="rki-m">262 comments &nbsp;·&nbsp; 206 people &nbsp;·&nbsp; 57 threads<br>13 tools ranked</p>
-      </a>
-      <a class="rki-card" href="/reddit-rankings/product-analytics">
-        <p class="rki-k">Product and web analytics</p>
-        <p class="rki-h">PostHog leads, on 54 recommendations</p>
-        <p class="rki-b">Google Analytics draws more complaints than recommendations, and the complaints all name GA4.</p>
-        <p class="rki-m">526 comments &nbsp;·&nbsp; 441 people &nbsp;·&nbsp; 139 threads<br>14 tools ranked</p>
-      </a>
-      <a class="rki-card" href="/reddit-rankings/hr-software">
-        <p class="rki-k">HR and payroll</p>
-        <p class="rki-h">Gusto leads, on 35 recommendations</p>
-        <p class="rki-b">The most negative category we have measured. Four of the biggest names are net negative.</p>
-        <p class="rki-m">433 comments &nbsp;·&nbsp; 341 people &nbsp;·&nbsp; 76 threads<br>11 tools ranked</p>
-      </a>
-      <a class="rki-card" href="/reddit-rankings/observability">
-        <p class="rki-k">Monitoring and observability</p>
-        <p class="rki-h">Zabbix leads, on 39 recommendations</p>
-        <p class="rki-b">The highest-voted recommendation in any of our data is someone telling a person not to leave Zabbix.</p>
-        <p class="rki-m">288 comments &nbsp;·&nbsp; 238 people &nbsp;·&nbsp; 30 threads<br>14 tools ranked</p>
-      </a>
-    </div>
+    
+    <section class="rki-group">
+      <h3 class="rki-gh">Security <span>6 rankings</span></h3>
+      <div class="rki-grid">
+        <a class="rki-card" href="/reddit-rankings/password-managers">
+          <p class="rki-h">Password managers<span class="rki-go" aria-hidden="true">&rarr;</span></p>
+          <p class="rki-lead"><b>Bitwarden</b> leads with 131 recommendations</p>
+          <p class="rki-b">Bitwarden is the default answer and the self-hosted options are the ones with no complaints at all.</p>
+          <p class="rki-m"><span>619 comments</span><span>516 people</span><span>14 tools ranked</span></p>
+        </a>
+        <a class="rki-card" href="/reddit-rankings/network-security">
+          <p class="rki-h">Network security<span class="rki-go" aria-hidden="true">&rarr;</span></p>
+          <p class="rki-lead"><b>Fortinet</b> leads with 73 recommendations</p>
+          <p class="rki-b">Fortinet leads on volume. The complaints are about support and licensing, not the hardware.</p>
+          <p class="rki-m"><span>757 comments</span><span>588 people</span><span>16 tools ranked</span></p>
+        </a>
+        <a class="rki-card" href="/reddit-rankings/endpoint-security">
+          <p class="rki-h">Endpoint security<span class="rki-go" aria-hidden="true">&rarr;</span></p>
+          <p class="rki-lead"><b>Huntress</b> leads with 41 recommendations</p>
+          <p class="rki-b">Huntress beats CrowdStrike on recommendations, and CrowdStrike&#x27;s complaints are about price, not the outage.</p>
+          <p class="rki-m"><span>397 comments</span><span>326 people</span><span>14 tools ranked</span></p>
+        </a>
+        <a class="rki-card" href="/reddit-rankings/cloud-security">
+          <p class="rki-h">Cloud security<span class="rki-go" aria-hidden="true">&rarr;</span></p>
+          <p class="rki-lead"><b>Orca Security</b> leads with 35 recommendations</p>
+          <p class="rki-b">Wiz nearly cancels itself out. Two brands are excluded from the count and the page explains why.</p>
+          <p class="rki-m"><span>278 comments</span><span>215 people</span><span>13 tools ranked</span></p>
+        </a>
+        <a class="rki-card" href="/reddit-rankings/email-security">
+          <p class="rki-h">Email security<span class="rki-go" aria-hidden="true">&rarr;</span></p>
+          <p class="rki-lead"><b>Check Point Harmony Email (Avanan)</b> leads with 61 recommendations</p>
+          <p class="rki-b">What MSPs and sysadmins actually put in front of Microsoft 365.</p>
+          <p class="rki-m"><span>233 comments</span><span>183 people</span><span>9 tools ranked</span></p>
+        </a>
+        <a class="rki-card" href="/reddit-rankings/backup-and-recovery">
+          <p class="rki-h">Backup and recovery<span class="rki-go" aria-hidden="true">&rarr;</span></p>
+          <p class="rki-lead"><b>Veeam</b> leads with 122 recommendations</p>
+          <p class="rki-b">Veeam is the default and also carries the most complaints. The cheap and self-hosted tier is the clean one.</p>
+          <p class="rki-m"><span>710 comments</span><span>543 people</span><span>13 tools ranked</span></p>
+        </a>
+      </div>
+    </section>
+    <section class="rki-group">
+      <h3 class="rki-gh">Sales and outreach <span>2 rankings</span></h3>
+      <div class="rki-grid">
+        <a class="rki-card" href="/reddit-rankings/b2b-contact-data">
+          <p class="rki-h">B2B contact data<span class="rki-go" aria-hidden="true">&rarr;</span></p>
+          <p class="rki-lead"><b>Apollo</b> leads with 58 recommendations</p>
+          <p class="rki-b">Apollo leads on volume in the most promotion-heavy corner of Reddit we have measured.</p>
+          <p class="rki-m"><span>865 comments</span><span>543 people</span><span>13 tools ranked</span></p>
+        </a>
+        <a class="rki-card" href="/reddit-rankings/cold-email-tools">
+          <p class="rki-h">Cold email tools<span class="rki-go" aria-hidden="true">&rarr;</span></p>
+          <p class="rki-lead"><b>Instantly</b> leads with 88 recommendations</p>
+          <p class="rki-b">Instantly is both the most recommended and the most complained about. Two tools are excluded from the count.</p>
+          <p class="rki-m"><span>650 comments</span><span>433 people</span><span>12 tools ranked</span></p>
+        </a>
+      </div>
+    </section>
+    <section class="rki-group">
+      <h3 class="rki-gh">Operations and product <span>4 rankings</span></h3>
+      <div class="rki-grid">
+        <a class="rki-card" href="/reddit-rankings/observability">
+          <p class="rki-h">Monitoring and observability<span class="rki-go" aria-hidden="true">&rarr;</span></p>
+          <p class="rki-lead"><b>Zabbix</b> leads with 39 recommendations</p>
+          <p class="rki-b">The highest-voted recommendation in any of our data is someone telling a person not to leave Zabbix.</p>
+          <p class="rki-m"><span>288 comments</span><span>238 people</span><span>14 tools ranked</span></p>
+        </a>
+        <a class="rki-card" href="/reddit-rankings/customer-support">
+          <p class="rki-h">Customer support<span class="rki-go" aria-hidden="true">&rarr;</span></p>
+          <p class="rki-lead"><b>Help Scout</b> leads with 25 recommendations</p>
+          <p class="rki-b">Zendesk was named in more threads than anything else and recommended by one person.</p>
+          <p class="rki-m"><span>262 comments</span><span>206 people</span><span>13 tools ranked</span></p>
+        </a>
+        <a class="rki-card" href="/reddit-rankings/product-analytics">
+          <p class="rki-h">Product and web analytics<span class="rki-go" aria-hidden="true">&rarr;</span></p>
+          <p class="rki-lead"><b>PostHog</b> leads with 54 recommendations</p>
+          <p class="rki-b">Google Analytics draws more complaints than recommendations, and the complaints all name GA4.</p>
+          <p class="rki-m"><span>526 comments</span><span>441 people</span><span>14 tools ranked</span></p>
+        </a>
+        <a class="rki-card" href="/reddit-rankings/hr-software">
+          <p class="rki-h">HR and payroll<span class="rki-go" aria-hidden="true">&rarr;</span></p>
+          <p class="rki-lead"><b>Gusto</b> leads with 35 recommendations</p>
+          <p class="rki-b">The most negative category we have measured. Four of the biggest names are net negative.</p>
+          <p class="rki-m"><span>433 comments</span><span>341 people</span><span>11 tools ranked</span></p>
+        </a>
+      </div>
+    </section>
 
     <h2 id="how">How we build these</h2>
     <p>We pull every Reddit thread from the past 12 months in the subreddits where a category's buyers talk, then keep
