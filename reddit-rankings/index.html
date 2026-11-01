@@ -293,15 +293,6 @@
       .rk-cta-inline { padding: 26px 22px; }
     }
 
-    .article-body.rk-body.rki-body { display: block; max-width: 860px; margin: 0 auto; padding: 56px 24px 0; }
-    .rki-body a.rki-card, .rki-body a.rki-card p { text-decoration: none; }
-    .rki-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; text-align: left; }
-    .rki-stats b { display: block; font-size: 40px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; }
-    .rki-stats span { font-size: 15px; color: var(--mute); }
-    .rki-group { margin: 34px 0 0; }
-    .article-body .rk-main h3.rki-gh { display: flex; align-items: baseline; gap: 10px; font-size: 14px; font-weight: 700;
-                color: var(--ink); letter-spacing: 0; margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid #000; }
-    .article-body .rk-main h3.rki-gh span { font-weight: 400; color: var(--mute); }
     .rki-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
     /* the card is a link inside .rk-main, so it inherits the article's bold links and 19px paragraphs;
        these selectors are scoped to .article-body .rk-main to outrank both */
@@ -321,8 +312,18 @@
     .article-body .rk-main .rki-card .rki-m { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; line-height: 1.5;
                 color: var(--mute); margin: 0; padding-top: 12px; border-top: 1px solid var(--rule); font-variant-numeric: tabular-nums; }
     @media (prefers-reduced-motion: reduce) { .rki-go { transition: none; } }
+    @media (max-width: 760px) { .rki-grid { grid-template-columns: 1fr; } }
+
+    .article-body.rk-body.rki-body { display: block; max-width: 860px; margin: 0 auto; padding: 56px 24px 0; }
+    .rki-body a.rki-card, .rki-body a.rki-card p { text-decoration: none; }
+    .rki-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; text-align: left; }
+    .rki-stats b { display: block; font-size: 40px; font-weight: 400; letter-spacing: -0.02em; line-height: 1.1; }
+    .rki-stats span { font-size: 15px; color: var(--mute); }
+    .rki-group { margin: 34px 0 0; }
+    .article-body .rk-main h3.rki-gh { display: flex; align-items: baseline; gap: 10px; font-size: 14px; font-weight: 700;
+                color: var(--ink); letter-spacing: 0; margin: 0 0 14px; padding-bottom: 10px; border-bottom: 1px solid #000; }
+    .article-body .rk-main h3.rki-gh span { font-weight: 400; color: var(--mute); }
     @media (max-width: 760px) {
-      .rki-grid { grid-template-columns: 1fr; }
       .article-body.rk-body.rki-body { padding: 36px 20px 0; }
       .rki-stats { grid-template-columns: repeat(2, 1fr); }
       .rki-stats b { font-size: 32px; }

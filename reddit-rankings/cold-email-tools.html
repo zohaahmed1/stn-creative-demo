@@ -292,6 +292,32 @@
       .article-body .rk-main .rc p { font-size: 19px; }
       .rk-cta-inline { padding: 26px 22px; }
     }
+
+    /* more-rankings */
+    .rki-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    /* the card is a link inside .rk-main, so it inherits the article's bold links and 19px paragraphs;
+       these selectors are scoped to .article-body .rk-main to outrank both */
+    .article-body .rk-main a.rki-card { display: flex; flex-direction: column; border: 1px solid var(--rule); border-radius: 16px;
+                padding: 22px 24px 18px; text-decoration: none; color: inherit; font-weight: 400; background: #fff;
+                transition: border-color .15s; }
+    .article-body .rk-main a.rki-card:hover { border-color: var(--ink); }
+    .article-body .rk-main a.rki-card:focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; }
+    .article-body .rk-main .rki-card p { font-weight: 400; }
+    .article-body .rk-main .rki-card .rki-h { display: flex; justify-content: space-between; gap: 12px; font-size: 21px;
+                font-weight: 500; letter-spacing: -0.01em; line-height: 1.25; color: #000; margin: 0 0 6px; }
+    .rki-go { color: var(--mute); transition: transform .15s, color .15s; }
+    .rki-card:hover .rki-go { color: var(--ink); transform: translateX(3px); }
+    .article-body .rk-main .rki-card .rki-lead { font-size: 15px; line-height: 1.45; color: var(--mute); margin: 0 0 14px; }
+    .article-body .rk-main .rki-card .rki-lead b { font-weight: 700; color: var(--ink); }
+    .article-body .rk-main .rki-card .rki-b { font-size: 15px; line-height: 1.55; color: #303030; margin: 0 0 18px; flex: 1; }
+    .article-body .rk-main .rki-card .rki-m { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: 13px; line-height: 1.5;
+                color: var(--mute); margin: 0; padding-top: 12px; border-top: 1px solid var(--rule); font-variant-numeric: tabular-nums; }
+    @media (prefers-reduced-motion: reduce) { .rki-go { transition: none; } }
+    @media (max-width: 760px) { .rki-grid { grid-template-columns: 1fr; } }
+    .article-body .rk-main p.rki-all { font-size: 15px; margin: 18px 0 0; }
+    .article-body .rk-main .rki-more .rki-card .rki-h { font-size: 18px; }
+    .article-body .rk-main .rki-more a.rki-card { padding: 20px 20px 16px; }
+    /* /more-rankings */
 </style>
 
   <!-- Meta Pixel Code -->
@@ -908,6 +934,38 @@
 
     <h2 id="faq">Cold email tool FAQ</h2>
     <div class="faq-block"><div class="faq-q"><h3>What is the best cold email tool according to Reddit?</h3><p>Instantly, on volume: 88 recommendations against 77 for Smartlead. It also collected 44 complaints against Smartlead&#x27;s 16, so the ranking by recommendations and the ranking by satisfaction are not the same ranking.</p></div><div class="faq-q"><h3>Why is Instantly both the most recommended and the most complained about tool?</h3><p>Because it is the default. Almost everyone sending cold email starts there, so it accumulates both. The 44 complaints cluster on burned domains, suspended mailboxes, warm-up pool quality and price at scale. We use Instantly ourselves and have left the count as the threads gave it.</p></div><div class="faq-q"><h3>Instantly or Smartlead?</h3><p>The threads do not settle it. Instantly leads on volume of support (88 against 77) and on ease of setup. Smartlead carries a far lower complaint rate (16 against 44) and is the named migration target when deliverability drops. Smartlead&#x27;s weak spot is its built-in lead data, which nobody defended.</p></div><div class="faq-q"><h3>What is the cheapest cold email tool people actually recommend?</h3><p>Saleshandy, with 15 recommendations and 0 complaints, described as a budget option with decent deliverability. QuickMail and Woodpecker come up for low-volume sending, and lemlist&#x27;s entry plan when the requirement is personalisation rather than scale.</p></div><div class="faq-q"><h3>Can you trust tool recommendations in r/coldemail?</h3><p>Not at face value. This category came almost entirely from one subreddit where agencies and tool founders recommend each other&#x27;s products, and two brands drew enough support from accounts with no other activity in our pull that we left them out of the table. The brands at the top are safer to read, because dozens of established accounts argue about them in both directions.</p></div></div>
+    <!-- more-rankings -->
+    <section class="rki-more">
+      <h2 id="more">More rankings</h2>
+      <div class="rki-grid">
+        <a class="rki-card" href="/reddit-rankings/b2b-contact-data">
+          <p class="rki-h">B2B contact data<span class="rki-go" aria-hidden="true">&rarr;</span></p>
+          <p class="rki-lead"><b>Apollo</b> leads with 58 recommendations</p>
+          <p class="rki-b">Apollo leads on volume in the most promotion-heavy corner of Reddit we have measured.</p>
+          <p class="rki-m"><span>865 comments</span><span>543 people</span><span>13 tools ranked</span></p>
+        </a>
+        <a class="rki-card" href="/reddit-rankings/customer-support">
+          <p class="rki-h">Customer support<span class="rki-go" aria-hidden="true">&rarr;</span></p>
+          <p class="rki-lead"><b>Help Scout</b> leads with 25 recommendations</p>
+          <p class="rki-b">Zendesk was named in more threads than anything else and recommended by one person.</p>
+          <p class="rki-m"><span>262 comments</span><span>206 people</span><span>13 tools ranked</span></p>
+        </a>
+        <a class="rki-card" href="/reddit-rankings/product-analytics">
+          <p class="rki-h">Product and web analytics<span class="rki-go" aria-hidden="true">&rarr;</span></p>
+          <p class="rki-lead"><b>PostHog</b> leads with 54 recommendations</p>
+          <p class="rki-b">Google Analytics draws more complaints than recommendations, and the complaints all name GA4.</p>
+          <p class="rki-m"><span>526 comments</span><span>441 people</span><span>14 tools ranked</span></p>
+        </a>
+        <a class="rki-card" href="/reddit-rankings/hr-software">
+          <p class="rki-h">HR and payroll<span class="rki-go" aria-hidden="true">&rarr;</span></p>
+          <p class="rki-lead"><b>Gusto</b> leads with 35 recommendations</p>
+          <p class="rki-b">The most negative category we have measured. Four of the biggest names are net negative.</p>
+          <p class="rki-m"><span>433 comments</span><span>341 people</span><span>11 tools ranked</span></p>
+        </a>
+      </div>
+      <p class="rki-all"><a href="/reddit-rankings">See all 12 rankings</a></p>
+    </section>
+    <!-- /more-rankings -->
   </div>
 
   <aside class="rk-side">
