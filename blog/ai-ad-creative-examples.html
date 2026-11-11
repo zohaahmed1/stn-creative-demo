@@ -167,6 +167,11 @@
     .aix-card figcaption strong{display:block;color:#111;font-size:15px}
     .aix-card .aix-v{display:block;color:#5500DD;font-size:13px;margin:2px 0 6px}
     @media (max-width:760px){.aix-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
+
+    .ex-real .ex-row{display:grid;grid-template-columns:260px 1fr;gap:24px;align-items:start}
+    .ex-real .ex-media img,.ex-real .ex-media video{display:block;width:100%;border-radius:12px;background:#111}
+    .ex-real .ex-media video{aspect-ratio:9/16;object-fit:cover}
+    @media (max-width:760px){.ex-real .ex-row{grid-template-columns:1fr}.ex-real .ex-media{max-width:320px}}
 </style>
   <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1906222660310524');fbq('track','PageView');</script>
   <!-- JSON-LD: Breadcrumb -->
@@ -392,175 +397,211 @@
 
   <h2>Six AI ad creative examples, broken down</h2>
 
-  <p>Each example below follows the same format: the ad concept and copy, what makes it work, what hypothesis it is testing, and the platform context that shapes why the execution looks the way it does. These are written examples of angles we test, across verticals we work in. The videos above show what the produced ads look like.</p>
+  <p>Each example below follows the same format: the ad concept and copy, what makes it work, what hypothesis it is testing, and the platform context that shapes why the execution looks the way it does. Every example is an ad we made, with what it tests and why it works.</p>
 
-  <h2>Example 1 — SaaS static ad (Reddit)</h2>
+  <h2>Example 1 — B2B SaaS static ad (Reddit)</h2>
 
-  <div class="example-card">
-    <div class="example-label">Example 1 · SaaS · Static Image · Reddit</div>
-    <div class="example-hook">"Your ops team is spending 6 hours a week on reports that should take 20 minutes."</div>
-    <div class="example-meta">
-      <div class="example-meta-item">
-        <div class="meta-label">Visual execution</div>
-        <div class="meta-value">Dark background, single bold stat in white, minimal branding. No product screenshot. The number is the entire visual.</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">What it tests</div>
-        <div class="meta-value">Pain-led hook vs feature-led hook. Does naming the time waste outperform leading with the product's automation capability?</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">Why it works</div>
-        <div class="meta-value">The hook names a specific time waste — 6 hours, not "a lot of time." It doesn't mention the product name. The audience self-identifies before they know what's being sold.</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">Platform context</div>
-        <div class="meta-value">Reddit ops and SaaS communities are skeptical of ads. A hook that sounds like a post someone would write — not like a vendor talking — gets past the skepticism filter.</div>
-      </div>
-    </div>
-  </div>
-
-  <p>The specificity of "6 hours" is doing a lot of work here. If the hook said "hours every week," it's easy to dismiss. If it says "6 hours," the ops manager either mentally checks against their own situation or they don't — and either answer is informative. The people who check are your audience. The people who don't self-select out, which is exactly what you want.</p>
-
-  <p>No product name in the hook is a deliberate choice for Reddit. The feed scrolls fast and ad skepticism is high. A hook that reads like a real observation earns more initial attention than one that announces it is an advertisement in the first five words.</p>
-
-  <h2>Example 2 — DTC UGC video (Meta/Instagram)</h2>
-
-  <div class="example-card">
-    <div class="example-label">Example 2 · DTC · UGC Video · Meta/Instagram</div>
-    <div class="example-hook">"I returned [competitor product] after I found this."</div>
-    <div class="example-meta">
-      <div class="example-meta-item">
-        <div class="meta-label">Video structure</div>
-        <div class="meta-value">4-second hook (talking head, casual setting) → 10 seconds of authentic unboxing-style demo → one social proof stat → CTA. Total: under 20 seconds.</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">What it tests</div>
-        <div class="meta-value">Comparison hook vs transformation hook. Does "I switched from X" outperform "my life before vs after"?</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">Why it works</div>
-        <div class="meta-value">The competitor reference creates instant context and positions the product as the better alternative without ever making a direct claim. Authentic demo format over polished production signals real usage. Proof before the ask means the CTA lands on a warmed audience.</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">Platform context</div>
-        <div class="meta-value">Instagram Reels and Meta feed reward content that looks like it belongs there. A UGC format that blends into organic content consistently outperforms polished production on scroll-based placements.</div>
+  <div class="example-card ex-real">
+    <div class="example-label">Example 1 · B2B SaaS · Static image · Reddit · Flare</div>
+    <div class="ex-row">
+      <div class="ex-media"><img src="/assets/Caro%201%20(3).png" alt="Flare Academy Reddit ad for a Feb 4 training session on deep privacy" loading="lazy"></div>
+      <div class="ex-body">
+        <div class="example-hook">&ldquo;Upcoming training session. Feb 4th: Deep Privacy in the Age of the Panopticon.&rdquo;</div>
+        <div class="example-meta">
+        <div class="example-meta-item">
+          <div class="meta-label">Visual execution</div>
+          <div class="meta-value">Dark navy, the Flare Academy mark, the session title in large type and one button. No product screenshot and no feature list.</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">What it tests</div>
+          <div class="meta-value">A free training session as the offer vs a product demo or trial. Will security people give an email for something useful to their job?</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">Why it works</div>
+          <div class="meta-value">The title is a topic security practitioners already argue about, so the ad reads like a session invite, not a vendor pitch. The date makes it feel like an event, not an evergreen lead magnet.</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">Platform context</div>
+          <div class="meta-value">It ran in r/netsec and r/sysadmin, where people are hostile to sales copy. A session they can learn from is about the only offer that gets past that.</div>
+        </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <p>The competitor comparison in the hook works because it frames the story before the product appears. The viewer understands: this person was buying something else, they found this, and they think it's better. That narrative structure creates more curiosity than "introducing the best [product category] on the market."</p>
+  <p>This is a real ad from our Flare campaign. The Feb 4 session brought in 12 sign-ups on $1,032 of spend, about $86 each, well under the $157 blended cost per lead across the whole campaign. The offer did most of the work. The ad itself is simple on purpose.</p>
 
-  <p>The 4-second hook structure is non-negotiable on Meta. The first frame determines whether the video plays. An AI-assisted workflow lets you generate and test 8 to 10 hook variants on the same underlying video — each version tests a different first sentence while the rest of the ad stays constant. The point is not more ads. It is finding the hook that beats your current best one, faster.</p>
+  <p>Notice what's missing: no product name in the headline, no &ldquo;book a demo&rdquo;. On Reddit, the ads that look like something a community member would share are the ones that get clicked.</p>
+
+  <h2>Example 2 — DTC AI UGC video (Meta/Instagram)</h2>
+
+  <div class="example-card ex-real">
+    <div class="example-label">Example 2 · DTC · AI UGC video · Meta / Instagram · Home decor</div>
+    <div class="ex-row">
+      <div class="ex-media"><video class="ex-vid" muted loop playsinline preload="none" poster="/assets/bf-ugc/plants.jpg" data-src="/assets/bf-ugc/plants-loop.mp4" aria-label="AI UGC ad: skeptic to believer, home decor"></video></div>
+      <div class="ex-body">
+        <div class="example-hook">Skeptic to believer: the creator opens on the doubt the viewer already has.</div>
+        <div class="example-meta">
+        <div class="example-meta-item">
+          <div class="meta-label">Video structure</div>
+          <div class="meta-value">Opens on the doubt, shows the product in a real-looking home, then the reveal. Captions burned in, under 30 seconds, made to look shot on a phone.</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">What it tests</div>
+          <div class="meta-value">A doubt-first hook vs a straight product demo. Does starting from the viewer's objection keep more people watching?</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">Why it works</div>
+          <div class="meta-value">The viewer already has the objection. Saying it out loud in the first seconds makes the creator feel honest, and the rest of the video answers it.</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">Platform context</div>
+          <div class="meta-value">On Reels, ads that look like someone's own post hold attention longer than polished brand video. The AI talent and phone-style framing are what make it blend in.</div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p>This is one of the AI UGC ads we produced. The talent, delivery and b-roll are AI-generated, then our editor cuts it, adds captions and fixes anything that looks off.</p>
+
+  <p>The useful part isn't that it's AI. It's that we can make three versions of the same ad with different opening doubts and see which one wins, without booking three creators.</p>
 
   <h2>Example 3 — B2B SaaS carousel (LinkedIn)</h2>
 
-  <div class="example-card">
-    <div class="example-label">Example 3 · B2B SaaS · Carousel · LinkedIn</div>
-    <div class="example-hook">"5 signs your sales team is losing deals to process, not pitch."</div>
-    <div class="example-meta">
-      <div class="example-meta-item">
-        <div class="meta-label">Carousel structure</div>
-        <div class="meta-value">Slide 1: hook. Slides 2–5: one specific sign per slide, each with a 1-line fix. Slide 6: "We fix this in 2 weeks. Book a demo."</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">What it tests</div>
-        <div class="meta-value">Value-first carousel vs feature announcement. Does giving away the diagnosis before asking for a meeting generate higher demo-booking rates?</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">Why it works</div>
-        <div class="meta-value">Each swipe is a micro-conversion — the reader is choosing to continue. By the time they hit the CTA slide, they've actively opted into 5 pieces of content. The CTA feels earned rather than imposed. "We fix this in 2 weeks" is also a specific, falsifiable claim — not "improve your sales process."</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">Platform context</div>
-        <div class="meta-value">LinkedIn's algorithm rewards content that keeps people on-platform. Carousels with genuine information value get distribution; promotional carousels get scrolled past. The value-first structure earns algorithmic reach and audience trust simultaneously.</div>
-      </div>
-    </div>
-  </div>
-
-  <p>The framing of "process, not pitch" is doing something specific: it reframes the reader's existing mental model. Most sales leaders already believe their team's pitch is fine. Telling them deals are being lost to something else — process — opens a new gap they weren't aware of. AI is particularly effective at generating these reframe angles at scale. Give it 20 versions, pick the three that feel most true to your ICP, and test them.</p>
-
-  <h2>Example 4 — EdTech video ad (Reddit/YouTube)</h2>
-
-  <div class="example-card">
-    <div class="example-label">Example 4 · EdTech · Video · Reddit / YouTube</div>
-    <div class="example-hook">"The course r/learnprogramming recommends when Udemy isn't enough."</div>
-    <div class="example-meta">
-      <div class="example-meta-item">
-        <div class="meta-label">Video structure</div>
-        <div class="meta-value">Hook → 2 specific outcome stats (job placement rate, median salary lift) → 15-second product walkthrough clip → "Start free" CTA.</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">What it tests</div>
-        <div class="meta-value">Community proof as the primary credibility signal vs platform-agnostic social proof (testimonials, review scores).</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">Why it works</div>
-        <div class="meta-value">Reddit community references are extremely effective on Reddit — the audience recognizes r/learnprogramming as a trusted peer community, not a marketing source. "When Udemy isn't enough" positions this as the next level without attacking competitors directly. Outcome stats (job placement, salary lift) speak to why people take courses, not what the course contains.</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">Platform context</div>
-        <div class="meta-value">"Start free" as the CTA minimizes friction. EdTech buyers are resistant to hard sells. The low-friction CTA converts more top-of-funnel traffic while the product's outcome stats do the conversion work.</div>
+  <div class="example-card ex-real">
+    <div class="example-label">Example 3 · B2B SaaS · Carousel · LinkedIn · Workflow automation</div>
+    <div class="ex-row">
+      <div class="ex-media"><img src="/assets/B2B_SaaS_Ads_In_a_minimalist_graphic_design_style_bold_black_p7PSGoPF.jpg" alt="First slide of a LinkedIn carousel: Automate smarter with AI, 8,000+ apps, AI-powered workflows, zero code required" loading="lazy"></div>
+      <div class="ex-body">
+        <div class="example-hook">&ldquo;Automate smarter with AI.&rdquo; Slide 1 of 4: 8,000+ apps · AI-powered workflows · zero code required.</div>
+        <div class="example-meta">
+        <div class="example-meta-item">
+          <div class="meta-label">Carousel structure</div>
+          <div class="meta-value">Slide 1 makes the promise with the app logos people already use. Each next slide takes one of the three claims and shows it. Last slide is the ask.</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">What it tests</div>
+          <div class="meta-value">Proof by familiar logos vs a pain-led opener. Do recognizable tools (Slack, Gmail, Salesforce, HubSpot) stop the scroll better than a problem statement?</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">Why it works</div>
+          <div class="meta-value">The logos do the explaining. A buyer sees their own stack on the first slide and gets the product in two seconds, before reading a word.</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">Platform context</div>
+          <div class="meta-value">LinkedIn rewards carousels people swipe through. Three short claims on slide 1 tell the reader exactly what the next slides will cover, which gets more swipes.</div>
+        </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <p>The community reference in the hook is a pattern that works specifically because Reddit users trust other Redditors. It is not the same as saying "as seen on Reddit" — it references a specific community that the target audience already participates in or knows about. That specificity is what makes it credible rather than gimmicky.</p>
+  <p>The three proof points (8,000+ apps, AI-powered, zero code) map one-to-one to the next three slides. That structure is what makes it a carousel instead of a static ad with extra pages.</p>
 
-  <p>For YouTube pre-roll, the same hook works because the "Udemy isn't enough" frame catches people who are actively comparing options. The platform context is different but the self-identification mechanism is the same: the viewer either knows r/learnprogramming and trusts it, or they've already tried Udemy and felt limited. Both groups are your audience.</p>
+  <p>We'd test this against a version that opens on a pain line, like hours lost to copying data between tools. Logo-led tends to win with buyers who already know the category. Pain-led tends to win with people who don't.</p>
 
-  <h2>Example 5 — Retargeting static (Reddit)</h2>
+  <h2>Example 4 — DTC static ad (Meta/Instagram)</h2>
 
-  <div class="example-card">
-    <div class="example-label">Example 5 · Multi-vertical · Static Image · Reddit Retargeting</div>
-    <div class="example-hook">"Still thinking about it? Here's what 3,000 teams decided."</div>
-    <div class="example-meta">
-      <div class="example-meta-item">
-        <div class="meta-label">Visual execution</div>
-        <div class="meta-value">Social proof logos or a user count displayed prominently. No product description needed — the audience already knows what it is.</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">What it tests</div>
-        <div class="meta-value">Social proof hook vs urgency hook for warm audiences. Does "here's who else did it" outperform "limited time" or "don't miss out" for retargeting?</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">Why it works</div>
-        <div class="meta-value">"Still thinking about it?" directly acknowledges the hesitation without being pushy. It validates that consideration is normal. The social proof answer — 3,000 teams — provides the resolution. No hard sell. No urgency manipulation. Just: others decided, here's proof, you can too.</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">Platform context</div>
-        <div class="meta-value">Retargeting audiences on Reddit have already seen your brand. They don't need product education — they need a reason to act. Social proof at this stage converts better than feature reminders because it addresses the real hesitation: "is this actually worth it?"</div>
+  <div class="example-card ex-real">
+    <div class="example-label">Example 4 · DTC · Static image · Meta / Instagram · Beauty</div>
+    <div class="ex-row">
+      <div class="ex-media"><img src="/assets/Lipstick_Campaign_In_a_realistic_style_three_forearms_display_zMOPTUsb.jpg" alt="Lipstick ad: three forearm swatches of nearly the same shade with the caption Close enough. Type B" loading="lazy"></div>
+      <div class="ex-body">
+        <div class="example-hook">&ldquo;&lsquo;Close enough.&rsquo;&rdquo; Three forearms, three swatches, almost the same shade.</div>
+        <div class="example-meta">
+        <div class="example-meta-item">
+          <div class="meta-label">Visual execution</div>
+          <div class="meta-value">Three arm swatches of near-identical shades, shot to look like a real swatch photo. One handwritten-style line and the brand name. Nothing else.</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">What it tests</div>
+          <div class="meta-value">Humour and attitude vs a classic product shot. Does a joke the buyer recognizes beat showing the lipstick itself?</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">Why it works</div>
+          <div class="meta-value">Anyone who has swatched five shades that look the same gets the joke instantly. It sells the brand's personality, and the swatch still shows the product.</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">Platform context</div>
+          <div class="meta-value">Beauty feeds are full of glossy product shots. A swatch photo with a dry line looks like a post a friend made, which earns the second look.</div>
+        </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <p>Retargeting creative is a different creative problem than cold prospecting. The audience knows what you sell. What they don't have is enough confidence to commit. The "Still thinking about it?" hook works because it names the exact mental state your retargeting audience is in — not a generic state, but this specific one. It de-awkwards the fact that this person has already seen your ad, rather than pretending it hasn't happened.</p>
+  <p>The visual is the easy part to produce. The line is the part that makes it work, and it's the part a person writes and picks.</p>
 
-  <h2>Example 6 — Fintech UGC-style video (Meta)</h2>
+  <p>Statics like this are cheap to make and quick to test. When one wins, it often tells you which angle to turn into a video next.</p>
 
-  <div class="example-card">
-    <div class="example-label">Example 6 · Fintech · UGC-style Video · Meta</div>
-    <div class="example-hook">"I used to lose $200/month to [pain]. This fixed it in one afternoon."</div>
-    <div class="example-meta">
-      <div class="example-meta-item">
-        <div class="meta-label">Video structure</div>
-        <div class="meta-value">Hook (specific dollar loss) → relatable problem context (30 seconds) → surprising fix reveal → product shown in natural use → outcome stat → CTA.</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">What it tests</div>
-        <div class="meta-value">Dollar-loss hook vs percentage-saving hook. "$200/month gone" vs "save up to 20% on fees" — which frames the pain more viscerally?</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">Why it works</div>
-        <div class="meta-value">$200/month is specific enough to be real and meaningful to a wide income range. "One afternoon" reframes the effort required — this is not a weeks-long project, it's a single session. The UGC format makes the whole thing feel like a friend's recommendation rather than an ad, which is the only format that survives heavy ad load on Meta feeds.</div>
-      </div>
-      <div class="example-meta-item">
-        <div class="meta-label">Platform context</div>
-        <div class="meta-value">Meta's financial services creative is subject to compliance review, so the copy avoids specific guarantee language while still being emotionally direct. "I used to lose" is past tense experience, not a forward-looking promise — which lowers the compliance risk while keeping it specific. Financial ads still go through Meta's review, and testimonial-style claims may still need a disclaimer.</div>
+  <h2>Example 5 — Testimonial ad for retargeting</h2>
+
+  <div class="example-card ex-real">
+    <div class="example-label">Example 5 · B2C SaaS · Testimonial static · Retargeting · Restream</div>
+    <div class="ex-row">
+      <div class="ex-media"><img src="/assets/Testimonial%20-%20Square%20-%20FIBA.png" alt="Restream testimonial ad quoting Nicolas Chapart, Head of Digital at FIBA" loading="lazy"></div>
+      <div class="ex-body">
+        <div class="example-hook">&ldquo;We wanted to distribute our live content on the platforms where fans were&hellip; in that case Restream.&rdquo; Nicolas Chapart, Head of Digital, FIBA</div>
+        <div class="example-meta">
+        <div class="example-meta-item">
+          <div class="meta-label">Visual execution</div>
+          <div class="meta-value">Black card, the quote in large italic type, the customer's name, title and logo, and the Restream mark in the corner. No product shot.</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">What it tests</div>
+          <div class="meta-value">A named customer quote vs a feature reminder for people who already visited. Does proof from a known name close more of the warm audience?</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">Why it works</div>
+          <div class="meta-value">People in a retargeting pool already know what the product does. What they're missing is confidence. A named head of digital at a global sports body answers &ldquo;is this legit?&rdquo; in one line.</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">Platform context</div>
+          <div class="meta-value">Retargeting audiences have seen the brand before, so the ad doesn't need to explain anything. It only needs a reason to act now.</div>
+        </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <p>Fintech creative has two constraints that other verticals don't: compliance review and high audience skepticism. The UGC format handles the skepticism problem — it reads as personal experience, not vendor claim. The past-tense framing ("I used to lose") handles the compliance problem — it's a reported experience, not a guaranteed outcome. Both constraints get addressed through format and framing choices, not just copy editing.</p>
+  <p>This is from our Restream work, where signups came in at $15 each. We made a set of these quote cards with different customers, FIBA and Maxon among them, so the warm audience can see more than one face.</p>
+
+  <p>The quote is long for an ad, on purpose. In retargeting, people read more because they're already interested.</p>
+
+  <h2>Example 6 — Fintech app static (Meta)</h2>
+
+  <div class="example-card ex-real">
+    <div class="example-label">Example 6 · Fintech · Static image · Meta · Budgeting app</div>
+    <div class="ex-row">
+      <div class="ex-media"><img src="/assets/B2B_SaaS_Ads_pe0rE_Og.jpg" alt="Fintech app ad: Finally understand where your money actually goes. Track spending, hit savings goals, all on autopilot" loading="lazy"></div>
+      <div class="ex-body">
+        <div class="example-hook">&ldquo;Finally understand where your money actually goes.&rdquo;</div>
+        <div class="example-meta">
+        <div class="example-meta-item">
+          <div class="meta-label">Visual execution</div>
+          <div class="meta-value">App screens at the top: a chat line asking &ldquo;show me where I overspent last month&rdquo;, a spending chart and a &ldquo;saved $342 this month&rdquo; badge. Big headline below, one 30-day trial button.</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">What it tests</div>
+          <div class="meta-value">A feeling-led headline vs a feature-led one. Does &ldquo;finally understand&rdquo; beat a line about budgets and categories?</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">Why it works</div>
+          <div class="meta-value">&ldquo;Finally&rdquo; speaks to someone who has tried budgeting before and given up. The app screens show the answer in plain language, so it doesn't feel like more work.</div>
+        </div>
+        <div class="example-meta-item">
+          <div class="meta-label">Platform context</div>
+          <div class="meta-value">Financial ads on Meta get extra review, so the specific number sits inside the app screen as an example, not as a promise in the headline.</div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p>The &ldquo;saved $342&rdquo; detail is doing a lot. It's specific enough to feel real, but it's shown as one user's screen, which keeps the ad away from guaranteed-outcome language.</p>
+
+  <p>A trial with a clear length (30 days) also cuts friction for a cautious buyer. They know exactly what they're signing up for.</p>
 
   <h2>The common thread across all six</h2>
 
@@ -719,7 +760,7 @@ function closeMobileMenu() {
 }
 </script>
 <script>
-(function(){var vs=[].slice.call(document.querySelectorAll('.aix-card video'));if(!('IntersectionObserver' in window)){vs.forEach(function(v){v.src=v.dataset.src;});return;}
+(function(){var vs=[].slice.call(document.querySelectorAll('.aix-card video, .ex-vid'));if(!('IntersectionObserver' in window)){vs.forEach(function(v){v.src=v.dataset.src;});return;}
 var io=new IntersectionObserver(function(es){es.forEach(function(e){var v=e.target;if(e.isIntersecting){if(!v.getAttribute('src'))v.src=v.dataset.src;var p=v.play();if(p&&p.catch)p.catch(function(){});}else{v.pause();}});},{threshold:0.4});
 vs.forEach(function(v){io.observe(v);});})();
 </script>
