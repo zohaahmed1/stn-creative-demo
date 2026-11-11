@@ -119,7 +119,39 @@ img{max-width:100%;height:auto}
     .hero-marquee-wrap.is-dragging {
       cursor: grabbing;
     }
-  </style>
+  
+    /* video reviews */
+/* Video testimonials: 4:5 cards with captions burned in. Poster until played, then plays with sound. */
+    .bf-testis{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,300px));justify-content:center;gap:18px;max-width:980px;margin:0 auto 44px}
+.bf-testis--one{grid-template-columns:minmax(0,340px);justify-content:center;margin-top:0;margin-bottom:8px}
+.bf-testi{margin:0;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 18px 40px -28px rgba(25,25,35,.45);display:flex;flex-direction:column}
+.bf-testi-v{position:relative;aspect-ratio:4/5;background:#111}
+.bf-testi-v video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.bf-testi-play{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(0,0,0,.42));cursor:pointer;display:flex;align-items:center;justify-content:center}
+.bf-testi-play .dot{width:64px;height:64px;border-radius:50%;background:rgba(85,0,221,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(85,0,221,.45);transition:transform .2s}
+.bf-testi-play:hover .dot{transform:scale(1.07)}
+.bf-testi-play .len{position:absolute;right:14px;bottom:12px;font-family:'Satoshi',system-ui,sans-serif;font-size:13px;font-weight:700;color:#fff}
+.bf-testi-play .dot,.bf-testi-play .len{transition:opacity .2s ease}
+.bf-testi .ic-pause{display:none}
+.bf-testi.is-playing .ic-play{display:none}
+.bf-testi.is-playing .ic-pause{display:block}
+.bf-testi.is-playing .bf-testi-play{background:none}
+.bf-testi.is-playing .bf-testi-play .dot,.bf-testi.is-playing .bf-testi-play .len{opacity:0}
+.bf-testi-bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.22);pointer-events:none;opacity:0;transition:opacity .2s ease}
+.bf-testi-bar i{display:block;height:100%;width:0;background:#a78bfa}
+.bf-testi.has-played .bf-testi-bar{opacity:1}
+.bf-testi figcaption{padding:16px 18px 18px;text-align:left}
+.bf-testi figcaption strong{display:block;font-family:'Satoshi',system-ui,sans-serif;font-weight:800;font-size:16px;line-height:1.4;color:#0d0d0d}
+.bf-testi figcaption span{display:block;margin-top:8px;font-size:13.5px;line-height:1.45;color:rgba(0,0,0,.55)}
+.bf-testi-who{max-width:640px;margin:0 auto 26px;text-align:center;font-size:15.5px;line-height:1.6;color:rgba(0,0,0,.62)}
+.bf-testis{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:min(80%,320px);overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 10px}
+.bf-testi{scroll-snap-align:center}
+.bf-testis--one{grid-auto-columns:minmax(0,340px);justify-content:center}
+// Video testimonials: tap to play with sound, tap again to pause. Nothing loads until the first play.
+  [].slice.call(document.querySelectorAll('.bf-testi')).forEach(function (c) {
+    var b = c.querySelector('.bf-testi-play'), v = c.querySelector('video'), bar = c.querySelector('.bf-testi-bar i'), tracked = false;
+    function sync() { var on = !v.paused && !v.ended; c.classList.toggle('is-playing', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+</style>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -1170,6 +1202,30 @@ img{max-width:100%;height:auto}
       </div>
       <p class="testi-sub body" style="margin-top:16px; opacity:0; transform:translateY(20px); transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1) 1s, transform 0.8s cubic-bezier(0.16,1,0.3,1) 1s; color:rgba(0,0,0,0.6);">5-star reviews. Verified on Design Rush.</p>
     </div>
+      <!-- Video reviews (same cards as /black-friday-ads) -->
+      <div class="bf-testis" style="margin-bottom:48px">
+      <figure class="bf-testi" data-src="/assets/bf-testimonials/shannon-recommend.mp4">
+        <div class="bf-testi-v">
+          <video playsinline preload="none" poster="/assets/bf-testimonials/shannon-recommend.jpg"></video>
+          <button class="bf-testi-play" type="button" aria-pressed="false" aria-label="Play Shannon's video recommending us, 43 seconds"><span class="dot"><svg class="ic-play" width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg><svg class="ic-pause" width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></span><span class="len">0:43</span></button><span class="bf-testi-bar" aria-hidden="true"><i></i></span>
+        </div>
+        <figcaption><strong>&ldquo;Their creatives are very effective and they grow with what works.&rdquo;</strong><span>Shannon Abbott, VP, Soluzione Spa Products</span></figcaption>
+      </figure>
+      <figure class="bf-testi" data-src="/assets/bf-testimonials/adam-results-v2.mp4">
+        <div class="bf-testi-v">
+          <video playsinline preload="none" poster="/assets/bf-testimonials/adam-results.jpg"></video>
+          <button class="bf-testi-play" type="button" aria-pressed="false" aria-label="Play Adam's video about performance after bringing us on, 36 seconds"><span class="dot"><svg class="ic-play" width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg><svg class="ic-pause" width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></span><span class="len">0:36</span></button><span class="bf-testi-bar" aria-hidden="true"><i></i></span>
+        </div>
+        <figcaption><strong>&ldquo;Within weeks there was an immediate change in the performance.&rdquo;</strong><span>Adam Acheson, former COO, Astronomic</span></figcaption>
+      </figure>
+      <figure class="bf-testi" data-src="/assets/bf-testimonials/adam-speed-v2.mp4">
+        <div class="bf-testi-v">
+          <video playsinline preload="none" poster="/assets/bf-testimonials/adam-speed.jpg"></video>
+          <button class="bf-testi-play" type="button" aria-pressed="false" aria-label="Play Adam's video about speed, quality and price, 42 seconds"><span class="dot"><svg class="ic-play" width="24" height="24" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.52.85l10.4-6.5a1 1 0 0 0 0-1.7L9.52 4.65A1 1 0 0 0 8 5.5z"/></svg><svg class="ic-pause" width="22" height="22" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></span><span class="len">0:42</span></button><span class="bf-testi-bar" aria-hidden="true"><i></i></span>
+        </div>
+        <figcaption><strong>&ldquo;They are very, very quick to get results.&rdquo;</strong><span>Adam Acheson, former COO, Astronomic</span></figcaption>
+      </figure>
+      </div>
       <div class="testimonials-scroll">
         <div class="testimonials-track">
           <!-- Card 1: Head of Marketing · Flare -->
@@ -2374,5 +2430,26 @@ s.parentNode.insertBefore(b, s);})(window.lintrk);
 <img height="1" width="1" style="display:none;" alt="" src="https://px.ads.linkedin.com/collect/?pid=8129252&fmt=gif" />
 </noscript>
 <script src="/assets/stn-bf.js" defer></script>
+<script>
+(function () {
+  // Video testimonials: tap to play with sound, tap again to pause. Nothing loads until the first play.
+  [].slice.call(document.querySelectorAll('.bf-testi')).forEach(function (c) {
+    var b = c.querySelector('.bf-testi-play'), v = c.querySelector('video'), bar = c.querySelector('.bf-testi-bar i'), tracked = false;
+    function sync() { var on = !v.paused && !v.ended; c.classList.toggle('is-playing', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); }
+    b.addEventListener('click', function () {
+      if (!v.getAttribute('src')) v.src = c.dataset.src;
+      if (v.paused || v.ended) {
+        [].slice.call(document.querySelectorAll('video')).forEach(function (o) { if (o !== v && !o.paused && !o.muted) o.pause(); });
+        v.muted = false; c.classList.add('has-played');
+        var p = v.play(); if (p && p.catch) p.catch(function () {});
+        if (!tracked && window.dataLayer) { tracked = true; window.dataLayer.push({ event: 'testimonial_video_play', source: 'homepage', clip: c.dataset.src.split('/').pop() }); }
+      } else { v.pause(); }
+    });
+    ['play', 'playing', 'pause', 'ended'].forEach(function (e) { v.addEventListener(e, sync); });
+    v.addEventListener('ended', function () { v.pause(); v.currentTime = 0; if (bar) bar.style.width = '0'; sync(); });
+    v.addEventListener('timeupdate', function () { if (bar && v.duration) bar.style.width = (v.currentTime / v.duration * 100) + '%'; });
+  });
+})();
+</script>
 </body>
 </html>
