@@ -1,0 +1,1223 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<title>TCF Year-End Results</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@500;600&display=swap">
+<style>
+:root {
+  --font-anthropic-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-anthropic-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-anthropic-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --color-fg: #1d2b22; --color-fg-muted: #5b6b60; --color-bg: #ffffff; --color-panel: #FDF6EC;
+  --color-border-line: #eadfcb; --color-ok: #1f7a3f; --color-bad: #b4361f; --color-warn: #a86b00;
+  --cds-gap-xs: 4px; --cds-gap-s: 8px; --cds-gap-sm: 8px; --cds-gap-m: 12px; --cds-gap-md: 12px; --cds-gap-l: 16px; --cds-gap-lg: 16px; --cds-gap-xl: 24px; --cds-gap-xxl: 32px;
+  --cds-pad-xs: 4px; --cds-pad-s: 8px; --cds-pad-sm: 8px; --cds-pad-m: 12px; --cds-pad-md: 12px; --cds-pad-l: 16px; --cds-pad-lg: 16px; --cds-pad-xl: 24px; --cds-pad-xxl: 32px;
+  --cds-font-size-caption: 12px; --cds-font-size-small: 13px; --cds-font-size-body: 15px; --cds-font-size-label: 13px;
+  --cds-font-size-heading: 19px; --cds-font-size-title: 26px; --cds-font-size-h3: 17px; --cds-font-size-h2: 21px; --cds-font-size-h1: 28px; --cds-font-size-display: 34px; --cds-font-size-stat: 30px;
+  --cds-font-weight-regular: 400; --cds-font-weight-medium: 500; --cds-font-weight-semibold: 600; --cds-font-weight-bold: 700;
+  --cds-line-height: 1.5; --cds-radius: 10px; --cds-radius-s: 6px; --cds-radius-l: 14px;
+  color-scheme: light;
+}
+html { background: #f4efe4; }
+body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(--font-anthropic-sans); font-size: var(--cds-font-size-body); line-height: var(--cds-line-height); -webkit-text-size-adjust: 100%; }
+.stn-wrap { max-width: 1200px; margin: 0 auto; padding: 24px 16px 32px; box-sizing: border-box; }
+.stn-wrap .wrap, .stn-wrap table { max-width: 100%; }
+.stn-wrap .wrap { overflow-x: auto; }
+.stn-foot { max-width: 1200px; margin: 0 auto; padding: 0 16px 32px; box-sizing: border-box; color: var(--color-fg-muted); font-size: 13px; text-align: center; }
+.stn-err { background: #fff3f0; color: #b4361f; border: 1px solid #f0c8bd; border-radius: 8px; padding: 10px 14px; margin: 0 0 16px; font-size: 14px; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+(function () {
+  const loaders = new Map(), calcs = new Map(), draws = new Map(), results = new Map(), dataCbs = [];
+  let params = {}, ready = false, meta = null;
+  const norm = (v) => Array.isArray(v) ? v : v && Array.isArray(v.rows) ? v.rows : v && Array.isArray(v.data) ? v.data : v == null ? [] : [v];
+  const visible = (el) => !el.closest('[hidden]');
+  const runDraw = (name, el) => { const fn = draws.get(name); if (!fn) return; try { fn(el); } catch (e) { console.warn('draw ' + name + ' failed', e); } };
+  const drawAll = (onlyIn) => {
+    if (!ready) return;
+    (onlyIn || document).querySelectorAll('[data-draw]').forEach((el) => { if (visible(el)) runDraw(el.getAttribute('data-draw'), el); });
+  };
+  window.dash = {
+    colors: ['#006837', '#C8963E', '#4a7c59', '#9c6b2e'],
+    loader(id, def) { loaders.set(id, def || {}); },
+    calc(id, def) { calcs.set(id, def || {}); },
+    draw(name, fn) { draws.set(name, fn); if (ready) document.querySelectorAll('[data-draw="' + name + '"]').forEach((el) => { if (visible(el)) runDraw(name, el); }); },
+    data(id) { if (!ready) return {status: 'loading', data: null}; return results.get(id) || {status: 'error', data: null, error: 'unknown dataset ' + id}; },
+    params() { return Object.assign({}, params); },
+    setParams(p) { Object.assign(params, p || {}); },
+    setLink(id) { try { if (id) history.replaceState(null, '', '#' + id); } catch (e) { location.hash = id; } },
+    onData(fn) { if (typeof fn === 'function') { dataCbs.push(fn); if (ready) try { fn(); } catch (e) { console.warn(e); } } },
+    meta() { return meta; }
+  };
+  async function run() {
+    let d;
+    try {
+      const r = await fetch('data.json?v=' + Date.now(), {cache: 'no-store'});
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      d = await r.json();
+    } catch (e) {
+      console.warn('data.json failed to load', e);
+      d = {answers: {}, params: {}, generated_at: null, failed: true};
+    }
+    meta = d; params = Object.assign({}, d.params || {});
+    const answers = d.answers || {};
+    for (const [id, def] of loaders) {
+      const a = answers[id];
+      if (!a || a.error) { results.set(id, {status: 'error', data: null, error: a ? a.error : 'no data'}); continue; }
+      try {
+        const out = await def.fn({answer: a, items: [a], call: async () => null, args: {}, read: {}});
+        results.set(id, {status: 'ok', data: norm(out)});
+      } catch (e) { console.warn('loader ' + id + ' failed', e); results.set(id, {status: 'error', data: null, error: String(e)}); }
+    }
+    const pending = new Map(calcs);
+    let progress = true;
+    while (pending.size && progress) {
+      progress = false;
+      for (const [id, def] of pending) {
+        const ins = def.inputs || [];
+        if (ins.some((i) => !results.has(i) && pending.has(i))) continue;
+        pending.delete(id); progress = true;
+        const bad = ins.find((i) => !results.has(i) || results.get(i).status !== 'ok');
+        if (bad) { results.set(id, {status: 'error', data: null, error: 'input ' + bad + ' unavailable'}); continue; }
+        try { results.set(id, {status: 'ok', data: norm(def.fn(...ins.map((i) => results.get(i).data)))}); }
+        catch (e) { console.warn('calc ' + id + ' failed', e); results.set(id, {status: 'error', data: null, error: String(e)}); }
+      }
+    }
+    for (const id of pending.keys()) results.set(id, {status: 'error', data: null, error: 'dependency cycle'});
+    ready = true;
+    const ft = document.getElementById('stn-updated');
+    if (ft && d.generated_at) {
+      try { ft.textContent = new Date(d.generated_at).toLocaleString('en-CA', {timeZone: 'America/Toronto', dateStyle: 'medium', timeStyle: 'short'}) + ' ET'; }
+      catch (e) { ft.textContent = d.generated_at; }
+    }
+    if (d.failed) { const w = document.querySelector('.stn-wrap'); if (w) { const p = document.createElement('p'); p.className = 'stn-err'; p.textContent = 'The latest numbers could not be loaded. Please refresh the page in a minute.'; w.prepend(p); } }
+    drawAll();
+    dataCbs.forEach((fn) => { try { fn(); } catch (e) { console.warn(e); } });
+    new MutationObserver((muts) => {
+      muts.forEach((m) => { if (m.target.nodeType === 1 && !m.target.hasAttribute('hidden')) drawAll(m.target); });
+    }).observe(document.body, {attributes: true, attributeFilter: ['hidden'], subtree: true});
+    let t; window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(() => drawAll(), 150); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+})();
+</script>
+</head>
+<body>
+<main class="stn-wrap">
+<meta name="dash-one-writer">
+<style>
+.tcf {
+  --tcf-green: #006837; --tcf-green-dark: #004d29; --tcf-gold: #C8963E; --tcf-cream: #FDF6EC;
+  --color-fg: #1d2b22; --color-fg-muted: #5b6b60; --color-bg: #ffffff; --color-panel: #FDF6EC;
+  --color-border-line: #eadfcb; --color-ok: #1f7a3f; --color-bad: #b4361f;
+  color-scheme: light;
+  background: #ffffff; border-radius: 14px; overflow: hidden;
+  padding-bottom: var(--cds-pad-xl);
+  display: flex; flex-direction: column; gap: var(--cds-gap-xl); font-family: var(--font-anthropic-sans); color: var(--color-fg); }
+.tcf > *:not(header) { margin: 0 var(--cds-pad-xl); }
+.tcf header { background: var(--tcf-green); color: #fff; padding: var(--cds-pad-xl); border-bottom: 4px solid var(--tcf-gold); }
+.tcf header .eyebrow { margin: 0 0 var(--cds-gap-xs); font-size: var(--cds-font-size-caption); letter-spacing: .08em; text-transform: uppercase; color: var(--tcf-gold); font-weight: var(--cds-font-weight-medium); }
+.tcf header .lede { color: rgba(255,255,255,.82); }
+.tcf header .lede b { color: #fff; }
+.tcf .tile { border-top: 3px solid var(--tcf-green); }
+.tcf .tile .num { color: var(--tcf-green); }
+.tcf h2 { color: var(--tcf-green); }
+.tcf thead th { background: var(--tcf-green); color: #fff; border-bottom: 2px solid var(--tcf-gold); }
+.tcf tr.grp td { color: var(--tcf-green-dark); border-left: 3px solid var(--tcf-gold); }
+.tcf details summary { color: var(--tcf-green); cursor: pointer; }
+.tcf h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; color: #fff; }
+.tcf h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.tcf .lede { margin: var(--cds-gap-sm) 0 0; color: var(--color-fg-muted); max-width: 65ch; }
+.tcf .lede b { color: var(--color-fg); font-weight: var(--cds-font-weight-medium); }
+.tcf .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: var(--cds-gap-md); }
+.tcf .tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+.tcf .tile .lbl { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); text-transform: uppercase; letter-spacing: .04em; }
+.tcf .tile .num { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 2rem; font-variant-numeric: tabular-nums; }
+.tcf .tile .sub { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.tcf .sec { display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.tcf .wrap { overflow-x: auto; }
+.tcf table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; font-size: var(--cds-font-size-body); }
+.tcf th, .tcf td { padding: var(--cds-pad-xs) var(--cds-pad-sm); text-align: right; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.tcf th { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-weight: var(--cds-font-weight-medium); }
+.tcf th:first-child, .tcf td:first-child, .tcf th.l, .tcf td.l { text-align: left; }
+.tcf tr.grp td { font-weight: var(--cds-font-weight-medium); background: var(--color-panel); }
+.tcf .zero { color: inherit; }
+.tcf .good { color: var(--color-ok); }
+.tcf .muted { color: var(--color-fg-muted); }
+.tcf details { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.tcf details ul { margin: var(--cds-gap-sm) 0 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+.tcf .note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; }
+
+.tcf nav.tabs { display: flex; flex-wrap: wrap; gap: var(--cds-gap-xs); border-bottom: 1px solid var(--color-border-line); }
+.tcf nav.tabs button { font: inherit; background: none; border: 0; border-bottom: 3px solid transparent; padding: var(--cds-pad-sm) var(--cds-pad-md); color: var(--color-fg-muted); cursor: pointer; font-weight: var(--cds-font-weight-medium); }
+.tcf nav.tabs button[aria-selected=true] { color: var(--tcf-green); border-bottom-color: var(--tcf-gold); }
+.tcf nav.tabs button:focus-visible { outline: 2px solid var(--tcf-gold); outline-offset: 2px; }
+.tcf section.page { display: flex; flex-direction: column; gap: var(--cds-gap-xl); }
+.tcf .chart { position: relative; min-height: 240px; }
+.tcf .chart svg text { fill: var(--color-fg-muted); font-size: 11px; }
+.tcf .tip { position: absolute; pointer-events: none; background: #fff; border: 1px solid var(--color-border-line); box-shadow: 0 4px 14px rgba(0,0,0,.12); border-radius: 8px; padding: 6px 10px; font-size: var(--cds-font-size-caption); color: var(--color-fg); white-space: nowrap; }
+.tcf .alert { border: 1px solid #f0c9bf; background: #fdf1ee; border-radius: var(--cds-radius); padding: var(--cds-pad-md) var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-xs); }
+.tcf .alert h3 { margin: 0; font-size: var(--cds-font-size-body); color: var(--color-bad); }
+.tcf .alert ul { margin: 0; padding-left: 1.2em; }
+.tcf .legend { display: flex; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.tcf img.thumb { width: 48px; height: 48px; border-radius: 6px; display: block; object-fit: cover; border: 1px solid var(--color-border-line); }
+.tcf .warn { color: #a86b00; }
+.tcf .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+[data-dash-source-state=refreshing] { opacity: .5; }
+</style>
+<div class="tcf">
+  <header id="top">
+    <p class="eyebrow">The Citizens Foundation · Year-End Campaign 2026 · Prepared by Skip the Noise Media</p>
+    <h1>TCF Year-End Ads</h1>
+    <p class="lede" data-read lang="en">Since Nov 1: <b data-draw="t_spend" data-source="totals" data-field="spend_usd" data-row="0">—</b> spent across <span data-draw="t_accts" data-source="totals" data-field="accounts" data-row="0">—</span> ad accounts for <b data-draw="t_don" data-source="totals" data-field="donations" data-row="0">—</b> tracked donations, so <b data-draw="t_cpd" data-source="totals" data-field="cost_per_donation_usd" data-row="0">—</b> per donation.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Country">
+    <button role="tab" data-tab="overview" aria-selected="true">Overview</button>
+    <button role="tab" data-tab="us" aria-selected="false">United States</button>
+    <button role="tab" data-tab="ca" aria-selected="false">Canada</button>
+    <button role="tab" data-tab="uk" aria-selected="false">United Kingdom</button>
+    <button role="tab" data-tab="pk" aria-selected="false">Pakistan</button>
+    <button role="tab" data-tab="budget" aria-selected="false">Budget</button>
+  </nav>
+  <section class="page" id="overview">
+  <div class="tiles" id="tiles">
+    <div class="tile"><span class="lbl">Total spend (USD)</span><span class="num" data-draw="k_spend" data-source="totals" data-field="spend_usd" data-row="0">—</span><span class="sub">Nov 1 to today</span></div>
+    <div class="tile"><span class="lbl">Tracked donations</span><span class="num" data-draw="k_don" data-source="totals" data-field="donations" data-row="0">—</span><span class="sub">Click + view-through, LinkedIn excluded</span></div>
+    <div class="tile"><span class="lbl">ROAS</span><span class="num" data-draw="k_roas" data-source="totals" data-field="roas" data-row="0">—</span><span class="sub">Donation value ÷ spend</span></div>
+    <div class="tile"><span class="lbl">Cost per donation</span><span class="num" data-draw="k_cpd" data-source="totals" data-field="cost_per_donation_usd" data-row="0">—</span><span class="sub">Spend ÷ donations</span></div>
+  </div>
+
+  <section class="sec" id="by-country">
+    <h2>By country</h2>
+    <div class="wrap">
+      <table data-source="by_country" data-row-key="country">
+        <thead><tr><th data-field="country">Country</th><th data-field="spend_usd">Spend (USD)</th><th data-field="donations">Donations</th><th data-field="value_usd">Donation value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
+        <tbody data-draw="country_rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="sec" id="by-platform">
+    <h2>By country and platform</h2>
+    <p class="note">Spend is shown in each account's own currency and in USD (1 USD = 1.3766 CAD). LinkedIn reports donations together with other website actions, so its count is shown separately. X spend is estimated from its daily budget (US $20/day from Nov 12, Canada CA$15/day from Nov 7, PK $8/day from Nov 7).</p>
+    <div class="wrap">
+      <table data-source="summary" data-row-key="key">
+        <thead><tr><th data-field="platform">Platform</th><th data-field="spend">Spend (acct)</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="atc">Add to cart</th><th data-field="donations">Donations</th><th data-field="donations_view">of which view</th><th data-field="conversions_mixed">LinkedIn website actions</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
+        <tbody data-draw="detail_rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  </section>
+
+  <section class="page" id="us" hidden>
+    <div class="tiles">
+      <div class="tile"><span class="lbl">Spend (USD)</span><span class="num" data-draw="k_us_spend" data-source="by_country" data-field="spend_usd" data-where="country=US">—</span><span class="sub">Nov 1 to today</span></div>
+      <div class="tile"><span class="lbl">Donations</span><span class="num" data-draw="k_us_don" data-source="by_country" data-field="donations" data-where="country=US">—</span><span class="sub">Click + view-through, LinkedIn excluded</span></div>
+      <div class="tile"><span class="lbl">Cost per donation</span><span class="num" data-draw="k_us_cpd" data-source="by_country" data-field="cost_per_donation_usd" data-where="country=US">—</span><span class="sub">Spend ÷ donations</span></div>
+      <div class="tile"><span class="lbl">Donation value (USD)</span><span class="num" data-draw="k_us_val" data-source="by_country" data-field="value_usd" data-where="country=US">—</span><span class="sub">As reported by each platform</span></div>
+    </div>
+    <div class="sec" id="us-trend">
+      <h2>Spend and donations by day</h2>
+      <div class="legend"><span><i style="background:var(--tcf-green)"></i>Spend (USD)</span><span><i style="background:var(--tcf-gold);border-radius:50%"></i>Donations</span></div>
+      <div class="chart" data-draw="chart_us" data-source="daily_us"></div>
+    </div>
+    <div class="sec" id="us-platforms">
+      <h2>By platform</h2>
+      <div class="wrap"><table data-source="summary" data-row-key="key">
+        <thead><tr><th data-field="platform">Platform</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
+        <tbody data-draw="plat_us"></tbody></table></div>
+    </div>
+    <div class="sec" id="us-groups">
+      <h2>Campaigns and ad groups</h2>
+      <div class="wrap"><table data-source="groups_us" data-row-key="key">
+        <thead><tr><th data-field="platform">Platform</th><th data-field="group" class="l">Ad group</th><th data-field="campaign" class="l">Campaign</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
+        <tbody data-draw="groups_us"></tbody></table></div>
+    </div>
+    <div class="sec" id="us-creative">
+      <h2>Creative</h2>
+      <p class="note">Reddit and TikTok ads with the same name are added together; the preview is the square version of each ad. Search ads and LinkedIn are shown by ad group above.</p>
+      <div class="wrap"><table data-source="creative_us" data-row-key="key">
+        <thead><tr><th class="l">Preview</th><th data-field="ad">Ad</th><th data-field="platforms" class="l">Platforms</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="ctr">CTR</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
+        <tbody data-draw="creative_us"></tbody></table></div>
+    </div>
+  </section>
+
+  <section class="page" id="ca" hidden>
+    <div class="tiles">
+      <div class="tile"><span class="lbl">Spend (USD)</span><span class="num" data-draw="k_ca_spend" data-source="by_country" data-field="spend_usd" data-where="country=CA">—</span><span class="sub">Nov 1 to today</span></div>
+      <div class="tile"><span class="lbl">Donations</span><span class="num" data-draw="k_ca_don" data-source="by_country" data-field="donations" data-where="country=CA">—</span><span class="sub">Click + view-through, LinkedIn excluded</span></div>
+      <div class="tile"><span class="lbl">Cost per donation</span><span class="num" data-draw="k_ca_cpd" data-source="by_country" data-field="cost_per_donation_usd" data-where="country=CA">—</span><span class="sub">Spend ÷ donations</span></div>
+      <div class="tile"><span class="lbl">Donation value (USD)</span><span class="num" data-draw="k_ca_val" data-source="by_country" data-field="value_usd" data-where="country=CA">—</span><span class="sub">As reported by each platform</span></div>
+    </div>
+    <div class="sec" id="ca-trend">
+      <h2>Spend and donations by day</h2>
+      <div class="legend"><span><i style="background:var(--tcf-green)"></i>Spend (USD)</span><span><i style="background:var(--tcf-gold);border-radius:50%"></i>Donations</span></div>
+      <div class="chart" data-draw="chart_ca" data-source="daily_ca"></div>
+    </div>
+    <div class="sec" id="ca-platforms">
+      <h2>By platform</h2>
+      <div class="wrap"><table data-source="summary" data-row-key="key">
+        <thead><tr><th data-field="platform">Platform</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
+        <tbody data-draw="plat_ca"></tbody></table></div>
+    </div>
+    <div class="sec" id="ca-groups">
+      <h2>Campaigns and ad groups</h2>
+      <div class="wrap"><table data-source="groups_ca" data-row-key="key">
+        <thead><tr><th data-field="platform">Platform</th><th data-field="group" class="l">Ad group</th><th data-field="campaign" class="l">Campaign</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
+        <tbody data-draw="groups_ca"></tbody></table></div>
+    </div>
+    <div class="sec" id="ca-creative">
+      <h2>Creative</h2>
+      <p class="note">Reddit ads with the same name are added together; the preview is the square version of each ad. Search ads and LinkedIn are shown by ad group above.</p>
+      <div class="wrap"><table data-source="creative_ca" data-row-key="key">
+        <thead><tr><th class="l">Preview</th><th data-field="ad">Ad</th><th data-field="platforms" class="l">Platforms</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="ctr">CTR</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
+        <tbody data-draw="creative_ca"></tbody></table></div>
+    </div>
+  </section>
+
+  <section class="page" id="uk" hidden>
+    <div class="tiles">
+      <div class="tile"><span class="lbl">Spend (USD)</span><span class="num" data-draw="k_uk_spend" data-source="by_country" data-field="spend_usd" data-where="country=UK">—</span><span class="sub">Nov 1 to today</span></div>
+      <div class="tile"><span class="lbl">Donations</span><span class="num" data-draw="k_uk_don" data-source="by_country" data-field="donations" data-where="country=UK">—</span><span class="sub">Click + view-through, LinkedIn excluded</span></div>
+      <div class="tile"><span class="lbl">Cost per donation</span><span class="num" data-draw="k_uk_cpd" data-source="by_country" data-field="cost_per_donation_usd" data-where="country=UK">—</span><span class="sub">Spend ÷ donations</span></div>
+      <div class="tile"><span class="lbl">Donation value (USD)</span><span class="num" data-draw="k_uk_val" data-source="by_country" data-field="value_usd" data-where="country=UK">—</span><span class="sub">As reported by each platform</span></div>
+    </div>
+    <div class="sec" id="uk-trend">
+      <h2>Spend and donations by day</h2>
+      <div class="legend"><span><i style="background:var(--tcf-green)"></i>Spend (USD)</span><span><i style="background:var(--tcf-gold);border-radius:50%"></i>Donations</span></div>
+      <div class="chart" data-draw="chart_uk" data-source="daily_uk"></div>
+    </div>
+    <div class="sec" id="uk-platforms">
+      <h2>By platform</h2>
+      <div class="wrap"><table data-source="summary" data-row-key="key">
+        <thead><tr><th data-field="platform">Platform</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
+        <tbody data-draw="plat_uk"></tbody></table></div>
+    </div>
+    <div class="sec" id="uk-groups">
+      <h2>Campaigns and ad groups</h2>
+      <div class="wrap"><table data-source="groups_uk" data-row-key="key">
+        <thead><tr><th data-field="platform">Platform</th><th data-field="group" class="l">Ad group</th><th data-field="campaign" class="l">Campaign</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
+        <tbody data-draw="groups_uk"></tbody></table></div>
+    </div>
+    <div class="sec" id="uk-creative">
+      <h2>Creative</h2>
+      <p class="note">Reddit ads with the same name are added together; the preview is the square version of each ad. Search ads and LinkedIn are shown by ad group above.</p>
+      <div class="wrap"><table data-source="creative_uk" data-row-key="key">
+        <thead><tr><th class="l">Preview</th><th data-field="ad">Ad</th><th data-field="platforms" class="l">Platforms</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="ctr">CTR</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
+        <tbody data-draw="creative_uk"></tbody></table></div>
+    </div>
+  </section>
+
+  <section class="page" id="pk" hidden>
+    <div class="tiles">
+      <div class="tile"><span class="lbl">Spend (USD)</span><span class="num" data-draw="k_pk_spend" data-source="by_country" data-field="spend_usd" data-where="country=PK">—</span><span class="sub">Nov 1 to today</span></div>
+      <div class="tile"><span class="lbl">Donations</span><span class="num" data-draw="k_pk_don" data-source="by_country" data-field="donations" data-where="country=PK">—</span><span class="sub">Click + view-through</span></div>
+      <div class="tile"><span class="lbl">Cost per donation</span><span class="num" data-draw="k_pk_cpd" data-source="by_country" data-field="cost_per_donation_usd" data-where="country=PK">—</span><span class="sub">Spend ÷ donations</span></div>
+      <div class="tile"><span class="lbl">Donation value (USD)</span><span class="num" data-draw="k_pk_val" data-source="by_country" data-field="value_usd" data-where="country=PK">—</span><span class="sub">As reported by each platform</span></div>
+    </div>
+    <div class="sec" id="pk-trend">
+      <h2>Spend and donations by day</h2>
+      <div class="legend"><span><i style="background:var(--tcf-green)"></i>Spend (USD)</span><span><i style="background:var(--tcf-gold);border-radius:50%"></i>Donations</span></div>
+      <div class="chart" data-draw="chart_pk" data-source="daily_pk"></div>
+    </div>
+    <div class="sec" id="pk-platforms">
+      <h2>By platform</h2>
+      <div class="wrap"><table data-source="summary" data-row-key="key">
+        <thead><tr><th data-field="platform">Platform</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
+        <tbody data-draw="plat_pk"></tbody></table></div>
+    </div>
+    <div class="sec" id="pk-groups">
+      <h2>Campaigns and ad groups</h2>
+      <div class="wrap"><table data-source="groups_pk" data-row-key="key">
+        <thead><tr><th data-field="platform">Platform</th><th data-field="group" class="l">Ad group</th><th data-field="campaign" class="l">Campaign</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
+        <tbody data-draw="groups_pk"></tbody></table></div>
+    </div>
+    <div class="sec" id="pk-creative">
+      <h2>Creative</h2>
+      <p class="note">Reddit ads with the same name are added together; the preview is the square version of each ad. Search ads are shown by ad group above.</p>
+      <div class="wrap"><table data-source="creative_pk" data-row-key="key">
+        <thead><tr><th class="l">Preview</th><th data-field="ad">Ad</th><th data-field="platforms" class="l">Platforms</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="ctr">CTR</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
+        <tbody data-draw="creative_pk"></tbody></table></div>
+    </div>
+  </section>
+
+  <section class="page" id="budget" hidden>
+    <p class="lede" style="color:var(--color-fg-muted);margin:0">Plan: $38,000 from Nov 1 to Dec 31 (the master campaign plan scaled by 0.95). Pace compares spend with an even daily split of each line's budget.</p>
+    <div class="tiles">
+      <div class="tile"><span class="lbl">Budget (USD)</span><span class="num" data-draw="b_plan" data-source="budget_total" data-field="plan_usd" data-row="0">—</span><span class="sub">Nov 1 to Dec 31</span></div>
+      <div class="tile"><span class="lbl">Spent so far</span><span class="num" data-draw="b_spent" data-source="budget_total" data-field="spent_usd" data-row="0">—</span><span class="sub"><span data-draw="b_pct" data-source="budget_total" data-field="pct_spent" data-row="0">—</span> of budget, <span data-draw="b_time" data-source="budget_total" data-field="pct_time" data-row="0">—</span> of the time gone</span></div>
+      <div class="tile"><span class="lbl">Left to spend</span><span class="num" data-draw="b_left" data-source="budget_total" data-field="remaining_usd" data-row="0">—</span><span class="sub"><span data-draw="b_days" data-source="budget_total" data-field="days_left" data-row="0">—</span> days left</span></div>
+      <div class="tile"><span class="lbl">Daily spend needed</span><span class="num" data-draw="b_need" data-source="budget_total" data-field="daily_needed_usd" data-row="0">—</span><span class="sub">To land on budget by Dec 31</span></div>
+    </div>
+    <div class="sec" id="budget-chart">
+      <h2>Spend against budget by country</h2>
+      <div class="legend"><span><i style="background:var(--tcf-cream);border:1px solid var(--color-border-line)"></i>Budget</span><span><i style="background:var(--tcf-green)"></i>Spent</span><span><i style="background:var(--tcf-gold)"></i>Where spend should be today</span></div>
+      <div class="chart" data-draw="b_chart" data-source="budget_country"></div>
+    </div>
+    <div class="sec" id="budget-country">
+      <h2>By country</h2>
+      <div class="wrap"><table data-source="budget_country" data-row-key="country">
+        <thead><tr><th data-field="country">Country</th><th data-field="plan_usd">Budget</th><th data-field="spent_usd">Spent</th><th data-field="expected_usd">Should be at</th><th data-field="pace">Pace</th><th data-field="remaining_usd">Left</th><th data-field="daily_needed_usd">Per day needed</th></tr></thead>
+        <tbody data-draw="b_country"></tbody></table></div>
+    </div>
+    <div class="sec" id="budget-lines">
+      <h2>By country and platform</h2>
+      <p class="note">X isn't connected here, so X US and PK spend is estimated from their daily budgets since launch (US $20/day from Nov 12, Canada CA$15/day from Nov 7, PK $8/day from Nov 7) and marked est. X UK and TikTok Canada, UK and Pakistan haven't launched.</p>
+      <div class="wrap"><table data-source="budget" data-row-key="key">
+        <thead><tr><th data-field="country">Country</th><th data-field="platform" class="l">Platform</th><th data-field="plan_usd">Budget</th><th data-field="spent_usd">Spent</th><th data-field="expected_usd">Should be at</th><th data-field="pace">Pace</th><th data-field="remaining_usd">Left</th><th data-field="daily_needed_usd">Per day needed</th></tr></thead>
+        <tbody data-draw="b_lines"></tbody></table></div>
+    </div>
+  </section>
+  <details id="notes">
+    <summary>How these numbers are counted</summary>
+    <ul>
+      <li>Figures run from Nov 1, 2026 to today and refresh each time the page is opened.</li>
+      <li>Spend is shown in US dollars. Accounts billed in Canadian dollars are converted at 1 USD = 1.3766 CAD.</li>
+      <li>Donations are the gifts each ad platform credits to its ads, including people who saw an ad and donated later. One gift can be credited by more than one platform.</li>
+      <li>LinkedIn reports donations together with other website actions, so its donations are not added to the totals.</li>
+      <li>X (Twitter) results are reported separately.</li>
+    </ul>
+  </details>
+</div>
+<script>
+(function () {
+  const d = new Date().toISOString().slice(0, 10);
+  const end = d > '2026-12-31' ? '2026-12-31' : d < '2026-11-01' ? '2026-11-01' : d;
+  const s = new Date(Date.parse(end + 'T00:00:00Z') - 29 * 864e5).toISOString().slice(0, 10);
+  const tt = s < '2026-11-01' ? '2026-11-01' : s;
+  const p = dash.params();
+  if (p.end !== end || p.tt_start !== tt) dash.setParams({end: end, tt_start: tt});
+})();
+dash.loader('bing_us', {description: "Sums the campaign rows into account totals; text numbers become numbers.", fn: (({answer}) => {
+  const rows = (answer && answer.rows) || [];
+  const n = (k) => rows.reduce((s, r) => s + (parseFloat(r[k]) || 0), 0);
+  return [{spend: n('Spend'), clicks: n('Clicks'), donations: n('ConversionsQualified'), donations_view: null, value: n('Revenue'), atc: null}];
+})});
+dash.loader('bing_ca', {description: "Sums the campaign rows into account totals; text numbers become numbers.", fn: (({answer}) => {
+  const rows = (answer && answer.rows) || [];
+  const n = (k) => rows.reduce((s, r) => s + (parseFloat(r[k]) || 0), 0);
+  return [{spend: n('Spend'), clicks: n('Clicks'), donations: n('ConversionsQualified'), donations_view: null, value: n('Revenue'), atc: null}];
+})});
+dash.loader('bing_uk', {description: "Sums the campaign rows into account totals; text numbers become numbers.", fn: (({answer}) => {
+  const rows = (answer && answer.rows) || [];
+  const n = (k) => rows.reduce((s, r) => s + (parseFloat(r[k]) || 0), 0);
+  return [{spend: n('Spend'), clicks: n('Clicks'), donations: n('ConversionsQualified'), donations_view: null, value: n('Revenue'), atc: null}];
+})});
+dash.loader('bing_pk', {description: "Sums the campaign rows into account totals; text numbers become numbers.", fn: (({answer}) => {
+  const rows = (answer && answer.rows) || [];
+  const n = (k) => rows.reduce((s, r) => s + (parseFloat(r[k]) || 0), 0);
+  return [{spend: n('Spend'), clicks: n('Clicks'), donations: n('ConversionsQualified'), donations_view: null, value: n('Revenue'), atc: null}];
+})});
+dash.loader('reddit_us', {description: "Reads the totals row; spend is in millionths and donation value in cents, so both are scaled to whole currency.", fn: (({answer}) => {
+  const m = (answer && answer.data && answer.data.metrics && answer.data.metrics[0]) || {};
+  const pc = m.conversion_purchase_clicks || 0, pv = m.conversion_purchase_views || 0;
+  return [{spend: (m.spend || 0) / 1e6, clicks: m.clicks || 0, donations: pc + pv, donations_view: pv,
+    value: (m.conversion_purchase_total_value || 0) / 100,
+    atc: (m.conversion_add_to_cart_clicks || 0) + (m.conversion_add_to_cart_views || 0)}];
+})});
+dash.loader('reddit_ca', {description: "Reads the totals row; spend is in millionths and donation value in cents, so both are scaled to whole currency.", fn: (({answer}) => {
+  const m = (answer && answer.data && answer.data.metrics && answer.data.metrics[0]) || {};
+  const pc = m.conversion_purchase_clicks || 0, pv = m.conversion_purchase_views || 0;
+  return [{spend: (m.spend || 0) / 1e6, clicks: m.clicks || 0, donations: pc + pv, donations_view: pv,
+    value: (m.conversion_purchase_total_value || 0) / 100,
+    atc: (m.conversion_add_to_cart_clicks || 0) + (m.conversion_add_to_cart_views || 0)}];
+})});
+dash.loader('reddit_uk', {description: "Reads the totals row; spend is in millionths and donation value in cents, so both are scaled to whole currency.", fn: (({answer}) => {
+  const m = (answer && answer.data && answer.data.metrics && answer.data.metrics[0]) || {};
+  const pc = m.conversion_purchase_clicks || 0, pv = m.conversion_purchase_views || 0;
+  return [{spend: (m.spend || 0) / 1e6, clicks: m.clicks || 0, donations: pc + pv, donations_view: pv,
+    value: (m.conversion_purchase_total_value || 0) / 100,
+    atc: (m.conversion_add_to_cart_clicks || 0) + (m.conversion_add_to_cart_views || 0)}];
+})});
+dash.loader('reddit_pk', {description: "Reads the totals row; spend is in millionths and donation value in cents, so both are scaled to whole currency.", fn: (({answer}) => {
+  const m = (answer && answer.data && answer.data.metrics && answer.data.metrics[0]) || {};
+  const pc = m.conversion_purchase_clicks || 0, pv = m.conversion_purchase_views || 0;
+  return [{spend: (m.spend || 0) / 1e6, clicks: m.clicks || 0, donations: pc + pv, donations_view: pv,
+    value: (m.conversion_purchase_total_value || 0) / 100,
+    atc: (m.conversion_add_to_cart_clicks || 0) + (m.conversion_add_to_cart_views || 0)}];
+})});
+dash.loader('tiktok_us', {description: "Reads the totals row; text numbers become numbers.", fn: (({answer}) => {
+  const m = (answer && answer.metrics && answer.metrics[0] && answer.metrics[0].metrics) || {};
+  const f = (k) => parseFloat(m[k]) || 0;
+  return [{spend: f('spend'), clicks: f('clicks'), donations: f('complete_payment'), donations_view: null, value: f('total_complete_payment_rate'), atc: f('web_event_add_to_cart')}];
+})});
+dash.loader('li_us', {description: "Reads the totals row. LinkedIn counts add to cart, checkout and donation together, so that count is kept apart from donations.", fn: (({answer}) => {
+  const a = (answer && answer.analytics && answer.analytics[0]) || {};
+  return [{spend: parseFloat(a.costInLocalCurrency) || 0, clicks: a.clicks || 0,
+    donations: null, conversions_mixed: a.externalWebsiteConversions || 0,
+    donations_view: a.externalWebsitePostViewConversions || 0,
+    value: parseFloat(a.conversionValueInLocalCurrency) || 0, atc: null}];
+})});
+dash.loader('li_ca', {description: "Reads the totals row. LinkedIn counts add to cart, checkout and donation together, so that count is kept apart from donations.", fn: (({answer}) => {
+  const a = (answer && answer.analytics && answer.analytics[0]) || {};
+  return [{spend: parseFloat(a.costInLocalCurrency) || 0, clicks: a.clicks || 0,
+    donations: null, conversions_mixed: a.externalWebsiteConversions || 0,
+    donations_view: a.externalWebsitePostViewConversions || 0,
+    value: parseFloat(a.conversionValueInLocalCurrency) || 0, atc: null}];
+})});
+dash.loader('li_uk', {description: "Reads the totals row. LinkedIn counts add to cart, checkout and donation together, so that count is kept apart from donations.", fn: (({answer}) => {
+  const a = (answer && answer.analytics && answer.analytics[0]) || {};
+  return [{spend: parseFloat(a.costInLocalCurrency) || 0, clicks: a.clicks || 0,
+    donations: null, conversions_mixed: a.externalWebsiteConversions || 0,
+    donations_view: a.externalWebsitePostViewConversions || 0,
+    value: parseFloat(a.conversionValueInLocalCurrency) || 0, atc: null}];
+})});
+
+
+dash.calc('summary', {
+  title: 'Spend and donations by country and platform',
+  description: 'One row per account, spend converted to USD at 1 USD = 1.3766 CAD. LinkedIn donations are not counted (its conversions mix add to cart, checkout and donation).',
+  inputs: ["bing_us", "reddit_us", "tiktok_us", "li_us", "bing_ca", "reddit_ca", "li_ca", "bing_uk", "reddit_uk", "li_uk", "bing_pk", "reddit_pk"],
+  fn: (bing_us, reddit_us, tiktok_us, li_us, bing_ca, reddit_ca, li_ca, bing_uk, reddit_uk, li_uk, bing_pk, reddit_pk) => {
+    const CAD_PER_USD = 1.3766;
+    const accounts = [{"id": "bing_us", "country": "US", "platform": "Bing", "currency": "CAD"}, {"id": "reddit_us", "country": "US", "platform": "Reddit", "currency": "USD"}, {"id": "tiktok_us", "country": "US", "platform": "TikTok", "currency": "USD"}, {"id": "li_us", "country": "US", "platform": "LinkedIn", "currency": "USD"}, {"id": "bing_ca", "country": "CA", "platform": "Bing", "currency": "CAD"}, {"id": "reddit_ca", "country": "CA", "platform": "Reddit", "currency": "CAD"}, {"id": "li_ca", "country": "CA", "platform": "LinkedIn", "currency": "CAD"}, {"id": "bing_uk", "country": "UK", "platform": "Bing", "currency": "CAD"}, {"id": "reddit_uk", "country": "UK", "platform": "Reddit", "currency": "CAD"}, {"id": "li_uk", "country": "UK", "platform": "LinkedIn", "currency": "CAD"}, {"id": "bing_pk", "country": "PK", "platform": "Bing", "currency": "CAD"}, {"id": "reddit_pk", "country": "PK", "platform": "Reddit", "currency": "CAD"}];
+    const data = [bing_us, reddit_us, tiktok_us, li_us, bing_ca, reddit_ca, li_ca, bing_uk, reddit_uk, li_uk, bing_pk, reddit_pk];
+    return accounts.map((a, i) => {
+      const r = data[i][0];
+      if (!r) return null;
+      const fx = a.currency === 'CAD' ? 1 / CAD_PER_USD : 1;
+      const spend_usd = r.spend * fx;
+      const value_usd = r.value * fx;
+      return {key: a.id, country: a.country, platform: a.platform, currency: a.currency,
+        spend: r.spend, spend_usd, clicks: r.clicks, atc: r.atc, donations: r.donations,
+        donations_view: r.donations_view, conversions_mixed: r.conversions_mixed ?? null,
+        value_usd, cost_per_donation_usd: r.donations ? spend_usd / r.donations : null, roas: spend_usd ? value_usd / spend_usd : null};
+    }).filter(Boolean).concat((() => {
+      // X isn't connected: estimated spend = daily budget (USD) x days live. Donations as reported by hand from X Ads Manager (CA: 2 as of Nov 13).
+      const X_DAILY = {US: {usd: 20, start: '2026-11-12'}, CA: {usd: 15 / 1.3766, start: '2026-11-07', donations: 2, value_usd: 251 / 1.3766}, PK: {usd: 8, start: '2026-11-07'}};
+      const end = Date.parse((dash.params().end || '2026-11-01') + 'T00:00:00Z');
+      return Object.entries(X_DAILY).map(([country, x]) => {
+        const days = Math.max(0, Math.round((end - Date.parse(x.start + 'T00:00:00Z')) / 864e5) + 1);
+        return {key: 'x_' + country.toLowerCase(), country, platform: 'X (est.)', currency: 'USD', spend: x.usd * days, spend_usd: x.usd * days,
+          clicks: null, atc: null, donations: x.donations ?? null, donations_view: null, conversions_mixed: null, value_usd: x.value_usd || 0, roas: x.value_usd ? x.value_usd / (x.usd * days) : null, cost_per_donation_usd: x.donations ? x.usd * days / x.donations : null, estimated: true};
+      });
+    })());
+  }
+});
+dash.calc('totals', {
+  title: 'Totals across all accounts',
+  description: 'Sum of spend (USD) and donations; cost per donation = spend / donations. LinkedIn donations excluded.',
+  inputs: ['summary'],
+  fn: (summary) => {
+    const spend_usd = summary.reduce((s, r) => s + r.spend_usd, 0);
+    const donations = summary.reduce((s, r) => s + (r.donations || 0), 0);
+    const value_usd = summary.reduce((s, r) => s + (r.platform === 'LinkedIn' ? 0 : r.value_usd || 0), 0);
+    return [{spend_usd, donations, value_usd, roas: spend_usd ? value_usd / spend_usd : null, cost_per_donation_usd: donations ? spend_usd / donations : null, accounts: summary.length}];
+  }
+});
+dash.calc('by_country', {
+  title: 'Totals by country',
+  description: 'Spend (USD) and donations summed per country; LinkedIn donations excluded.',
+  inputs: ['summary'],
+  fn: (summary) => ['US', 'CA', 'UK', 'PK'].map((c) => {
+    const rs = summary.filter((r) => r.country === c);
+    const spend_usd = rs.reduce((s, r) => s + r.spend_usd, 0);
+    const donations = rs.reduce((s, r) => s + (r.donations || 0), 0);
+    const value_usd = rs.reduce((s, r) => s + (r.platform === 'LinkedIn' ? 0 : r.value_usd), 0);
+    return {country: c, spend_usd, donations, value_usd, roas: spend_usd ? value_usd / spend_usd : null, cost_per_donation_usd: donations ? spend_usd / donations : null};
+  })
+});
+
+dash.loader('bing_us_groups', {description: "Turns Bing's text cells into numbers, one row per ad group.", fn: (({answer}) => (answer && answer.rows || []).map((r) => ({campaign: r.CampaignName, group: r.AdGroupName,
+  spend: +r.Spend || 0, clicks: +r.Clicks || 0, impressions: +r.Impressions || 0, donations: +r.ConversionsQualified || 0, value: +r.Revenue || 0})))});
+dash.loader('bing_us_daily', {description: "Turns Bing's text cells into numbers, one row per day.", fn: (({answer}) => (answer && answer.rows || []).map((r) => ({date: r.TimePeriod, spend: +r.Spend || 0, clicks: +r.Clicks || 0, donations: +r.ConversionsQualified || 0, value: +r.Revenue || 0})))});
+dash.loader('bing_ca_groups', {description: "Turns Bing's text cells into numbers, one row per ad group.", fn: (({answer}) => (answer && answer.rows || []).map((r) => ({campaign: r.CampaignName, group: r.AdGroupName,
+  spend: +r.Spend || 0, clicks: +r.Clicks || 0, impressions: +r.Impressions || 0, donations: +r.ConversionsQualified || 0, value: +r.Revenue || 0})))});
+dash.loader('bing_ca_daily', {description: "Turns Bing's text cells into numbers, one row per day.", fn: (({answer}) => (answer && answer.rows || []).map((r) => ({date: r.TimePeriod, spend: +r.Spend || 0, clicks: +r.Clicks || 0, donations: +r.ConversionsQualified || 0, value: +r.Revenue || 0})))});
+dash.loader('bing_uk_groups', {description: "Turns Bing's text cells into numbers, one row per ad group.", fn: (({answer}) => (answer && answer.rows || []).map((r) => ({campaign: r.CampaignName, group: r.AdGroupName,
+  spend: +r.Spend || 0, clicks: +r.Clicks || 0, impressions: +r.Impressions || 0, donations: +r.ConversionsQualified || 0, value: +r.Revenue || 0})))});
+dash.loader('bing_uk_daily', {description: "Turns Bing's text cells into numbers, one row per day.", fn: (({answer}) => (answer && answer.rows || []).map((r) => ({date: r.TimePeriod, spend: +r.Spend || 0, clicks: +r.Clicks || 0, donations: +r.ConversionsQualified || 0, value: +r.Revenue || 0})))});
+dash.loader('bing_pk_groups', {description: "Turns Bing's text cells into numbers, one row per ad group.", fn: (({answer}) => (answer && answer.rows || []).map((r) => ({campaign: r.CampaignName, group: r.AdGroupName,
+  spend: +r.Spend || 0, clicks: +r.Clicks || 0, impressions: +r.Impressions || 0, donations: +r.ConversionsQualified || 0, value: +r.Revenue || 0})))});
+dash.loader('bing_pk_daily', {description: "Turns Bing's text cells into numbers, one row per day.", fn: (({answer}) => (answer && answer.rows || []).map((r) => ({date: r.TimePeriod, spend: +r.Spend || 0, clicks: +r.Clicks || 0, donations: +r.ConversionsQualified || 0, value: +r.Revenue || 0})))});
+dash.loader('reddit_us_daily', {description: "Spend is in millionths and donation value in cents, so both are scaled to whole currency. Donations = click + view-through purchases.", fn: (({answer}) => {
+  const ms = (answer && answer.data && answer.data.metrics) || [];
+  const more = !!(answer && answer.paging && answer.paging.next_url);
+  const rows = ms.map((m) => ({date: m.date || null, ad_group_id: m.ad_group_id || null, ad_id: m.ad_id || null,
+    spend: (m.spend || 0) / 1e6, clicks: m.clicks || 0, impressions: m.impressions || 0,
+    donations: (m.conversion_purchase_clicks || 0) + (m.conversion_purchase_views || 0),
+    donations_view: m.conversion_purchase_views || 0, value: (m.conversion_purchase_total_value || 0) / 100}));
+  return {rows, columns: ['date', 'ad_group_id', 'ad_id', 'spend', 'clicks', 'impressions', 'donations', 'donations_view', 'value'], truncated: more};
+})});
+dash.loader('reddit_us_groups', {description: "Spend is in millionths and donation value in cents, so both are scaled to whole currency. Donations = click + view-through purchases.", fn: (({answer}) => {
+  const ms = (answer && answer.data && answer.data.metrics) || [];
+  const more = !!(answer && answer.paging && answer.paging.next_url);
+  const rows = ms.map((m) => ({date: m.date || null, ad_group_id: m.ad_group_id || null, ad_id: m.ad_id || null,
+    spend: (m.spend || 0) / 1e6, clicks: m.clicks || 0, impressions: m.impressions || 0,
+    donations: (m.conversion_purchase_clicks || 0) + (m.conversion_purchase_views || 0),
+    donations_view: m.conversion_purchase_views || 0, value: (m.conversion_purchase_total_value || 0) / 100}));
+  return {rows, columns: ['date', 'ad_group_id', 'ad_id', 'spend', 'clicks', 'impressions', 'donations', 'donations_view', 'value'], truncated: more};
+})});
+dash.loader('reddit_us_groupnames', {description: "Reads every page of the list and keeps each id with its name.", fn: (async ({answer, call, args, ...rest}) => {
+  const key = answer && answer.ads ? 'ads' : 'ad_groups';
+  const tool = key === 'ads' ? 'reddit_ads_get_ads' : 'reddit_ads_get_ad_groups';
+  let page = answer, out = [], n = 0;
+  while (page) {
+    (page[key] || []).forEach((x) => out.push({id: x.id, name: x.name, ad_group_id: x.ad_group_id || null}));
+    const next = page.pagination && page.pagination.next_url;
+    if (!next || ++n >= 10) break;
+    const token = new URL(next).searchParams.get('page.token');
+    page = await call(tool, {...args, page_token: token});
+  }
+  return out;
+})});
+dash.loader('reddit_us_ads', {description: "Spend is in millionths and donation value in cents, so both are scaled to whole currency. Donations = click + view-through purchases.", fn: (({answer}) => {
+  const ms = (answer && answer.data && answer.data.metrics) || [];
+  const more = !!(answer && answer.paging && answer.paging.next_url);
+  const rows = ms.map((m) => ({date: m.date || null, ad_group_id: m.ad_group_id || null, ad_id: m.ad_id || null,
+    spend: (m.spend || 0) / 1e6, clicks: m.clicks || 0, impressions: m.impressions || 0,
+    donations: (m.conversion_purchase_clicks || 0) + (m.conversion_purchase_views || 0),
+    donations_view: m.conversion_purchase_views || 0, value: (m.conversion_purchase_total_value || 0) / 100}));
+  return {rows, columns: ['date', 'ad_group_id', 'ad_id', 'spend', 'clicks', 'impressions', 'donations', 'donations_view', 'value'], truncated: more};
+})});
+dash.loader('reddit_us_adnames', {description: "Reads every page of the list and keeps each id with its name.", fn: (async ({answer, call, args, ...rest}) => {
+  const key = answer && answer.ads ? 'ads' : 'ad_groups';
+  const tool = key === 'ads' ? 'reddit_ads_get_ads' : 'reddit_ads_get_ad_groups';
+  let page = answer, out = [], n = 0;
+  while (page) {
+    (page[key] || []).forEach((x) => out.push({id: x.id, name: x.name, ad_group_id: x.ad_group_id || null}));
+    const next = page.pagination && page.pagination.next_url;
+    if (!next || ++n >= 10) break;
+    const token = new URL(next).searchParams.get('page.token');
+    page = await call(tool, {...args, page_token: token});
+  }
+  return out;
+})});
+dash.loader('reddit_ca_daily', {description: "Spend is in millionths and donation value in cents, so both are scaled to whole currency. Donations = click + view-through purchases.", fn: (({answer}) => {
+  const ms = (answer && answer.data && answer.data.metrics) || [];
+  const more = !!(answer && answer.paging && answer.paging.next_url);
+  const rows = ms.map((m) => ({date: m.date || null, ad_group_id: m.ad_group_id || null, ad_id: m.ad_id || null,
+    spend: (m.spend || 0) / 1e6, clicks: m.clicks || 0, impressions: m.impressions || 0,
+    donations: (m.conversion_purchase_clicks || 0) + (m.conversion_purchase_views || 0),
+    donations_view: m.conversion_purchase_views || 0, value: (m.conversion_purchase_total_value || 0) / 100}));
+  return {rows, columns: ['date', 'ad_group_id', 'ad_id', 'spend', 'clicks', 'impressions', 'donations', 'donations_view', 'value'], truncated: more};
+})});
+dash.loader('reddit_ca_groups', {description: "Spend is in millionths and donation value in cents, so both are scaled to whole currency. Donations = click + view-through purchases.", fn: (({answer}) => {
+  const ms = (answer && answer.data && answer.data.metrics) || [];
+  const more = !!(answer && answer.paging && answer.paging.next_url);
+  const rows = ms.map((m) => ({date: m.date || null, ad_group_id: m.ad_group_id || null, ad_id: m.ad_id || null,
+    spend: (m.spend || 0) / 1e6, clicks: m.clicks || 0, impressions: m.impressions || 0,
+    donations: (m.conversion_purchase_clicks || 0) + (m.conversion_purchase_views || 0),
+    donations_view: m.conversion_purchase_views || 0, value: (m.conversion_purchase_total_value || 0) / 100}));
+  return {rows, columns: ['date', 'ad_group_id', 'ad_id', 'spend', 'clicks', 'impressions', 'donations', 'donations_view', 'value'], truncated: more};
+})});
+dash.loader('reddit_ca_groupnames', {description: "Reads every page of the list and keeps each id with its name.", fn: (async ({answer, call, args, ...rest}) => {
+  const key = answer && answer.ads ? 'ads' : 'ad_groups';
+  const tool = key === 'ads' ? 'reddit_ads_get_ads' : 'reddit_ads_get_ad_groups';
+  let page = answer, out = [], n = 0;
+  while (page) {
+    (page[key] || []).forEach((x) => out.push({id: x.id, name: x.name, ad_group_id: x.ad_group_id || null}));
+    const next = page.pagination && page.pagination.next_url;
+    if (!next || ++n >= 10) break;
+    const token = new URL(next).searchParams.get('page.token');
+    page = await call(tool, {...args, page_token: token});
+  }
+  return out;
+})});
+dash.loader('reddit_ca_ads', {description: "Spend is in millionths and donation value in cents, so both are scaled to whole currency. Donations = click + view-through purchases.", fn: (({answer}) => {
+  const ms = (answer && answer.data && answer.data.metrics) || [];
+  const more = !!(answer && answer.paging && answer.paging.next_url);
+  const rows = ms.map((m) => ({date: m.date || null, ad_group_id: m.ad_group_id || null, ad_id: m.ad_id || null,
+    spend: (m.spend || 0) / 1e6, clicks: m.clicks || 0, impressions: m.impressions || 0,
+    donations: (m.conversion_purchase_clicks || 0) + (m.conversion_purchase_views || 0),
+    donations_view: m.conversion_purchase_views || 0, value: (m.conversion_purchase_total_value || 0) / 100}));
+  return {rows, columns: ['date', 'ad_group_id', 'ad_id', 'spend', 'clicks', 'impressions', 'donations', 'donations_view', 'value'], truncated: more};
+})});
+dash.loader('reddit_ca_adnames', {description: "Reads every page of the list and keeps each id with its name.", fn: (async ({answer, call, args, ...rest}) => {
+  const key = answer && answer.ads ? 'ads' : 'ad_groups';
+  const tool = key === 'ads' ? 'reddit_ads_get_ads' : 'reddit_ads_get_ad_groups';
+  let page = answer, out = [], n = 0;
+  while (page) {
+    (page[key] || []).forEach((x) => out.push({id: x.id, name: x.name, ad_group_id: x.ad_group_id || null}));
+    const next = page.pagination && page.pagination.next_url;
+    if (!next || ++n >= 10) break;
+    const token = new URL(next).searchParams.get('page.token');
+    page = await call(tool, {...args, page_token: token});
+  }
+  return out;
+})});
+dash.loader('reddit_uk_daily', {description: "Spend is in millionths and donation value in cents, so both are scaled to whole currency. Donations = click + view-through purchases.", fn: (({answer}) => {
+  const ms = (answer && answer.data && answer.data.metrics) || [];
+  const more = !!(answer && answer.paging && answer.paging.next_url);
+  const rows = ms.map((m) => ({date: m.date || null, ad_group_id: m.ad_group_id || null, ad_id: m.ad_id || null,
+    spend: (m.spend || 0) / 1e6, clicks: m.clicks || 0, impressions: m.impressions || 0,
+    donations: (m.conversion_purchase_clicks || 0) + (m.conversion_purchase_views || 0),
+    donations_view: m.conversion_purchase_views || 0, value: (m.conversion_purchase_total_value || 0) / 100}));
+  return {rows, columns: ['date', 'ad_group_id', 'ad_id', 'spend', 'clicks', 'impressions', 'donations', 'donations_view', 'value'], truncated: more};
+})});
+dash.loader('reddit_uk_groups', {description: "Spend is in millionths and donation value in cents, so both are scaled to whole currency. Donations = click + view-through purchases.", fn: (({answer}) => {
+  const ms = (answer && answer.data && answer.data.metrics) || [];
+  const more = !!(answer && answer.paging && answer.paging.next_url);
+  const rows = ms.map((m) => ({date: m.date || null, ad_group_id: m.ad_group_id || null, ad_id: m.ad_id || null,
+    spend: (m.spend || 0) / 1e6, clicks: m.clicks || 0, impressions: m.impressions || 0,
+    donations: (m.conversion_purchase_clicks || 0) + (m.conversion_purchase_views || 0),
+    donations_view: m.conversion_purchase_views || 0, value: (m.conversion_purchase_total_value || 0) / 100}));
+  return {rows, columns: ['date', 'ad_group_id', 'ad_id', 'spend', 'clicks', 'impressions', 'donations', 'donations_view', 'value'], truncated: more};
+})});
+dash.loader('reddit_uk_groupnames', {description: "Reads every page of the list and keeps each id with its name.", fn: (async ({answer, call, args, ...rest}) => {
+  const key = answer && answer.ads ? 'ads' : 'ad_groups';
+  const tool = key === 'ads' ? 'reddit_ads_get_ads' : 'reddit_ads_get_ad_groups';
+  let page = answer, out = [], n = 0;
+  while (page) {
+    (page[key] || []).forEach((x) => out.push({id: x.id, name: x.name, ad_group_id: x.ad_group_id || null}));
+    const next = page.pagination && page.pagination.next_url;
+    if (!next || ++n >= 10) break;
+    const token = new URL(next).searchParams.get('page.token');
+    page = await call(tool, {...args, page_token: token});
+  }
+  return out;
+})});
+dash.loader('reddit_uk_ads', {description: "Spend is in millionths and donation value in cents, so both are scaled to whole currency. Donations = click + view-through purchases.", fn: (({answer}) => {
+  const ms = (answer && answer.data && answer.data.metrics) || [];
+  const more = !!(answer && answer.paging && answer.paging.next_url);
+  const rows = ms.map((m) => ({date: m.date || null, ad_group_id: m.ad_group_id || null, ad_id: m.ad_id || null,
+    spend: (m.spend || 0) / 1e6, clicks: m.clicks || 0, impressions: m.impressions || 0,
+    donations: (m.conversion_purchase_clicks || 0) + (m.conversion_purchase_views || 0),
+    donations_view: m.conversion_purchase_views || 0, value: (m.conversion_purchase_total_value || 0) / 100}));
+  return {rows, columns: ['date', 'ad_group_id', 'ad_id', 'spend', 'clicks', 'impressions', 'donations', 'donations_view', 'value'], truncated: more};
+})});
+dash.loader('reddit_uk_adnames', {description: "Reads every page of the list and keeps each id with its name.", fn: (async ({answer, call, args, ...rest}) => {
+  const key = answer && answer.ads ? 'ads' : 'ad_groups';
+  const tool = key === 'ads' ? 'reddit_ads_get_ads' : 'reddit_ads_get_ad_groups';
+  let page = answer, out = [], n = 0;
+  while (page) {
+    (page[key] || []).forEach((x) => out.push({id: x.id, name: x.name, ad_group_id: x.ad_group_id || null}));
+    const next = page.pagination && page.pagination.next_url;
+    if (!next || ++n >= 10) break;
+    const token = new URL(next).searchParams.get('page.token');
+    page = await call(tool, {...args, page_token: token});
+  }
+  return out;
+})});
+dash.loader('reddit_pk_daily', {description: "Spend is in millionths and donation value in cents, so both are scaled to whole currency. Donations = click + view-through purchases.", fn: (({answer}) => {
+  const ms = (answer && answer.data && answer.data.metrics) || [];
+  const more = !!(answer && answer.paging && answer.paging.next_url);
+  const rows = ms.map((m) => ({date: m.date || null, ad_group_id: m.ad_group_id || null, ad_id: m.ad_id || null,
+    spend: (m.spend || 0) / 1e6, clicks: m.clicks || 0, impressions: m.impressions || 0,
+    donations: (m.conversion_purchase_clicks || 0) + (m.conversion_purchase_views || 0),
+    donations_view: m.conversion_purchase_views || 0, value: (m.conversion_purchase_total_value || 0) / 100}));
+  return {rows, columns: ['date', 'ad_group_id', 'ad_id', 'spend', 'clicks', 'impressions', 'donations', 'donations_view', 'value'], truncated: more};
+})});
+dash.loader('reddit_pk_groups', {description: "Spend is in millionths and donation value in cents, so both are scaled to whole currency. Donations = click + view-through purchases.", fn: (({answer}) => {
+  const ms = (answer && answer.data && answer.data.metrics) || [];
+  const more = !!(answer && answer.paging && answer.paging.next_url);
+  const rows = ms.map((m) => ({date: m.date || null, ad_group_id: m.ad_group_id || null, ad_id: m.ad_id || null,
+    spend: (m.spend || 0) / 1e6, clicks: m.clicks || 0, impressions: m.impressions || 0,
+    donations: (m.conversion_purchase_clicks || 0) + (m.conversion_purchase_views || 0),
+    donations_view: m.conversion_purchase_views || 0, value: (m.conversion_purchase_total_value || 0) / 100}));
+  return {rows, columns: ['date', 'ad_group_id', 'ad_id', 'spend', 'clicks', 'impressions', 'donations', 'donations_view', 'value'], truncated: more};
+})});
+dash.loader('reddit_pk_groupnames', {description: "Reads every page of the list and keeps each id with its name.", fn: (async ({answer, call, args, ...rest}) => {
+  const key = answer && answer.ads ? 'ads' : 'ad_groups';
+  const tool = key === 'ads' ? 'reddit_ads_get_ads' : 'reddit_ads_get_ad_groups';
+  let page = answer, out = [], n = 0;
+  while (page) {
+    (page[key] || []).forEach((x) => out.push({id: x.id, name: x.name, ad_group_id: x.ad_group_id || null}));
+    const next = page.pagination && page.pagination.next_url;
+    if (!next || ++n >= 10) break;
+    const token = new URL(next).searchParams.get('page.token');
+    page = await call(tool, {...args, page_token: token});
+  }
+  return out;
+})});
+dash.loader('reddit_pk_ads', {description: "Spend is in millionths and donation value in cents, so both are scaled to whole currency. Donations = click + view-through purchases.", fn: (({answer}) => {
+  const ms = (answer && answer.data && answer.data.metrics) || [];
+  const more = !!(answer && answer.paging && answer.paging.next_url);
+  const rows = ms.map((m) => ({date: m.date || null, ad_group_id: m.ad_group_id || null, ad_id: m.ad_id || null,
+    spend: (m.spend || 0) / 1e6, clicks: m.clicks || 0, impressions: m.impressions || 0,
+    donations: (m.conversion_purchase_clicks || 0) + (m.conversion_purchase_views || 0),
+    donations_view: m.conversion_purchase_views || 0, value: (m.conversion_purchase_total_value || 0) / 100}));
+  return {rows, columns: ['date', 'ad_group_id', 'ad_id', 'spend', 'clicks', 'impressions', 'donations', 'donations_view', 'value'], truncated: more};
+})});
+dash.loader('reddit_pk_adnames', {description: "Reads every page of the list and keeps each id with its name.", fn: (async ({answer, call, args, ...rest}) => {
+  const key = answer && answer.ads ? 'ads' : 'ad_groups';
+  const tool = key === 'ads' ? 'reddit_ads_get_ads' : 'reddit_ads_get_ad_groups';
+  let page = answer, out = [], n = 0;
+  while (page) {
+    (page[key] || []).forEach((x) => out.push({id: x.id, name: x.name, ad_group_id: x.ad_group_id || null}));
+    const next = page.pagination && page.pagination.next_url;
+    if (!next || ++n >= 10) break;
+    const token = new URL(next).searchParams.get('page.token');
+    page = await call(tool, {...args, page_token: token});
+  }
+  return out;
+})});
+dash.loader('tiktok_us_ads', {description: "One row per ad; text numbers become numbers and the id prefix TikTok adds to ad names is removed.", fn: (({answer}) => (answer && answer.metrics || []).map((r) => { const m = r.metrics || {};
+  return {ad_id: r.dimensions && r.dimensions.ad_id, ad_name: String(m.ad_name || '').replace(/^\d+_/, ''), group: m.adgroup_name, campaign: m.campaign_name,
+    spend: +m.spend || 0, clicks: +m.clicks || 0, impressions: +m.impressions || 0, donations: +m.complete_payment || 0, value: +m.total_complete_payment_rate || 0}; }))});
+dash.loader('tiktok_us_daily', {description: "One row per day; text numbers become numbers.", fn: (({answer}) => (answer && answer.metrics || []).map((r) => { const m = r.metrics || {};
+  return {date: String(r.dimensions && r.dimensions.stat_time_day || '').slice(0, 10), spend: +m.spend || 0, clicks: +m.clicks || 0, donations: +m.complete_payment || 0, value: +m.total_complete_payment_rate || 0}; }))});
+dash.loader('li_us_groups', {description: "One row per ad set; the count mixes add to cart, checkout and donation.", fn: (({answer}) => (answer && answer.analytics || []).map((a) => ({campaign_id: String((a.pivotValues || [''])[0]).split(':').pop(),
+  spend: +a.costInLocalCurrency || 0, clicks: a.clicks || 0, impressions: a.impressions || 0,
+  conversions_mixed: a.externalWebsiteConversions || 0, conversions_view: a.externalWebsitePostViewConversions || 0, value: +a.conversionValueInLocalCurrency || 0})))});
+dash.loader('li_us_daily', {description: "One row per day.", fn: (({answer}) => (answer && answer.analytics || []).map((a) => { const s = a.dateRange && a.dateRange.start || {};
+  const date = s.year ? `${s.year}-${String(s.month).padStart(2, '0')}-${String(s.day).padStart(2, '0')}` : null;
+  return {date, spend: +a.costInLocalCurrency || 0, clicks: a.clicks || 0, conversions_mixed: a.externalWebsiteConversions || 0, value: +a.conversionValueInLocalCurrency || 0}; }))});
+dash.loader('li_ca_groups', {description: "One row per ad set; the count mixes add to cart, checkout and donation.", fn: (({answer}) => (answer && answer.analytics || []).map((a) => ({campaign_id: String((a.pivotValues || [''])[0]).split(':').pop(),
+  spend: +a.costInLocalCurrency || 0, clicks: a.clicks || 0, impressions: a.impressions || 0,
+  conversions_mixed: a.externalWebsiteConversions || 0, conversions_view: a.externalWebsitePostViewConversions || 0, value: +a.conversionValueInLocalCurrency || 0})))});
+dash.loader('li_ca_daily', {description: "One row per day.", fn: (({answer}) => (answer && answer.analytics || []).map((a) => { const s = a.dateRange && a.dateRange.start || {};
+  const date = s.year ? `${s.year}-${String(s.month).padStart(2, '0')}-${String(s.day).padStart(2, '0')}` : null;
+  return {date, spend: +a.costInLocalCurrency || 0, clicks: a.clicks || 0, conversions_mixed: a.externalWebsiteConversions || 0, value: +a.conversionValueInLocalCurrency || 0}; }))});
+dash.loader('li_uk_groups', {description: "One row per ad set; the count mixes add to cart, checkout and donation.", fn: (({answer}) => (answer && answer.analytics || []).map((a) => ({campaign_id: String((a.pivotValues || [''])[0]).split(':').pop(),
+  spend: +a.costInLocalCurrency || 0, clicks: a.clicks || 0, impressions: a.impressions || 0,
+  conversions_mixed: a.externalWebsiteConversions || 0, conversions_view: a.externalWebsitePostViewConversions || 0, value: +a.conversionValueInLocalCurrency || 0})))});
+dash.loader('li_uk_daily', {description: "One row per day.", fn: (({answer}) => (answer && answer.analytics || []).map((a) => { const s = a.dateRange && a.dateRange.start || {};
+  const date = s.year ? `${s.year}-${String(s.month).padStart(2, '0')}-${String(s.day).padStart(2, '0')}` : null;
+  return {date, spend: +a.costInLocalCurrency || 0, clicks: a.clicks || 0, conversions_mixed: a.externalWebsiteConversions || 0, value: +a.conversionValueInLocalCurrency || 0}; }))});
+
+dash.calc('groups_us', {
+  title: 'US campaigns and ad groups',
+  description: 'Every ad group or ad set with spend since Nov 1, in USD (1 USD = 1.3766 CAD). LinkedIn donations are not counted.',
+  inputs: ["bing_us_groups", "reddit_us_groups", "reddit_us_groupnames", "tiktok_us_ads", "li_us_groups"],
+  fn: (bing_us_groups, reddit_us_groups, reddit_us_groupnames, tiktok_us_ads, li_us_groups) => {
+    const X = 1.3766, out = [];
+    bing_us_groups.forEach((r) => out.push({platform: 'Bing', campaign: r.campaign, group: r.group, spend: r.spend, fx: 1/X, clicks: r.clicks, donations: r.donations, value: r.value}));
+    const rn = new Map(reddit_us_groupnames.map((g) => [g.id, g.name])); reddit_us_groups.forEach((r) => out.push({platform: 'Reddit', campaign: '', group: rn.get(r.ad_group_id) || r.ad_group_id, spend: r.spend, fx: 1, clicks: r.clicks, donations: r.donations, value: r.value}));
+    const tg = new Map(); tiktok_us_ads.forEach((d) => { const v = tg.get(d.group) || {campaign: d.campaign, spend: 0, clicks: 0, donations: 0, value: 0}; v.spend += d.spend; v.clicks += d.clicks; v.donations += d.donations; v.value += d.value; tg.set(d.group, v); }); tg.forEach((v, g) => out.push({platform: 'TikTok', campaign: v.campaign, group: g, spend: v.spend, fx: 1, clicks: v.clicks, donations: v.donations, value: v.value}));
+    const ln = {"922773746": "Prospecting - Traffic", "924001376": "Prospecting - Conversion", "922962196": "Retargeting - Conversion"}; li_us_groups.forEach((r) => out.push({platform: 'LinkedIn', campaign: '', group: ln[r.campaign_id] || r.campaign_id, spend: r.spend, fx: 1, clicks: r.clicks, donations: null, conversions_mixed: r.conversions_mixed, value: r.value}));
+    return out.filter((r) => r.spend > 0).map((r, i) => ({key: 'us-' + r.platform + '-' + r.group, platform: r.platform, campaign: r.campaign, group: r.group,
+      spend_usd: r.spend * r.fx, clicks: r.clicks, donations: r.donations, conversions_mixed: r.conversions_mixed ?? null, value_usd: r.value * r.fx,
+      cost_per_donation_usd: r.donations ? r.spend * r.fx / r.donations : null, roas: r.spend ? r.value / r.spend : null})).sort((a, b) => b.spend_usd - a.spend_usd);
+  }
+});
+dash.calc('nodon_us', {
+  title: 'US spending with no donations',
+  description: 'Ad groups that have spent more than $50 since Nov 1 with no tracked donation (LinkedIn left out because its count is mixed).',
+  inputs: ['groups_us'],
+  fn: (groups) => groups.filter((r) => r.platform !== 'LinkedIn' && r.donations === 0 && r.spend_usd > 50)
+});
+
+dash.calc('daily_us', {
+  title: 'US spend and donations by day',
+  description: 'All platforms added up per day, spend in USD. LinkedIn spend is included; its donations are not. TikTok gives at most the last 30 days.',
+  inputs: ["bing_us_daily", "reddit_us_daily", "tiktok_us_daily", "li_us_daily"],
+  fn: (bing_us_daily, reddit_us_daily, tiktok_us_daily, li_us_daily) => {
+    const X = 1.3766, m = new Map();
+    const add = (date, spend, don) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0}; r.spend_usd += spend; r.donations += don; m.set(date, r); };
+    bing_us_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
+    reddit_us_daily.forEach((r) => add(r.date, r.spend * 1, r.donations));
+    tiktok_us_daily.forEach((r) => add(r.date, r.spend * 1, r.donations));
+    li_us_daily.forEach((r) => add(r.date, r.spend * 1, 0));
+    return [...m.values()].sort((a, b) => a.date < b.date ? -1 : 1);
+  }
+});
+
+dash.calc('creative_us', {
+  title: 'US creative',
+  description: 'Ads with the same name added up across Reddit and TikTok (for example "1A Girls out of school - Static"), spend in USD.',
+  inputs: ["reddit_us_ads", "reddit_us_adnames", "tiktok_us_ads"],
+  fn: (reddit_us_ads, reddit_us_adnames, tiktok_us_ads) => {
+    const X = 1.3766, m = new Map();
+    const add = (name, platform, spend, clicks, impressions, donations, value) => {
+      if (!spend) return; const key = String(name || '').trim();
+      const r = m.get(key) || {key, ad: key, platforms: [], spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0};
+      if (!r.platforms.includes(platform)) r.platforms.push(platform);
+      r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; m.set(key, r); };
+    const an = new Map(reddit_us_adnames.map((a) => [a.id, a.name])); reddit_us_ads.forEach((r) => add(an.get(r.ad_id) || r.ad_id, 'Reddit', r.spend * 1, r.clicks, r.impressions, r.donations, r.value * 1));
+    tiktok_us_ads.forEach((r) => add(r.ad_name, 'TikTok', r.spend, r.clicks, r.impressions, r.donations, r.value));
+    return [...m.values()].map((r) => ({...r, platforms: r.platforms.join(' + '), ctr: r.impressions ? r.clicks / r.impressions : null,
+      cost_per_donation_usd: r.donations ? r.spend_usd / r.donations : null, roas: r.spend_usd ? r.value_usd / r.spend_usd : null})).sort((a, b) => b.spend_usd - a.spend_usd);
+  }
+});
+
+dash.calc('groups_ca', {
+  title: 'CA campaigns and ad groups',
+  description: 'Every ad group or ad set with spend since Nov 1, in USD (1 USD = 1.3766 CAD). LinkedIn donations are not counted.',
+  inputs: ["bing_ca_groups", "reddit_ca_groups", "reddit_ca_groupnames", "li_ca_groups"],
+  fn: (bing_ca_groups, reddit_ca_groups, reddit_ca_groupnames, li_ca_groups) => {
+    const X = 1.3766, out = [];
+    bing_ca_groups.forEach((r) => out.push({platform: 'Bing', campaign: r.campaign, group: r.group, spend: r.spend, fx: 1/X, clicks: r.clicks, donations: r.donations, value: r.value}));
+    const rn = new Map(reddit_ca_groupnames.map((g) => [g.id, g.name])); reddit_ca_groups.forEach((r) => out.push({platform: 'Reddit', campaign: '', group: rn.get(r.ad_group_id) || r.ad_group_id, spend: r.spend, fx: 1/X, clicks: r.clicks, donations: r.donations, value: r.value}));
+    const ln = {"924331046": "Prospecting - Traffic", "924410466": "Prospecting - Conversion", "924331056": "Retargeting - Conversion"}; li_ca_groups.forEach((r) => out.push({platform: 'LinkedIn', campaign: '', group: ln[r.campaign_id] || r.campaign_id, spend: r.spend, fx: 1/X, clicks: r.clicks, donations: null, conversions_mixed: r.conversions_mixed, value: r.value}));
+    return out.filter((r) => r.spend > 0).map((r, i) => ({key: 'ca-' + r.platform + '-' + r.group, platform: r.platform, campaign: r.campaign, group: r.group,
+      spend_usd: r.spend * r.fx, clicks: r.clicks, donations: r.donations, conversions_mixed: r.conversions_mixed ?? null, value_usd: r.value * r.fx,
+      cost_per_donation_usd: r.donations ? r.spend * r.fx / r.donations : null, roas: r.spend ? r.value / r.spend : null})).sort((a, b) => b.spend_usd - a.spend_usd);
+  }
+});
+dash.calc('nodon_ca', {
+  title: 'CA spending with no donations',
+  description: 'Ad groups that have spent more than $50 since Nov 1 with no tracked donation (LinkedIn left out because its count is mixed).',
+  inputs: ['groups_ca'],
+  fn: (groups) => groups.filter((r) => r.platform !== 'LinkedIn' && r.donations === 0 && r.spend_usd > 50)
+});
+
+dash.calc('daily_ca', {
+  title: 'CA spend and donations by day',
+  description: 'All platforms added up per day, spend in USD. LinkedIn spend is included; its donations are not. TikTok gives at most the last 30 days.',
+  inputs: ["bing_ca_daily", "reddit_ca_daily", "li_ca_daily"],
+  fn: (bing_ca_daily, reddit_ca_daily, li_ca_daily) => {
+    const X = 1.3766, m = new Map();
+    const add = (date, spend, don) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0}; r.spend_usd += spend; r.donations += don; m.set(date, r); };
+    bing_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
+    reddit_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
+    li_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, 0));
+    return [...m.values()].sort((a, b) => a.date < b.date ? -1 : 1);
+  }
+});
+
+dash.calc('creative_ca', {
+  title: 'CA creative',
+  description: 'Ads with the same name added up across Reddit and TikTok (for example "1A Girls out of school - Static"), spend in USD.',
+  inputs: ["reddit_ca_ads", "reddit_ca_adnames"],
+  fn: (reddit_ca_ads, reddit_ca_adnames) => {
+    const X = 1.3766, m = new Map();
+    const add = (name, platform, spend, clicks, impressions, donations, value) => {
+      if (!spend) return; const key = String(name || '').trim();
+      const r = m.get(key) || {key, ad: key, platforms: [], spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0};
+      if (!r.platforms.includes(platform)) r.platforms.push(platform);
+      r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; m.set(key, r); };
+    const an = new Map(reddit_ca_adnames.map((a) => [a.id, a.name])); reddit_ca_ads.forEach((r) => add(an.get(r.ad_id) || r.ad_id, 'Reddit', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
+    return [...m.values()].map((r) => ({...r, platforms: r.platforms.join(' + '), ctr: r.impressions ? r.clicks / r.impressions : null,
+      cost_per_donation_usd: r.donations ? r.spend_usd / r.donations : null, roas: r.spend_usd ? r.value_usd / r.spend_usd : null})).sort((a, b) => b.spend_usd - a.spend_usd);
+  }
+});
+
+dash.calc('groups_uk', {
+  title: 'UK campaigns and ad groups',
+  description: 'Every ad group or ad set with spend since Nov 1, in USD (1 USD = 1.3766 CAD). LinkedIn donations are not counted.',
+  inputs: ["bing_uk_groups", "reddit_uk_groups", "reddit_uk_groupnames", "li_uk_groups"],
+  fn: (bing_uk_groups, reddit_uk_groups, reddit_uk_groupnames, li_uk_groups) => {
+    const X = 1.3766, out = [];
+    bing_uk_groups.forEach((r) => out.push({platform: 'Bing', campaign: r.campaign, group: r.group, spend: r.spend, fx: 1/X, clicks: r.clicks, donations: r.donations, value: r.value}));
+    const rn = new Map(reddit_uk_groupnames.map((g) => [g.id, g.name])); reddit_uk_groups.forEach((r) => out.push({platform: 'Reddit', campaign: '', group: rn.get(r.ad_group_id) || r.ad_group_id, spend: r.spend, fx: 1/X, clicks: r.clicks, donations: r.donations, value: r.value}));
+    const ln = {"924564426": "Prospecting - Traffic", "924731576": "Prospecting - Conversion", "924692846": "Retargeting - Conversion"}; li_uk_groups.forEach((r) => out.push({platform: 'LinkedIn', campaign: '', group: ln[r.campaign_id] || r.campaign_id, spend: r.spend, fx: 1/X, clicks: r.clicks, donations: null, conversions_mixed: r.conversions_mixed, value: r.value}));
+    return out.filter((r) => r.spend > 0).map((r, i) => ({key: 'uk-' + r.platform + '-' + r.group, platform: r.platform, campaign: r.campaign, group: r.group,
+      spend_usd: r.spend * r.fx, clicks: r.clicks, donations: r.donations, conversions_mixed: r.conversions_mixed ?? null, value_usd: r.value * r.fx,
+      cost_per_donation_usd: r.donations ? r.spend * r.fx / r.donations : null, roas: r.spend ? r.value / r.spend : null})).sort((a, b) => b.spend_usd - a.spend_usd);
+  }
+});
+dash.calc('nodon_uk', {
+  title: 'UK spending with no donations',
+  description: 'Ad groups that have spent more than $50 since Nov 1 with no tracked donation (LinkedIn left out because its count is mixed).',
+  inputs: ['groups_uk'],
+  fn: (groups) => groups.filter((r) => r.platform !== 'LinkedIn' && r.donations === 0 && r.spend_usd > 50)
+});
+
+dash.calc('daily_uk', {
+  title: 'UK spend and donations by day',
+  description: 'All platforms added up per day, spend in USD. LinkedIn spend is included; its donations are not. TikTok gives at most the last 30 days.',
+  inputs: ["bing_uk_daily", "reddit_uk_daily", "li_uk_daily"],
+  fn: (bing_uk_daily, reddit_uk_daily, li_uk_daily) => {
+    const X = 1.3766, m = new Map();
+    const add = (date, spend, don) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0}; r.spend_usd += spend; r.donations += don; m.set(date, r); };
+    bing_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
+    reddit_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
+    li_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, 0));
+    return [...m.values()].sort((a, b) => a.date < b.date ? -1 : 1);
+  }
+});
+
+dash.calc('creative_uk', {
+  title: 'UK creative',
+  description: 'Ads with the same name added up across Reddit and TikTok (for example "1A Girls out of school - Static"), spend in USD.',
+  inputs: ["reddit_uk_ads", "reddit_uk_adnames"],
+  fn: (reddit_uk_ads, reddit_uk_adnames) => {
+    const X = 1.3766, m = new Map();
+    const add = (name, platform, spend, clicks, impressions, donations, value) => {
+      if (!spend) return; const key = String(name || '').trim();
+      const r = m.get(key) || {key, ad: key, platforms: [], spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0};
+      if (!r.platforms.includes(platform)) r.platforms.push(platform);
+      r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; m.set(key, r); };
+    const an = new Map(reddit_uk_adnames.map((a) => [a.id, a.name])); reddit_uk_ads.forEach((r) => add(an.get(r.ad_id) || r.ad_id, 'Reddit', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
+    return [...m.values()].map((r) => ({...r, platforms: r.platforms.join(' + '), ctr: r.impressions ? r.clicks / r.impressions : null,
+      cost_per_donation_usd: r.donations ? r.spend_usd / r.donations : null, roas: r.spend_usd ? r.value_usd / r.spend_usd : null})).sort((a, b) => b.spend_usd - a.spend_usd);
+  }
+});
+
+dash.calc('groups_pk', {
+  title: 'PK campaigns and ad groups',
+  description: 'Every ad group or ad set with spend since Nov 1, in USD (1 USD = 1.3766 CAD). LinkedIn donations are not counted.',
+  inputs: ["bing_pk_groups", "reddit_pk_groups", "reddit_pk_groupnames"],
+  fn: (bing_pk_groups, reddit_pk_groups, reddit_pk_groupnames) => {
+    const X = 1.3766, out = [];
+    bing_pk_groups.forEach((r) => out.push({platform: 'Bing', campaign: r.campaign, group: r.group, spend: r.spend, fx: 1/X, clicks: r.clicks, donations: r.donations, value: r.value}));
+    const rn = new Map(reddit_pk_groupnames.map((g) => [g.id, g.name])); reddit_pk_groups.forEach((r) => out.push({platform: 'Reddit', campaign: '', group: rn.get(r.ad_group_id) || r.ad_group_id, spend: r.spend, fx: 1/X, clicks: r.clicks, donations: r.donations, value: r.value}));
+    return out.filter((r) => r.spend > 0).map((r, i) => ({key: 'pk-' + r.platform + '-' + r.group, platform: r.platform, campaign: r.campaign, group: r.group,
+      spend_usd: r.spend * r.fx, clicks: r.clicks, donations: r.donations, conversions_mixed: r.conversions_mixed ?? null, value_usd: r.value * r.fx,
+      cost_per_donation_usd: r.donations ? r.spend * r.fx / r.donations : null, roas: r.spend ? r.value / r.spend : null})).sort((a, b) => b.spend_usd - a.spend_usd);
+  }
+});
+dash.calc('nodon_pk', {
+  title: 'PK spending with no donations',
+  description: 'Ad groups that have spent more than $50 since Nov 1 with no tracked donation (LinkedIn left out because its count is mixed).',
+  inputs: ['groups_pk'],
+  fn: (groups) => groups.filter((r) => r.platform !== 'LinkedIn' && r.donations === 0 && r.spend_usd > 50)
+});
+
+dash.calc('daily_pk', {
+  title: 'PK spend and donations by day',
+  description: 'All platforms added up per day, spend in USD. LinkedIn spend is included; its donations are not. TikTok gives at most the last 30 days.',
+  inputs: ["bing_pk_daily", "reddit_pk_daily"],
+  fn: (bing_pk_daily, reddit_pk_daily) => {
+    const X = 1.3766, m = new Map();
+    const add = (date, spend, don) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0}; r.spend_usd += spend; r.donations += don; m.set(date, r); };
+    bing_pk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
+    reddit_pk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
+    return [...m.values()].sort((a, b) => a.date < b.date ? -1 : 1);
+  }
+});
+
+dash.calc('creative_pk', {
+  title: 'PK creative',
+  description: 'Ads with the same name added up across Reddit and TikTok (for example "1A Girls out of school - Static"), spend in USD.',
+  inputs: ["reddit_pk_ads", "reddit_pk_adnames"],
+  fn: (reddit_pk_ads, reddit_pk_adnames) => {
+    const X = 1.3766, m = new Map();
+    const add = (name, platform, spend, clicks, impressions, donations, value) => {
+      if (!spend) return; const key = String(name || '').trim();
+      const r = m.get(key) || {key, ad: key, platforms: [], spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0};
+      if (!r.platforms.includes(platform)) r.platforms.push(platform);
+      r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; m.set(key, r); };
+    const an = new Map(reddit_pk_adnames.map((a) => [a.id, a.name])); reddit_pk_ads.forEach((r) => add(an.get(r.ad_id) || r.ad_id, 'Reddit', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
+    return [...m.values()].map((r) => ({...r, platforms: r.platforms.join(' + '), ctr: r.impressions ? r.clicks / r.impressions : null,
+      cost_per_donation_usd: r.donations ? r.spend_usd / r.donations : null, roas: r.spend_usd ? r.value_usd / r.spend_usd : null})).sort((a, b) => b.spend_usd - a.spend_usd);
+  }
+});
+
+dash.calc('budget', {
+  title: 'Budget and pace by country and platform',
+  description: 'Each line of the master campaign plan scaled by 0.95 (a $38,000 total), against spend since Nov 1 in USD. X spend is an estimate: daily budget x days live. Pace = spend / (budget x share of days gone).',
+  inputs: ['summary'],
+  fn: (summary) => {
+    const SCALE = 0.95, START = Date.UTC(2026, 10, 1), DAYS = 61;
+    const PLAN = [['US','Reddit',1250],['CA','Reddit',2250],['UK','Reddit',1250],['PK','Reddit',750],
+      ['US','LinkedIn',5000],['CA','LinkedIn',2500],['UK','LinkedIn',2500],['PK','LinkedIn',1250],
+      ['US','X',1250],['CA','X',1250],['UK','X',1250],['PK','X',750],
+      ['US','Bing',3250],['CA','Bing',2500],['UK','Bing',2500],['PK','Bing',750],
+      ['US','TikTok',4250],['CA','TikTok',2250],['UK','TikTok',2000],['PK','TikTok',1250]];
+    const end = Date.parse((dash.params().end || '2026-11-01') + 'T00:00:00Z');
+    // X isn't connected: estimate its spend from the daily budget since launch (USD/day)
+    const X_DAILY = {US: {usd: 20, start: '2026-11-12'}, CA: {usd: 15 / 1.3766, start: '2026-11-07', donations: 2, value_usd: 251 / 1.3766}, PK: {usd: 8, start: '2026-11-07'}};
+    const gone = Math.min(DAYS, Math.max(1, Math.round((end - START) / 864e5) + 1));
+    return PLAN.map(([country, platform, test]) => {
+      const s = summary.find((r) => r.country === country && r.platform === platform && !r.estimated);
+      const x = X_DAILY[country];
+      const xDays = x ? Math.max(0, Math.round((end - Date.parse(x.start + 'T00:00:00Z')) / 864e5) + 1) : 0;
+      const estimated = platform === 'X' && !!x;
+      const plan_usd = test * SCALE, spent_usd = s ? s.spend_usd : estimated ? x.usd * xDays : null, expected_usd = plan_usd * gone / DAYS;
+      const remaining_usd = plan_usd - (spent_usd || 0), days_left = DAYS - gone;
+      return {key: country + '-' + platform, country, platform, plan_usd, spent_usd, expected_usd,
+        pace: spent_usd == null ? null : spent_usd / expected_usd, remaining_usd, days_left,
+        daily_needed_usd: days_left > 0 ? remaining_usd / days_left : null, tracked: !!s, estimated};
+    });
+  }
+});
+dash.calc('budget_country', {
+  title: 'Budget and pace by country',
+  description: 'The budget lines added up per country.',
+  inputs: ['budget'],
+  fn: (budget) => ['US', 'CA', 'UK', 'PK'].map((country) => {
+    const rs = budget.filter((r) => r.country === country);
+    const plan_usd = rs.reduce((a, r) => a + r.plan_usd, 0), spent_usd = rs.reduce((a, r) => a + (r.spent_usd || 0), 0);
+    const expected_usd = rs.reduce((a, r) => a + r.expected_usd, 0), days_left = rs[0].days_left, remaining_usd = plan_usd - spent_usd;
+    return {country, plan_usd, spent_usd, expected_usd, pace: spent_usd / expected_usd, remaining_usd, days_left, daily_needed_usd: days_left > 0 ? remaining_usd / days_left : null};
+  })
+});
+dash.calc('budget_total', {
+  title: 'Budget and pace overall',
+  description: 'All budget lines added up.',
+  inputs: ['budget'],
+  fn: (budget) => {
+    const plan_usd = budget.reduce((a, r) => a + r.plan_usd, 0), spent_usd = budget.reduce((a, r) => a + (r.spent_usd || 0), 0);
+    const days_left = budget[0].days_left, remaining_usd = plan_usd - spent_usd;
+    return [{plan_usd, spent_usd, remaining_usd, days_left, pct_spent: spent_usd / plan_usd, pct_time: (61 - days_left) / 61,
+      daily_needed_usd: days_left > 0 ? remaining_usd / days_left : null}];
+  }
+});
+</script>
+<script>
+(function () {
+  const usd = (v) => v == null ? '—' : '$' + d3.format(',.0f')(v);
+  const usd2 = (v) => v == null ? '—' : '$' + d3.format(',.2f')(v);
+  const int = (v) => v == null ? '—' : d3.format(',')(Math.round(v * 100) / 100);
+  const one = (src, field, fmt) => (el) => {
+    const s = dash.data(src);
+    el.textContent = s.status === 'ok' && s.data && s.data[0] ? fmt(s.data[0][field]) : '—';
+  };
+  dash.draw('t_spend', one('totals', 'spend_usd', usd));
+  dash.draw('t_accts', one('totals', 'accounts', int));
+  dash.draw('t_don', one('totals', 'donations', int));
+  dash.draw('t_cpd', one('totals', 'cost_per_donation_usd', usd));
+  dash.draw('k_spend', one('totals', 'spend_usd', usd));
+  dash.draw('k_don', one('totals', 'donations', int));
+  dash.draw('k_cpd', one('totals', 'cost_per_donation_usd', usd));
+  dash.draw('k_roas', one('totals', 'roas', (v) => v == null ? '—' : d3.format('.2f')(v) + 'x'));
+
+  const td = (tr, text, cls) => { const c = document.createElement('td'); c.textContent = text; if (cls) c.className = cls; tr.appendChild(c); return c; };
+
+  dash.draw('country_rows', (tb) => {
+    const s = dash.data('by_country');
+    tb.replaceChildren();
+    if (s.status !== 'ok' || !s.data) return;
+    s.data.forEach((r) => {
+      const tr = document.createElement('tr');
+      tr.setAttribute('data-key', r.country);
+      td(tr, r.country);
+      td(tr, usd(r.spend_usd));
+      td(tr, int(r.donations), r.donations ? '' : 'zero');
+      td(tr, usd(r.value_usd)); td(tr, ((v) => v == null ? '—' : d3.format('.2f')(v) + 'x')(r.roas), r.roas >= 1 ? 'good' : '');
+      td(tr, usd(r.cost_per_donation_usd));
+      tb.appendChild(tr);
+    });
+  });
+
+  dash.draw('detail_rows', (tb) => {
+    const s = dash.data('summary');
+    tb.replaceChildren();
+    if (s.status !== 'ok' || !s.data) return;
+    ['US', 'CA', 'UK', 'PK'].forEach((c) => {
+      const rs = s.data.filter((r) => r.country === c);
+      if (!rs.length) return;
+      const g = document.createElement('tr'); g.className = 'grp';
+      const gc = td(g, c); gc.colSpan = 10; tb.appendChild(g);
+      rs.forEach((r) => {
+        const tr = document.createElement('tr');
+        tr.setAttribute('data-key', r.key);
+        td(tr, r.platform);
+        td(tr, (r.currency === 'CAD' ? 'CA$' : '$') + d3.format(',.2f')(r.spend));
+        td(tr, usd2(r.spend_usd));
+        td(tr, int(r.clicks));
+        td(tr, int(r.atc), 'muted');
+        td(tr, r.donations == null ? '—' : int(r.donations), r.donations === 0 && r.spend_usd > 50 ? 'zero' : '');
+        td(tr, int(r.donations_view), 'muted');
+        td(tr, int(r.conversions_mixed), 'muted');
+        td(tr, usd2(r.value_usd)); td(tr, ((v) => v == null ? '—' : d3.format('.2f')(v) + 'x')(r.roas), r.roas >= 1 ? 'good' : '');
+        td(tr, usd2(r.cost_per_donation_usd));
+        tb.appendChild(tr);
+      });
+    });
+  });
+})();
+</script>
+<script>
+(function () {
+  const THUMBS = {"1A": "data:image/jpeg;base64,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", "1B": "data:image/jpeg;base64,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", "1C": "data:image/jpeg;base64,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", "1D": "data:image/jpeg;base64,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", "1E": "data:image/jpeg;base64,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", "1F": "data:image/jpeg;base64,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", "1G": "data:image/jpeg;base64,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", "1H": "data:image/jpeg;base64,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", "1I": "data:image/jpeg;base64,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", "1J": "data:image/jpeg;base64,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", "2A": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAYKADAAQAAAABAAAAYAAAAAD/7QA4UGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUAAAAAABDUHYzZjwCyBOmACZjs+EJ+/8AAEQgAYABgAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/bAEMABwcHBwcHDAcHDBEMDAwRFxEREREXHhcXFxcXHiQeHh4eHh4kJCQkJCQkJCsrKysrKzIyMjIyODg4ODg4ODg4OP/bAEMBCQkJDg0OGQ0NGTsoISg7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//dAAQABv/aAAwDAQACEQMRAD8A828H+DZ/F+oTWltOtqII/NZnBbuBgAYr0Cy+F/leZqCaikotlMrJ5TISoB6Ek4rN+H+pweF7+6n1Hcsc8Hlq6IXwdwPIHPI9K9Ou/GuhnTLu3tJSWmhkQKsLLlmUheTxwTUJdypylzLl2PPtBSxtrETqxDSgFgTkZ9axXtbc6q98UDQ5BkA7D+8P60zSYbqWAQzIy7CB7Ee1dbZ6XbsT5qkg8HnHFK4+p6Fp+l2ssKPFNtDDO0Bcc9ulfP15JY2GqT6fKxkhglkSNuwAY8Y7c17xYWtrbWuQxiiiX72eAB6k14NrtoNR8WXcETr5HmFmkGMY9cjjmumlU9nedjKUHU9w6a3EYgF1AofPDDcRxnkMMn/Cu28P6LDe6w2pRxmKKOA7VUBWDt6kHk4PWsddAurTRZ2024SRZWR3T+JYyeT9M16f4MBOmvuAADgDpyAo5PvXTPFqtRvJamMcO6NXTscfokKaba+YbUT6rHcN5AYYkZWUjr/dHU11Fn4fGnQST3bedeXJ3zy+rHsPYV3IAAyBziqk67xgiuCx03POr+2jHOcVxV9GyEggke3Nej6xpxmUlOK88u4JYWKseahtoaR//9Dl4oyw5rQhgRRyKZbBSAcitJduPlI4rNlIs26kjgYres/Kiy0nzGuXlu47WMSSnAJxxSJ4jt4fusT+FTfUrlbR6nBqSpB+5TcTwB2/GvLXtZr3xnMYQhVLfY4IwuSxJyOnUmvTo7e6vtAZtPOLhhjHTr1/SuRTSNY050UQIJXJALMCG9QeuR7Guf2kpPmex0Rgo2S3LGtaosHhuCC1+STz4IpWRcfKsm4j1I/SvVrGO1iiMtmoWOY+Zx0yRzivLbPTJZwk2pQAvDMzrAu3y8gYH9449jXWR65HoumwRaow3gbQqctgd/p71pTqq6iiasHqzt93FV5ZFHWuP/4TXSimQW/KuV1XxretNjTEgeMdfMZgT+Q4ro5jn5Wei3Use05xXnGtpEX3IQaeniG0uYla4OH/AIgD8v4HFclqWryNcMLe2Bjzw24EkdzWMqqvY0jTZ//R4+2JCAda14CxzXNw69pGwYbkdtpFaqXN4L1bZYl2EbiwbO3PY+/tWfKVcfrBZbZc/wB8fyNc8S2Mg8Yrd1qQiONF/vc/lWGCSecfkKEi0z1jwB4ilj86G5aSRAATu5x16Hr26H869cngtbhFkkUNtIZfavAvBfiDTdAluW1KF5FmVAoRVPKknJyRXoX/AAsnQHUqIrgf8AX/AOKqoxSViZ3buj0U6ZZRymRUHPOO2a8S8aSr/wAJJOvTCoB/3yK9C/4WP4ZkHDTf9+//AK9eUeIr+21TWLi+teYpCu0sCDwoHSjlS2CLfUuaFpP9rzM0uVhixuI6k+g/rXoEaaXZAQR+VHzgLxkn+ZNc94Xt7a80Xy5RnExJAJHIxjpjtVSW+k07X10uOOzCMjFFGd64HyZJ6ljwFAzivjMxqVMTiJ07u0b6eh2xkqUVJrc0dSstI1pTaWx2TnLLJGpC5A/iIGCDXkaT7buSxuiyTQsUdCeQR/Ovb9DvNQvbIy6lb/ZZNxwmMDbgEd/8K4HxZo8U+qPqKwqzqVAzldxwMgkda6cnqTdWeGk9Er73/EKkvdU+/wAj/9LgbDQLTCW6xCWQ9S3c9TXRx6XfqP3ceOM8EdvxqPTYree/hguywidgrFOqg8Z59Op9q7BvCukSnNvqOwEsoWQDPy5GScjGcZ5GOQATXLNyvpJL+vU+XpSq1E5Xb+djjn0y6mZkdAzIcEEjI4z6+lL/AGFdg48kdcdR1zj1rq7fwpaXWrjTYLxmTyt5lCcbiQNo5xwDk5PtVvUPD/h+KykNvcSNdJGWUAjaWRVyOe5JJ69iB05lufSS/r5myhVs27/+Bf8AAOD/ALNm85bfyxvbGBkd+n06VY/se9ADeUMEZ6jpjPrXY/8ACGWSW0FzPqHlGaPeAyY5wp9c4GfqccCs/UfD2mWVpLPFqaSyIiOseAu8scEDnP6fWm+d/DJf18yXGrFNyv8A+BHPLpl6YxKE+UgEHI6EE+voKqyRyxbd4xvUMPoaiyfWiqjz395/195ySxMre63950Xh3XP7IuGSfLW8uN2OSpH8Q/rXpNuNGu5P7QtxBJI2D5gCluOnPUYrxOk2ivLxuUQxE/aRlyt7+Z6WCzupQjyVFzLz3PYtW8RWGmRsA6yz/wAManPPvjoK8ul1S+uZPNuZS+SeD0GfT0rOAA6U6t8Bl1PCp8ru31Mcbm9bETUlol0R/9PG0eVIdQR5JPJG1xv/ALpKkA8e9br319JD9mfWYjG0WxgQxYnbg/Ns6bh9cE965SCeS2lE0Rwy5wfqMVpNe6nJHsaPIIwMRgd89hXmYjBwqz55PX5fqj5rB4+dGm6cV1v1/Ro6OHVbtJojJq8RiSTLgKeU7AfJxxxjPvmnjWLv7f5p1WH7P5wfZhs+Xn7v3PT3/GueOp6wc5Tr/wBMh/hUUd7qsSBFQ4A2jMYPH5VyvKqG9/wj/kdv9s1u35/5m499dxzSNZ6xGqSvI53hiRuJ24yhxgY9utZ3iO9jv54XjkWYpGVLLnsxwTkDkjGeMZqpJqGqeWwkXCkEEmMDgjHXHpULateshj3KFYYwFA/pW9DL6dOaqReq9P0RzYrMp1abpSVk/X9WZ2DnHejB9K031i+cqWZcqwYHaM5HI560kWr3sAxEwUDOBgcZOePxr0Dy7R7mZ14FKQRweK031i+dw+5QVIYYUDkfhVCaaSd/MlOWwBn2HAoE1HoyOiiigk//1MTSJra31KCa8GYlbLcZ+hx7HmvR31QmR2h1S2CMSVVgCQOwzkV5PRXkYzLoYiSnJ7adH+Z81gc0nhYOEVe+vU9Wj1J1RlfVrZmIG07Rwe/fnNNk1OaRURdUtY/vb2XBPX5cA8dOvvXldFcn9h0735vwX+R3f6w1NuX8WeszatpwizcXUUpCgEqQcnHPy59ecYOeleaiaHzNycJuzsyV4znHHqOOvFUKK7cDgI4a/K73ODHZlPFcvMkrG4LnTdxJjkwVxjzuh9fu04XWlhifJkIPbzjx/wCO1g0V33OL2rNr7TYb8iN9u7ODMemOn3fXmmtcWO1wiMCR8pMpbacdxtGeax6KBe0YrlS5KjAJ4pKKKDM//9k=", "2B": "data:image/jpeg;base64,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", "3A": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAYKADAAQAAAABAAAAYAAAAAD/7QA4UGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUAAAAAABDUHYzZjwCyBOmACZjs+EJ+/8AAEQgAYABgAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/bAEMABwcHBwcHDAcHDBEMDAwRFxEREREXHhcXFxcXHiQeHh4eHh4kJCQkJCQkJCsrKysrKzIyMjIyODg4ODg4ODg4OP/bAEMBCQkJDg0OGQ0NGTsoISg7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O//dAAQABv/aAAwDAQACEQMRAD8AvP8ADGfUb4GCf7JmPcUkUkrg4xwf610ul+GB9kENrdRNcwLwyxsgdR3Of510K+KLCad77cYUMWxXYEjcDk/d5resIyYBd2vlNDKhb92CCwxxjNZxaaumKXMmkjyKHVNavP3MUCwEdWkP9Kqalp6S27rql8HYjhRgAHt71yerWviLTX2TGRoozt3EEED0bvXPa1fX/kC0iUAkBmZBzg9OapFbna2M9skAFtZs8icMx6ZHuaqXeo3bA+ZLHboOpHavIkuNRsH3xu8frg8H6itbV72fUoopXVY1Cg7V6ZPUmmKx3elazoNvcySzXgMm3aGfOCc9u1biSwTeKo7iJlk80L5bKcj7vXIrwbyZCN2Diu7+HAeTxHFb5yoVmx6YrSlZSb8jOrF8p6t45j2+G5dvQMv868Y0vH26LPTP9K9v8fceGplUZAZMn8a8N09sXUf1P8q7aK905p9SFEP2rKDOHyB+NezeGVLauM/KTCv4cmvF1nKSll6gk17d4ZGNZjL9Tao355qIfDIufxRP/9D2W50PTb26a1YeVGiDaseF69a39Ps4NOs47K3JKRDALHJrzTxVcW9vzK23ZF8v5V594O1Rb/VJPOkbaqZ5Y4/KnGHYJVHaz2PQvHNrqkBkvFkEkMo2Ip/hY8DjHavIHSJLJLY5aUNtbAyTu6E+3avUdXPk+GA0UhkJlJBzn8K88NjfRWkOq2kbjzt6OGPUdwD2weRWNWLXob4eaevU4O6snPmGUKGQldg65rY02zFvoEl8YRNI0ihc8gKB/OrOpQFYXmZHFwrmM7wB82OenXjrTNGnuItNn0qVMGQ7o39SP4f8Kz5tDblV7mVqCyKsapCCXUNt9M1o+A45LfxbHsH30IPtnr/Kk1WSbzldxtKKF57Ae+Oa6Twlp1zpusRXt1tCyjI5BPzDIzXThYty0OfGNRjqdt4/iY+Fp2UYVSh/8eArwCxz9qTHv/KvojxQsepaS1rM5WN2XOwjPBz3rz2DRdAtZEfy2kI67nJ/livUpaK7PKfY5HT9AlupFUld27J54x6V7Ho8ezWg+QAYAgA9U6/zrnYLrSLZyQix56Y5/U1Po17FN4ljSJtwCOQR/dIFRPls+RGkXK65mf/R9Tv9HsNXvJY7xGcKoACnGAetZ9r4M8N6Z+5sg8RPJJJbjuKuS6NqPmwxR72Xcm9y3UDqSc5rsntYDl2yfYVmpztZFyppWdzgXsdFubZNIg80xxyk8DJ3HmqXiZ7PTVhtWKxJEAVQ4D88Bhnr711MUV1aee1hZurLlo2cqSzN178CuQ8Q+Ftc11IJNQHmsxO9UIzGvXAzxk+1PnXVXHKCctHocLqStePJGMXCsPMV+BtOOQSO/v3ogg06PSri51CQKQm1PLB3bs5G0d2yOnT8K6I+FNegsmgitC2DhANoO0DgHmktvBuueQjywESBSNp28Z989qhwTl7i0G6nKvePKLqK4uQGmL8jgY/mKn014rWDy2D7R0zncD+Yr0W68J+JWYBbIt0yQy9vxrJufB3isoI49Pc7jydycf8Aj1JNxG2pbnIWTyajqgs5Wk8vBbAduQPrXW2/hrTbst5ty0BXGN8jYOT/AErpvh74V17TPFDX+rWrQxi3dAxKkEkrjoT7103i/wAT6noGrQWa2dnNDdkLD5jFX7BixPygAnrUVIVJtSjO3kb0sXQo03GpTv5/0jzO58N2loQsVyZQ2TlW3Dg45+tUTdPpdztiOTt4OADz9K9m0nUYdT8SXvh3UNKt4WtE8zepV9wJG3jbxkHPWuW8XeEdTutXkl0ezUwBVACkLzjngmqoxqxlec7oK+Iw1WnalTtLuf/S+gp/M8s+V1/+tx0569cViRnWt48xYtmeSDLnHft1qXxHHqsulSJoxYT7kzsIVym4bwhPAYrnBNcNFB47tpZLyyhfJRI1S5kWRipaQAk5wGQFScdemTWZnUevU7hW1YBdyxthTuwZQSecY/T9aaG1gq25IlO07cNKfm7Z4HFYEI8bzW+rW2oBc+S62jxbVLPyFKkHIyME5xg1l2Wo+NodQsdKvtq/aGwS6LvSNNpLkqSpLYZQM56HFBLlbe52EZ1wbvNEJ+X5cGUfNx19sZqWJtW3qJljC55KGXOPbIx+dcjcweOE1i6n03zCglkaITSIbcxbPlUJncG39+B61c0yfx211ZjVI1WAk+aUWPd94/f+bjjoUz7igE9baneru2jd1xz9adXl8tp4x/tS4ubf7V9mW5iaON5l5jDHzABkgqRyM4x0xXpVvJJNbxyzRmF3UFoyQSpPUEjg49qDaM79B3mJFJvk4GMZrhtb8I6fr96097qdz9nkdXa3yNmVGMLkfKK7wgHrTTGh7CncJQUtGc7puhWdh4hvdfS6Dm8RE8sgAIEAHBzz0rolIZ2YcgmmmGI/wipAABgUNjjFLY//0/bPEdu1zpMkSzpB8ykmRtiMAQSpYcgN0rkpLLV42KWuo29lEsJIjSYssYYHH3hkgkghs8dAK7XWNPk1PT5LKKRYmfHzsgfA74B7+/auSXwM0TF4bpFOwhf3IOGKqpPLHIAX5R2PNZHHiac5TvGN/nYiSy8Rz3Ch9UjV5P3iRxzZypZc4GMkbd2PerD+HdTu9DtbBLlTJBJKTKHLZBVgpBxkckZHb1qzpHg/+ytRjvludyqmxowpAbC7e7HA7+ue9VIvBEsEkRhvAEhLbU8s8hiSQ2G564P0oMlRnb3oP7/Q0brS/EbxWKWd0IfJjVZRvJywI+bO35xgEYOOuahh07xFZ6ZeLcXUk8rxKYtjbnWUZzjIHynjv0zVWLwRNGYCdQc+Tu7MCc85yGznt9MCt7QdGutFh+zSXXnxckLs2kMT13ZJPHrQaQpycvei18/IwRo3jCUJIdQ8tpIyXBY/I7BsqFAIIBIwc8YrR0vTPESagt1qt1uiAY+VG5IycAA5AyByfrXXUUG8cLFNO7+8KKKKZ0hRRRQB/9T3XV9VtdFsH1C8zsTAwvUk9AK4xviCFxnS7nkZH0PfpXZ6xpNrrVg+n3eQj4IK9VI6EVyC+BrpAFTWLkAYwAPT/gVZHJifrHN+62+X6kR+IiqdraZcgkZwfT8vem/8LGhDbX0+ZP8AeIH9KnbwLdMwdtYuSy5wccjOM/xd8Co5fh+87K1zqk020EAOu7APJx83HPpQcz+u9P0Oq0fXrTWrU3NsrAq21kOMg4z16YrS+1xFinG4dRuXPr6+lZmjaBa6LaG2gZmLHcznHPGMY54rQewt5X8yRVZgMZKKTjp6UHo0/aci59xRfQEZDKRjP316evWkF/bsCVZSB1wy/T19ahGk2A6Qxj/tmn+FOGl2S52xIM8H5F57+nrTK98m+2Q88j5eD8y8fXmpopkmXchyMZHQgg9wRxVU6dalixRMtwTsXnPPpVmGFIF2xjA6YAAAHsBQNc3UmooooLP/2Q==", "3B": "data:image/jpeg;base64,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"};
+  const usd = (v) => v == null ? '—' : '$' + d3.format(',.0f')(v);
+  const usd2 = (v) => v == null ? '—' : '$' + d3.format(',.2f')(v);
+  const int = (v) => v == null ? '—' : d3.format(',')(Math.round(v * 100) / 100);
+  const pct = (v) => v == null ? '—' : d3.format('.2%')(v);
+  const td = (tr, text, cls) => { const c = document.createElement('td'); c.textContent = text; if (cls) c.className = cls; tr.appendChild(c); return c; };
+  const tabs = document.querySelectorAll('.tcf nav.tabs button');
+  const show = (id) => {
+    let found = false;
+    tabs.forEach((b) => { const on = b.dataset.tab === id; if (on) found = true; b.setAttribute('aria-selected', on ? 'true' : 'false'); });
+    if (!found) return;
+    document.querySelectorAll('.tcf section.page').forEach((s) => { s.hidden = s.id !== id; });
+    dash.setLink(id);
+  };
+  tabs.forEach((b) => b.addEventListener('click', () => show(b.dataset.tab)));
+  const h = (location.hash || '').slice(1); if (h) show(h);
+
+  const paceLabel = (p) => p == null ? 'Not tracked' : p < 0.8 ? 'Under' : p > 1.2 ? 'Over' : 'On track';
+  const paceCls = (p) => p == null ? 'muted' : p < 0.8 ? 'warn' : p > 1.2 ? 'zero' : 'good';
+  const b1 = (field, fmt) => (el) => { const s = dash.data('budget_total'); el.textContent = s.status === 'ok' && s.data && s.data[0] ? fmt(s.data[0][field]) : '—'; };
+  dash.draw('b_plan', b1('plan_usd', usd)); dash.draw('b_spent', b1('spent_usd', usd)); dash.draw('b_left', b1('remaining_usd', usd));
+  dash.draw('b_need', b1('daily_needed_usd', usd)); dash.draw('b_days', b1('days_left', int));
+  dash.draw('b_pct', b1('pct_spent', (v) => d3.format('.0%')(v))); dash.draw('b_time', b1('pct_time', (v) => d3.format('.0%')(v)));
+  const brow = (tb, r, withPlatform) => {
+    const tr = document.createElement('tr'); tr.setAttribute('data-key', withPlatform ? r.key : r.country);
+    td(tr, r.country); if (withPlatform) td(tr, r.platform + (r.estimated ? ' (est.)' : ''), 'l');
+    td(tr, usd(r.plan_usd)); td(tr, r.spent_usd == null ? '—' : usd(r.spent_usd)); td(tr, usd(r.expected_usd));
+    td(tr, paceLabel(r.pace) + (r.pace == null ? '' : ' (' + d3.format('.0%')(r.pace) + ')'), paceCls(r.pace));
+    td(tr, usd(r.remaining_usd)); td(tr, usd(r.daily_needed_usd)); tb.appendChild(tr); };
+  dash.draw('b_country', (tb) => { const s = dash.data('budget_country'); tb.replaceChildren(); if (s.status === 'ok' && s.data) s.data.forEach((r) => brow(tb, r, false)); });
+  dash.draw('b_lines', (tb) => { const s = dash.data('budget'); tb.replaceChildren(); if (s.status === 'ok' && s.data) s.data.forEach((r) => brow(tb, r, true)); });
+  dash.draw('b_chart', (el) => {
+    const s = dash.data('budget_country'); el.replaceChildren();
+    if (s.status !== 'ok' || !s.data) return;
+    const data = s.data, W = Math.max(280, el.clientWidth), row = 44, m = {t: 8, r: 70, b: 8, l: 36}, H = m.t + m.b + row * data.length;
+    const x = d3.scaleLinear().domain([0, d3.max(data, (d) => Math.max(d.plan_usd, d.spent_usd))]).range([m.l, W - m.r]);
+    const svg = d3.select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%').attr('role', 'img').attr('aria-label', 'Spend against budget by country');
+    const g = svg.selectAll('g.r').data(data).join('g').attr('transform', (d, i) => `translate(0,${m.t + i * row})`);
+    g.append('text').attr('x', 0).attr('y', row / 2 + 4).text((d) => d.country).style('font-weight', 600);
+    g.append('rect').attr('x', m.l).attr('y', 8).attr('height', row - 16).attr('width', (d) => x(d.plan_usd) - m.l).attr('rx', 4).style('fill', 'var(--tcf-cream)').style('stroke', 'var(--color-border-line)');
+    g.append('rect').attr('x', m.l).attr('y', 14).attr('height', row - 28).attr('width', (d) => Math.max(0, x(d.spent_usd) - m.l)).attr('rx', 3).style('fill', 'var(--tcf-green)');
+    g.append('line').attr('x1', (d) => x(d.expected_usd)).attr('x2', (d) => x(d.expected_usd)).attr('y1', 4).attr('y2', row - 4).style('stroke', 'var(--tcf-gold)').style('stroke-width', 3);
+    g.append('text').attr('x', (d) => x(d.plan_usd) + 6).attr('y', row / 2 + 4).text((d) => usd(d.spent_usd) + ' / ' + usd(d.plan_usd));
+  });
+
+  const CC = {us: 'US', ca: 'CA', uk: 'UK', pk: 'PK'};
+  Object.keys(CC).forEach((k) => {
+    const c = CC[k];
+    const kpi = (field, fmt) => (el) => { const s = dash.data('by_country'); const r = s.status === 'ok' && s.data ? s.data.find((x) => x.country === c) : null; el.textContent = r ? fmt(r[field]) : '—'; };
+    dash.draw('k_' + k + '_spend', kpi('spend_usd', usd));
+    dash.draw('k_' + k + '_don', kpi('donations', int));
+    dash.draw('k_' + k + '_cpd', kpi('cost_per_donation_usd', usd));
+    dash.draw('k_' + k + '_val', kpi('value_usd', usd));
+    dash.draw('nodon_' + k, (ul) => {
+      const s = dash.data('nodon_' + k); ul.replaceChildren();
+      if (s.status !== 'ok' || !s.data) return;
+      if (!s.data.length) { const li = document.createElement('li'); li.textContent = 'None right now. Every ad group over $50 has at least one donation.'; ul.appendChild(li); }
+      s.data.forEach((r) => { const li = document.createElement('li'); li.textContent = r.platform + ' · ' + r.group + ': ' + usd(r.spend_usd) + ' spent, 0 donations'; ul.appendChild(li); });
+    });
+    dash.draw('plat_' + k, (tb) => {
+      const s = dash.data('summary'); tb.replaceChildren();
+      if (s.status !== 'ok' || !s.data) return;
+      s.data.filter((r) => r.country === c).forEach((r) => {
+        const tr = document.createElement('tr'); tr.setAttribute('data-key', r.key);
+        td(tr, r.platform); td(tr, usd2(r.spend_usd)); td(tr, int(r.clicks));
+        td(tr, r.donations == null ? '—' : int(r.donations), r.donations === 0 && r.spend_usd > 50 ? 'zero' : '');
+        td(tr, usd2(r.value_usd)); td(tr, ((v) => v == null ? '—' : d3.format('.2f')(v) + 'x')(r.roas), r.roas >= 1 ? 'good' : ''); td(tr, usd2(r.cost_per_donation_usd)); tb.appendChild(tr);
+      });
+    });
+    dash.draw('groups_' + k, (tb) => {
+      const s = dash.data('groups_' + k); tb.replaceChildren();
+      if (s.status !== 'ok' || !s.data) return;
+      s.data.forEach((r) => {
+        const tr = document.createElement('tr'); tr.setAttribute('data-key', r.key);
+        td(tr, r.platform); td(tr, r.group, 'l'); td(tr, r.campaign || '', 'l muted'); td(tr, usd2(r.spend_usd)); td(tr, int(r.clicks));
+        td(tr, r.donations == null ? '—' : int(r.donations), r.donations === 0 && r.spend_usd > 50 ? 'zero' : (r.donations ? 'good' : ''));
+        td(tr, usd2(r.value_usd)); td(tr, ((v) => v == null ? '—' : d3.format('.2f')(v) + 'x')(r.roas), r.roas >= 1 ? 'good' : ''); td(tr, usd2(r.cost_per_donation_usd)); tb.appendChild(tr);
+      });
+    });
+    dash.draw('creative_' + k, (tb) => {
+      const s = dash.data('creative_' + k); tb.replaceChildren();
+      if (s.status !== 'ok' || !s.data) return;
+      s.data.forEach((r) => {
+        const tr = document.createElement('tr'); tr.setAttribute('data-key', r.key);
+        const pc = document.createElement('td'); const code = (String(r.ad).match(/^([0-9][A-Z])/) || [])[1];
+        if (code && THUMBS[code]) { const im = document.createElement('img'); im.src = THUMBS[code]; im.alt = r.ad; im.className = 'thumb'; pc.appendChild(im); } tr.appendChild(pc);
+        td(tr, r.ad); td(tr, r.platforms, 'l muted'); td(tr, usd2(r.spend_usd)); td(tr, int(r.clicks)); td(tr, pct(r.ctr));
+        td(tr, int(r.donations), r.donations ? 'good' : ''); td(tr, usd2(r.value_usd)); td(tr, ((v) => v == null ? '—' : d3.format('.2f')(v) + 'x')(r.roas), r.roas >= 1 ? 'good' : ''); td(tr, usd2(r.cost_per_donation_usd)); tb.appendChild(tr);
+      });
+    });
+    dash.draw('chart_' + k, (el) => {
+      const s = dash.data('daily_' + k);
+      el.replaceChildren();
+      if (s.status === 'error') { const p = document.createElement('p'); p.className = 'note'; p.textContent = 'Failed to load'; el.appendChild(p); return; }
+      if (s.status !== 'ok' || !s.data || !s.data.length) return;
+      const data = s.data, W = Math.max(280, el.clientWidth), H = 240, m = {t: 16, r: 36, b: 26, l: 48};
+      const x = d3.scaleBand().domain(data.map((d) => d.date)).range([m.l, W - m.r]).padding(0.25);
+      const y = d3.scaleLinear().domain([0, d3.max(data, (d) => d.spend_usd) || 1]).nice().range([H - m.b, m.t]);
+      const y2 = d3.scaleLinear().domain([0, Math.max(3, d3.max(data, (d) => d.donations) || 0)]).nice().range([H - m.b, m.t]);
+      const svg = d3.select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%').attr('role', 'img')
+        .attr('aria-label', 'Daily spend in USD as bars and donations as dots, ' + c);
+      svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat((v) => '$' + v)).call((g) => g.select('.domain').remove()).selectAll('line').attr('stroke', 'var(--color-border-line)');
+      svg.append('g').attr('transform', `translate(${W - m.r},0)`).call(d3.axisRight(y2).ticks(3).tickFormat(d3.format('d'))).call((g) => g.select('.domain').remove()).selectAll('line').remove();
+      const every = Math.ceil(data.length / Math.max(2, Math.floor((W - m.l - m.r) / 48)));
+      svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickValues(data.map((d) => d.date).filter((_, i) => i % every === 0)).tickFormat((d) => d3.utcFormat('%b %-d')(new Date(d + 'T00:00:00Z')))).call((g) => g.select('.domain').attr('stroke', 'var(--color-border-line)')).selectAll('line').remove();
+      svg.append('g').selectAll('rect').data(data).join('rect').attr('x', (d) => x(d.date)).attr('width', x.bandwidth()).attr('y', (d) => y(d.spend_usd)).attr('height', (d) => y(0) - y(d.spend_usd)).attr('rx', 2).style('fill', 'var(--tcf-green)');
+      svg.append('g').selectAll('circle').data(data.filter((d) => d.donations > 0)).join('circle').attr('cx', (d) => x(d.date) + x.bandwidth() / 2).attr('cy', (d) => y2(d.donations)).attr('r', 5).style('fill', 'var(--tcf-gold)').style('stroke', '#fff');
+      const tip = document.createElement('div'); tip.className = 'tip'; tip.hidden = true; el.appendChild(tip);
+      svg.append('g').selectAll('rect').data(data).join('rect').attr('x', (d) => x(d.date) - x.step() * x.paddingInner() / 2).attr('width', x.step()).attr('y', m.t).attr('height', H - m.t - m.b).style('fill', 'transparent')
+        .on('pointerenter pointermove', (ev, d) => { tip.hidden = false; tip.textContent = d3.utcFormat('%b %-d')(new Date(d.date + 'T00:00:00Z')) + ' · ' + usd(d.spend_usd) + ' · ' + d.donations + ' donations';
+          const r = el.getBoundingClientRect(); const px = ev.clientX - r.left; tip.style.left = Math.min(px + 10, r.width - tip.offsetWidth - 4) + 'px'; tip.style.top = '4px'; })
+        .on('pointerleave', () => { tip.hidden = true; });
+    });
+  });
+})();
+</script>
+
+</main>
+<footer class="stn-foot">Prepared by Skip the Noise Media &middot; Updated <span id="stn-updated">&mdash;</span></footer>
+</body>
+</html>
