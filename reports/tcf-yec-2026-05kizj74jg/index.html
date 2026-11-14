@@ -169,6 +169,13 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
 .tcf img.thumb { width: 48px; height: 48px; border-radius: 6px; display: block; object-fit: cover; border: 1px solid var(--color-border-line); }
 .tcf .warn { color: #a86b00; }
 .tcf .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+.tcf .filters { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--cds-gap-md); background: var(--color-panel); border: 1px solid var(--color-border-line); border-left: 4px solid var(--tcf-gold); border-radius: var(--cds-radius); padding: var(--cds-pad-md) var(--cds-pad-lg); }
+.tcf .filters label { display: flex; flex-direction: column; gap: 4px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); text-transform: uppercase; letter-spacing: .04em; font-weight: var(--cds-font-weight-medium); flex: 1 1 140px; max-width: 220px; }
+.tcf .filters select { font: inherit; font-size: 16px; text-transform: none; letter-spacing: 0; color: var(--color-fg); background: #fff; border: 1px solid var(--color-border-line); border-radius: 8px; padding: 8px 10px; min-height: 40px; }
+.tcf .filters select:focus-visible, .tcf .filters button:focus-visible { outline: 2px solid var(--tcf-gold); outline-offset: 2px; }
+.tcf .filters button { font: inherit; font-size: 14px; background: var(--tcf-green); color: #fff; border: 0; border-radius: 8px; padding: 9px 14px; min-height: 40px; cursor: pointer; }
+.tcf .filters .fnote { flex-basis: 100%; margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.tcf .filters .fnote:empty { display: none; }
 [data-dash-source-state=refreshing] { opacity: .5; }
 </style>
 <div class="tcf">
@@ -186,6 +193,12 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
     <button role="tab" data-tab="pk" aria-selected="false">Pakistan</button>
     <button role="tab" data-tab="budget" aria-selected="false">Budget</button>
   </nav>
+  <div class="filters" role="group" aria-label="Filters">
+    <label>Platform<select id="tcf-f-platform"><option>All</option><option>Bing</option><option>Reddit</option><option>TikTok</option><option>LinkedIn</option><option>X</option></select></label>
+    <label>Country<select id="tcf-f-geo"><option value="All">All</option><option value="US">US</option><option value="CA">Canada</option><option value="UK">UK</option><option value="PK">Pakistan</option></select></label>
+    <button type="button" id="tcf-f-reset">Reset</button>
+    <p class="fnote" id="tcf-filter-note" aria-live="polite"></p>
+  </div>
   <section class="page" id="overview">
   <div class="tiles" id="tiles">
     <div class="tile"><span class="lbl">Total spend (USD)</span><span class="num" data-draw="k_spend" data-source="totals" data-field="spend_usd" data-row="0">—</span><span class="sub">Nov 1 to today</span></div>
@@ -387,6 +400,84 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
     </ul>
   </details>
 </div>
+<script>
+(function () {
+  if (!window.dash || window.__tcfFilters) return; window.__tcfFilters = true;
+  const KEY = 'tcf_filters_v1';
+  let F = {platform: 'All', geo: 'All'};
+  try { const v = JSON.parse(localStorage.getItem(KEY) || 'null'); if (v && v.platform && v.geo) F = v; } catch (e) {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(F)); } catch (e) {} };
+  const origData = dash.data.bind(dash), origDraw = dash.draw.bind(dash), drawFns = new Map();
+  dash.draw = (name, fn) => { drawFns.set(name, fn); return origDraw(name, fn); };
+  const pMatch = (p) => F.platform === 'All' || String(p || '').indexOf(F.platform) === 0;
+  const gMatch = (c) => F.geo === 'All' || c === F.geo;
+  const pick = (r) => {
+    if (!r.by_platform || F.platform === 'All') return r;
+    const b = r.by_platform[F.platform]; if (!b) return null;
+    const o = Object.assign({}, r, b);
+    if ('platforms' in o) o.platforms = F.platform;
+    if ('impressions' in b) o.ctr = b.impressions ? b.clicks / b.impressions : null;
+    if ('value_usd' in b) o.roas = b.spend_usd ? b.value_usd / b.spend_usd : null;
+    if ('donations' in b && 'spend_usd' in b) o.cost_per_donation_usd = b.donations ? b.spend_usd / b.donations : null;
+    return o;
+  };
+  const rows = (id) => { const s = origData(id); return s.status === 'ok' && Array.isArray(s.data) ? s.data : null; };
+  const ok = (data) => ({status: 'ok', data});
+  const filt = (data) => data.filter((r) => r && (!('country' in r) || gMatch(r.country)) && (!('platform' in r) || pMatch(r.platform))).map(pick).filter(Boolean);
+  const fSummary = () => { const d = rows('summary'); return d && filt(d); };
+  dash.data = (id) => {
+    const s = origData(id);
+    if (s.status !== 'ok' || !Array.isArray(s.data) || (F.platform === 'All' && F.geo === 'All')) return s;
+    if (id === 'totals') {
+      const d = fSummary(); if (!d) return s;
+      const spend_usd = d.reduce((a, r) => a + r.spend_usd, 0), donations = d.reduce((a, r) => a + (r.donations || 0), 0);
+      const value_usd = d.reduce((a, r) => a + (r.platform === 'LinkedIn' ? 0 : r.value_usd || 0), 0);
+      return ok([{spend_usd, donations, value_usd, roas: spend_usd ? value_usd / spend_usd : null, cost_per_donation_usd: donations ? spend_usd / donations : null, accounts: d.length}]);
+    }
+    if (id === 'by_country') {
+      const d = fSummary(); if (!d) return s;
+      return ok(['US', 'CA', 'UK', 'PK'].filter(gMatch).map((c) => {
+        const rs = d.filter((r) => r.country === c);
+        const spend_usd = rs.reduce((a, r) => a + r.spend_usd, 0), donations = rs.reduce((a, r) => a + (r.donations || 0), 0);
+        const value_usd = rs.reduce((a, r) => a + (r.platform === 'LinkedIn' ? 0 : r.value_usd || 0), 0);
+        return {country: c, spend_usd, donations, value_usd, roas: spend_usd ? value_usd / spend_usd : null, cost_per_donation_usd: donations ? spend_usd / donations : null};
+      }));
+    }
+    if (id === 'budget_country' || id === 'budget_total') {
+      const b = rows('budget'); if (!b) return s; const d = filt(b); if (!d.length) return ok([]);
+      const agg = (rs) => { const plan_usd = rs.reduce((a, r) => a + r.plan_usd, 0), spent_usd = rs.reduce((a, r) => a + (r.spent_usd || 0), 0), expected_usd = rs.reduce((a, r) => a + r.expected_usd, 0), days_left = rs[0].days_left, remaining_usd = plan_usd - spent_usd;
+        return {plan_usd, spent_usd, expected_usd, pace: expected_usd ? spent_usd / expected_usd : null, remaining_usd, days_left, daily_needed_usd: days_left > 0 ? remaining_usd / days_left : null, pct_spent: plan_usd ? spent_usd / plan_usd : null, pct_time: (61 - days_left) / 61}; };
+      if (id === 'budget_total') return ok([agg(d)]);
+      return ok(['US', 'CA', 'UK', 'PK'].map((c) => { const rs = d.filter((r) => r.country === c); return rs.length ? Object.assign({country: c}, agg(rs)) : null; }).filter(Boolean));
+    }
+    return ok(filt(s.data));
+  };
+  const redraw = () => document.querySelectorAll('[data-draw]').forEach((el) => {
+    if (el.closest('[hidden]')) return; const fn = drawFns.get(el.getAttribute('data-draw')); if (fn) { try { fn(el); } catch (e) { console.warn(e); } } });
+  const applyGeo = () => {
+    const tabs = document.querySelectorAll('.tcf nav.tabs button[data-tab]');
+    let selHidden = false;
+    tabs.forEach((b) => { const t = b.getAttribute('data-tab'); const geo = t.length === 2 ? t.toUpperCase() : null;
+      const hide = !!geo && F.geo !== 'All' && geo !== F.geo; b.hidden = hide; if (hide && b.getAttribute('aria-selected') === 'true') selHidden = true; });
+    if (selHidden) { const t = document.querySelector('.tcf nav.tabs button[data-tab="' + F.geo.toLowerCase() + '"]'); if (t) t.click(); }
+    const n = document.getElementById('tcf-filter-note');
+    if (n) n.textContent = (F.platform === 'All' && F.geo === 'All') ? '' : 'Showing ' + (F.platform === 'All' ? 'all platforms' : F.platform) + ' · ' + (F.geo === 'All' ? 'all countries' : F.geo) + '. Bing and LinkedIn have no creative-level rows (shown by ad group).';
+  };
+  const init = () => {
+    const ps = document.getElementById('tcf-f-platform'), gs = document.getElementById('tcf-f-geo');
+    if (!ps || !gs) return;
+    ps.value = F.platform; gs.value = F.geo;
+    const on = () => { F = {platform: ps.value, geo: gs.value}; save(); applyGeo(); redraw(); };
+    ps.addEventListener('change', on); gs.addEventListener('change', on);
+    const r = document.getElementById('tcf-f-reset'); if (r) r.addEventListener('click', () => { ps.value = 'All'; gs.value = 'All'; on(); });
+    document.querySelectorAll('.tcf nav.tabs button[data-tab]').forEach((b) => b.addEventListener('click', () => setTimeout(redraw, 0)));
+    applyGeo(); setTimeout(redraw, 0);
+    if (dash.onData) { try { dash.onData(() => setTimeout(redraw, 0)); } catch (e) {} }
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+  setTimeout(redraw, 1500); setTimeout(redraw, 4000);
+})();
+</script>
 <script>
 (function () {
   const d = new Date().toISOString().slice(0, 10);
@@ -832,11 +923,11 @@ dash.calc('daily_us', {
   inputs: ["bing_us_daily", "reddit_us_daily", "tiktok_us_daily", "li_us_daily"],
   fn: (bing_us_daily, reddit_us_daily, tiktok_us_daily, li_us_daily) => {
     const X = 1.3766, m = new Map();
-    const add = (date, spend, don) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0}; r.spend_usd += spend; r.donations += don; m.set(date, r); };
-    bing_us_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
-    reddit_us_daily.forEach((r) => add(r.date, r.spend * 1, r.donations));
-    tiktok_us_daily.forEach((r) => add(r.date, r.spend * 1, r.donations));
-    li_us_daily.forEach((r) => add(r.date, r.spend * 1, 0));
+    const add = (date, spend, don, p) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0, by_platform: {}}; r.spend_usd += spend; r.donations += don; const b = r.by_platform[p] || (r.by_platform[p] = {spend_usd: 0, donations: 0}); b.spend_usd += spend; b.donations += don; m.set(date, r); };
+    bing_us_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Bing'));
+    reddit_us_daily.forEach((r) => add(r.date, r.spend * 1, r.donations, 'Reddit'));
+    tiktok_us_daily.forEach((r) => add(r.date, r.spend * 1, r.donations, 'TikTok'));
+    li_us_daily.forEach((r) => add(r.date, r.spend * 1, 0, 'LinkedIn'));
     return [...m.values()].sort((a, b) => a.date < b.date ? -1 : 1);
   }
 });
@@ -849,9 +940,9 @@ dash.calc('creative_us', {
     const X = 1.3766, m = new Map();
     const add = (name, platform, spend, clicks, impressions, donations, value) => {
       if (!spend) return; const key = String(name || '').trim();
-      const r = m.get(key) || {key, ad: key, platforms: [], spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0};
+      const r = m.get(key) || {key, ad: key, platforms: [], by_platform: {}, spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0};
       if (!r.platforms.includes(platform)) r.platforms.push(platform);
-      r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; m.set(key, r); };
+      r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; const b = r.by_platform[platform] || (r.by_platform[platform] = {spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0}); b.spend_usd += spend; b.clicks += clicks; b.impressions += impressions; b.donations += donations; b.value_usd += value; m.set(key, r); };
     const an = new Map(reddit_us_adnames.map((a) => [a.id, a.name])); reddit_us_ads.forEach((r) => add(an.get(r.ad_id) || r.ad_id, 'Reddit', r.spend * 1, r.clicks, r.impressions, r.donations, r.value * 1));
     tiktok_us_ads.forEach((r) => add(r.ad_name, 'TikTok', r.spend, r.clicks, r.impressions, r.donations, r.value));
     return [...m.values()].map((r) => ({...r, platforms: r.platforms.join(' + '), ctr: r.impressions ? r.clicks / r.impressions : null,
@@ -887,11 +978,11 @@ dash.calc('daily_ca', {
   inputs: ["bing_ca_daily", "reddit_ca_daily", "li_ca_daily", "tiktok_ca_daily"],
   fn: (bing_ca_daily, reddit_ca_daily, li_ca_daily, tiktok_ca_daily) => {
     const X = 1.3766, m = new Map();
-    const add = (date, spend, don) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0}; r.spend_usd += spend; r.donations += don; m.set(date, r); };
-    bing_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
-    reddit_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
-    li_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, 0));
-    tiktok_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
+    const add = (date, spend, don, p) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0, by_platform: {}}; r.spend_usd += spend; r.donations += don; const b = r.by_platform[p] || (r.by_platform[p] = {spend_usd: 0, donations: 0}); b.spend_usd += spend; b.donations += don; m.set(date, r); };
+    bing_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Bing'));
+    reddit_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Reddit'));
+    li_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, 0, 'LinkedIn'));
+    tiktok_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'TikTok'));
     return [...m.values()].sort((a, b) => a.date < b.date ? -1 : 1);
   }
 });
@@ -904,9 +995,9 @@ dash.calc('creative_ca', {
     const X = 1.3766, m = new Map();
     const add = (name, platform, spend, clicks, impressions, donations, value) => {
       if (!spend) return; const key = String(name || '').trim();
-      const r = m.get(key) || {key, ad: key, platforms: [], spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0};
+      const r = m.get(key) || {key, ad: key, platforms: [], by_platform: {}, spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0};
       if (!r.platforms.includes(platform)) r.platforms.push(platform);
-      r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; m.set(key, r); };
+      r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; const b = r.by_platform[platform] || (r.by_platform[platform] = {spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0}); b.spend_usd += spend; b.clicks += clicks; b.impressions += impressions; b.donations += donations; b.value_usd += value; m.set(key, r); };
     const an = new Map(reddit_ca_adnames.map((a) => [a.id, a.name])); reddit_ca_ads.forEach((r) => add(an.get(r.ad_id) || r.ad_id, 'Reddit', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
     tiktok_ca_ads.forEach((r) => add(r.ad_name, 'TikTok', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
     return [...m.values()].map((r) => ({...r, platforms: r.platforms.join(' + '), ctr: r.impressions ? r.clicks / r.impressions : null,
@@ -942,11 +1033,11 @@ dash.calc('daily_uk', {
   inputs: ["bing_uk_daily", "reddit_uk_daily", "li_uk_daily", "tiktok_uk_daily"],
   fn: (bing_uk_daily, reddit_uk_daily, li_uk_daily, tiktok_uk_daily) => {
     const X = 1.3766, m = new Map();
-    const add = (date, spend, don) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0}; r.spend_usd += spend; r.donations += don; m.set(date, r); };
-    bing_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
-    reddit_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
-    li_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, 0));
-    tiktok_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
+    const add = (date, spend, don, p) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0, by_platform: {}}; r.spend_usd += spend; r.donations += don; const b = r.by_platform[p] || (r.by_platform[p] = {spend_usd: 0, donations: 0}); b.spend_usd += spend; b.donations += don; m.set(date, r); };
+    bing_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Bing'));
+    reddit_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Reddit'));
+    li_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, 0, 'LinkedIn'));
+    tiktok_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'TikTok'));
     return [...m.values()].sort((a, b) => a.date < b.date ? -1 : 1);
   }
 });
@@ -959,9 +1050,9 @@ dash.calc('creative_uk', {
     const X = 1.3766, m = new Map();
     const add = (name, platform, spend, clicks, impressions, donations, value) => {
       if (!spend) return; const key = String(name || '').trim();
-      const r = m.get(key) || {key, ad: key, platforms: [], spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0};
+      const r = m.get(key) || {key, ad: key, platforms: [], by_platform: {}, spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0};
       if (!r.platforms.includes(platform)) r.platforms.push(platform);
-      r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; m.set(key, r); };
+      r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; const b = r.by_platform[platform] || (r.by_platform[platform] = {spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0}); b.spend_usd += spend; b.clicks += clicks; b.impressions += impressions; b.donations += donations; b.value_usd += value; m.set(key, r); };
     const an = new Map(reddit_uk_adnames.map((a) => [a.id, a.name])); reddit_uk_ads.forEach((r) => add(an.get(r.ad_id) || r.ad_id, 'Reddit', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
     tiktok_uk_ads.forEach((r) => add(r.ad_name, 'TikTok', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
     return [...m.values()].map((r) => ({...r, platforms: r.platforms.join(' + '), ctr: r.impressions ? r.clicks / r.impressions : null,
@@ -996,10 +1087,10 @@ dash.calc('daily_pk', {
   inputs: ["bing_pk_daily", "reddit_pk_daily", "tiktok_pk_daily"],
   fn: (bing_pk_daily, reddit_pk_daily, tiktok_pk_daily) => {
     const X = 1.3766, m = new Map();
-    const add = (date, spend, don) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0}; r.spend_usd += spend; r.donations += don; m.set(date, r); };
-    bing_pk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
-    reddit_pk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
-    tiktok_pk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
+    const add = (date, spend, don, p) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0, by_platform: {}}; r.spend_usd += spend; r.donations += don; const b = r.by_platform[p] || (r.by_platform[p] = {spend_usd: 0, donations: 0}); b.spend_usd += spend; b.donations += don; m.set(date, r); };
+    bing_pk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Bing'));
+    reddit_pk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Reddit'));
+    tiktok_pk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'TikTok'));
     return [...m.values()].sort((a, b) => a.date < b.date ? -1 : 1);
   }
 });
@@ -1012,9 +1103,9 @@ dash.calc('creative_pk', {
     const X = 1.3766, m = new Map();
     const add = (name, platform, spend, clicks, impressions, donations, value) => {
       if (!spend) return; const key = String(name || '').trim();
-      const r = m.get(key) || {key, ad: key, platforms: [], spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0};
+      const r = m.get(key) || {key, ad: key, platforms: [], by_platform: {}, spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0};
       if (!r.platforms.includes(platform)) r.platforms.push(platform);
-      r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; m.set(key, r); };
+      r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; const b = r.by_platform[platform] || (r.by_platform[platform] = {spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0}); b.spend_usd += spend; b.clicks += clicks; b.impressions += impressions; b.donations += donations; b.value_usd += value; m.set(key, r); };
     const an = new Map(reddit_pk_adnames.map((a) => [a.id, a.name])); reddit_pk_ads.forEach((r) => add(an.get(r.ad_id) || r.ad_id, 'Reddit', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
     tiktok_pk_ads.forEach((r) => add(r.ad_name, 'TikTok', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
     return [...m.values()].map((r) => ({...r, platforms: r.platforms.join(' + '), ctr: r.impressions ? r.clicks / r.impressions : null,
