@@ -174,8 +174,26 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
 .tcf .filters select { font: inherit; font-size: 16px; text-transform: none; letter-spacing: 0; color: var(--color-fg); background: #fff; border: 1px solid var(--color-border-line); border-radius: 8px; padding: 8px 10px; min-height: 40px; }
 .tcf .filters select:focus-visible, .tcf .filters button:focus-visible { outline: 2px solid var(--tcf-gold); outline-offset: 2px; }
 .tcf .filters button { font: inherit; font-size: 14px; background: var(--tcf-green); color: #fff; border: 0; border-radius: 8px; padding: 9px 14px; min-height: 40px; cursor: pointer; }
+.tcf .filters input[type=date] { font: inherit; font-size: 16px; color: var(--color-fg); background: #fff; border: 1px solid var(--color-border-line); border-radius: 8px; padding: 7px 8px; min-height: 40px; }
+.tcf .filters .custom { display: flex; gap: var(--cds-gap-md); flex: 1 1 280px; flex-wrap: wrap; }
+.tcf .filters .custom[hidden] { display: none; }
+.tcf .since-tag { display: inline-block; margin-left: 8px; padding: 2px 8px; border-radius: 999px; background: var(--color-panel); border: 1px solid var(--color-border-line); color: var(--color-fg-muted); font-size: 12px; font-weight: 500; vertical-align: 2px; }
+.tcf .since-tag[hidden] { display: none; }
 .tcf .filters .fnote { flex-basis: 100%; margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
 .tcf .filters .fnote:empty { display: none; }
+.tcf .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--cds-gap-md); }
+.tcf .kpi { background: var(--color-panel); border: 1px solid var(--color-border-line); border-top: 3px solid var(--tcf-green); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.tcf .kpi .lbl { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); text-transform: uppercase; letter-spacing: .04em; }
+.tcf .kpi .num { font-family: var(--font-anthropic-serif); font-size: 2rem; line-height: 1.15; color: var(--tcf-green); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.tcf .kpi .delta { font-size: var(--cds-font-size-caption); font-weight: var(--cds-font-weight-medium); }
+.tcf .kpi .delta.up { color: var(--color-ok); } .tcf .kpi .delta.down { color: var(--color-bad); } .tcf .kpi .delta.flat { color: var(--color-fg-muted); font-weight: 400; }
+.tcf table.lb td { vertical-align: middle; }
+.tcf table.lb td.rank { font-family: var(--font-anthropic-serif); color: var(--color-fg-muted); width: 2em; }
+.tcf table.lb tr.top td { background: #fff8e6; }
+.tcf table.lb tr.top td.rank { color: var(--tcf-gold); font-weight: 700; box-shadow: inset 4px 0 0 var(--tcf-gold); }
+.tcf table.lb td.adname { white-space: normal; min-width: 180px; max-width: 320px; }
+.tcf table.lb .plats { display: block; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.tcf .badge { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 6px; background: var(--tcf-green); color: #fff; font-weight: 700; font-size: 13px; }
 [data-dash-source-state=refreshing] { opacity: .5; }
 </style>
 <div class="tcf">
@@ -191,24 +209,27 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
     <button role="tab" data-tab="ca" aria-selected="false">Canada</button>
     <button role="tab" data-tab="uk" aria-selected="false">United Kingdom</button>
     <button role="tab" data-tab="pk" aria-selected="false">Pakistan</button>
+    <button role="tab" data-tab="cag" aria-selected="false">Creatives &amp; ad groups</button>
     <button role="tab" data-tab="budget" aria-selected="false">Budget</button>
   </nav>
   <div class="filters" role="group" aria-label="Filters">
-    <label>Platform<select id="tcf-f-platform"><option>All</option><option>Bing</option><option>Reddit</option><option>TikTok</option><option>LinkedIn</option><option>X</option></select></label>
-    <label>Country<select id="tcf-f-geo"><option value="All">All</option><option value="US">US</option><option value="CA">Canada</option><option value="UK">UK</option><option value="PK">Pakistan</option></select></label>
+    <label hidden>Platform<select id="tcf-f-platform"><option>All</option><option>Bing</option><option>Reddit</option><option>TikTok</option><option>LinkedIn</option><option>X</option></select></label>
+    <label hidden>Country<select id="tcf-f-geo"><option value="All">All</option><option value="US">US</option><option value="CA">Canada</option><option value="UK">UK</option><option value="PK">Pakistan</option></select></label>
+    <label>Date range<select id="tcf-f-range"><option value="7">Last 7 days</option><option value="14">Last 14 days</option><option value="mtd">Month to date</option><option value="all" selected>Since Nov 1</option><option value="custom">Custom</option></select></label>
+    <span class="custom" id="tcf-f-custom" hidden><label>From<input type="date" id="tcf-f-start"></label><label>To<input type="date" id="tcf-f-end"></label></span>
     <button type="button" id="tcf-f-reset">Reset</button>
     <p class="fnote" id="tcf-filter-note" aria-live="polite"></p>
   </div>
   <section class="page" id="overview">
-  <div class="tiles" id="tiles">
-    <div class="tile"><span class="lbl">Total spend (USD)</span><span class="num" data-draw="k_spend" data-source="totals" data-field="spend_usd" data-row="0">—</span><span class="sub">Nov 1 to today</span></div>
-    <div class="tile"><span class="lbl">Tracked donations</span><span class="num" data-draw="k_don" data-source="totals" data-field="donations" data-row="0">—</span><span class="sub">Click + view-through, LinkedIn excluded</span></div>
-    <div class="tile"><span class="lbl">ROAS</span><span class="num" data-draw="k_roas" data-source="totals" data-field="roas" data-row="0">—</span><span class="sub">Donation value ÷ spend</span></div>
-    <div class="tile"><span class="lbl">Cost per donation</span><span class="num" data-draw="k_cpd" data-source="totals" data-field="cost_per_donation_usd" data-row="0">—</span><span class="sub">Spend ÷ donations</span></div>
-  </div>
+  <div class="kpis" id="tiles" data-draw="kpi_strip" aria-label="Key numbers"></div>
+  <section class="sec" id="overview-trend">
+    <h2>Spend and donations by day</h2>
+    <div class="legend"><span><i style="background:var(--tcf-green)"></i>Spend (USD)</span><span><i style="background:var(--tcf-gold);height:3px;vertical-align:3px"></i>Donations</span><span><i style="background:none;border-left:2px dashed var(--tcf-gold);border-radius:0;width:0"></i>Giving Tuesday · Dec 31</span></div>
+    <div class="chart" data-draw="chart_all" data-source="daily_us"></div>
+  </section>
 
   <section class="sec" id="by-country">
-    <h2>By country</h2>
+    <h2>By country<span class="since-tag" hidden>Since Nov 1</span></h2>
     <div class="wrap">
       <table data-source="by_country" data-row-key="country">
         <thead><tr><th data-field="country">Country</th><th data-field="spend_usd">Spend (USD)</th><th data-field="donations">Donations</th><th data-field="value_usd">Donation value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
@@ -218,7 +239,7 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
   </section>
 
   <section class="sec" id="by-platform">
-    <h2>By country and platform</h2>
+    <h2>By country and platform<span class="since-tag" hidden>Since Nov 1</span></h2>
     <p class="note">Spend is shown in each account's own currency and in USD (1 USD = 1.3766 CAD). LinkedIn reports donations together with other website actions, so its count is shown separately. X spend is estimated from its daily budget (US $20/day from Nov 12, Canada CA$15/day from Nov 7, PK $8/day from Nov 7).</p>
     <div class="wrap">
       <table data-source="summary" data-row-key="key">
@@ -243,19 +264,19 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
       <div class="chart" data-draw="chart_us" data-source="daily_us"></div>
     </div>
     <div class="sec" id="us-platforms">
-      <h2>By platform</h2>
+      <h2>By platform<span class="since-tag" hidden>Since Nov 1</span></h2>
       <div class="wrap"><table data-source="summary" data-row-key="key">
         <thead><tr><th data-field="platform">Platform</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
         <tbody data-draw="plat_us"></tbody></table></div>
     </div>
     <div class="sec" id="us-groups">
-      <h2>Campaigns and ad groups</h2>
+      <h2>Campaigns and ad groups<span class="since-tag" hidden>Since Nov 1</span></h2>
       <div class="wrap"><table data-source="groups_us" data-row-key="key">
         <thead><tr><th data-field="platform">Platform</th><th data-field="group" class="l">Ad group</th><th data-field="campaign" class="l">Campaign</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
         <tbody data-draw="groups_us"></tbody></table></div>
     </div>
     <div class="sec" id="us-creative">
-      <h2>Creative</h2>
+      <h2>Creative<span class="since-tag" hidden>Since Nov 1</span></h2>
       <p class="note">Reddit and TikTok ads with the same name are added together; the preview is the square version of each ad. Bing search ads are listed by ad group and first headline. LinkedIn donations are not counted.</p>
       <div class="wrap"><table data-source="creative_us" data-row-key="key">
         <thead><tr><th class="l">Preview</th><th data-field="ad">Ad</th><th data-field="platforms" class="l">Platforms</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="ctr">CTR</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
@@ -276,19 +297,19 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
       <div class="chart" data-draw="chart_ca" data-source="daily_ca"></div>
     </div>
     <div class="sec" id="ca-platforms">
-      <h2>By platform</h2>
+      <h2>By platform<span class="since-tag" hidden>Since Nov 1</span></h2>
       <div class="wrap"><table data-source="summary" data-row-key="key">
         <thead><tr><th data-field="platform">Platform</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
         <tbody data-draw="plat_ca"></tbody></table></div>
     </div>
     <div class="sec" id="ca-groups">
-      <h2>Campaigns and ad groups</h2>
+      <h2>Campaigns and ad groups<span class="since-tag" hidden>Since Nov 1</span></h2>
       <div class="wrap"><table data-source="groups_ca" data-row-key="key">
         <thead><tr><th data-field="platform">Platform</th><th data-field="group" class="l">Ad group</th><th data-field="campaign" class="l">Campaign</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
         <tbody data-draw="groups_ca"></tbody></table></div>
     </div>
     <div class="sec" id="ca-creative">
-      <h2>Creative</h2>
+      <h2>Creative<span class="since-tag" hidden>Since Nov 1</span></h2>
       <p class="note">Reddit ads with the same name are added together; the preview is the square version of each ad. Bing search ads are listed by ad group and first headline. LinkedIn donations are not counted.</p>
       <div class="wrap"><table data-source="creative_ca" data-row-key="key">
         <thead><tr><th class="l">Preview</th><th data-field="ad">Ad</th><th data-field="platforms" class="l">Platforms</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="ctr">CTR</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
@@ -309,19 +330,19 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
       <div class="chart" data-draw="chart_uk" data-source="daily_uk"></div>
     </div>
     <div class="sec" id="uk-platforms">
-      <h2>By platform</h2>
+      <h2>By platform<span class="since-tag" hidden>Since Nov 1</span></h2>
       <div class="wrap"><table data-source="summary" data-row-key="key">
         <thead><tr><th data-field="platform">Platform</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
         <tbody data-draw="plat_uk"></tbody></table></div>
     </div>
     <div class="sec" id="uk-groups">
-      <h2>Campaigns and ad groups</h2>
+      <h2>Campaigns and ad groups<span class="since-tag" hidden>Since Nov 1</span></h2>
       <div class="wrap"><table data-source="groups_uk" data-row-key="key">
         <thead><tr><th data-field="platform">Platform</th><th data-field="group" class="l">Ad group</th><th data-field="campaign" class="l">Campaign</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
         <tbody data-draw="groups_uk"></tbody></table></div>
     </div>
     <div class="sec" id="uk-creative">
-      <h2>Creative</h2>
+      <h2>Creative<span class="since-tag" hidden>Since Nov 1</span></h2>
       <p class="note">Reddit ads with the same name are added together; the preview is the square version of each ad. Bing search ads are listed by ad group and first headline. LinkedIn donations are not counted.</p>
       <div class="wrap"><table data-source="creative_uk" data-row-key="key">
         <thead><tr><th class="l">Preview</th><th data-field="ad">Ad</th><th data-field="platforms" class="l">Platforms</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="ctr">CTR</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
@@ -342,19 +363,19 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
       <div class="chart" data-draw="chart_pk" data-source="daily_pk"></div>
     </div>
     <div class="sec" id="pk-platforms">
-      <h2>By platform</h2>
+      <h2>By platform<span class="since-tag" hidden>Since Nov 1</span></h2>
       <div class="wrap"><table data-source="summary" data-row-key="key">
         <thead><tr><th data-field="platform">Platform</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
         <tbody data-draw="plat_pk"></tbody></table></div>
     </div>
     <div class="sec" id="pk-groups">
-      <h2>Campaigns and ad groups</h2>
+      <h2>Campaigns and ad groups<span class="since-tag" hidden>Since Nov 1</span></h2>
       <div class="wrap"><table data-source="groups_pk" data-row-key="key">
         <thead><tr><th data-field="platform">Platform</th><th data-field="group" class="l">Ad group</th><th data-field="campaign" class="l">Campaign</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
         <tbody data-draw="groups_pk"></tbody></table></div>
     </div>
     <div class="sec" id="pk-creative">
-      <h2>Creative</h2>
+      <h2>Creative<span class="since-tag" hidden>Since Nov 1</span></h2>
       <p class="note">Reddit ads with the same name are added together; the preview is the square version of each ad. Search ads are shown by ad group above.</p>
       <div class="wrap"><table data-source="creative_pk" data-row-key="key">
         <thead><tr><th class="l">Preview</th><th data-field="ad">Ad</th><th data-field="platforms" class="l">Platforms</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="ctr">CTR</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
@@ -362,6 +383,23 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
     </div>
   </section>
 
+  <section class="page" id="cag" hidden>
+    <section class="sec" id="cag-creative">
+      <h2>Creative leaderboard<span class="since-tag" hidden>Since Nov 1</span></h2>
+      <div class="filters" role="group" aria-label="Creative filters"><label>Platform<select id="lb-platform"><option>All</option><option>Bing</option><option>Reddit</option><option>TikTok</option><option>LinkedIn</option></select></label><label>Country<select id="lb-geo"><option value="All">All</option><option value="US">US</option><option value="CA">Canada</option><option value="UK">UK</option><option value="PK">Pakistan</option></select></label></div>
+      <p class="note">Top 15 ads by donations, same ad names added together across countries. Top 3 highlighted. Bing search ads are named by ad group and first headline. LinkedIn donations are not counted.</p>
+      <div class="wrap"><table class="lb" data-source="creative_us" data-row-key="ad">
+        <thead><tr><th class="l">#</th><th class="l">Ad</th><th class="l"></th><th>Spend (USD)</th><th>CPC</th><th>Donations</th><th>Value (USD)</th></tr></thead>
+        <tbody data-draw="leaderboard" id="lb-body"></tbody></table></div>
+    </section>
+    <section class="sec" id="cag-groups">
+      <h2>Campaigns and ad groups<span class="since-tag" hidden>Since Nov 1</span></h2>
+      <div class="filters" role="group" aria-label="Ad group filters"><label>Platform<select id="ag-platform"><option>All</option><option>Bing</option><option>Reddit</option><option>TikTok</option><option>LinkedIn</option></select></label><label>Country<select id="ag-geo"><option value="All">All</option><option value="US">US</option><option value="CA">Canada</option><option value="UK">UK</option><option value="PK">Pakistan</option></select></label></div>
+      <div class="wrap"><table data-source="groups_us" data-row-key="key">
+        <thead><tr><th class="l">Country</th><th class="l">Platform</th><th class="l">Ad group</th><th class="l">Campaign</th><th>Spend (USD)</th><th>Clicks</th><th>Donations</th><th>Value (USD)</th><th>ROAS</th><th>Cost / donation</th></tr></thead>
+        <tbody data-draw="ag_all" id="ag-body"></tbody></table></div>
+    </section>
+  </section>
   <section class="page" id="budget" hidden>
     <p class="lede" style="color:var(--color-fg-muted);margin:0">Plan: $38,000 from Nov 1 to Dec 31 (the master campaign plan scaled by 0.95). Pace compares spend with an even daily split of each line's budget.</p>
     <div class="tiles">
@@ -376,13 +414,13 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
       <div class="chart" data-draw="b_chart" data-source="budget_country"></div>
     </div>
     <div class="sec" id="budget-country">
-      <h2>By country</h2>
+      <h2>By country<span class="since-tag" hidden>Since Nov 1</span></h2>
       <div class="wrap"><table data-source="budget_country" data-row-key="country">
         <thead><tr><th data-field="country">Country</th><th data-field="plan_usd">Budget</th><th data-field="spent_usd">Spent</th><th data-field="expected_usd">Should be at</th><th data-field="pace">Pace</th><th data-field="remaining_usd">Left</th><th data-field="daily_needed_usd">Per day needed</th></tr></thead>
         <tbody data-draw="b_country"></tbody></table></div>
     </div>
     <div class="sec" id="budget-lines">
-      <h2>By country and platform</h2>
+      <h2>By country and platform<span class="since-tag" hidden>Since Nov 1</span></h2>
       <p class="note">X isn't connected here, so X US and PK spend is estimated from their daily budgets since launch (US $20/day from Nov 12, Canada CA$15/day from Nov 7, PK $8/day from Nov 7) and marked est. X UK and TikTok Canada, UK and Pakistan haven't launched.</p>
       <div class="wrap"><table data-source="budget" data-row-key="key">
         <thead><tr><th data-field="country">Country</th><th data-field="platform" class="l">Platform</th><th data-field="plan_usd">Budget</th><th data-field="spent_usd">Spent</th><th data-field="expected_usd">Should be at</th><th data-field="pace">Pace</th><th data-field="remaining_usd">Left</th><th data-field="daily_needed_usd">Per day needed</th></tr></thead>
@@ -404,9 +442,19 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
 (function () {
   if (!window.dash || window.__tcfFilters) return; window.__tcfFilters = true;
   const KEY = 'tcf_filters_v1';
-  let F = {platform: 'All', geo: 'All'};
-  try { const v = JSON.parse(localStorage.getItem(KEY) || 'null'); if (v && v.platform && v.geo) F = v; } catch (e) {}
-  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(F)); } catch (e) {} };
+  let F = {platform: 'All', geo: 'All'}; let R = {preset: 'all', start: '', end: ''};
+  try { const v = JSON.parse(localStorage.getItem(KEY) || 'null'); if (v && v.range && v.range.preset) R = v.range; } catch (e) {}
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(Object.assign({}, F, {range: R}))); } catch (e) {} };
+  const iso = (t) => new Date(t).toISOString().slice(0, 10), DAY = 864e5, START = '2026-11-01';
+  const dataEnd = () => { const p = dash.params && dash.params() || {}; return p.end || iso(Date.now()); };
+  const range = () => { const end = dataEnd(), e = Date.parse(end + 'T00:00:00Z'); let s = START, en = end, label = 'Since Nov 1';
+    if (R.preset === '7') { s = iso(e - 6 * DAY); label = 'Last 7 days'; } else if (R.preset === '14') { s = iso(e - 13 * DAY); label = 'Last 14 days'; }
+    else if (R.preset === 'mtd') { s = end.slice(0, 8) + '01'; label = 'Month to date'; }
+    else if (R.preset === 'custom') { s = R.start || START; en = R.end || end; label = s + ' to ' + en; }
+    if (s < START) s = START; if (en > end) en = end; if (en < s) en = s;
+    const days = Math.round((Date.parse(en + 'T00:00:00Z') - Date.parse(s + 'T00:00:00Z')) / DAY) + 1;
+    return {start: s, end: en, label, days, isAll: s === START && en === end}; };
+  window.__tcfRange = range;
   const origData = dash.data.bind(dash), origDraw = dash.draw.bind(dash), drawFns = new Map();
   dash.draw = (name, fn) => { drawFns.set(name, fn); return origDraw(name, fn); };
   const pMatch = (p) => F.platform === 'All' || String(p || '').indexOf(F.platform) === 0;
@@ -424,10 +472,16 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
   const rows = (id) => { const s = origData(id); return s.status === 'ok' && Array.isArray(s.data) ? s.data : null; };
   const ok = (data) => ({status: 'ok', data});
   const filt = (data) => data.filter((r) => r && (!('country' in r) || gMatch(r.country)) && (!('platform' in r) || pMatch(r.platform))).map(pick).filter(Boolean);
+  const rangeBudget = (b) => { const rg = range(); if (rg.isAll) return b;
+    const sp = {}; ['us', 'ca', 'uk', 'pk'].forEach((k) => { const s = origData('daily_' + k); if (s.status !== 'ok') return;
+      (s.data || []).forEach((r) => { if (r.date < rg.start || r.date > rg.end) return; Object.entries(r.by_platform || {}).forEach(([p, v]) => { const key = k.toUpperCase() + '|' + p; sp[key] = (sp[key] || 0) + (v.spend_usd || 0); }); }); });
+    return b.map((r) => { if (r.estimated) { const o = Object.assign({}, r); o.expected_usd = r.plan_usd * rg.days / 61; o.spent_usd = r.spent_usd == null ? null : r.spent_usd * rg.days / Math.max(1, 61 - r.days_left); o.pace = o.spent_usd == null ? null : o.spent_usd / o.expected_usd; return o; }
+      const key = r.country + '|' + r.platform, spent = sp[key] != null ? sp[key] : (r.tracked ? 0 : null), exp = r.plan_usd * rg.days / 61;
+      return Object.assign({}, r, {spent_usd: spent, expected_usd: exp, pace: spent == null ? null : spent / exp}); }); };
   const fSummary = () => { const d = rows('summary'); return d && filt(d); };
   dash.data = (id) => {
     const s = origData(id);
-    if (s.status !== 'ok' || !Array.isArray(s.data) || (F.platform === 'All' && F.geo === 'All')) return s;
+    if (s.status !== 'ok' || !Array.isArray(s.data) || (F.platform === 'All' && F.geo === 'All' && (range().isAll || !/^budget/.test(id)))) return s;
     if (id === 'totals') {
       const d = fSummary(); if (!d) return s;
       const spend_usd = d.reduce((a, r) => a + r.spend_usd, 0), donations = d.reduce((a, r) => a + (r.donations || 0), 0);
@@ -444,12 +498,13 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
       }));
     }
     if (id === 'budget_country' || id === 'budget_total') {
-      const b = rows('budget'); if (!b) return s; const d = filt(b); if (!d.length) return ok([]);
+      const b = rows('budget'); if (!b) return s; const d = filt(rangeBudget(b)); if (!d.length) return ok([]);
       const agg = (rs) => { const plan_usd = rs.reduce((a, r) => a + r.plan_usd, 0), spent_usd = rs.reduce((a, r) => a + (r.spent_usd || 0), 0), expected_usd = rs.reduce((a, r) => a + r.expected_usd, 0), days_left = rs[0].days_left, remaining_usd = plan_usd - spent_usd;
         return {plan_usd, spent_usd, expected_usd, pace: expected_usd ? spent_usd / expected_usd : null, remaining_usd, days_left, daily_needed_usd: days_left > 0 ? remaining_usd / days_left : null, pct_spent: plan_usd ? spent_usd / plan_usd : null, pct_time: (61 - days_left) / 61}; };
       if (id === 'budget_total') return ok([agg(d)]);
       return ok(['US', 'CA', 'UK', 'PK'].map((c) => { const rs = d.filter((r) => r.country === c); return rs.length ? Object.assign({country: c}, agg(rs)) : null; }).filter(Boolean));
     }
+    if (id === 'budget') return ok(filt(rangeBudget(s.data)));
     return ok(filt(s.data));
   };
   const redraw = () => document.querySelectorAll('[data-draw]').forEach((el) => {
@@ -461,15 +516,21 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
       const hide = !!geo && F.geo !== 'All' && geo !== F.geo; b.hidden = hide; if (hide && b.getAttribute('aria-selected') === 'true') selHidden = true; });
     if (selHidden) { const t = document.querySelector('.tcf nav.tabs button[data-tab="' + F.geo.toLowerCase() + '"]'); if (t) t.click(); }
     const n = document.getElementById('tcf-filter-note');
-    if (n) n.textContent = (F.platform === 'All' && F.geo === 'All') ? '' : 'Showing ' + (F.platform === 'All' ? 'all platforms' : F.platform) + ' · ' + (F.geo === 'All' ? 'all countries' : F.geo) + '. LinkedIn donations are not counted (its conversions are mixed).';
+    const rg = range();
+    if (n) n.textContent = rg.isAll ? '' : 'Showing ' + rg.label + ' (' + rg.start + ' to ' + rg.end + '). Headline numbers, daily charts and budget pace follow this range; tables marked "Since Nov 1" show totals since Nov 1.';
+    document.querySelectorAll('.tcf .since-tag').forEach((t) => { t.hidden = rg.isAll; });
   };
   const init = () => {
     const ps = document.getElementById('tcf-f-platform'), gs = document.getElementById('tcf-f-geo');
     if (!ps || !gs) return;
     ps.value = F.platform; gs.value = F.geo;
-    const on = () => { F = {platform: ps.value, geo: gs.value}; save(); applyGeo(); redraw(); };
+    const rs = document.getElementById('tcf-f-range'), cs = document.getElementById('tcf-f-start'), ce = document.getElementById('tcf-f-end'), cw = document.getElementById('tcf-f-custom');
+    const syncR = () => { if (!rs) return; rs.value = R.preset; if (cw) cw.hidden = R.preset !== 'custom'; const rg = range(); if (cs) { cs.min = START; cs.max = rg.end; cs.value = rg.start; } if (ce) { ce.min = START; ce.max = dataEnd(); ce.value = rg.end; } };
+    syncR();
+    const on = () => { F = {platform: ps.value, geo: gs.value}; if (rs) R = {preset: rs.value, start: cs ? cs.value : '', end: ce ? ce.value : ''}; save(); syncR(); applyGeo(); redraw(); };
+    [rs, cs, ce].forEach((e) => e && e.addEventListener('change', on));
     ps.addEventListener('change', on); gs.addEventListener('change', on);
-    const r = document.getElementById('tcf-f-reset'); if (r) r.addEventListener('click', () => { ps.value = 'All'; gs.value = 'All'; on(); });
+    const r = document.getElementById('tcf-f-reset'); if (r) r.addEventListener('click', () => { ps.value = 'All'; gs.value = 'All'; if (rs) rs.value = 'all'; on(); });
     document.querySelectorAll('.tcf nav.tabs button[data-tab]').forEach((b) => b.addEventListener('click', () => setTimeout(redraw, 0)));
     applyGeo(); setTimeout(redraw, 0);
     if (dash.onData) { try { dash.onData(() => setTimeout(redraw, 0)); } catch (e) {} }
@@ -944,11 +1005,11 @@ dash.calc('daily_us', {
   inputs: ["bing_us_daily", "reddit_us_daily", "tiktok_us_daily", "li_us_daily"],
   fn: (bing_us_daily, reddit_us_daily, tiktok_us_daily, li_us_daily) => {
     const X = 1.3766, m = new Map();
-    const add = (date, spend, don, p) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0, by_platform: {}}; r.spend_usd += spend; r.donations += don; const b = r.by_platform[p] || (r.by_platform[p] = {spend_usd: 0, donations: 0}); b.spend_usd += spend; b.donations += don; m.set(date, r); };
-    bing_us_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Bing'));
-    reddit_us_daily.forEach((r) => add(r.date, r.spend * 1, r.donations, 'Reddit'));
-    tiktok_us_daily.forEach((r) => add(r.date, r.spend * 1, r.donations, 'TikTok'));
-    li_us_daily.forEach((r) => add(r.date, r.spend * 1, 0, 'LinkedIn'));
+    const add = (date, spend, don, p, val = 0) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0, value_usd: 0, by_platform: {}}; r.spend_usd += spend; r.donations += don; r.value_usd += val; const b = r.by_platform[p] || (r.by_platform[p] = {spend_usd: 0, donations: 0, value_usd: 0}); b.spend_usd += spend; b.donations += don; b.value_usd += val; m.set(date, r); };
+    bing_us_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Bing', r.value * 1/X));
+    reddit_us_daily.forEach((r) => add(r.date, r.spend * 1, r.donations, 'Reddit', r.value * 1));
+    tiktok_us_daily.forEach((r) => add(r.date, r.spend * 1, r.donations, 'TikTok', r.value * 1));
+    li_us_daily.forEach((r) => add(r.date, r.spend * 1, 0, 'LinkedIn', 0));
     return [...m.values()].sort((a, b) => a.date < b.date ? -1 : 1);
   }
 });
@@ -1001,11 +1062,11 @@ dash.calc('daily_ca', {
   inputs: ["bing_ca_daily", "reddit_ca_daily", "li_ca_daily", "tiktok_ca_daily"],
   fn: (bing_ca_daily, reddit_ca_daily, li_ca_daily, tiktok_ca_daily) => {
     const X = 1.3766, m = new Map();
-    const add = (date, spend, don, p) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0, by_platform: {}}; r.spend_usd += spend; r.donations += don; const b = r.by_platform[p] || (r.by_platform[p] = {spend_usd: 0, donations: 0}); b.spend_usd += spend; b.donations += don; m.set(date, r); };
-    bing_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Bing'));
-    reddit_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Reddit'));
-    li_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, 0, 'LinkedIn'));
-    tiktok_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'TikTok'));
+    const add = (date, spend, don, p, val = 0) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0, value_usd: 0, by_platform: {}}; r.spend_usd += spend; r.donations += don; r.value_usd += val; const b = r.by_platform[p] || (r.by_platform[p] = {spend_usd: 0, donations: 0, value_usd: 0}); b.spend_usd += spend; b.donations += don; b.value_usd += val; m.set(date, r); };
+    bing_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Bing', r.value * 1/X));
+    reddit_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Reddit', r.value * 1/X));
+    li_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, 0, 'LinkedIn', 0));
+    tiktok_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'TikTok', r.value * 1/X));
     return [...m.values()].sort((a, b) => a.date < b.date ? -1 : 1);
   }
 });
@@ -1058,11 +1119,11 @@ dash.calc('daily_uk', {
   inputs: ["bing_uk_daily", "reddit_uk_daily", "li_uk_daily", "tiktok_uk_daily"],
   fn: (bing_uk_daily, reddit_uk_daily, li_uk_daily, tiktok_uk_daily) => {
     const X = 1.3766, m = new Map();
-    const add = (date, spend, don, p) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0, by_platform: {}}; r.spend_usd += spend; r.donations += don; const b = r.by_platform[p] || (r.by_platform[p] = {spend_usd: 0, donations: 0}); b.spend_usd += spend; b.donations += don; m.set(date, r); };
-    bing_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Bing'));
-    reddit_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Reddit'));
-    li_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, 0, 'LinkedIn'));
-    tiktok_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'TikTok'));
+    const add = (date, spend, don, p, val = 0) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0, value_usd: 0, by_platform: {}}; r.spend_usd += spend; r.donations += don; r.value_usd += val; const b = r.by_platform[p] || (r.by_platform[p] = {spend_usd: 0, donations: 0, value_usd: 0}); b.spend_usd += spend; b.donations += don; b.value_usd += val; m.set(date, r); };
+    bing_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Bing', r.value * 1/X));
+    reddit_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Reddit', r.value * 1/X));
+    li_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, 0, 'LinkedIn', 0));
+    tiktok_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'TikTok', r.value * 1/X));
     return [...m.values()].sort((a, b) => a.date < b.date ? -1 : 1);
   }
 });
@@ -1114,10 +1175,10 @@ dash.calc('daily_pk', {
   inputs: ["bing_pk_daily", "reddit_pk_daily", "tiktok_pk_daily"],
   fn: (bing_pk_daily, reddit_pk_daily, tiktok_pk_daily) => {
     const X = 1.3766, m = new Map();
-    const add = (date, spend, don, p) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0, by_platform: {}}; r.spend_usd += spend; r.donations += don; const b = r.by_platform[p] || (r.by_platform[p] = {spend_usd: 0, donations: 0}); b.spend_usd += spend; b.donations += don; m.set(date, r); };
-    bing_pk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Bing'));
-    reddit_pk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Reddit'));
-    tiktok_pk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'TikTok'));
+    const add = (date, spend, don, p, val = 0) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0, value_usd: 0, by_platform: {}}; r.spend_usd += spend; r.donations += don; r.value_usd += val; const b = r.by_platform[p] || (r.by_platform[p] = {spend_usd: 0, donations: 0, value_usd: 0}); b.spend_usd += spend; b.donations += don; b.value_usd += val; m.set(date, r); };
+    bing_pk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Bing', r.value * 1/X));
+    reddit_pk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'Reddit', r.value * 1/X));
+    tiktok_pk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations, 'TikTok', r.value * 1/X));
     return [...m.values()].sort((a, b) => a.date < b.date ? -1 : 1);
   }
 });
@@ -1348,29 +1409,128 @@ dash.calc('budget_total', {
         td(tr, int(r.donations), r.donations ? 'good' : ''); td(tr, usd2(r.value_usd)); td(tr, ((v) => v == null ? '—' : d3.format('.2f')(v) + 'x')(r.roas), r.roas >= 1 ? 'good' : ''); td(tr, usd2(r.cost_per_donation_usd)); tb.appendChild(tr);
       });
     });
-    dash.draw('chart_' + k, (el) => {
-      const s = dash.data('daily_' + k);
-      el.replaceChildren();
-      if (s.status === 'error') { const p = document.createElement('p'); p.className = 'note'; p.textContent = 'Failed to load'; el.appendChild(p); return; }
-      if (s.status !== 'ok' || !s.data || !s.data.length) return;
-      const data = s.data, W = Math.max(280, el.clientWidth), H = 240, m = {t: 16, r: 36, b: 26, l: 48};
-      const x = d3.scaleBand().domain(data.map((d) => d.date)).range([m.l, W - m.r]).padding(0.25);
-      const y = d3.scaleLinear().domain([0, d3.max(data, (d) => d.spend_usd) || 1]).nice().range([H - m.b, m.t]);
-      const y2 = d3.scaleLinear().domain([0, Math.max(3, d3.max(data, (d) => d.donations) || 0)]).nice().range([H - m.b, m.t]);
-      const svg = d3.select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%').attr('role', 'img')
-        .attr('aria-label', 'Daily spend in USD as bars and donations as dots, ' + c);
-      svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat((v) => '$' + v)).call((g) => g.select('.domain').remove()).selectAll('line').attr('stroke', 'var(--color-border-line)');
-      svg.append('g').attr('transform', `translate(${W - m.r},0)`).call(d3.axisRight(y2).ticks(3).tickFormat(d3.format('d'))).call((g) => g.select('.domain').remove()).selectAll('line').remove();
-      const every = Math.ceil(data.length / Math.max(2, Math.floor((W - m.l - m.r) / 48)));
-      svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickValues(data.map((d) => d.date).filter((_, i) => i % every === 0)).tickFormat((d) => d3.utcFormat('%b %-d')(new Date(d + 'T00:00:00Z')))).call((g) => g.select('.domain').attr('stroke', 'var(--color-border-line)')).selectAll('line').remove();
-      svg.append('g').selectAll('rect').data(data).join('rect').attr('x', (d) => x(d.date)).attr('width', x.bandwidth()).attr('y', (d) => y(d.spend_usd)).attr('height', (d) => y(0) - y(d.spend_usd)).attr('rx', 2).style('fill', 'var(--tcf-green)');
-      svg.append('g').selectAll('circle').data(data.filter((d) => d.donations > 0)).join('circle').attr('cx', (d) => x(d.date) + x.bandwidth() / 2).attr('cy', (d) => y2(d.donations)).attr('r', 5).style('fill', 'var(--tcf-gold)').style('stroke', '#fff');
-      const tip = document.createElement('div'); tip.className = 'tip'; tip.hidden = true; el.appendChild(tip);
-      svg.append('g').selectAll('rect').data(data).join('rect').attr('x', (d) => x(d.date) - x.step() * x.paddingInner() / 2).attr('width', x.step()).attr('y', m.t).attr('height', H - m.t - m.b).style('fill', 'transparent')
-        .on('pointerenter pointermove', (ev, d) => { tip.hidden = false; tip.textContent = d3.utcFormat('%b %-d')(new Date(d.date + 'T00:00:00Z')) + ' · ' + usd(d.spend_usd) + ' · ' + d.donations + ' donations';
-          const r = el.getBoundingClientRect(); const px = ev.clientX - r.left; tip.style.left = Math.min(px + 10, r.width - tip.offsetWidth - 4) + 'px'; tip.style.top = '4px'; })
-        .on('pointerleave', () => { tip.hidden = true; });
+    dash.draw('chart_' + k, (el) => dailyChart(el, dash.data('daily_' + k), c));
+  });
+  function vGeos() { const e = document.getElementById('tcf-f-geo'); const g = e ? e.value : 'All'; return g === 'All' ? ['us', 'ca', 'uk', 'pk'] : [g.toLowerCase()]; }
+  function vRange() { return window.__tcfRange ? window.__tcfRange() : {start: '2026-11-01', end: '2026-12-31', isAll: true, days: 61, label: 'Since Nov 1'}; }
+  function vDailyAll() {
+    const m = new Map(); let st = 'loading';
+    vGeos().forEach((k) => { const s = dash.data('daily_' + k); if (s.status === 'error' && st !== 'ok') st = 'error'; if (s.status !== 'ok') return; st = 'ok';
+      (s.data || []).forEach((r) => { const o = m.get(r.date) || {date: r.date, spend_usd: 0, donations: 0, value_usd: 0}; o.spend_usd += r.spend_usd || 0; o.donations += r.donations || 0; o.value_usd += r.value_usd || 0; m.set(r.date, o); }); });
+    return {status: st, data: [...m.values()].sort((a, b) => a.date < b.date ? -1 : 1)};
+  }
+  function dailyChart(el, s, label) {
+    el.replaceChildren();
+    if (s.status === 'error') { const p = document.createElement('p'); p.className = 'note'; p.textContent = 'Failed to load'; el.appendChild(p); return; }
+    if (s.status !== 'ok' || !s.data || !s.data.length) { const p = document.createElement('p'); p.className = 'note'; p.textContent = 'No daily data for this filter yet.'; el.appendChild(p); return; }
+    const _rg = vRange(); s = {status: 'ok', data: s.data.filter((d) => d.date >= _rg.start && d.date <= _rg.end)};
+    if (!s.data.length) { const p = document.createElement('p'); p.className = 'note'; p.textContent = 'No spend in this date range.'; el.appendChild(p); return; }
+    const byDate = new Map(s.data.map((d) => [d.date, d])), days = [];
+    const rg = vRange(), d0 = Date.parse(rg.start + 'T00:00:00Z'), d1 = rg.isAll ? Date.UTC(2026, 11, 31) : Date.parse(rg.end + 'T00:00:00Z');
+    for (let t = d0; t <= d1; t += 864e5) days.push(new Date(t).toISOString().slice(0, 10));
+    const last = s.data[s.data.length - 1].date;
+    const data = days.map((d) => byDate.get(d) || {date: d, spend_usd: 0, donations: 0, value_usd: 0, future: d > last});
+    const W = Math.max(300, el.clientWidth), H = 260, m = {t: 22, r: 40, b: 28, l: 50};
+    const x = d3.scaleBand().domain(days).range([m.l, W - m.r]).padding(0.2);
+    const y = d3.scaleLinear().domain([0, d3.max(data, (d) => d.spend_usd) || 1]).nice().range([H - m.b, m.t]);
+    const y2 = d3.scaleLinear().domain([0, Math.max(3, d3.max(data, (d) => d.donations) || 0)]).nice().range([H - m.b, m.t]);
+    const svg = d3.select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`).attr('width', '100%').attr('role', 'img')
+      .attr('aria-label', 'Daily spend in USD as bars and donations as a line, Nov 1 to Dec 31, ' + label);
+    svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(4).tickFormat((v) => '$' + d3.format(',')(v))).call((g) => g.select('.domain').remove()).selectAll('line').attr('x2', W - m.l - m.r).attr('stroke', 'var(--color-border-line)').attr('stroke-opacity', 0.6);
+    svg.append('g').attr('transform', `translate(${W - m.r},0)`).call(d3.axisRight(y2).ticks(3).tickFormat(d3.format('d'))).call((g) => g.select('.domain').remove()).selectAll('line').remove();
+    const ticks = days.length <= 16 ? days.filter((d, i) => i % (W > 520 ? 2 : 3) === 0) : days.filter((d) => /-(01|08|15|22|29)$/.test(d) || d === '2026-12-31').filter((d, i, a) => W > 520 || i % 2 === 0);
+    svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).tickValues(ticks).tickFormat((d) => d3.utcFormat('%b %-d')(new Date(d + 'T00:00:00Z')))).call((g) => g.select('.domain').attr('stroke', 'var(--color-border-line)')).selectAll('line').remove();
+    [['2026-12-01', 'Giving Tuesday'], ['2026-12-31', 'Dec 31']].filter(([d]) => days.includes(d)).forEach(([d, t]) => {
+      const cx = x(d) + x.bandwidth() / 2;
+      svg.append('line').attr('x1', cx).attr('x2', cx).attr('y1', m.t - 4).attr('y2', H - m.b).attr('stroke', 'var(--tcf-gold)').attr('stroke-width', 1.5).attr('stroke-dasharray', '4 3');
+      svg.append('text').attr('x', cx).attr('y', m.t - 8).attr('text-anchor', d === '2026-12-31' ? 'end' : 'middle').style('fill', 'var(--tcf-green-dark)').style('font-size', '11px').style('font-weight', 600).text(t);
     });
+    svg.append('g').selectAll('rect').data(data.filter((d) => d.spend_usd > 0)).join('rect').attr('x', (d) => x(d.date)).attr('width', x.bandwidth()).attr('y', (d) => y(d.spend_usd)).attr('height', (d) => y(0) - y(d.spend_usd)).attr('rx', Math.min(2, x.bandwidth() / 3)).style('fill', 'var(--tcf-green)');
+    const past = data.filter((d) => !d.future);
+    svg.append('path').datum(past).attr('fill', 'none').attr('stroke', 'var(--tcf-gold)').attr('stroke-width', 2.5).attr('stroke-linejoin', 'round').attr('stroke-linecap', 'round')
+      .attr('d', d3.line().x((d) => x(d.date) + x.bandwidth() / 2).y((d) => y2(d.donations)));
+    svg.append('g').selectAll('circle').data(past.filter((d) => d.donations > 0)).join('circle').attr('cx', (d) => x(d.date) + x.bandwidth() / 2).attr('cy', (d) => y2(d.donations)).attr('r', 3.5).style('fill', 'var(--tcf-gold)').style('stroke', '#fff').style('stroke-width', 1.5);
+    const tip = document.createElement('div'); tip.className = 'tip'; tip.hidden = true; el.appendChild(tip);
+    svg.append('g').selectAll('rect').data(past).join('rect').attr('x', (d) => x(d.date)).attr('width', x.step()).attr('y', m.t).attr('height', H - m.t - m.b).style('fill', 'transparent')
+      .on('pointerenter pointermove', (ev, d) => { tip.hidden = false; tip.textContent = d3.utcFormat('%b %-d')(new Date(d.date + 'T00:00:00Z')) + ' · ' + usd(d.spend_usd) + ' spent · ' + d.donations + ' donations';
+        const r = el.getBoundingClientRect(); const px = ev.clientX - r.left; tip.style.left = Math.max(4, Math.min(px + 10, r.width - tip.offsetWidth - 4)) + 'px'; tip.style.top = '4px'; })
+      .on('pointerleave', () => { tip.hidden = true; });
+  }
+  dash.draw('chart_all', (el) => dailyChart(el, vDailyAll(), 'all selected countries'));
+  dash.draw('kpi_strip', (el) => {
+    const t = dash.data('totals'); el.replaceChildren();
+    let tot = t.status === 'ok' && t.data && t.data[0] ? t.data[0] : null;
+    const dd = vDailyAll(), rg = vRange(); let cur = null, prev = null, n = 7;
+    if (dd.status === 'ok' && dd.data.length) {
+      const sum = (a, b) => dd.data.filter((r) => r.date >= a && r.date <= b).reduce((o, r) => ({spend: o.spend + r.spend_usd, don: o.don + r.donations, val: o.val + (r.value_usd || 0)}), {spend: 0, don: 0, val: 0});
+      const iso = (t) => new Date(t).toISOString().slice(0, 10), e = Date.parse(rg.end + 'T00:00:00Z');
+      n = rg.isAll ? 7 : rg.days; const cs = iso(e - (n - 1) * 864e5);
+      cur = sum(cs, rg.end); prev = sum(iso(e - (2 * n - 1) * 864e5), iso(e - n * 864e5));
+      if (prev.spend === 0 && prev.don === 0) prev = null;
+      if (!rg.isAll) { const w = sum(rg.start, rg.end); tot = {spend_usd: w.spend, donations: w.don, value_usd: w.val, roas: w.spend ? w.val / w.spend : null, cost_per_donation_usd: w.don ? w.spend / w.don : null}; }
+    }
+    const roas = (w) => w && w.spend ? w.val / w.spend : null, cpd = (w) => w && w.don ? w.spend / w.don : null;
+    const cards = [
+      ['Total spend', tot && usd(tot.spend_usd), cur && cur.spend, prev && prev.spend, 0],
+      ['Donations', tot && int(tot.donations), cur && cur.don, prev && prev.don, 1],
+      ['Donation value', tot && usd(tot.value_usd), cur && cur.val, prev && prev.val, 1],
+      ['ROAS', tot && (tot.roas == null ? '—' : d3.format('.2f')(tot.roas) + 'x'), roas(cur), roas(prev), 1],
+      ['Cost per donation', tot && usd(tot.cost_per_donation_usd), cpd(cur), cpd(prev), -1]];
+    cards.forEach(([lbl, val, c, p, dir]) => {
+      const card = document.createElement('div'); card.className = 'kpi';
+      const l = document.createElement('span'); l.className = 'lbl'; l.textContent = lbl;
+      const n = document.createElement('span'); n.className = 'num'; n.textContent = val || '—';
+      const d = document.createElement('span'); d.className = 'delta';
+      if (c == null || p == null || !isFinite(c) || !isFinite(p)) { d.textContent = 'No prior ' + n + ' days to compare'; d.classList.add('flat'); }
+      else if (p === 0) { d.textContent = c > 0 ? 'New vs prior ' + n + ' days' : 'No change vs prior ' + n + ' days'; d.classList.add('flat'); }
+      else { const ch = (c - p) / Math.abs(p); const up = ch > 0;
+        d.textContent = (Math.abs(ch) < 0.005 ? '● ' : up ? '▲ ' : '▼ ') + d3.format('.0%')(Math.abs(ch)) + ' vs prior ' + n + ' days';
+        d.classList.add(dir === 0 || Math.abs(ch) < 0.005 ? 'flat' : (up ? dir > 0 : dir < 0) ? 'up' : 'down'); }
+      card.append(l, n, d); el.appendChild(card);
+    });
+  });
+  dash.draw('leaderboard', drawLb);
+  function drawLb(tb) {
+    tb.replaceChildren(); const m = new Map(); let any = false; const lp = cagSel('lb-platform');
+    cagGeos('lb-geo').forEach((k) => { const s = dash.data('creative_' + k); if (s.status !== 'ok' || !s.data) return; any = true;
+      s.data.forEach((r0) => { let r = r0; if (lp !== 'All') { const b = r0.by_platform && r0.by_platform[lp]; if (!b) return; r = Object.assign({}, r0, b, {platforms: lp}); } const o = m.get(r.ad) || {ad: r.ad, platforms: new Set(), spend: 0, clicks: 0, don: 0, val: 0};
+        String(r.platforms || '').split(' + ').forEach((p) => p && o.platforms.add(p)); o.spend += r.spend_usd || 0; o.clicks += r.clicks || 0; o.don += r.donations || 0; o.val += r.value_usd || 0; m.set(r.ad, o); }); });
+    if (!any) return;
+    const rows = [...m.values()].filter((r) => r.spend > 0).sort((a, b) => b.don - a.don || b.val - a.val || b.spend - a.spend).slice(0, 15);
+    rows.forEach((r, i) => {
+      const tr = document.createElement('tr'); tr.setAttribute('data-key', r.ad); if (i < 3 && r.don > 0) tr.className = 'top';
+      td(tr, String(i + 1), 'rank');
+      const pc = document.createElement('td'); const code = (String(r.ad).match(/^([0-9][A-Z])/) || [])[1];
+      if (code && THUMBS[code]) { const im = document.createElement('img'); im.src = THUMBS[code]; im.alt = ''; im.className = 'thumb'; pc.appendChild(im); }
+      else { const bd = document.createElement('span'); bd.className = 'badge'; bd.textContent = code || (/^Search:/.test(r.ad) ? 'Bing' : String(r.ad).slice(0, 2)); pc.appendChild(bd); }
+      tr.appendChild(pc);
+      const nc = td(tr, r.ad, 'l adname'); const sub = document.createElement('span'); sub.className = 'plats'; sub.textContent = [...r.platforms].join(' + '); nc.appendChild(sub);
+      td(tr, usd2(r.spend)); td(tr, r.clicks ? usd2(r.spend / r.clicks) : '—'); td(tr, int(r.don), r.don ? 'good' : 'muted'); td(tr, usd2(r.val));
+      tb.appendChild(tr);
+    });
+    if (!rows.length) { const tr = document.createElement('tr'); const c = td(tr, 'No creatives with spend for this selection.', 'l muted'); c.colSpan = 7; tb.appendChild(tr); }
+  }
+
+  function cagSel(id) { const e = document.getElementById(id); return e ? e.value : 'All'; }
+  function cagGeos(id) { const g = cagSel(id); return g === 'All' ? ['us', 'ca', 'uk', 'pk'] : [g.toLowerCase()]; }
+  function cagKey(id) { return 'tcf_cag_' + id; }
+  dash.draw('ag_all', agDraw);
+  function agDraw(tb) {
+    tb.replaceChildren(); const p = cagSel('ag-platform'), rows = [];
+    cagGeos('ag-geo').forEach((k) => { const s = dash.data('groups_' + k); if (s.status !== 'ok' || !s.data) return; s.data.forEach((r) => { if (p === 'All' || r.platform === p) rows.push(Object.assign({country: k.toUpperCase()}, r)); }); });
+    rows.sort((a, b) => b.spend_usd - a.spend_usd).forEach((r) => {
+      const tr = document.createElement('tr'); tr.setAttribute('data-key', r.key);
+      td(tr, r.country, 'l'); td(tr, r.platform, 'l'); td(tr, r.group, 'l'); td(tr, r.campaign || '', 'l muted'); td(tr, usd2(r.spend_usd)); td(tr, int(r.clicks));
+      td(tr, r.donations == null ? '—' : int(r.donations), r.donations ? 'good' : ''); td(tr, usd2(r.value_usd)); td(tr, ((v) => v == null ? '—' : d3.format('.2f')(v) + 'x')(r.roas), r.roas >= 1 ? 'good' : ''); td(tr, usd2(r.cost_per_donation_usd));
+      tb.appendChild(tr); });
+    if (!rows.length) { const tr = document.createElement('tr'); const c = td(tr, 'No ad groups with spend for this selection.', 'l muted'); c.colSpan = 10; tb.appendChild(tr); }
+  }
+  ['lb-platform', 'lb-geo', 'ag-platform', 'ag-geo'].forEach((id) => {
+    const e = document.getElementById(id); if (!e) return;
+    try { const v = localStorage.getItem(cagKey(id)); if (v) e.value = v; } catch (x) {}
+    e.addEventListener('change', () => { try { localStorage.setItem(cagKey(id), e.value); } catch (x) {}
+      const body = document.getElementById(id.indexOf('lb') === 0 ? 'lb-body' : 'ag-body'); if (!body) return;
+      if (id.indexOf('lb') === 0) drawLb(body); else agDraw(body); });
   });
 })();
 </script>
