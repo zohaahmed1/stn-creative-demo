@@ -447,7 +447,22 @@ dash.loader('reddit_pk', {description: "Reads the totals row; spend is in millio
 dash.loader('tiktok_us', {description: "Reads the totals row; text numbers become numbers.", fn: (({answer}) => {
   const m = (answer && answer.metrics && answer.metrics[0] && answer.metrics[0].metrics) || {};
   const f = (k) => parseFloat(m[k]) || 0;
-  return [{spend: f('spend'), clicks: f('clicks'), donations: f('complete_payment'), donations_view: null, value: f('total_complete_payment_rate'), atc: f('web_event_add_to_cart')}];
+  return [{spend: f('spend'), clicks: f('clicks'), donations: f('complete_payment'), donations_view: null, value: f('total_complete_payment_rate'), atc: f('web_event_add_to_cart') + f('initiate_checkout')}];
+})});
+dash.loader('tiktok_ca', {description: "Reads the totals row; text numbers become numbers.", fn: (({answer}) => {
+  const m = (answer && answer.metrics && answer.metrics[0] && answer.metrics[0].metrics) || {};
+  const f = (k) => parseFloat(m[k]) || 0;
+  return [{spend: f('spend'), clicks: f('clicks'), donations: f('complete_payment'), donations_view: null, value: f('total_complete_payment_rate'), atc: f('web_event_add_to_cart') + f('initiate_checkout')}];
+})});
+dash.loader('tiktok_uk', {description: "Reads the totals row; text numbers become numbers.", fn: (({answer}) => {
+  const m = (answer && answer.metrics && answer.metrics[0] && answer.metrics[0].metrics) || {};
+  const f = (k) => parseFloat(m[k]) || 0;
+  return [{spend: f('spend'), clicks: f('clicks'), donations: f('complete_payment'), donations_view: null, value: f('total_complete_payment_rate'), atc: f('web_event_add_to_cart') + f('initiate_checkout')}];
+})});
+dash.loader('tiktok_pk', {description: "Reads the totals row; text numbers become numbers.", fn: (({answer}) => {
+  const m = (answer && answer.metrics && answer.metrics[0] && answer.metrics[0].metrics) || {};
+  const f = (k) => parseFloat(m[k]) || 0;
+  return [{spend: f('spend'), clicks: f('clicks'), donations: f('complete_payment'), donations_view: null, value: f('total_complete_payment_rate'), atc: f('web_event_add_to_cart') + f('initiate_checkout')}];
 })});
 dash.loader('li_us', {description: "Reads the totals row. LinkedIn counts add to cart, checkout and donation together, so that count is kept apart from donations.", fn: (({answer}) => {
   const a = (answer && answer.analytics && answer.analytics[0]) || {};
@@ -475,11 +490,11 @@ dash.loader('li_uk', {description: "Reads the totals row. LinkedIn counts add to
 dash.calc('summary', {
   title: 'Spend and donations by country and platform',
   description: 'One row per account, spend converted to USD at 1 USD = 1.3766 CAD. LinkedIn donations are not counted (its conversions mix add to cart, checkout and donation).',
-  inputs: ["bing_us", "reddit_us", "tiktok_us", "li_us", "bing_ca", "reddit_ca", "li_ca", "bing_uk", "reddit_uk", "li_uk", "bing_pk", "reddit_pk"],
-  fn: (bing_us, reddit_us, tiktok_us, li_us, bing_ca, reddit_ca, li_ca, bing_uk, reddit_uk, li_uk, bing_pk, reddit_pk) => {
+  inputs: ["bing_us", "reddit_us", "tiktok_us", "li_us", "bing_ca", "reddit_ca", "li_ca", "bing_uk", "reddit_uk", "li_uk", "bing_pk", "reddit_pk", "tiktok_ca", "tiktok_uk", "tiktok_pk"],
+  fn: (bing_us, reddit_us, tiktok_us, li_us, bing_ca, reddit_ca, li_ca, bing_uk, reddit_uk, li_uk, bing_pk, reddit_pk, tiktok_ca, tiktok_uk, tiktok_pk) => {
     const CAD_PER_USD = 1.3766;
-    const accounts = [{"id": "bing_us", "country": "US", "platform": "Bing", "currency": "CAD"}, {"id": "reddit_us", "country": "US", "platform": "Reddit", "currency": "USD"}, {"id": "tiktok_us", "country": "US", "platform": "TikTok", "currency": "USD"}, {"id": "li_us", "country": "US", "platform": "LinkedIn", "currency": "USD"}, {"id": "bing_ca", "country": "CA", "platform": "Bing", "currency": "CAD"}, {"id": "reddit_ca", "country": "CA", "platform": "Reddit", "currency": "CAD"}, {"id": "li_ca", "country": "CA", "platform": "LinkedIn", "currency": "CAD"}, {"id": "bing_uk", "country": "UK", "platform": "Bing", "currency": "CAD"}, {"id": "reddit_uk", "country": "UK", "platform": "Reddit", "currency": "CAD"}, {"id": "li_uk", "country": "UK", "platform": "LinkedIn", "currency": "CAD"}, {"id": "bing_pk", "country": "PK", "platform": "Bing", "currency": "CAD"}, {"id": "reddit_pk", "country": "PK", "platform": "Reddit", "currency": "CAD"}];
-    const data = [bing_us, reddit_us, tiktok_us, li_us, bing_ca, reddit_ca, li_ca, bing_uk, reddit_uk, li_uk, bing_pk, reddit_pk];
+    const accounts = [{"id": "bing_us", "country": "US", "platform": "Bing", "currency": "CAD"}, {"id": "reddit_us", "country": "US", "platform": "Reddit", "currency": "USD"}, {"id": "tiktok_us", "country": "US", "platform": "TikTok", "currency": "USD"}, {"id": "li_us", "country": "US", "platform": "LinkedIn", "currency": "USD"}, {"id": "bing_ca", "country": "CA", "platform": "Bing", "currency": "CAD"}, {"id": "reddit_ca", "country": "CA", "platform": "Reddit", "currency": "CAD"}, {"id": "li_ca", "country": "CA", "platform": "LinkedIn", "currency": "CAD"}, {"id": "bing_uk", "country": "UK", "platform": "Bing", "currency": "CAD"}, {"id": "reddit_uk", "country": "UK", "platform": "Reddit", "currency": "CAD"}, {"id": "li_uk", "country": "UK", "platform": "LinkedIn", "currency": "CAD"}, {"id": "bing_pk", "country": "PK", "platform": "Bing", "currency": "CAD"}, {"id": "reddit_pk", "country": "PK", "platform": "Reddit", "currency": "CAD"}, {"id": "tiktok_ca", "country": "CA", "platform": "TikTok", "currency": "CAD"}, {"id": "tiktok_uk", "country": "UK", "platform": "TikTok", "currency": "CAD"}, {"id": "tiktok_pk", "country": "PK", "platform": "TikTok", "currency": "CAD"}];
+    const data = [bing_us, reddit_us, tiktok_us, li_us, bing_ca, reddit_ca, li_ca, bing_uk, reddit_uk, li_uk, bing_pk, reddit_pk, tiktok_ca, tiktok_uk, tiktok_pk];
     return accounts.map((a, i) => {
       const r = data[i][0];
       if (!r) return null;
@@ -752,9 +767,24 @@ dash.loader('reddit_pk_adnames', {description: "Reads every page of the list and
 })});
 dash.loader('tiktok_us_ads', {description: "One row per ad; text numbers become numbers and the id prefix TikTok adds to ad names is removed.", fn: (({answer}) => (answer && answer.metrics || []).map((r) => { const m = r.metrics || {};
   return {ad_id: r.dimensions && r.dimensions.ad_id, ad_name: String(m.ad_name || '').replace(/^\d+_/, ''), group: m.adgroup_name, campaign: m.campaign_name,
-    spend: +m.spend || 0, clicks: +m.clicks || 0, impressions: +m.impressions || 0, donations: +m.complete_payment || 0, value: +m.total_complete_payment_rate || 0}; }))});
+    spend: +m.spend || 0, clicks: +m.clicks || 0, impressions: +m.impressions || 0, donations: +m.complete_payment || 0, value: +m.total_complete_payment_rate || 0, atc: (+m.web_event_add_to_cart || 0) + (+m.initiate_checkout || 0)}; }))});
 dash.loader('tiktok_us_daily', {description: "One row per day; text numbers become numbers.", fn: (({answer}) => (answer && answer.metrics || []).map((r) => { const m = r.metrics || {};
-  return {date: String(r.dimensions && r.dimensions.stat_time_day || '').slice(0, 10), spend: +m.spend || 0, clicks: +m.clicks || 0, donations: +m.complete_payment || 0, value: +m.total_complete_payment_rate || 0}; }))});
+  return {date: String(r.dimensions && r.dimensions.stat_time_day || '').slice(0, 10), spend: +m.spend || 0, clicks: +m.clicks || 0, donations: +m.complete_payment || 0, value: +m.total_complete_payment_rate || 0, atc: (+m.web_event_add_to_cart || 0) + (+m.initiate_checkout || 0)}; }))});
+dash.loader('tiktok_ca_ads', {description: "One row per ad; text numbers become numbers and the id prefix TikTok adds to ad names is removed.", fn: (({answer}) => (answer && answer.metrics || []).map((r) => { const m = r.metrics || {};
+  return {ad_id: r.dimensions && r.dimensions.ad_id, ad_name: String(m.ad_name || '').replace(/^\d+_/, ''), group: m.adgroup_name, campaign: m.campaign_name,
+    spend: +m.spend || 0, clicks: +m.clicks || 0, impressions: +m.impressions || 0, donations: +m.complete_payment || 0, value: +m.total_complete_payment_rate || 0, atc: (+m.web_event_add_to_cart || 0) + (+m.initiate_checkout || 0)}; }))});
+dash.loader('tiktok_ca_daily', {description: "One row per day; text numbers become numbers.", fn: (({answer}) => (answer && answer.metrics || []).map((r) => { const m = r.metrics || {};
+  return {date: String(r.dimensions && r.dimensions.stat_time_day || '').slice(0, 10), spend: +m.spend || 0, clicks: +m.clicks || 0, donations: +m.complete_payment || 0, value: +m.total_complete_payment_rate || 0, atc: (+m.web_event_add_to_cart || 0) + (+m.initiate_checkout || 0)}; }))});
+dash.loader('tiktok_uk_ads', {description: "One row per ad; text numbers become numbers and the id prefix TikTok adds to ad names is removed.", fn: (({answer}) => (answer && answer.metrics || []).map((r) => { const m = r.metrics || {};
+  return {ad_id: r.dimensions && r.dimensions.ad_id, ad_name: String(m.ad_name || '').replace(/^\d+_/, ''), group: m.adgroup_name, campaign: m.campaign_name,
+    spend: +m.spend || 0, clicks: +m.clicks || 0, impressions: +m.impressions || 0, donations: +m.complete_payment || 0, value: +m.total_complete_payment_rate || 0, atc: (+m.web_event_add_to_cart || 0) + (+m.initiate_checkout || 0)}; }))});
+dash.loader('tiktok_uk_daily', {description: "One row per day; text numbers become numbers.", fn: (({answer}) => (answer && answer.metrics || []).map((r) => { const m = r.metrics || {};
+  return {date: String(r.dimensions && r.dimensions.stat_time_day || '').slice(0, 10), spend: +m.spend || 0, clicks: +m.clicks || 0, donations: +m.complete_payment || 0, value: +m.total_complete_payment_rate || 0, atc: (+m.web_event_add_to_cart || 0) + (+m.initiate_checkout || 0)}; }))});
+dash.loader('tiktok_pk_ads', {description: "One row per ad; text numbers become numbers and the id prefix TikTok adds to ad names is removed.", fn: (({answer}) => (answer && answer.metrics || []).map((r) => { const m = r.metrics || {};
+  return {ad_id: r.dimensions && r.dimensions.ad_id, ad_name: String(m.ad_name || '').replace(/^\d+_/, ''), group: m.adgroup_name, campaign: m.campaign_name,
+    spend: +m.spend || 0, clicks: +m.clicks || 0, impressions: +m.impressions || 0, donations: +m.complete_payment || 0, value: +m.total_complete_payment_rate || 0, atc: (+m.web_event_add_to_cart || 0) + (+m.initiate_checkout || 0)}; }))});
+dash.loader('tiktok_pk_daily', {description: "One row per day; text numbers become numbers.", fn: (({answer}) => (answer && answer.metrics || []).map((r) => { const m = r.metrics || {};
+  return {date: String(r.dimensions && r.dimensions.stat_time_day || '').slice(0, 10), spend: +m.spend || 0, clicks: +m.clicks || 0, donations: +m.complete_payment || 0, value: +m.total_complete_payment_rate || 0, atc: (+m.web_event_add_to_cart || 0) + (+m.initiate_checkout || 0)}; }))});
 dash.loader('li_us_groups', {description: "One row per ad set; the count mixes add to cart, checkout and donation.", fn: (({answer}) => (answer && answer.analytics || []).map((a) => ({campaign_id: String((a.pivotValues || [''])[0]).split(':').pop(),
   spend: +a.costInLocalCurrency || 0, clicks: a.clicks || 0, impressions: a.impressions || 0,
   conversions_mixed: a.externalWebsiteConversions || 0, conversions_view: a.externalWebsitePostViewConversions || 0, value: +a.conversionValueInLocalCurrency || 0})))});
@@ -832,12 +862,13 @@ dash.calc('creative_us', {
 dash.calc('groups_ca', {
   title: 'CA campaigns and ad groups',
   description: 'Every ad group or ad set with spend since Nov 1, in USD (1 USD = 1.3766 CAD). LinkedIn donations are not counted.',
-  inputs: ["bing_ca_groups", "reddit_ca_groups", "reddit_ca_groupnames", "li_ca_groups"],
-  fn: (bing_ca_groups, reddit_ca_groups, reddit_ca_groupnames, li_ca_groups) => {
+  inputs: ["bing_ca_groups", "reddit_ca_groups", "reddit_ca_groupnames", "li_ca_groups", "tiktok_ca_ads"],
+  fn: (bing_ca_groups, reddit_ca_groups, reddit_ca_groupnames, li_ca_groups, tiktok_ca_ads) => {
     const X = 1.3766, out = [];
     bing_ca_groups.forEach((r) => out.push({platform: 'Bing', campaign: r.campaign, group: r.group, spend: r.spend, fx: 1/X, clicks: r.clicks, donations: r.donations, value: r.value}));
     const rn = new Map(reddit_ca_groupnames.map((g) => [g.id, g.name])); reddit_ca_groups.forEach((r) => out.push({platform: 'Reddit', campaign: '', group: rn.get(r.ad_group_id) || r.ad_group_id, spend: r.spend, fx: 1/X, clicks: r.clicks, donations: r.donations, value: r.value}));
     const ln = {"924331046": "Prospecting - Traffic", "924410466": "Prospecting - Conversion", "924331056": "Retargeting - Conversion"}; li_ca_groups.forEach((r) => out.push({platform: 'LinkedIn', campaign: '', group: ln[r.campaign_id] || r.campaign_id, spend: r.spend, fx: 1/X, clicks: r.clicks, donations: null, conversions_mixed: r.conversions_mixed, value: r.value}));
+    const tg = new Map(); tiktok_ca_ads.forEach((d) => { const v = tg.get(d.group) || {campaign: d.campaign, spend: 0, clicks: 0, donations: 0, value: 0}; v.spend += d.spend; v.clicks += d.clicks; v.donations += d.donations; v.value += d.value; tg.set(d.group, v); }); tg.forEach((v, g) => out.push({platform: 'TikTok', campaign: v.campaign, group: g, spend: v.spend, fx: 1/X, clicks: v.clicks, donations: v.donations, value: v.value}));
     return out.filter((r) => r.spend > 0).map((r, i) => ({key: 'ca-' + r.platform + '-' + r.group, platform: r.platform, campaign: r.campaign, group: r.group,
       spend_usd: r.spend * r.fx, clicks: r.clicks, donations: r.donations, conversions_mixed: r.conversions_mixed ?? null, value_usd: r.value * r.fx,
       cost_per_donation_usd: r.donations ? r.spend * r.fx / r.donations : null, roas: r.spend ? r.value / r.spend : null})).sort((a, b) => b.spend_usd - a.spend_usd);
@@ -853,13 +884,14 @@ dash.calc('nodon_ca', {
 dash.calc('daily_ca', {
   title: 'CA spend and donations by day',
   description: 'All platforms added up per day, spend in USD. LinkedIn spend is included; its donations are not. TikTok gives at most the last 30 days.',
-  inputs: ["bing_ca_daily", "reddit_ca_daily", "li_ca_daily"],
-  fn: (bing_ca_daily, reddit_ca_daily, li_ca_daily) => {
+  inputs: ["bing_ca_daily", "reddit_ca_daily", "li_ca_daily", "tiktok_ca_daily"],
+  fn: (bing_ca_daily, reddit_ca_daily, li_ca_daily, tiktok_ca_daily) => {
     const X = 1.3766, m = new Map();
     const add = (date, spend, don) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0}; r.spend_usd += spend; r.donations += don; m.set(date, r); };
     bing_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
     reddit_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
     li_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, 0));
+    tiktok_ca_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
     return [...m.values()].sort((a, b) => a.date < b.date ? -1 : 1);
   }
 });
@@ -867,8 +899,8 @@ dash.calc('daily_ca', {
 dash.calc('creative_ca', {
   title: 'CA creative',
   description: 'Ads with the same name added up across Reddit and TikTok (for example "1A Girls out of school - Static"), spend in USD.',
-  inputs: ["reddit_ca_ads", "reddit_ca_adnames"],
-  fn: (reddit_ca_ads, reddit_ca_adnames) => {
+  inputs: ["reddit_ca_ads", "reddit_ca_adnames", "tiktok_ca_ads"],
+  fn: (reddit_ca_ads, reddit_ca_adnames, tiktok_ca_ads) => {
     const X = 1.3766, m = new Map();
     const add = (name, platform, spend, clicks, impressions, donations, value) => {
       if (!spend) return; const key = String(name || '').trim();
@@ -876,6 +908,7 @@ dash.calc('creative_ca', {
       if (!r.platforms.includes(platform)) r.platforms.push(platform);
       r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; m.set(key, r); };
     const an = new Map(reddit_ca_adnames.map((a) => [a.id, a.name])); reddit_ca_ads.forEach((r) => add(an.get(r.ad_id) || r.ad_id, 'Reddit', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
+    tiktok_ca_ads.forEach((r) => add(r.ad_name, 'TikTok', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
     return [...m.values()].map((r) => ({...r, platforms: r.platforms.join(' + '), ctr: r.impressions ? r.clicks / r.impressions : null,
       cost_per_donation_usd: r.donations ? r.spend_usd / r.donations : null, roas: r.spend_usd ? r.value_usd / r.spend_usd : null})).sort((a, b) => b.spend_usd - a.spend_usd);
   }
@@ -884,12 +917,13 @@ dash.calc('creative_ca', {
 dash.calc('groups_uk', {
   title: 'UK campaigns and ad groups',
   description: 'Every ad group or ad set with spend since Nov 1, in USD (1 USD = 1.3766 CAD). LinkedIn donations are not counted.',
-  inputs: ["bing_uk_groups", "reddit_uk_groups", "reddit_uk_groupnames", "li_uk_groups"],
-  fn: (bing_uk_groups, reddit_uk_groups, reddit_uk_groupnames, li_uk_groups) => {
+  inputs: ["bing_uk_groups", "reddit_uk_groups", "reddit_uk_groupnames", "li_uk_groups", "tiktok_uk_ads"],
+  fn: (bing_uk_groups, reddit_uk_groups, reddit_uk_groupnames, li_uk_groups, tiktok_uk_ads) => {
     const X = 1.3766, out = [];
     bing_uk_groups.forEach((r) => out.push({platform: 'Bing', campaign: r.campaign, group: r.group, spend: r.spend, fx: 1/X, clicks: r.clicks, donations: r.donations, value: r.value}));
     const rn = new Map(reddit_uk_groupnames.map((g) => [g.id, g.name])); reddit_uk_groups.forEach((r) => out.push({platform: 'Reddit', campaign: '', group: rn.get(r.ad_group_id) || r.ad_group_id, spend: r.spend, fx: 1/X, clicks: r.clicks, donations: r.donations, value: r.value}));
     const ln = {"924564426": "Prospecting - Traffic", "924731576": "Prospecting - Conversion", "924692846": "Retargeting - Conversion"}; li_uk_groups.forEach((r) => out.push({platform: 'LinkedIn', campaign: '', group: ln[r.campaign_id] || r.campaign_id, spend: r.spend, fx: 1/X, clicks: r.clicks, donations: null, conversions_mixed: r.conversions_mixed, value: r.value}));
+    const tg = new Map(); tiktok_uk_ads.forEach((d) => { const v = tg.get(d.group) || {campaign: d.campaign, spend: 0, clicks: 0, donations: 0, value: 0}; v.spend += d.spend; v.clicks += d.clicks; v.donations += d.donations; v.value += d.value; tg.set(d.group, v); }); tg.forEach((v, g) => out.push({platform: 'TikTok', campaign: v.campaign, group: g, spend: v.spend, fx: 1/X, clicks: v.clicks, donations: v.donations, value: v.value}));
     return out.filter((r) => r.spend > 0).map((r, i) => ({key: 'uk-' + r.platform + '-' + r.group, platform: r.platform, campaign: r.campaign, group: r.group,
       spend_usd: r.spend * r.fx, clicks: r.clicks, donations: r.donations, conversions_mixed: r.conversions_mixed ?? null, value_usd: r.value * r.fx,
       cost_per_donation_usd: r.donations ? r.spend * r.fx / r.donations : null, roas: r.spend ? r.value / r.spend : null})).sort((a, b) => b.spend_usd - a.spend_usd);
@@ -905,13 +939,14 @@ dash.calc('nodon_uk', {
 dash.calc('daily_uk', {
   title: 'UK spend and donations by day',
   description: 'All platforms added up per day, spend in USD. LinkedIn spend is included; its donations are not. TikTok gives at most the last 30 days.',
-  inputs: ["bing_uk_daily", "reddit_uk_daily", "li_uk_daily"],
-  fn: (bing_uk_daily, reddit_uk_daily, li_uk_daily) => {
+  inputs: ["bing_uk_daily", "reddit_uk_daily", "li_uk_daily", "tiktok_uk_daily"],
+  fn: (bing_uk_daily, reddit_uk_daily, li_uk_daily, tiktok_uk_daily) => {
     const X = 1.3766, m = new Map();
     const add = (date, spend, don) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0}; r.spend_usd += spend; r.donations += don; m.set(date, r); };
     bing_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
     reddit_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
     li_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, 0));
+    tiktok_uk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
     return [...m.values()].sort((a, b) => a.date < b.date ? -1 : 1);
   }
 });
@@ -919,8 +954,8 @@ dash.calc('daily_uk', {
 dash.calc('creative_uk', {
   title: 'UK creative',
   description: 'Ads with the same name added up across Reddit and TikTok (for example "1A Girls out of school - Static"), spend in USD.',
-  inputs: ["reddit_uk_ads", "reddit_uk_adnames"],
-  fn: (reddit_uk_ads, reddit_uk_adnames) => {
+  inputs: ["reddit_uk_ads", "reddit_uk_adnames", "tiktok_uk_ads"],
+  fn: (reddit_uk_ads, reddit_uk_adnames, tiktok_uk_ads) => {
     const X = 1.3766, m = new Map();
     const add = (name, platform, spend, clicks, impressions, donations, value) => {
       if (!spend) return; const key = String(name || '').trim();
@@ -928,6 +963,7 @@ dash.calc('creative_uk', {
       if (!r.platforms.includes(platform)) r.platforms.push(platform);
       r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; m.set(key, r); };
     const an = new Map(reddit_uk_adnames.map((a) => [a.id, a.name])); reddit_uk_ads.forEach((r) => add(an.get(r.ad_id) || r.ad_id, 'Reddit', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
+    tiktok_uk_ads.forEach((r) => add(r.ad_name, 'TikTok', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
     return [...m.values()].map((r) => ({...r, platforms: r.platforms.join(' + '), ctr: r.impressions ? r.clicks / r.impressions : null,
       cost_per_donation_usd: r.donations ? r.spend_usd / r.donations : null, roas: r.spend_usd ? r.value_usd / r.spend_usd : null})).sort((a, b) => b.spend_usd - a.spend_usd);
   }
@@ -936,11 +972,12 @@ dash.calc('creative_uk', {
 dash.calc('groups_pk', {
   title: 'PK campaigns and ad groups',
   description: 'Every ad group or ad set with spend since Nov 1, in USD (1 USD = 1.3766 CAD). LinkedIn donations are not counted.',
-  inputs: ["bing_pk_groups", "reddit_pk_groups", "reddit_pk_groupnames"],
-  fn: (bing_pk_groups, reddit_pk_groups, reddit_pk_groupnames) => {
+  inputs: ["bing_pk_groups", "reddit_pk_groups", "reddit_pk_groupnames", "tiktok_pk_ads"],
+  fn: (bing_pk_groups, reddit_pk_groups, reddit_pk_groupnames, tiktok_pk_ads) => {
     const X = 1.3766, out = [];
     bing_pk_groups.forEach((r) => out.push({platform: 'Bing', campaign: r.campaign, group: r.group, spend: r.spend, fx: 1/X, clicks: r.clicks, donations: r.donations, value: r.value}));
     const rn = new Map(reddit_pk_groupnames.map((g) => [g.id, g.name])); reddit_pk_groups.forEach((r) => out.push({platform: 'Reddit', campaign: '', group: rn.get(r.ad_group_id) || r.ad_group_id, spend: r.spend, fx: 1/X, clicks: r.clicks, donations: r.donations, value: r.value}));
+    const tg = new Map(); tiktok_pk_ads.forEach((d) => { const v = tg.get(d.group) || {campaign: d.campaign, spend: 0, clicks: 0, donations: 0, value: 0}; v.spend += d.spend; v.clicks += d.clicks; v.donations += d.donations; v.value += d.value; tg.set(d.group, v); }); tg.forEach((v, g) => out.push({platform: 'TikTok', campaign: v.campaign, group: g, spend: v.spend, fx: 1/X, clicks: v.clicks, donations: v.donations, value: v.value}));
     return out.filter((r) => r.spend > 0).map((r, i) => ({key: 'pk-' + r.platform + '-' + r.group, platform: r.platform, campaign: r.campaign, group: r.group,
       spend_usd: r.spend * r.fx, clicks: r.clicks, donations: r.donations, conversions_mixed: r.conversions_mixed ?? null, value_usd: r.value * r.fx,
       cost_per_donation_usd: r.donations ? r.spend * r.fx / r.donations : null, roas: r.spend ? r.value / r.spend : null})).sort((a, b) => b.spend_usd - a.spend_usd);
@@ -956,12 +993,13 @@ dash.calc('nodon_pk', {
 dash.calc('daily_pk', {
   title: 'PK spend and donations by day',
   description: 'All platforms added up per day, spend in USD. LinkedIn spend is included; its donations are not. TikTok gives at most the last 30 days.',
-  inputs: ["bing_pk_daily", "reddit_pk_daily"],
-  fn: (bing_pk_daily, reddit_pk_daily) => {
+  inputs: ["bing_pk_daily", "reddit_pk_daily", "tiktok_pk_daily"],
+  fn: (bing_pk_daily, reddit_pk_daily, tiktok_pk_daily) => {
     const X = 1.3766, m = new Map();
     const add = (date, spend, don) => { if (!date) return; const r = m.get(date) || {date, spend_usd: 0, donations: 0}; r.spend_usd += spend; r.donations += don; m.set(date, r); };
     bing_pk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
     reddit_pk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
+    tiktok_pk_daily.forEach((r) => add(r.date, r.spend * 1/X, r.donations));
     return [...m.values()].sort((a, b) => a.date < b.date ? -1 : 1);
   }
 });
@@ -969,8 +1007,8 @@ dash.calc('daily_pk', {
 dash.calc('creative_pk', {
   title: 'PK creative',
   description: 'Ads with the same name added up across Reddit and TikTok (for example "1A Girls out of school - Static"), spend in USD.',
-  inputs: ["reddit_pk_ads", "reddit_pk_adnames"],
-  fn: (reddit_pk_ads, reddit_pk_adnames) => {
+  inputs: ["reddit_pk_ads", "reddit_pk_adnames", "tiktok_pk_ads"],
+  fn: (reddit_pk_ads, reddit_pk_adnames, tiktok_pk_ads) => {
     const X = 1.3766, m = new Map();
     const add = (name, platform, spend, clicks, impressions, donations, value) => {
       if (!spend) return; const key = String(name || '').trim();
@@ -978,6 +1016,7 @@ dash.calc('creative_pk', {
       if (!r.platforms.includes(platform)) r.platforms.push(platform);
       r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; m.set(key, r); };
     const an = new Map(reddit_pk_adnames.map((a) => [a.id, a.name])); reddit_pk_ads.forEach((r) => add(an.get(r.ad_id) || r.ad_id, 'Reddit', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
+    tiktok_pk_ads.forEach((r) => add(r.ad_name, 'TikTok', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
     return [...m.values()].map((r) => ({...r, platforms: r.platforms.join(' + '), ctr: r.impressions ? r.clicks / r.impressions : null,
       cost_per_donation_usd: r.donations ? r.spend_usd / r.donations : null, roas: r.spend_usd ? r.value_usd / r.spend_usd : null})).sort((a, b) => b.spend_usd - a.spend_usd);
   }
