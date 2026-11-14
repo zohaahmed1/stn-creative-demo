@@ -1479,14 +1479,14 @@ dash.calc('budget_total', {
     cards.forEach(([lbl, val, c, p, dir]) => {
       const card = document.createElement('div'); card.className = 'kpi';
       const l = document.createElement('span'); l.className = 'lbl'; l.textContent = lbl;
-      const n = document.createElement('span'); n.className = 'num'; n.textContent = val || '—';
+      const nm = document.createElement('span'); nm.className = 'num'; nm.textContent = val || '—';
       const d = document.createElement('span'); d.className = 'delta';
       if (c == null || p == null || !isFinite(c) || !isFinite(p)) { d.textContent = 'No prior ' + n + ' days to compare'; d.classList.add('flat'); }
       else if (p === 0) { d.textContent = c > 0 ? 'New vs prior ' + n + ' days' : 'No change vs prior ' + n + ' days'; d.classList.add('flat'); }
       else { const ch = (c - p) / Math.abs(p); const up = ch > 0;
         d.textContent = (Math.abs(ch) < 0.005 ? '● ' : up ? '▲ ' : '▼ ') + d3.format('.0%')(Math.abs(ch)) + ' vs prior ' + n + ' days';
         d.classList.add(dir === 0 || Math.abs(ch) < 0.005 ? 'flat' : (up ? dir > 0 : dir < 0) ? 'up' : 'down'); }
-      card.append(l, n, d); el.appendChild(card);
+      card.append(l, nm, d); el.appendChild(card);
     });
   });
   dash.draw('leaderboard', drawLb);
