@@ -256,7 +256,7 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
     </div>
     <div class="sec" id="us-creative">
       <h2>Creative</h2>
-      <p class="note">Reddit and TikTok ads with the same name are added together; the preview is the square version of each ad. Search ads and LinkedIn are shown by ad group above.</p>
+      <p class="note">Reddit and TikTok ads with the same name are added together; the preview is the square version of each ad. Bing search ads are listed by ad group and first headline. LinkedIn donations are not counted.</p>
       <div class="wrap"><table data-source="creative_us" data-row-key="key">
         <thead><tr><th class="l">Preview</th><th data-field="ad">Ad</th><th data-field="platforms" class="l">Platforms</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="ctr">CTR</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
         <tbody data-draw="creative_us"></tbody></table></div>
@@ -289,7 +289,7 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
     </div>
     <div class="sec" id="ca-creative">
       <h2>Creative</h2>
-      <p class="note">Reddit ads with the same name are added together; the preview is the square version of each ad. Search ads and LinkedIn are shown by ad group above.</p>
+      <p class="note">Reddit ads with the same name are added together; the preview is the square version of each ad. Bing search ads are listed by ad group and first headline. LinkedIn donations are not counted.</p>
       <div class="wrap"><table data-source="creative_ca" data-row-key="key">
         <thead><tr><th class="l">Preview</th><th data-field="ad">Ad</th><th data-field="platforms" class="l">Platforms</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="ctr">CTR</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
         <tbody data-draw="creative_ca"></tbody></table></div>
@@ -322,7 +322,7 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
     </div>
     <div class="sec" id="uk-creative">
       <h2>Creative</h2>
-      <p class="note">Reddit ads with the same name are added together; the preview is the square version of each ad. Search ads and LinkedIn are shown by ad group above.</p>
+      <p class="note">Reddit ads with the same name are added together; the preview is the square version of each ad. Bing search ads are listed by ad group and first headline. LinkedIn donations are not counted.</p>
       <div class="wrap"><table data-source="creative_uk" data-row-key="key">
         <thead><tr><th class="l">Preview</th><th data-field="ad">Ad</th><th data-field="platforms" class="l">Platforms</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="ctr">CTR</th><th data-field="donations">Donations</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
         <tbody data-draw="creative_uk"></tbody></table></div>
@@ -461,7 +461,7 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
       const hide = !!geo && F.geo !== 'All' && geo !== F.geo; b.hidden = hide; if (hide && b.getAttribute('aria-selected') === 'true') selHidden = true; });
     if (selHidden) { const t = document.querySelector('.tcf nav.tabs button[data-tab="' + F.geo.toLowerCase() + '"]'); if (t) t.click(); }
     const n = document.getElementById('tcf-filter-note');
-    if (n) n.textContent = (F.platform === 'All' && F.geo === 'All') ? '' : 'Showing ' + (F.platform === 'All' ? 'all platforms' : F.platform) + ' · ' + (F.geo === 'All' ? 'all countries' : F.geo) + '. Bing and LinkedIn have no creative-level rows (shown by ad group).';
+    if (n) n.textContent = (F.platform === 'All' && F.geo === 'All') ? '' : 'Showing ' + (F.platform === 'All' ? 'all platforms' : F.platform) + ' · ' + (F.geo === 'All' ? 'all countries' : F.geo) + '. LinkedIn donations are not counted (its conversions are mixed).';
   };
   const init = () => {
     const ps = document.getElementById('tcf-f-platform'), gs = document.getElementById('tcf-f-geo');
@@ -895,6 +895,27 @@ dash.loader('li_uk_daily', {description: "One row per day.", fn: (({answer}) => 
   const date = s.year ? `${s.year}-${String(s.month).padStart(2, '0')}-${String(s.day).padStart(2, '0')}` : null;
   return {date, spend: +a.costInLocalCurrency || 0, clicks: a.clicks || 0, conversions_mixed: a.externalWebsiteConversions || 0, value: +a.conversionValueInLocalCurrency || 0}; }))});
 
+dash.loader('bing_us_ads', {description: "One row per search ad; text cells become numbers, and each ad is named by its ad group and first headline.", fn: (({answer}) => { const H = {"82463817498127": "Year-End Donation", "82463817498128": "Year-End Donation", "82463817498129": "Year-End Donation", "83013573216980": "Send a Girl to School", "82601255581805": "Girls' Education in Pakistan", "82601255517651": "The Citizens Foundation USA", "82601255517652": "The Citizens Foundation USA", "82601255517653": "The Citizens Foundation USA", "82257659386194": "Give Sadaqah Jariyah", "82257659386195": "Give Sadaqah Jariyah", "82257659386196": "Give Sadaqah Jariyah", "83013573152422": "Girls' Education in Pakistan", "83013573152423": "Girls' Education in Pakistan", "83013573152424": "Girls' Education in Pakistan", "82326377735524": "Pay Your Zakat Where It Lasts", "82738695218158": "Girls' Education in Pakistan", "82120220391192": "Girls' Education in Pakistan", "82120220391193": "Girls' Education in Pakistan", "82120220391194": "Girls' Education in Pakistan", "82188939983927": "Pay Your Zakat Where It Lasts", "82532536900780": "Girls' Education in Pakistan", "83013573161627": "The Citizens Foundation Canada", "83013573161628": "The Citizens Foundation Canada", "83013573161629": "The Citizens Foundation Canada", "82669975866489": "Send a Girl to School", "82669975810595": "Give Sadaqah Jariyah", "82669975810596": "Give Sadaqah Jariyah", "82669975810597": "Give Sadaqah Jariyah", "82601255581809": "Girls' Education in Pakistan", "82532536845872": "Year-End Donation", "82532536845873": "Year-End Donation", "82532536845874": "Year-End Donation", "82257659395350": "Girls' Education in Pakistan", "82257659395351": "Girls' Education in Pakistan", "82257659395352": "Girls' Education in Pakistan", "82876133308402": "Girls' Education in Pakistan", "82876133308403": "Girls' Education in Pakistan", "82876133308404": "Girls' Education in Pakistan", "82257659395902": "Give Sadaqah Jariyah", "82257659395903": "Give Sadaqah Jariyah", "82257659395904": "Give Sadaqah Jariyah", "82463817507879": "Girls' Education in Pakistan", "82463817507880": "Girls' Education in Pakistan", "82463817507881": "Girls' Education in Pakistan", "82326377681105": "The Citizens Foundation UK", "82326377681106": "The Citizens Foundation UK", "82326377681107": "The Citizens Foundation UK", "82532536846405": "Girls' Education in Pakistan", "82532536846406": "Girls' Education in Pakistan", "82532536846407": "Girls' Education in Pakistan", "82257659395905": "Year-End Donation", "82257659395906": "Year-End Donation", "82257659395907": "Year-End Donation", "83013573162196": "The Citizens Foundation", "83013573162197": "The Citizens Foundation", "82738695163894": "Give Sadaqah Jariyah", "82738695163895": "Give Sadaqah Jariyah", "82876133309022": "Girls' Education in Pakistan", "82876133309023": "Girls' Education in Pakistan"};
+  return (answer && answer.rows || []).map((r) => ({ad_id: String(r.AdId), name: 'Search: ' + r.AdusroupName + (H[String(r.AdId)] ? ' — ' + H[String(r.AdId)] : ''), group: r.AdusroupName, campaign: r.CampaignName,
+    spend: +r.Spend || 0, clicks: +r.Clicks || 0, impressions: +r.Impressions || 0, donations: +r.ConversionsQualified || 0, value: +r.Revenue || 0})); })});
+dash.loader('bing_ca_ads', {description: "One row per search ad; text cells become numbers, and each ad is named by its ad group and first headline.", fn: (({answer}) => { const H = {"82463817498127": "Year-End Donation", "82463817498128": "Year-End Donation", "82463817498129": "Year-End Donation", "83013573216980": "Send a Girl to School", "82601255581805": "Girls' Education in Pakistan", "82601255517651": "The Citizens Foundation USA", "82601255517652": "The Citizens Foundation USA", "82601255517653": "The Citizens Foundation USA", "82257659386194": "Give Sadaqah Jariyah", "82257659386195": "Give Sadaqah Jariyah", "82257659386196": "Give Sadaqah Jariyah", "83013573152422": "Girls' Education in Pakistan", "83013573152423": "Girls' Education in Pakistan", "83013573152424": "Girls' Education in Pakistan", "82326377735524": "Pay Your Zakat Where It Lasts", "82738695218158": "Girls' Education in Pakistan", "82120220391192": "Girls' Education in Pakistan", "82120220391193": "Girls' Education in Pakistan", "82120220391194": "Girls' Education in Pakistan", "82188939983927": "Pay Your Zakat Where It Lasts", "82532536900780": "Girls' Education in Pakistan", "83013573161627": "The Citizens Foundation Canada", "83013573161628": "The Citizens Foundation Canada", "83013573161629": "The Citizens Foundation Canada", "82669975866489": "Send a Girl to School", "82669975810595": "Give Sadaqah Jariyah", "82669975810596": "Give Sadaqah Jariyah", "82669975810597": "Give Sadaqah Jariyah", "82601255581809": "Girls' Education in Pakistan", "82532536845872": "Year-End Donation", "82532536845873": "Year-End Donation", "82532536845874": "Year-End Donation", "82257659395350": "Girls' Education in Pakistan", "82257659395351": "Girls' Education in Pakistan", "82257659395352": "Girls' Education in Pakistan", "82876133308402": "Girls' Education in Pakistan", "82876133308403": "Girls' Education in Pakistan", "82876133308404": "Girls' Education in Pakistan", "82257659395902": "Give Sadaqah Jariyah", "82257659395903": "Give Sadaqah Jariyah", "82257659395904": "Give Sadaqah Jariyah", "82463817507879": "Girls' Education in Pakistan", "82463817507880": "Girls' Education in Pakistan", "82463817507881": "Girls' Education in Pakistan", "82326377681105": "The Citizens Foundation UK", "82326377681106": "The Citizens Foundation UK", "82326377681107": "The Citizens Foundation UK", "82532536846405": "Girls' Education in Pakistan", "82532536846406": "Girls' Education in Pakistan", "82532536846407": "Girls' Education in Pakistan", "82257659395905": "Year-End Donation", "82257659395906": "Year-End Donation", "82257659395907": "Year-End Donation", "83013573162196": "The Citizens Foundation", "83013573162197": "The Citizens Foundation", "82738695163894": "Give Sadaqah Jariyah", "82738695163895": "Give Sadaqah Jariyah", "82876133309022": "Girls' Education in Pakistan", "82876133309023": "Girls' Education in Pakistan"};
+  return (answer && answer.rows || []).map((r) => ({ad_id: String(r.AdId), name: 'Search: ' + r.AdcaroupName + (H[String(r.AdId)] ? ' — ' + H[String(r.AdId)] : ''), group: r.AdcaroupName, campaign: r.CampaignName,
+    spend: +r.Spend || 0, clicks: +r.Clicks || 0, impressions: +r.Impressions || 0, donations: +r.ConversionsQualified || 0, value: +r.Revenue || 0})); })});
+dash.loader('bing_uk_ads', {description: "One row per search ad; text cells become numbers, and each ad is named by its ad group and first headline.", fn: (({answer}) => { const H = {"82463817498127": "Year-End Donation", "82463817498128": "Year-End Donation", "82463817498129": "Year-End Donation", "83013573216980": "Send a Girl to School", "82601255581805": "Girls' Education in Pakistan", "82601255517651": "The Citizens Foundation USA", "82601255517652": "The Citizens Foundation USA", "82601255517653": "The Citizens Foundation USA", "82257659386194": "Give Sadaqah Jariyah", "82257659386195": "Give Sadaqah Jariyah", "82257659386196": "Give Sadaqah Jariyah", "83013573152422": "Girls' Education in Pakistan", "83013573152423": "Girls' Education in Pakistan", "83013573152424": "Girls' Education in Pakistan", "82326377735524": "Pay Your Zakat Where It Lasts", "82738695218158": "Girls' Education in Pakistan", "82120220391192": "Girls' Education in Pakistan", "82120220391193": "Girls' Education in Pakistan", "82120220391194": "Girls' Education in Pakistan", "82188939983927": "Pay Your Zakat Where It Lasts", "82532536900780": "Girls' Education in Pakistan", "83013573161627": "The Citizens Foundation Canada", "83013573161628": "The Citizens Foundation Canada", "83013573161629": "The Citizens Foundation Canada", "82669975866489": "Send a Girl to School", "82669975810595": "Give Sadaqah Jariyah", "82669975810596": "Give Sadaqah Jariyah", "82669975810597": "Give Sadaqah Jariyah", "82601255581809": "Girls' Education in Pakistan", "82532536845872": "Year-End Donation", "82532536845873": "Year-End Donation", "82532536845874": "Year-End Donation", "82257659395350": "Girls' Education in Pakistan", "82257659395351": "Girls' Education in Pakistan", "82257659395352": "Girls' Education in Pakistan", "82876133308402": "Girls' Education in Pakistan", "82876133308403": "Girls' Education in Pakistan", "82876133308404": "Girls' Education in Pakistan", "82257659395902": "Give Sadaqah Jariyah", "82257659395903": "Give Sadaqah Jariyah", "82257659395904": "Give Sadaqah Jariyah", "82463817507879": "Girls' Education in Pakistan", "82463817507880": "Girls' Education in Pakistan", "82463817507881": "Girls' Education in Pakistan", "82326377681105": "The Citizens Foundation UK", "82326377681106": "The Citizens Foundation UK", "82326377681107": "The Citizens Foundation UK", "82532536846405": "Girls' Education in Pakistan", "82532536846406": "Girls' Education in Pakistan", "82532536846407": "Girls' Education in Pakistan", "82257659395905": "Year-End Donation", "82257659395906": "Year-End Donation", "82257659395907": "Year-End Donation", "83013573162196": "The Citizens Foundation", "83013573162197": "The Citizens Foundation", "82738695163894": "Give Sadaqah Jariyah", "82738695163895": "Give Sadaqah Jariyah", "82876133309022": "Girls' Education in Pakistan", "82876133309023": "Girls' Education in Pakistan"};
+  return (answer && answer.rows || []).map((r) => ({ad_id: String(r.AdId), name: 'Search: ' + r.AdukroupName + (H[String(r.AdId)] ? ' — ' + H[String(r.AdId)] : ''), group: r.AdukroupName, campaign: r.CampaignName,
+    spend: +r.Spend || 0, clicks: +r.Clicks || 0, impressions: +r.Impressions || 0, donations: +r.ConversionsQualified || 0, value: +r.Revenue || 0})); })});
+dash.loader('bing_pk_ads', {description: "One row per search ad; text cells become numbers, and each ad is named by its ad group and first headline.", fn: (({answer}) => { const H = {"82463817498127": "Year-End Donation", "82463817498128": "Year-End Donation", "82463817498129": "Year-End Donation", "83013573216980": "Send a Girl to School", "82601255581805": "Girls' Education in Pakistan", "82601255517651": "The Citizens Foundation USA", "82601255517652": "The Citizens Foundation USA", "82601255517653": "The Citizens Foundation USA", "82257659386194": "Give Sadaqah Jariyah", "82257659386195": "Give Sadaqah Jariyah", "82257659386196": "Give Sadaqah Jariyah", "83013573152422": "Girls' Education in Pakistan", "83013573152423": "Girls' Education in Pakistan", "83013573152424": "Girls' Education in Pakistan", "82326377735524": "Pay Your Zakat Where It Lasts", "82738695218158": "Girls' Education in Pakistan", "82120220391192": "Girls' Education in Pakistan", "82120220391193": "Girls' Education in Pakistan", "82120220391194": "Girls' Education in Pakistan", "82188939983927": "Pay Your Zakat Where It Lasts", "82532536900780": "Girls' Education in Pakistan", "83013573161627": "The Citizens Foundation Canada", "83013573161628": "The Citizens Foundation Canada", "83013573161629": "The Citizens Foundation Canada", "82669975866489": "Send a Girl to School", "82669975810595": "Give Sadaqah Jariyah", "82669975810596": "Give Sadaqah Jariyah", "82669975810597": "Give Sadaqah Jariyah", "82601255581809": "Girls' Education in Pakistan", "82532536845872": "Year-End Donation", "82532536845873": "Year-End Donation", "82532536845874": "Year-End Donation", "82257659395350": "Girls' Education in Pakistan", "82257659395351": "Girls' Education in Pakistan", "82257659395352": "Girls' Education in Pakistan", "82876133308402": "Girls' Education in Pakistan", "82876133308403": "Girls' Education in Pakistan", "82876133308404": "Girls' Education in Pakistan", "82257659395902": "Give Sadaqah Jariyah", "82257659395903": "Give Sadaqah Jariyah", "82257659395904": "Give Sadaqah Jariyah", "82463817507879": "Girls' Education in Pakistan", "82463817507880": "Girls' Education in Pakistan", "82463817507881": "Girls' Education in Pakistan", "82326377681105": "The Citizens Foundation UK", "82326377681106": "The Citizens Foundation UK", "82326377681107": "The Citizens Foundation UK", "82532536846405": "Girls' Education in Pakistan", "82532536846406": "Girls' Education in Pakistan", "82532536846407": "Girls' Education in Pakistan", "82257659395905": "Year-End Donation", "82257659395906": "Year-End Donation", "82257659395907": "Year-End Donation", "83013573162196": "The Citizens Foundation", "83013573162197": "The Citizens Foundation", "82738695163894": "Give Sadaqah Jariyah", "82738695163895": "Give Sadaqah Jariyah", "82876133309022": "Girls' Education in Pakistan", "82876133309023": "Girls' Education in Pakistan"};
+  return (answer && answer.rows || []).map((r) => ({ad_id: String(r.AdId), name: 'Search: ' + r.AdpkroupName + (H[String(r.AdId)] ? ' — ' + H[String(r.AdId)] : ''), group: r.AdpkroupName, campaign: r.CampaignName,
+    spend: +r.Spend || 0, clicks: +r.Clicks || 0, impressions: +r.Impressions || 0, donations: +r.ConversionsQualified || 0, value: +r.Revenue || 0})); })});
+dash.loader('li_us_ads', {description: "One row per LinkedIn ad; LinkedIn's conversion count mixes add to cart, checkout and donation, so it is not used as donations.", fn: (({answer}) => (answer && answer.analytics || []).map((a) => ({id: String((a.pivotValues || [''])[0]).split(':').pop(),
+  spend: +a.costInLocalCurrency || 0, clicks: a.clicks || 0, impressions: a.impressions || 0})))});
+dash.loader('li_us_adnames', {description: "Keeps each LinkedIn ad id with its name.", fn: (({answer}) => (answer && answer.creatives || []).map((c) => ({id: String(c.id || '').split(':').pop(), name: c.name})))});
+dash.loader('li_ca_ads', {description: "One row per LinkedIn ad; LinkedIn's conversion count mixes add to cart, checkout and donation, so it is not used as donations.", fn: (({answer}) => (answer && answer.analytics || []).map((a) => ({id: String((a.pivotValues || [''])[0]).split(':').pop(),
+  spend: +a.costInLocalCurrency || 0, clicks: a.clicks || 0, impressions: a.impressions || 0})))});
+dash.loader('li_ca_adnames', {description: "Keeps each LinkedIn ad id with its name.", fn: (({answer}) => (answer && answer.creatives || []).map((c) => ({id: String(c.id || '').split(':').pop(), name: c.name})))});
+dash.loader('li_uk_ads', {description: "One row per LinkedIn ad; LinkedIn's conversion count mixes add to cart, checkout and donation, so it is not used as donations.", fn: (({answer}) => (answer && answer.analytics || []).map((a) => ({id: String((a.pivotValues || [''])[0]).split(':').pop(),
+  spend: +a.costInLocalCurrency || 0, clicks: a.clicks || 0, impressions: a.impressions || 0})))});
+dash.loader('li_uk_adnames', {description: "Keeps each LinkedIn ad id with its name.", fn: (({answer}) => (answer && answer.creatives || []).map((c) => ({id: String(c.id || '').split(':').pop(), name: c.name})))});
 dash.calc('groups_us', {
   title: 'US campaigns and ad groups',
   description: 'Every ad group or ad set with spend since Nov 1, in USD (1 USD = 1.3766 CAD). LinkedIn donations are not counted.',
@@ -934,9 +955,9 @@ dash.calc('daily_us', {
 
 dash.calc('creative_us', {
   title: 'US creative',
-  description: 'Ads with the same name added up across Reddit and TikTok (for example "1A Girls out of school - Static"), spend in USD.',
-  inputs: ["reddit_us_ads", "reddit_us_adnames", "tiktok_us_ads"],
-  fn: (reddit_us_ads, reddit_us_adnames, tiktok_us_ads) => {
+  description: 'Ads with the same name added up across Reddit, TikTok and LinkedIn; Bing search ads are named by ad group and first headline (for example "1A Girls out of school - Static"), spend in USD.',
+  inputs: ["reddit_us_ads", "reddit_us_adnames", "tiktok_us_ads", "bing_us_ads", "li_us_ads", "li_us_adnames"],
+  fn: (reddit_us_ads, reddit_us_adnames, tiktok_us_ads, bing_us_ads, li_us_ads, li_us_adnames) => {
     const X = 1.3766, m = new Map();
     const add = (name, platform, spend, clicks, impressions, donations, value) => {
       if (!spend) return; const key = String(name || '').trim();
@@ -945,6 +966,8 @@ dash.calc('creative_us', {
       r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; const b = r.by_platform[platform] || (r.by_platform[platform] = {spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0}); b.spend_usd += spend; b.clicks += clicks; b.impressions += impressions; b.donations += donations; b.value_usd += value; m.set(key, r); };
     const an = new Map(reddit_us_adnames.map((a) => [a.id, a.name])); reddit_us_ads.forEach((r) => add(an.get(r.ad_id) || r.ad_id, 'Reddit', r.spend * 1, r.clicks, r.impressions, r.donations, r.value * 1));
     tiktok_us_ads.forEach((r) => add(r.ad_name, 'TikTok', r.spend, r.clicks, r.impressions, r.donations, r.value));
+    bing_us_ads.forEach((r) => add(r.name, 'Bing', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
+    const ln = new Map(li_us_adnames.map((a) => [a.id, a.name])); li_us_ads.forEach((r) => add(ln.get(r.id) || ('LinkedIn ad ' + r.id), 'LinkedIn', r.spend * 1, r.clicks, r.impressions, 0, 0));
     return [...m.values()].map((r) => ({...r, platforms: r.platforms.join(' + '), ctr: r.impressions ? r.clicks / r.impressions : null,
       cost_per_donation_usd: r.donations ? r.spend_usd / r.donations : null, roas: r.spend_usd ? r.value_usd / r.spend_usd : null})).sort((a, b) => b.spend_usd - a.spend_usd);
   }
@@ -989,9 +1012,9 @@ dash.calc('daily_ca', {
 
 dash.calc('creative_ca', {
   title: 'CA creative',
-  description: 'Ads with the same name added up across Reddit and TikTok (for example "1A Girls out of school - Static"), spend in USD.',
-  inputs: ["reddit_ca_ads", "reddit_ca_adnames", "tiktok_ca_ads"],
-  fn: (reddit_ca_ads, reddit_ca_adnames, tiktok_ca_ads) => {
+  description: 'Ads with the same name added up across Reddit, TikTok and LinkedIn; Bing search ads are named by ad group and first headline (for example "1A Girls out of school - Static"), spend in USD.',
+  inputs: ["reddit_ca_ads", "reddit_ca_adnames", "tiktok_ca_ads", "bing_ca_ads", "li_ca_ads", "li_ca_adnames"],
+  fn: (reddit_ca_ads, reddit_ca_adnames, tiktok_ca_ads, bing_ca_ads, li_ca_ads, li_ca_adnames) => {
     const X = 1.3766, m = new Map();
     const add = (name, platform, spend, clicks, impressions, donations, value) => {
       if (!spend) return; const key = String(name || '').trim();
@@ -1000,6 +1023,8 @@ dash.calc('creative_ca', {
       r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; const b = r.by_platform[platform] || (r.by_platform[platform] = {spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0}); b.spend_usd += spend; b.clicks += clicks; b.impressions += impressions; b.donations += donations; b.value_usd += value; m.set(key, r); };
     const an = new Map(reddit_ca_adnames.map((a) => [a.id, a.name])); reddit_ca_ads.forEach((r) => add(an.get(r.ad_id) || r.ad_id, 'Reddit', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
     tiktok_ca_ads.forEach((r) => add(r.ad_name, 'TikTok', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
+    bing_ca_ads.forEach((r) => add(r.name, 'Bing', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
+    const ln = new Map(li_ca_adnames.map((a) => [a.id, a.name])); li_ca_ads.forEach((r) => add(ln.get(r.id) || ('LinkedIn ad ' + r.id), 'LinkedIn', r.spend * 1/X, r.clicks, r.impressions, 0, 0));
     return [...m.values()].map((r) => ({...r, platforms: r.platforms.join(' + '), ctr: r.impressions ? r.clicks / r.impressions : null,
       cost_per_donation_usd: r.donations ? r.spend_usd / r.donations : null, roas: r.spend_usd ? r.value_usd / r.spend_usd : null})).sort((a, b) => b.spend_usd - a.spend_usd);
   }
@@ -1044,9 +1069,9 @@ dash.calc('daily_uk', {
 
 dash.calc('creative_uk', {
   title: 'UK creative',
-  description: 'Ads with the same name added up across Reddit and TikTok (for example "1A Girls out of school - Static"), spend in USD.',
-  inputs: ["reddit_uk_ads", "reddit_uk_adnames", "tiktok_uk_ads"],
-  fn: (reddit_uk_ads, reddit_uk_adnames, tiktok_uk_ads) => {
+  description: 'Ads with the same name added up across Reddit, TikTok and LinkedIn; Bing search ads are named by ad group and first headline (for example "1A Girls out of school - Static"), spend in USD.',
+  inputs: ["reddit_uk_ads", "reddit_uk_adnames", "tiktok_uk_ads", "bing_uk_ads", "li_uk_ads", "li_uk_adnames"],
+  fn: (reddit_uk_ads, reddit_uk_adnames, tiktok_uk_ads, bing_uk_ads, li_uk_ads, li_uk_adnames) => {
     const X = 1.3766, m = new Map();
     const add = (name, platform, spend, clicks, impressions, donations, value) => {
       if (!spend) return; const key = String(name || '').trim();
@@ -1055,6 +1080,8 @@ dash.calc('creative_uk', {
       r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; const b = r.by_platform[platform] || (r.by_platform[platform] = {spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0}); b.spend_usd += spend; b.clicks += clicks; b.impressions += impressions; b.donations += donations; b.value_usd += value; m.set(key, r); };
     const an = new Map(reddit_uk_adnames.map((a) => [a.id, a.name])); reddit_uk_ads.forEach((r) => add(an.get(r.ad_id) || r.ad_id, 'Reddit', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
     tiktok_uk_ads.forEach((r) => add(r.ad_name, 'TikTok', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
+    bing_uk_ads.forEach((r) => add(r.name, 'Bing', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
+    const ln = new Map(li_uk_adnames.map((a) => [a.id, a.name])); li_uk_ads.forEach((r) => add(ln.get(r.id) || ('LinkedIn ad ' + r.id), 'LinkedIn', r.spend * 1/X, r.clicks, r.impressions, 0, 0));
     return [...m.values()].map((r) => ({...r, platforms: r.platforms.join(' + '), ctr: r.impressions ? r.clicks / r.impressions : null,
       cost_per_donation_usd: r.donations ? r.spend_usd / r.donations : null, roas: r.spend_usd ? r.value_usd / r.spend_usd : null})).sort((a, b) => b.spend_usd - a.spend_usd);
   }
@@ -1097,9 +1124,9 @@ dash.calc('daily_pk', {
 
 dash.calc('creative_pk', {
   title: 'PK creative',
-  description: 'Ads with the same name added up across Reddit and TikTok (for example "1A Girls out of school - Static"), spend in USD.',
-  inputs: ["reddit_pk_ads", "reddit_pk_adnames", "tiktok_pk_ads"],
-  fn: (reddit_pk_ads, reddit_pk_adnames, tiktok_pk_ads) => {
+  description: 'Ads with the same name added up across Reddit, TikTok and LinkedIn; Bing search ads are named by ad group and first headline (for example "1A Girls out of school - Static"), spend in USD.',
+  inputs: ["reddit_pk_ads", "reddit_pk_adnames", "tiktok_pk_ads", "bing_pk_ads"],
+  fn: (reddit_pk_ads, reddit_pk_adnames, tiktok_pk_ads, bing_pk_ads) => {
     const X = 1.3766, m = new Map();
     const add = (name, platform, spend, clicks, impressions, donations, value) => {
       if (!spend) return; const key = String(name || '').trim();
@@ -1108,6 +1135,7 @@ dash.calc('creative_pk', {
       r.spend_usd += spend; r.clicks += clicks; r.impressions += impressions; r.donations += donations; r.value_usd += value; const b = r.by_platform[platform] || (r.by_platform[platform] = {spend_usd: 0, clicks: 0, impressions: 0, donations: 0, value_usd: 0}); b.spend_usd += spend; b.clicks += clicks; b.impressions += impressions; b.donations += donations; b.value_usd += value; m.set(key, r); };
     const an = new Map(reddit_pk_adnames.map((a) => [a.id, a.name])); reddit_pk_ads.forEach((r) => add(an.get(r.ad_id) || r.ad_id, 'Reddit', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
     tiktok_pk_ads.forEach((r) => add(r.ad_name, 'TikTok', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
+    bing_pk_ads.forEach((r) => add(r.name, 'Bing', r.spend * 1/X, r.clicks, r.impressions, r.donations, r.value * 1/X));
     return [...m.values()].map((r) => ({...r, platforms: r.platforms.join(' + '), ctr: r.impressions ? r.clicks / r.impressions : null,
       cost_per_donation_usd: r.donations ? r.spend_usd / r.donations : null, roas: r.spend_usd ? r.value_usd / r.spend_usd : null})).sort((a, b) => b.spend_usd - a.spend_usd);
   }
