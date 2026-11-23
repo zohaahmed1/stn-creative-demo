@@ -240,7 +240,7 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
 
   <section class="sec" id="by-platform">
     <h2>By country and platform<span class="since-tag" hidden>Since Nov 1</span></h2>
-    <p class="note">Spend is shown in USD (1 USD = 1.3766 CAD). LinkedIn reports donations together with other website actions, so its count is shown separately. X spend is estimated from its daily budget (US $20/day from Nov 12, Canada CA$15/day from Nov 7, PK $8/day from Nov 7).</p>
+    <p class="note">Spend is shown in USD (1 USD = 1.3766 CAD). Add to cart also counts checkouts where the platform reports them (Bing: Begin checkout and Add to cart goals; TikTok: add to cart and initiate checkout). Bing donations count the Purchase goal only. LinkedIn reports donations together with other website actions, so its count is shown separately. X spend is estimated from its daily budget (US $20/day from Nov 12, Canada CA$15/day from Nov 7, PK $8/day from Nov 7).</p>
     <div class="wrap">
       <table data-source="summary" data-row-key="key">
         <thead><tr><th data-field="platform">Platform</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="atc">Add to cart</th><th data-field="donations">Donations</th><th data-field="donations_view">of which view</th><th data-field="conversions_mixed">LinkedIn website actions</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
@@ -639,17 +639,24 @@ dash.loader('li_uk', {description: "Reads the totals row. LinkedIn counts add to
 })});
 
 
+dash.loader('bing_us_goals', {description: "Splits Bing's conversions by goal: donations are the Purchase goal only; the add to cart column counts the Add to cart and Begin checkout goals.", fn: (({answer}) => { const rows = (answer && answer.rows) || []; const sum = (f, k) => rows.filter((r) => f(String(r.Goal || ''))).reduce((t, r) => t + (parseFloat(r[k]) || 0), 0); return [{donations: sum((g) => /^Purchase/i.test(g), 'AllConversions'), value: sum((g) => /^Purchase/i.test(g), 'Revenue'), atc: sum((g) => /Begin checkout|Add to cart/i.test(g), 'AllConversions')}]; })});
+dash.loader('bing_ca_goals', {description: "Splits Bing's conversions by goal: donations are the Purchase goal only; the add to cart column counts the Add to cart and Begin checkout goals.", fn: (({answer}) => { const rows = (answer && answer.rows) || []; const sum = (f, k) => rows.filter((r) => f(String(r.Goal || ''))).reduce((t, r) => t + (parseFloat(r[k]) || 0), 0); return [{donations: sum((g) => /^Purchase/i.test(g), 'AllConversions'), value: sum((g) => /^Purchase/i.test(g), 'Revenue'), atc: sum((g) => /Begin checkout|Add to cart/i.test(g), 'AllConversions')}]; })});
+dash.loader('bing_uk_goals', {description: "Splits Bing's conversions by goal: donations are the Purchase goal only; the add to cart column counts the Add to cart and Begin checkout goals.", fn: (({answer}) => { const rows = (answer && answer.rows) || []; const sum = (f, k) => rows.filter((r) => f(String(r.Goal || ''))).reduce((t, r) => t + (parseFloat(r[k]) || 0), 0); return [{donations: sum((g) => /^Purchase/i.test(g), 'AllConversions'), value: sum((g) => /^Purchase/i.test(g), 'Revenue'), atc: sum((g) => /Begin checkout|Add to cart/i.test(g), 'AllConversions')}]; })});
+dash.loader('bing_pk_goals', {description: "Splits Bing's conversions by goal: donations are the Purchase goal only; the add to cart column counts the Add to cart and Begin checkout goals.", fn: (({answer}) => { const rows = (answer && answer.rows) || []; const sum = (f, k) => rows.filter((r) => f(String(r.Goal || ''))).reduce((t, r) => t + (parseFloat(r[k]) || 0), 0); return [{donations: sum((g) => /^Purchase/i.test(g), 'AllConversions'), value: sum((g) => /^Purchase/i.test(g), 'Revenue'), atc: sum((g) => /Begin checkout|Add to cart/i.test(g), 'AllConversions')}]; })});
 dash.calc('summary', {
   title: 'Spend and donations by country and platform',
   description: 'One row per account, spend converted to USD at 1 USD = 1.3766 CAD. LinkedIn donations are not counted (its conversions mix add to cart, checkout and donation).',
-  inputs: ["bing_us", "reddit_us", "tiktok_us", "li_us", "bing_ca", "reddit_ca", "li_ca", "bing_uk", "reddit_uk", "li_uk", "bing_pk", "reddit_pk", "tiktok_ca", "tiktok_uk", "tiktok_pk"],
-  fn: (bing_us, reddit_us, tiktok_us, li_us, bing_ca, reddit_ca, li_ca, bing_uk, reddit_uk, li_uk, bing_pk, reddit_pk, tiktok_ca, tiktok_uk, tiktok_pk) => {
+  inputs: ["bing_us", "reddit_us", "tiktok_us", "li_us", "bing_ca", "reddit_ca", "li_ca", "bing_uk", "reddit_uk", "li_uk", "bing_pk", "reddit_pk", "tiktok_ca", "tiktok_uk", "tiktok_pk", "bing_us_goals", "bing_ca_goals", "bing_uk_goals", "bing_pk_goals"],
+  fn: (bing_us, reddit_us, tiktok_us, li_us, bing_ca, reddit_ca, li_ca, bing_uk, reddit_uk, li_uk, bing_pk, reddit_pk, tiktok_ca, tiktok_uk, tiktok_pk, bing_us_goals, bing_ca_goals, bing_uk_goals, bing_pk_goals) => {
+    const GOALS = {bing_us: bing_us_goals, bing_ca: bing_ca_goals, bing_uk: bing_uk_goals, bing_pk: bing_pk_goals};
     const CAD_PER_USD = 1.3766;
     const accounts = [{"id": "bing_us", "country": "US", "platform": "Bing", "currency": "CAD"}, {"id": "reddit_us", "country": "US", "platform": "Reddit", "currency": "USD"}, {"id": "tiktok_us", "country": "US", "platform": "TikTok", "currency": "USD"}, {"id": "li_us", "country": "US", "platform": "LinkedIn", "currency": "USD"}, {"id": "bing_ca", "country": "CA", "platform": "Bing", "currency": "CAD"}, {"id": "reddit_ca", "country": "CA", "platform": "Reddit", "currency": "CAD"}, {"id": "li_ca", "country": "CA", "platform": "LinkedIn", "currency": "CAD"}, {"id": "bing_uk", "country": "UK", "platform": "Bing", "currency": "CAD"}, {"id": "reddit_uk", "country": "UK", "platform": "Reddit", "currency": "CAD"}, {"id": "li_uk", "country": "UK", "platform": "LinkedIn", "currency": "CAD"}, {"id": "bing_pk", "country": "PK", "platform": "Bing", "currency": "CAD"}, {"id": "reddit_pk", "country": "PK", "platform": "Reddit", "currency": "CAD"}, {"id": "tiktok_ca", "country": "CA", "platform": "TikTok", "currency": "CAD"}, {"id": "tiktok_uk", "country": "UK", "platform": "TikTok", "currency": "CAD"}, {"id": "tiktok_pk", "country": "PK", "platform": "TikTok", "currency": "CAD"}];
     const data = [bing_us, reddit_us, tiktok_us, li_us, bing_ca, reddit_ca, li_ca, bing_uk, reddit_uk, li_uk, bing_pk, reddit_pk, tiktok_ca, tiktok_uk, tiktok_pk];
     return accounts.map((a, i) => {
-      const r = data[i][0];
+      let r = data[i][0];
       if (!r) return null;
+      const gl = GOALS[a.id] && GOALS[a.id][0];
+      if (gl) r = Object.assign({}, r, {donations: gl.donations, value: gl.value, atc: gl.atc});
       const fx = a.currency === 'CAD' ? 1 / CAD_PER_USD : 1;
       const spend_usd = r.spend * fx;
       const value_usd = r.value * fx;
