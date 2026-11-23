@@ -240,10 +240,10 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
 
   <section class="sec" id="by-platform">
     <h2>By country and platform<span class="since-tag" hidden>Since Nov 1</span></h2>
-    <p class="note">Spend is shown in each account's own currency and in USD (1 USD = 1.3766 CAD). LinkedIn reports donations together with other website actions, so its count is shown separately. X spend is estimated from its daily budget (US $20/day from Nov 12, Canada CA$15/day from Nov 7, PK $8/day from Nov 7).</p>
+    <p class="note">Spend is shown in USD (1 USD = 1.3766 CAD). LinkedIn reports donations together with other website actions, so its count is shown separately. X spend is estimated from its daily budget (US $20/day from Nov 12, Canada CA$15/day from Nov 7, PK $8/day from Nov 7).</p>
     <div class="wrap">
       <table data-source="summary" data-row-key="key">
-        <thead><tr><th data-field="platform">Platform</th><th data-field="spend">Spend (acct)</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="atc">Add to cart</th><th data-field="donations">Donations</th><th data-field="donations_view">of which view</th><th data-field="conversions_mixed">LinkedIn website actions</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
+        <thead><tr><th data-field="platform">Platform</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="atc">Add to cart</th><th data-field="donations">Donations</th><th data-field="donations_view">of which view</th><th data-field="conversions_mixed">LinkedIn website actions</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
         <tbody data-draw="detail_rows"></tbody>
       </table>
     </div>
@@ -1297,12 +1297,11 @@ dash.calc('budget_total', {
       const rs = s.data.filter((r) => r.country === c);
       if (!rs.length) return;
       const g = document.createElement('tr'); g.className = 'grp';
-      const gc = td(g, c); gc.colSpan = 10; tb.appendChild(g);
+      const gc = td(g, c); gc.colSpan = 9; tb.appendChild(g);
       rs.forEach((r) => {
         const tr = document.createElement('tr');
         tr.setAttribute('data-key', r.key);
         td(tr, r.platform);
-        td(tr, (r.currency === 'CAD' ? 'CA$' : '$') + d3.format(',.2f')(r.spend));
         td(tr, usd2(r.spend_usd));
         td(tr, int(r.clicks));
         td(tr, int(r.atc), 'muted');
