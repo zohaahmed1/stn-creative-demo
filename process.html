@@ -520,34 +520,73 @@
 </div>
 
 <!-- HERO -->
-<section class="hero">
-  <h1 class="hero-h1">Your competitor is<br>testing ads <em>right now.</em></h1>
-  <p class="hero-sub">Platform algorithms now reward creative volume. Your competitors have already figured that out. Most brands still take 2 to 3 weeks to launch anything new. We're live in 7 days.</p>
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-num">7</div>
-      <div class="hero-stat-label">Days to first live ad</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">20+</div>
-      <div class="hero-stat-label">Creatives built to test every month</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">8×</div>
-      <div class="hero-stat-label">More test cycles than the usual process</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">2</div>
-      <div class="hero-stat-label">People. The ones making the ads run the campaigns.</div>
+<section class="hero pr-hero">
+  <div class="pr-wrap">
+    <div class="pr-pills"><span style="display:inline-flex;align-items:center;gap:5px;background:rgba(85,0,221,0.07);border:1px solid rgba(85,0,221,0.22);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:700;color:#5500dd;"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#5500dd"/></svg>Live in 7 days</span><span style="display:inline-flex;align-items:center;gap:5px;background:rgba(238,0,51,0.07);border:1px solid rgba(238,0,51,0.22);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:700;color:#cc0033;"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#ee0033"/></svg>One team makes and runs the ads</span><span style="display:inline-flex;align-items:center;gap:5px;background:rgba(13,13,13,0.05);border:1px solid rgba(0,0,0,0.16);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:700;color:#191923;"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#191923"/></svg>Reports every two weeks</span></div>
+    <h1 class="pr-h1"><span class="pr-b">From brief to live ads</span><span class="pr-i">in seven days.</span></h1>
+    <p class="pr-sub">One team learns your brand, audits your ads and your competitors&rsquo;, makes the creative and runs the campaigns. No handoffs between agencies.</p>
+    <div class="pr-ctas"><a href="https://cal.com/skipthenoise/30min" class="pr-btn cta-open-cal">Get your channel plan</a><a href="/case-studies" class="pr-link">See our work &rarr;</a></div>
+  </div>
+  <style>
+    .li-mq{width:100%;overflow:hidden;padding:34px 0 10px;mask-image:linear-gradient(to right,transparent 0%,#000 6%,#000 94%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 6%,#000 94%,transparent 100%)}
+    .li-mq-track{display:flex;width:max-content;gap:10px;animation:li-mq-scroll 50s linear infinite}
+    @keyframes li-mq-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @media (hover:hover){.li-mq:hover .li-mq-track{animation-play-state:paused}}
+    .li-mq-img{width:190px;height:190px;object-fit:cover;border-radius:12px;flex-shrink:0;display:block;box-shadow:0 4px 18px rgba(0,0,0,0.08)}
+    .li-mq-note{font-size:12px;color:#8a8f9c;text-align:center;margin:4px 0 0}
+    .li-mq-note a{color:#5500DD;font-weight:700;text-decoration:none}
+    @media (max-width:768px){.li-mq-img{width:150px;height:150px}}
+    @media (max-width:768px){.hero .hero-proof{display:flex!important;flex-direction:row!important;justify-content:center;gap:14px!important;flex-wrap:nowrap!important}.hero .hero-proof .hp{flex:1;min-width:0;padding:0!important;border:none!important}.hero .hero-proof .hp-n{font-size:24px!important}.hero .hero-proof .hp-l{font-size:9.5px!important;letter-spacing:.04em}}
+    @media (prefers-reduced-motion:reduce){.li-mq-track{animation:none}}
+  </style>
+  <style>
+    section.hero.pr-hero{padding:118px 0 0!important;min-height:0!important;display:block!important;text-align:center;background:#f7f7f7}
+    .pr-wrap{max-width:1100px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column;align-items:center;gap:16px}
+    .pr-pills{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .pr-h1{margin:6px 0 0;line-height:1.05;font-size:clamp(40px,5.2vw,75px)}
+    .pr-b{display:block;font-family:'Satoshi',system-ui,sans-serif;font-weight:900;letter-spacing:-0.03em;color:#0a0a0a}
+    .pr-i{display:block;font-family:'Playfair Display',serif;font-style:italic;font-weight:700;color:#0a0a0a}
+    .pr-sub{max-width:760px;font-size:18px;color:#6b7280;line-height:1.6;margin:0}
+    .pr-ctas{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:4px}
+    .pr-btn{display:inline-block;background:#5500DD;color:#fff;font-size:14px;font-weight:700;padding:12px 28px;border-radius:100px;text-decoration:none;white-space:nowrap}
+    .pr-link{font-size:14px;font-weight:600;color:#6b7280;text-decoration:underline;text-underline-offset:3px}
+    @media (max-width:768px){section.hero.pr-hero{padding-top:96px!important}}
+  </style>
+  <div class="li-mq" aria-label="Sample ads from our creative team">
+    <div class="li-mq-track">
+        <img alt="Sample ad" loading="eager" src="/assets/B2B_SaaS_Ads_HMTIB0O.webp" class="li-mq-img">
+        <img alt="Sample ad" loading="eager" src="/assets/handbag-fashion.webp" class="li-mq-img">
+        <img alt="Sample ad" loading="eager" src="/assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.webp" class="li-mq-img">
+        <img alt="Sample ad" loading="eager" src="/assets/Lipstick_Campaign_dSJmLIvg.webp" class="li-mq-img">
+        <img alt="Sample ad" loading="eager" src="/assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.webp" class="li-mq-img">
+        <img alt="Sample ad" loading="eager" src="/assets/Protein_Bar_Advertisement_CDLIA58W.webp" class="li-mq-img">
+        <img alt="Sample ad" loading="eager" src="/assets/B2B_SaaS_Ads_V5F-kd5P.webp" class="li-mq-img">
+        <img alt="Sample ad" loading="eager" src="/assets/handbag-walk.webp" class="li-mq-img">
+        <img alt="Sample ad" loading="eager" src="/assets/B2B_SaaS_Ads_In_a_flat_design_style_a_man_with_many_arms_duWjAS1.webp" class="li-mq-img">
+        <img alt="Sample ad" loading="eager" src="/assets/Cpg_l5evv8k1.webp" class="li-mq-img">
+        <img alt="Sample ad" loading="eager" src="/assets/B2B_SaaS_Ads_nnRo2A9l.webp" class="li-mq-img">
+        <img alt="Sample ad" loading="eager" src="/assets/Protein_Bar_Advertisement_y5ER32ip2.webp" class="li-mq-img">
+        <img alt="" loading="lazy" src="/assets/B2B_SaaS_Ads_HMTIB0O.webp" class="li-mq-img" aria-hidden="true">
+        <img alt="" loading="lazy" src="/assets/handbag-fashion.webp" class="li-mq-img" aria-hidden="true">
+        <img alt="" loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_modern_corporate_style_a_smiling_woman_with_Cn4v05IE.webp" class="li-mq-img" aria-hidden="true">
+        <img alt="" loading="lazy" src="/assets/Lipstick_Campaign_dSJmLIvg.webp" class="li-mq-img" aria-hidden="true">
+        <img alt="" loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_flat_design_style_the_text_AI_for_hiring_6dnYkYTb.webp" class="li-mq-img" aria-hidden="true">
+        <img alt="" loading="lazy" src="/assets/Protein_Bar_Advertisement_CDLIA58W.webp" class="li-mq-img" aria-hidden="true">
+        <img alt="" loading="lazy" src="/assets/B2B_SaaS_Ads_V5F-kd5P.webp" class="li-mq-img" aria-hidden="true">
+        <img alt="" loading="lazy" src="/assets/handbag-walk.webp" class="li-mq-img" aria-hidden="true">
+        <img alt="" loading="lazy" src="/assets/B2B_SaaS_Ads_In_a_flat_design_style_a_man_with_many_arms_duWjAS1.webp" class="li-mq-img" aria-hidden="true">
+        <img alt="" loading="lazy" src="/assets/Cpg_l5evv8k1.webp" class="li-mq-img" aria-hidden="true">
+        <img alt="" loading="lazy" src="/assets/B2B_SaaS_Ads_nnRo2A9l.webp" class="li-mq-img" aria-hidden="true">
+        <img alt="" loading="lazy" src="/assets/Protein_Bar_Advertisement_y5ER32ip2.webp" class="li-mq-img" aria-hidden="true">
     </div>
   </div>
+  <p class="li-mq-note">Sample ads from our creative team. <a href="/gallery">See more &rarr;</a></p>
 </section>
 
 <!-- VS SECTION -->
 <section class="vs-section">
   <div class="container">
     <div class="vs-heading" data-anim>
-      <p class="eyebrow">Why it matters</p>
       <h2>What slow actually <em>costs you.</em></h2>
     </div>
     <div class="vs-table" data-anim data-delay="1">
@@ -560,8 +599,8 @@
         <p class="vs-new">Brief Monday. Live Friday.</p>
       </div>
       <div class="vs-compare-row">
-        <p class="vs-old">3 to 5 creatives a month</p>
-        <p class="vs-new">20+ creatives — enough to find a winner and scale it</p>
+        <p class="vs-old">The same few ads running for months</p>
+        <p class="vs-new">New ads tested every month, judged on cost per purchase</p>
       </div>
       <div class="vs-compare-row">
         <p class="vs-old">Creative and media buying siloed, nobody owns the outcome</p>
@@ -573,7 +612,7 @@
       </div>
       <div class="vs-compare-row">
         <p class="vs-old">Meta and Google only, same platforms, same saturation</p>
-        <p class="vs-new">Reddit + LinkedIn ABM — where your competitors aren't yet</p>
+        <p class="vs-new">Reddit and LinkedIn ABM as well as Meta and Google</p>
       </div>
     </div>
   </div>
@@ -584,7 +623,7 @@
 <section class="phases-section">
   <div class="container">
     <div data-anim>
-      <p class="section-label">The system that improves your return on investment</p>
+      
       <h2 class="section-h2">Six phases. <em>Seven days.</em></h2>
     </div>
 
@@ -727,7 +766,7 @@
             <div class="phase-footer">
               <span class="phase-deliverable">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="currentColor" opacity="0.2"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
-                Weekly performance report
+                Performance report every two weeks
               </span>
               <span class="phase-deliverable">
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="6" fill="currentColor" opacity="0.2"/><path d="M3.5 6l1.5 1.5 3.5-3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
