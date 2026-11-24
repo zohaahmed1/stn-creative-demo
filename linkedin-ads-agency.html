@@ -1047,33 +1047,27 @@
   .li-dark{background:#0f0525;color:#fff;padding:110px 0}
   .li-dark .section-label{color:rgba(255,255,255,0.55)}
   .li-dark .heading-bold,.li-dark .heading-italic{color:#fff!important}
-  .li-dark .li-intro{font-size:17px;color:rgba(255,255,255,0.65);max-width:660px;margin:18px auto 0;line-height:1.7;text-align:center}
-  .li-cases{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px}
-  .li-cases-2{grid-template-columns:repeat(2,1fr);margin-top:18px}
-  .li-case{display:flex;flex-direction:column;background:#fff;color:#0d0d0d;border-radius:16px;overflow:hidden;text-decoration:none;transition:transform .2s,box-shadow .2s}
-  a.li-case:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,0.35)}
-  .li-case-img{height:220px;background:#f5f5f5;overflow:hidden}
-  .li-case-img img{width:100%;height:100%;object-fit:cover}
-  .li-case-body{padding:22px 22px 24px}
-  .li-case-stat{font-family:var(--font,'Satoshi',system-ui,sans-serif);font-size:42px;font-weight:900;letter-spacing:-0.04em;line-height:1;color:#5500DD}
-  .li-case-stat span{display:block;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:rgba(0,0,0,0.45);margin-top:8px}
-  .li-case-meta{display:flex;align-items:center;gap:8px;margin:18px 0 10px;flex-wrap:wrap}
-  .li-case-meta strong{font-size:15px;font-weight:900}
+  .li-dark .li-intro{font-size:17px;color:rgba(255,255,255,0.65);max-width:640px;margin:18px auto 0;line-height:1.7;text-align:center}
+  .li-cases{display:grid;gap:18px;margin-top:48px}
+  .li-row-2{grid-template-columns:repeat(2,1fr)}
+  .li-row-3{grid-template-columns:repeat(3,1fr);margin-top:18px}
+  .li-case{position:relative;display:flex;flex-direction:column;background:#fff;color:#0d0d0d;border-radius:16px;padding:30px 28px 26px;text-decoration:none;overflow:hidden;transition:transform .2s,box-shadow .2s}
+  .li-case::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,#a78bfa,#f87171)}
+  a.li-case:hover{transform:translateY(-3px);box-shadow:0 14px 44px rgba(0,0,0,0.4)}
+  .li-case-stat{font-family:var(--font,'Satoshi',system-ui,sans-serif);font-size:44px;font-weight:900;letter-spacing:-0.04em;line-height:1;color:#0d0d0d}
+  .li-big .li-case-stat{font-size:60px}
+  .li-case-stat span{display:block;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#5500DD;margin-top:10px}
+  .li-case-meta{display:flex;align-items:center;gap:8px;margin:22px 0 10px;flex-wrap:wrap}
+  .li-case-meta strong{font-size:16px;font-weight:900}
   .li-case-meta em{font-style:normal;font-size:10px;font-weight:700;background:rgba(85,0,221,0.08);color:#5500DD;border-radius:100px;padding:2px 9px}
-  .li-case-meta small{font-size:10px;font-weight:600;color:rgba(0,0,0,0.4);margin-left:auto}
-  .li-case p{font-size:14px;line-height:1.65;color:#444;margin:0}
-  .li-case-text{background:#1c1040;color:#fff;border:1px solid rgba(255,255,255,0.1)}
-  .li-case-text .li-case-stat{color:#fff}
-  .li-case-text .li-case-stat span,.li-case-text .li-case-meta small{color:rgba(255,255,255,0.5)}
-  .li-case-text .li-case-meta em{background:rgba(255,255,255,0.12);color:#d9ccff}
-  .li-case-text p{color:rgba(255,255,255,0.72)}
-  .li-dark .li-foot{font-size:16px;color:rgba(255,255,255,0.65);text-align:center;margin:36px auto 0;max-width:640px;line-height:1.7}
-  .proof-section.li-black{background:#0a0a0a}
-  .proof-section.li-black .heading-bold,.proof-section.li-black .heading-italic{color:#fff!important}
-  .proof-section.li-black .stat-number{color:#fff}
-  .proof-section.li-black .stat-desc{color:rgba(255,255,255,0.55)}
-  .proof-section.li-black .section-label{color:rgba(255,255,255,0.55)}
-  @media (max-width:900px){.li-cases,.li-cases-2{grid-template-columns:1fr}.li-dark{padding:72px 0}}
+  .li-case p{font-size:14.5px;line-height:1.65;color:#4a4a55;margin:0 0 18px}
+  .li-ch{margin-top:auto;font-size:11px;font-weight:600;color:rgba(0,0,0,0.4);letter-spacing:0.02em}
+  .li-more{margin-top:10px;font-size:13px;font-weight:700;color:#5500DD}
+  .li-dark .li-foot{font-size:16px;color:rgba(255,255,255,0.65);text-align:center;margin:40px auto 0;max-width:620px;line-height:1.7}
+  .fit-section .fit-card{background:#fff}
+  @media (max-width:900px){.li-row-2,.li-row-3{grid-template-columns:1fr}.li-dark{padding:72px 0}.li-big .li-case-stat{font-size:44px}}
+  @media (max-width:420px){.li-case-stat,.li-big .li-case-stat{font-size:38px}}
+  .li-case-stat{white-space:nowrap}
 </style>
 <section class="li-dark">
   <div class="container">
@@ -1082,48 +1076,43 @@
       <span class="heading-bold">LinkedIn for B2B, B2C SaaS</span>
       <span class="heading-italic">and nonprofits.</span>
     </div>
-    <p class="li-intro" data-anim data-delay="2">Our team ran LinkedIn and account-based programs at WPP Media before starting Skip the Noise, and our founder is LinkedIn certified. Every result below says which channels it came from.</p>
-    <div class="li-cases" data-anim data-delay="3">
+    <p class="li-intro" data-anim data-delay="2">Our team ran LinkedIn and account-based programs at WPP Media before starting Skip the Noise, and our founder is LinkedIn certified. Each result says which channels it came from.</p>
+    <div class="li-cases li-row-2" data-anim data-delay="3">
+      <div class="li-case li-big">
+          <div class="li-case-stat">80%<span>of target accounts reached</span></div>
+          <div class="li-case-meta"><strong>Fortune 500 technology</strong><em>ABM</em></div>
+          <p>Account-based LinkedIn at WPP Media, mixing 6sense audiences with LinkedIn&rsquo;s own targeting and ABM tools. 65% of the companies reached went on to engage.</p>
+          <small class="li-ch">LinkedIn · 6sense · Client under NDA</small>
+      </div>
+      <div class="li-case li-big">
+          <div class="li-case-stat">CA$150&ndash;250<span>average cost per lead</span></div>
+          <div class="li-case-meta"><strong>Financial services</strong><em>Lead gen</em></div>
+          <p>Leads from guides and lead gen forms, roughly 120 to 200 over three months. The best campaign hit CA$59 per lead, and we judged LinkedIn on lead quality, not price alone.</p>
+          <small class="li-ch">LinkedIn · about $10K a month</small>
+      </div>
+    </div>
+    <div class="li-cases li-row-3" data-anim data-delay="4">
       <a href="/work/restream" class="li-case">
-        <div class="li-case-img"><img src="/assets/Restream%20Case%20Study%20V2.webp" alt="Restream B2C SaaS case study" loading="lazy"></div>
-        <div class="li-case-body">
           <div class="li-case-stat">10K &rarr; 18K<span>LinkedIn followers in 3 months</span></div>
-          <div class="li-case-meta"><strong>Restream</strong><em>B2C SaaS</em><small>LinkedIn · Meta · Reddit · X · Google</small></div>
-          <p>Follower ads took Restream&rsquo;s LinkedIn page from 10K to 18K followers in three months. Across the full paid mix, CAC fell 19% and new subscriber growth hit a 70-week high.</p>
-        </div>
+          <div class="li-case-meta"><strong>Restream</strong><em>B2C SaaS</em></div>
+          <p>Follower ads nearly doubled Restream&rsquo;s LinkedIn following. Across the full paid mix, CAC fell 19% and subscriber growth hit a 70-week high.</p>
+          <small class="li-ch">LinkedIn · Meta · Reddit · X · Google</small>
+          <span class="li-more">Read the case study &rarr;</span>
       </a>
       <a href="/work/simple-booth" class="li-case">
-        <div class="li-case-img"><img src="/assets/Simple%20Booth%20Case%20Study.webp" alt="Simple Booth B2B and B2C case study" loading="lazy"></div>
-        <div class="li-case-body">
           <div class="li-case-stat">0.73%<span>LinkedIn CTR, above benchmark</span></div>
-          <div class="li-case-meta"><strong>Simple Booth</strong><em>B2B + B2C SaaS</em><small>LinkedIn · Meta</small></div>
-          <p>LinkedIn reached corporate event planners and venues across 9 industries, while Meta carried consumers. Software-trial cost across the account fell 50%, to $12.</p>
-        </div>
+          <div class="li-case-meta"><strong>Simple Booth</strong><em>B2B + B2C SaaS</em></div>
+          <p>LinkedIn reached corporate event planners and venues across 9 industries, while Meta carried consumers. Trial cost across the account fell 50%, to $12.</p>
+          <small class="li-ch">LinkedIn · Meta</small>
+          <span class="li-more">Read the case study &rarr;</span>
       </a>
       <a href="/work/education-nonprofit" class="li-case">
-        <div class="li-case-img"><img src="/assets/education-nonprofit-cover.webp" alt="Education nonprofit case study" loading="lazy"></div>
-        <div class="li-case-body">
-          <div class="li-case-stat">$179K<span>raised · Reddit + TikTok</span></div>
-          <div class="li-case-meta"><strong>Education nonprofit</strong><em>Nonprofit</em><small>LinkedIn · Reddit · TikTok</small></div>
-          <p>LinkedIn reached corporate donors, while Reddit and TikTok drove $179,529 in donations from $24,117 in spend during Ramadan.</p>
-        </div>
+          <div class="li-case-stat">$179K<span>raised in donations</span></div>
+          <div class="li-case-meta"><strong>Education nonprofit</strong><em>Nonprofit</em></div>
+          <p>LinkedIn reached corporate donors. Reddit and TikTok drove $179,529 in donations from $24,117 in spend during Ramadan.</p>
+          <small class="li-ch">LinkedIn · Reddit · TikTok</small>
+          <span class="li-more">Read the case study &rarr;</span>
       </a>
-    </div>
-    <div class="li-cases li-cases-2" data-anim data-delay="4">
-      <div class="li-case li-case-text">
-        <div class="li-case-body">
-          <div class="li-case-stat">80%<span>of target accounts reached</span></div>
-          <div class="li-case-meta"><strong>Fortune 500 technology</strong><em>ABM · 6sense</em><small>Client under NDA</small></div>
-          <p>Account-based LinkedIn at WPP Media, mixing 6sense audiences with LinkedIn&rsquo;s own targeting and ABM tools. The program reached 80% of the target account list, and 65% of those companies engaged.</p>
-        </div>
-      </div>
-      <div class="li-case li-case-text">
-        <div class="li-case-body">
-          <div class="li-case-stat">CA$150&ndash;250<span>average cost per lead</span></div>
-          <div class="li-case-meta"><strong>Financial services</strong><em>Lead gen</em><small>$10K+/mo on LinkedIn</small></div>
-          <p>Leads from guides and lead gen forms at about $10K a month, roughly 120 to 200 leads over three months. The best campaign hit CA$59 per lead, and we judged LinkedIn on lead quality, not price alone.</p>
-        </div>
-      </div>
     </div>
     <p class="li-foot" data-anim>We judge LinkedIn on what it adds to pipeline, tracked in HubSpot, not only on cost per click or form fill.</p>
   </div>
@@ -1161,36 +1150,6 @@
         <p class="step-week">Week 2+</p>
         <p class="step-title">Amplify</p><p class="step-sub">Scale winners, cut losers</p>
         <p class="step-body">Scale what works, and keep checking cost per lead against what a closed deal is actually worth.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="proof-section li-black">
-  <div class="container">
-    <div style="text-align:center;">
-      <p class="section-label lab-2" data-anim>The numbers</p>
-      <div data-anim data-delay="1">
-        <span class="heading-bold" style="color:#0d0d0d;">Numbers</span>
-        <span class="heading-italic" style="color:#0d0d0d;">from real accounts.</span>
-      </div>
-    </div>
-    <div class="stats-row">
-      <div class="stat-block" data-anim data-delay="1">
-        <div class="stat-number">0.73%</div>
-        <div class="stat-desc">LinkedIn CTR &middot; corporate event buyers</div>
-      </div>
-      <div class="stat-block" data-anim data-delay="2">
-        <div class="stat-number">$10K+</div>
-        <div class="stat-desc">Monthly LinkedIn spend &middot; financial services</div>
-      </div>
-      <div class="stat-block" data-anim data-delay="3">
-        <div class="stat-number">CA$59</div>
-        <div class="stat-desc">Best LinkedIn campaign &middot; cost per lead</div>
-      </div>
-      <div class="stat-block" data-anim data-delay="4">
-        <div class="stat-number">$100M+</div>
-        <div class="stat-desc">Paid media managed by the team</div>
       </div>
     </div>
   </div>
