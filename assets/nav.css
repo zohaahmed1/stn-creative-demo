@@ -27,7 +27,7 @@ nav.nav { display: block; height: auto; min-height: 0; padding: 0; backdrop-filt
 .nav-mega-col:first-child { padding-right: 10px; }
 .nav-mega-col:last-child { padding-left: 10px; }
 .nav-mega-divider { background: rgba(0,0,0,0.07); }
-.nav-mega-label { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: rgba(0,0,0,0.38); padding: 10px 8px 3px; pointer-events: none; line-height: 1; }
+.nav-mega-label { font-size: 14px; font-weight: 700; color: #0d0d0d; padding: 10px 8px 4px; pointer-events: none; line-height: 1.2; }
 .nav-mega-label.is-spaced { margin-top: 4px; padding-top: 12px; border-top: 1px solid rgba(0,0,0,0.07); }
 .nav-dropdown-item { display: block; font-size: 13px; color: #191923; text-decoration: none; padding: 6px 8px; border-radius: 7px; font-weight: 450; transition: background .12s,color .12s; white-space: nowrap; line-height: 1.4; }
 .nav-dropdown-item:hover { background: rgba(85,0,221,0.07); color: #5500DD; }
@@ -56,7 +56,7 @@ nav.nav { display: block; height: auto; min-height: 0; padding: 0; backdrop-filt
 .mobile-menu-cta { margin-bottom: 8px; display: block; text-align: center; background: #5500DD; color: #fff; font-size: 16px; font-weight: 700; padding: 14px 32px; border-radius: 100px; text-decoration: none; }
 .mobile-menu-link { font-size: 28px; font-weight: 800; color: #0a0a0a; text-decoration: none; padding: 10px 0; border-radius: 12px; letter-spacing: -0.02em; text-align: center; }
 .mobile-menu-link:hover { background: rgba(0,0,0,0.05); }
-.mobile-menu-section { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(0,0,0,0.35); padding: 16px 0 4px; text-align: center; }
+.mobile-menu-section { font-size: 15px; font-weight: 700; color: #0d0d0d; padding: 16px 0 4px; text-align: center; }
 .mobile-menu-sublink { font-size: 17px; font-weight: 600; color: #0a0a0a; text-decoration: none; padding: 8px 12px; border-radius: 10px; text-align: center; display: block; }
 .mobile-menu-sublink:hover { background: rgba(0,0,0,0.05); color: #5500DD; }
 .mobile-menu-all { font-size: 14px; font-weight: 600; color: #5500DD; text-decoration: none; padding: 6px 12px; border-radius: 10px; display: block; text-align: center; }
