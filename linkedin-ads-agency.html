@@ -967,23 +967,35 @@
      SECTION 1: HERO
      ============================ -->
 <section class="hero">
-  <div class="container hero-content">
+  <div class="container li-hero">
+    <div class="li-hero-pills" data-anim>
+      <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(85,0,221,0.07);border:1px solid rgba(85,0,221,0.22);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:700;color:#5500dd;"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#5500dd"/></svg>80% of target accounts reached</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(238,0,51,0.07);border:1px solid rgba(238,0,51,0.22);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:700;color:#cc0033;"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#ee0033"/></svg>CA$59 best cost per lead</span>
+      <span style="display:inline-flex;align-items:center;gap:5px;background:rgba(13,13,13,0.05);border:1px solid rgba(0,0,0,0.16);border-radius:100px;padding:5px 12px;font-size:12px;font-weight:700;color:#191923;"><svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="3" fill="#191923"/></svg>10K &rarr; 18K followers</span>
+    </div>
     <h1 class="hero-h1" data-anim data-delay="1">
       <span class="heading-bold" style="color:#0a0a0a;">LinkedIn ads</span>
       <span class="heading-italic" style="color:#0a0a0a;">that turn into pipeline.</span>
     </h1>
-    <p data-anim data-delay="2" style="font-size:clamp(16px,1.2vw,19px); color:#444; max-width:640px; margin:0 auto; line-height:1.7;">For B2B and B2C SaaS: account-based targeting, lead gen and in-house creative, tracked to pipeline in your CRM, not just form fills. Run by a senior team that came from WPP Media.</p>
-    <div class="hero-proof" data-anim data-delay="3">
-      <div class="hp"><span class="hp-n">80%</span><span class="hp-l">Target accounts reached</span></div>
-      <div class="hp"><span class="hp-n">CA$59</span><span class="hp-l">Best campaign &middot; cost per lead</span></div>
-      <div class="hp"><span class="hp-n">$100M+</span><span class="hp-l">Media managed by the team</span></div>
+    <p class="li-hero-sub" data-anim data-delay="2">We ran LinkedIn and ABM at WPP Media. Now we run it for B2B and B2C SaaS, tracked to pipeline in your CRM.</p>
+    <div class="li-hero-ctas" data-anim data-delay="3">
+      <a href="https://cal.com/skipthenoise/30min" class="li-hero-btn cta-open-cal">Get your LinkedIn plan</a>
+      <a href="#cases" class="li-hero-link">See our work &rarr;</a>
     </div>
-    <div data-anim data-delay="4" style="margin-top:34px;">
-      <a href="https://cal.com/skipthenoise/30min" class="hero-cta-btn cta-open-cal">Get your LinkedIn plan &rarr;</a>
-      <a href="/case-studies" class="hero-secondary">See the work</a>
-    </div>
-    <p class="hero-micro" data-anim data-delay="5">30 minutes, no pitch. If LinkedIn is the wrong channel for you, we&rsquo;ll say so.</p>
   </div>
+  <style>
+    section.hero{padding-top:28px!important;padding-bottom:0!important}
+    .li-hero{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+    .li-hero-pills{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .li-hero .hero-h1{margin:6px 0 0!important}
+    .li-hero .hero-h1 .heading-bold,.li-hero .hero-h1 .heading-italic{font-size:clamp(40px,5.2vw,75px)!important;line-height:1.05}
+    .li-hero-sub{max-width:760px;font-size:18px;color:#6b7280;line-height:1.6;margin:0}
+    .li-hero-ctas{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center;margin-top:4px}
+    .li-hero-btn{display:inline-block;background:#5500DD;color:#fff;font-size:14px;font-weight:700;padding:12px 28px;border-radius:100px;text-decoration:none;white-space:nowrap}
+    .li-hero-btn:hover{opacity:.88}
+    .li-hero-link{font-size:14px;font-weight:600;color:#6b7280;text-decoration:underline;text-underline-offset:3px}
+    @media (max-width:768px){section.hero{padding-top:24px!important}.li-hero-pills span{font-size:11px!important}}
+  </style>
   <style>
     .li-mq{width:100%;overflow:hidden;padding:34px 0 10px;mask-image:linear-gradient(to right,transparent 0%,#000 6%,#000 94%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0%,#000 6%,#000 94%,transparent 100%)}
     .li-mq-track{display:flex;width:max-content;gap:10px;animation:li-mq-scroll 50s linear infinite}
@@ -1058,7 +1070,7 @@
   @media (max-width:420px){.li-case-stat,.li-big .li-case-stat{font-size:38px}}
   .li-case-stat{white-space:nowrap}
 </style>
-<section class="li-dark">
+<section class="li-dark" id="cases">
   <div class="container">
     <div data-anim data-delay="1" style="text-align:center;">
       <span class="heading-bold">LinkedIn for B2B, B2C SaaS</span>
