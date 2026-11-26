@@ -240,7 +240,7 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
 
   <section class="sec" id="by-platform">
     <h2>By country and platform<span class="since-tag" hidden>Since Nov 1</span></h2>
-    <p class="note">Spend is shown in USD (1 USD = 1.3766 CAD). Add to cart also counts checkouts where the platform reports them (Bing: Begin checkout and Add to cart goals; TikTok: add to cart and initiate checkout). Bing donations count the Purchase goal only. LinkedIn reports donations together with other website actions, so its count is shown separately. X spend is estimated from its daily budget (US $20/day from Nov 12, Canada CA$300 spent to Nov 24 (about CA$14/day from Nov 7, CA$27/day from Nov 21), PK $8/day from Nov 7).</p>
+    <p class="note">Spend is shown in USD (1 USD = 1.3766 CAD). Add to cart also counts checkouts where the platform reports them (Bing: Begin checkout and Add to cart goals; TikTok: add to cart and initiate checkout). Bing donations count the Purchase goal only. LinkedIn reports donations together with other website actions, so its count is shown separately. X spend is estimated from its daily budget (US $20/day from Nov 12, Canada CA$374 spent to Nov 26 with 5 donations worth CA$10,511.60 as reported in X Ads Manager, CA$27/day after, PK $8/day from Nov 7).</p>
     <div class="wrap">
       <table data-source="summary" data-row-key="key">
         <thead><tr><th data-field="platform">Platform</th><th data-field="spend_usd">Spend (USD)</th><th data-field="clicks">Clicks</th><th data-field="atc">Add to cart</th><th data-field="donations">Donations</th><th data-field="donations_view">of which view</th><th data-field="conversions_mixed">LinkedIn website actions</th><th data-field="value_usd">Value (USD)</th><th data-field="roas">ROAS</th><th data-field="cost_per_donation_usd">Cost / donation</th></tr></thead>
@@ -421,7 +421,7 @@ body { margin: 0; background: #f4efe4; color: var(--color-fg); font-family: var(
     </div>
     <div class="sec" id="budget-lines">
       <h2>By country and platform<span class="since-tag" hidden>Since Nov 1</span></h2>
-      <p class="note">X isn't connected here, so X US and PK spend is estimated from their daily budgets since launch (US $20/day from Nov 12, Canada CA$300 spent to Nov 24 (about CA$14/day from Nov 7, CA$27/day from Nov 21), PK $8/day from Nov 7) and marked est. X UK and TikTok Canada, UK and Pakistan haven't launched.</p>
+      <p class="note">X isn't connected here, so X US and PK spend is estimated from their daily budgets since launch (US $20/day from Nov 12, Canada CA$374 spent to Nov 26 with 5 donations worth CA$10,511.60 as reported in X Ads Manager, CA$27/day after, PK $8/day from Nov 7) and marked est. X UK and TikTok Canada, UK and Pakistan haven't launched.</p>
       <div class="wrap"><table data-source="budget" data-row-key="key">
         <thead><tr><th data-field="country">Country</th><th data-field="platform" class="l">Platform</th><th data-field="plan_usd">Budget</th><th data-field="spent_usd">Spent</th><th data-field="expected_usd">Should be at</th><th data-field="pace">Pace</th><th data-field="remaining_usd">Left</th><th data-field="daily_needed_usd">Per day needed</th></tr></thead>
         <tbody data-draw="b_lines"></tbody></table></div>
@@ -666,7 +666,7 @@ dash.calc('summary', {
         value_usd, cost_per_donation_usd: r.donations ? spend_usd / r.donations : null, roas: spend_usd ? value_usd / spend_usd : null};
     }).filter(Boolean).concat((() => {
       // X isn't connected: estimated spend = daily budget (USD) x days live. Donations as reported by hand from X Ads Manager (CA: 2 as of Nov 13).
-      const X_DAILY = {US: {usd: 20, start: '2026-11-12'}, CA: {segs: [{start: '2026-11-07', end: '2026-11-20', usd: 192 / 14 / 1.3766}, {start: '2026-11-21', usd: 27 / 1.3766}], donations: 2, value_usd: 251 / 1.3766}, PK: {usd: 8, start: '2026-11-07'}};
+      const X_DAILY = {US: {usd: 20, start: '2026-11-12'}, CA: {segs: [{start: '2026-11-07', end: '2026-11-20', usd: 192 / 14 / 1.3766}, {start: '2026-11-21', end: '2026-11-26', usd: 182 / 6 / 1.3766}, {start: '2026-11-27', usd: 27 / 1.3766}], donations: 5, value_usd: 10511.60 / 1.3766}, PK: {usd: 8, start: '2026-11-07'}};
       const end = Date.parse((dash.params().end || '2026-11-01') + 'T00:00:00Z');
       return Object.entries(X_DAILY).map(([country, x]) => {
         const xs = x.segs ? x.segs.reduce((a, g) => { const s0 = Date.parse(g.start + 'T00:00:00Z'), e0 = g.end ? Math.min(end, Date.parse(g.end + 'T00:00:00Z')) : end; return a + g.usd * Math.max(0, Math.round((e0 - s0) / 864e5) + 1); }, 0)
@@ -1223,7 +1223,7 @@ dash.calc('budget', {
       ['US','TikTok',4250],['CA','TikTok',2250],['UK','TikTok',2000],['PK','TikTok',1250]];
     const end = Date.parse((dash.params().end || '2026-11-01') + 'T00:00:00Z');
     // X isn't connected: estimate its spend from the daily budget since launch (USD/day)
-    const X_DAILY = {US: {usd: 20, start: '2026-11-12'}, CA: {segs: [{start: '2026-11-07', end: '2026-11-20', usd: 192 / 14 / 1.3766}, {start: '2026-11-21', usd: 27 / 1.3766}], donations: 2, value_usd: 251 / 1.3766}, PK: {usd: 8, start: '2026-11-07'}};
+    const X_DAILY = {US: {usd: 20, start: '2026-11-12'}, CA: {segs: [{start: '2026-11-07', end: '2026-11-20', usd: 192 / 14 / 1.3766}, {start: '2026-11-21', end: '2026-11-26', usd: 182 / 6 / 1.3766}, {start: '2026-11-27', usd: 27 / 1.3766}], donations: 5, value_usd: 10511.60 / 1.3766}, PK: {usd: 8, start: '2026-11-07'}};
     const gone = Math.min(DAYS, Math.max(1, Math.round((end - START) / 864e5) + 1));
     return PLAN.map(([country, platform, test]) => {
       const s = summary.find((r) => r.country === country && r.platform === platform && !r.estimated);
